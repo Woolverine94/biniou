@@ -8,7 +8,7 @@
   <img src="./pix/biniou.gif" alt="biniou screenshot"/>
 </p>
 
-<h4 align="center">biniou is a self-hosted webui for several kinds of GenAI (generative artificial intelligence). You can generate multimedia contents with AI and use chatbot on your own computer, even without dedicated GPU and starting from 8GB RAM. Can work offline (once deployed and required models downloaded).</h4>
+<h4 align="justify">biniou is a self-hosted webui for several kinds of GenAI (generative artificial intelligence). You can generate multimedia contents with AI and use chatbot on your own computer, even without dedicated GPU and starting from 8GB RAM. Can work offline (once deployed and required models downloaded).</h4>
 
 <p align="center">
   • <a href="#features">Features</a><br/>
@@ -21,13 +21,13 @@
 
 
 ## Features
-* Text generation using  :
+* **Text generation using  :
   - llama-cpp based chatbot (uses .gguf models)
   - Microsoft GIT image captioning
   - Whisper speech-to-text
   - nllb translation (200 languages)
 
-* Image generation and modification using :
+* **Image generation and modification using :
   - Stable Diffusion
   - Kandinsky (require 16GB+ RAM) 
   - Stable Diffusion Img2img
@@ -38,17 +38,17 @@
   - Real ESRGAN upscaler
   - GFPGAN face restoration
 
-* Audio generation using :
+* **Audio generation using :
   - Musicgen
   - Audiogen (require 16GB+ RAM)
   - Harmonai
   - Bark text-to-speech 
 
-* Video generation using :
+* **Video generation using :
   - Modelscope (require 16GB+ RAM)
   - Text2Video-Zero
 
-* Other features 
+* **Other features 
   - Communication between modules : send an output as an input to another module
   - Change your model by a simple dropdown menu or download and add it manually 
   - Based on Huggingface 🤗 and gradio
@@ -58,19 +58,19 @@
 
 ⚠️ As biniou is still in a early stage of development, it is highly recommended to install it in an "expendable" virtual machine ⚠️
 
-* Debian 12 /  Ubuntu 22.04
+### Debian 12 /  Ubuntu 22.04
 
-- 1.Install the pre-requisites as root :
+  1. Install the pre-requisites as root :
 ```bash
 apt install git pip python3 python3-venv gcc perl make ffmpeg openssl
 ```
 
-- 2.Clone this repository as user : 
+  2. Clone this repository as user : 
 ```bash
 git clone https://github.com/Woolverine94/biniou.git
 ```
 
-- 3.Access the directory and launch the installer :
+  3. Access the directory and launch the installer :
 ```bash
 cd ./biniou
 ./install.sh
@@ -78,17 +78,17 @@ cd ./biniou
 
 ## How To Use
 
-- 1.Run this application by executing from the biniou directory : 
+  1. Run this application by executing from the biniou directory : 
 ```bash
 ./webui.sh
 ```
 
-- 2.Once loaded, access the webui by the url :
-[https://127.0.0.1:7860](https://127.0.0.1:7860)
-url for dark theme (recommended) :
-[https://127.0.0.1:7860/?__theme=dark](https://127.0.0.1:7860/?__theme=dark)
+  2. Once loaded, access the webui by the url :
+[https://127.0.0.1:7860](https://127.0.0.1:7860)<br/>
+url for dark theme (recommended) :<br/>
+[https://127.0.0.1:7860/?__theme=dark](https://127.0.0.1:7860/?__theme=dark)<br/>
 
-- You can also access biniou from any device (including smartphone) on the same LAN/Wifi network of the biniou host using : 
+- You can also access biniou from any device (including smartphone) on the same LAN/Wifi network of the biniou host using : <br/>
 https://<biniou_host_ip>/ or https://<biniou_host_ip>/?__theme=dark
 
 - Update this application (biniou + python virtual environment) by running from the biniou directory : 
