@@ -83,10 +83,10 @@ cd ./biniou
 ./webui.sh
 ```
 
-  2. Once loaded, access the webui by the url :
-[https://127.0.0.1:7860](https://127.0.0.1:7860)<br/>
-url for dark theme (recommended) :<br/>
-[https://127.0.0.1:7860/?__theme=dark](https://127.0.0.1:7860/?__theme=dark)<br/>
+  2. Once loaded, access the webui by the url :<br/>
+> [https://127.0.0.1:7860](https://127.0.0.1:7860)<br/>
+  url for dark theme (recommended) :<br/>
+> [https://127.0.0.1:7860/?__theme=dark](https://127.0.0.1:7860/?__theme=dark)<br/>
 
 - You can also access biniou from any device (including smartphone) on the same LAN/Wifi network of the biniou host using : <br/>
 https://<biniou_host_ip>/ or https://<biniou_host_ip>/?__theme=dark
