@@ -1,0 +1,93 @@
+# https://github.com/Woolverine94/biniou
+# bark.py
+import gradio as gr
+import os
+from transformers import AutoProcessor, BarkModel
+from scipy.io.wavfile import write as write_wav
+import time
+import random
+from ressources.common import *
+
+model_path_bark = "./models/Bark/"
+os.makedirs(model_path_bark, exist_ok=True)
+
+model_list_bark = [
+    "suno/bark-small",
+    "suno/bark",
+]
+
+voice_preset_list_bark = {
+    "DE Male": "v2/de_speaker_9",
+    "DE Female": "v2/de_speaker_8",
+    "EN Male": "v2/en_speaker_6", 
+    "EN Female": "v2/en_speaker_9",
+    "ES Male": "v2/es_speaker_7",
+    "ES Female": "v2/es_speaker_9",
+    "FR Male" : "v2/fr_speaker_8",
+    "FR Female": "v2/fr_speaker_5",
+    "HI Male": "v2/hi_speaker_8",
+    "HI Female": "v2/hi_speaker_9",
+    "JA Male": "v2/ja_speaker_6",
+    "JA Female": "v2/ja_speaker_7",
+    "KO Male": "v2/ko_speaker_9",
+    "KO Female": "v2/ko_speaker_0",
+    "PL Male": "v2/pl_speaker_8",
+    "PL Female": "v2/pl_speaker_9",
+    "PT Male": "v2/pt_speaker_9",
+    "RU Male": "v2/ru_speaker_7",
+    "RU Female": "v2/ru_speaker_5",
+    "TR Male": "v2/tr_speaker_9",
+    "TR Female": "v2/tr_speaker_5",
+    "ZH Male": "v2/zh_speaker_8",
+    "ZH Female": "v2/zh_speaker_9",
+}
+
+# Bouton Cancel
+stop_bark = False
+
+def initiate_stop_bark() :
+    global stop_bark
+    stop_bark = True
+
+def check_bark(step, timestep, latents) : 
+    global stop_bark
+    if stop_bark == False :
+        return
+    elif stop_bark== True :
+        stop_bark = False
+        try:
+            del ressources.bark.pipe_bark
+        except NameError as e:
+            raise Exception("Interrupting ...")
+    return
+
+def music_bark(prompt_bark, model_bark, voice_preset_bark, progress_bark=gr.Progress(track_tqdm=True)):
+    
+    processor = AutoProcessor.from_pretrained(
+        model_bark, 
+        cache_dir=model_path_bark, 
+        resume_download=True,
+        local_files_only=True if offline_test() else None
+    )
+    
+    pipe_bark = BarkModel.from_pretrained(
+        model_bark, 
+        cache_dir=model_path_bark,
+        resume_download=True,
+        local_files_only=True if offline_test() else None        
+        )
+        
+    pipe_bark = pipe_bark.to_bettertransformer()
+    voice_preset = voice_preset_list_bark[voice_preset_bark]
+    inputs = processor(prompt_bark, voice_preset=voice_preset)
+    audio_array = pipe_bark.generate(**inputs, do_sample=True)
+    audio_array = audio_array.cpu().numpy().squeeze()
+    sample_rate = pipe_bark.generation_config.sample_rate
+    timestamp = time.time()
+    savename = f"outputs/{timestamp}.wav"
+    write_wav(savename, sample_rate, audio_array)
+    
+    del processor, pipe_bark, audio_array    
+    clean_ram()
+    
+    return savename 
