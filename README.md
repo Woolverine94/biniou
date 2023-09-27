@@ -10,7 +10,8 @@
 
 <h4 align="justify">biniou is a self-hosted webui for several kinds of GenAI (generative artificial intelligence). You can generate multimedia contents with AI and use chatbot on your own computer, even without dedicated GPU and starting from 8GB RAM. Can work offline (once deployed and required models downloaded).</h4>
 
-<p align="center">
+## Menu
+<p align="left">
   • <a href="#features">Features</a><br/>
   • <a href="#installation">Installation</a><br/>
   • <a href="#how-to-use">How To Use</a><br/>
@@ -21,13 +22,13 @@
 
 
 ## Features
-* **Text generation using  :
+* **Text generation using  :**
   - llama-cpp based chatbot (uses .gguf models)
   - Microsoft GIT image captioning
   - Whisper speech-to-text
   - nllb translation (200 languages)
 
-* **Image generation and modification using :
+* **Image generation and modification using :**
   - Stable Diffusion
   - Kandinsky (require 16GB+ RAM) 
   - Stable Diffusion Img2img
@@ -38,17 +39,17 @@
   - Real ESRGAN upscaler
   - GFPGAN face restoration
 
-* **Audio generation using :
+* **Audio generation using :**
   - Musicgen
   - Audiogen (require 16GB+ RAM)
   - Harmonai
   - Bark text-to-speech 
 
-* **Video generation using :
+* **Video generation using :**
   - Modelscope (require 16GB+ RAM)
   - Text2Video-Zero
 
-* **Other features 
+* **Other features**
   - Communication between modules : send an output as an input to another module
   - Change your model by a simple dropdown menu or download and add it manually 
   - Based on Huggingface 🤗 and gradio
@@ -84,12 +85,14 @@ cd ./biniou
 ```
 
   2. Once loaded, access the webui by the url :<br/>
-> [https://127.0.0.1:7860](https://127.0.0.1:7860)<br/>
+[https://127.0.0.1:7860](https://127.0.0.1:7860)<br/>
   url for dark theme (recommended) :<br/>
-> [https://127.0.0.1:7860/?__theme=dark](https://127.0.0.1:7860/?__theme=dark)<br/>
+[https://127.0.0.1:7860/?__theme=dark](https://127.0.0.1:7860/?__theme=dark)<br/>
 
 - You can also access biniou from any device (including smartphone) on the same LAN/Wifi network of the biniou host using : <br/>
-https://<biniou_host_ip>/ or https://<biniou_host_ip>/?__theme=dark
+https://<biniou_host_ip>/<br/> 
+or<br/> 
+https://<biniou_host_ip>/?__theme=dark
 
 - Update this application (biniou + python virtual environment) by running from the biniou directory : 
 ```bash

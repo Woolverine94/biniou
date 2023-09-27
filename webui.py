@@ -218,7 +218,7 @@ theme_gradio = gr.themes.Base().set(
 
 with gr.Blocks(theme=theme_gradio) as demo:
     gr.HTML(
-        """<a href='https://github.com/Woolverine94/biniou'><p style='float:left;'><img src='file/images/biniou_64.png' width='32' height='32'/></p>
+        """<a href='https://github.com/Woolverine94/biniou' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='32' height='32'/></p>
         <p style='text-align: left; font-size: 32px; font-weight: bold; line-height:32px;'>Biniou</p></a>"""
     )
     nsfw_filter = gr.Textbox(value="1", visible=False)
