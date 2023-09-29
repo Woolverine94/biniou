@@ -140,11 +140,13 @@ All the installation is automated, but Windows UAC will ask you confirmation for
 
   1. **Launch** by executing from the biniou directory (/home/$USER/biniou) : 
 
-    **- for Linux :** 
+    - for Linux :
+
 ```bash
 ./webui.sh
 ```
-    **- for Windows :**
+    - for Windows :
+
 <p align="justify">Double-click <b>webui.cmd</b> in the biniou directory (C:\Users\%username%\biniou\). When asked by the UAC, configure the firewall according to your network type to authorize access to the webui
 
 >Note : First launch could be very slow on Windows 11 (comparing to others OS).
@@ -159,12 +161,13 @@ https://<biniou_host_ip>/ or https://<biniou_host_ip>/?__theme=dark
 
   4. **Update** this application (biniou + python virtual environment) by running from the biniou directory : 
 
-    **- for Linux :**
+    - for Linux :
+
 ```bash
 ./update.sh
 ```
 
-    **- for Windows, double-click update_win.cmd** 
+    - for Windows, double-click update_win.cmd
 
 ## Good to know
 
