@@ -154,7 +154,7 @@ When asked by the UAC, configure the firewall according to your network type to 
 [https://127.0.0.1:7860](https://127.0.0.1:7860) or [https://127.0.0.1:7860/?__theme=dark](https://127.0.0.1:7860/?__theme=dark) for dark theme (recommended) <br/>
 
 - You can also access biniou from any device (including smartphone) on the same LAN/Wifi network of the biniou host using : <br/>
-https://<biniou host ip>/ or https://<biniou host ip>/?__theme=dark
+https://<biniou_host_ip>/ or https://<biniou_host_ip>/?__theme=dark
 
  3. **Quit** by using the keyboard shortcut CTRL+C in the Terminal
 
