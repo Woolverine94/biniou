@@ -16,8 +16,8 @@
   • <a href="#features">Features</a><br/>
   • <a href="#prerequisites">Prerequisites</a><br/>
   • <a href="#installation">Installation</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#debian-12---ubuntu-2204">Debian 12 / Ubuntu 22.04.3</a><br/>  
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="windows-10--windows-11">Windows 10 / Windows 11</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#debian-12---ubuntu-22043">Debian 12 / Ubuntu 22.04.3</a><br/>  
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#windows-10--windows-11">Windows 10 / Windows 11</a><br/>
   • <a href="#how-to-use">How To Use</a><br/>
   • <a href="#good-to-know">Good to know</a><br/>
   • <a href="#credits">Credits</a><br/>
