@@ -66,7 +66,7 @@
     - for Linux : at least 20GB for installation without models.
     - for Windows : at least 30GB for installation without models.
   - Storage type : SSD (HDD has not been tested)
-  - Internet access : unlimited bandwith fiber optic internet access
+  - Internet access : unlimited bandwith optical fiber internet access
 
 * **Hardware recommended :**
   - Massively multicore 64bit CPU
@@ -75,7 +75,7 @@
     - for Linux : around 100GB for installation including all defaults models.
     - for Windows : around 100GB for installation including all defaults models.
   - Storage type : SSD Nvme
-  - Internet access : unlimited bandwith fiber optic internet access
+  - Internet access : unlimited bandwith optical fiber internet access
 
 * **Operating system :**
   - a 64 bit OS :
