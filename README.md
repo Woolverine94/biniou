@@ -130,22 +130,20 @@ Windows installation has a lot more prerequisites than linux one, and requires f
 >Note : **DO NOT** move wget from your default downloads folder, it will be used by the install script and is expected to be in the same directory.
 
   2. **Download and execute** from your default downloads folder :<br/> 
-    - **for Windows 10 :** [install_win10.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win10.cmd)<br/> 
-    - **for Windows 11 :** [install_win11.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win11.cmd)<br/> 
+  - **for Windows 10 :** [install_win10.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win10.cmd)<br/> 
+  - **for Windows 11 :** [install_win11.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win11.cmd)<br/> 
 (right-click on the link and select "Save Target/Link as ..." to download)</br>
 All the installation is automated, but Windows UAC will ask you confirmation for each software installed during the "prerequisites" phase. 
 
 
 ## How To Use
 
-  1. **Launch** by executing from the biniou directory (/home/$USER/biniou) : 
-
-    - for Linux :
-
+  1. **Launch** by executing from the biniou directory (/home/$USER/biniou) :
+  - **for Linux :**
 ```bash
 ./webui.sh
 ```
-    - for Windows :
+  - **for Windows :**
 
 <p align="justify">Double-click <b>webui.cmd</b> in the biniou directory (C:\Users\%username%\biniou\). When asked by the UAC, configure the firewall according to your network type to authorize access to the webui
 
@@ -161,13 +159,13 @@ https://<biniou_host_ip>/ or https://<biniou_host_ip>/?__theme=dark
 
   4. **Update** this application (biniou + python virtual environment) by running from the biniou directory : 
 
-    - for Linux :
+  - **for Linux :**
 
 ```bash
 ./update.sh
 ```
 
-    - for Windows, double-click update_win.cmd
+  - **for Windows, double-click update_win.cmd**
 
 ## Good to know
 
