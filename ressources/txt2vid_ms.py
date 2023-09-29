@@ -20,8 +20,8 @@ model_path_txt2vid_ms = "./models/Modelscope/"
 os.makedirs(model_path_txt2vid_ms, exist_ok=True)
 
 model_list_txt2vid_ms = [
-    "cerspense/zeroscope_v2_576w",
     "camenduru/potat1",
+    "cerspense/zeroscope_v2_576w",
     "damo-vilab/text-to-video-ms-1.7b",
 ]
 
