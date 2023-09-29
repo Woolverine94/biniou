@@ -119,10 +119,10 @@ Windows installation has a lot more prerequisites than linux one, and requires f
   - Visual Studio Build tools
   - Windows 10/11 SDK
   - Vcredist x86/64
-... and all their dependencies.
+  - ... and all their dependencies.
 
-<p align="justify">It's a lot of changes for your operating system, and **could potentially** bring unwanted behaviors on your system, depending on which softwares are already installed on it.</br>
-⚠️ You should really considers installing biniou inside a virtual machine, using a dedicated fresh install, or, at least, make a backup of your system and datas before starting the installation process. ⚠️</br> 
+<p align="justify">It's a lot of changes for your operating system, and <b>could potentially</b> bring unwanted behaviors on your system, depending on which softwares are already installed on it.</br></br>
+⚠️ You should really considers installing biniou inside a virtual machine, using a dedicated fresh install, or, at least, make a backup of your system and datas before starting the installation process. ⚠️ 
 </p>
 
   1. **Download** [wget](https://eternallybored.org/misc/wget/) for windows :<br/> 
@@ -145,8 +145,7 @@ All the installation is automated, but Windows UAC will ask you confirmation for
 ./webui.sh
 ```
   **-for Windows :**
-Double-click webui.cmd in the biniou directory (C:\Users\%username%\biniou\).</br>
-When asked by the UAC, configure the firewall according to your network type to authorize access to the webui
+<p align="justify">Double-click <b>webui.cmd</b> in the biniou directory (C:\Users\%username%\biniou\). When asked by the UAC, configure the firewall according to your network type to authorize access to the webui
 
 >Note : First launch could be very slow on Windows 11 (comparing to others OS).
 
