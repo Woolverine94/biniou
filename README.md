@@ -16,6 +16,8 @@
   • <a href="#features">Features</a><br/>
   • <a href="#prerequisites">Prerequisites</a><br/>
   • <a href="#installation">Installation</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#debian-12---ubuntu-2204">Debian 12 / Ubuntu 22.04.3</a><br/>  
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="windows-10--windows-11">Windows 10 / Windows 11</a><br/>
   • <a href="#how-to-use">How To Use</a><br/>
   • <a href="#good-to-know">Good to know</a><br/>
   • <a href="#credits">Credits</a><br/>
@@ -55,7 +57,7 @@
   - Communication between modules : send an output as an input to another module
   - Change your model by a simple dropdown menu or download and add it manually 
   - Based on Huggingface 🤗 and gradio
-  - Cross platform (to be done)
+  - Cross platform (Linux and Windows 10/11, MacOS to be done)
 
 
 ## Prerequisites
@@ -84,7 +86,7 @@
     - Windows 10 22H2
     - Windows 11 22H2
 
-> Note : biniou does not support Cuda or ROCm and though does not need a dedicated GPU to run. You can install it in a virtual machine. 
+> Note : biniou does not still support Cuda or ROCm and though does not need a dedicated GPU to run. You can install it in a virtual machine.
 
 
 ## Installation 
@@ -92,7 +94,7 @@
 ⚠️ As biniou is still in an early stage of development, it is **highly recommended** to install it in an "expendable" virtual machine ⚠️
 
 
-### Debian 12 /  Ubuntu 22.04
+### Debian 12 /  Ubuntu 22.04.3
 
   1. **Install** the pre-requisites as root :
 ```bash
@@ -119,9 +121,10 @@ Windows installation has a lot more prerequisites than linux one, and requires f
   - Visual Studio Build tools
   - Windows 10/11 SDK
   - Vcredist x86/64
+  - ffmpeg
   - ... and all their dependencies.
 
-<p align="justify">It's a lot of changes for your operating system, and <b>could potentially</b> bring unwanted behaviors on your system, depending on which softwares are already installed on it.</br></br>
+<p align="justify">It's a lot of changes on your operating system for a single software, and <b>could potentially</b> bring unwanted behaviors on your system, depending on which softwares are already installed on it.</br></br>
 ⚠️ You should really considers installing biniou inside a virtual machine, using a dedicated fresh install, or, at least, make a backup of your system and datas before starting the installation process. ⚠️ 
 </p>
 
@@ -165,33 +168,60 @@ https://<biniou_host_ip>/ or https://<biniou_host_ip>/?__theme=dark
 ./update.sh
 ```
 
-  - **for Windows, double-click update_win.cmd**
+  - **for Windows, double-click `update_win.cmd`**
 
 ## Good to know
 
-- Most frequent cause of crash is not enough memory on the host. Symptom is biniou program closing and returning to/closing the terminal without specific error message. You can use biniou with 8GB RAM, but 16GB at least is recommended to avoid OOM (out of memory) error. 
+* Most frequent cause of crash is not enough memory on the host. Symptom is biniou program closing and returning to/closing the terminal without specific error message. You can use biniou with 8GB RAM, but 16GB at least is recommended to avoid OOM (out of memory) error. 
 
-- biniou use a lot of differents AI models, which requires a lot of space : if you want to use all the modules in biniou, you will need around 100GB of disk space only for the default model of each module. Models are downloaded on the first run of each module or when you select a new model in a module and generate content. Models are stored in the directory /models of the biniou installation. Unused models could be deleted to save some space. 
+* biniou use a lot of differents AI models, which requires a lot of space : if you want to use all the modules in biniou, you will need around 100GB of disk space only for the default model of each module. Models are downloaded on the first run of each module or when you select a new model in a module and generate content. Models are stored in the directory /models of the biniou installation. Unused models could be deleted to save some space. 
 
-- Consequently, you will need a fast internet access to download models.
+* Consequently, you will need a fast internet access to download models.
 
-- A backup of every content generated is available inside the /outputs directory of the biniou folder.
+* A backup of every content generated is available inside the /outputs directory of the biniou folder.
 
-- biniou doesn't still use CUDA and only rely on CPU for all operations. It use a specific CPU-only version of pyTorch. The result is a better compatibility with a wide range of hardware, but degraded performances. Depending on your hardware, expect slowness. 
+* biniou doesn't still use CUDA and only rely on CPU for all operations. It use a specific CPU-only version of pyTorch. The result is a better compatibility with a wide range of hardware, but degraded performances. Depending on your hardware, expect slowness. 
 
-- Defaults settings are selected to permit generation of contents on low-end computers, with the best ratio performance/quality. If you have a configuration above the minimal settings, you could try using other models, increase media dimensions or duration, modify inference parameters or others settings (like token merging for images) to obtain better quality contents.
+* Defaults settings are selected to permit generation of contents on low-end computers, with the best ratio performance/quality. If you have a configuration above the minimal settings, you could try using other models, increase media dimensions or duration, modify inference parameters or others settings (like token merging for images) to obtain better quality contents.
 
-- biniou is licensed under GNU GPL3, but each model used in biniou has its own license. Please consult each model license to know what you can and cannot do with the models. For each model, you can find a link to the huggingface page of the model in the "About" section of the associated module.
+* biniou is licensed under GNU GPL3, but each model used in biniou has its own license. Please consult each model license to know what you can and cannot do with the models. For each model, you can find a link to the huggingface page of the model in the "About" section of the associated module.
 
-- Don't have too much expectations : biniou is in an early stage of development, and most open source software used in it are in development (some are still experimentals).
+* Don't have too much expectations : biniou is in an early stage of development, and most open source software used in it are in development (some are still experimentals).
+
+* Every biniou modules offers 2 accordions elements **About** and **Settings** :
+  - **About** is a quick help features that describes the module and give instructions and tips on how to use it.
+  - **Settings** is a panel setting specific to the module that let you configure the generation parameters.
 
 
 ## Credits
 
-This application uses the following technologies :
+This application uses the following softwares and technologies :
 
-(to be done)
+- [Huggingface 🤗](https://huggingface.co/) : Diffusers and Transformers libraries and almost all the generatives models.
+- [Gradio](https://www.gradio.app/) : webUI
+- [llama-cpp-python](https://github.com/abetlen/llama-cpp-python) : python bindings for llama-cpp
+- [Microsoft GIT](https://github.com/microsoft/GenerativeImage2Text) : Image2text
+- [Whisper](https://openai.com/research/whisper) : speech2text
+- [nllb translation](https://ai.meta.com/research/no-language-left-behind/) : language translation
+- [Stable Diffusion](https://stability.ai/stable-diffusion) : txt2img, img2img, inpaint, ControlNet, Text2Video-Zero
+- [Kandinsky](https://github.com/ai-forever/Kandinsky-2) : txt2img
+- [Instruct pix2pix](https://www.timothybrooks.com/instruct-pix2pix) : pix2pix
+- [Controlnet Auxiliary models](https://github.com/patrickvonplaten/controlnet_aux) : preview models for ControlNet module
+- [Insight Face](https://insightface.ai/) : faceswapping
+- [Real ESRGAN](https://github.com/xinntao/Real-ESRGAN) : upscaler
+- [GFPGAN](https://github.com/TencentARC/GFPGAN) : face restoration
+- [Audiocraft](https://audiocraft.metademolab.com/) : musicgen, audiogen
+- [Harmonai](https://www.harmonai.org/) : harmonai
+- [Bark](https://github.com/suno-ai/bark) : text2speech
+- [Modelscope text-to-video-synthesis](https://modelscope.cn/models/damo/text-to-video-synthesis/summary) : txt2vid
+- [compel](https://github.com/damian0815/compel) : Prompt enhancement for various `StableDiffusionPipeline`-based modules
+- [tomesd](https://github.com/dbolya/tomesd) : Token merging for various `StableDiffusionPipeline`-based modules
+- [Python](https://www.python.org/) 
+- [PyTorch](https://pytorch.org/)
+- [Git](https://git-scm.com/) 
+- [ffmpeg](https://ffmpeg.org/)
 
+... and all their dependencies
 
 ## License
 
