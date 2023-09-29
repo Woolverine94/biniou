@@ -320,6 +320,24 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             outputs=[out_llamacpp, hidden_history_llamacpp],
                             show_progress="full",
                         )
+                        prompt_llamacpp.submit(
+                            fn=text_llamacpp,
+                            inputs=[
+                                model_llamacpp, 
+                                max_tokens_llamacpp,                                 
+                                seed_llamacpp, 
+                                stream_llamacpp, 
+                                n_ctx_llamacpp, 
+                                repeat_penalty_llamacpp, 
+                                temperature_llamacpp, 
+                                top_p_llamacpp, 
+                                top_k_llamacpp,
+                                prompt_llamacpp,                             
+                                history_llamacpp,                                
+                            ],
+                            outputs=[out_llamacpp, hidden_history_llamacpp],
+                            show_progress="full",
+                        )
                         btn_llamacpp_continue.click(
                             fn=text_llamacpp_continue,
                             inputs=[
