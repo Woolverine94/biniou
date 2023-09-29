@@ -94,17 +94,17 @@
 
 ### Debian 12 /  Ubuntu 22.04
 
-  1. Install the pre-requisites as root :
+  1. **Install** the pre-requisites as root :
 ```bash
 apt install git pip python3 python3-venv gcc perl make ffmpeg openssl
 ```
 
-  2. Clone this repository as user : 
+  2. **Clone** this repository as user : 
 ```bash
 git clone https://github.com/Woolverine94/biniou.git
 ```
 
-  3. Access the directory and launch the installer :
+  3. **Access** the directory and launch the installer :
 ```bash
 cd ./biniou
 ./install.sh
@@ -121,14 +121,15 @@ Windows installation has a lot more prerequisites than linux one, and requires f
   - Vcredist x86/64
 ... and all their dependencies.
 
-It's a lot of changes for your operating system, and **could potentially** bring unwanted behaviors on your system, depending on which softwares are already installed on it.</br>
+<p align="justify">It's a lot of changes for your operating system, and **could potentially** bring unwanted behaviors on your system, depending on which softwares are already installed on it.</br>
 ⚠️ You should really considers installing biniou inside a virtual machine, using a dedicated fresh install, or, at least, make a backup of your system and datas before starting the installation process. ⚠️</br> 
+</p>
 
-  1. Download [wget](https://eternallybored.org/misc/wget/) for windows :<br/> 
+  1. **Download** [wget](https://eternallybored.org/misc/wget/) for windows :<br/> 
 [https://eternallybored.org/misc/wget/1.21.4/64/wget.exe](https://eternallybored.org/misc/wget/1.21.4/64/wget.exe)<br/> 
->Note : **DO NOT** move it from your default downloads folder, it will be used by the install script and is expected to be in the same directory.
+>Note : **DO NOT** move wget from your default downloads folder, it will be used by the install script and is expected to be in the same directory.
 
-  2. Download and execute from your default downloads folder :<br/> 
+  2. **Download and execute** from your default downloads folder :<br/> 
     **for Windows 10 :** [install_win10.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win10.cmd)<br/> 
     **for Windows 11 :** [install_win11.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win11.cmd)<br/> 
 (right-click on the link and select "Save Target/Link as ..." to download)</br>
@@ -139,36 +140,32 @@ All the installation is automated, but Windows UAC will ask you confirmation for
 
   1. **Launch** by executing from the biniou directory (/home/$USER/biniou) : 
 
-  -for Linux : 
+  **-for Linux :** 
 ```bash
 ./webui.sh
 ```
-  -for Windows :
+  **-for Windows :**
 Double-click webui.cmd in the biniou directory (C:\Users\%username%\biniou\).</br>
 When asked by the UAC, configure the firewall according to your network type to authorize access to the webui
 
 >Note : First launch could be very slow on Windows 11 (comparing to others OS).
 
   2. **Access** the webui by the url :<br/>
-[https://127.0.0.1:7860](https://127.0.0.1:7860)
-  url for dark theme (recommended) :<br/>
-[https://127.0.0.1:7860/?__theme=dark](https://127.0.0.1:7860/?__theme=dark)<br/>
+[https://127.0.0.1:7860](https://127.0.0.1:7860) or [https://127.0.0.1:7860/?__theme=dark](https://127.0.0.1:7860/?__theme=dark) for dark theme (recommended) <br/>
 
 - You can also access biniou from any device (including smartphone) on the same LAN/Wifi network of the biniou host using : <br/>
-https://<biniou_host_ip>/<br/> 
-or<br/> 
-https://<biniou_host_ip>/?__theme=dark
+https://<biniou host ip>/ or https://<biniou host ip>/?__theme=dark
 
  3. **Quit** by using the keyboard shortcut CTRL+C in the Terminal
 
  4. **Update** this application (biniou + python virtual environment) by running from the biniou directory : 
 
-  -for Linux : 
+  **-for Linux :**
 ```bash
 ./update.sh
 ```
 
-  -for Windows, double-click update_win.cmd 
+  **-for Windows, double-click update_win.cmd** 
 
 ## Good to know
 
