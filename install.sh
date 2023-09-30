@@ -1,7 +1,6 @@
 #!/bin/bash
 
 mkdir -p ./outputs
-mkdir -p ./ressources
 mkdir -p ./ssl
 mkdir -p ./models/Audiocraft
 
@@ -14,7 +13,7 @@ source ./env/bin/activate
 
 ## Installer pytorch (CPU) :
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-FORCE_CMAKE=1 pip install llama-cpp-python
+FORCE_CMAKE=1 pip install llama-cpp-python==0.2.7
 pip install -r requirements.txt
 
 exit 0
