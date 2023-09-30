@@ -10,6 +10,7 @@
 
 <p align="justify">biniou is a self-hosted webui for several kinds of GenAI (generative artificial intelligence). You can generate multimedia contents with AI and use chatbot on your own computer, even without dedicated GPU and starting from 8GB RAM. Can work offline (once deployed and required models downloaded).</p>
 
+---
 
 ## Menu
 <p align="left">
@@ -18,12 +19,14 @@
   • <a href="#installation">Installation</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#debian-12---ubuntu-22043">Debian 12 / Ubuntu 22.04.3</a><br/>  
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#windows-10--windows-11">Windows 10 / Windows 11</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#homebrew-install">Homebrew install</a><br/>
   • <a href="#how-to-use">How To Use</a><br/>
   • <a href="#good-to-know">Good to know</a><br/>
   • <a href="#credits">Credits</a><br/>
   • <a href="#license">License</a><br/>
 </p>
 
+---
 
 ## Features
 * **Text generation using  :**
@@ -59,9 +62,10 @@
   - Based on Huggingface 🤗 and gradio
   - Cross platform (Linux and Windows 10/11, MacOS to be done)
 
+---
 
 ## Prerequisites
-* **Hardware minimal :**
+* **Minimal hardware :**
   - 64bit CPU
   - 8GB RAM
   - Storage requirements :
@@ -70,7 +74,7 @@
   - Storage type : SSD (HDD has not been tested)
   - Internet access : unlimited bandwith optical fiber internet access
 
-* **Hardware recommended :**
+* **Recommended hardware :**
   - Massively multicore 64bit CPU
   - 16GB+ RAM
   - Storage requirements :
@@ -88,6 +92,7 @@
 
 > Note : biniou does not still support Cuda or ROCm and though does not need a dedicated GPU to run. You can install it in a virtual machine.
 
+---
 
 ## Installation 
 
@@ -133,17 +138,47 @@ Windows installation has a lot more prerequisites than linux one, and requires f
 >Note : **DO NOT** move wget from your default downloads folder, it will be used by the install script and is expected to be in the same directory.
 
   2. **Download and execute** from your default downloads folder :<br/> 
-  - **for Windows 10 :** [install_win10.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win10.cmd)<br/> 
-  - **for Windows 11 :** [install_win11.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win11.cmd)<br/> 
-(right-click on the link and select "Save Target/Link as ..." to download)</br>
+    * **for Windows 10 :** [install_win10.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win10.cmd)<br/> 
+    * **for Windows 11 :** [install_win11.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win11.cmd)<br/> 
+
+(right-click on the link and select "Save Target/Link as ..." to download)</br><br/> 
 All the installation is automated, but Windows UAC will ask you confirmation for each software installed during the "prerequisites" phase. 
 
+### Homebrew install
+
+⚠️ Homebrew install is ***theoretically*** compatible with MacOSX, but has not been tested. Use at your own risk. ⚠️
+
+  1. **Install** [Homebrew](https://brew.sh/) for your operating system
+ 
+  2. **Install** required homebrew "bottles" : 
+```bash
+brew install git python3 gcc gcc@11 perl make ffmpeg openssl
+```
+
+  3. **Install** python virtualenv : 
+```bash
+python3 -m pip install virtualenv
+```
+
+  4. **Clone** this repository as user : 
+```bash
+git clone https://github.com/Woolverine94/biniou.git
+```
+
+  5. **Access** the directory and launch the installer :
+```bash
+cd ./biniou
+./install.sh
+```
+
+---
 
 ## How To Use
 
-  1. **Launch** by executing from the biniou directory (/home/$USER/biniou) :
+  1. **Launch** by executing from the biniou directory :
   - **for Linux :**
 ```bash
+cd /home/$USER/biniou
 ./webui.sh
 ```
   - **for Windows :**
@@ -170,6 +205,8 @@ https://<biniou_host_ip>/ or https://<biniou_host_ip>/?__theme=dark
 
   - **for Windows, double-click `update_win.cmd`**
 
+---
+
 ## Good to know
 
 * Most frequent cause of crash is not enough memory on the host. Symptom is biniou program closing and returning to/closing the terminal without specific error message. You can use biniou with 8GB RAM, but 16GB at least is recommended to avoid OOM (out of memory) error. 
@@ -192,6 +229,7 @@ https://<biniou_host_ip>/ or https://<biniou_host_ip>/?__theme=dark
   - **About** is a quick help features that describes the module and give instructions and tips on how to use it.
   - **Settings** is a panel setting specific to the module that let you configure the generation parameters.
 
+---
 
 ## Credits
 
@@ -222,6 +260,8 @@ This application uses the following softwares and technologies :
 - [ffmpeg](https://ffmpeg.org/)
 
 ... and all their dependencies
+
+---
 
 ## License
 
