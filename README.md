@@ -1,7 +1,7 @@
 <h1 align="center">
-  <br>
+  <br/>
   biniou
-  <br>
+  <br/>
 </h1>
 
 <p align="center">
@@ -12,6 +12,14 @@
 
 ---
 
+## Updates
+
+🆕 **2023-10-01** : Adding docker support through <a href="#dockerfile">Dockerfile</a><br/>
+🆕 **2023-09-30** : Adding <a href="#macos-homebrew-install">macOS Homebrew experimental installer</a><br/>
+🆕 **2023-09-29** : Adding <a href="#windows-10--windows-11">Windows 10/11 installer</a><br/>
+
+---
+
 ## Menu
 <p align="left">
   • <a href="#features">Features</a><br/>
@@ -19,7 +27,8 @@
   • <a href="#installation">Installation</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#debian-12---ubuntu-22043">Debian 12 / Ubuntu 22.04.3</a><br/>  
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#windows-10--windows-11">Windows 10 / Windows 11</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#homebrew-install">Homebrew install</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#macos-homebrew-install">macOS Homebrew install</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#dockerfile">Dockerfile</a><br/>
   • <a href="#how-to-use">How To Use</a><br/>
   • <a href="#good-to-know">Good to know</a><br/>
   • <a href="#credits">Credits</a><br/>
@@ -60,7 +69,8 @@
   - Communication between modules : send an output as an input to another module
   - Change your model by a simple dropdown menu or download and add it manually 
   - Based on Huggingface 🤗 and gradio
-  - Cross platform (Linux and Windows 10/11, MacOS to be done)
+  - Cross platform : Linux, Windows 10/11 and macOS(experimental, via homebrew)
+  - Convenient Dockerfile for cloud instances
 
 ---
 
@@ -71,6 +81,7 @@
   - Storage requirements :
     - for Linux : at least 20GB for installation without models.
     - for Windows : at least 30GB for installation without models.
+    - for macOS : at least ??GB for installation without models.
   - Storage type : SSD (HDD has not been tested)
   - Internet access : unlimited bandwith optical fiber internet access
 
@@ -80,6 +91,7 @@
   - Storage requirements :
     - for Linux : around 100GB for installation including all defaults models.
     - for Windows : around 100GB for installation including all defaults models.
+    - for Windows : around 100GB for installation including all defaults models.     
   - Storage type : SSD Nvme
   - Internet access : unlimited bandwith optical fiber internet access
 
@@ -89,15 +101,15 @@
     - Ubuntu 22.04.3 
     - Windows 10 22H2
     - Windows 11 22H2
+    - macOS ???
 
-> Note : biniou does not still support Cuda or ROCm and though does not need a dedicated GPU to run. You can install it in a virtual machine.
+><u>Note :</u> biniou does not still support Cuda or ROCm and though does not need a dedicated GPU to run. You can install it in a virtual machine.
 
 ---
 
 ## Installation 
 
-⚠️ As biniou is still in an early stage of development, it is **highly recommended** to install it in an "expendable" virtual machine ⚠️
-
+⚠️ As biniou is still in an early stage of development, it is **recommended** to install it in an "expendable" virtual machine ⚠️
 
 ### Debian 12 /  Ubuntu 22.04.3
 
@@ -111,7 +123,7 @@ apt install git pip python3 python3-venv gcc perl make ffmpeg openssl
 git clone https://github.com/Woolverine94/biniou.git
 ```
 
-  3. **Access** the directory and launch the installer :
+  3. **Launch** the installer :
 ```bash
 cd ./biniou
 ./install.sh
@@ -119,7 +131,7 @@ cd ./biniou
 
 ### Windows 10 / Windows 11
 
-Windows installation has a lot more prerequisites than linux one, and requires following softwares (that will be installed automatically during the install process) : 
+Windows installation has more prerequisites than linux one, and requires following softwares (that will be installed automatically during the install process) : 
   - Git 
   - Python 
   - OpenSSL
@@ -129,24 +141,26 @@ Windows installation has a lot more prerequisites than linux one, and requires f
   - ffmpeg
   - ... and all their dependencies.
 
-<p align="justify">It's a lot of changes on your operating system for a single software, and <b>could potentially</b> bring unwanted behaviors on your system, depending on which softwares are already installed on it.</br></br>
-⚠️ You should really considers installing biniou inside a virtual machine, using a dedicated fresh install, or, at least, make a backup of your system and datas before starting the installation process. ⚠️ 
+<p align="justify">It's a lot of changes on your operating system, and this <b>could potentially</b> bring unwanted behaviors on your system, depending on which softwares are already installed on it.</br></br>
+⚠️ You should really make at a backup of your system and datas before starting the installation process. ⚠️ 
 </p>
 
   1. **Download** [wget](https://eternallybored.org/misc/wget/) for windows :<br/> 
 [https://eternallybored.org/misc/wget/1.21.4/64/wget.exe](https://eternallybored.org/misc/wget/1.21.4/64/wget.exe)<br/> 
->Note : **DO NOT** move wget from your default downloads folder, it will be used by the install script and is expected to be in the same directory.
+
+><u>Note :</u> **DO NOT** move wget from your default downloads folder, it will be used by the install script and is expected to be in the same directory.
 
   2. **Download and execute** from your default downloads folder :<br/> 
     * **for Windows 10 :** [install_win10.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win10.cmd)<br/> 
     * **for Windows 11 :** [install_win11.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win11.cmd)<br/> 
 
-(right-click on the link and select "Save Target/Link as ..." to download)</br><br/> 
+*<p align=center>(right-click on the link and select "Save Target/Link as ..." to download)</br><br/></p>*
+
 All the installation is automated, but Windows UAC will ask you confirmation for each software installed during the "prerequisites" phase. 
 
-### Homebrew install
+### macOS Homebrew install
 
-⚠️ Homebrew install is ***theoretically*** compatible with MacOSX, but has not been tested. Use at your own risk. ⚠️
+⚠️ Homebrew install is ***theoretically*** compatible with macOS, but has not been tested yet. Use at your own risk. ⚠️
 
   1. **Install** [Homebrew](https://brew.sh/) for your operating system
  
@@ -165,11 +179,36 @@ python3 -m pip install virtualenv
 git clone https://github.com/Woolverine94/biniou.git
 ```
 
-  5. **Access** the directory and launch the installer :
+  5. **Launch** the installer :
 ```bash
 cd ./biniou
 ./install.sh
 ```
+
+### Dockerfile
+
+*These instructions assumes that you already have a configured and working docker environment.*
+
+  1. **Create** the docker image :
+```bash
+docker build -t biniou https://github.com/Woolverine94/biniou.git
+```
+ 
+  2. **Launch** the container : 
+```bash
+docker run -it -p 7860:7860 \
+-v biniou_outputs:/home/biniou/biniou/outputs \
+-v biniou_models:/home/biniou/biniou/models \
+-v biniou_cache:/home/biniou/.cache/huggingface \
+-v biniou_gfpgan:/home/biniou/biniou/gfpgan \
+biniou:latest
+```
+
+ 3. **Access** the webui by the url :<br/>
+[https://127.0.0.1:7860](https://127.0.0.1:7860) or [https://127.0.0.1:7860/?__theme=dark](https://127.0.0.1:7860/?__theme=dark) for dark theme (recommended) <br/>
+... or replace 127.0.0.1 by ip of your container
+
+><u>Note :</u> to save storage space, the previous container launch command defines common shared volumes for all biniou containers.<br/>
 
 ---
 
@@ -185,13 +224,12 @@ cd /home/$USER/biniou
 
 <p align="justify">Double-click <b>webui.cmd</b> in the biniou directory (C:\Users\%username%\biniou\). When asked by the UAC, configure the firewall according to your network type to authorize access to the webui
 
->Note : First launch could be very slow on Windows 11 (comparing to others OS).
+><u>Note :</u> First start could be very slow on Windows 11 (comparing to others OS).
 
   2. **Access** the webui by the url :<br/>
 [https://127.0.0.1:7860](https://127.0.0.1:7860) or [https://127.0.0.1:7860/?__theme=dark](https://127.0.0.1:7860/?__theme=dark) for dark theme (recommended) <br/>
-
-You can also access biniou from any device (including smartphone) on the same LAN/Wifi network of the biniou host using : <br/>
-https://<biniou_host_ip>/ or https://<biniou_host_ip>/?__theme=dark
+<br/>
+You can also access biniou from any device (including smartphones) on the same LAN/Wifi network by replacing 127.0.0.1 in the url with biniou host ip address.<br/>
 
   3. **Quit** by using the keyboard shortcut CTRL+C in the Terminal
 
