@@ -142,7 +142,7 @@ Windows installation has more prerequisites than linux one, and requires followi
   - ... and all their dependencies.
 
 <p align="justify">It's a lot of changes on your operating system, and this <b>could potentially</b> bring unwanted behaviors on your system, depending on which softwares are already installed on it.</br></br>
-⚠️ You should really make at a backup of your system and datas before starting the installation process. ⚠️ 
+⚠️ You should really make a backup of your system and datas before starting the installation process. ⚠️ 
 </p>
 
   1. **Download** [wget](https://eternallybored.org/misc/wget/) for windows :<br/> 
@@ -160,7 +160,7 @@ All the installation is automated, but Windows UAC will ask you confirmation for
 
 ### macOS Homebrew install
 
-⚠️ Homebrew install is ***theoretically*** compatible with macOS, but has not been tested yet. Use at your own risk. ⚠️
+⚠️ Homebrew install is ***theoretically*** compatible with macOS, but has not been tested. Use at your own risk. ⚠️
 
   1. **Install** [Homebrew](https://brew.sh/) for your operating system
  
@@ -228,7 +228,6 @@ cd /home/$USER/biniou
 
   2. **Access** the webui by the url :<br/>
 [https://127.0.0.1:7860](https://127.0.0.1:7860) or [https://127.0.0.1:7860/?__theme=dark](https://127.0.0.1:7860/?__theme=dark) for dark theme (recommended) <br/>
-<br/>
 You can also access biniou from any device (including smartphones) on the same LAN/Wifi network by replacing 127.0.0.1 in the url with biniou host ip address.<br/>
 
   3. **Quit** by using the keyboard shortcut CTRL+C in the Terminal
