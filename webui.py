@@ -219,7 +219,7 @@ theme_gradio = gr.themes.Base().set(
 with gr.Blocks(theme=theme_gradio) as demo:
     gr.HTML(
         """<a href='https://github.com/Woolverine94/biniou' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='32' height='32'/></p>
-        <p style='text-align: left; font-size: 32px; font-weight: bold; line-height:32px;'>Biniou</p></a>"""
+        <p style='text-align: left; font-size: 32px; font-weight: bold; line-height:32px;'>biniou</p></a>"""
     )
     nsfw_filter = gr.Textbox(value="1", visible=False)
     with gr.Tabs() as tabs:
@@ -234,7 +234,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 """
                                 <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
                                 <b>Module : </b>Llama-cpp</br>
-                                <b>Function : </b>Chat with an AI using <a href='https://github.com/abetlen/llama-cpp-python' target='_blank'>llama-cpp</a></br>
+                                <b>Function : </b>Chat with an AI using <a href='https://github.com/abetlen/llama-cpp-python' target='_blank'>llama-cpp-python</a></br>
                                 <b>Input(s) : </b>Input text</br>
                                 <b>Output(s) : </b>Output text</br>
                                 <b>HF models pages : </b>
