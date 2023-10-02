@@ -14,6 +14,7 @@
 
 ## Updates
 
+🆕 **2023-10-02** : Adding <a href="https://github.com/Woolverine94/biniou/wiki">Wiki documentation</a><br/>
 🆕 **2023-10-01** : Adding docker support through <a href="#dockerfile">Dockerfile</a><br/>
 🆕 **2023-09-30** : Adding <a href="#macos-homebrew-install">macOS Homebrew experimental installer</a><br/>
 🆕 **2023-09-29** : Adding <a href="#windows-10--windows-11">Windows 10/11 installer</a><br/>
@@ -68,7 +69,7 @@
 * **Other features**
   - Communication between modules : send an output as an input to another module
   - Change your model by a simple dropdown menu or download and add it manually 
-  - Based on Huggingface 🤗 and gradio
+  - Based on 🤗 Huggingface and gradio
   - Cross platform : Linux, Windows 10/11 and macOS(experimental, via homebrew)
   - Convenient Dockerfile for cloud instances
 
