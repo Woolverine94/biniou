@@ -11,7 +11,7 @@
 <p align="justify">biniou is a self-hosted webui for several kinds of GenAI (generative artificial intelligence). You can generate multimedia contents with AI and use chatbot on your own computer, even without dedicated GPU and starting from 8GB RAM. Can work offline (once deployed and required models downloaded).</p>
 
 <p style="text-align: center;">
-<b>Installation :</b> <a href="#debian-12---ubuntu-22043">Linux</a> • <a href="#windows-10--windows-11">Windows</a> • <a href="#macos-homebrew-install">macOS (experimental)</a> • <a href="#dockerfile">Docker</a> | <a href="https://github.com/Woolverine94/biniou/wiki">Documentation</a>
+<a href="#debian-12---ubuntu-22043">Linux</a> • <a href="#windows-10--windows-11">Windows</a> • <a href="#macos-homebrew-install">macOS (experimental)</a> • <a href="#dockerfile">Docker</a> | <a href="https://github.com/Woolverine94/biniou/wiki">Documentation</a>
 </p>
 
 ---
@@ -89,7 +89,7 @@
     - for Windows : at least 30GB for installation without models.
     - for macOS : at least ??GB for installation without models.
   - Storage type : SSD (HDD has not been tested)
-  - Internet access : unlimited bandwith optical fiber internet access
+  - Internet access (required only for installation) : unlimited bandwith optical fiber internet access
 
 * **Recommended hardware :**
   - Massively multicore 64bit CPU
@@ -97,9 +97,9 @@
   - Storage requirements :
     - for Linux : around 100GB for installation including all defaults models.
     - for Windows : around 100GB for installation including all defaults models.
-    - for Windows : around 100GB for installation including all defaults models.     
+    - for macOS : around ??GB for installation including all defaults models.
   - Storage type : SSD Nvme
-  - Internet access : unlimited bandwith optical fiber internet access
+  - Internet access (required only for installation) : unlimited bandwith optical fiber internet access
 
 * **Operating system :**
   - a 64 bit OS :
