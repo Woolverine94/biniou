@@ -18,7 +18,7 @@
 
 ## Updates
 
-🆕 **2023-10-02** : Bugfixes of installer, Text2Video-Zero module and broken zip gallery on Windows systems<br/>
+🆕 **2023-10-03** : Bugfixes of installer, Text2Video-Zero module and broken zip gallery on Windows systems<br/>
 🆕 **2023-10-02** : Adding <a href="https://github.com/Woolverine94/biniou/wiki">Wiki documentation</a><br/>
 🆕 **2023-10-01** : Adding docker support through <a href="#dockerfile">Dockerfile</a><br/>
 🆕 **2023-09-30** : Adding <a href="#macos-homebrew-install">macOS Homebrew experimental installer</a><br/>
