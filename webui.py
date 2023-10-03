@@ -4,6 +4,7 @@ import os
 import gradio as gr
 import numpy as np
 import warnings
+import shutil
 from PIL import Image
 from ressources.common import *
 from ressources.llamacpp import *
@@ -25,6 +26,11 @@ from ressources.harmonai import *
 from ressources.bark import *
 from ressources.txt2vid_ms import *
 from ressources.txt2vid_ze import *
+
+tmp_biniou="./.tmp"
+if os.path.exists(tmp_biniou) :
+    shutil.rmtree(tmp_biniou)
+os.makedirs(tmp_biniou, exist_ok=True)
 
 warnings.filterwarnings('ignore') 
 

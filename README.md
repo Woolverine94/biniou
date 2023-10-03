@@ -10,6 +10,10 @@
 
 <p align="justify">biniou is a self-hosted webui for several kinds of GenAI (generative artificial intelligence). You can generate multimedia contents with AI and use chatbot on your own computer, even without dedicated GPU and starting from 8GB RAM. Can work offline (once deployed and required models downloaded).</p>
 
+<p style="text-align: center;">
+<b>Installation :</b> <a href="#debian-12---ubuntu-22043">Linux</a> • <a href="#windows-10--windows-11">Windows</a> • <a href="#macos-homebrew-install">macOS (experimental)</a> • <a href="#dockerfile">Docker</a>
+</p>
+
 ---
 
 ## Updates
@@ -104,7 +108,7 @@
     - Windows 11 22H2
     - macOS ???
 
-><u>Note :</u> biniou does not still support Cuda or ROCm and though does not need a dedicated GPU to run. You can install it in a virtual machine.
+><u>Note :</u> biniou does not still support Cuda or ROCm and thus does not need a dedicated GPU to run. You can install it in a virtual machine.
 
 ---
 

@@ -55,10 +55,11 @@ def send_input():
     
 def zipper(content):
     timestamp = time.time()
-    savename = f"/tmp/gradio/{timestamp}.zip"
+    savename = f"./.tmp/{timestamp}.zip"
     with zf.ZipFile(savename, 'w') as myzip:
         for idx, file in enumerate(content):
-            myzip.write(file["name"], f"{idx}_"+ file["name"].split("/")[-1])
+            file_name=file["name"].replace("\\", "/")
+            myzip.write(file["name"], f"{idx}_"+ file_name.split("/")[-1])
     return savename
 
 def correct_size(width, height, max_size) :
