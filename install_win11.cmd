@@ -45,6 +45,7 @@ REM ***********************************************
 "%userprofile%\AppData\Local\Programs\Python\Python311\Scripts\pip" install virtualenv
 "%userprofile%\AppData\Local\Programs\Python\Python311\python.exe" -m venv env
 call venv.cmd
+pip install wheel
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 pip install https://github.com/abetlen/llama-cpp-python/releases/download/v0.2.7/llama_cpp_python-0.2.7-cp311-cp311-win_amd64.whl
 pip install -r requirements.txt
