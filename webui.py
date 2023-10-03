@@ -2206,7 +2206,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 top_p_audiogen = gr.Slider(0.0, 500.0, step=1.0, value=0.0, label="top_p")
                     with gr.Row():
                         with gr.Column():
-                            prompt_audiogen = gr.Textbox(label="Describe your sound", lines=2, max_lines=2, placeholder="dog barking, sirenes of an emergency vehicule, old phone ringing, footsteps in a corridor")
+                            prompt_audiogen = gr.Textbox(label="Describe your sound", lines=2, max_lines=2, placeholder="dog barking, sirens of an emergency vehicle, footsteps in a corridor")
                         with gr.Column():
                             out_audiogen = gr.Audio(label="Generated sound", type="filepath", show_download_button=True, interactive=False)
                     with gr.Row():
