@@ -226,3 +226,9 @@ def write_file(*args) :
     with open(savename, 'w') as savefile:
         savefile.write(content)
     return
+
+def set_timestep_txt2vid_ze(numstep):
+    factor = round(numstep/10)
+    t1 = numstep-(factor+1)
+    t0 = t1-factor
+    return t0, t1

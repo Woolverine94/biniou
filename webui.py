@@ -2611,9 +2611,10 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 with gr.Column():
                                     motion_field_strength_y_txt2vid_ze = gr.Slider(0, 50, step=1, value=12, label="Motion field strength y", info="Vertical motion strength")
                                 with gr.Column():
-                                    timestep_t0_txt2vid_ze = gr.Slider(0, 100, step=1, value=7, label="Timestep t0")
+                                    timestep_t0_txt2vid_ze = gr.Slider(0, 100, step=1, value=7, label="Timestep t0", interactive=False)
                                 with gr.Column():
-                                    timestep_t1_txt2vid_ze = gr.Slider(1, 100, step=1, value=8, label="Timestep t1")
+                                    timestep_t1_txt2vid_ze = gr.Slider(1, 100, step=1, value=8, label="Timestep t1", interactive=False)
+                                    num_inference_step_txt2vid_ze.change(set_timestep_txt2vid_ze, inputs=num_inference_step_txt2vid_ze, outputs=[timestep_t0_txt2vid_ze, timestep_t1_txt2vid_ze])
                         with gr.Row():
                             with gr.Column():    
                                 use_gfpgan_txt2vid_ze = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
