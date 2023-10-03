@@ -11,13 +11,14 @@
 <p align="justify">biniou is a self-hosted webui for several kinds of GenAI (generative artificial intelligence). You can generate multimedia contents with AI and use chatbot on your own computer, even without dedicated GPU and starting from 8GB RAM. Can work offline (once deployed and required models downloaded).</p>
 
 <p style="text-align: center;">
-<b>Installation :</b> <a href="#debian-12---ubuntu-22043">Linux</a> • <a href="#windows-10--windows-11">Windows</a> • <a href="#macos-homebrew-install">macOS (experimental)</a> • <a href="#dockerfile">Docker</a>
+<b>Installation :</b> <a href="#debian-12---ubuntu-22043">Linux</a> • <a href="#windows-10--windows-11">Windows</a> • <a href="#macos-homebrew-install">macOS (experimental)</a> • <a href="#dockerfile">Docker</a> | <a href="https://github.com/Woolverine94/biniou/wiki">Documentation</a>
 </p>
 
 ---
 
 ## Updates
 
+🆕 **2023-10-02** : Bugfixes of installer, Text2Video-Zero module and broken zip gallery on Windows systems<br/>
 🆕 **2023-10-02** : Adding <a href="https://github.com/Woolverine94/biniou/wiki">Wiki documentation</a><br/>
 🆕 **2023-10-01** : Adding docker support through <a href="#dockerfile">Dockerfile</a><br/>
 🆕 **2023-09-30** : Adding <a href="#macos-homebrew-install">macOS Homebrew experimental installer</a><br/>
