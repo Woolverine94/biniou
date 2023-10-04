@@ -47,7 +47,7 @@ def text_img2txt_git(
         early_stopping=False, 
         num_beams=num_beams_img2txt_git, 
         num_beam_groups=num_beam_groups_img2txt_git, 
-#        diversity_penalty=diversity_penalty_img2txt_git,
+        diversity_penalty=diversity_penalty_img2txt_git if num_beams_img2txt_git>1 else None
     )
     captions_img2txt_git = processor_img2txt_git.batch_decode(ids_img2txt_git, skip_special_tokens=True)[0]
     write_file(captions_img2txt_git)

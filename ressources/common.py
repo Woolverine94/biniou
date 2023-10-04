@@ -232,3 +232,10 @@ def set_timestep_txt2vid_ze(numstep):
     t1 = numstep-(factor+1)
     t0 = t1-factor
     return t0, t1
+
+def set_num_beam_groups_img2txt_git(numbeam, numbeam_groups):
+    if numbeam>1 and numbeam_groups<2 :
+        numbeam_groups = 2
+    elif numbeam<2 and numbeam_groups>1 :
+        numbeam_groups = 1
+    return numbeam_groups

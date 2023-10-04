@@ -424,14 +424,15 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             with gr.Column():
                                 model_img2txt_git = gr.Dropdown(choices=model_list_img2txt_git, value=model_list_img2txt_git[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                min_tokens_img2txt_git = gr.Slider(0, 128, step=1, value=30, label="Min tokens", info="Minimum number of tokens in output")
+                                min_tokens_img2txt_git = gr.Slider(0, 128, step=1, value=0, label="Min tokens", info="Minimum number of tokens in output")
                             with gr.Column():
-                                max_tokens_img2txt_git = gr.Slider(0, 256, step=1, value=75, label="Max tokens", info="Maximum number of tokens in output")
+                                max_tokens_img2txt_git = gr.Slider(0, 256, step=1, value=20, label="Max tokens", info="Maximum number of tokens in output")
                         with gr.Row():
                             with gr.Column():
                                 num_beams_img2txt_git = gr.Slider(1, 16, step=1, value=1, label="Num beams", info="Number of total beams")
                             with gr.Column():
                                 num_beam_groups_img2txt_git = gr.Slider(1, 8, step=1, value=1, label="Num beam groups", info="Number of beam groups")
+                                num_beams_img2txt_git.change(set_num_beam_groups_img2txt_git, inputs=[num_beams_img2txt_git, num_beam_groups_img2txt_git], outputs=num_beam_groups_img2txt_git)
                             with gr.Column():
                                 diversity_penalty_img2txt_git = gr.Slider(0.0, 5.0, step=0.01, value=0.5, label="Diversity penalty", info="Penalty score value for a beam")
                     with gr.Row():
