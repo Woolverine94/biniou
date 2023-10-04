@@ -1624,7 +1624,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():                                                            
-                                    img_preview_controlnet = gr.Image(label="Control image preview", height=250, type="filepath", interactive=False)
+                                    img_preview_controlnet = gr.Image(label="Control image preview", height=250, type="filepath")
                                     gs_img_preview_controlnet = gr.Image(type="pil", visible=False)
                             with gr.Row():
                                 with gr.Column(): 
@@ -1650,7 +1650,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 label="Generated images",
                                 show_label=True,
                                 elem_id="gallery",
-                                columns=3,
+                                columns=1,
                                 height=400,
                                 preview=True,                                 
                             )    
