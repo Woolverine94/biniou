@@ -18,6 +18,7 @@
 
 ## Updates
 
+🆕 **2023-10-04** : Bugfixes and settings tuning on image captioning, ControlNet preview not fully displaying and deprecation warnings during install<br/>
 🆕 **2023-10-03** : Bugfixes of installer, Text2Video-Zero module and broken zip gallery on Windows systems<br/>
 🆕 **2023-10-02** : Adding <a href="https://github.com/Woolverine94/biniou/wiki">Wiki documentation</a><br/>
 🆕 **2023-10-01** : Adding docker support through <a href="#dockerfile">Dockerfile</a><br/>
