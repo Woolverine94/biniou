@@ -163,9 +163,7 @@ def hide_download_file_inpaint():
     return download_file_inpaint.update(visible=False) 
 
 ## Fonctions spécifiques à controlnet 
-def zip_download_file_controlnet(content, preview):
-    preview_final = {'name': preview, 'data': preview, 'is_file': True}
-    content.append(preview_final)
+def zip_download_file_controlnet(content):
     savename = zipper(content)
     return savename, download_file_controlnet.update(visible=True) 
 
@@ -1662,7 +1660,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                     download_btn_controlnet = gr.Button("Zip gallery 💾")
                                 with gr.Column():
                                     download_file_controlnet = gr.File(label="Output", height=30, interactive=False, visible=False)
-                                    download_btn_controlnet.click(fn=zip_download_file_controlnet, inputs=[out_controlnet, img_preview_controlnet], outputs=[download_file_controlnet, download_file_controlnet])
+                                    download_btn_controlnet.click(fn=zip_download_file_controlnet, inputs=out_controlnet, outputs=[download_file_controlnet, download_file_controlnet])
                     with gr.Row():
                         with gr.Column():
                             btn_controlnet = gr.Button("Generate 🚀", variant="primary")

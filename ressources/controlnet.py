@@ -342,6 +342,8 @@ def image_controlnet(
             image[j].save(savename)
             final_image.append(image[j])
 
+    final_image.append(img_preview_controlnet)
+
     del nsfw_filter_final, feat_ex, controlnet, img_preview_controlnet, pipe_controlnet, generator, image 
     clean_ram()
     

@@ -192,7 +192,10 @@ def image_img2img(
                 image[j] = image_gfpgan_mini(image[j])             
             image[j].save(savename)
             final_image.append(image[j])
-            
+
+    if source_type_img2img == "sketch" :
+        final_image.append(image_input)
+
     del nsfw_filter_final, feat_ex, pipe_img2img, generator, image_input, image
     clean_ram()
    

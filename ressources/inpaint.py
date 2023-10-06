@@ -156,6 +156,8 @@ def image_inpaint(
             image[j].save(savename)
             final_image.append(image[j])
 
+    final_image.append(mask_image_input)
+
     del nsfw_filter_final, feat_ex, pipe_inpaint, generator, image_input, mask_image_input, image
     clean_ram()
 
