@@ -5,7 +5,7 @@ import os
 import PIL
 import torch
 from diffusers import StableDiffusionImg2ImgPipeline, StableDiffusionXLImg2ImgPipeline
-from compel import Compel
+from compel import Compel, ReturnedEmbeddingsType
 import time
 import random
 from ressources.scheduler import *
@@ -151,7 +151,17 @@ def image_img2img(
     if negative_prompt_img2img == "None":
         negative_prompt_img2img = ""
 
-    if (is_xl_img2img == False) :
+    if (is_xl_img2img == True) :
+        compel = Compel(
+            tokenizer=pipe_img2img.tokenizer_2, 
+            text_encoder=pipe_img2img.text_encoder_2, 
+            returned_embeddings_type=ReturnedEmbeddingsType.PENULTIMATE_HIDDEN_STATES_NON_NORMALIZED, 
+            requires_pooled=[False, True], 
+        )
+        conditioning, pooled = compel(prompt_img2img)
+        neg_conditioning, neg_pooled = compel(negative_prompt_img2img)
+        [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
+    else :
         compel = Compel(tokenizer=pipe_img2img.tokenizer, text_encoder=pipe_img2img.text_encoder, truncate_long_prompts=False)
         conditioning = compel.build_conditioning_tensor(prompt_img2img)
         neg_conditioning = compel.build_conditioning_tensor(negative_prompt_img2img)
@@ -163,8 +173,10 @@ def image_img2img(
         if (is_xl_img2img == True) :
             image = pipe_img2img(        
                 image=image_input,
-                prompt=prompt_img2img,
-                negative_prompt=negative_prompt_img2img,            
+                prompt_embeds=conditioning, 
+                pooled_prompt_embeds=pooled, 
+                negative_prompt_embeds=neg_conditioning,
+                negative_pooled_prompt_embeds=neg_pooled,
                 num_images_per_prompt=num_images_per_prompt_img2img,
                 guidance_scale=guidance_scale_img2img,
                 strength=denoising_strength_img2img,
@@ -196,9 +208,8 @@ def image_img2img(
     if source_type_img2img == "sketch" :
         final_image.append(image_input)
 
-    del nsfw_filter_final, feat_ex, pipe_img2img, generator, image_input, image
+    del nsfw_filter_final, feat_ex, pipe_img2img, generator, image_input, compel, conditioning, neg_conditioning, image
     clean_ram()
    
-    return final_image, final_image
-    
+    return final_image, final_image   
 

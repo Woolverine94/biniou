@@ -3,7 +3,7 @@
 import gradio as gr
 import os
 from diffusers import StableDiffusionPipeline, StableDiffusionXLPipeline
-from compel import Compel
+from compel import Compel, ReturnedEmbeddingsType
 import torch
 import time
 import random
@@ -74,7 +74,8 @@ def image_txt2img_sd(modelid_txt2img_sd,
     global pipe_txt2img_sd
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2img_sd, device_txt2img_sd, nsfw_filter)
 
-    if ('xl' or 'XL') in modelid_txt2img_sd :
+
+    if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_txt2img_sd :
         is_xl_txt2img_sd: bool = True
     else :        
         is_xl_txt2img_sd: bool = False
@@ -138,7 +139,17 @@ def image_txt2img_sd(modelid_txt2img_sd,
     if negative_prompt_txt2img_sd == "None":
         negative_prompt_txt2img_sd = ""
 
-    if (is_xl_txt2img_sd == False) : 
+    if (is_xl_txt2img_sd == True) :
+        compel = Compel(
+            tokenizer=[pipe_txt2img_sd.tokenizer, pipe_txt2img_sd.tokenizer_2], 
+            text_encoder=[pipe_txt2img_sd.text_encoder, pipe_txt2img_sd.text_encoder_2], 
+            returned_embeddings_type=ReturnedEmbeddingsType.PENULTIMATE_HIDDEN_STATES_NON_NORMALIZED, 
+            requires_pooled=[False, True], 
+        )
+        conditioning, pooled = compel(prompt_txt2img_sd)
+        neg_conditioning, neg_pooled = compel(negative_prompt_txt2img_sd)
+        [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
+    else :
         compel = Compel(tokenizer=pipe_txt2img_sd.tokenizer, text_encoder=pipe_txt2img_sd.text_encoder, truncate_long_prompts=False)
         conditioning = compel.build_conditioning_tensor(prompt_txt2img_sd)
         neg_conditioning = compel.build_conditioning_tensor(negative_prompt_txt2img_sd)    
@@ -146,10 +157,12 @@ def image_txt2img_sd(modelid_txt2img_sd,
    
     final_image = []
     for i in range (num_prompt_txt2img_sd):
-        if (is_xl_txt2img_sd == True) : 
+        if (is_xl_txt2img_sd == True) :
             image = pipe_txt2img_sd(
-                prompt=prompt_txt2img_sd,
-                negative_prompt=negative_prompt_txt2img_sd,            
+                prompt_embeds=conditioning,
+                pooled_prompt_embeds=pooled, 
+                negative_prompt_embeds=neg_conditioning,
+                negative_pooled_prompt_embeds=neg_pooled,
                 height=height_txt2img_sd,
                 width=width_txt2img_sd,
                 num_images_per_prompt=num_images_per_prompt_txt2img_sd,
@@ -158,7 +171,7 @@ def image_txt2img_sd(modelid_txt2img_sd,
                 generator = generator,
                 callback = check_txt2img_sd,
             ).images
-        else :            
+        else :
             image = pipe_txt2img_sd(
                 prompt_embeds=conditioning,
                 negative_prompt_embeds=neg_conditioning,
@@ -179,7 +192,7 @@ def image_txt2img_sd(modelid_txt2img_sd,
             image[j].save(savename)
             final_image.append(image[j])
     
-    del nsfw_filter_final, feat_ex, pipe_txt2img_sd, generator, image
+    del nsfw_filter_final, feat_ex, pipe_txt2img_sd, generator, compel, conditioning, neg_conditioning, image
     clean_ram()
     
     return final_image, final_image

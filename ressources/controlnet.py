@@ -5,7 +5,7 @@ import os
 import cv2
 import torch
 from diffusers import StableDiffusionControlNetPipeline, StableDiffusionXLControlNetPipeline, ControlNetModel
-from compel import Compel
+from compel import Compel, ReturnedEmbeddingsType
 import time
 import random
 from ressources.scheduler import *
@@ -28,7 +28,7 @@ for filename in os.listdir(model_path_controlnet):
 model_list_controlnet_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
     "ckpt/anything-v4.5-vae-swapped",
-    "stabilityai/stable-diffusion-xl-refiner-1.0",
+    "stabilityai/stable-diffusion-xl-base-1.0",
     "runwayml/stable-diffusion-v1-5",
     "nitrosocke/Ghibli-Diffusion", 
 ]
@@ -51,6 +51,11 @@ variant_list_controlnet = [
     "lllyasviel/control_v11p_sd15_openpose",
     "lllyasviel/control_v11p_sd15_scribble",
     "lllyasviel/control_v11p_sd15_softedge",
+    "patrickvonplaten/controlnet-canny-sdxl-1.0",
+    "patrickvonplaten/controlnet-depth-sdxl-1.0",
+    "zbulrush/controlnet-sd-xl-1.0-lineart",
+    "thibaud/controlnet-openpose-sdxl-1.0",
+    "SargeZT/controlnet-sd-xl-1.0-softedge-dexined",
 ]
 
 
@@ -98,12 +103,18 @@ def check_controlnet(step, timestep, latents) :
     return
 
 def dispatch_controlnet_preview(
+    modelid_controlnet,
     low_threshold_controlnet, 
     high_threshold_controlnet, 
     img_source_controlnet, 
     preprocessor_controlnet, 
     progress_controlnet=gr.Progress(track_tqdm=True)
     ): 
+
+    if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_controlnet :
+        is_xl_controlnet: bool = True
+    else :        
+        is_xl_controlnet: bool = False
 
     img_source_controlnet = Image.open(img_source_controlnet)
     img_source_controlnet = np.array(img_source_controlnet)
@@ -112,70 +123,70 @@ def dispatch_controlnet_preview(
     match preprocessor_controlnet:
         case "canny":
             result = canny_controlnet(img_source_controlnet, low_threshold_controlnet, high_threshold_controlnet)
-            return result, result, variant_list_controlnet[0]
+            return result, result, variant_list_controlnet[9] if is_xl_controlnet else variant_list_controlnet[0]
         case "depth_leres":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[1]
+            return result, result, variant_list_controlnet[10] if is_xl_controlnet else variant_list_controlnet[1]
         case "depth_leres++":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[1]
+            return result, result, variant_list_controlnet[10] if is_xl_controlnet else variant_list_controlnet[1]
         case "depth_midas":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[1]
+            return result, result, variant_list_controlnet[10] if is_xl_controlnet else variant_list_controlnet[1]
         case "depth_zoe":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[1]
+            return result, result, variant_list_controlnet[10] if is_xl_controlnet else variant_list_controlnet[1]
         case "lineart_anime":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[2]
+            return result, result, variant_list_controlnet[11] if is_xl_controlnet else variant_list_controlnet[2]
         case "lineart_coarse":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[3]
+            return result, result, variant_list_controlnet[11] if is_xl_controlnet else variant_list_controlnet[3]
         case "lineart_realistic":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[3]
+            return result, result, variant_list_controlnet[11] if is_xl_controlnet else variant_list_controlnet[3]
         case "mlsd":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[4]
+            return result, result, variant_list_controlnet[9] if is_xl_controlnet else variant_list_controlnet[4]
         case "normal_bae":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[5]
+            return result, result, variant_list_controlnet[10] if is_xl_controlnet else variant_list_controlnet[5]
         case "normal_midas":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[5]
+            return result, result, variant_list_controlnet[10] if is_xl_controlnet else variant_list_controlnet[5]
         case "openpose":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[6]
+            return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[6]
         case "openpose_face":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[6]
+            return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[6]
         case "openpose_faceonly":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[6]
+            return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[6]
         case "openpose_full":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[6]
+            return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[6]
         case "openpose_hand":
             result = processor_controlnet(img_source_controlnet, to_pil=True)            
-            return result, result, variant_list_controlnet[6]
+            return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[6]
         case "scribble_hed":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[7]
+            return result, result, variant_list_controlnet[13] if is_xl_controlnet else variant_list_controlnet[7]
         case "scribble_pidinet":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[7]
+            return result, result, variant_list_controlnet[13] if is_xl_controlnet else variant_list_controlnet[7]
         case "softedge_hed":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[8]
+            return result, result, variant_list_controlnet[13] if is_xl_controlnet else variant_list_controlnet[8]
         case "softedge_hedsafe":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[8]
+            return result, result, variant_list_controlnet[13] if is_xl_controlnet else variant_list_controlnet[8]
         case "softedge_pidinet":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[8]
+            return result, result, variant_list_controlnet[13] if is_xl_controlnet else variant_list_controlnet[8]
         case "softedge_pidsafe":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[8]
+            return result, result, variant_list_controlnet[13] if is_xl_controlnet else variant_list_controlnet[8]
     
 def canny_controlnet(image, low_threshold, high_threshold):
     image = cv2.Canny(image, low_threshold, high_threshold)
@@ -225,7 +236,7 @@ def image_controlnet(
     start_controlnet = float(start_controlnet)
     stop_controlnet = float(stop_controlnet)
     
-    if ('xl' or 'XL') in modelid_controlnet :
+    if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_controlnet :
         is_xl_controlnet: bool = True
     else :        
         is_xl_controlnet: bool = False
@@ -293,18 +304,31 @@ def image_controlnet(
     if negative_prompt_controlnet == "None":
         negative_prompt_controlnet = ""
 
-    if (is_xl_controlnet == False) : 
+    if (is_xl_controlnet == True) :
+        compel = Compel(
+            tokenizer=[pipe_controlnet.tokenizer, pipe_controlnet.tokenizer_2], 
+            text_encoder=[pipe_controlnet.text_encoder, pipe_controlnet.text_encoder_2], 
+            returned_embeddings_type=ReturnedEmbeddingsType.PENULTIMATE_HIDDEN_STATES_NON_NORMALIZED, 
+            requires_pooled=[False, True], 
+        )
+        conditioning, pooled = compel(prompt_controlnet)
+        neg_conditioning, neg_pooled = compel(negative_prompt_controlnet)
+        [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
+    else : 
         compel = Compel(tokenizer=pipe_controlnet.tokenizer, text_encoder=pipe_controlnet.text_encoder, truncate_long_prompts=False)
         conditioning = compel.build_conditioning_tensor(prompt_controlnet)
         neg_conditioning = compel.build_conditioning_tensor(negative_prompt_controlnet)    
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
    
     final_image = []
+    
     for i in range (num_prompt_controlnet):
         if (is_xl_controlnet == True) : 
             image = pipe_controlnet(
-                prompt=prompt_controlnet,
-                negative_prompt=negative_prompt_controlnet,            
+                prompt_embeds=conditioning, 
+                pooled_prompt_embeds=pooled, 
+                negative_prompt_embeds=neg_conditioning,
+                negative_pooled_prompt_embeds=neg_pooled,            
                 image=img_preview_controlnet,
                 height=height_controlnet,
                 width=width_controlnet,
@@ -344,7 +368,7 @@ def image_controlnet(
 
     final_image.append(img_preview_controlnet)
 
-    del nsfw_filter_final, feat_ex, controlnet, img_preview_controlnet, pipe_controlnet, generator, image 
+    del nsfw_filter_final, feat_ex, controlnet, img_preview_controlnet, pipe_controlnet, generator, compel, conditioning, neg_conditioning, image 
     clean_ram()
     
     return final_image, final_image
