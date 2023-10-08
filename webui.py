@@ -2469,7 +2469,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             with gr.Column():
                                 guidance_scale_txt2vid_ms = gr.Slider(0.1, 20.0, step=0.1, value=4.0, label="CFG scale", info="Low values : more creativity. High values : more corresponding to the prompts")
                             with gr.Column():
-                                num_frames_txt2vid_ms = gr.Slider(1, 1200, step=1, value=16, label="Video Length (frames)", info="Number of frames in the output video")
+                                num_frames_txt2vid_ms = gr.Slider(1, 1200, step=1, value=8, label="Video Length (frames)", info="Number of frames in the output video")
                             with gr.Column():
                                 num_prompt_txt2vid_ms = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
