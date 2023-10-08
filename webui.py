@@ -249,6 +249,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 <b>Input(s) : </b>Input text</br>
                                 <b>Output(s) : </b>Output text</br>
                                 <b>HF models pages : </b>
+                                <a href='https://huggingface.co/TheBloke/CollectiveCognition-v1.1-Mistral-7B-GGUF' target='_blank'>TheBloke/CollectiveCognition-v1.1-Mistral-7B-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/Vigogne-2-7B-Instruct-GGUF' target='_blank'>TheBloke/Vigogne-2-7B-Instruct-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/Vigogne-2-13B-Instruct-GGUF' target='_blank'>TheBloke/Vigogne-2-13B-Instruct-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/Airoboros-L2-7B-2.1-GGUF' target='_blank'>TheBloke/Airoboros-L2-7B-2.1-GGUF</a>, 
