@@ -1,6 +1,6 @@
 <h1 align="center">
   <br/>
-  biniou
+  <img src="./images/biniou_64.png"/>biniou
   <br/>
 </h1>
 

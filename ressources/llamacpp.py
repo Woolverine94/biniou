@@ -18,11 +18,12 @@ for filename in os.listdir(model_path_llamacpp):
         model_list_llamacpp.update(f)
 
 model_list_llamacpp_builtin = {
-    "TheBloke/Airoboros-L2-13B-2.1-GGUF": "airoboros-l2-13b-2.1.Q5_K_S.gguf",
-    "TheBloke/Airoboros-L2-7B-2.1-GGUF": "airoboros-l2-7b-2.1.Q5_K_S.gguf",
-    "TheBloke/Vigogne-2-13B-Instruct-GGUF": "vigogne-2-13b-instruct.Q5_K_S.gguf",
-    "TheBloke/Vigogne-2-7B-Instruct-GGUF": "vigogne-2-7b-instruct.Q5_K_S.gguf",
-    "TheBloke/CodeLlama-13B-Instruct-GGUF": "codellama-13b-instruct.Q5_K_S.gguf",
+    "TheBloke/CollectiveCognition-v1.1-Mistral-7B-GGUF": "collectivecognition-v1.1-mistral-7b.Q5_K_S.gguf", 
+    "TheBloke/Airoboros-L2-13B-2.1-GGUF": "airoboros-l2-13b-2.1.Q5_K_S.gguf", 
+    "TheBloke/Airoboros-L2-7B-2.1-GGUF": "airoboros-l2-7b-2.1.Q5_K_S.gguf", 
+    "TheBloke/Vigogne-2-13B-Instruct-GGUF": "vigogne-2-13b-instruct.Q5_K_S.gguf", 
+    "TheBloke/Vigogne-2-7B-Instruct-GGUF": "vigogne-2-7b-instruct.Q5_K_S.gguf", 
+    "TheBloke/CodeLlama-13B-Instruct-GGUF": "codellama-13b-instruct.Q5_K_S.gguf", 
 }
 
 model_list_llamacpp.update(model_list_llamacpp_builtin)

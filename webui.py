@@ -113,6 +113,13 @@ def both_to_module_inpaint(prompt, negative_prompt, content, index, numtab, numt
 def get_select_index(evt: gr.SelectData) :
     return evt.index
 
+## Fonctions spécifiques à llamacpp
+def llamacpp_inference_start() : 
+    return out_llamacpp.update(visible=True)
+
+def llamacpp_inference_end() :
+    return out_llamacpp.update(visible=False)
+
 ## Fonctions spécifiques à Stable Diffusion 
 def zip_download_file_txt2img_sd(content):
     savename = zipper(content)
@@ -288,15 +295,16 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             with gr.Column():
                                 top_k_llamacpp = gr.Slider(0, 500, step=1, value=40, label="top_k", info="The top-k value to use for sampling")
                     with gr.Row():                            
-                        history_llamacpp = gr.Textbox(label="Chatbot history", lines=8, max_lines=8, interactive=False)
+                        history_llamacpp = gr.Textbox(label="Chatbot history", lines=13, max_lines=13, autoscroll=True, show_copy_button=True, interactive=False)
                         hidden_history_llamacpp = gr.Textbox(label="Chatbot history", visible=False)
                     with gr.Row():                        
-                        out_llamacpp = gr.Textbox(label="Chatbot last reply", lines=2, max_lines=2, interactive=False)
+                        out_llamacpp = gr.Textbox(label="Chatbot last reply", lines=1, max_lines=1, interactive=False, visible=False)
                     with gr.Row():
                             prompt_llamacpp = gr.Textbox(label="Input", lines=1, max_lines=1, placeholder="Type your request here ...")                            
                             hidden_prompt_llamacpp = gr.Textbox(value="", visible=False)
-                            out_llamacpp.change(fn=in_and_out, inputs=hidden_history_llamacpp, outputs=history_llamacpp)  
-                            out_llamacpp.change(fn=in_and_out, inputs=hidden_prompt_llamacpp, outputs=prompt_llamacpp)                              
+                            out_llamacpp.change(fn=llamacpp_inference_end, outputs=out_llamacpp)
+                            out_llamacpp.change(fn=in_and_out, inputs=hidden_history_llamacpp, outputs=history_llamacpp)
+                            out_llamacpp.change(fn=in_and_out, inputs=hidden_prompt_llamacpp, outputs=prompt_llamacpp)
                     with gr.Row():
                         with gr.Column():
                             btn_llamacpp = gr.Button("Generate 🚀", variant="primary")
@@ -317,11 +325,14 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 repeat_penalty_llamacpp, 
                                 temperature_llamacpp, 
                                 top_p_llamacpp, 
-                                top_k_llamacpp,
-                                prompt_llamacpp,                             
-                                history_llamacpp,                                
+                                top_k_llamacpp, 
+                                prompt_llamacpp, 
+                                history_llamacpp, 
                             ],
-                            outputs=[out_llamacpp, hidden_history_llamacpp],
+                            outputs=[
+                                out_llamacpp, 
+                                hidden_history_llamacpp, 
+                            ],
                             show_progress="full",
                         )
                         prompt_llamacpp.submit(
@@ -339,7 +350,10 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 prompt_llamacpp,                             
                                 history_llamacpp,                                
                             ],
-                            outputs=[out_llamacpp, hidden_history_llamacpp],
+                            outputs=[
+                                out_llamacpp, 
+                                hidden_history_llamacpp, 
+                            ],
                             show_progress="full",
                         )
                         btn_llamacpp_continue.click(
@@ -357,9 +371,15 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 history_llamacpp,                                
                                 out_llamacpp,                                   
                             ],
-                            outputs=[out_llamacpp, hidden_history_llamacpp],
+                            outputs=[
+                                out_llamacpp, 
+                                hidden_history_llamacpp, 
+                            ],
                             show_progress="full",
                         )                        
+                        btn_llamacpp.click(fn=llamacpp_inference_start, outputs=out_llamacpp)
+                        prompt_llamacpp.submit(fn=llamacpp_inference_start, outputs=out_llamacpp)
+                        btn_llamacpp_continue.click(fn=llamacpp_inference_start, outputs=out_llamacpp)
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():
@@ -2961,6 +2981,6 @@ with gr.Blocks(theme=theme_gradio) as demo:
 # Exécution de l'UI :
     demo.load(split_url_params, nsfw_filter, nsfw_filter, _js=get_window_url_params)
 if __name__ == "__main__":
-    demo.queue(concurrency_count=8).launch(server_name="0.0.0.0", server_port=7860, ssl_certfile="./ssl/cert.pem", ssl_keyfile="./ssl/key.pem", ssl_verify=False)
+    demo.queue(concurrency_count=8).launch(server_name="0.0.0.0", server_port=7860, ssl_certfile="./ssl/cert.pem", favicon_path="./images/biniou_64.ico", ssl_keyfile="./ssl/key.pem", ssl_verify=False)
 
 # Fin du fichier
