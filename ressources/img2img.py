@@ -28,7 +28,7 @@ for filename in os.listdir(model_path_img2img):
 
 model_list_img2img_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
-    "ckpt/anything-v4.5-vae-swapped",
+#    "ckpt/anything-v4.5-vae-swapped",
     "stabilityai/stable-diffusion-xl-refiner-1.0",
     "runwayml/stable-diffusion-v1-5",
     "nitrosocke/Ghibli-Diffusion",     

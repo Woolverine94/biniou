@@ -27,7 +27,7 @@ for filename in os.listdir(model_path_controlnet):
 
 model_list_controlnet_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
-    "ckpt/anything-v4.5-vae-swapped",
+#    "ckpt/anything-v4.5-vae-swapped",
     "stabilityai/stable-diffusion-xl-base-1.0",
     "runwayml/stable-diffusion-v1-5",
     "nitrosocke/Ghibli-Diffusion", 

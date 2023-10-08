@@ -24,8 +24,8 @@ for filename in os.listdir(model_path_txt2img_sd):
         model_list_txt2img_sd.append(f)
 
 model_list_txt2img_sd_builtin = [
-   "SG161222/Realistic_Vision_V3.0_VAE",
-    "ckpt/anything-v4.5-vae-swapped",
+    "SG161222/Realistic_Vision_V3.0_VAE",
+#    "ckpt/anything-v4.5-vae-swapped",
     "stabilityai/stable-diffusion-xl-base-1.0",
     "runwayml/stable-diffusion-v1-5",
     "nitrosocke/Ghibli-Diffusion", 

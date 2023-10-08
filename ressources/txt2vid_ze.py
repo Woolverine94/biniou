@@ -20,7 +20,7 @@ os.makedirs(model_path_txt2vid_ze, exist_ok=True)
 
 model_list_txt2vid_ze = [
     "SG161222/Realistic_Vision_V3.0_VAE",
-    "ckpt/anything-v4.5-vae-swapped",
+#    "ckpt/anything-v4.5-vae-swapped",
     "runwayml/stable-diffusion-v1-5",
     "nitrosocke/Ghibli-Diffusion",
 ]
