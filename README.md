@@ -18,6 +18,7 @@
 
 ## Updates
 
+🆕 **2023-10-09** :  *New Module Video Instruct-pix2pix*. Modify and edit the content of a video by a simple instruct prompt !<br/>
 🆕 **2023-10-09** :  Temporary removed "anything-v4.5-vae-swapped" from the model list for the Stable Diffusion based modules. You could still use the **.safetensors** file by placing it in the folder *./models/Stable_Diffusion/*.<br/>
 🆕 **2023-10-08** :  Modelscope bugfix, Chatbot enhancements and new default model for llama-cpp<br/>
 🆕 **2023-10-07** :  Compel compatibility and better integration for SDXL in Stable Diffusion, img2img and ControlNet<br/>
@@ -75,6 +76,7 @@
 * **Video generation using :**
   - Modelscope (require 16GB+ RAM)
   - Text2Video-Zero
+  - Video Instruct-Pix2Pix (require 16GB+ RAM)
 
 * **Other features**
   - Communication between modules : send an output as an input to another module
