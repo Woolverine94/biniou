@@ -26,6 +26,7 @@ from ressources.harmonai import *
 from ressources.bark import *
 from ressources.txt2vid_ms import *
 from ressources.txt2vid_ze import *
+from ressources.vid2vid_ze import *
 
 tmp_biniou="./.tmp"
 if os.path.exists(tmp_biniou) :
@@ -69,6 +70,9 @@ def send_to_module_inpaint(content, index, numtab, numtab_item):
 def send_to_module_text(content, index, numtab, numtab_item):
     index = int(index)
     return content[index], gr.Tabs.update(selected=numtab), tabs_text.update(selected=numtab_item)    
+    
+def send_to_module_video (content, numtab, numtab_item) : 
+	return content, gr.Tabs.update(selected=numtab), tabs_video.update(selected=numtab_item)
 
 def send_text_to_module_image (prompt, numtab, numtab_item):
     return prompt, gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item)
@@ -789,7 +793,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             with gr.Column():    
                                 use_gfpgan_txt2img_sd = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
-                                tkme_txt2img_sd = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,better quality, 1=fast,worst quality")
+                                tkme_txt2img_sd = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -1104,7 +1108,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             with gr.Column():    
                                 use_gfpgan_img2img = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
-                                tkme_img2img = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,better quality, 1=fast,worst quality")                          
+                                tkme_img2img = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")                          
                     with gr.Row():
                         with gr.Column():
                             img_img2img = gr.Image(label="Input image", height=400, type="filepath")
@@ -1271,7 +1275,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             with gr.Column():    
                                 use_gfpgan_pix2pix = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
-                                tkme_pix2pix = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,better quality, 1=fast,worst quality")
+                                tkme_pix2pix = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                     with gr.Row():
                         with gr.Column():
                              img_pix2pix = gr.Image(label="Input image", height=400, type="filepath")
@@ -1362,6 +1366,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         pix2pix_img2img_input = gr.Button("✍️ >> img2img")
                                         pix2pix_inpaint_input = gr.Button("✍️ >> inpaint")
                                         pix2pix_controlnet_input = gr.Button("✍️ >> ControlNet")
+                                        gr.HTML(value='... video module ...')                                        
+                                        pix2pix_vid2vid_ze_input = gr.Button("✍️ >> Video Instruct-pix2pix")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
@@ -1432,7 +1438,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             with gr.Column():    
                                 use_gfpgan_inpaint = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
-                                tkme_inpaint = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,better quality, 1=fast,worst quality")
+                                tkme_inpaint = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                     with gr.Row():
                         with gr.Column(scale=2):
                              rotation_img_inpaint = gr.Number(value=0, visible=False)
@@ -1628,7 +1634,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             with gr.Column():    
                                 use_gfpgan_controlnet = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
-                                tkme_controlnet = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,better quality, 1=fast,worst quality")
+                                tkme_controlnet = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -2513,7 +2519,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 with gr.Column():
                                     negative_prompt_txt2vid_ms = gr.Textbox(lines=4, max_lines=4, label="Negative Prompt", info="Describe what you DO NOT want in your video", placeholder="out of frame, ugly")
                         with gr.Column():
-                            out_txt2vid_ms = gr.Video(label="Generated video", height=400)
+                            out_txt2vid_ms = gr.Video(label="Generated video", height=400, interactive=False)
                     with gr.Row():
                         with gr.Column():
                             btn_txt2vid_ms = gr.Button("Generate 🚀", variant="primary")
@@ -2549,6 +2555,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 with gr.Box():                                
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
+                                        gr.HTML(value='... video module ...')
+                                        txt2vid_ms_vid2vid_ze = gr.Button("📼 >> Video Instruct-pix2pix")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -2635,7 +2643,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                     timestep_t0_txt2vid_ze = gr.Slider(0, 100, step=1, value=7, label="Timestep t0", interactive=False)
                                 with gr.Column():
                                     timestep_t1_txt2vid_ze = gr.Slider(1, 100, step=1, value=8, label="Timestep t1", interactive=False)
-                                    num_inference_step_txt2vid_ze.change(set_timestep_txt2vid_ze, inputs=num_inference_step_txt2vid_ze, outputs=[timestep_t0_txt2vid_ze, timestep_t1_txt2vid_ze])
+                                    num_inference_step_txt2vid_ze.change(set_timestep_vid_ze, inputs=num_inference_step_txt2vid_ze, outputs=[timestep_t0_txt2vid_ze, timestep_t1_txt2vid_ze])
                         with gr.Row():
                             with gr.Column():    
                                 use_gfpgan_txt2vid_ze = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
@@ -2650,7 +2658,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 with gr.Column():
                                     negative_prompt_txt2vid_ze = gr.Textbox(lines=4, max_lines=4, label="Negative Prompt", info="Describe what you DO NOT want in your video", placeholder="out of frame, ugly")
                         with gr.Column():
-                            out_txt2vid_ze = gr.Video(label="Generated video", height=400)
+                            out_txt2vid_ze = gr.Video(label="Generated video", height=400, interactive=False)
                     with gr.Row():
                         with gr.Column():
                             btn_txt2vid_ze = gr.Button("Generate 🚀", variant="primary")
@@ -2695,6 +2703,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 with gr.Box():                                
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
+                                        gr.HTML(value='... video module ...')
+                                        txt2vid_ze_vid2vid_ze = gr.Button("📼 >> Video Instruct-pix2pix")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -2708,7 +2718,142 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 with gr.Box():                                
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')        
-   
+# vid2vid_ze    
+                if ram_size() >= 16 :
+                    titletab_vid2vid_ze = "Video Instruct-Pix2Pix 🖌️"
+                else :
+                    titletab_vid2vid_ze = "Video Instruct-Pix2Pix 🖌️ ⛔"
+
+                with gr.TabItem(titletab_vid2vid_ze, id=43) as tab_vid2vid_ze:
+                    with gr.Accordion("About", open=False):                
+                        with gr.Box():                       
+                            gr.HTML(
+                                """
+                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
+                                <b>Module : </b>Video Instruct-Pix2Pix</br>
+                                <b>Function : </b>Edit an input video with instructions from a prompt and a negative prompt using <a href='https://github.com/timothybrooks/instruct-pix2pix' target='_blank'>Instructpix2pix</a> and <a href='https://github.com/Picsart-AI-Research/Text2Video-Zero' target='_blank'>Text2Video-Zero</a></br>
+                                <b>Input(s) : </b>Input video, prompt, negative prompt</br>
+                                <b>Output(s) : </b>Video(s)</br>
+                                <b>HF model page : </b>
+                                <a href='https://huggingface.co/timbrooks/instruct-pix2pix' target='_blank'>timbrooks/instruct-pix2pix</a></br>
+                                """
+                            )
+                        with gr.Box():
+                            gr.HTML(
+                                """
+                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                <div style='text-align: justified'>
+                                <b>Usage :</b></br>
+                                - Upload or import a video using the <b>Input video</b> field</br>
+                                - Fill the <b>prompt</b> with the instructions for modifying your input video</br>
+                                - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output video</br>
+                                - (optional) Modify the settings to change the number of frames to process (default=8) or the fps of the output</br>
+                                - Click the <b>Generate</b> button</br>
+                                - After generation, generated video is displayed in the Generated video field.</br></br>
+                                <b>Examples : </b><a href='https://www.timothybrooks.com/instruct-pix2pix/' target='_blank'>Instructpix2pix : Learning to Follow Image Editing Instructions</a>
+                                </div>
+                                """
+                            )                
+                    with gr.Accordion("Settings", open=False):
+                        with gr.Row():
+                            with gr.Column():
+                                model_vid2vid_ze = gr.Dropdown(choices=model_list_vid2vid_ze, value=model_list_vid2vid_ze[0], label="Model", info="Choose model to use for inference")
+                            with gr.Column():
+                                num_inference_step_vid2vid_ze = gr.Slider(1, 100, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                            with gr.Column():
+                                sampler_vid2vid_ze = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
+                        with gr.Row():
+                            with gr.Column():
+                                guidance_scale_vid2vid_ze = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more corresponding to the prompts")
+                            with gr.Column():
+                                image_guidance_scale_vid2vid_ze = gr.Slider(0.0, 10.0, step=0.1, value=1.5, label="Img CFG Scale", info="Low values : more creativity. High values : more corresponding to the input video")
+                            with gr.Column():
+                                num_images_per_prompt_vid2vid_ze = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of videos to generate in a single run")
+                            with gr.Column():
+                                num_prompt_vid2vid_ze = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                        with gr.Row():
+                            with gr.Column():
+                                width_vid2vid_ze = gr.Slider(128, 8192, step=64, value=512, label="Image Width", info="Width of outputs", interactive=False)
+                            with gr.Column():
+                                height_vid2vid_ze = gr.Slider(128, 8192, step=64, value=512, label="Image Height", info="Height of outputs", interactive=False)
+                            with gr.Column():
+                                seed_vid2vid_ze = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
+                        with gr.Row():
+                            with gr.Column():
+                                num_frames_vid2vid_ze = gr.Slider(0, 1200, step=1, value=8, label="Video Length (frames)", info="Number of frames to process")
+                            with gr.Column():
+                                num_fps_txt2vid_ze = gr.Slider(1, 120, step=1, value=4, label="Frames per second", info="Number of frames per second")
+                        with gr.Row():
+                            with gr.Column():    
+                                use_gfpgan_vid2vid_ze = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                            with gr.Column():
+                                tkme_vid2vid_ze = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                    with gr.Row():
+                        with gr.Column():
+                             vid_vid2vid_ze = gr.Video(label="Input video", height=400)
+                        with gr.Column():
+                            with gr.Row():
+                                with gr.Column():
+                                    prompt_vid2vid_ze = gr.Textbox(lines=5, max_lines=5, label="Prompt", info="Describe what you want to modify in your input video", placeholder="make it Van Gogh Starry Night style")
+                                with gr.Column():
+                                    negative_prompt_vid2vid_ze = gr.Textbox(lines=5, max_lines=5, label="Negative Prompt", info="Describe what you DO NOT want in your output video", placeholder="out of frame, bad quality, blurry, ugly, text, characters, logo")
+                        with gr.Column():
+                            with gr.Row():
+                                with gr.Column():
+                                    out_vid2vid_ze = gr.Video(label="Generated video", height=400, interactive=False)
+                                    gs_out_vid2vid_ze = gr.State()
+                    with gr.Row():
+                        with gr.Column():
+                            btn_vid2vid_ze = gr.Button("Generate 🚀", variant="primary")
+                        with gr.Column():                            
+                            btn_vid2vid_ze_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_vid2vid_ze_cancel.click(fn=initiate_stop_vid2vid_ze, inputs=None, outputs=None)                              
+                        with gr.Column():
+                            btn_vid2vid_ze_clear_input = gr.ClearButton(components=[vid_vid2vid_ze, prompt_vid2vid_ze, negative_prompt_vid2vid_ze], value="Clear inputs 🧹")
+                        with gr.Column():                            
+                            btn_vid2vid_ze_clear_output = gr.ClearButton(components=[out_vid2vid_ze, gs_out_vid2vid_ze], value="Clear outputs 🧹")
+                            btn_vid2vid_ze.click(
+                                fn=image_vid2vid_ze,
+                                inputs=[
+                                    model_vid2vid_ze,
+                                    sampler_vid2vid_ze,
+                                    vid_vid2vid_ze,
+                                    prompt_vid2vid_ze,
+                                    negative_prompt_vid2vid_ze,
+                                    num_images_per_prompt_vid2vid_ze,
+                                    num_prompt_vid2vid_ze,
+                                    guidance_scale_vid2vid_ze,
+                                    image_guidance_scale_vid2vid_ze,
+                                    num_inference_step_vid2vid_ze,
+                                    height_vid2vid_ze,
+                                    width_vid2vid_ze,
+                                    seed_vid2vid_ze,
+                                    num_frames_vid2vid_ze,
+                                    num_fps_txt2vid_ze,
+                                    use_gfpgan_vid2vid_ze,
+                                    nsfw_filter,
+                                    tkme_vid2vid_ze,
+                                ],
+                                outputs=[out_vid2vid_ze, gs_out_vid2vid_ze],
+                                show_progress="full",
+                            )  
+                    with gr.Accordion("Send ...", open=False):
+                        with gr.Row():
+                            with gr.Column():
+                                with gr.Box():                                
+                                    with gr.Group():
+                                        gr.HTML(value='... selected output to ...')
+                            with gr.Column():
+                                with gr.Box():
+                                    with gr.Group():
+                                        gr.HTML(value='... input prompt(s) to ...')
+                                        gr.HTML(value='... image module ...')                                        
+                                        vid2vid_ze_pix2pix = gr.Button("✍️ >> pix2pix")
+                            with gr.Column():
+                                with gr.Box():                                
+                                    with gr.Group():
+                                        gr.HTML(value='... both to ...')
+
     tab_text_num = gr.Number(value=tab_text.id, precision=0, visible=False)
     tab_image_num = gr.Number(value=tab_image.id, precision=0, visible=False)
     tab_audio_num = gr.Number(value=tab_audio.id, precision=0, visible=False)    
@@ -2733,6 +2878,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
     tab_bark_num = gr.Number(value=tab_bark.id, precision=0, visible=False)
     tab_txt2vid_ms_num = gr.Number(value=tab_txt2vid_ms.id, precision=0, visible=False)
     tab_txt2vid_ze_num = gr.Number(value=tab_txt2vid_ze.id, precision=0, visible=False)    
+    tab_vid2vid_ze_num = gr.Number(value=tab_vid2vid_ze.id, precision=0, visible=False)        
 
 # Llamacpp outputs   
     llamacpp_nllb.click(fn=send_text_to_module_text, inputs=[out_llamacpp, tab_text_num, tab_nllb_num], outputs=[prompt_nllb, tabs, tabs_text])
@@ -2881,7 +3027,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
     pix2pix_img2img_input.click(fn=import_to_module, inputs=[prompt_pix2pix, negative_prompt_pix2pix, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, negative_prompt_img2img, tabs, tabs_image])
     pix2pix_inpaint_input.click(fn=import_to_module, inputs=[prompt_pix2pix, negative_prompt_pix2pix, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, negative_prompt_inpaint, tabs, tabs_image])
     pix2pix_controlnet_input.click(fn=import_to_module, inputs=[prompt_pix2pix, negative_prompt_pix2pix, tab_image_num, tab_controlnet_num], outputs=[prompt_controlnet, negative_prompt_controlnet, tabs, tabs_image])
-    
+    pix2pix_vid2vid_ze_input.click(fn=import_to_module_video, inputs=[prompt_pix2pix, negative_prompt_pix2pix, tab_video_num, tab_vid2vid_ze_num], outputs=[prompt_vid2vid_ze, negative_prompt_vid2vid_ze, tabs, tabs_video])
 # pix2pix both
     pix2pix_img2img_both.click(fn=both_to_module, inputs=[prompt_pix2pix, negative_prompt_pix2pix, gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, negative_prompt_img2img, img_img2img, tabs, tabs_image])
     pix2pix_inpaint_both.click(fn=both_to_module_inpaint, inputs=[prompt_pix2pix, negative_prompt_pix2pix, gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, negative_prompt_inpaint,img_inpaint, gs_img_inpaint, tabs, tabs_image])
@@ -2970,15 +3116,24 @@ with gr.Blocks(theme=theme_gradio) as demo:
 # Bark inputs
     bark_whisper.click(fn=send_audio_to_module_text, inputs=[out_bark, tab_text_num, tab_whisper_num], outputs=[source_audio_whisper, tabs, tabs_text])
 
+# Modelscope outputs
+    txt2vid_ms_vid2vid_ze.click(fn=send_to_module_video, inputs=[out_txt2vid_ms, tab_video_num, tab_vid2vid_ze_num], outputs=[vid_vid2vid_ze, tabs, tabs_video])
+
 # Modelscope inputs    
     txt2vid_ms_txt2vid_ze_input.click(fn=import_to_module_video, inputs=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze, tabs, tabs_video])
     txt2vid_ms_txt2img_sd_input.click(fn=import_to_module_video, inputs=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tabs, tabs_image])
     txt2vid_ms_txt2img_kd_input.click(fn=import_to_module_video, inputs=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tabs, tabs_image])
 
-# Modelscope inputs    
+# Text2Video-Zero outputs
+    txt2vid_ze_vid2vid_ze.click(fn=send_to_module_video, inputs=[out_txt2vid_ze, tab_video_num, tab_vid2vid_ze_num], outputs=[vid_vid2vid_ze, tabs, tabs_video])
+
+# Text2Video-Zero inputs    
     txt2vid_ze_txt2vid_ms_input.click(fn=import_to_module_video, inputs=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms, tabs, tabs_video])
     txt2vid_ze_txt2img_sd_input.click(fn=import_to_module_video, inputs=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tabs, tabs_image])    
     txt2vid_ze_txt2img_kd_input.click(fn=import_to_module_video, inputs=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tabs, tabs_image])
+
+# Video Instruct-pix2pix inputs
+    vid2vid_ze_pix2pix.click(fn=import_to_module, inputs=[prompt_vid2vid_ze, negative_prompt_vid2vid_ze, tab_image_num, tab_pix2pix_num], outputs=[prompt_pix2pix, negative_prompt_pix2pix, tabs, tabs_image]) 
 
 # Exécution de l'UI :
     demo.load(split_url_params, nsfw_filter, nsfw_filter, _js=get_window_url_params)

@@ -18,3 +18,4 @@ onnxruntime
 controlnet-aux
 mediapipe
 tomesd
+ffmpeg-python
