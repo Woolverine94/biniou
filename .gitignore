@@ -2,6 +2,6 @@
 /gfpgan
 /models
 /outputs
-/__pycache__
+**/__pycache__
 /ssl
 /.tmp
