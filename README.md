@@ -1,4 +1,4 @@
-<h1 align="center">
+<h1 style="text-align: center; vertical-align: baseline;">
   <br/>
   <img src="./images/biniou_64.png"/>biniou
   <br/>
@@ -17,14 +17,14 @@
 ---
 
 ## Updates
-
+🆕 **2023-10-10** :  Optimization of chunks usage for Text2Video-Zero module<br/>
 🆕 **2023-10-09** :  *New Module Video Instruct-pix2pix*. Modify and edit the content of a video by a simple instruct prompt !<br/>
 🆕 **2023-10-09** :  Temporary removed "anything-v4.5-vae-swapped" from the model list for the Stable Diffusion based modules. You could still use the **.safetensors** file by placing it in the folder *./models/Stable_Diffusion/*.<br/>
 🆕 **2023-10-08** :  Modelscope bugfix, Chatbot enhancements and new default model for llama-cpp<br/>
 🆕 **2023-10-07** :  Compel compatibility and better integration for SDXL in Stable Diffusion, img2img and ControlNet<br/>
 🆕 **2023-10-06** : New features, documentation update<br/>
 🆕 **2023-10-04** : Bugfixes and settings tuning on image captioning, ControlNet preview not fully displaying and deprecation warnings during install<br/>
-🆕 **2023-10-03** : Bugfixes of installer, Text2Video-Zero module and broken zip gallery on Windows systems<br/>
+**2023-10-03** : Bugfixes of installer, Text2Video-Zero module and broken zip gallery on Windows systems<br/>
 **2023-10-02** : Adding <a href="https://github.com/Woolverine94/biniou/wiki">Wiki documentation</a><br/>
 **2023-10-01** : Adding docker support through <a href="#dockerfile">Dockerfile</a><br/>
 **2023-09-30** : Adding <a href="#macos-homebrew-install">macOS Homebrew experimental installer</a><br/>
@@ -51,32 +51,32 @@
 
 ## Features
 * **Text generation using  :**
-  - llama-cpp based chatbot (uses .gguf models)
-  - Microsoft GIT image captioning
-  - Whisper speech-to-text
-  - nllb translation (200 languages)
+  - [llama-cpp based chatbot module](https://github.com/Woolverine94/biniou/wiki/Chatbot-llama%E2%80%90cpp) (uses .gguf models)
+  - [Microsoft GIT image captioning module](https://github.com/Woolverine94/biniou/wiki/GIT-image-captioning)
+  - [Whisper speech-to-text module](https://github.com/Woolverine94/biniou/wiki/Whisper)
+  - [nllb translation module](https://github.com/Woolverine94/biniou/wiki/nllb-translation) (200 languages)
 
 * **Image generation and modification using :**
-  - Stable Diffusion
-  - Kandinsky (require 16GB+ RAM) 
-  - Stable Diffusion Img2img
-  - Instruct Pix2Pix
-  - Stable Diffusion Inpaint
-  - Stable Diffusion ControlNet
-  - Insight Face faceswapping 
-  - Real ESRGAN upscaler
-  - GFPGAN face restoration
+  - [Stable Diffusion module](https://github.com/Woolverine94/biniou/wiki/Stable-Diffusion)
+  - [Kandinsky module](https://github.com/Woolverine94/biniou/wiki/Kandinsky) (require 16GB+ RAM) 
+  - [Stable Diffusion Img2img module](https://github.com/Woolverine94/biniou/wiki/Stable-Diffusion)
+  - [Instruct Pix2Pix module](https://github.com/Woolverine94/biniou/wiki/Instruct-pix2pix)
+  - [Stable Diffusion Inpaint module](https://github.com/Woolverine94/biniou/wiki/inpaint)
+  - [Stable Diffusion ControlNet module](https://github.com/Woolverine94/biniou/wiki/ControlNet)
+  - [Insight Face faceswapping module](https://github.com/Woolverine94/biniou/wiki/Insight-Face-faceswapping)
+  - [Real ESRGAN upscaler module](https://github.com/Woolverine94/biniou/wiki/Real-ESRGAN-upscaler)
+  - [GFPGAN face restoration module](https://github.com/Woolverine94/biniou/wiki/GFPGAN-face-restoration)
 
 * **Audio generation using :**
-  - Musicgen
-  - Audiogen (require 16GB+ RAM)
-  - Harmonai
-  - Bark text-to-speech 
+  - [Musicgen module](https://github.com/Woolverine94/biniou/wiki/MusicGen)
+  - [Audiogen module](https://github.com/Woolverine94/biniou/wiki/AudioGen) (require 16GB+ RAM)
+  - [Harmonai module](https://github.com/Woolverine94/biniou/wiki/Harmonai)
+  - [Bark module](https://github.com/Woolverine94/biniou/wiki/Bark) text-to-speech 
 
-* **Video generation using :**
-  - Modelscope (require 16GB+ RAM)
-  - Text2Video-Zero
-  - Video Instruct-Pix2Pix (require 16GB+ RAM)
+* **Video generation and modification using :**
+  - [Modelscope module](https://github.com/Woolverine94/biniou/wiki/Modelscope-txt2vid) (require 16GB+ RAM)
+  - [Text2Video-Zero module](https://github.com/Woolverine94/biniou/wiki/Text2Video%E2%80%90Zero)
+  - [Video Instruct-Pix2Pix module](https://github.com/Woolverine94/biniou/wiki/Video-Instruct%E2%80%90pix2pix) (require 16GB+ RAM)
 
 * **Other features**
   - Communication between modules : send an output as an input to another module
