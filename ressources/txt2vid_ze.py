@@ -93,7 +93,7 @@ def video_txt2vid_ze(
     else:
         generator = torch.manual_seed(seed_txt2vid_ze)
 
-    for i in range (num_prompt_txt2vid_ze):    
+    for j in range (num_prompt_txt2vid_ze):
         if num_chunks_txt2vid_ze != 1 :
             result = []
             chunk_ids = np.arange(0, num_frames_txt2vid_ze, num_chunks_txt2vid_ze - 1)
@@ -103,8 +103,11 @@ def video_txt2vid_ze(
                 ch_start = chunk_ids[i]
                 ch_end = num_frames_txt2vid_ze if i == len(chunk_ids) - 1 else chunk_ids[i + 1]
                 # Attach the first frame for Cross Frame Attention
-                frame_ids = [0] + list(range(ch_start, ch_end))
-                generator.manual_seed(seed_txt2vid_ze)
+                if i == 0 :
+                    frame_ids = [0] + list(range(ch_start, ch_end))
+                else :
+                    frame_ids = [ch_start -1] + list(range(ch_start, ch_end))
+                generator = generator.manual_seed(seed_txt2vid_ze)
                 output = pipe_txt2vid_ze(
                     prompt=prompt_txt2vid_ze,
                     negative_prompt=negative_prompt_txt2vid_ze,
