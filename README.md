@@ -1,4 +1,4 @@
-<h1 style="text-align: center; vertical-align: baseline;">
+<h1 align="center">
   <br/>
   <img src="./images/biniou_64.png"/>biniou
   <br/>
