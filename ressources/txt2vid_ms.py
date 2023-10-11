@@ -70,8 +70,8 @@ def video_txt2vid_ms(
     )
     pipe_txt2vid_ms = get_scheduler(pipe=pipe_txt2vid_ms, scheduler=sampler_txt2vid_ms)
     pipe_txt2vid_ms = pipe_txt2vid_ms.to(device_txt2vid_ms)
-    pipe_txt2vid_ms.enable_attention_slicing("max")
-#    tomesd.apply_patch(pipe_txt2vid_ms, ratio=tkme_txt2vid_ms)    
+    pipe_txt2vid_ms.unet.enable_forward_chunking(chunk_size=1, dim=1)
+    pipe_txt2vid_ms.enable_vae_slicing()
 
     if seed_txt2vid_ms == 0:
         random_seed = torch.randint(0, 10000000000, (1,))

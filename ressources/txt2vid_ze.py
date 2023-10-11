@@ -78,7 +78,6 @@ def video_txt2vid_ze(
         use_safetensors=True, 
         safety_checker=nsfw_filter_final, 
         feature_extractor=feat_ex, 
-#        chunk_size=num_chunks_txt2vid_ze, 
         resume_download=True,
         local_files_only=True if offline_test() else None        
     )
@@ -96,13 +95,12 @@ def video_txt2vid_ze(
     for j in range (num_prompt_txt2vid_ze):
         if num_chunks_txt2vid_ze != 1 :
             result = []
-            chunk_ids = np.arange(0, num_frames_txt2vid_ze, num_chunks_txt2vid_ze - 1)
+            chunk_ids = np.arange(0, num_frames_txt2vid_ze, num_chunks_txt2vid_ze)
             generator = torch.Generator(device=device_txt2vid_ze)
             for i in range(len(chunk_ids)):
                 print(f"Processing chunk {i + 1} / {len(chunk_ids)}")
                 ch_start = chunk_ids[i]
                 ch_end = num_frames_txt2vid_ze if i == len(chunk_ids) - 1 else chunk_ids[i + 1]
-                # Attach the first frame for Cross Frame Attention
                 if i == 0 :
                     frame_ids = [0] + list(range(ch_start, ch_end))
                 else :
