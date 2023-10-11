@@ -14,6 +14,7 @@ from ressources.nllb import *
 from ressources.txt2img_sd import *
 from ressources.txt2img_kd import *
 from ressources.img2img import *
+from ressources.img2var import *
 from ressources.pix2pix import *
 from ressources.inpaint import *
 from ressources.controlnet import *
@@ -156,6 +157,14 @@ def change_source_type_img2img(source_type_img2img):
         return {"source": "upload", "tool": None, "__type__": "update"}
     elif source_type_img2img == "sketch" :
         return {"source": "canvas", "tool": "color-sketch", "__type__": "update"}
+
+## Fonctions spécifiques à img2var 
+def zip_download_file_img2var(content):
+    savename = zipper(content)
+    return savename, download_file_img2var.update(visible=True) 
+
+def hide_download_file_img2var():
+    return download_file_img2var.update(visible=False)        
 
 ## Fonctions spécifiques à pix2pix 
 def zip_download_file_pix2pix(content):
@@ -397,7 +406,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         llamacpp_txt2img_sd = gr.Button("✍️ >> Stable Diffusion")
                                         llamacpp_txt2img_kd = gr.Button("✍️ >> Kandinsky")                                        
                                         llamacpp_img2img = gr.Button("✍️ >> img2img")
-                                        llamacpp_pix2pix = gr.Button("✍️ >> pix2pix")
+                                        llamacpp_pix2pix = gr.Button("✍️ >> Instruct pix2pix")
                                         llamacpp_inpaint = gr.Button("✍️ >> inpaint")
                                         llamacpp_controlnet = gr.Button("✍️ >> ControlNet")
                                         gr.HTML(value='... audio module ...')
@@ -496,7 +505,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         img2txt_git_txt2img_sd = gr.Button("✍️ >> Stable Diffusion")
                                         img2txt_git_txt2img_kd = gr.Button("✍️ >> Kandinsky")                                        
                                         img2txt_git_img2img = gr.Button("✍️ >> img2img")
-                                        img2txt_git_pix2pix = gr.Button("✍️ >> pix2pix")
+                                        img2txt_git_pix2pix = gr.Button("✍️ >> Instruct pix2pix")
                                         img2txt_git_inpaint = gr.Button("✍️ >> inpaint")
                                         img2txt_git_controlnet = gr.Button("✍️ >> ControlNet")                                        
                                         gr.HTML(value='... audio module ...')
@@ -514,7 +523,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
                                         img2txt_git_img2img_both = gr.Button("🖼️+✍️ >> img2img")
-                                        img2txt_git_pix2pix_both = gr.Button("🖼️+✍️ >> pix2pix")
+                                        img2txt_git_pix2pix_both = gr.Button("🖼️+✍️ >> Instruct pix2pix")
                                         img2txt_git_inpaint_both = gr.Button("🖼️+✍️ >> inpaint")
 
 # Whisper 
@@ -608,7 +617,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         whisper_txt2img_sd = gr.Button("✍️ >> Stable Diffusion")
                                         whisper_txt2img_kd = gr.Button("✍️ >> Kandinsky")
                                         whisper_img2img = gr.Button("✍️ >> img2img")
-                                        whisper_pix2pix = gr.Button("✍️ >> pix2pix")
+                                        whisper_pix2pix = gr.Button("✍️ >> Instruct pix2pix")
                                         whisper_inpaint = gr.Button("✍️ >> inpaint")
                                         whisper_controlnet = gr.Button("✍️ >> ControlNet")
                                         gr.HTML(value='... audio module ...')
@@ -706,7 +715,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         nllb_txt2img_sd = gr.Button("✍️ >> Stable Diffusion")
                                         nllb_txt2img_kd = gr.Button("✍️ >> Kandinsky")                                        
                                         nllb_img2img = gr.Button("✍️ >> img2img")
-                                        nllb_pix2pix = gr.Button("✍️ >> pix2pix")
+                                        nllb_pix2pix = gr.Button("✍️ >> Instruct pix2pix")
                                         nllb_inpaint = gr.Button("✍️ >> inpaint")
                                         nllb_controlnet = gr.Button("✍️ >> ControlNet")                                        
                                         gr.HTML(value='... audio module ...')
@@ -861,7 +870,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         txt2img_sd_img2txt_git = gr.Button("🖼️ >> GIT Captioning")      
                                         gr.HTML(value='... image module ...')
                                         txt2img_sd_img2img = gr.Button("🖼️ >> img2img")
-                                        txt2img_sd_pix2pix = gr.Button("🖼️ >> pix2pix")
+                                        txt2img_sd_img2var = gr.Button("🖼️ >> Image variation")
+                                        txt2img_sd_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
                                         txt2img_sd_inpaint = gr.Button("🖼️ >> inpaint")
                                         txt2img_sd_controlnet = gr.Button("🖼️ >> ControlNet")
                                         txt2img_sd_faceswap = gr.Button("🖼️ >> Faceswap target")
@@ -874,7 +884,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gr.HTML(value='... image module ...')
                                         txt2img_sd_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")                                        
                                         txt2img_sd_img2img_input = gr.Button("✍️ >> img2img")
-                                        txt2img_sd_pix2pix_input = gr.Button("✍️ >> pix2pix")
+                                        txt2img_sd_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         txt2img_sd_inpaint_input = gr.Button("✍️ >> inpaint")
                                         txt2img_sd_controlnet_input = gr.Button("✍️ >> ControlNet")
                                         gr.HTML(value='... video module ...')                                        
@@ -886,7 +896,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gr.HTML(value='... both to ...')
                                         gr.HTML(value='... image module ...')                                                                            
                                         txt2img_sd_img2img_both = gr.Button("🖼️ + ✍️ >> img2img")
-                                        txt2img_sd_pix2pix_both = gr.Button("🖼️ + ✍️ >> pix2pix")
+                                        txt2img_sd_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
                                         txt2img_sd_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
                                         txt2img_sd_controlnet_both = gr.Button("🖼️ + ✍️️ >> ControlNet")                                        
 
@@ -1015,7 +1025,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         txt2img_kd_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         txt2img_kd_img2img = gr.Button("🖼️ >> img2img")
-                                        txt2img_kd_pix2pix = gr.Button("🖼️ >> pix2pix")
+                                        txt2img_kd_img2var = gr.Button("🖼️ >> Image variation")
+                                        txt2img_kd_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
                                         txt2img_kd_inpaint = gr.Button("🖼️ >> inpaint")
                                         txt2img_kd_controlnet = gr.Button("🖼️ >> ControlNet")
                                         txt2img_kd_faceswap = gr.Button("🖼️ >> Faceswap target")
@@ -1028,7 +1039,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gr.HTML(value='... image module ...')
                                         txt2img_kd_txt2img_sd_input = gr.Button("✍️ >> Stable Diffusion")
                                         txt2img_kd_img2img_input = gr.Button("✍️ >> img2img")
-                                        txt2img_kd_pix2pix_input = gr.Button("✍️ >> pix2pix")
+                                        txt2img_kd_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         txt2img_kd_inpaint_input = gr.Button("✍️ >> inpaint")
                                         txt2img_kd_controlnet_input = gr.Button("✍️ >> ControlNet")                                        
                                         gr.HTML(value='... video module ...')                                                                                
@@ -1040,7 +1051,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gr.HTML(value='... both to ...')
                                         gr.HTML(value='... image module ...')
                                         txt2img_kd_img2img_both = gr.Button("🖼️ + ✍️ >> img2img")
-                                        txt2img_kd_pix2pix_both = gr.Button("🖼️ + ✍️ >> pix2pix")
+                                        txt2img_kd_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
                                         txt2img_kd_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
                                         txt2img_kd_controlnet_both = gr.Button("🖼️ + ✍️ >> ControlNet")                                        
 # img2img    
@@ -1191,7 +1202,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         img2img_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         img2img_img2img = gr.Button("🖼️ >> img2img")
-                                        img2img_pix2pix = gr.Button("🖼️ >> pix2pix")
+                                        img2img_img2var = gr.Button("🖼️ >> Image variation")
+                                        img2img_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
                                         img2img_inpaint = gr.Button("🖼️ >> inpaint")
                                         img2img_controlnet = gr.Button("🖼️ >> ControlNet")
                                         img2img_faceswap = gr.Button("🖼️ >> Faceswap target")
@@ -1204,7 +1216,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gr.HTML(value='... image module ...')
                                         img2img_txt2img_sd_input = gr.Button("✍️ >> Stable Diffusion")
                                         img2img_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")
-                                        img2img_pix2pix_input = gr.Button("✍️ >> pix2pix")
+                                        img2img_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         img2img_inpaint_input = gr.Button("✍️ >> inpaint")
                                         img2img_controlnet_input = gr.Button("✍️ >> ControlNet")                                        
                             with gr.Column():
@@ -1212,18 +1224,159 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
                                         gr.HTML(value='... image module ...')
-                                        img2img_pix2pix_both = gr.Button("🖼️ + ✍️ >> pix2pix")
+                                        img2img_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
                                         img2img_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
                                         img2img_controlnet_both = gr.Button("🖼️ + ✍️ >> ControlNet")
+                                        
+# img2var    
+                if ram_size() >= 16 :
+                    titletab_img2var = "Image variation 🖌️"
+                else :
+                    titletab_img2var = "Image variation 🖌️ ⛔"
 
-# pix2pix    
-                with gr.TabItem("pix2pix 🖌️", id=24) as tab_pix2pix:
+                with gr.TabItem(titletab_img2var, id=24) as tab_img2var: 
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
                                 """
                                 <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>Instructpix2pix</br>
+                                <b>Module : </b>Image variation</br>
+                                <b>Function : </b>Generate variations of an input image using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
+                                <b>Input(s) : </b>Input image</br>
+                                <b>Output(s) : </b>Image(s)</br>
+                                <b>HF model page : </b>
+                                <a href='https://huggingface.co/lambdalabs/sd-image-variations-diffusers' target='_blank'>lambdalabs/sd-image-variations-diffusers</a>
+                                """
+                            )
+                        with gr.Box():
+                            gr.HTML(
+                                """
+                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                <div style='text-align: justified'>
+                                <b>Usage :</b></br>
+                                - Upload or import an image as an <b>Input image</b></br>
+                                - (optional) Modify the settings to generate several images in a single run</br>
+                                - Click the <b>Generate</b> button</br>
+                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
+                                </br>
+                                """
+                            )               
+                    with gr.Accordion("Settings", open=False):
+                        with gr.Row():
+                            with gr.Column():
+                                model_img2var = gr.Dropdown(choices=model_list_img2var, value=model_list_img2var[0], label="Model", info="Choose model to use for inference")
+                            with gr.Column():
+                                num_inference_step_img2var = gr.Slider(1, 100, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                            with gr.Column():
+                                sampler_img2var = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
+                        with gr.Row():
+                            with gr.Column():
+                                guidance_scale_img2var = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more corresponding to the prompts")
+                            with gr.Column():
+                                num_images_per_prompt_img2var = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                            with gr.Column():
+                                num_prompt_img2var = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                        with gr.Row():
+                            with gr.Column():
+                                width_img2var = gr.Slider(128, 8192, step=64, value=512, label="Image Width", info="Width of outputs", interactive=False)
+                            with gr.Column():
+                                height_img2var = gr.Slider(128, 8192, step=64, value=512, label="Image Height", info="Height of outputs", interactive=False)
+                            with gr.Column():
+                                seed_img2var = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
+                        with gr.Row():
+                            with gr.Column():    
+                                use_gfpgan_img2var = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                            with gr.Column():
+                                tkme_img2var = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")                          
+                    with gr.Row():
+                        with gr.Column():
+                            img_img2var = gr.Image(label="Input image", height=400, type="filepath")
+                            img_img2var.change(image_upload_event, inputs=img_img2var, outputs=[width_img2var, height_img2var])
+                        with gr.Column():
+                            with gr.Row():
+                                out_img2var = gr.Gallery(
+                                    label="Generated images",
+                                    show_label=True,
+                                    elem_id="gallery_i2v",
+                                    columns=2,
+                                    height=400,
+                                    preview=True,
+                                )
+                                gs_out_img2var = gr.State()
+                                sel_out_img2var = gr.Number(precision=0, visible=False)                              
+                                out_img2var.select(get_select_index, None, sel_out_img2var)
+                            with gr.Row():
+                                with gr.Column():
+                                    download_btn_img2var = gr.Button("Zip gallery 💾")
+                                with gr.Column():
+                                    download_file_img2var = gr.File(label="Output", height=30, interactive=False, visible=False)
+                                    download_btn_img2var.click(fn=zip_download_file_img2var, inputs=out_img2var, outputs=[download_file_img2var, download_file_img2var])                                
+                    with gr.Row():
+                        with gr.Column():
+                            btn_img2var = gr.Button("Generate 🚀", variant="primary")
+                        with gr.Column():                            
+                            btn_img2var_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_img2var_cancel.click(fn=initiate_stop_img2var, inputs=None, outputs=None)                              
+                        with gr.Column():
+                            btn_img2var_clear_input = gr.ClearButton(components=[img_img2var], value="Clear inputs 🧹")
+                        with gr.Column():                            
+                            btn_img2var_clear_output = gr.ClearButton(components=[out_img2var, gs_out_img2var], value="Clear outputs 🧹")
+                            btn_img2var.click(fn=hide_download_file_img2var, inputs=None, outputs=download_file_img2var)                             
+                            btn_img2var.click(
+                                fn=image_img2var,
+                                inputs=[
+                                    model_img2var,
+                                    sampler_img2var,
+                                    img_img2var,
+                                    num_images_per_prompt_img2var,
+                                    num_prompt_img2var,
+                                    guidance_scale_img2var,
+                                    num_inference_step_img2var,
+                                    height_img2var,
+                                    width_img2var,
+                                    seed_img2var,
+                                    use_gfpgan_img2var,
+                                    nsfw_filter,
+                                    tkme_img2var,
+                                ],
+                                outputs=[out_img2var, gs_out_img2var], 
+                                show_progress="full",
+                            )  
+                    with gr.Accordion("Send ...", open=False):
+                        with gr.Row():
+                            with gr.Column():
+                                with gr.Box():                                
+                                    with gr.Group():
+                                        gr.HTML(value='... selected output to ...')
+                                        gr.HTML(value='... text module ...')
+                                        img2var_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
+                                        gr.HTML(value='... image module ...')
+                                        img2var_img2img = gr.Button("🖼️ >> img2img")
+                                        img2var_img2var = gr.Button("🖼️ >> Image variation")
+                                        img2var_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
+                                        img2var_inpaint = gr.Button("🖼️ >> inpaint")
+                                        img2var_controlnet = gr.Button("🖼️ >> ControlNet")
+                                        img2var_faceswap = gr.Button("🖼️ >> Faceswap target")
+                                        img2var_resrgan = gr.Button("🖼️ >> Real ESRGAN")
+                                        img2var_gfpgan = gr.Button("🖼️ >> GFPGAN")
+                            with gr.Column():
+                                with gr.Box():
+                                    with gr.Group():
+                                        gr.HTML(value='... input prompt(s) to ...')
+                            with gr.Column():
+                                with gr.Box():                                
+                                    with gr.Group():
+                                        gr.HTML(value='... both to ...')
+                                       
+
+# pix2pix    
+                with gr.TabItem("Instruct pix2pix 🖌️", id=25) as tab_pix2pix:
+                    with gr.Accordion("About", open=False):                
+                        with gr.Box():                       
+                            gr.HTML(
+                                """
+                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
+                                <b>Module : </b>Instruct pix2pix</br>
                                 <b>Function : </b>Edit an input image with instructions from a prompt and a negative prompt using <a href='https://github.com/timothybrooks/instruct-pix2pix' target='_blank'>Instructpix2pix</a></br>
                                 <b>Input(s) : </b>Input image, prompt, negative prompt</br>
                                 <b>Output(s) : </b>Image(s)</br>
@@ -1350,7 +1503,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         pix2pix_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         pix2pix_img2img = gr.Button("🖼️ >> img2img")
-                                        pix2pix_pix2pix = gr.Button("🖼️ >> pix2pix")
+                                        pix2pix_img2var = gr.Button("🖼️ >> Image variation")
+                                        pix2pix_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
                                         pix2pix_inpaint = gr.Button("🖼️ >> inpaint")
                                         pix2pix_controlnet = gr.Button("🖼️ >> ControlNet")
                                         pix2pix_faceswap = gr.Button("🖼️ >> Faceswap target")
@@ -1377,7 +1531,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         pix2pix_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
                                         pix2pix_controlnet_both = gr.Button("🖼️ + ✍️ >> ControlNet")
 # inpaint    
-                with gr.TabItem("inpaint 🖌️", id=25) as tab_inpaint:
+                with gr.TabItem("inpaint 🖌️", id=26) as tab_inpaint:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -1520,7 +1674,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         inpaint_img2txt_git = gr.Button("🖼️ >> GIT Captioning")      
                                         gr.HTML(value='... image module ...')
                                         inpaint_img2img = gr.Button("🖼️ >> img2img")
-                                        inpaint_pix2pix = gr.Button("🖼️ >> pix2pix")
+                                        inpaint_img2var = gr.Button("🖼️ >> Image variation")
+                                        inpaint_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
                                         inpaint_inpaint = gr.Button("🖼️ >> inpaint")
                                         inpaint_controlnet = gr.Button("🖼️ >> ControlNet")
                                         inpaint_faceswap = gr.Button("🖼️ >> Faceswap target")
@@ -1534,7 +1689,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         inpaint_txt2img_sd_input = gr.Button("✍️ >> Stable Diffusion")
                                         inpaint_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")                                        
                                         inpaint_img2img_input = gr.Button("✍️ >> img2img")
-                                        inpaint_pix2pix_input = gr.Button("✍️ >> pix2pix")
+                                        inpaint_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         inpaint_controlnet_input = gr.Button("✍️ >> ControlNet")
                             with gr.Column():
                                 with gr.Box():                                
@@ -1542,10 +1697,10 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gr.HTML(value='... both to ...')                                    
                                         gr.HTML(value='... image module ...')                                        
                                         inpaint_img2img_both = gr.Button("🖼️ + ✍️ >> img2img")
-                                        inpaint_pix2pix_both = gr.Button("🖼️ + ✍️ >> pix2pix")
+                                        inpaint_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
                                         inpaint_controlnet_both = gr.Button("🖼️ + ✍️ >> ControlNet")
 # ControlNet
-                with gr.TabItem("ControlNet 🖼️", id=26) as tab_controlnet:
+                with gr.TabItem("ControlNet 🖼️", id=27) as tab_controlnet:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -1738,7 +1893,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         controlnet_img2txt_git = gr.Button("🖼️ >> GIT Captioning")         
                                         gr.HTML(value='... image module ...')
                                         controlnet_img2img = gr.Button("🖼️ >> img2img")
-                                        controlnet_pix2pix = gr.Button("🖼️ >> pix2pix")
+                                        controlnet_img2var = gr.Button("🖼️ >> Image variation")
+                                        controlnet_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
                                         controlnet_inpaint = gr.Button("🖼️ >> inpaint")
                                         controlnet_controlnet = gr.Button("🖼️ >> ControlNet")
                                         controlnet_faceswap = gr.Button("🖼️ >> Faceswap target")
@@ -1752,7 +1908,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         controlnet_txt2img_sd_input = gr.Button("✍️ >> Stable Diffusion")
                                         controlnet_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")                                        
                                         controlnet_img2img_input = gr.Button("✍️ >> img2img")
-                                        controlnet_pix2pix_input = gr.Button("✍️ >> pix2pix")
+                                        controlnet_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         controlnet_inpaint_input = gr.Button("✍️ >> inpaint")         
                                         gr.HTML(value='... video module ...')                                        
                                         controlnet_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
@@ -1763,10 +1919,10 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gr.HTML(value='... both to ...')
                                         gr.HTML(value='... image module ...')                                                                            
                                         controlnet_img2img_both = gr.Button("🖼️ + ✍️ >> img2img")
-                                        controlnet_pix2pix_both = gr.Button("🖼️ + ✍️ >> pix2pix")
+                                        controlnet_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
                                         controlnet_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")                                        
 # faceswap    
-                with gr.TabItem("Faceswap 🎭", id=27) as tab_faceswap:
+                with gr.TabItem("Faceswap 🎭", id=28) as tab_faceswap:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -1869,7 +2025,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         faceswap_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         faceswap_img2img = gr.Button("🖼️ >> img2img")
-                                        faceswap_pix2pix = gr.Button("🖼️ >> pix2pix")
+                                        faceswap_img2var = gr.Button("🖼️ >> Image variation")
+                                        faceswap_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
                                         faceswap_inpaint = gr.Button("🖼️ >> inpaint")
                                         faceswap_controlnet = gr.Button("🖼️ >> ControlNet")
                                         faceswap_faceswap = gr.Button("🖼️ >> Faceswap target")
@@ -1885,7 +2042,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gr.HTML(value='... both to ...')                                    
 
 # Real ESRGAN    
-                with gr.TabItem("Real ESRGAN 🔎", id=28) as tab_resrgan:
+                with gr.TabItem("Real ESRGAN 🔎", id=29) as tab_resrgan:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -1970,7 +2127,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         resrgan_img2txt_git = gr.Button("🖼️ >> GIT Captioning") 
                                         gr.HTML(value='... image module ...')
                                         resrgan_img2img = gr.Button("🖼️ >> img2img")
-                                        resrgan_pix2pix = gr.Button("🖼️ >> pix2pix")
+                                        resrgan_img2var = gr.Button("🖼️ >> Image variation")
+                                        resrgan_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
                                         resrgan_inpaint = gr.Button("🖼️ >> inpaint")
                                         resrgan_controlnet = gr.Button("🖼️ >> ControlNet")
                                         resrgan_faceswap = gr.Button("🖼️ >> Faceswap target")
@@ -1984,7 +2142,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')                         
 # GFPGAN    
-                with gr.TabItem("GFPGAN 🔎", id=29) as tab_gfpgan:
+                with gr.TabItem("GFPGAN 🔎", id=291) as tab_gfpgan:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -2064,7 +2222,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gfpgan_img2txt_git = gr.Button("🖼️ >> GIT Captioning")   
                                         gr.HTML(value='... image module ...')
                                         gfpgan_img2img = gr.Button("🖼️ >> img2img")
-                                        gfpgan_pix2pix = gr.Button("🖼️ >> pix2pix")
+                                        gfpgan_img2var = gr.Button("🖼️ >> Image variation")
+                                        gfpgan_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
                                         gfpgan_inpaint = gr.Button("🖼️ >> inpaint")
                                         gfpgan_controlnet = gr.Button("🖼️ >> ControlNet")
                                         gfpgan_faceswap = gr.Button("🖼️ >> Faceswap target")
@@ -2848,7 +3007,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                     with gr.Group():
                                         gr.HTML(value='... input prompt(s) to ...')
                                         gr.HTML(value='... image module ...')                                        
-                                        vid2vid_ze_pix2pix = gr.Button("✍️ >> pix2pix")
+                                        vid2vid_ze_pix2pix = gr.Button("✍️ >> Instruct pix2pix")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
@@ -2866,6 +3025,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
     tab_txt2img_sd_num = gr.Number(value=tab_txt2img_sd.id, precision=0, visible=False)
     tab_txt2img_kd_num = gr.Number(value=tab_txt2img_kd.id, precision=0, visible=False)
     tab_img2img_num = gr.Number(value=tab_img2img.id, precision=0, visible=False)
+    tab_img2var_num = gr.Number(value=tab_img2var.id, precision=0, visible=False)    
     tab_pix2pix_num = gr.Number(value=tab_pix2pix.id, precision=0, visible=False)
     tab_inpaint_num = gr.Number(value=tab_inpaint.id, precision=0, visible=False)
     tab_controlnet_num = gr.Number(value=tab_controlnet.id, precision=0, visible=False)    
@@ -2941,6 +3101,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
       
 # txt2img_sd outputs
     txt2img_sd_img2img.click(fn=send_to_module, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
+    txt2img_sd_img2var.click(fn=send_to_module, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])  
     txt2img_sd_pix2pix.click(fn=send_to_module, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
     txt2img_sd_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image])    
     txt2img_sd_controlnet.click(fn=send_to_module_inpaint, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_image_num, tab_controlnet_num], outputs=[img_source_controlnet, gs_img_source_controlnet, tabs, tabs_image])
@@ -2966,6 +3127,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
 
 # txt2img_kd outputs
     txt2img_kd_img2img.click(fn=send_to_module, inputs=[gs_out_txt2img_kd, sel_out_txt2img_kd, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
+    txt2img_kd_img2var.click(fn=send_to_module, inputs=[gs_out_txt2img_kd, sel_out_txt2img_kd, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])    
     txt2img_kd_pix2pix.click(fn=send_to_module, inputs=[gs_out_txt2img_kd, sel_out_txt2img_kd, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
     txt2img_kd_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_txt2img_kd, sel_out_txt2img_kd, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image])    
     txt2img_kd_controlnet.click(fn=send_to_module_inpaint, inputs=[gs_out_txt2img_kd, sel_out_txt2img_kd, tab_image_num, tab_controlnet_num], outputs=[img_source_controlnet, gs_img_source_controlnet, tabs, tabs_image])
@@ -2991,6 +3153,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
 
 # img2img outputs
     img2img_img2img.click(fn=send_to_module, inputs=[gs_out_img2img, sel_out_img2img, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
+    img2var_img2var.click(fn=send_to_module, inputs=[gs_out_img2var, sel_out_img2var, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])    
     img2img_pix2pix.click(fn=send_to_module, inputs=[gs_out_img2img, sel_out_img2img, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
     img2img_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_img2img, sel_out_img2img, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image])
     img2img_controlnet.click(fn=send_to_module_inpaint, inputs=[gs_out_img2img, sel_out_img2img, tab_image_num, tab_controlnet_num], outputs=[img_source_controlnet, gs_img_source_controlnet, tabs, tabs_image])    
@@ -3011,8 +3174,20 @@ with gr.Blocks(theme=theme_gradio) as demo:
     img2img_inpaint_both.click(fn=both_to_module_inpaint, inputs=[prompt_img2img, negative_prompt_img2img, gs_out_img2img, sel_out_img2img, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, negative_prompt_inpaint,img_inpaint, gs_img_inpaint, tabs, tabs_image])
     img2img_controlnet_both.click(fn=both_to_module_inpaint, inputs=[prompt_img2img, negative_prompt_img2img, gs_out_img2img, sel_out_img2img, tab_image_num, tab_controlnet_num], outputs=[prompt_controlnet, negative_prompt_controlnet, img_source_controlnet, gs_img_source_controlnet, tabs, tabs_image])    
 
+# img2var outputs
+    img2var_img2img.click(fn=send_to_module, inputs=[gs_out_img2var, sel_out_img2var, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
+    img2var_img2var.click(fn=send_to_module, inputs=[gs_out_img2var, sel_out_img2var, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])    
+    img2var_pix2pix.click(fn=send_to_module, inputs=[gs_out_img2var, sel_out_img2var, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
+    img2var_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_img2var, sel_out_img2var, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image])
+    img2var_controlnet.click(fn=send_to_module_inpaint, inputs=[gs_out_img2var, sel_out_img2var, tab_image_num, tab_controlnet_num], outputs=[img_source_controlnet, gs_img_source_controlnet, tabs, tabs_image])    
+    img2var_faceswap.click(fn=send_to_module_inpaint, inputs=[gs_out_img2var, sel_out_img2var, tab_image_num, tab_faceswap_num], outputs=[img_target_faceswap, gs_img_target_faceswap, tabs, tabs_image])    
+    img2var_resrgan.click(fn=send_to_module, inputs=[gs_out_img2var, sel_out_img2var, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
+    img2var_gfpgan.click(fn=send_to_module, inputs=[gs_out_img2var, sel_out_img2var, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
+    img2var_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_img2var, sel_out_img2var, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])    
+
 # pix2pix outputs
     pix2pix_img2img.click(fn=send_to_module, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
+    pix2pix_img2var.click(fn=send_to_module, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])    
     pix2pix_pix2pix.click(fn=send_to_module, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])    
     pix2pix_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image])
     pix2pix_controlnet.click(fn=send_to_module_inpaint, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_controlnet_num], outputs=[img_source_controlnet, gs_img_source_controlnet, tabs, tabs_image])        
@@ -3035,6 +3210,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
 
 # inpaint outputs
     inpaint_img2img.click(fn=send_to_module, inputs=[gs_out_inpaint, sel_out_inpaint, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
+    inpaint_img2var.click(fn=send_to_module, inputs=[gs_out_inpaint, sel_out_inpaint, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])    
     inpaint_pix2pix.click(fn=send_to_module, inputs=[gs_out_inpaint, sel_out_inpaint, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])    
     inpaint_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_inpaint, sel_out_inpaint, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image])    
     inpaint_controlnet.click(fn=send_to_module_inpaint, inputs=[gs_out_inpaint, sel_out_inpaint, tab_image_num, tab_controlnet_num], outputs=[img_source_controlnet, gs_img_source_controlnet, tabs, tabs_image])        
@@ -3057,6 +3233,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
 
 # ControlNet outputs
     controlnet_img2img.click(fn=send_to_module, inputs=[gs_out_controlnet, sel_out_controlnet, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
+    controlnet_img2var.click(fn=send_to_module, inputs=[gs_out_controlnet, sel_out_controlnet, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])    
     controlnet_pix2pix.click(fn=send_to_module, inputs=[gs_out_controlnet, sel_out_controlnet, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
     controlnet_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_controlnet, sel_out_controlnet, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image]) 
     controlnet_controlnet.click(fn=send_to_module_inpaint, inputs=[gs_out_controlnet, sel_out_controlnet, tab_image_num, tab_controlnet_num], outputs=[img_source_controlnet, gs_img_source_controlnet, tabs, tabs_image])    
@@ -3081,6 +3258,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
 
 # Faceswap outputs
     faceswap_img2img.click(fn=send_to_module, inputs=[gs_out_faceswap, sel_out_faceswap, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
+    faceswap_img2var.click(fn=send_to_module, inputs=[gs_out_faceswap, sel_out_faceswap, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])    
     faceswap_pix2pix.click(fn=send_to_module, inputs=[gs_out_faceswap, sel_out_faceswap, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
     faceswap_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_faceswap, sel_out_faceswap, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image]) 
     faceswap_controlnet.click(fn=send_to_module_inpaint, inputs=[gs_out_faceswap, sel_out_faceswap, tab_image_num, tab_controlnet_num], outputs=[img_source_controlnet,  gs_img_source_controlnet, tabs, tabs_image])     
@@ -3091,6 +3269,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
 
 # resrgan outputs
     resrgan_img2img.click(fn=send_to_module, inputs=[gs_out_resrgan, sel_out_resrgan, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
+    resrgan_img2var.click(fn=send_to_module, inputs=[gs_out_resrgan, sel_out_resrgan, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])    
     resrgan_pix2pix.click(fn=send_to_module, inputs=[gs_out_resrgan, sel_out_resrgan, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
     resrgan_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_resrgan, sel_out_resrgan, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image])    
     resrgan_controlnet.click(fn=send_to_module, inputs=[gs_out_resrgan, sel_out_resrgan, tab_image_num, tab_controlnet_num], outputs=[img_source_controlnet, gs_img_source_controlnet, tabs, tabs_image])            
@@ -3100,6 +3279,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
 
 # gfpgan outputs
     gfpgan_img2img.click(fn=send_to_module, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
+    gfpgan_img2var.click(fn=send_to_module, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])    
     gfpgan_pix2pix.click(fn=send_to_module, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
     gfpgan_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, gs_img_source_controlnet, tabs, tabs_image])  
     gfpgan_controlnet.click(fn=send_to_module, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_image_num, tab_controlnet_num], outputs=[img_source_controlnet, tabs, tabs_image])                  
