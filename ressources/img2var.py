@@ -58,16 +58,14 @@ def image_img2var(
     progress_img2var=gr.Progress(track_tqdm=True)
     ):
 
-#    nsfw_filter_final, feat_ex = safety_checker_sd(model_path_img2var, device_img2var, nsfw_filter)
+    nsfw_filter_final, feat_ex = safety_checker_sd(model_path_img2var, device_img2var, nsfw_filter)
 
     pipe_img2var = StableDiffusionImageVariationPipeline.from_pretrained(
         modelid_img2var,
         revision="v2.0", 
         cache_dir=model_path_img2var, 
         torch_dtype=torch.float32, 
-#        use_safetensors=True, 
-#        safety_checker=nsfw_filter_final, 
-#        feature_extractor=feat_ex,
+        safety_checker=nsfw_filter_final,
         resume_download=True,
         local_files_only=True if offline_test() else None                
         )
@@ -110,8 +108,7 @@ def image_img2var(
             image[j].save(savename)
             final_image.append(image[j])
 
-#    del nsfw_filter_final, feat_ex, pipe_img2var, generator, image_input, compel, conditioning, neg_conditioning, image
-    del pipe_img2var, generator, image_input, image    
+    del nsfw_filter_final, feat_ex, pipe_img2var, generator, image_input, image
     clean_ram()
    
     return final_image, final_image   
