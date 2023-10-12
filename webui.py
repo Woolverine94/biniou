@@ -291,14 +291,14 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             with gr.Column():
                                 model_llamacpp = gr.Dropdown(choices=list(model_list_llamacpp.keys()), value=list(model_list_llamacpp.keys())[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                max_tokens_llamacpp = gr.Slider(0, 65536, step=16, value=128, label="Max tokens", info="Maximum number of tokens to generate")
+                                max_tokens_llamacpp = gr.Slider(0, 65536, step=16, value=1024, label="Max tokens", info="Maximum number of tokens to generate")
                             with gr.Column():
                                 seed_llamacpp = gr.Slider(0, 10000000000, step=1, value=1337, label="Seed(0 for random)", info="Seed to use for generation.")    
                         with gr.Row():
                             with gr.Column():
                                 stream_llamacpp = gr.Checkbox(value=False, label="Stream", info="Stream results", interactive=False)                            
                             with gr.Column():
-                                n_ctx_llamacpp = gr.Slider(0, 65536, step=128, value=512, label="n_ctx", info="Maximum context size")
+                                n_ctx_llamacpp = gr.Slider(0, 65536, step=128, value=2048, label="n_ctx", info="Maximum context size")
                             with gr.Column():
                                 repeat_penalty_llamacpp = gr.Slider(0.0, 10.0, step=0.1, value=1.1, label="Repeat penalty", info="The penalty to apply to repeated tokens")
                         with gr.Row():
