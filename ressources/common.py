@@ -1,5 +1,6 @@
 # https://github.com/Woolverine94/biniou
 # common.py
+import os
 from PIL import Image, ExifTags
 from io import BytesIO
 import gradio as gr
@@ -239,3 +240,30 @@ def set_num_beam_groups_img2txt_git(numbeam, numbeam_groups) :
     elif numbeam<2 and numbeam_groups>1 :
         numbeam_groups = 1
     return numbeam_groups
+    
+def write_ini(module, *args) :
+    savename = f".ini/{module}.cfg"
+    content = ""
+    for idx, data in enumerate(args):
+        content += f"{data} \n"
+        content = content.replace("False", "0")
+        content = content.replace("True", "1")
+    with open(savename, 'w') as savefile:
+        savefile.write(content)
+    return
+   
+def read_ini(module) :
+    filename = f".ini/{module}.cfg"
+    content = []
+    with open(filename, "r") as fichier :
+        lignes = fichier.readlines()
+        for ligne in lignes : 
+            ligne = ligne.strip(' \n')
+            content.append(ligne)
+        return content
+
+def test_cfg_exist(module) :
+    if os.path.isfile(f".ini/{module}.cfg") :
+        return True
+    else :
+        return False   

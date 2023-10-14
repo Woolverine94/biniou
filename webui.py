@@ -1,6 +1,6 @@
 # https://github.com/Woolverine94/biniou
 # Webui.py
-import os 
+import os
 import gradio as gr
 import numpy as np
 import warnings
@@ -34,6 +34,9 @@ if os.path.exists(tmp_biniou) :
     shutil.rmtree(tmp_biniou)
 os.makedirs(tmp_biniou, exist_ok=True)
 
+ini_dir="./.ini"
+os.makedirs(ini_dir, exist_ok=True)
+
 warnings.filterwarnings('ignore') 
 
 get_window_url_params = """
@@ -59,7 +62,7 @@ def dummy():
 def in_and_out(input_value):
     return input_value
 
-# fonctions Exports Outputs 
+## fonctions Exports Outputs 
 def send_to_module(content, index, numtab, numtab_item):
     index = int(index)
     return content[index], gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item) # /!\ tabs_image = pas bon pour les autres modules
@@ -84,7 +87,7 @@ def send_audio_to_module_text(audio, numtab, numtab_item):
 def send_text_to_module_text(prompt, numtab, numtab_item):
     return prompt, gr.Tabs.update(selected=numtab), tabs_text.update(selected=numtab_item)
 
-# fonctions Exports Inputs
+## fonctions Exports Inputs
 def import_to_module(prompt, negative_prompt, numtab, numtab_item):
     return prompt, negative_prompt, gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item)
     
@@ -100,7 +103,7 @@ def import_text_to_module_image(prompt, numtab, numtab_item):
 def import_text_to_module_video(prompt, numtab, numtab_item):
     return prompt, gr.Tabs.update(selected=numtab), tabs_video.update(selected=numtab_item)    
 
-# fonctions Exports Inputs + Outputs
+## fonctions Exports Inputs + Outputs
 def both_text_to_module_image (content, prompt, numtab, numtab_item):
     return content, prompt, gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item) 
 
@@ -124,79 +127,15 @@ def llamacpp_inference_start() :
 
 def llamacpp_inference_end() :
     return out_llamacpp.update(visible=False)
-
-## Fonctions spécifiques à Stable Diffusion 
-def zip_download_file_txt2img_sd(content):
-    savename = zipper(content)
-    return savename, download_file_txt2img_sd.update(visible=True) 
-
-def hide_download_file_txt2img_sd():
-    return download_file_txt2img_sd.update(visible=False)
     
-def update_preview_txt2img_sd(preview):
-    return out_txt2img_sd.update(preview)     
-
-## Fonctions spécifiques à Kandinsky 
-def zip_download_file_txt2img_kd(content):
-    savename = zipper(content)
-    return savename, download_file_txt2img_kd.update(visible=True) 
-
-def hide_download_file_txt2img_kd():
-    return download_file_txt2img_kd.update(visible=False)
-    
-## Fonctions spécifiques à img2img 
-def zip_download_file_img2img(content):
-    savename = zipper(content)
-    return savename, download_file_img2img.update(visible=True) 
-
-def hide_download_file_img2img():
-    return download_file_img2img.update(visible=False)        
-    
-def change_source_type_img2img(source_type_img2img):
-    if source_type_img2img == "image" :
-        return {"source": "upload", "tool": None, "__type__": "update"}
-    elif source_type_img2img == "sketch" :
-        return {"source": "canvas", "tool": "color-sketch", "__type__": "update"}
-
-## Fonctions spécifiques à img2var 
-def zip_download_file_img2var(content):
-    savename = zipper(content)
-    return savename, download_file_img2var.update(visible=True) 
-
-def hide_download_file_img2var():
-    return download_file_img2var.update(visible=False)        
-
-## Fonctions spécifiques à pix2pix 
-def zip_download_file_pix2pix(content):
-    savename = zipper(content)
-    return savename, download_file_pix2pix.update(visible=True) 
-
-def hide_download_file_pix2pix():
-    return download_file_pix2pix.update(visible=False) 
-    
-## Fonctions spécifiques à inpaint 
-def zip_download_file_inpaint(content):
-    savename = zipper(content)
-    return savename, download_file_inpaint.update(visible=True) 
-
-def hide_download_file_inpaint():
-    return download_file_inpaint.update(visible=False) 
-
-## Fonctions spécifiques à controlnet 
-def zip_download_file_controlnet(content):
-    savename = zipper(content)
-    return savename, download_file_controlnet.update(visible=True) 
-
-def hide_download_file_controlnet():
-    return download_file_controlnet.update(visible=False) 
-
-## Fonctions spécifiques à faceswap 
-def zip_download_file_faceswap(content):
-    savename = zipper(content)
-    return savename, download_file_faceswap.update(visible=True) 
-
-def hide_download_file_faceswap():
-    return download_file_faceswap.update(visible=False) 
+def read_ini_llamacpp(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), int(content[2]), bool(int(content[3])), int(content[4]), float(content[5]), float(content[6]), float(content[7]), int(content[8])
+         
+## Fonctions spécifiques à img2txt_git
+def read_ini_img2txt_git(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), int(content[2]), int(content[3]), int(content[4]), float(content[5])
 
 ## Fonctions spécifiques à whisper
 def change_source_type_whisper(source_type_whisper):
@@ -215,6 +154,166 @@ def stop_recording_whisper(source_audio_whisper):
     print(source_audio_whisper)
     print(type(source_audio_whisper))
     return source_audio_whisper.update(source="upload"), source_audio_whisper
+
+def read_ini_whisper(module) :
+    content = read_ini(module)
+    return str(content[0]), bool(int(content[1]))
+    
+## Fonctions spécifiques à nllb
+
+def read_ini_nllb(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1])
+
+## Fonctions spécifiques à Stable Diffusion 
+def zip_download_file_txt2img_sd(content):
+    savename = zipper(content)
+    return savename, download_file_txt2img_sd.update(visible=True) 
+
+def hide_download_file_txt2img_sd():
+    return download_file_txt2img_sd.update(visible=False)
+    
+def update_preview_txt2img_sd(preview):
+    return out_txt2img_sd.update(preview)     
+
+def read_ini_txt2img_sd(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), bool(int(content[9])), float(content[10])
+
+## Fonctions spécifiques à Kandinsky 
+def zip_download_file_txt2img_kd(content):
+    savename = zipper(content)
+    return savename, download_file_txt2img_kd.update(visible=True) 
+
+def hide_download_file_txt2img_kd():
+    return download_file_txt2img_kd.update(visible=False)
+
+def read_ini_txt2img_kd(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), bool(int(content[9]))
+    
+## Fonctions spécifiques à img2img 
+def zip_download_file_img2img(content):
+    savename = zipper(content)
+    return savename, download_file_img2img.update(visible=True) 
+
+def hide_download_file_img2img():
+    return download_file_img2img.update(visible=False)        
+    
+def change_source_type_img2img(source_type_img2img):
+    if source_type_img2img == "image" :
+        return {"source": "upload", "tool": None, "__type__": "update"}
+    elif source_type_img2img == "sketch" :
+        return {"source": "canvas", "tool": "color-sketch", "__type__": "update"}
+
+def read_ini_img2img(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), bool(int(content[9])), float(content[10])
+
+## Fonctions spécifiques à img2var 
+def zip_download_file_img2var(content):
+    savename = zipper(content)
+    return savename, download_file_img2var.update(visible=True) 
+
+def hide_download_file_img2var():
+    return download_file_img2var.update(visible=False)        
+    
+def read_ini_img2var(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), bool(int(content[9])), float(content[10])    
+
+## Fonctions spécifiques à pix2pix 
+def zip_download_file_pix2pix(content):
+    savename = zipper(content)
+    return savename, download_file_pix2pix.update(visible=True) 
+
+def hide_download_file_pix2pix():
+    return download_file_pix2pix.update(visible=False) 
+    
+def read_ini_pix2pix(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), str(content[2]), float(content[3]), float(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), int(content[9]), bool(int(content[10])), float(content[11])
+    
+## Fonctions spécifiques à inpaint 
+def zip_download_file_inpaint(content):
+    savename = zipper(content)
+    return savename, download_file_inpaint.update(visible=True) 
+
+def hide_download_file_inpaint():
+    return download_file_inpaint.update(visible=False) 
+
+def read_ini_inpaint(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), bool(int(content[9])), float(content[10])    
+
+## Fonctions spécifiques à controlnet 
+def zip_download_file_controlnet(content):
+    savename = zipper(content)
+    return savename, download_file_controlnet.update(visible=True) 
+
+def hide_download_file_controlnet():
+    return download_file_controlnet.update(visible=False) 
+
+def read_ini_controlnet(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), int(content[9]), int(content[10]), float(content[11]), float(content[12]), float(content[13]), bool(int(content[14])), float(content[15])    
+
+## Fonctions spécifiques à faceswap 
+def zip_download_file_faceswap(content):
+    savename = zipper(content)
+    return savename, download_file_faceswap.update(visible=True) 
+
+def hide_download_file_faceswap():
+    return download_file_faceswap.update(visible=False) 
+
+def read_ini_faceswap(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), int(content[2]), bool(int(content[3]))
+
+## Fonctions spécifiques à Real ESRGAN
+def read_ini_resrgan(module) :
+    content = read_ini(module)
+    return str(content[0]), str(content[1]), int(content[2]), int(content[3]), bool(int(content[4]))
+
+## Fonctions spécifiques à GFPGAN
+def read_ini_gfpgan(module) :
+    content = read_ini(module)
+    return str(content[0]), str(content[1]), int(content[2]), int(content[3])
+
+## Fonctions spécifiques à MusicGen
+def read_ini_musicgen(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), float(content[2]), int(content[3]), bool(int(content[4])), float(content[5]), int(content[6]), int(content[7])
+
+## Fonctions spécifiques à AudioGen
+def read_ini_audiogen(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), float(content[2]), int(content[3]), bool(int(content[4])), float(content[5]), int(content[6]), int(content[7])
+
+## Fonctions spécifiques à Harmonai
+def read_ini_harmonai(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), int(content[2]), int(content[3]), int(content[4]), int(content[5])
+
+## Fonctions spécifiques à Bark
+def read_ini_bark(module) :
+    content = read_ini(module)
+    return str(content[0]), str(content[1])
+    
+## Fonctions spécifiques à Modelscope
+def read_ini_txt2vid_ms(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), bool(int(content[9]))
+
+## Fonctions spécifiques à Text2Video-Zero
+def read_ini_txt2vid_ze(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), int(content[9]), int(content[10]), int(content[11]), int(content[12]), int(content[13]), int(content[14]), int(content[15]), bool(int(content[16])), float(content[16])
+
+## Fonctions spécifiques à Video Instruct-Pix2Pix
+def read_ini_vid2vid_ze(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), str(content[2]), float(content[3]), float(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), int(content[9]), int(content[10]), int(content[11]), bool(int(content[12])), float(content[13])
 
 color_label = "#7B43EE"
 color_label_button = "#4361ee"
@@ -308,6 +407,45 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 top_p_llamacpp = gr.Slider(0.0, 10.0, step=0.05, value=0.95, label="top_p", info="The top-p value to use for sampling")
                             with gr.Column():
                                 top_k_llamacpp = gr.Slider(0, 500, step=1, value=40, label="top_k", info="The top-k value to use for sampling")
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_llamacpp = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_llamacpp = gr.Textbox(value="llamacpp", visible=False, interactive=False)
+                                load_ini_btn_llamacpp = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_llamacpp.value) else False)
+                                save_ini_btn_llamacpp.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_llamacpp, 
+                                        model_llamacpp, 
+                                        max_tokens_llamacpp, 
+                                        seed_llamacpp, 
+                                        stream_llamacpp, 
+                                        n_ctx_llamacpp, 
+                                        repeat_penalty_llamacpp, 
+                                        temperature_llamacpp, 
+                                        top_p_llamacpp, 
+                                        top_k_llamacpp, 
+                                        ]
+                                    )
+                                save_ini_btn_llamacpp.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_llamacpp.click(fn=lambda: load_ini_btn_llamacpp.update(interactive=True), outputs=load_ini_btn_llamacpp)
+                                load_ini_btn_llamacpp.click(
+                                    fn=read_ini_llamacpp, 
+                                    inputs=module_name_llamacpp, 
+                                    outputs = [
+                                        model_llamacpp, 
+                                        max_tokens_llamacpp, 
+                                        seed_llamacpp, 
+                                        stream_llamacpp, 
+                                        n_ctx_llamacpp, 
+                                        repeat_penalty_llamacpp, 
+                                        temperature_llamacpp, 
+                                        top_p_llamacpp, 
+                                        top_k_llamacpp, 
+                                        ]
+                                    )
+                                load_ini_btn_llamacpp.click(fn=lambda: gr.Info('Settings loaded'))
                     with gr.Row():                            
                         history_llamacpp = gr.Textbox(label="Chatbot history", lines=13, max_lines=13, autoscroll=True, show_copy_button=True, interactive=False)
                         hidden_history_llamacpp = gr.Textbox(label="Chatbot history", visible=False)
@@ -467,11 +605,44 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 num_beams_img2txt_git.change(set_num_beam_groups_img2txt_git, inputs=[num_beams_img2txt_git, num_beam_groups_img2txt_git], outputs=num_beam_groups_img2txt_git)
                             with gr.Column():
                                 diversity_penalty_img2txt_git = gr.Slider(0.0, 5.0, step=0.01, value=0.5, label="Diversity penalty", info="Penalty score value for a beam")
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_img2txt_git = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_img2txt_git = gr.Textbox(value="img2txt_git", visible=False, interactive=False)
+                                load_ini_btn_img2txt_git = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_img2txt_git.value) else False)
+                                save_ini_btn_img2txt_git.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_img2txt_git, 
+                                        model_img2txt_git, 
+                                        min_tokens_img2txt_git,
+                                        max_tokens_img2txt_git, 
+                                        num_beams_img2txt_git,
+                                        num_beam_groups_img2txt_git, 
+                                        diversity_penalty_img2txt_git, 
+                                        ]
+                                    )
+                                save_ini_btn_img2txt_git.click(fn=lambda: gr.Info('Settings saved'))                                    
+                                save_ini_btn_img2txt_git.click(fn=lambda: load_ini_btn_img2txt_git.update(interactive=True), outputs=load_ini_btn_img2txt_git)
+                                load_ini_btn_img2txt_git.click(
+                                    fn=read_ini_img2txt_git, 
+                                    inputs=module_name_img2txt_git, 
+                                    outputs = [
+                                        model_img2txt_git, 
+                                        min_tokens_img2txt_git,
+                                        max_tokens_img2txt_git, 
+                                        num_beams_img2txt_git,
+                                        num_beam_groups_img2txt_git, 
+                                        diversity_penalty_img2txt_git, 
+                                        ]
+                                    )                                
+                                load_ini_btn_img2txt_git.click(fn=lambda: gr.Info('Settings loaded'))
                     with gr.Row():
                         with gr.Column():
                             img_img2txt_git = gr.Image(label="Input image", type="pil", height=400)
                         with gr.Column():
-                            out_img2txt_git = gr.Textbox(label="Generated captions", lines=15, interactive=False)
+                            out_img2txt_git = gr.Textbox(label="Generated captions", lines=15, show_copy_button=True, interactive=False)
                     with gr.Row():
                         with gr.Column():
                             btn_img2txt_git = gr.Button("Generate 🚀", variant="primary")
@@ -527,7 +698,12 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         img2txt_git_inpaint_both = gr.Button("🖼️+✍️ >> inpaint")
 
 # Whisper 
-                with gr.TabItem("Whisper 👂", id=14) as tab_whisper:
+                if ram_size() >= 16 :
+                    titletab_whisper = "Whisper 👂"
+                else :
+                    titletab_whisper = "Whisper 👂 ⛔"
+
+                with gr.TabItem(titletab_whisper, id=14) as tab_whisper:
                     with gr.Accordion("About", open=False):
                         with gr.Box():                       
                             gr.HTML(
@@ -566,6 +742,31 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 model_whisper = gr.Dropdown(choices=list(model_list_whisper.keys()), value=list(model_list_whisper.keys())[4], label="Model", info="Choose model to use for inference")
                             with gr.Column():
                                 srt_output_whisper = gr.Checkbox(value=False, label=".srt format output", info="Generate an output in .srt format")
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_whisper = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_whisper = gr.Textbox(value="whisper", visible=False, interactive=False)
+                                load_ini_btn_whisper = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_whisper.value) else False)
+                                save_ini_btn_whisper.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_whisper, 
+                                        model_whisper, 
+                                        srt_output_whisper,
+                                        ]
+                                    )
+                                save_ini_btn_whisper.click(fn=lambda: gr.Info('Settings saved'))    
+                                save_ini_btn_whisper.click(fn=lambda: load_ini_btn_whisper.update(interactive=True), outputs=load_ini_btn_whisper)
+                                load_ini_btn_whisper.click(
+                                    fn=read_ini_whisper, 
+                                    inputs=module_name_whisper, 
+                                    outputs = [
+                                        model_whisper, 
+                                        srt_output_whisper,
+                                        ]
+                                    )
+                                load_ini_btn_whisper.click(fn=lambda: gr.Info('Settings loaded'))
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -583,7 +784,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 with gr.Column():
                                     output_language_whisper = gr.Dropdown(choices=language_list_whisper, value=language_list_whisper[13], label="Output language", info="Select output language", visible=False, interactive=False)
                             with gr.Row():
-                                out_whisper = gr.Textbox(label="Output text", lines=9, max_lines=9, interactive=False)
+                                out_whisper = gr.Textbox(label="Output text", lines=9, max_lines=9, show_copy_button=True, interactive=False)
                                 output_type_whisper.change(fn=change_output_type_whisper, inputs=output_type_whisper, outputs=output_language_whisper)
                     with gr.Row():
                         with gr.Column():
@@ -675,6 +876,31 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 model_nllb = gr.Dropdown(choices=model_list_nllb, value=model_list_nllb[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
                                 max_tokens_nllb = gr.Slider(0, 1024, step=1, value=1024, label="Max tokens", info="Maximum number of tokens in output")
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_nllb = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_nllb = gr.Textbox(value="nllb", visible=False, interactive=False)
+                                load_ini_btn_nllb = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_nllb.value) else False)
+                                save_ini_btn_nllb.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_nllb, 
+                                        model_nllb, 
+                                        max_tokens_nllb,
+                                        ]
+                                    )
+                                save_ini_btn_nllb.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_nllb.click(fn=lambda: load_ini_btn_nllb.update(interactive=True), outputs=load_ini_btn_nllb)
+                                load_ini_btn_nllb.click(
+                                    fn=read_ini_nllb, 
+                                    inputs=module_name_nllb, 
+                                    outputs = [
+                                        model_nllb, 
+                                        max_tokens_nllb,
+                                        ]
+                                    )
+                                load_ini_btn_nllb.click(fn=lambda: gr.Info('Settings loaded'))
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -685,7 +911,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             with gr.Row():
                                 output_language_nllb = gr.Dropdown(choices=list(language_list_nllb.keys()), value=list(language_list_nllb.keys())[47], label="Output language", info="Select output language")
                             with gr.Row():
-                                out_nllb = gr.Textbox(label="Output text", lines=9, max_lines=9, interactive=False)
+                                out_nllb = gr.Textbox(label="Output text", lines=9, max_lines=9, show_copy_button=True, interactive=False)
                     with gr.Row():
                         with gr.Column():
                             btn_nllb = gr.Button("Generate 🚀", variant="primary")
@@ -803,6 +1029,49 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 use_gfpgan_txt2img_sd = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
                                 tkme_txt2img_sd = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_txt2img_sd = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_txt2img_sd = gr.Textbox(value="txt2img_sd", visible=False, interactive=False)
+                                load_ini_btn_txt2img_sd = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_txt2img_sd.value) else False)
+                                save_ini_btn_txt2img_sd.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_txt2img_sd, 
+                                        model_txt2img_sd, 
+                                        num_inference_step_txt2img_sd,
+                                        sampler_txt2img_sd,
+                                        guidance_scale_txt2img_sd,
+                                        num_images_per_prompt_txt2img_sd,
+                                        num_prompt_txt2img_sd,
+                                        width_txt2img_sd,
+                                        height_txt2img_sd,
+                                        seed_txt2img_sd,
+                                        use_gfpgan_txt2img_sd,
+                                        tkme_txt2img_sd,
+                                        ]
+                                    )
+                                save_ini_btn_txt2img_sd.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_txt2img_sd.click(fn=lambda: load_ini_btn_txt2img_sd.update(interactive=True), outputs=load_ini_btn_txt2img_sd)
+                                load_ini_btn_txt2img_sd.click(
+                                    fn=read_ini_txt2img_sd, 
+                                    inputs=module_name_txt2img_sd, 
+                                    outputs = [
+                                        model_txt2img_sd, 
+                                        num_inference_step_txt2img_sd,
+                                        sampler_txt2img_sd,
+                                        guidance_scale_txt2img_sd,
+                                        num_images_per_prompt_txt2img_sd,
+                                        num_prompt_txt2img_sd,
+                                        width_txt2img_sd,
+                                        height_txt2img_sd,
+                                        seed_txt2img_sd,
+                                        use_gfpgan_txt2img_sd,
+                                        tkme_txt2img_sd,
+                                        ]
+                                    )
+                                load_ini_btn_txt2img_sd.click(fn=lambda: gr.Info('Settings loaded'))
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -960,6 +1229,47 @@ with gr.Blocks(theme=theme_gradio) as demo:
                         with gr.Row():
                             with gr.Column():    
                                 use_gfpgan_txt2img_kd = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_txt2img_kd = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_txt2img_kd = gr.Textbox(value="txt2img_kd", visible=False, interactive=False)
+                                load_ini_btn_txt2img_kd = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_txt2img_kd.value) else False)
+                                save_ini_btn_txt2img_kd.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_txt2img_kd, 
+                                        model_txt2img_kd, 
+                                        num_inference_step_txt2img_kd,
+                                        sampler_txt2img_kd,
+                                        guidance_scale_txt2img_kd,
+                                        num_images_per_prompt_txt2img_kd,
+                                        num_prompt_txt2img_kd,
+                                        width_txt2img_kd,
+                                        height_txt2img_kd,
+                                        seed_txt2img_kd,
+                                        use_gfpgan_txt2img_kd,
+                                        ]
+                                    )
+                                save_ini_btn_txt2img_kd.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_txt2img_kd.click(fn=lambda: load_ini_btn_txt2img_kd.update(interactive=True), outputs=load_ini_btn_txt2img_kd)
+                                load_ini_btn_txt2img_kd.click(
+                                    fn=read_ini_txt2img_kd, 
+                                    inputs=module_name_txt2img_kd, 
+                                    outputs = [
+                                        model_txt2img_kd, 
+                                        num_inference_step_txt2img_kd,
+                                        sampler_txt2img_kd,
+                                        guidance_scale_txt2img_kd,
+                                        num_images_per_prompt_txt2img_kd,
+                                        num_prompt_txt2img_kd,
+                                        width_txt2img_kd,
+                                        height_txt2img_kd,
+                                        seed_txt2img_kd,
+                                        use_gfpgan_txt2img_kd,
+                                        ]
+                                    )
+                                load_ini_btn_txt2img_kd.click(fn=lambda: gr.Info('Settings loaded'))
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -1119,7 +1429,50 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             with gr.Column():    
                                 use_gfpgan_img2img = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
-                                tkme_img2img = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")                          
+                                tkme_img2img = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")    
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_img2img = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_img2img = gr.Textbox(value="img2img", visible=False, interactive=False)
+                                load_ini_btn_img2img = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_img2img.value) else False)
+                                save_ini_btn_img2img.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_img2img, 
+                                        model_img2img, 
+                                        num_inference_step_img2img,
+                                        sampler_img2img,
+                                        guidance_scale_img2img,
+                                        num_images_per_prompt_img2img,
+                                        num_prompt_img2img,
+                                        width_img2img,
+                                        height_img2img,
+                                        seed_img2img,
+                                        use_gfpgan_img2img,
+                                        tkme_img2img,
+                                        ]
+                                    )
+                                save_ini_btn_img2img.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_img2img.click(fn=lambda: load_ini_btn_img2img.update(interactive=True), outputs=load_ini_btn_img2img)
+                                load_ini_btn_img2img.click(
+                                    fn=read_ini_img2img, 
+                                    inputs=module_name_img2img, 
+                                    outputs = [
+                                        model_img2img, 
+                                        num_inference_step_img2img,
+                                        sampler_img2img,
+                                        guidance_scale_img2img,
+                                        num_images_per_prompt_img2img,
+                                        num_prompt_img2img,
+                                        width_img2img,
+                                        height_img2img,
+                                        seed_img2img,
+                                        use_gfpgan_img2img,
+                                        tkme_img2img,
+                                        ]
+                                    )
+                                load_ini_btn_img2img.click(fn=lambda: gr.Info('Settings loaded'))
                     with gr.Row():
                         with gr.Column():
                             img_img2img = gr.Image(label="Input image", height=400, type="filepath")
@@ -1230,7 +1583,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         
 # img2var    
                 if ram_size() >= 16 :
-                    titletab_img2var = "Image variation 🖌️"
+                    titletab_img2var = "Image variation 🖼️"
                 else :
                     titletab_img2var = "Image variation 🖌️ ⛔"
 
@@ -1287,7 +1640,50 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             with gr.Column():    
                                 use_gfpgan_img2var = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
-                                tkme_img2var = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")                          
+                                tkme_img2var = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_img2var = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_img2var = gr.Textbox(value="img2var", visible=False, interactive=False)
+                                load_ini_btn_img2var = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_img2var.value) else False)
+                                save_ini_btn_img2var.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_img2var, 
+                                        model_img2var, 
+                                        num_inference_step_img2var,
+                                        sampler_img2var,
+                                        guidance_scale_img2var,
+                                        num_images_per_prompt_img2var,
+                                        num_prompt_img2var,
+                                        width_img2var,
+                                        height_img2var,
+                                        seed_img2var,
+                                        use_gfpgan_img2var,
+                                        tkme_img2var,
+                                        ]
+                                    )
+                                save_ini_btn_img2var.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_img2var.click(fn=lambda: load_ini_btn_img2var.update(interactive=True), outputs=load_ini_btn_img2var)
+                                load_ini_btn_img2var.click(
+                                    fn=read_ini_img2var, 
+                                    inputs=module_name_img2var, 
+                                    outputs = [
+                                        model_img2var, 
+                                        num_inference_step_img2var,
+                                        sampler_img2var,
+                                        guidance_scale_img2var,
+                                        num_images_per_prompt_img2var,
+                                        num_prompt_img2var,
+                                        width_img2var,
+                                        height_img2var,
+                                        seed_img2var,
+                                        use_gfpgan_img2var,
+                                        tkme_img2var,
+                                        ]
+                                    )
+                                load_ini_btn_img2var.click(fn=lambda: gr.Info('Settings loaded'))
                     with gr.Row():
                         with gr.Column():
                             img_img2var = gr.Image(label="Input image", height=400, type="filepath")
@@ -1429,6 +1825,51 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 use_gfpgan_pix2pix = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
                                 tkme_pix2pix = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_pix2pix = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_pix2pix = gr.Textbox(value="pix2pix", visible=False, interactive=False)
+                                load_ini_btn_pix2pix = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_pix2pix.value) else False)
+                                save_ini_btn_pix2pix.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_pix2pix, 
+                                        model_pix2pix, 
+                                        num_inference_step_pix2pix,
+                                        sampler_pix2pix,
+                                        guidance_scale_pix2pix,
+                                        image_guidance_scale_pix2pix, 
+                                        num_images_per_prompt_pix2pix,
+                                        num_prompt_pix2pix,
+                                        width_pix2pix,
+                                        height_pix2pix,
+                                        seed_pix2pix,
+                                        use_gfpgan_pix2pix,
+                                        tkme_pix2pix,
+                                        ]
+                                    )
+                                save_ini_btn_pix2pix.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_pix2pix.click(fn=lambda: load_ini_btn_pix2pix.update(interactive=True), outputs=load_ini_btn_pix2pix)
+                                load_ini_btn_pix2pix.click(
+                                    fn=read_ini_pix2pix, 
+                                    inputs=module_name_pix2pix, 
+                                    outputs = [
+                                        model_pix2pix, 
+                                        num_inference_step_pix2pix,
+                                        sampler_pix2pix,
+                                        guidance_scale_pix2pix,
+                                        image_guidance_scale_pix2pix,                                         
+                                        num_images_per_prompt_pix2pix,
+                                        num_prompt_pix2pix,
+                                        width_pix2pix,
+                                        height_pix2pix,
+                                        seed_pix2pix,
+                                        use_gfpgan_pix2pix,
+                                        tkme_pix2pix,
+                                        ]
+                                    )
+                                load_ini_btn_pix2pix.click(fn=lambda: gr.Info('Settings loaded'))
                     with gr.Row():
                         with gr.Column():
                              img_pix2pix = gr.Image(label="Input image", height=400, type="filepath")
@@ -1593,6 +2034,49 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 use_gfpgan_inpaint = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
                                 tkme_inpaint = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_inpaint = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_inpaint = gr.Textbox(value="inpaint", visible=False, interactive=False)
+                                load_ini_btn_inpaint = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_inpaint.value) else False)
+                                save_ini_btn_inpaint.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_inpaint, 
+                                        model_inpaint, 
+                                        num_inference_step_inpaint,
+                                        sampler_inpaint,
+                                        guidance_scale_inpaint,
+                                        num_images_per_prompt_inpaint,
+                                        num_prompt_inpaint,
+                                        width_inpaint,
+                                        height_inpaint,
+                                        seed_inpaint,
+                                        use_gfpgan_inpaint,
+                                        tkme_inpaint,
+                                        ]
+                                    )
+                                save_ini_btn_inpaint.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_inpaint.click(fn=lambda: load_ini_btn_inpaint.update(interactive=True), outputs=load_ini_btn_inpaint)
+                                load_ini_btn_inpaint.click(
+                                    fn=read_ini_inpaint, 
+                                    inputs=module_name_inpaint, 
+                                    outputs = [
+                                        model_inpaint, 
+                                        num_inference_step_inpaint,
+                                        sampler_inpaint,
+                                        guidance_scale_inpaint,
+                                        num_images_per_prompt_inpaint,
+                                        num_prompt_inpaint,
+                                        width_inpaint,
+                                        height_inpaint,
+                                        seed_inpaint,
+                                        use_gfpgan_inpaint,
+                                        tkme_inpaint,
+                                        ]
+                                    )
+                                load_ini_btn_inpaint.click(fn=lambda: gr.Info('Settings loaded'))
                     with gr.Row():
                         with gr.Column(scale=2):
                              rotation_img_inpaint = gr.Number(value=0, visible=False)
@@ -1790,6 +2274,59 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 use_gfpgan_controlnet = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
                                 tkme_controlnet = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_controlnet = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_controlnet = gr.Textbox(value="controlnet", visible=False, interactive=False)
+                                load_ini_btn_controlnet = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_controlnet.value) else False)
+                                save_ini_btn_controlnet.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_controlnet, 
+                                        model_controlnet, 
+                                        num_inference_step_controlnet,
+                                        sampler_controlnet,
+                                        guidance_scale_controlnet,
+                                        num_images_per_prompt_controlnet,
+                                        num_prompt_controlnet,
+                                        width_controlnet,
+                                        height_controlnet,
+                                        seed_controlnet,
+                                        low_threshold_controlnet,
+                                        high_threshold_controlnet,
+                                        strength_controlnet,
+                                        start_controlnet,
+                                        stop_controlnet,
+                                        use_gfpgan_controlnet,
+                                        tkme_controlnet,
+                                        ]
+                                    )
+                                save_ini_btn_controlnet.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_controlnet.click(fn=lambda: load_ini_btn_controlnet.update(interactive=True), outputs=load_ini_btn_controlnet)
+                                load_ini_btn_controlnet.click(
+                                    fn=read_ini_controlnet, 
+                                    inputs=module_name_controlnet, 
+                                    outputs = [
+                                        model_controlnet, 
+                                        num_inference_step_controlnet,
+                                        sampler_controlnet,
+                                        guidance_scale_controlnet,
+                                        num_images_per_prompt_controlnet,
+                                        num_prompt_controlnet,
+                                        width_controlnet,
+                                        height_controlnet,
+                                        seed_controlnet,
+                                        low_threshold_controlnet,
+                                        high_threshold_controlnet,
+                                        strength_controlnet,
+                                        start_controlnet,
+                                        stop_controlnet,
+                                        use_gfpgan_controlnet,
+                                        tkme_controlnet,
+                                        ]
+                                    )
+                                load_ini_btn_controlnet.click(fn=lambda: gr.Info('Settings loaded'))
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -1963,6 +2500,35 @@ with gr.Blocks(theme=theme_gradio) as demo:
                         with gr.Row():
                             with gr.Column():    
                                 use_gfpgan_faceswap = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")    
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_faceswap = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_faceswap = gr.Textbox(value="faceswap", visible=False, interactive=False)
+                                load_ini_btn_faceswap = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_faceswap.value) else False)
+                                save_ini_btn_faceswap.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_faceswap, 
+                                        model_faceswap, 
+                                        width_faceswap,
+                                        height_faceswap,
+                                        use_gfpgan_faceswap,
+                                        ]
+                                    )
+                                save_ini_btn_faceswap.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_faceswap.click(fn=lambda: load_ini_btn_faceswap.update(interactive=True), outputs=load_ini_btn_faceswap)
+                                load_ini_btn_faceswap.click(
+                                    fn=read_ini_faceswap, 
+                                    inputs=module_name_faceswap, 
+                                    outputs = [
+                                        model_faceswap, 
+                                        width_faceswap,
+                                        height_faceswap,
+                                        use_gfpgan_faceswap,
+                                        ]
+                                    )
+                                load_ini_btn_faceswap.click(fn=lambda: gr.Info('Settings loaded'))
                     with gr.Row():
                         with gr.Column():
                              img_source_faceswap = gr.Image(label="Source image", height=400, type="filepath")
@@ -2083,7 +2649,38 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 height_resrgan = gr.Slider(128, 8192, step=64, value=512, label="Image Height", info="Height of input", interactive=False)
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_resrgan = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")                                 
+                                use_gfpgan_resrgan = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")     
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_resrgan = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_resrgan = gr.Textbox(value="resrgan", visible=False, interactive=False)
+                                load_ini_btn_resrgan = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_resrgan.value) else False)
+                                save_ini_btn_resrgan.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_resrgan, 
+                                        model_resrgan, 
+                                        scale_resrgan,                                         
+                                        width_resrgan,
+                                        height_resrgan,
+                                        use_gfpgan_resrgan,
+                                        ]
+                                    )
+                                save_ini_btn_resrgan.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_resrgan.click(fn=lambda: load_ini_btn_resrgan.update(interactive=True), outputs=load_ini_btn_resrgan)
+                                load_ini_btn_resrgan.click(
+                                    fn=read_ini_resrgan, 
+                                    inputs=module_name_resrgan, 
+                                    outputs = [
+                                        model_resrgan, 
+                                        scale_resrgan,                                         
+                                        width_resrgan,
+                                        height_resrgan,
+                                        use_gfpgan_resrgan,
+                                        ]
+                                    )
+                                load_ini_btn_resrgan.click(fn=lambda: gr.Info('Settings loaded'))
                     with gr.Row():
                         with gr.Column():
                              img_resrgan = gr.Image(label="Input image", type="filepath", height=400)
@@ -2180,6 +2777,35 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 width_gfpgan = gr.Slider(128, 8192, step=64, value=512, label="Image Width", info="Width of outputs", interactive=False)
                             with gr.Column():
                                 height_gfpgan = gr.Slider(128, 8192, step=64, value=512, label="Image Height", info="Height of outputs", interactive=False)
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_gfpgan = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_gfpgan = gr.Textbox(value="gfpgan", visible=False, interactive=False)
+                                load_ini_btn_gfpgan = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_gfpgan.value) else False)
+                                save_ini_btn_gfpgan.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_gfpgan, 
+                                        model_gfpgan, 
+                                        variant_gfpgan,                                         
+                                        width_gfpgan,
+                                        height_gfpgan,
+                                        ]
+                                    )
+                                save_ini_btn_gfpgan.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_gfpgan.click(fn=lambda: load_ini_btn_gfpgan.update(interactive=True), outputs=load_ini_btn_gfpgan)
+                                load_ini_btn_gfpgan.click(
+                                    fn=read_ini_gfpgan, 
+                                    inputs=module_name_gfpgan, 
+                                    outputs = [
+                                        model_gfpgan, 
+                                        variant_gfpgan,                                  
+                                        width_gfpgan, 
+                                        height_gfpgan, 
+                                        ]
+                                    )
+                                load_ini_btn_gfpgan.click(fn=lambda: gr.Info('Settings loaded'))
                     with gr.Row():
                         with gr.Column():
                             img_gfpgan = gr.Image(label="Input image", type="filepath", height=400)
@@ -2289,6 +2915,43 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 top_k_musicgen = gr.Slider(0, 500, step=1, value=250, label="top_k")
                             with gr.Column():
                                 top_p_musicgen = gr.Slider(0.0, 500.0, step=1.0, value=0.0, label="top_p")
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_musicgen = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_musicgen = gr.Textbox(value="musicgen", visible=False, interactive=False)
+                                load_ini_btn_musicgen = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_musicgen.value) else False)
+                                save_ini_btn_musicgen.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_musicgen, 
+                                        model_musicgen, 
+                                        duration_musicgen,                                         
+                                        cfg_coef_musicgen,
+                                        num_batch_musicgen,
+                                        use_sampling_musicgen,
+                                        temperature_musicgen,
+                                        top_k_musicgen,
+                                        top_p_musicgen,
+                                        ]
+                                    )
+                                save_ini_btn_musicgen.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_musicgen.click(fn=lambda: load_ini_btn_musicgen.update(interactive=True), outputs=load_ini_btn_musicgen)
+                                load_ini_btn_musicgen.click(
+                                    fn=read_ini_musicgen, 
+                                    inputs=module_name_musicgen, 
+                                    outputs = [
+                                        model_musicgen, 
+                                        duration_musicgen,                                         
+                                        cfg_coef_musicgen,
+                                        num_batch_musicgen,
+                                        use_sampling_musicgen,
+                                        temperature_musicgen,
+                                        top_k_musicgen,
+                                        top_p_musicgen,
+                                        ]
+                                    )
+                                load_ini_btn_musicgen.click(fn=lambda: gr.Info('Settings loaded'))
                     with gr.Row():
                         with gr.Column():
                             prompt_musicgen = gr.Textbox(label="Describe your music", lines=2, max_lines=2, placeholder="90s rock song with loud guitars and heavy drums")
@@ -2390,6 +3053,43 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 top_k_audiogen = gr.Slider(0, 500, step=1, value=250, label="top_k")
                             with gr.Column():
                                 top_p_audiogen = gr.Slider(0.0, 500.0, step=1.0, value=0.0, label="top_p")
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_audiogen = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_audiogen = gr.Textbox(value="audiogen", visible=False, interactive=False)
+                                load_ini_btn_audiogen = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_audiogen.value) else False)
+                                save_ini_btn_audiogen.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_audiogen, 
+                                        model_audiogen, 
+                                        duration_audiogen,                                         
+                                        cfg_coef_audiogen,
+                                        num_batch_audiogen,
+                                        use_sampling_audiogen,
+                                        temperature_audiogen,
+                                        top_k_audiogen,
+                                        top_p_audiogen,
+                                        ]
+                                    )
+                                save_ini_btn_audiogen.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_audiogen.click(fn=lambda: load_ini_btn_audiogen.update(interactive=True), outputs=load_ini_btn_audiogen)
+                                load_ini_btn_audiogen.click(
+                                    fn=read_ini_audiogen, 
+                                    inputs=module_name_audiogen, 
+                                    outputs = [
+                                        model_audiogen, 
+                                        duration_audiogen,                                         
+                                        cfg_coef_audiogen,
+                                        num_batch_audiogen,
+                                        use_sampling_audiogen,
+                                        temperature_audiogen,
+                                        top_k_audiogen,
+                                        top_p_audiogen,
+                                        ]
+                                    )
+                                load_ini_btn_audiogen.click(fn=lambda: gr.Info('Settings loaded'))
                     with gr.Row():
                         with gr.Column():
                             prompt_audiogen = gr.Textbox(label="Describe your sound", lines=2, max_lines=2, placeholder="dog barking, sirens of an emergency vehicle, footsteps in a corridor")
@@ -2477,7 +3177,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             with gr.Column():
                                 steps_harmonai = gr.Slider(1, 100, step=1, value=50, label="Steps", info="Number of iterations per audio. Results and speed depends of sampler")
                             with gr.Column():
-                                seed_harmonai = gr.Slider(0, 10000000000, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
+                                seed_harmonai = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
                         with gr.Row():
                             with gr.Column():
                                 length_harmonai = gr.Slider(1, 1200, value=5, step=1, label="Audio length (sec)")
@@ -2485,6 +3185,39 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 batch_size_harmonai = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of audios to generate in a single run")
                             with gr.Column():
                                 batch_repeat_harmonai = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_harmonai = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_harmonai = gr.Textbox(value="harmonai", visible=False, interactive=False)
+                                load_ini_btn_harmonai = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_harmonai.value) else False)
+                                save_ini_btn_harmonai.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_harmonai, 
+                                        model_harmonai, 
+                                        steps_harmonai,
+                                        seed_harmonai,
+                                        length_harmonai,
+                                        batch_size_harmonai,
+                                        batch_repeat_harmonai,
+                                        ]
+                                    )
+                                save_ini_btn_harmonai.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_harmonai.click(fn=lambda: load_ini_btn_harmonai.update(interactive=True), outputs=load_ini_btn_harmonai)                                
+                                load_ini_btn_harmonai.click(
+                                    fn=read_ini_harmonai, 
+                                    inputs=module_name_harmonai, 
+                                    outputs = [
+                                        model_harmonai, 
+                                        steps_harmonai,
+                                        seed_harmonai,
+                                        length_harmonai,
+                                        batch_size_harmonai,
+                                        batch_repeat_harmonai,                                        
+                                        ]
+                                    )
+                                load_ini_btn_harmonai.click(fn=lambda: gr.Info('Settings loaded'))
                     with gr.Row():
                         out_harmonai = gr.Audio(label="Output", type="filepath", show_download_button=True, interactive=False)
                     with gr.Row():
@@ -2565,6 +3298,31 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 model_bark = gr.Dropdown(choices=model_list_bark, value=model_list_bark[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
                                 voice_preset_bark = gr.Dropdown(choices=list(voice_preset_list_bark.keys()), value=list(voice_preset_list_bark.keys())[2], label="Voice")
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_bark = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_bark = gr.Textbox(value="bark", visible=False, interactive=False)
+                                load_ini_btn_bark = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_bark.value) else False)
+                                save_ini_btn_bark.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_bark, 
+                                        model_bark, 
+                                        voice_preset_bark,
+                                        ]
+                                    )
+                                save_ini_btn_bark.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_bark.click(fn=lambda: load_ini_btn_bark.update(interactive=True), outputs=load_ini_btn_bark)
+                                load_ini_btn_bark.click(
+                                    fn=read_ini_bark, 
+                                    inputs=module_name_bark, 
+                                    outputs = [
+                                        model_bark, 
+                                        voice_preset_bark,
+                                        ]
+                                    )
+                                load_ini_btn_bark.click(fn=lambda: gr.Info('Settings loaded'))
                     with gr.Row():
                         with gr.Column():                    
                             prompt_bark = gr.Textbox(label="Text to speech", lines=2, max_lines=2, placeholder="Type or past here what you want to hear ...")
@@ -2669,6 +3427,47 @@ with gr.Blocks(theme=theme_gradio) as demo:
                         with gr.Row():
                             with gr.Column():    
                                 use_gfpgan_txt2vid_ms = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_txt2vid_ms = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_txt2vid_ms = gr.Textbox(value="txt2vid_ms", visible=False, interactive=False)
+                                load_ini_btn_txt2vid_ms = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_txt2vid_ms.value) else False)
+                                save_ini_btn_txt2vid_ms.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_txt2vid_ms, 
+                                        model_txt2vid_ms, 
+                                        num_inference_step_txt2vid_ms,
+                                        sampler_txt2vid_ms,
+                                        guidance_scale_txt2vid_ms,
+                                        num_frames_txt2vid_ms,
+                                        num_prompt_txt2vid_ms,
+                                        width_txt2vid_ms,
+                                        height_txt2vid_ms,
+                                        seed_txt2vid_ms,
+                                        use_gfpgan_txt2vid_ms,
+                                        ]
+                                    )
+                                save_ini_btn_txt2vid_ms.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_txt2vid_ms.click(fn=lambda: load_ini_btn_txt2vid_ms.update(interactive=True), outputs=load_ini_btn_txt2vid_ms)
+                                load_ini_btn_txt2vid_ms.click(
+                                    fn=read_ini_txt2vid_ms, 
+                                    inputs=module_name_txt2vid_ms, 
+                                    outputs = [
+                                        model_txt2vid_ms, 
+                                        num_inference_step_txt2vid_ms,
+                                        sampler_txt2vid_ms,
+                                        guidance_scale_txt2vid_ms,
+                                        num_frames_txt2vid_ms,
+                                        num_prompt_txt2vid_ms,
+                                        width_txt2vid_ms,
+                                        height_txt2vid_ms,
+                                        seed_txt2vid_ms,
+                                        use_gfpgan_txt2vid_ms,
+                                        ]
+                                    )
+                                load_ini_btn_txt2vid_ms.click(fn=lambda: gr.Info('Settings loaded'))
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -2808,6 +3607,63 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 use_gfpgan_txt2vid_ze = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():    
                                 tkme_txt2vid_ze = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token Merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_txt2vid_ze = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_txt2vid_ze = gr.Textbox(value="txt2vid_ze", visible=False, interactive=False)
+                                load_ini_btn_txt2vid_ze = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_txt2vid_ze.value) else False)
+                                save_ini_btn_txt2vid_ze.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_txt2vid_ze, 
+                                        model_txt2vid_ze, 
+                                        num_inference_step_txt2vid_ze,
+                                        sampler_txt2vid_ze,
+                                        guidance_scale_txt2vid_ze,
+                                        seed_txt2vid_ze,                                        
+                                        num_frames_txt2vid_ze,
+                                        num_fps_txt2vid_ze,
+                                        num_chunks_txt2vid_ze,
+                                        width_txt2vid_ze,
+                                        height_txt2vid_ze,
+                                        num_videos_per_prompt_txt2vid_ze,
+                                        num_prompt_txt2vid_ze,
+                                        motion_field_strength_x_txt2vid_ze,
+                                        motion_field_strength_y_txt2vid_ze,
+                                        timestep_t0_txt2vid_ze,
+                                        timestep_t1_txt2vid_ze,
+                                        use_gfpgan_txt2vid_ze,
+                                        tkme_txt2vid_ze,
+                                        ]
+                                    )
+                                save_ini_btn_txt2vid_ze.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_txt2vid_ze.click(fn=lambda: load_ini_btn_txt2vid_ze.update(interactive=True), outputs=load_ini_btn_txt2vid_ze)
+                                load_ini_btn_txt2vid_ze.click(
+                                    fn=read_ini_txt2vid_ze, 
+                                    inputs=module_name_txt2vid_ze, 
+                                    outputs = [
+                                        model_txt2vid_ze, 
+                                        num_inference_step_txt2vid_ze,
+                                        sampler_txt2vid_ze,
+                                        guidance_scale_txt2vid_ze,
+                                        seed_txt2vid_ze,                                        
+                                        num_frames_txt2vid_ze,
+                                        num_fps_txt2vid_ze,
+                                        num_chunks_txt2vid_ze,
+                                        width_txt2vid_ze,
+                                        height_txt2vid_ze,
+                                        num_videos_per_prompt_txt2vid_ze,
+                                        num_prompt_txt2vid_ze,
+                                        motion_field_strength_x_txt2vid_ze,
+                                        motion_field_strength_y_txt2vid_ze,
+                                        timestep_t0_txt2vid_ze,
+                                        timestep_t1_txt2vid_ze,
+                                        use_gfpgan_txt2vid_ze,
+                                        tkme_txt2vid_ze,
+                                        ]
+                                    )
+                                load_ini_btn_txt2vid_ze.click(fn=lambda: gr.Info('Settings loaded'))
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -2941,12 +3797,61 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             with gr.Column():
                                 num_frames_vid2vid_ze = gr.Slider(0, 1200, step=1, value=8, label="Video Length (frames)", info="Number of frames to process")
                             with gr.Column():
-                                num_fps_txt2vid_ze = gr.Slider(1, 120, step=1, value=4, label="Frames per second", info="Number of frames per second")
+                                num_fps_vid2vid_ze = gr.Slider(1, 120, step=1, value=4, label="Frames per second", info="Number of frames per second")
                         with gr.Row():
                             with gr.Column():    
                                 use_gfpgan_vid2vid_ze = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
                                 tkme_vid2vid_ze = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_vid2vid_ze = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_vid2vid_ze = gr.Textbox(value="vid2vid_ze", visible=False, interactive=False)
+                                load_ini_btn_vid2vid_ze = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_vid2vid_ze.value) else False)
+                                save_ini_btn_vid2vid_ze.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_vid2vid_ze, 
+                                        model_vid2vid_ze, 
+                                        num_inference_step_vid2vid_ze,
+                                        sampler_vid2vid_ze,
+                                        guidance_scale_vid2vid_ze,
+                                        image_guidance_scale_vid2vid_ze, 
+                                        num_images_per_prompt_vid2vid_ze,
+                                        num_prompt_vid2vid_ze,
+                                        width_vid2vid_ze,
+                                        height_vid2vid_ze,
+                                        seed_vid2vid_ze,
+                                        num_frames_vid2vid_ze,
+                                        num_fps_vid2vid_ze,
+                                        use_gfpgan_vid2vid_ze,
+                                        tkme_vid2vid_ze,
+                                        ]
+                                    )
+                                save_ini_btn_vid2vid_ze.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_vid2vid_ze.click(fn=lambda: load_ini_btn_vid2vid_ze.update(interactive=True), outputs=load_ini_btn_vid2vid_ze)
+                                load_ini_btn_vid2vid_ze.click(
+                                    fn=read_ini_vid2vid_ze, 
+                                    inputs=module_name_vid2vid_ze, 
+                                    outputs = [
+                                        model_vid2vid_ze, 
+                                        num_inference_step_vid2vid_ze,
+                                        sampler_vid2vid_ze,
+                                        guidance_scale_vid2vid_ze,
+                                        image_guidance_scale_vid2vid_ze, 
+                                        num_images_per_prompt_vid2vid_ze,
+                                        num_prompt_vid2vid_ze,
+                                        width_vid2vid_ze,
+                                        height_vid2vid_ze,
+                                        seed_vid2vid_ze,
+                                        num_frames_vid2vid_ze,
+                                        num_fps_vid2vid_ze,
+                                        use_gfpgan_vid2vid_ze,
+                                        tkme_vid2vid_ze,
+                                        ]
+                                    )
+                                load_ini_btn_vid2vid_ze.click(fn=lambda: gr.Info('Settings loaded'))
                     with gr.Row():
                         with gr.Column():
                              vid_vid2vid_ze = gr.Video(label="Input video", height=400)

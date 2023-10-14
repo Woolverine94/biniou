@@ -114,37 +114,16 @@ def check_whisper(step, timestep, latents) :
     return
 
 def convert_seconds_to_timestamp(seconds):
-    RELIQUAT0 = int(seconds)
-    MSECONDES = round(seconds-(RELIQUAT0), 3)
-    MSECONDES_FINAL = str(int(MSECONDES*1000)).ljust(3, '0')
-    RELIQUAT1 = int(seconds/60)
-    SECONDES = RELIQUAT0-(RELIQUAT1*60)
-    RELIQUAT2 = int(RELIQUAT1/60)
-    MINUTES = int((RELIQUAT0-((RELIQUAT2*3600)+SECONDES))/60)
-    RELIQUAT3 = RELIQUAT2/24
-    HEURES = int((RELIQUAT0-((MINUTES*60)+SECONDES))/3600)
-    total = f"{str(HEURES).zfill(2)}:{str(MINUTES).zfill(2)}:{str(SECONDES).zfill(2)},{MSECONDES_FINAL}"
+    reliquat0 = int(seconds)
+    reliquat1 = int(seconds/60)
+    reliquat2 = int(reliquat1/60)
+    msecondes = round(seconds-(reliquat0), 3)
+    msecondes_final = str(int(msecondes*1000)).ljust(3, '0')
+    secondes = reliquat0-(reliquat1*60)
+    minutes = int((reliquat0-((reliquat2*3600)+secondes))/60)
+    heures = int((reliquat0-((minutes*60)+secondes))/3600)
+    total = f"{str(heures).zfill(2)}:{str(minutes).zfill(2)}:{str(secondes).zfill(2)},{msecondes_final}"
     return total
-
-# def download_model(modelid_whisper_final):
-#     if modelid_whisper_final[0:9] != "./models/":
-#         hf_hub_path_config_whisper = hf_hub_download(
-#             repo_id=modelid_whisper_final, 
-#             filename="config.json", 
-#             repo_type="model", 
-#             cache_dir=model_path_whisper, 
-#             resume_download=True,
-#             local_files_only=True if offline_test() else None
-#         )
-#         hf_hub_path_whisper = hf_hub_download(
-#             repo_id=modelid_whisper_final, 
-#             filename=model_list_whisper[modelid_whisper_final], 
-#             repo_type="model", 
-#             cache_dir=model_path_whisper, 
-#             resume_download=True,
-#             local_files_only=True if offline_test() else None
-#         )
-#     return hf_hub_path_config_whisper, hf_hub_path_whisper 
 
 def text_whisper(
     modelid_whisper, 
@@ -155,7 +134,7 @@ def text_whisper(
     output_language_whisper, 
     progress_whisper=gr.Progress(track_tqdm=True)
     ):
-        
+     
     sample_rate_whisper = 16000    
     audio_whisper = AudioSegment.from_file(source_audio_whisper)
     audio_whisper = audio_whisper.set_frame_rate(sample_rate_whisper)
@@ -195,7 +174,11 @@ def text_whisper(
     )
     
     if srt_output_whisper == False :
-        transcription_whisper_final = pipe_whisper(audio_whisper.copy(), generate_kwargs={"task": output_type_whisper}, batch_size=8)["text"]
+        transcription_whisper_final = pipe_whisper(
+            audio_whisper.copy(), 
+            generate_kwargs={"task": output_type_whisper}, 
+            batch_size=8
+        )["text"]
     elif srt_output_whisper == True :
         transcription_whisper = pipe_whisper(
             audio_whisper.copy(), 
@@ -219,4 +202,3 @@ def text_whisper(
     clean_ram()
 
     return transcription_whisper_final
-
