@@ -2204,7 +2204,12 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         inpaint_controlnet_both = gr.Button("🖼️ + ✍️ >> ControlNet")
                                         
 # outpaint    
-                with gr.TabItem("outpaint 🖌️", id=27) as tab_outpaint:
+                if ram_size() >= 16 :
+                    titletab_outpaint = "outpaint 🖌️"
+                else :
+                    titletab_outpaint = "outpaint 🖌️ ⛔"
+
+                with gr.TabItem(titletab_outpaint, id=27) as tab_outpaint:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
