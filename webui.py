@@ -714,7 +714,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                 if ram_size() >= 16 :
                     titletab_whisper = "Whisper 👂"
                 else :
-                    titletab_whisper = "Whisper 👂 ⛔"
+                    titletab_whisper = "Whisper ⛔"
 
                 with gr.TabItem(titletab_whisper, id=14) as tab_whisper:
                     with gr.Accordion("About", open=False):
@@ -1187,7 +1187,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                 if ram_size() >= 16 :
                     titletab_txt2img_kd = "Kandinsky 🖼️"
                 else :
-                    titletab_txt2img_kd = "Kandinsky 🖼️ ⛔"
+                    titletab_txt2img_kd = "Kandinsky ⛔"
 
                 with gr.TabItem(titletab_txt2img_kd, id=22) as tab_txt2img_kd:                    
                     with gr.Accordion("About", open=False):                
@@ -1601,7 +1601,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                 if ram_size() >= 16 :
                     titletab_img2var = "Image variation 🖼️"
                 else :
-                    titletab_img2var = "Image variation 🖌️ ⛔"
+                    titletab_img2var = "Image variation ⛔"
 
                 with gr.TabItem(titletab_img2var, id=24) as tab_img2var: 
                     with gr.Accordion("About", open=False):                
@@ -2207,7 +2207,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                 if ram_size() >= 16 :
                     titletab_outpaint = "outpaint 🖌️"
                 else :
-                    titletab_outpaint = "outpaint 🖌️ ⛔"
+                    titletab_outpaint = "outpaint ⛔"
 
                 with gr.TabItem(titletab_outpaint, id=27) as tab_outpaint:
                     with gr.Accordion("About", open=False):                
@@ -3269,7 +3269,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                 if ram_size() >= 16 :
                     titletab_audiogen = "AudioGen 🔊"
                 else :
-                    titletab_audiogen = "AudioGen 🔊 ⛔"
+                    titletab_audiogen = "AudioGen ⛔"
                 
                 with gr.TabItem(titletab_audiogen, id=32) as tab_audiogen:
 
@@ -3633,7 +3633,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                 if ram_size() >= 16 :
                     titletab_txt2vid_ms = "Modelscope 📼"
                 else :
-                    titletab_txt2vid_ms = "Modelscope 📼 ⛔"
+                    titletab_txt2vid_ms = "Modelscope ⛔"
                     
                 with gr.TabItem(titletab_txt2vid_ms, id=41) as tab_txt2vid_ms:                        
                         
@@ -4002,7 +4002,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                 if ram_size() >= 16 :
                     titletab_vid2vid_ze = "Video Instruct-Pix2Pix 🖌️"
                 else :
-                    titletab_vid2vid_ze = "Video Instruct-Pix2Pix 🖌️ ⛔"
+                    titletab_vid2vid_ze = "Video Instruct-Pix2Pix ⛔"
 
                 with gr.TabItem(titletab_vid2vid_ze, id=43) as tab_vid2vid_ze:
                     with gr.Accordion("About", open=False):                
