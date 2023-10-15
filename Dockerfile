@@ -4,8 +4,6 @@ RUN apt-get install -y bash sudo apt-utils git pip python3 python3-venv gcc perl
 
 # Setup user biniou and use it to install
 RUN adduser --disabled-password --gecos '' biniou
-RUN adduser biniou sudo
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER biniou
 
 # Pull repo
@@ -14,8 +12,7 @@ WORKDIR /home/biniou/biniou
 
 # Install biniou
 RUN ./install.sh
-RUN mkdir -p /home/biniou/.cache/huggingface
-RUN mkdir -p /home/biniou/biniou/gfpgan
+RUN mkdir -p /home/biniou/.cache/huggingface -p /home/biniou/biniou/gfpgan
 RUN chmod +x /home/biniou/biniou/webui.sh
 
 # Exposing port 7860
