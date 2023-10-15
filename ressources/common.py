@@ -81,6 +81,11 @@ def correct_size(width, height, max_size) :
         final_width = approx
         final_height = max_size
     return (final_width, final_height)
+    
+def round_size(image) :
+    width = (image.size[0] + 7) & (-8)
+    height = (image.size[1] + 7) & (-8)
+    return width, height
 
 def image_upload_event(im):
     if (im != None):
