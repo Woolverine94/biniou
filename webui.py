@@ -123,12 +123,6 @@ def get_select_index(evt: gr.SelectData) :
     return evt.index
 
 ## Fonctions spécifiques à llamacpp
-def llamacpp_inference_start() : 
-    return out_llamacpp.update(visible=True)
-
-def llamacpp_inference_end() :
-    return out_llamacpp.update(visible=False)
-    
 def read_ini_llamacpp(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), int(content[2]), bool(int(content[3])), int(content[4]), float(content[5]), float(content[6]), float(content[7]), int(content[8])
@@ -460,16 +454,19 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                     )
                                 load_ini_btn_llamacpp.click(fn=lambda: gr.Info('Settings loaded'))
                     with gr.Row():                            
-                        history_llamacpp = gr.Textbox(label="Chatbot history", lines=13, max_lines=13, autoscroll=True, show_copy_button=True, interactive=False)
-                        hidden_history_llamacpp = gr.Textbox(label="Chatbot history", visible=False)
-                    with gr.Row():                        
-                        out_llamacpp = gr.Textbox(label="Chatbot last reply", lines=1, max_lines=1, interactive=False, visible=False)
+                        history_llamacpp = gr.Chatbot(
+                            label="Chatbot history", 
+                            height=400,
+                            autoscroll=True, 
+                            show_copy_button=True, 
+                            interactive=True,
+                            bubble_full_width = False,
+                            avatar_images = (None, "./images/biniou_64.png"),
+                        )
+                        last_reply_llamacpp = gr.Textbox(value="", visible=False)                        
                     with gr.Row():
-                            prompt_llamacpp = gr.Textbox(label="Input", lines=1, max_lines=1, placeholder="Type your request here ...")                            
+                            prompt_llamacpp = gr.Textbox(label="Input", lines=1, max_lines=1, placeholder="Type your request here ...", autofocus=True)
                             hidden_prompt_llamacpp = gr.Textbox(value="", visible=False)
-                            out_llamacpp.change(fn=llamacpp_inference_end, outputs=out_llamacpp)
-                            out_llamacpp.change(fn=in_and_out, inputs=hidden_history_llamacpp, outputs=history_llamacpp)
-                            out_llamacpp.change(fn=in_and_out, inputs=hidden_prompt_llamacpp, outputs=prompt_llamacpp)
                     with gr.Row():
                         with gr.Column():
                             btn_llamacpp = gr.Button("Generate 🚀", variant="primary")
@@ -478,7 +475,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                         with gr.Column():
                             btn_llamacpp_clear_input = gr.ClearButton(components=[prompt_llamacpp], value="Clear inputs 🧹")
                         with gr.Column():                      
-                            btn_llamacpp_clear_output = gr.ClearButton(components=[out_llamacpp, history_llamacpp, hidden_history_llamacpp], value="Clear all 🧹") 
+                            btn_llamacpp_clear_output = gr.ClearButton(components=[history_llamacpp], value="Clear outputs 🧹") 
                         btn_llamacpp.click(
                             fn=text_llamacpp,
                             inputs=[
@@ -495,8 +492,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 history_llamacpp, 
                             ],
                             outputs=[
-                                out_llamacpp, 
-                                hidden_history_llamacpp, 
+                                history_llamacpp, 
+                                last_reply_llamacpp,
                             ],
                             show_progress="full",
                         )
@@ -512,12 +509,12 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 temperature_llamacpp, 
                                 top_p_llamacpp, 
                                 top_k_llamacpp,
-                                prompt_llamacpp,                             
-                                history_llamacpp,                                
+                                prompt_llamacpp,
+                                history_llamacpp,
                             ],
                             outputs=[
-                                out_llamacpp, 
-                                hidden_history_llamacpp, 
+                                history_llamacpp, 
+                                last_reply_llamacpp,
                             ],
                             show_progress="full",
                         )
@@ -534,23 +531,21 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 top_p_llamacpp, 
                                 top_k_llamacpp,
                                 history_llamacpp,                                
-                                out_llamacpp,                                   
                             ],
                             outputs=[
-                                out_llamacpp, 
-                                hidden_history_llamacpp, 
+                                history_llamacpp, 
+                                last_reply_llamacpp,                                
                             ],
                             show_progress="full",
                         )                        
-                        btn_llamacpp.click(fn=llamacpp_inference_start, outputs=out_llamacpp)
-                        prompt_llamacpp.submit(fn=llamacpp_inference_start, outputs=out_llamacpp)
-                        btn_llamacpp_continue.click(fn=llamacpp_inference_start, outputs=out_llamacpp)
+                        btn_llamacpp.click(fn=lambda x:x, inputs=hidden_prompt_llamacpp, outputs=prompt_llamacpp)
+                        prompt_llamacpp.submit(fn=lambda x:x, inputs=hidden_prompt_llamacpp, outputs=prompt_llamacpp)
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
-                                        gr.HTML(value='... selected output to ...')
+                                        gr.HTML(value='... last chatbot reply to ...')
                                         gr.HTML(value='... text module ...')
                                         llamacpp_nllb = gr.Button("✍️ >> Nllb translation")
                                         gr.HTML(value='... image module ...')                                        
@@ -4212,18 +4207,18 @@ with gr.Blocks(theme=theme_gradio) as demo:
     tab_vid2vid_ze_num = gr.Number(value=tab_vid2vid_ze.id, precision=0, visible=False)        
 
 # Llamacpp outputs   
-    llamacpp_nllb.click(fn=send_text_to_module_text, inputs=[out_llamacpp, tab_text_num, tab_nllb_num], outputs=[prompt_nllb, tabs, tabs_text])
-    llamacpp_txt2img_sd.click(fn=send_text_to_module_image, inputs=[out_llamacpp, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, tabs, tabs_image])
-    llamacpp_txt2img_kd.click(fn=send_text_to_module_image, inputs=[out_llamacpp, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, tabs, tabs_image])
-    llamacpp_img2img.click(fn=send_text_to_module_image, inputs=[out_llamacpp, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, tabs, tabs_image])
-    llamacpp_pix2pix.click(fn=send_text_to_module_image, inputs=[out_llamacpp, tab_image_num, tab_pix2pix_num], outputs=[prompt_pix2pix, tabs, tabs_image])
-    llamacpp_inpaint.click(fn=send_text_to_module_image, inputs=[out_llamacpp, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, tabs, tabs_image])
-    llamacpp_controlnet.click(fn=send_text_to_module_image, inputs=[out_llamacpp, tab_image_num, tab_controlnet_num], outputs=[prompt_controlnet, tabs, tabs_image])    
-    llamacpp_musicgen.click(fn=import_to_module_audio, inputs=[out_llamacpp, tab_audio_num, tab_musicgen_num], outputs=[prompt_musicgen, tabs, tabs_audio])    
-    llamacpp_audiogen.click(fn=import_to_module_audio, inputs=[out_llamacpp, tab_audio_num, tab_audiogen_num], outputs=[prompt_audiogen, tabs, tabs_audio])
-    llamacpp_bark.click(fn=import_to_module_audio, inputs=[out_llamacpp, tab_audio_num, tab_bark_num], outputs=[prompt_bark, tabs, tabs_audio])    
-    llamacpp_txt2vid_ms.click(fn=import_text_to_module_video, inputs=[out_llamacpp, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, tabs, tabs_video])
-    llamacpp_txt2vid_ze.click(fn=import_text_to_module_video, inputs=[out_llamacpp, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, tabs, tabs_video])    
+    llamacpp_nllb.click(fn=send_text_to_module_text, inputs=[last_reply_llamacpp, tab_text_num, tab_nllb_num], outputs=[prompt_nllb, tabs, tabs_text])
+    llamacpp_txt2img_sd.click(fn=send_text_to_module_image, inputs=[last_reply_llamacpp, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, tabs, tabs_image])
+    llamacpp_txt2img_kd.click(fn=send_text_to_module_image, inputs=[last_reply_llamacpp, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, tabs, tabs_image])
+    llamacpp_img2img.click(fn=send_text_to_module_image, inputs=[last_reply_llamacpp, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, tabs, tabs_image])
+    llamacpp_pix2pix.click(fn=send_text_to_module_image, inputs=[last_reply_llamacpp, tab_image_num, tab_pix2pix_num], outputs=[prompt_pix2pix, tabs, tabs_image])
+    llamacpp_inpaint.click(fn=send_text_to_module_image, inputs=[last_reply_llamacpp, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, tabs, tabs_image])
+    llamacpp_controlnet.click(fn=send_text_to_module_image, inputs=[last_reply_llamacpp, tab_image_num, tab_controlnet_num], outputs=[prompt_controlnet, tabs, tabs_image])    
+    llamacpp_musicgen.click(fn=import_to_module_audio, inputs=[last_reply_llamacpp, tab_audio_num, tab_musicgen_num], outputs=[prompt_musicgen, tabs, tabs_audio])    
+    llamacpp_audiogen.click(fn=import_to_module_audio, inputs=[last_reply_llamacpp, tab_audio_num, tab_audiogen_num], outputs=[prompt_audiogen, tabs, tabs_audio])
+    llamacpp_bark.click(fn=import_to_module_audio, inputs=[last_reply_llamacpp, tab_audio_num, tab_bark_num], outputs=[prompt_bark, tabs, tabs_audio])    
+    llamacpp_txt2vid_ms.click(fn=import_text_to_module_video, inputs=[last_reply_llamacpp, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, tabs, tabs_video])
+    llamacpp_txt2vid_ze.click(fn=import_text_to_module_video, inputs=[last_reply_llamacpp, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, tabs, tabs_video])    
 
 # GIT Captions outputs
     img2txt_git_nllb.click(fn=send_text_to_module_text, inputs=[out_img2txt_git, tab_text_num, tab_nllb_num], outputs=[prompt_nllb, tabs, tabs_text])    

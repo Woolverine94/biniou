@@ -58,14 +58,18 @@ def text_llamacpp(
 
     modelid_llamacpp = download_model(modelid_llamacpp)
 
-    if history_llamacpp != "" :
-        prompt_final_llamacpp = f"{history_llamacpp}\n\n{prompt_llamacpp}"
+    if history_llamacpp != "[]" :
+        history_final = ""
+        for i in range(len(history_llamacpp)):
+            history_final += history_llamacpp[i][0]+ "\n"
+            history_final += history_llamacpp[i][1]+ "\n"
+        prompt_final_llamacpp = f"{history_final}\n{prompt_llamacpp}"
     else :
         prompt_final_llamacpp = prompt_llamacpp
 
     llm = Llama(model_path=modelid_llamacpp,  seed=seed_llamacpp, n_ctx=n_ctx_llamacpp)
     output_llamacpp = llm(
-        f"{prompt_final_llamacpp}\n", 
+        f"{prompt_final_llamacpp}", 
         max_tokens=max_tokens_llamacpp, 
         stream=stream_llamacpp, 
         repeat_penalty=repeat_penalty_llamacpp, 
@@ -76,13 +80,14 @@ def text_llamacpp(
     )    
     
     answer_llamacpp = (output_llamacpp['choices'][0]['text'])
-    last_answer_llamacpp = answer_llamacpp.replace(f"{prompt_final_llamacpp}\n", "")
+    last_answer_llamacpp = answer_llamacpp.replace(f"{prompt_final_llamacpp}", "")
     write_file(answer_llamacpp)
-    
+    history_llamacpp.append((prompt_llamacpp, last_answer_llamacpp))
+
     del llm, output_llamacpp
     clean_ram()
     
-    return last_answer_llamacpp, answer_llamacpp
+    return history_llamacpp, history_llamacpp[-1][1]
     
 def text_llamacpp_continue(
     modelid_llamacpp, 
@@ -93,16 +98,22 @@ def text_llamacpp_continue(
     repeat_penalty_llamacpp, 
     temperature_llamacpp, 
     top_p_llamacpp, 
-    top_k_llamacpp, 
+    top_k_llamacpp,
     history_llamacpp, 
-    recent_history_llamacpp
     ):
 
     modelid_llamacpp = download_model(modelid_llamacpp)
 
-    llm = Llama(model_path=modelid_llamacpp,  seed=seed_llamacpp, n_ctx=n_ctx_llamacpp)
+    if history_llamacpp != "[]" :
+        history_final = ""
+        for i in range(len(history_llamacpp)) : 
+            history_final += history_llamacpp[i][0]+ "\n"
+            history_final += history_llamacpp[i][1]+ "\n"
+        history_final = history_final.rstrip()
+
+    llm = Llama(model_path=modelid_llamacpp, seed=seed_llamacpp, n_ctx=n_ctx_llamacpp)
     output_llamacpp = llm.create_completion(
-        f"{recent_history_llamacpp}", 
+        f"{history_final}", 
         max_tokens=max_tokens_llamacpp, 
         stream=stream_llamacpp, 
         repeat_penalty=repeat_penalty_llamacpp, 
@@ -112,11 +123,13 @@ def text_llamacpp_continue(
     )    
     
     answer_llamacpp = (output_llamacpp['choices'][0]['text'])
-    last_answer_llamacpp = f"{recent_history_llamacpp}{answer_llamacpp}"
-    global_answer_llamacpp = f"{history_llamacpp}{answer_llamacpp}"
+    last_answer_llamacpp = answer_llamacpp.replace(f"{history_final}", "")
+    global_answer_llamacpp = f"{history_final}{answer_llamacpp}"
     write_file(global_answer_llamacpp)
+    history_llamacpp[-1][1] += last_answer_llamacpp
+#    history_llamacpp.append((prompt_llamacpp, last_answer_llamacpp))
 
     del llm, output_llamacpp
     clean_ram()
         
-    return last_answer_llamacpp, global_answer_llamacpp
+    return history_llamacpp, history_llamacpp[-1][1]
