@@ -17,6 +17,7 @@
 ---
 
 ## Updates
+🆕 **2023-10-16** : New Chatbot UI.<br/>
 🆕 **2023-10-15** : *New module : Outpaint.* Create a border around an input image and inpaint it with Stable Diffusion.<br/>
 🆕 **2023-10-14** : *New feature : Save/load favorite settings for modules.* Current behavior is to load defaults settings at startup and let user choice to save/load favorite settings for each modules.<br/>
 🆕 **2023-10-11** : *New module : image variation.* Use an input image to generate variations of itself with Stable Diffusion.  Video modules tweaks<br/>
