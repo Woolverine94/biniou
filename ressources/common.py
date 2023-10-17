@@ -265,7 +265,14 @@ def read_ini(module) :
         for ligne in lignes : 
             ligne = ligne.strip(' \n')
             content.append(ligne)
-        return content
+        if module == "llamacpp" :
+            template_final = ""
+            template = content[9:]
+            content =  content[0:9]
+            for i in range(len(template)) : 
+                template_final += template[i]+ "\n"
+            content.append(template_final)
+    return content
 
 def test_cfg_exist(module) :
     if os.path.isfile(f".ini/{module}.cfg") :

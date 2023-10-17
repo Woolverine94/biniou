@@ -53,19 +53,21 @@ def text_llamacpp(
     top_k_llamacpp, 
     prompt_llamacpp, 
     history_llamacpp, 
+    prompt_template_llamacpp, 
     progress_txt2vid_ze=gr.Progress(track_tqdm=True)
     ):
 
     modelid_llamacpp = download_model(modelid_llamacpp)
+    prompt_full_llamacpp = prompt_template_llamacpp.replace("{prompt}", prompt_llamacpp)
 
     if history_llamacpp != "[]" :
         history_final = ""
         for i in range(len(history_llamacpp)):
             history_final += history_llamacpp[i][0]+ "\n"
             history_final += history_llamacpp[i][1]+ "\n"
-        prompt_final_llamacpp = f"{history_final}\n{prompt_llamacpp}"
+        prompt_final_llamacpp = f"{history_final}\n{prompt_full_llamacpp}"
     else :
-        prompt_final_llamacpp = prompt_llamacpp
+        prompt_final_llamacpp = prompt_full_llamacpp
 
     llm = Llama(model_path=modelid_llamacpp,  seed=seed_llamacpp, n_ctx=n_ctx_llamacpp)
     output_llamacpp = llm(
@@ -81,7 +83,7 @@ def text_llamacpp(
     
     answer_llamacpp = (output_llamacpp['choices'][0]['text'])
     last_answer_llamacpp = answer_llamacpp.replace(f"{prompt_final_llamacpp}", "")
-    write_file(answer_llamacpp)
+    write_file(history_final, prompt_llamacpp, last_answer_llamacpp)
     history_llamacpp.append((prompt_llamacpp, last_answer_llamacpp))
 
     del llm, output_llamacpp

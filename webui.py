@@ -125,7 +125,7 @@ def get_select_index(evt: gr.SelectData) :
 ## Fonctions spécifiques à llamacpp
 def read_ini_llamacpp(module) :
     content = read_ini(module)
-    return str(content[0]), int(content[1]), int(content[2]), bool(int(content[3])), int(content[4]), float(content[5]), float(content[6]), float(content[7]), int(content[8])
+    return str(content[0]), int(content[1]), int(content[2]), bool(int(content[3])), int(content[4]), float(content[5]), float(content[6]), float(content[7]), int(content[8]), str(content[9])
          
 ## Fonctions spécifiques à img2txt_git
 def read_ini_img2txt_git(module) :
@@ -416,6 +416,9 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 top_k_llamacpp = gr.Slider(0, 500, step=1, value=40, label="top_k", info="The top-k value to use for sampling")
                         with gr.Row():
                             with gr.Column():
+                                prompt_template_llamacpp = gr.Textbox(label="Prompt template", value="USER: {prompt}\nASSISTANT:", lines=4, max_lines=4, info="Place your custom prompt template here. Keep the {prompt} tag, that will be replaced by your prompt.")
+                        with gr.Row():
+                            with gr.Column():
                                 save_ini_btn_llamacpp = gr.Button("Save favorite settings 💾")
                             with gr.Column():
                                 module_name_llamacpp = gr.Textbox(value="llamacpp", visible=False, interactive=False)
@@ -433,6 +436,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         temperature_llamacpp, 
                                         top_p_llamacpp, 
                                         top_k_llamacpp, 
+                                        prompt_template_llamacpp, 
                                         ]
                                     )
                                 save_ini_btn_llamacpp.click(fn=lambda: gr.Info('Settings saved'))
@@ -450,6 +454,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         temperature_llamacpp, 
                                         top_p_llamacpp, 
                                         top_k_llamacpp, 
+                                        prompt_template_llamacpp, 
                                         ]
                                     )
                                 load_ini_btn_llamacpp.click(fn=lambda: gr.Info('Settings loaded'))
@@ -490,6 +495,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 top_k_llamacpp, 
                                 prompt_llamacpp, 
                                 history_llamacpp, 
+                                prompt_template_llamacpp, 
                             ],
                             outputs=[
                                 history_llamacpp, 
@@ -511,6 +517,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 top_k_llamacpp,
                                 prompt_llamacpp,
                                 history_llamacpp,
+                                prompt_template_llamacpp, 
                             ],
                             outputs=[
                                 history_llamacpp, 
