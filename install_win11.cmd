@@ -42,12 +42,14 @@ REM ***********************************************
 REM *** INSTALLING PYTHON VIRTUAL ENVIRONMENT : ***
 REM ***********************************************
 "%ProgramFiles%\FireDaemon OpenSSL 3\bin\openssl.exe" req -x509 -newkey rsa:4096 -keyout "%userprofile%\biniou\ssl\key.pem" -out "%userprofile%\biniou\ssl\cert.pem" -sha256 -days 3650 -nodes -subj "/C=FR/ST=Paris/L=Paris/O=Biniou/OU=/CN="
+"%userprofile%\AppData\Local\Programs\Python\Python311\python.exe" -m pip install --upgrade pip
 "%userprofile%\AppData\Local\Programs\Python\Python311\Scripts\pip" install virtualenv
 "%userprofile%\AppData\Local\Programs\Python\Python311\python.exe" -m venv env
 call venv.cmd
+python.exe -m pip install --upgrade pip
 pip install wheel
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-pip install https://github.com/abetlen/llama-cpp-python/releases/download/v0.2.7/llama_cpp_python-0.2.7-cp311-cp311-win_amd64.whl
+pip install llama-cpp-python
 pip install -r requirements.txt
 echo "Installation finished ! You could now launch biniou by double-clicking %userprofile%\biniou\webui.cmd"
 pause
