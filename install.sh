@@ -7,9 +7,6 @@ mkdir -p ./models/Audiocraft
 ## Creating self-signed certificate
 openssl req -x509 -newkey rsa:4096 -keyout ./ssl/key.pem -out ./ssl/cert.pem -sha256 -days 3650 -nodes -subj "/C=FR/ST=Paris/L=Paris/O=Biniou/OU=/CN="
 
-## Updating pip 
-python3 -m pip install -U pip
-
 ## Creating virtual environment
 python3 -m venv ./env
 source ./env/bin/activate
