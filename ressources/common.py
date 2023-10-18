@@ -231,7 +231,7 @@ def write_file(*args) :
         content += f"{data} \n"
     with open(savename, 'w') as savefile:
         savefile.write(content)
-    return
+    return savename
 
 def set_timestep_vid_ze(numstep) :
     factor = round(numstep/10)

@@ -279,7 +279,7 @@ def text_nllb(
         max_new_tokens=max_tokens_nllb, 
     )
     output_nllb = tokenizer_nllb.batch_decode(translated_tokens, skip_special_tokens=True)[0]
-    write_file(output_nllb)
+    filename_nllb = write_file(output_nllb)
     
     del model_nllb, tokenizer_nllb, automodel_nllb, inputs_nllb, translated_tokens
     clean_ram()

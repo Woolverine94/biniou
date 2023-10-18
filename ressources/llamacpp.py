@@ -83,13 +83,13 @@ def text_llamacpp(
     
     answer_llamacpp = (output_llamacpp['choices'][0]['text'])
     last_answer_llamacpp = answer_llamacpp.replace(f"{prompt_final_llamacpp}", "")
-    write_file(history_final, prompt_llamacpp, last_answer_llamacpp)
+    filename_llamacpp = write_file(history_final, prompt_llamacpp, last_answer_llamacpp)
     history_llamacpp.append((prompt_llamacpp, last_answer_llamacpp))
 
     del llm, output_llamacpp
     clean_ram()
-    
-    return history_llamacpp, history_llamacpp[-1][1]
+
+    return history_llamacpp, history_llamacpp[-1][1], filename_llamacpp
     
 def text_llamacpp_continue(
     modelid_llamacpp, 
@@ -127,11 +127,11 @@ def text_llamacpp_continue(
     answer_llamacpp = (output_llamacpp['choices'][0]['text'])
     last_answer_llamacpp = answer_llamacpp.replace(f"{history_final}", "")
     global_answer_llamacpp = f"{history_final}{answer_llamacpp}"
-    write_file(global_answer_llamacpp)
+    filename_llamacpp = write_file(global_answer_llamacpp)
     history_llamacpp[-1][1] += last_answer_llamacpp
 #    history_llamacpp.append((prompt_llamacpp, last_answer_llamacpp))
 
     del llm, output_llamacpp
     clean_ram()
         
-    return history_llamacpp, history_llamacpp[-1][1]
+    return history_llamacpp, history_llamacpp[-1][1], filename_llamacpp

@@ -35,6 +35,10 @@ if os.path.exists(tmp_biniou) :
     shutil.rmtree(tmp_biniou)
 os.makedirs(tmp_biniou, exist_ok=True)
 
+blankfile_common = "./.tmp/blank.txt"
+with open(blankfile_common, 'w') as savefile:
+    savefile.write("")
+
 ini_dir="./.ini"
 os.makedirs(ini_dir, exist_ok=True)
 
@@ -126,7 +130,7 @@ def get_select_index(evt: gr.SelectData) :
 def read_ini_llamacpp(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), int(content[2]), bool(int(content[3])), int(content[4]), float(content[5]), float(content[6]), float(content[7]), int(content[8]), str(content[9])
-         
+        
 ## Fonctions spécifiques à img2txt_git
 def read_ini_img2txt_git(module) :
     content = read_ini(module)
@@ -474,13 +478,15 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             hidden_prompt_llamacpp = gr.Textbox(value="", visible=False)
                     with gr.Row():
                         with gr.Column():
-                            btn_llamacpp = gr.Button("Generate 🚀", variant="primary")
+                            btn_llamacpp = gr.Button("Generate 🚀", variant="primary", height=30)
                         with gr.Column():
-                            btn_llamacpp_continue = gr.Button("Continue ➕")                            
-                        with gr.Column():
-                            btn_llamacpp_clear_input = gr.ClearButton(components=[prompt_llamacpp], value="Clear inputs 🧹")
+                            btn_llamacpp_continue = gr.Button("Continue ➕", height=30)                            
                         with gr.Column():                      
-                            btn_llamacpp_clear_output = gr.ClearButton(components=[history_llamacpp], value="Clear outputs 🧹") 
+                            btn_llamacpp_clear_output = gr.ClearButton(components=[history_llamacpp], value="Clear outputs 🧹", height=30) 
+                        with gr.Column():
+                            download_file_llamacpp = gr.File(label="Download full conversation", value=blankfile_common, height=30, interactive=False)
+                            download_file_llamacpp_hidden = gr.Textbox(value=blankfile_common, interactive=False, visible=False)
+                            download_file_llamacpp_hidden.change(fn=lambda x:x, inputs=download_file_llamacpp_hidden, outputs=download_file_llamacpp)
                         btn_llamacpp.click(
                             fn=text_llamacpp,
                             inputs=[
@@ -500,6 +506,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             outputs=[
                                 history_llamacpp, 
                                 last_reply_llamacpp,
+                                download_file_llamacpp_hidden,
                             ],
                             show_progress="full",
                         )
@@ -522,6 +529,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             outputs=[
                                 history_llamacpp, 
                                 last_reply_llamacpp,
+                                download_file_llamacpp_hidden,
                             ],
                             show_progress="full",
                         )
@@ -541,7 +549,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             ],
                             outputs=[
                                 history_llamacpp, 
-                                last_reply_llamacpp,                                
+                                last_reply_llamacpp,
+                                download_file_llamacpp_hidden,
                             ],
                             show_progress="full",
                         )                        

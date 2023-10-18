@@ -196,7 +196,7 @@ def text_whisper(
             timestamp_end_final = convert_seconds_to_timestamp(timestamp_end)
             transcription_whisper_final = transcription_whisper_final+ f"{i+1}"+ "\n"+ f"{timestamp_start_final}"+ " --> "+ f"{timestamp_end_final}"+ "\n"+ transcribe+ "\n"+ "\n"
 
-    write_file(transcription_whisper_final)
+    filename_whisper = write_file(transcription_whisper_final)
 
     del audio_whisper, model_whisper, tokenizer_whisper, feat_ex_whisper, pipe_whisper
     clean_ram()

@@ -50,7 +50,7 @@ def text_img2txt_git(
         diversity_penalty=diversity_penalty_img2txt_git if num_beams_img2txt_git>1 else None
     )
     captions_img2txt_git = processor_img2txt_git.batch_decode(ids_img2txt_git, skip_special_tokens=True)[0]
-    write_file(captions_img2txt_git)
+    filename_img2txt_git = write_file(captions_img2txt_git)
     
     del processor_img2txt_git, pipe_img2txt_git, inpipe_img2txt_git, ids_img2txt_git
     clean_ram()
