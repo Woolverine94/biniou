@@ -130,6 +130,12 @@ def get_select_index(evt: gr.SelectData) :
 def read_ini_llamacpp(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), int(content[2]), bool(int(content[3])), int(content[4]), float(content[5]), float(content[6]), float(content[7]), int(content[8]), str(content[9])
+
+def show_download_llamacpp() :
+    return btn_download_file_llamacpp.update(visible=False), download_file_llamacpp.update(visible=True)
+
+def hide_download_llamacpp() :
+    return btn_download_file_llamacpp.update(visible=True), download_file_llamacpp.update(visible=False)
         
 ## Fonctions spécifiques à img2txt_git
 def read_ini_img2txt_git(module) :
@@ -408,7 +414,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             with gr.Column():
                                 stream_llamacpp = gr.Checkbox(value=False, label="Stream", info="Stream results", interactive=False)                            
                             with gr.Column():
-                                n_ctx_llamacpp = gr.Slider(0, 65536, step=128, value=2048, label="n_ctx", info="Maximum context size")
+                                n_ctx_llamacpp = gr.Slider(0, 65536, step=128, value=8192, label="n_ctx", info="Maximum context size")
                             with gr.Column():
                                 repeat_penalty_llamacpp = gr.Slider(0.0, 10.0, step=0.1, value=1.1, label="Repeat penalty", info="The penalty to apply to repeated tokens")
                         with gr.Row():
@@ -478,14 +484,16 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             hidden_prompt_llamacpp = gr.Textbox(value="", visible=False)
                     with gr.Row():
                         with gr.Column():
-                            btn_llamacpp = gr.Button("Generate 🚀", variant="primary", height=30)
+                            btn_llamacpp = gr.Button("Generate 🚀", variant="primary")
                         with gr.Column():
-                            btn_llamacpp_continue = gr.Button("Continue ➕", height=30)                            
+                            btn_llamacpp_continue = gr.Button("Continue ➕")
                         with gr.Column():                      
-                            btn_llamacpp_clear_output = gr.ClearButton(components=[history_llamacpp], value="Clear outputs 🧹", height=30) 
+                            btn_llamacpp_clear_output = gr.ClearButton(components=[history_llamacpp], value="Clear outputs 🧹") 
                         with gr.Column():
-                            download_file_llamacpp = gr.File(label="Download full conversation", value=blankfile_common, height=30, interactive=False)
+                            btn_download_file_llamacpp = gr.ClearButton(value="Download full conversation 💾", visible=True) 
+                            download_file_llamacpp = gr.File(label="Download full conversation", value=blankfile_common, height=30, interactive=False, visible=False)
                             download_file_llamacpp_hidden = gr.Textbox(value=blankfile_common, interactive=False, visible=False)
+                            btn_download_file_llamacpp.click(fn=show_download_llamacpp, outputs=[btn_download_file_llamacpp, download_file_llamacpp])
                             download_file_llamacpp_hidden.change(fn=lambda x:x, inputs=download_file_llamacpp_hidden, outputs=download_file_llamacpp)
                         btn_llamacpp.click(
                             fn=text_llamacpp,
@@ -510,6 +518,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             ],
                             show_progress="full",
                         )
+                        btn_llamacpp.click(fn=hide_download_llamacpp, outputs=[btn_download_file_llamacpp, download_file_llamacpp])
                         prompt_llamacpp.submit(
                             fn=text_llamacpp,
                             inputs=[
@@ -533,6 +542,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             ],
                             show_progress="full",
                         )
+                        prompt_llamacpp.submit(fn=hide_download_llamacpp, outputs=[btn_download_file_llamacpp, download_file_llamacpp])
                         btn_llamacpp_continue.click(
                             fn=text_llamacpp_continue,
                             inputs=[
@@ -554,6 +564,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             ],
                             show_progress="full",
                         )                        
+                        btn_llamacpp_continue.click(fn=hide_download_llamacpp, outputs=[btn_download_file_llamacpp, download_file_llamacpp])
                         btn_llamacpp.click(fn=lambda x:x, inputs=hidden_prompt_llamacpp, outputs=prompt_llamacpp)
                         prompt_llamacpp.submit(fn=lambda x:x, inputs=hidden_prompt_llamacpp, outputs=prompt_llamacpp)
                     with gr.Accordion("Send ...", open=False):
