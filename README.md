@@ -17,13 +17,14 @@
 ---
 
 ## Updates
+🆕 **2023-10-20** : 🔥 ***New module : LCM (Latent consistency model).*** 🔥 LCM is a brand new way of generating image contents in a very efficient and fast way (default setting uses only 4 steps for inference). <br/>
 🆕 **2023-10-17** : New Chatbot feature : prompt template setting. Refers to each Model page to know what to use. Don't modify if you use the default model.<br/>
 🆕 **2023-10-16** : New Chatbot UI.<br/>
-🆕 **2023-10-15** : *New module : Outpaint.* Create a border around an input image and inpaint it with Stable Diffusion.<br/>
+🆕 **2023-10-15** : ***New module : Outpaint.*** Create a border around an input image and inpaint it with Stable Diffusion.<br/>
 🆕 **2023-10-14** : *New feature : Save/load favorite settings for modules.* Current behavior is to load defaults settings at startup and let user choice to save/load favorite settings for each modules.<br/>
-🆕 **2023-10-11** : *New module : image variation.* Use an input image to generate variations of itself with Stable Diffusion.  Video modules tweaks<br/>
-🆕 **2023-10-10** :  Optimization of chunks usage for Text2Video-Zero module<br/>
-**2023-10-09** :  *New Module Video Instruct-pix2pix*. Modify and edit the content of a video by a simple instruct prompt !<br/>
+**2023-10-11** : ***New module : image variation.*** Use an input image to generate variations of itself with Stable Diffusion.  Video modules tweaks<br/>
+**2023-10-10** :  Optimization of chunks usage for Text2Video-Zero module<br/>
+**2023-10-09** :  ***New Module Video Instruct-pix2pix***. Modify and edit the content of a video by a simple instruct prompt !<br/>
 **2023-10-09** :  Temporary removed "anything-v4.5-vae-swapped" from the model list for the Stable Diffusion based modules. You could still use the **.safetensors** file by placing it in the folder *./models/Stable_Diffusion/*.<br/>
 **2023-10-08** :  Modelscope bugfix, Chatbot enhancements and new default model for llama-cpp<br/>
 **2023-10-07** :  Compel compatibility and better integration for SDXL in Stable Diffusion, img2img and ControlNet<br/>
@@ -64,6 +65,7 @@
 * **Image generation and modification using :**
   - [Stable Diffusion module](https://github.com/Woolverine94/biniou/wiki/Stable-Diffusion)
   - [Kandinsky module](https://github.com/Woolverine94/biniou/wiki/Kandinsky) (require 16GB+ RAM) 
+  - [Latent Consistency Models module](https://github.com/Woolverine94/biniou/wiki/Latent-Consistency-Models)
   - [Stable Diffusion Img2img module](https://github.com/Woolverine94/biniou/wiki/img2img)
   - [Stable Diffusion Image variation module](https://github.com/Woolverine94/biniou/wiki/Image-variation) (require 16GB+ RAM) 
   - [Instruct Pix2Pix module](https://github.com/Woolverine94/biniou/wiki/Instruct-pix2pix)
@@ -300,6 +302,7 @@ This application uses the following softwares and technologies :
 - [nllb translation](https://ai.meta.com/research/no-language-left-behind/) : language translation
 - [Stable Diffusion](https://stability.ai/stable-diffusion) : txt2img, img2img, Image variation, inpaint, ControlNet, Text2Video-Zero
 - [Kandinsky](https://github.com/ai-forever/Kandinsky-2) : txt2img
+- [Latent consistency models](https://github.com/luosiallen/latent-consistency-model) : txt2img
 - [Instruct pix2pix](https://www.timothybrooks.com/instruct-pix2pix) : pix2pix
 - [Controlnet Auxiliary models](https://github.com/patrickvonplaten/controlnet_aux) : preview models for ControlNet module
 - [Insight Face](https://insightface.ai/) : faceswapping
