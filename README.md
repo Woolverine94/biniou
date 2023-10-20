@@ -17,24 +17,13 @@
 ---
 
 ## Updates
-🆕 **2023-10-20** : 🔥 ***New module : LCM (Latent consistency model).*** 🔥 LCM is a brand new way of generating image contents in a very efficient and fast way (default setting uses only 4 steps for inference). <br/>
-🆕 **2023-10-17** : New Chatbot feature : prompt template setting. Refers to each Model page to know what to use. Don't modify if you use the default model.<br/>
-🆕 **2023-10-16** : New Chatbot UI.<br/>
-🆕 **2023-10-15** : ***New module : Outpaint.*** Create a border around an input image and inpaint it with Stable Diffusion.<br/>
-🆕 **2023-10-14** : *New feature : Save/load favorite settings for modules.* Current behavior is to load defaults settings at startup and let user choice to save/load favorite settings for each modules.<br/>
-**2023-10-11** : ***New module : image variation.*** Use an input image to generate variations of itself with Stable Diffusion.  Video modules tweaks<br/>
-**2023-10-10** :  Optimization of chunks usage for Text2Video-Zero module<br/>
-**2023-10-09** :  ***New Module Video Instruct-pix2pix***. Modify and edit the content of a video by a simple instruct prompt !<br/>
-**2023-10-09** :  Temporary removed "anything-v4.5-vae-swapped" from the model list for the Stable Diffusion based modules. You could still use the **.safetensors** file by placing it in the folder *./models/Stable_Diffusion/*.<br/>
-**2023-10-08** :  Modelscope bugfix, Chatbot enhancements and new default model for llama-cpp<br/>
-**2023-10-07** :  Compel compatibility and better integration for SDXL in Stable Diffusion, img2img and ControlNet<br/>
-**2023-10-06** : New features, documentation update<br/>
-**2023-10-04** : Bugfixes and settings tuning on image captioning, ControlNet preview not fully displaying and deprecation warnings during install<br/>
-**2023-10-03** : Bugfixes of installer, Text2Video-Zero module and broken zip gallery on Windows systems<br/>
-**2023-10-02** : Adding <a href="https://github.com/Woolverine94/biniou/wiki">Wiki documentation</a><br/>
-**2023-10-01** : Adding docker support through <a href="#dockerfile">Dockerfile</a><br/>
-**2023-09-30** : Adding <a href="#macos-homebrew-install">macOS Homebrew experimental installer</a><br/>
-**2023-09-29** : Adding <a href="#windows-10--windows-11">Windows 10/11 installer</a><br/>
+  * 🆕 **2023-10-20** : 🔥 ***New module : LCM (Latent consistency model).*** 🔥 LCM is a brand new way of generating image contents in a very efficient and fast way (default setting uses only 4 steps for inference). <br/>
+  * 🆕 **2023-10-17** : New Chatbot feature : prompt template setting. Refers to each Model page to know what to use. Don't modify if you use the default model.<br/>
+  * 🆕 **2023-10-16** : New Chatbot UI.<br/>
+  * 🆕 **2023-10-15** : ***New module : Outpaint.*** Create a border around an input image and inpaint it with Stable Diffusion.<br/>
+  * 🆕 **2023-10-14** : *New feature : Save/load favorite settings for modules.* Current behavior is to load defaults settings at startup and let user choice to save/load favorite settings for each modules.<br/>
+
+[List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
 ---
 
