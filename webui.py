@@ -1,9 +1,10 @@
 # https://github.com/Woolverine94/biniou
 # Webui.py
+import warnings
+warnings.filterwarnings('ignore') 
 import os
 import gradio as gr
 import numpy as np
-import warnings
 import shutil
 from PIL import Image
 from ressources.common import *
@@ -13,6 +14,7 @@ from ressources.whisper import *
 from ressources.nllb import *
 from ressources.txt2img_sd import *
 from ressources.txt2img_kd import *
+from ressources.txt2img_lcm import *
 from ressources.img2img import *
 from ressources.img2var import *
 from ressources.pix2pix import *
@@ -41,8 +43,6 @@ with open(blankfile_common, 'w') as savefile:
 
 ini_dir="./.ini"
 os.makedirs(ini_dir, exist_ok=True)
-
-warnings.filterwarnings('ignore') 
 
 get_window_url_params = """
     function(url_params) {
@@ -95,12 +95,18 @@ def send_text_to_module_text(prompt, numtab, numtab_item):
 ## fonctions Exports Inputs
 def import_to_module(prompt, negative_prompt, numtab, numtab_item):
     return prompt, negative_prompt, gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item)
+
+def import_to_module_prompt_only(prompt, numtab, numtab_item):
+    return prompt, gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item) 
     
 def import_to_module_audio(prompt, numtab, numtab_item):
     return prompt, gr.Tabs.update(selected=numtab), tabs_audio.update(selected=numtab_item)    
     
 def import_to_module_video(prompt, negative_prompt, numtab, numtab_item):
     return prompt, negative_prompt, gr.Tabs.update(selected=numtab), tabs_video.update(selected=numtab_item)   
+
+def import_to_module_video_prompt_only(prompt, numtab, numtab_item):
+    return prompt, gr.Tabs.update(selected=numtab), tabs_video.update(selected=numtab_item) 
 
 def import_text_to_module_image(prompt, numtab, numtab_item):
     return prompt, gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item)
@@ -117,11 +123,19 @@ def both_text_to_module_inpaint_image (content, prompt, numtab, numtab_item):
    
 def both_to_module(prompt, negative_prompt, content, index, numtab, numtab_item):
     index = int(index)
-    return prompt, negative_prompt, content[index], gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item) # /!\ tabs_image = pas bon pour les autres modules    
+    return prompt, negative_prompt, content[index], gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item)
+
+def both_to_module_prompt_only(prompt, content, index, numtab, numtab_item):
+    index = int(index)
+    return prompt, content[index], gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item)
 
 def both_to_module_inpaint(prompt, negative_prompt, content, index, numtab, numtab_item):
     index = int(index)
-    return prompt, negative_prompt, content[index], content[index], gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item) # /!\ tabs_image = pas bon pour les autres modules    
+    return prompt, negative_prompt, content[index], content[index], gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item)
+    
+def both_to_module_inpaint_prompt_only(prompt, content, index, numtab, numtab_item):
+    index = int(index)
+    return prompt, content[index], content[index], gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item)    
 
 def get_select_index(evt: gr.SelectData) :
     return evt.index
@@ -196,6 +210,21 @@ def hide_download_file_txt2img_kd():
 def read_ini_txt2img_kd(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), bool(int(content[9]))
+
+## Fonctions spécifiques à LCM
+def zip_download_file_txt2img_lcm(content):
+    savename = zipper(content)
+    return savename, download_file_txt2img_lcm.update(visible=True) 
+
+def hide_download_file_txt2img_lcm():
+    return download_file_txt2img_lcm.update(visible=False)
+    
+def update_preview_txt2img_lcm(preview):
+    return out_txt2img_lcm.update(preview)     
+
+def read_ini_txt2img_lcm(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), int(content[9]), bool(int(content[10])), float(content[11])
     
 ## Fonctions spécifiques à img2img 
 def zip_download_file_img2img(content):
@@ -577,7 +606,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         llamacpp_nllb = gr.Button("✍️ >> Nllb translation")
                                         gr.HTML(value='... image module ...')                                        
                                         llamacpp_txt2img_sd = gr.Button("✍️ >> Stable Diffusion")
-                                        llamacpp_txt2img_kd = gr.Button("✍️ >> Kandinsky")                                        
+                                        llamacpp_txt2img_kd = gr.Button("✍️ >> Kandinsky") 
+                                        llamacpp_txt2img_lcm = gr.Button("✍️ >> LCM") 
                                         llamacpp_img2img = gr.Button("✍️ >> img2img")
                                         llamacpp_pix2pix = gr.Button("✍️ >> Instruct pix2pix")
                                         llamacpp_inpaint = gr.Button("✍️ >> inpaint")
@@ -710,6 +740,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gr.HTML(value='... image module ...')                                        
                                         img2txt_git_txt2img_sd = gr.Button("✍️ >> Stable Diffusion")
                                         img2txt_git_txt2img_kd = gr.Button("✍️ >> Kandinsky")                                        
+                                        img2txt_git_txt2img_lcm = gr.Button("✍️ >> LCM") 
                                         img2txt_git_img2img = gr.Button("✍️ >> img2img")
                                         img2txt_git_pix2pix = gr.Button("✍️ >> Instruct pix2pix")
                                         img2txt_git_inpaint = gr.Button("✍️ >> inpaint")
@@ -731,6 +762,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         img2txt_git_img2img_both = gr.Button("🖼️+✍️ >> img2img")
                                         img2txt_git_pix2pix_both = gr.Button("🖼️+✍️ >> Instruct pix2pix")
                                         img2txt_git_inpaint_both = gr.Button("🖼️+✍️ >> inpaint")
+                                        img2txt_git_controlnet_both = gr.Button("🖼️+✍️ >> ControlNet")
 
 # Whisper 
                 if ram_size() >= 16 :
@@ -852,6 +884,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gr.HTML(value='... image module ...')
                                         whisper_txt2img_sd = gr.Button("✍️ >> Stable Diffusion")
                                         whisper_txt2img_kd = gr.Button("✍️ >> Kandinsky")
+                                        whisper_txt2img_lcm = gr.Button("✍️ >> LCM") 
                                         whisper_img2img = gr.Button("✍️ >> img2img")
                                         whisper_pix2pix = gr.Button("✍️ >> Instruct pix2pix")
                                         whisper_inpaint = gr.Button("✍️ >> inpaint")
@@ -975,6 +1008,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gr.HTML(value='... image module ...')                                        
                                         nllb_txt2img_sd = gr.Button("✍️ >> Stable Diffusion")
                                         nllb_txt2img_kd = gr.Button("✍️ >> Kandinsky")                                        
+                                        nllb_txt2img_lcm = gr.Button("✍️ >> LCM") 
                                         nllb_img2img = gr.Button("✍️ >> img2img")
                                         nllb_pix2pix = gr.Button("✍️ >> Instruct pix2pix")
                                         nllb_inpaint = gr.Button("✍️ >> inpaint")
@@ -1047,7 +1081,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 sampler_txt2img_sd = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_txt2img_sd = gr.Slider(0.1, 20.0, step=0.1, value=7.0, label="CFG scale", info="Low values : more creativity. High values : more corresponding to the prompts")
+                                guidance_scale_txt2img_sd = gr.Slider(0.1, 20.0, step=0.1, value=7.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
                                 num_images_per_prompt_txt2img_sd = gr.Slider(minimum=1, maximum=4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
@@ -1187,7 +1221,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                     with gr.Group():
                                         gr.HTML(value='... input prompt(s) to ...')
                                         gr.HTML(value='... image module ...')
-                                        txt2img_sd_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")                                        
+                                        txt2img_sd_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")
+                                        txt2img_sd_txt2img_lcm_input = gr.Button("✍️ >> LCM")
                                         txt2img_sd_img2img_input = gr.Button("✍️ >> img2img")
                                         txt2img_sd_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         txt2img_sd_inpaint_input = gr.Button("✍️ >> inpaint")
@@ -1250,7 +1285,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 sampler_txt2img_kd = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[5], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_txt2img_kd = gr.Slider(0.1, 20.0, step=0.1, value=4.0, label="CFG scale", info="Low values : more creativity. High values : more corresponding to the prompts")
+                                guidance_scale_txt2img_kd = gr.Slider(0.1, 20.0, step=0.1, value=4.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
                                 num_images_per_prompt_txt2img_kd = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
@@ -1385,6 +1420,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gr.HTML(value='... input prompt(s) to ...')
                                         gr.HTML(value='... image module ...')
                                         txt2img_kd_txt2img_sd_input = gr.Button("✍️ >> Stable Diffusion")
+                                        txt2img_kd_txt2img_lcm_input = gr.Button("✍️ >> LCM")
                                         txt2img_kd_img2img_input = gr.Button("✍️ >> img2img")
                                         txt2img_kd_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         txt2img_kd_inpaint_input = gr.Button("✍️ >> inpaint")
@@ -1401,8 +1437,207 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         txt2img_kd_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
                                         txt2img_kd_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
                                         txt2img_kd_controlnet_both = gr.Button("🖼️ + ✍️ >> ControlNet")                                        
+
+# LCM
+                with gr.TabItem("LCM 🖼️", id=23) as tab_txt2img_lcm:
+                    with gr.Accordion("About", open=False):                
+                        with gr.Box():                       
+                            gr.HTML(
+                                """
+                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
+                                <b>Module : </b>LCM</br>
+                                <b>Function : </b>Generate images from a prompt using <a href='https://github.com/luosiallen/latent-consistency-model' target='_blank'>LCM (Latent Consistency Model)</a></br>
+                                <b>Input(s) : </b>Prompt</br>
+                                <b>Output(s) : </b>Image(s)</br>
+                                <b>HF model page : </b>
+                                <a href='https://huggingface.co/SimianLuo/LCM_Dreamshaper_v7' target='_blank'>SimianLuo/LCM_Dreamshaper_v7</a>
+                                </br>
+                                """
+                            )
+                        with gr.Box():
+                            gr.HTML(
+                                """
+                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                <div style='text-align: justified'>
+                                <b>Usage :</b></br>
+                                - Fill the <b>prompt</b> with what you want to see in your output image</br>
+                                - (optional) Modify the settings to generate several images in a single run or change dimensions of the outputs</br>
+                                - Click the <b>Generate</b> button</br>
+                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
+                                </br>
+                                """
+                            )                
+                    with gr.Accordion("Settings", open=False):
+                        with gr.Row():
+                            with gr.Column():
+                                model_txt2img_lcm = gr.Dropdown(choices=model_list_txt2img_lcm, value=model_list_txt2img_lcm[0], label="Model", info="Choose model to use for inference")
+                            with gr.Column():
+                                num_inference_step_txt2img_lcm = gr.Slider(1, 100, step=1, value=4, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                            with gr.Column():
+                                sampler_txt2img_lcm = gr.Dropdown(choices=list(scheduler_list_txt2img_lcm), value=scheduler_list_txt2img_lcm[0], label="Sampler", info="Sampler to use for inference")
+                        with gr.Row():
+                            with gr.Column():
+                                guidance_scale_txt2img_lcm = gr.Slider(0.1, 20.0, step=0.1, value=8.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                            with gr.Column():
+                                lcm_origin_steps_txt2img_lcm = gr.Slider(1, 100, step=1, value=50, label="LCM origin steps", info="LCM origin steps")
+                            with gr.Column():
+                                num_images_per_prompt_txt2img_lcm = gr.Slider(minimum=1, maximum=4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                            with gr.Column():
+                                num_prompt_txt2img_lcm = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                        with gr.Row():
+                            with gr.Column():
+                                width_txt2img_lcm = gr.Slider(128, 1280, step=64, value=512, label="Image Width", info="Width of outputs")
+                            with gr.Column():
+                                height_txt2img_lcm = gr.Slider(128, 1280, step=64, value=512, label="Image Height", info="Height of outputs")
+                            with gr.Column():
+                                seed_txt2img_lcm = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility", interactive=False) 
+                        with gr.Row():
+                            with gr.Column():    
+                                use_gfpgan_txt2img_lcm = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                            with gr.Column():
+                                tkme_txt2img_lcm = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_txt2img_lcm = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_txt2img_lcm = gr.Textbox(value="txt2img_lcm", visible=False, interactive=False)
+                                load_ini_btn_txt2img_lcm = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_txt2img_lcm.value) else False)
+                                save_ini_btn_txt2img_lcm.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_txt2img_lcm, 
+                                        model_txt2img_lcm, 
+                                        num_inference_step_txt2img_lcm,
+                                        sampler_txt2img_lcm,
+                                        guidance_scale_txt2img_lcm,
+                                        lcm_origin_steps_txt2img_lcm,
+                                        num_images_per_prompt_txt2img_lcm,
+                                        num_prompt_txt2img_lcm,
+                                        width_txt2img_lcm,
+                                        height_txt2img_lcm,
+                                        seed_txt2img_lcm,
+                                        use_gfpgan_txt2img_lcm,
+                                        tkme_txt2img_lcm,
+                                        ]
+                                    )
+                                save_ini_btn_txt2img_lcm.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_txt2img_lcm.click(fn=lambda: load_ini_btn_txt2img_lcm.update(interactive=True), outputs=load_ini_btn_txt2img_lcm)
+                                load_ini_btn_txt2img_lcm.click(
+                                    fn=read_ini_txt2img_lcm, 
+                                    inputs=module_name_txt2img_lcm, 
+                                    outputs = [
+                                        model_txt2img_lcm, 
+                                        num_inference_step_txt2img_lcm,
+                                        sampler_txt2img_lcm,
+                                        guidance_scale_txt2img_lcm,
+                                        lcm_origin_steps_txt2img_lcm,
+                                        num_images_per_prompt_txt2img_lcm,
+                                        num_prompt_txt2img_lcm,
+                                        width_txt2img_lcm,
+                                        height_txt2img_lcm,
+                                        seed_txt2img_lcm,
+                                        use_gfpgan_txt2img_lcm,
+                                        tkme_txt2img_lcm,
+                                        ]
+                                    )
+                                load_ini_btn_txt2img_lcm.click(fn=lambda: gr.Info('Settings loaded'))
+                    with gr.Row():
+                        with gr.Column():
+                            with gr.Row():
+                                with gr.Column():                        
+                                    prompt_txt2img_lcm = gr.Textbox(lines=18, max_lines=18, label="Prompt", info="Describe what you want in your image", placeholder="Self-portrait oil painting, a beautiful cyborg with golden hair, 8k")
+                        with gr.Column(scale=2):
+                            out_txt2img_lcm = gr.Gallery(
+                                label="Generated images",
+                                show_label=True,
+                                elem_id="gallery",
+                                columns=3,
+                                height=400,
+                            )    
+                            gs_out_txt2img_lcm = gr.State()
+                            sel_out_txt2img_lcm = gr.Number(precision=0, visible=False)
+                            out_txt2img_lcm.select(get_select_index, None, sel_out_txt2img_lcm)
+                            with gr.Row():
+                                with gr.Column():
+                                    download_btn_txt2img_lcm = gr.Button("Zip gallery 💾")
+                                with gr.Column():
+                                    download_file_txt2img_lcm = gr.File(label="Output", height=30, interactive=False, visible=False)
+                                    download_btn_txt2img_lcm.click(fn=zip_download_file_txt2img_lcm, inputs=out_txt2img_lcm, outputs=[download_file_txt2img_lcm, download_file_txt2img_lcm])
+                    with gr.Row():
+                        with gr.Column():
+                            btn_txt2img_lcm = gr.Button("Generate 🚀", variant="primary")
+                        with gr.Column():                            
+                            btn_txt2img_lcm_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_txt2img_lcm_cancel.click(fn=initiate_stop_txt2img_lcm, inputs=None, outputs=None)                              
+                        with gr.Column():
+                            btn_txt2img_lcm_clear_input = gr.ClearButton(components=[prompt_txt2img_lcm], value="Clear inputs 🧹")
+                        with gr.Column():                            
+                            btn_txt2img_lcm_clear_output = gr.ClearButton(components=[out_txt2img_lcm, gs_out_txt2img_lcm], value="Clear outputs 🧹")   
+                            btn_txt2img_lcm.click(fn=hide_download_file_txt2img_lcm, inputs=None, outputs=download_file_txt2img_lcm)   
+                            btn_txt2img_lcm.click(
+                            fn=image_txt2img_lcm, 
+                            inputs=[
+                                model_txt2img_lcm,
+                                sampler_txt2img_lcm,
+                                prompt_txt2img_lcm,
+                                num_images_per_prompt_txt2img_lcm,
+                                num_prompt_txt2img_lcm,
+                                guidance_scale_txt2img_lcm,
+                                lcm_origin_steps_txt2img_lcm, 
+                                num_inference_step_txt2img_lcm, 
+                                height_txt2img_lcm,
+                                width_txt2img_lcm,
+                                seed_txt2img_lcm,
+                                use_gfpgan_txt2img_lcm,
+                                nsfw_filter,
+                                tkme_txt2img_lcm,
+                            ],
+                                outputs=[out_txt2img_lcm, gs_out_txt2img_lcm],
+                                show_progress="full",
+                            )
+                    with gr.Accordion("Send ...", open=False):
+                        with gr.Row():
+                            with gr.Column():
+                                with gr.Box():                                
+                                    with gr.Group():
+                                        gr.HTML(value='... selected output to ...')
+                                        gr.HTML(value='... text module ...')                                        
+                                        txt2img_lcm_img2txt_git = gr.Button("🖼️ >> GIT Captioning")      
+                                        gr.HTML(value='... image module ...')
+                                        txt2img_lcm_img2img = gr.Button("🖼️ >> img2img")
+                                        txt2img_lcm_img2var = gr.Button("🖼️ >> Image variation")
+                                        txt2img_lcm_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
+                                        txt2img_lcm_inpaint = gr.Button("🖼️ >> inpaint")
+                                        txt2img_lcm_outpaint = gr.Button("🖼️ >> outpaint")
+                                        txt2img_lcm_controlnet = gr.Button("🖼️ >> ControlNet")
+                                        txt2img_lcm_faceswap = gr.Button("🖼️ >> Faceswap target")
+                                        txt2img_lcm_resrgan = gr.Button("🖼️ >> Real ESRGAN")
+                                        txt2img_lcm_gfpgan = gr.Button("🖼️ >> GFPGAN")
+                            with gr.Column():
+                                with gr.Box():
+                                    with gr.Group():
+                                        gr.HTML(value='... input prompt(s) to ...')
+                                        gr.HTML(value='... image module ...')
+                                        txt2img_lcm_txt2img_sd_input = gr.Button("✍️ >> Stable Diffusion")
+                                        txt2img_lcm_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")
+                                        txt2img_lcm_img2img_input = gr.Button("✍️ >> img2img")
+                                        txt2img_lcm_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
+                                        txt2img_lcm_inpaint_input = gr.Button("✍️ >> inpaint")
+                                        txt2img_lcm_controlnet_input = gr.Button("✍️ >> ControlNet")
+                                        gr.HTML(value='... video module ...')
+                                        txt2img_lcm_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
+                                        txt2img_lcm_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")
+                            with gr.Column():
+                                with gr.Box():                                
+                                    with gr.Group():
+                                        gr.HTML(value='... both to ...')
+                                        gr.HTML(value='... image module ...')
+                                        txt2img_lcm_img2img_both = gr.Button("🖼️ + ✍️ >> img2img")
+                                        txt2img_lcm_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
+                                        txt2img_lcm_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
+                                        txt2img_lcm_controlnet_both = gr.Button("🖼️ + ✍️️ >> ControlNet")
 # img2img    
-                with gr.TabItem("img2img 🖌️", id=23) as tab_img2img:
+                with gr.TabItem("img2img 🖌️", id=24) as tab_img2img:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -1450,7 +1685,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 sampler_img2img = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_img2img = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more corresponding to the prompts")
+                                guidance_scale_img2img = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
                                 num_images_per_prompt_img2img = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
@@ -1607,6 +1842,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gr.HTML(value='... image module ...')
                                         img2img_txt2img_sd_input = gr.Button("✍️ >> Stable Diffusion")
                                         img2img_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")
+                                        img2img_txt2img_lcm_input = gr.Button("✍️ >> LCM")
                                         img2img_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         img2img_inpaint_input = gr.Button("✍️ >> inpaint")
                                         img2img_controlnet_input = gr.Button("✍️ >> ControlNet")                                        
@@ -1625,7 +1861,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                 else :
                     titletab_img2var = "Image variation ⛔"
 
-                with gr.TabItem(titletab_img2var, id=24) as tab_img2var: 
+                with gr.TabItem(titletab_img2var, id=25) as tab_img2var: 
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -1662,7 +1898,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 sampler_img2var = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_img2var = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more corresponding to the prompts")
+                                guidance_scale_img2var = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
                                 num_images_per_prompt_img2var = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
@@ -1805,7 +2041,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                        
 
 # pix2pix    
-                with gr.TabItem("Instruct pix2pix 🖌️", id=25) as tab_pix2pix:
+                with gr.TabItem("Instruct pix2pix 🖌️", id=26) as tab_pix2pix:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -1845,9 +2081,9 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 sampler_pix2pix = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_pix2pix = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more corresponding to the prompts")
+                                guidance_scale_pix2pix = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
-                                image_guidance_scale_pix2pix = gr.Slider(0.0, 10.0, step=0.1, value=1.5, label="Img CFG Scale", info="Low values : more creativity. High values : more corresponding to the input image")
+                                image_guidance_scale_pix2pix = gr.Slider(0.0, 10.0, step=0.1, value=1.5, label="Img CFG Scale", info="Low values : more creativity. High values : more fidelity to the input image")
                             with gr.Column():
                                 num_images_per_prompt_pix2pix = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
@@ -1998,6 +2234,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gr.HTML(value='... image module ...')                                        
                                         pix2pix_txt2img_sd_input = gr.Button("✍️ >> Stable Diffusion")
                                         pix2pix_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")                                        
+                                        pix2pix_txt2img_lcm_input = gr.Button("✍️ >> LCM")
                                         pix2pix_img2img_input = gr.Button("✍️ >> img2img")
                                         pix2pix_inpaint_input = gr.Button("✍️ >> inpaint")
                                         pix2pix_controlnet_input = gr.Button("✍️ >> ControlNet")
@@ -2012,7 +2249,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         pix2pix_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
                                         pix2pix_controlnet_both = gr.Button("🖼️ + ✍️ >> ControlNet")
 # inpaint    
-                with gr.TabItem("inpaint 🖌️", id=26) as tab_inpaint:
+                with gr.TabItem("inpaint 🖌️", id=27) as tab_inpaint:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -2057,7 +2294,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 sampler_inpaint = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_inpaint = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more corresponding to the prompts")
+                                guidance_scale_inpaint = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
                                 num_images_per_prompt_inpaint= gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
@@ -2212,7 +2449,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gr.HTML(value='... input prompt(s) to ...')
                                         gr.HTML(value='... image module ...')
                                         inpaint_txt2img_sd_input = gr.Button("✍️ >> Stable Diffusion")
-                                        inpaint_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")                                        
+                                        inpaint_txt2img_kd_input = gr.Button("✍️ >> Kandinsky") 
+                                        inpaint_txt2img_lcm_input = gr.Button("✍️ >> LCM") 
                                         inpaint_img2img_input = gr.Button("✍️ >> img2img")
                                         inpaint_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         inpaint_controlnet_input = gr.Button("✍️ >> ControlNet")
@@ -2231,7 +2469,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                 else :
                     titletab_outpaint = "outpaint ⛔"
 
-                with gr.TabItem(titletab_outpaint, id=27) as tab_outpaint:
+                with gr.TabItem(titletab_outpaint, id=28) as tab_outpaint:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -2277,7 +2515,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 sampler_outpaint = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_outpaint = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more corresponding to the prompts")
+                                guidance_scale_outpaint = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
                                 num_images_per_prompt_outpaint= gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
@@ -2455,6 +2693,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gr.HTML(value='... image module ...')
                                         outpaint_txt2img_sd_input = gr.Button("✍️ >> Stable Diffusion")
                                         outpaint_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")                                        
+                                        outpaint_txt2img_lcm_input = gr.Button("✍️ >> LCM") 
                                         outpaint_img2img_input = gr.Button("✍️ >> img2img")
                                         outpaint_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         outpaint_controlnet_input = gr.Button("✍️ >> ControlNet")
@@ -2467,7 +2706,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         outpaint_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
                                         outpaint_controlnet_both = gr.Button("🖼️ + ✍️ >> ControlNet")                                        
 # ControlNet
-                with gr.TabItem("ControlNet 🖼️", id=28) as tab_controlnet:
+                with gr.TabItem("ControlNet 🖼️", id=29) as tab_controlnet:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -2528,7 +2767,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 sampler_controlnet = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_controlnet = gr.Slider(0.1, 20.0, step=0.1, value=7.0, label="CFG scale", info="Low values : more creativity. High values : more corresponding to the prompts")
+                                guidance_scale_controlnet = gr.Slider(0.1, 20.0, step=0.1, value=7.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
                                 num_images_per_prompt_controlnet = gr.Slider(minimum=1, maximum=4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
@@ -2728,6 +2967,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gr.HTML(value='... image module ...')
                                         controlnet_txt2img_sd_input = gr.Button("✍️ >> Stable Diffusion")
                                         controlnet_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")                                        
+                                        controlnet_txt2img_lcm_input = gr.Button("✍️ >> LCM") 
                                         controlnet_img2img_input = gr.Button("✍️ >> img2img")
                                         controlnet_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         controlnet_inpaint_input = gr.Button("✍️ >> inpaint")         
@@ -2743,7 +2983,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         controlnet_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
                                         controlnet_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")                                        
 # faceswap    
-                with gr.TabItem("Faceswap 🎭", id=29) as tab_faceswap:
+                with gr.TabItem("Faceswap 🎭", id=291) as tab_faceswap:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -2893,7 +3133,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gr.HTML(value='... both to ...')                                    
 
 # Real ESRGAN    
-                with gr.TabItem("Real ESRGAN 🔎", id=291) as tab_resrgan:
+                with gr.TabItem("Real ESRGAN 🔎", id=292) as tab_resrgan:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -3025,7 +3265,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')                         
 # GFPGAN    
-                with gr.TabItem("GFPGAN 🔎", id=292) as tab_gfpgan:
+                with gr.TabItem("GFPGAN 🔎", id=293) as tab_gfpgan:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -3190,7 +3430,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             with gr.Column():    
                                 duration_musicgen = gr.Slider(1, 160, step=1, value=5, label="Audio length (sec)")
                             with gr.Column():
-                                cfg_coef_musicgen = gr.Slider(0.1, 20.0, step=0.1, value=3.0, label="CFG scale", info="Low values : more creativity. High values : more corresponding to the prompts")
+                                cfg_coef_musicgen = gr.Slider(0.1, 20.0, step=0.1, value=3.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
                                 num_batch_musicgen = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")  
                         with gr.Row():
@@ -3328,7 +3568,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             with gr.Column():    
                                 duration_audiogen = gr.Slider(1, 160, step=1, value=5, label="Audio length (sec)")
                             with gr.Column():
-                                cfg_coef_audiogen = gr.Slider(0.1, 20.0, step=0.1, value=3.0, label="CFG scale", info="Low values : more creativity. High values : more corresponding to the prompts")
+                                cfg_coef_audiogen = gr.Slider(0.1, 20.0, step=0.1, value=3.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
                                 num_batch_audiogen = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")  
                         with gr.Row():
@@ -3699,7 +3939,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 sampler_txt2vid_ms = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_txt2vid_ms = gr.Slider(0.1, 20.0, step=0.1, value=4.0, label="CFG scale", info="Low values : more creativity. High values : more corresponding to the prompts")
+                                guidance_scale_txt2vid_ms = gr.Slider(0.1, 20.0, step=0.1, value=4.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
                                 num_frames_txt2vid_ms = gr.Slider(1, 1200, step=1, value=8, label="Video Length (frames)", info="Number of frames in the output video")
                             with gr.Column():
@@ -3809,6 +4049,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gr.HTML(value='... image module ...')
                                         txt2vid_ms_txt2img_sd_input = gr.Button("✍️ >> Stable Diffusion")
                                         txt2vid_ms_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")
+                                        txt2vid_ms_txt2img_lcm_input = gr.Button("✍️ >> LCM")
                                         gr.HTML(value='... video module ...')
                                         txt2vid_ms_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")
                             with gr.Column():
@@ -3859,7 +4100,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             with gr.Column():
                                 sampler_txt2vid_ze = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                             with gr.Column():
-                                guidance_scale_txt2vid_ze = gr.Slider(0.1, 20.0, step=0.1, value=7.5, label="CFG scale", info="Low values : more creativity. High values : more corresponding to the prompts")
+                                guidance_scale_txt2vid_ze = gr.Slider(0.1, 20.0, step=0.1, value=7.5, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                         with gr.Row():
                             with gr.Column():
                                 seed_txt2vid_ze = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
@@ -4014,6 +4255,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gr.HTML(value='... image module ...')
                                         txt2vid_ze_txt2img_sd_input = gr.Button("✍️ >> Stable Diffusion")
                                         txt2vid_ze_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")
+                                        txt2vid_ze_txt2img_lcm_input = gr.Button("✍️ >> LCM")
                                         gr.HTML(value='... video module ...')                                        
                                         txt2vid_ze_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
                             with gr.Column():
@@ -4066,9 +4308,9 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 sampler_vid2vid_ze = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_vid2vid_ze = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more corresponding to the prompts")
+                                guidance_scale_vid2vid_ze = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
-                                image_guidance_scale_vid2vid_ze = gr.Slider(0.0, 10.0, step=0.1, value=1.5, label="Img CFG Scale", info="Low values : more creativity. High values : more corresponding to the input video")
+                                image_guidance_scale_vid2vid_ze = gr.Slider(0.0, 10.0, step=0.1, value=1.5, label="Img CFG Scale", info="Low values : more creativity. High values : more fidelity to the input video")
                             with gr.Column():
                                 num_images_per_prompt_vid2vid_ze = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of videos to generate in a single run")
                             with gr.Column():
@@ -4216,6 +4458,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
     tab_nllb_num = gr.Number(value=tab_nllb.id, precision=0, visible=False)    
     tab_txt2img_sd_num = gr.Number(value=tab_txt2img_sd.id, precision=0, visible=False)
     tab_txt2img_kd_num = gr.Number(value=tab_txt2img_kd.id, precision=0, visible=False)
+    tab_txt2img_lcm_num = gr.Number(value=tab_txt2img_lcm.id, precision=0, visible=False) 
     tab_img2img_num = gr.Number(value=tab_img2img.id, precision=0, visible=False)
     tab_img2var_num = gr.Number(value=tab_img2var.id, precision=0, visible=False)    
     tab_pix2pix_num = gr.Number(value=tab_pix2pix.id, precision=0, visible=False)
@@ -4237,6 +4480,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
     llamacpp_nllb.click(fn=send_text_to_module_text, inputs=[last_reply_llamacpp, tab_text_num, tab_nllb_num], outputs=[prompt_nllb, tabs, tabs_text])
     llamacpp_txt2img_sd.click(fn=send_text_to_module_image, inputs=[last_reply_llamacpp, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, tabs, tabs_image])
     llamacpp_txt2img_kd.click(fn=send_text_to_module_image, inputs=[last_reply_llamacpp, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, tabs, tabs_image])
+    llamacpp_txt2img_lcm.click(fn=send_text_to_module_image, inputs=[last_reply_llamacpp, tab_image_num, tab_txt2img_lcm_num], outputs=[prompt_txt2img_lcm, tabs, tabs_image])    
     llamacpp_img2img.click(fn=send_text_to_module_image, inputs=[last_reply_llamacpp, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, tabs, tabs_image])
     llamacpp_pix2pix.click(fn=send_text_to_module_image, inputs=[last_reply_llamacpp, tab_image_num, tab_pix2pix_num], outputs=[prompt_pix2pix, tabs, tabs_image])
     llamacpp_inpaint.click(fn=send_text_to_module_image, inputs=[last_reply_llamacpp, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, tabs, tabs_image])
@@ -4251,6 +4495,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
     img2txt_git_nllb.click(fn=send_text_to_module_text, inputs=[out_img2txt_git, tab_text_num, tab_nllb_num], outputs=[prompt_nllb, tabs, tabs_text])    
     img2txt_git_txt2img_sd.click(fn=send_text_to_module_image, inputs=[out_img2txt_git, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, tabs, tabs_image])
     img2txt_git_txt2img_kd.click(fn=send_text_to_module_image, inputs=[out_img2txt_git, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, tabs, tabs_image])
+    img2txt_git_txt2img_lcm.click(fn=send_text_to_module_image, inputs=[out_img2txt_git, tab_image_num, tab_txt2img_lcm_num], outputs=[prompt_txt2img_lcm, tabs, tabs_image])    
     img2txt_git_img2img.click(fn=send_text_to_module_image, inputs=[out_img2txt_git, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, tabs, tabs_image])
     img2txt_git_pix2pix.click(fn=send_text_to_module_image, inputs=[out_img2txt_git, tab_image_num, tab_pix2pix_num], outputs=[prompt_pix2pix, tabs, tabs_image])
     img2txt_git_inpaint.click(fn=send_text_to_module_image, inputs=[out_img2txt_git, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, tabs, tabs_image])
@@ -4263,12 +4508,15 @@ with gr.Blocks(theme=theme_gradio) as demo:
 # GIT Captions both
     img2txt_git_img2img_both.click(fn=both_text_to_module_image, inputs=[img_img2txt_git, out_img2txt_git, tab_image_num, tab_img2img_num], outputs=[img_img2img, prompt_img2img, tabs, tabs_image])
     img2txt_git_pix2pix_both.click(fn=both_text_to_module_image, inputs=[img_img2txt_git, out_img2txt_git, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, prompt_pix2pix, tabs, tabs_image])
-    img2txt_git_inpaint_both.click(fn=both_text_to_module_inpaint_image, inputs=[img_img2txt_git, out_img2txt_git, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, prompt_pix2pix, tabs, tabs_image])
+    img2txt_git_inpaint_both.click(fn=both_text_to_module_inpaint_image, inputs=[img_img2txt_git, out_img2txt_git, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, prompt_inpaint, tabs, tabs_image])
+    img2txt_git_controlnet_both.click(fn=both_text_to_module_inpaint_image, inputs=[img_img2txt_git, out_img2txt_git, tab_image_num, tab_controlnet_num], outputs=[img_source_controlnet, gs_img_source_controlnet, prompt_controlnet, tabs, tabs_image]) 
+    
     
 # Whisper outputs
     whisper_nllb.click(fn=send_text_to_module_text, inputs=[out_whisper, tab_text_num, tab_nllb_num], outputs=[prompt_nllb, tabs, tabs_text])
     whisper_txt2img_sd.click(fn=send_text_to_module_image, inputs=[out_whisper, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, tabs, tabs_image])
     whisper_txt2img_kd.click(fn=send_text_to_module_image, inputs=[out_whisper, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, tabs, tabs_image])
+    whisper_txt2img_lcm.click(fn=send_text_to_module_image, inputs=[out_whisper, tab_image_num, tab_txt2img_lcm_num], outputs=[prompt_txt2img_lcm, tabs, tabs_image])    
     whisper_img2img.click(fn=send_text_to_module_image, inputs=[out_whisper, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, tabs, tabs_image])
     whisper_pix2pix.click(fn=send_text_to_module_image, inputs=[out_whisper, tab_image_num, tab_pix2pix_num], outputs=[prompt_pix2pix, tabs, tabs_image])
     whisper_inpaint.click(fn=send_text_to_module_image, inputs=[out_whisper, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, tabs, tabs_image])
@@ -4282,6 +4530,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
 # Nllb outputs
     nllb_txt2img_sd.click(fn=send_text_to_module_image, inputs=[out_nllb, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, tabs, tabs_image])
     nllb_txt2img_kd.click(fn=send_text_to_module_image, inputs=[out_nllb, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, tabs, tabs_image])
+    nllb_txt2img_lcm.click(fn=send_text_to_module_image, inputs=[out_nllb, tab_image_num, tab_txt2img_lcm_num], outputs=[prompt_txt2img_lcm, tabs, tabs_image])
     nllb_img2img.click(fn=send_text_to_module_image, inputs=[out_nllb, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, tabs, tabs_image])
     nllb_pix2pix.click(fn=send_text_to_module_image, inputs=[out_nllb, tab_image_num, tab_pix2pix_num], outputs=[prompt_pix2pix, tabs, tabs_image])
     nllb_inpaint.click(fn=send_text_to_module_image, inputs=[out_nllb, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, tabs, tabs_image])
@@ -4306,6 +4555,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
 
 # txt2img_sd inputs
     txt2img_sd_txt2img_kd_input.click(fn=import_to_module, inputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tabs, tabs_image])
+    txt2img_sd_txt2img_lcm_input.click(fn=import_to_module_prompt_only, inputs=[prompt_txt2img_sd, tab_image_num, tab_txt2img_lcm_num], outputs=[prompt_txt2img_lcm, tabs, tabs_image]) 
     txt2img_sd_img2img_input.click(fn=import_to_module, inputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, negative_prompt_img2img, tabs, tabs_image])
     txt2img_sd_pix2pix_input.click(fn=import_to_module, inputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tab_image_num, tab_pix2pix_num], outputs=[prompt_pix2pix, negative_prompt_pix2pix, tabs, tabs_image])
     txt2img_sd_inpaint_input.click(fn=import_to_module, inputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, negative_prompt_inpaint, tabs, tabs_image])
@@ -4333,6 +4583,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
     
 # txt2img_kd inputs
     txt2img_kd_txt2img_sd_input.click(fn=import_to_module, inputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tabs, tabs_image])
+    txt2img_kd_txt2img_lcm_input.click(fn=import_to_module_prompt_only, inputs=[prompt_txt2img_kd, tab_image_num, tab_txt2img_lcm_num], outputs=[prompt_txt2img_lcm, tabs, tabs_image]) 
     txt2img_kd_img2img_input.click(fn=import_to_module, inputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, negative_prompt_img2img, tabs, tabs_image])
     txt2img_kd_pix2pix_input.click(fn=import_to_module, inputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tab_image_num, tab_pix2pix_num], outputs=[prompt_pix2pix, negative_prompt_pix2pix, tabs, tabs_image])
     txt2img_kd_inpaint_input.click(fn=import_to_module, inputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, negative_prompt_inpaint, tabs, tabs_image])
@@ -4345,6 +4596,34 @@ with gr.Blocks(theme=theme_gradio) as demo:
     txt2img_kd_pix2pix_both.click(fn=both_to_module, inputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, gs_out_txt2img_kd, sel_out_txt2img_kd, tab_image_num, tab_pix2pix_num], outputs=[prompt_pix2pix, negative_prompt_pix2pix, img_pix2pix, tabs, tabs_image])
     txt2img_kd_inpaint_both.click(fn=both_to_module_inpaint, inputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, gs_out_txt2img_kd, sel_out_txt2img_kd, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, negative_prompt_inpaint,img_inpaint, gs_img_inpaint, tabs, tabs_image])
     txt2img_kd_controlnet_both.click(fn=both_to_module_inpaint, inputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, gs_out_txt2img_kd, sel_out_txt2img_kd, tab_image_num, tab_controlnet_num], outputs=[prompt_controlnet, negative_prompt_controlnet, img_source_controlnet, gs_img_source_controlnet, tabs, tabs_image])    
+
+# txt2img_lcm outputs
+    txt2img_lcm_img2img.click(fn=send_to_module, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
+    txt2img_lcm_img2var.click(fn=send_to_module, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])  
+    txt2img_lcm_pix2pix.click(fn=send_to_module, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
+    txt2img_lcm_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image])    
+    txt2img_lcm_outpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_outpaint_num], outputs=[img_outpaint, gs_img_outpaint, tabs, tabs_image])
+    txt2img_lcm_controlnet.click(fn=send_to_module_inpaint, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_controlnet_num], outputs=[img_source_controlnet, gs_img_source_controlnet, tabs, tabs_image])
+    txt2img_lcm_faceswap.click(fn=send_to_module_inpaint, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_faceswap_num], outputs=[img_target_faceswap, gs_img_target_faceswap, tabs, tabs_image])        
+    txt2img_lcm_resrgan.click(fn=send_to_module, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
+    txt2img_lcm_gfpgan.click(fn=send_to_module, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
+    txt2img_lcm_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])    
+
+# txt2img_lcm inputs
+    txt2img_lcm_txt2img_sd_input.click(fn=import_to_module_prompt_only, inputs=[prompt_txt2img_lcm, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, tabs, tabs_image])
+    txt2img_lcm_txt2img_kd_input.click(fn=import_to_module_prompt_only, inputs=[prompt_txt2img_lcm, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, tabs, tabs_image])    
+    txt2img_lcm_img2img_input.click(fn=import_to_module_prompt_only, inputs=[prompt_txt2img_lcm, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, tabs, tabs_image])
+    txt2img_lcm_pix2pix_input.click(fn=import_to_module_prompt_only, inputs=[prompt_txt2img_lcm, tab_image_num, tab_pix2pix_num], outputs=[prompt_pix2pix, tabs, tabs_image])
+    txt2img_lcm_inpaint_input.click(fn=import_to_module_prompt_only, inputs=[prompt_txt2img_lcm, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, tabs, tabs_image])
+    txt2img_lcm_controlnet_input.click(fn=import_to_module_prompt_only, inputs=[prompt_txt2img_lcm, tab_image_num, tab_controlnet_num], outputs=[prompt_controlnet, tabs, tabs_image]) 
+    txt2img_lcm_txt2vid_ms_input.click(fn=import_to_module_video_prompt_only, inputs=[prompt_txt2img_lcm, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, tabs, tabs_video]) 
+    txt2img_lcm_txt2vid_ze_input.click(fn=import_to_module_video_prompt_only, inputs=[prompt_txt2img_lcm, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, tabs, tabs_video]) 
+    
+# txt2img_lcm both
+    txt2img_lcm_img2img_both.click(fn=both_to_module_prompt_only, inputs=[prompt_txt2img_lcm, gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, img_img2img, tabs, tabs_image])
+    txt2img_lcm_pix2pix_both.click(fn=both_to_module_prompt_only, inputs=[prompt_txt2img_lcm, gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_pix2pix_num], outputs=[prompt_pix2pix, img_pix2pix, tabs, tabs_image])
+    txt2img_lcm_inpaint_both.click(fn=both_to_module_inpaint_prompt_only, inputs=[prompt_txt2img_lcm, gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, img_inpaint, gs_img_inpaint, tabs, tabs_image])
+    txt2img_lcm_controlnet_both.click(fn=both_to_module_inpaint_prompt_only, inputs=[prompt_txt2img_lcm, gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_controlnet_num], outputs=[prompt_controlnet, img_source_controlnet, gs_img_source_controlnet, tabs, tabs_image]) 
 
 # img2img outputs
     img2img_img2img.click(fn=send_to_module, inputs=[gs_out_img2img, sel_out_img2img, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
@@ -4361,6 +4640,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
 # img2img inputs
     img2img_txt2img_sd_input.click(fn=import_to_module, inputs=[prompt_img2img, negative_prompt_img2img, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tabs, tabs_image])
     img2img_txt2img_kd_input.click(fn=import_to_module, inputs=[prompt_img2img, negative_prompt_img2img, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tabs, tabs_image])    
+    img2img_txt2img_lcm_input.click(fn=import_to_module_prompt_only, inputs=[prompt_img2img, tab_image_num, tab_txt2img_lcm_num], outputs=[prompt_txt2img_lcm, tabs, tabs_image]) 
     img2img_pix2pix_input.click(fn=import_to_module, inputs=[prompt_img2img, negative_prompt_img2img, tab_image_num, tab_pix2pix_num], outputs=[prompt_pix2pix, negative_prompt_pix2pix, tabs, tabs_image])
     img2img_inpaint_input.click(fn=import_to_module, inputs=[prompt_img2img, negative_prompt_img2img, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, negative_prompt_inpaint, tabs, tabs_image])
     img2img_controlnet_input.click(fn=import_to_module, inputs=[prompt_img2img, negative_prompt_img2img, tab_image_num, tab_controlnet_num], outputs=[prompt_controlnet, negative_prompt_controlnet, tabs, tabs_image])    
@@ -4396,10 +4676,12 @@ with gr.Blocks(theme=theme_gradio) as demo:
 # pix2pix inputs
     pix2pix_txt2img_sd_input.click(fn=import_to_module, inputs=[prompt_pix2pix, negative_prompt_pix2pix, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tabs, tabs_image])
     pix2pix_txt2img_kd_input.click(fn=import_to_module, inputs=[prompt_pix2pix, negative_prompt_pix2pix, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tabs, tabs_image])    
+    pix2pix_txt2img_lcm_input.click(fn=import_to_module_prompt_only, inputs=[prompt_pix2pix, tab_image_num, tab_txt2img_lcm_num], outputs=[prompt_txt2img_lcm, tabs, tabs_image]) 
     pix2pix_img2img_input.click(fn=import_to_module, inputs=[prompt_pix2pix, negative_prompt_pix2pix, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, negative_prompt_img2img, tabs, tabs_image])
     pix2pix_inpaint_input.click(fn=import_to_module, inputs=[prompt_pix2pix, negative_prompt_pix2pix, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, negative_prompt_inpaint, tabs, tabs_image])
     pix2pix_controlnet_input.click(fn=import_to_module, inputs=[prompt_pix2pix, negative_prompt_pix2pix, tab_image_num, tab_controlnet_num], outputs=[prompt_controlnet, negative_prompt_controlnet, tabs, tabs_image])
     pix2pix_vid2vid_ze_input.click(fn=import_to_module_video, inputs=[prompt_pix2pix, negative_prompt_pix2pix, tab_video_num, tab_vid2vid_ze_num], outputs=[prompt_vid2vid_ze, negative_prompt_vid2vid_ze, tabs, tabs_video])
+
 # pix2pix both
     pix2pix_img2img_both.click(fn=both_to_module, inputs=[prompt_pix2pix, negative_prompt_pix2pix, gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, negative_prompt_img2img, img_img2img, tabs, tabs_image])
     pix2pix_inpaint_both.click(fn=both_to_module_inpaint, inputs=[prompt_pix2pix, negative_prompt_pix2pix, gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, negative_prompt_inpaint,img_inpaint, gs_img_inpaint, tabs, tabs_image])
@@ -4419,7 +4701,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
 
 # inpaint inputs
     inpaint_txt2img_sd_input.click(fn=import_to_module, inputs=[prompt_inpaint, negative_prompt_inpaint, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tabs, tabs_image])
-    inpaint_txt2img_kd_input.click(fn=import_to_module, inputs=[prompt_inpaint, negative_prompt_inpaint, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tabs, tabs_image])    
+    inpaint_txt2img_kd_input.click(fn=import_to_module, inputs=[prompt_inpaint, negative_prompt_inpaint, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tabs, tabs_image]) 
+    inpaint_txt2img_lcm_input.click(fn=import_to_module_prompt_only, inputs=[prompt_inpaint, tab_image_num, tab_txt2img_lcm_num], outputs=[prompt_txt2img_lcm, tabs, tabs_image]) 
     inpaint_img2img_input.click(fn=import_to_module, inputs=[prompt_inpaint, negative_prompt_inpaint, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, negative_prompt_img2img, tabs, tabs_image])
     inpaint_pix2pix_input.click(fn=import_to_module, inputs=[prompt_inpaint, negative_prompt_inpaint, tab_image_num, tab_pix2pix_num], outputs=[prompt_pix2pix, negative_prompt_pix2pix, tabs, tabs_image])
     inpaint_controlnet_input.click(fn=import_to_module, inputs=[prompt_inpaint, negative_prompt_inpaint, tab_image_num, tab_controlnet_num], outputs=[prompt_controlnet, negative_prompt_controlnet, tabs, tabs_image])    
@@ -4443,7 +4726,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
 
 # outpaint inputs
     outpaint_txt2img_sd_input.click(fn=import_to_module, inputs=[prompt_outpaint, negative_prompt_outpaint, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tabs, tabs_image])
-    outpaint_txt2img_kd_input.click(fn=import_to_module, inputs=[prompt_outpaint, negative_prompt_outpaint, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tabs, tabs_image])    
+    outpaint_txt2img_kd_input.click(fn=import_to_module, inputs=[prompt_outpaint, negative_prompt_outpaint, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tabs, tabs_image]) 
+    outpaint_txt2img_lcm_input.click(fn=import_to_module_prompt_only, inputs=[prompt_outpaint, tab_image_num, tab_txt2img_lcm_num], outputs=[prompt_txt2img_lcm, tabs, tabs_image]) 
     outpaint_img2img_input.click(fn=import_to_module, inputs=[prompt_outpaint, negative_prompt_outpaint, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, negative_prompt_img2img, tabs, tabs_image])
     outpaint_pix2pix_input.click(fn=import_to_module, inputs=[prompt_outpaint, negative_prompt_outpaint, tab_image_num, tab_pix2pix_num], outputs=[prompt_pix2pix, negative_prompt_pix2pix, tabs, tabs_image])
     outpaint_controlnet_input.click(fn=import_to_module, inputs=[prompt_outpaint, negative_prompt_outpaint, tab_image_num, tab_controlnet_num], outputs=[prompt_controlnet, negative_prompt_controlnet, tabs, tabs_image])    
@@ -4468,6 +4752,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
 # controlnet inputs
     controlnet_txt2img_sd_input.click(fn=import_to_module, inputs=[prompt_controlnet, negative_prompt_controlnet, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tabs, tabs_image])
     controlnet_txt2img_kd_input.click(fn=import_to_module, inputs=[prompt_controlnet, negative_prompt_controlnet, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tabs, tabs_image])
+    controlnet_txt2img_lcm_input.click(fn=import_to_module_prompt_only, inputs=[prompt_controlnet, tab_image_num, tab_txt2img_lcm_num], outputs=[prompt_txt2img_lcm, tabs, tabs_image])
     controlnet_img2img_input.click(fn=import_to_module, inputs=[prompt_controlnet, negative_prompt_controlnet, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, negative_prompt_img2img, tabs, tabs_image])
     controlnet_pix2pix_input.click(fn=import_to_module, inputs=[prompt_controlnet, negative_prompt_controlnet, tab_image_num, tab_pix2pix_num], outputs=[prompt_pix2pix, negative_prompt_pix2pix, tabs, tabs_image])
     controlnet_inpaint_input.click(fn=import_to_module, inputs=[prompt_controlnet, negative_prompt_controlnet, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, negative_prompt_inpaint, tabs, tabs_image])
@@ -4527,16 +4812,18 @@ with gr.Blocks(theme=theme_gradio) as demo:
 
 # Modelscope inputs    
     txt2vid_ms_txt2vid_ze_input.click(fn=import_to_module_video, inputs=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze, tabs, tabs_video])
-    txt2vid_ms_txt2img_sd_input.click(fn=import_to_module_video, inputs=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tabs, tabs_image])
-    txt2vid_ms_txt2img_kd_input.click(fn=import_to_module_video, inputs=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tabs, tabs_image])
+    txt2vid_ms_txt2img_sd_input.click(fn=import_to_module, inputs=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tabs, tabs_image])
+    txt2vid_ms_txt2img_kd_input.click(fn=import_to_module, inputs=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tabs, tabs_image])
+    txt2vid_ms_txt2img_lcm_input.click(fn=import_to_module_prompt_only, inputs=[prompt_txt2vid_ms, tab_image_num, tab_txt2img_lcm_num], outputs=[prompt_txt2img_lcm, tabs, tabs_image])
 
 # Text2Video-Zero outputs
     txt2vid_ze_vid2vid_ze.click(fn=send_to_module_video, inputs=[out_txt2vid_ze, tab_video_num, tab_vid2vid_ze_num], outputs=[vid_vid2vid_ze, tabs, tabs_video])
 
 # Text2Video-Zero inputs    
     txt2vid_ze_txt2vid_ms_input.click(fn=import_to_module_video, inputs=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms, tabs, tabs_video])
-    txt2vid_ze_txt2img_sd_input.click(fn=import_to_module_video, inputs=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tabs, tabs_image])    
-    txt2vid_ze_txt2img_kd_input.click(fn=import_to_module_video, inputs=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tabs, tabs_image])
+    txt2vid_ze_txt2img_sd_input.click(fn=import_to_module, inputs=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tabs, tabs_image])    
+    txt2vid_ze_txt2img_kd_input.click(fn=import_to_module, inputs=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tabs, tabs_image])
+    txt2vid_ze_txt2img_lcm_input.click(fn=import_to_module_prompt_only, inputs=[prompt_txt2vid_ze, tab_image_num, tab_txt2img_lcm_num], outputs=[prompt_txt2img_lcm, tabs, tabs_image])
 
 # Video Instruct-pix2pix inputs
     vid2vid_ze_pix2pix.click(fn=import_to_module, inputs=[prompt_vid2vid_ze, negative_prompt_vid2vid_ze, tab_image_num, tab_pix2pix_num], outputs=[prompt_pix2pix, negative_prompt_pix2pix, tabs, tabs_image]) 
