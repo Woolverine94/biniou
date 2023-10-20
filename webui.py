@@ -505,7 +505,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                             show_copy_button=True, 
                             interactive=True,
                             bubble_full_width = False,
-                            avatar_images = (None, "./images/biniou_64.png"),
+                            avatar_images = ("./images/avatar_cat_64.png", "./images/biniou_64.png"),
                         )
                         last_reply_llamacpp = gr.Textbox(value="", visible=False)                        
                     with gr.Row():
