@@ -18,9 +18,13 @@
 
 ## Updates
   * 🆕 **2023-10-20** : 🔥 ***New module : LCM (Latent consistency model).*** 🔥 LCM is a brand new way of generating image contents in a very efficient and fast way (default setting uses only 4 steps for inference). <br/>
+
   * 🆕 **2023-10-17** : New Chatbot feature : prompt template setting. Refers to each Model page to know what to use. Don't modify if you use the default model.<br/>
+
   * 🆕 **2023-10-16** : New Chatbot UI.<br/>
+
   * 🆕 **2023-10-15** : ***New module : Outpaint.*** Create a border around an input image and inpaint it with Stable Diffusion.<br/>
+
   * 🆕 **2023-10-14** : *New feature : Save/load favorite settings for modules.* Current behavior is to load defaults settings at startup and let user choice to save/load favorite settings for each modules.<br/>
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
@@ -79,7 +83,7 @@
 * **Other features**
   - Communication between modules : send an output as an input to another module
   - Change your model by a simple dropdown menu or download and add it manually 
-  - Based on 🤗 Huggingface and gradio
+  - Powered by [🤗 Huggingface](https://huggingface.co/) and [gradio](https://www.gradio.app/)
   - Cross platform : Linux, Windows 10/11 and macOS(experimental, via homebrew)
   - Convenient Dockerfile for cloud instances
 
@@ -207,7 +211,7 @@ docker build -t biniou https://github.com/Woolverine94/biniou.git
  
   2. **Launch** the container : 
 ```bash
-docker run -it -p 7860:7860 \
+docker run -it --restart=always -p 7860:7860 \
 -v biniou_outputs:/home/biniou/biniou/outputs \
 -v biniou_models:/home/biniou/biniou/models \
 -v biniou_cache:/home/biniou/.cache/huggingface \
@@ -219,7 +223,7 @@ biniou:latest
 [https://127.0.0.1:7860](https://127.0.0.1:7860) or [https://127.0.0.1:7860/?__theme=dark](https://127.0.0.1:7860/?__theme=dark) for dark theme (recommended) <br/>
 ... or replace 127.0.0.1 by ip of your container
 
-><u>Note :</u> to save storage space, the previous container launch command defines common shared volumes for all biniou containers.<br/>
+><u>Note :</u> to save storage space, the previous container launch command defines common shared volumes for all biniou containers and ensure that the container auto-restart in case of OOM crash. Remove `--restart` and `-v` arguments if you didn't want these behaviors.<br/>
 
 ---
 
