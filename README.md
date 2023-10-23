@@ -17,6 +17,7 @@
 ---
 
 ## Updates
+  * 🆕 **2023-10-23** : 🔥 ***New category (3d) and new module : txt2shape.*** 🔥 Using OpenAI Shap-E, the new module txt2shape let you generate 3D animated gifs and 3D models (.glb format) from a single prompt. <br/>
   * 🆕 **2023-10-20** : 🔥 ***New module : LCM (Latent consistency model).*** 🔥 LCM is a brand new way of generating image contents in a very efficient and fast way (default setting uses only 4 steps for inference). <br/>
 
   * 🆕 **2023-10-17** : *New Chatbot feature : prompt template setting*. Refers to each Model page to know what to use. Don't modify if you use the default model.<br/>
@@ -25,7 +26,7 @@
 
   * 🆕 **2023-10-15** : ***New module : Outpaint.*** Create a border around an input image and inpaint it with Stable Diffusion.<br/>
 
-  * 🆕 **2023-10-14** : *New feature : Save/load favorite settings for modules.* Current behavior is to load defaults settings at startup and let user choice to save/load favorite settings for each modules.<br/>
+  * **2023-10-14** : *New feature : Save/load favorite settings for modules.* Current behavior is to load defaults settings at startup and let user choice to save/load favorite settings for each modules.<br/>
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
