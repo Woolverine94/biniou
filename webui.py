@@ -377,9 +377,9 @@ def hide_download_file_txt2shape():
 
 def change_output_type_txt2shape(output_type_txt2shape):
     if output_type_txt2shape == "gif" :
-        return out_txt2shape.update(visible=True), mesh_out_txt2shape.update(visible=False), True, btn_txt2shape_gif.update(visible=True), btn_txt2shape_mesh.update(visible=False), download_btn_txt2shape_gif.update(visible=True), download_btn_txt2shape_gif.update(visible=False)
+        return out_txt2shape.update(visible=True), mesh_out_txt2shape.update(visible=False), True, btn_txt2shape_gif.update(visible=True), btn_txt2shape_mesh.update(visible=False), download_btn_txt2shape_gif.update(visible=True), download_btn_txt2shape_gif.update(visible=False), download_file_txt2shape.update(visible=False)
     elif output_type_txt2shape == "mesh" :
-        return out_txt2shape.update(visible=False), mesh_out_txt2shape.update(visible=True), False, btn_txt2shape_gif.update(visible=False), btn_txt2shape_mesh.update(visible=True), download_btn_txt2shape_gif.update(visible=False), download_btn_txt2shape_gif.update(visible=True)
+        return out_txt2shape.update(visible=False), mesh_out_txt2shape.update(visible=True), False, btn_txt2shape_gif.update(visible=False), btn_txt2shape_mesh.update(visible=True), download_btn_txt2shape_gif.update(visible=False), download_btn_txt2shape_gif.update(visible=True), download_file_txt2shape.update(visible=False)
 
 def read_ini_txt2shape(module) :
     content = read_ini(module)
@@ -4473,13 +4473,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
 # 3d
         with gr.TabItem("3d 🧊", id=5) as tab_3d:
             with gr.Tabs() as tabs_3d:
-# LCM
-                if ram_size() >= 16 :
-                    titletab_txt2shape = "txt2shape 🧊"
-                else :
-                    titletab_txt2shape = "txt2shape ⛔"
-
-                with gr.TabItem(titletab_txt2shape, id=51) as tab_txt2shape:
+# txt2shape
+                with gr.TabItem("Shap-E txt2shape 🧊", id=51) as tab_txt2shape:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -4661,6 +4656,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                     btn_txt2shape_mesh, 
                                     download_btn_txt2shape_gif, 
                                     download_btn_txt2shape_mesh,
+                                    download_file_txt2shape,
                                     ]
                             ) 
                     with gr.Accordion("Send ...", open=False):
