@@ -31,6 +31,7 @@ from ressources.bark import *
 from ressources.txt2vid_ms import *
 from ressources.txt2vid_ze import *
 from ressources.vid2vid_ze import *
+from ressources.txt2shape import *
 
 tmp_biniou="./.tmp"
 if os.path.exists(tmp_biniou) :
@@ -192,8 +193,8 @@ def zip_download_file_txt2img_sd(content):
 def hide_download_file_txt2img_sd():
     return download_file_txt2img_sd.update(visible=False)
     
-def update_preview_txt2img_sd(preview):
-    return out_txt2img_sd.update(preview)     
+# def update_preview_txt2img_sd(preview):
+#     return out_txt2img_sd.update(preview)     
 
 def read_ini_txt2img_sd(module) :
     content = read_ini(module)
@@ -360,6 +361,29 @@ def read_ini_txt2vid_ze(module) :
 def read_ini_vid2vid_ze(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), float(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), int(content[9]), int(content[10]), int(content[11]), bool(int(content[12])), float(content[13])
+
+## Fonctions spécifiques à txt2shape
+def zip_download_file_txt2shape(content):
+    savename = zipper(content)
+    return savename, download_file_txt2shape.update(visible=True) 
+    
+## Fonctions spécifiques à txt2shape
+def zip_mesh_txt2shape(content):
+    savename = zipper_file(content)
+    return savename, download_file_txt2shape.update(visible=True)     
+
+def hide_download_file_txt2shape():
+    return download_file_txt2shape.update(visible=False)
+
+def change_output_type_txt2shape(output_type_txt2shape):
+    if output_type_txt2shape == "gif" :
+        return out_txt2shape.update(visible=True), mesh_out_txt2shape.update(visible=False), True, btn_txt2shape_gif.update(visible=True), btn_txt2shape_mesh.update(visible=False), download_btn_txt2shape_gif.update(visible=True), download_btn_txt2shape_gif.update(visible=False)
+    elif output_type_txt2shape == "mesh" :
+        return out_txt2shape.update(visible=False), mesh_out_txt2shape.update(visible=True), False, btn_txt2shape_gif.update(visible=False), btn_txt2shape_mesh.update(visible=True), download_btn_txt2shape_gif.update(visible=False), download_btn_txt2shape_gif.update(visible=True)
+
+def read_ini_txt2shape(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7])
 
 color_label = "#7B43EE"
 color_label_button = "#4361ee"
@@ -3890,7 +3914,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gr.HTML(value='... both to ...')                                    
 # Video
         with gr.TabItem("Video 🎬", id=4) as tab_video:
-            with gr.Tabs() as tabs_video:           
+            with gr.Tabs() as tabs_video:
 # Modelscope            
                 if ram_size() >= 16 :
                     titletab_txt2vid_ms = "Modelscope 📼"
@@ -4446,35 +4470,273 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 with gr.Box():                                
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
+# 3d
+        with gr.TabItem("3d 🧊", id=5) as tab_3d:
+            with gr.Tabs() as tabs_3d:
+# LCM
+                if ram_size() >= 16 :
+                    titletab_txt2shape = "txt2shape 🧊"
+                else :
+                    titletab_txt2shape = "txt2shape ⛔"
+
+                with gr.TabItem(titletab_txt2shape, id=51) as tab_txt2shape:
+                    with gr.Accordion("About", open=False):                
+                        with gr.Box():                       
+                            gr.HTML(
+                                """
+                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
+                                <b>Module : </b>txt2shape</br>
+                                <b>Function : </b>Generate 3d animated gif or 3d mesh object from a prompt using <a href='https://github.com/openai/shap-e' target='_blank'>Shap-E</a></br>
+                                <b>Input(s) : </b>Prompt</br>
+                                <b>Output(s) : </b>Animated gif or mesh object</br>
+                                <b>HF model page : </b>
+                                <a href='https://huggingface.co/openai/shap-e' target='_blank'>openai/shap-e</a>
+                                </br>
+                                """
+                            )
+                        with gr.Box():
+                            gr.HTML(
+                                """
+                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                <div style='text-align: justified'>
+                                <b>Usage :</b></br>
+                                - Fill the <b>prompt</b> with what you want to see in your output</br>
+                                - Select the desired output type : animated Gif or 3D Model (mesh). 
+                                - (optional) Modify the settings to generate several images in a single run or change dimensions of the outputs</br>
+                                - Click the <b>Generate</b> button</br>
+                                - After generation, generated images or 3D models are displayed in the output field. Save them individually or create a downloadable zip of the whole gallery.
+                                </br>
+                                """
+                            ) 
+                    with gr.Accordion("Settings", open=False):
+                        with gr.Row():
+                            with gr.Column():
+                                model_txt2shape = gr.Dropdown(choices=model_list_txt2shape, value=model_list_txt2shape[0], label="Model", info="Choose model to use for inference")
+                            with gr.Column():
+                                num_inference_step_txt2shape = gr.Slider(1, 100, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                            with gr.Column():
+                                sampler_txt2shape = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[11], label="Sampler", info="Sampler to use for inference", interactive=False)
+                        with gr.Row():
+                            with gr.Column():
+                                guidance_scale_txt2shape = gr.Slider(0.1, 50.0, step=0.1, value=15.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                            with gr.Column():
+                                num_images_per_prompt_txt2shape = gr.Slider(minimum=1, maximum=4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                            with gr.Column():
+                                num_prompt_txt2shape = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                        with gr.Row():
+                            with gr.Column():
+                                frame_size_txt2shape = gr.Slider(0, 1280, step=8, value=64, label="Frame size", info="Size of the outputs")
+                            with gr.Column():
+                                seed_txt2shape = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility", interactive=False) 
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_txt2shape = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_txt2shape = gr.Textbox(value="txt2shape", visible=False, interactive=False)
+                                load_ini_btn_txt2shape = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_txt2shape.value) else False)
+                                save_ini_btn_txt2shape.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_txt2shape, 
+                                        model_txt2shape, 
+                                        num_inference_step_txt2shape,
+                                        sampler_txt2shape,
+                                        guidance_scale_txt2shape,
+                                        num_images_per_prompt_txt2shape,
+                                        num_prompt_txt2shape,
+                                        frame_size_txt2shape,
+                                        seed_txt2shape,
+                                        ]
+                                    )
+                                save_ini_btn_txt2shape.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_txt2shape.click(fn=lambda: load_ini_btn_txt2shape.update(interactive=True), outputs=load_ini_btn_txt2shape)
+                                load_ini_btn_txt2shape.click(
+                                    fn=read_ini_txt2shape, 
+                                    inputs=module_name_txt2shape, 
+                                    outputs = [
+                                        model_txt2shape, 
+                                        num_inference_step_txt2shape,
+                                        sampler_txt2shape,
+                                        guidance_scale_txt2shape,
+                                        num_images_per_prompt_txt2shape,
+                                        num_prompt_txt2shape,
+                                        frame_size_txt2shape,
+                                        seed_txt2shape,
+                                        ]
+                                    )
+                                load_ini_btn_txt2shape.click(fn=lambda: gr.Info('Settings loaded'))
+                    with gr.Row():
+                        with gr.Column():
+                            with gr.Row():
+                                with gr.Column():                        
+                                    prompt_txt2shape = gr.Textbox(lines=12, max_lines=12, label="Prompt", info="Describe what you want in your image", placeholder="a firecracker")
+                            with gr.Row():
+                                with gr.Column():
+                                    output_type_txt2shape = gr.Radio(choices=["gif", "mesh"], value="gif", label="Output type", info="Choose output type")
+                        with gr.Column(scale=2):
+                            out_txt2shape = gr.Gallery(
+                                label="Generated images",
+                                show_label=True,
+                                elem_id="gallery",
+                                columns=3,
+                                height=400,
+                                visible=True
+                            )    
+                            mesh_out_txt2shape = gr.Model3D(
+                                label="Generated object",
+#                                clear_color=[255.0, 255.0, 255.0, 255.0],
+                                height=400,
+                                zoom_speed=3,
+                                visible=False,
+#                                interactive=False,
+                            )    
+                            bool_output_type_txt2shape = gr.Checkbox(value=True, visible=False, interactive=False) 
+                            gs_out_txt2shape = gr.State()
+                            sel_out_txt2shape = gr.Number(precision=0, visible=False)
+                            out_txt2shape.select(get_select_index, None, sel_out_txt2shape)
+                            gs_mesh_out_txt2shape = gr.Textbox(visible=False)
+                            with gr.Row():
+                                with gr.Column():
+                                    download_btn_txt2shape_gif = gr.Button("Zip gallery 💾", visible=True) 
+                                    download_btn_txt2shape_mesh = gr.Button("Zip model 💾", visible=False) 
+                                with gr.Column():
+                                    download_file_txt2shape = gr.File(label="Output", height=30, interactive=False, visible=False)
+                                    download_btn_txt2shape_gif.click(fn=zip_download_file_txt2shape, inputs=[out_txt2shape], outputs=[download_file_txt2shape, download_file_txt2shape]) 
+                                    download_btn_txt2shape_mesh.click(fn=zip_mesh_txt2shape, inputs=[gs_mesh_out_txt2shape], outputs=[download_file_txt2shape, download_file_txt2shape]) 
+                    with gr.Row():
+                        with gr.Column():
+                            btn_txt2shape_gif = gr.Button("Generate 🚀", variant="primary", visible=True)
+                            btn_txt2shape_mesh = gr.Button("Generate 🚀", variant="primary", visible=False) 
+                        with gr.Column():
+                            btn_txt2shape_clear_input = gr.ClearButton(components=[prompt_txt2shape], value="Clear inputs 🧹")
+                        with gr.Column():                            
+                            btn_txt2shape_clear_output = gr.ClearButton(components=[out_txt2shape, gs_out_txt2shape, mesh_out_txt2shape, gs_mesh_out_txt2shape], value="Clear outputs 🧹")   
+                            btn_txt2shape_gif.click(fn=hide_download_file_txt2shape, inputs=None, outputs=download_file_txt2shape)   
+                            btn_txt2shape_gif.click(
+                            fn=image_txt2shape, 
+                            inputs=[
+                                model_txt2shape,
+                                sampler_txt2shape,
+                                prompt_txt2shape,
+                                num_images_per_prompt_txt2shape,
+                                num_prompt_txt2shape,
+                                guidance_scale_txt2shape,
+                                num_inference_step_txt2shape, 
+                                frame_size_txt2shape,
+                                seed_txt2shape,
+                                output_type_txt2shape, 
+                                nsfw_filter,
+                                ],
+                                outputs=[out_txt2shape, gs_out_txt2shape],
+                                show_progress="full",
+                            )
+                            btn_txt2shape_mesh.click(fn=hide_download_file_txt2shape, inputs=None, outputs=download_file_txt2shape) 
+                            btn_txt2shape_mesh.click(
+                            fn=image_txt2shape, 
+                            inputs=[
+                                model_txt2shape,
+                                sampler_txt2shape,
+                                prompt_txt2shape,
+                                num_images_per_prompt_txt2shape,
+                                num_prompt_txt2shape,
+                                guidance_scale_txt2shape,
+                                num_inference_step_txt2shape, 
+                                frame_size_txt2shape,
+                                seed_txt2shape,
+                                output_type_txt2shape, 
+                                nsfw_filter,
+                                ],
+                                outputs=[mesh_out_txt2shape, gs_mesh_out_txt2shape],
+                                show_progress="full",
+                            )
+
+                            output_type_txt2shape.change(
+                                fn=change_output_type_txt2shape, 
+                                inputs=output_type_txt2shape, 
+                                outputs=[
+                                    out_txt2shape, 
+                                    mesh_out_txt2shape, 
+                                    bool_output_type_txt2shape, 
+                                    btn_txt2shape_gif, 
+                                    btn_txt2shape_mesh, 
+                                    download_btn_txt2shape_gif, 
+                                    download_btn_txt2shape_mesh,
+                                    ]
+                            ) 
+                    with gr.Accordion("Send ...", open=False):
+                        with gr.Row():
+                            with gr.Column():
+                                with gr.Box():                                
+                                    with gr.Group():
+                                        gr.HTML(value='... selected output to ...')
+#                                        gr.HTML(value='... text module ...')                                        
+#                                        txt2shape_img2txt_git = gr.Button("🖼️ >> GIT Captioning")      
+#                                        gr.HTML(value='... image module ...')
+#                                        txt2shape_img2img = gr.Button("🖼️ >> img2img")
+#                                        txt2shape_img2var = gr.Button("🖼️ >> Image variation")
+#                                        txt2shape_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
+#                                        txt2shape_inpaint = gr.Button("🖼️ >> inpaint")
+#                                        txt2shape_outpaint = gr.Button("🖼️ >> outpaint")
+#                                        txt2shape_controlnet = gr.Button("🖼️ >> ControlNet")
+#                                        txt2shape_faceswap = gr.Button("🖼️ >> Faceswap target")
+#                                        txt2shape_resrgan = gr.Button("🖼️ >> Real ESRGAN")
+#                                        txt2shape_gfpgan = gr.Button("🖼️ >> GFPGAN")
+                            with gr.Column():
+                                with gr.Box():
+                                    with gr.Group():
+                                        gr.HTML(value='... input prompt(s) to ...')
+#                                        gr.HTML(value='... image module ...')
+#                                        txt2shape_txt2img_sd_input = gr.Button("✍️ >> Stable Diffusion")
+#                                        txt2shape_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")
+#                                        txt2shape_img2img_input = gr.Button("✍️ >> img2img")
+#                                        txt2shape_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
+#                                        txt2shape_inpaint_input = gr.Button("✍️ >> inpaint")
+#                                        txt2shape_controlnet_input = gr.Button("✍️ >> ControlNet")
+#                                        gr.HTML(value='... video module ...')
+#                                        txt2shape_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
+#                                        txt2shape_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")
+                            with gr.Column():
+                                with gr.Box():                                
+                                    with gr.Group():
+                                        gr.HTML(value='... both to ...')
+#                                        gr.HTML(value='... image module ...')
+#                                        txt2shape_img2img_both = gr.Button("🖼️ + ✍️ >> img2img")
+#                                        txt2shape_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
+#                                        txt2shape_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
+#                                        txt2shape_controlnet_both = gr.Button("🖼️ + ✍️️ >> ControlNet")
+
+
 
     tab_text_num = gr.Number(value=tab_text.id, precision=0, visible=False)
     tab_image_num = gr.Number(value=tab_image.id, precision=0, visible=False)
     tab_audio_num = gr.Number(value=tab_audio.id, precision=0, visible=False)    
     tab_video_num = gr.Number(value=tab_video.id, precision=0, visible=False)
+    tab_3d_num = gr.Number(value=tab_3d.id, precision=0, visible=False)    
 
     tab_llamacpp_num = gr.Number(value=tab_llamacpp.id, precision=0, visible=False)    
-    tab_img2txt_git_num = gr.Number(value=tab_img2txt_git.id, precision=0, visible=False)    
-    tab_whisper_num = gr.Number(value=tab_whisper.id, precision=0, visible=False)        
-    tab_nllb_num = gr.Number(value=tab_nllb.id, precision=0, visible=False)    
-    tab_txt2img_sd_num = gr.Number(value=tab_txt2img_sd.id, precision=0, visible=False)
-    tab_txt2img_kd_num = gr.Number(value=tab_txt2img_kd.id, precision=0, visible=False)
+    tab_img2txt_git_num = gr.Number(value=tab_img2txt_git.id, precision=0, visible=False) 
+    tab_whisper_num = gr.Number(value=tab_whisper.id, precision=0, visible=False) 
+    tab_nllb_num = gr.Number(value=tab_nllb.id, precision=0, visible=False) 
+    tab_txt2img_sd_num = gr.Number(value=tab_txt2img_sd.id, precision=0, visible=False) 
+    tab_txt2img_kd_num = gr.Number(value=tab_txt2img_kd.id, precision=0, visible=False) 
     tab_txt2img_lcm_num = gr.Number(value=tab_txt2img_lcm.id, precision=0, visible=False) 
-    tab_img2img_num = gr.Number(value=tab_img2img.id, precision=0, visible=False)
-    tab_img2var_num = gr.Number(value=tab_img2var.id, precision=0, visible=False)    
-    tab_pix2pix_num = gr.Number(value=tab_pix2pix.id, precision=0, visible=False)
-    tab_inpaint_num = gr.Number(value=tab_inpaint.id, precision=0, visible=False)
-    tab_outpaint_num = gr.Number(value=tab_outpaint.id, precision=0, visible=False)    
-    tab_controlnet_num = gr.Number(value=tab_controlnet.id, precision=0, visible=False)    
-    tab_faceswap_num = gr.Number(value=tab_faceswap.id, precision=0, visible=False)
-    tab_resrgan_num = gr.Number(value=tab_resrgan.id, precision=0, visible=False)
-    tab_gfpgan_num = gr.Number(value=tab_gfpgan.id, precision=0, visible=False)
-    tab_musicgen_num = gr.Number(value=tab_musicgen.id, precision=0, visible=False)
-    tab_audiogen_num = gr.Number(value=tab_audiogen.id, precision=0, visible=False)
-    tab_harmonai_num = gr.Number(value=tab_harmonai.id, precision=0, visible=False)
-    tab_bark_num = gr.Number(value=tab_bark.id, precision=0, visible=False)
-    tab_txt2vid_ms_num = gr.Number(value=tab_txt2vid_ms.id, precision=0, visible=False)
-    tab_txt2vid_ze_num = gr.Number(value=tab_txt2vid_ze.id, precision=0, visible=False)    
-    tab_vid2vid_ze_num = gr.Number(value=tab_vid2vid_ze.id, precision=0, visible=False)        
+    tab_img2img_num = gr.Number(value=tab_img2img.id, precision=0, visible=False) 
+    tab_img2var_num = gr.Number(value=tab_img2var.id, precision=0, visible=False) 
+    tab_pix2pix_num = gr.Number(value=tab_pix2pix.id, precision=0, visible=False) 
+    tab_inpaint_num = gr.Number(value=tab_inpaint.id, precision=0, visible=False) 
+    tab_outpaint_num = gr.Number(value=tab_outpaint.id, precision=0, visible=False) 
+    tab_controlnet_num = gr.Number(value=tab_controlnet.id, precision=0, visible=False) 
+    tab_faceswap_num = gr.Number(value=tab_faceswap.id, precision=0, visible=False) 
+    tab_resrgan_num = gr.Number(value=tab_resrgan.id, precision=0, visible=False) 
+    tab_gfpgan_num = gr.Number(value=tab_gfpgan.id, precision=0, visible=False) 
+    tab_musicgen_num = gr.Number(value=tab_musicgen.id, precision=0, visible=False) 
+    tab_audiogen_num = gr.Number(value=tab_audiogen.id, precision=0, visible=False) 
+    tab_harmonai_num = gr.Number(value=tab_harmonai.id, precision=0, visible=False) 
+    tab_bark_num = gr.Number(value=tab_bark.id, precision=0, visible=False) 
+    tab_txt2vid_ms_num = gr.Number(value=tab_txt2vid_ms.id, precision=0, visible=False) 
+    tab_txt2vid_ze_num = gr.Number(value=tab_txt2vid_ze.id, precision=0, visible=False) 
+    tab_vid2vid_ze_num = gr.Number(value=tab_vid2vid_ze.id, precision=0, visible=False) 
+    tab_txt2shape_num = gr.Number(value=tab_txt2shape.id, precision=0, visible=False) 
 
 # Llamacpp outputs   
     llamacpp_nllb.click(fn=send_text_to_module_text, inputs=[last_reply_llamacpp, tab_text_num, tab_nllb_num], outputs=[prompt_nllb, tabs, tabs_text])

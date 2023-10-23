@@ -63,6 +63,15 @@ def zipper(content):
             myzip.write(file["name"], f"{idx}_"+ file_name.split("/")[-1])
     return savename
 
+def zipper_file(content):
+    timestamp = time.time()
+    savename = f"./.tmp/{timestamp}.zip"
+    with zf.ZipFile(savename, 'w') as myzip:
+        file_name=content.replace("\\", "/")
+        myzip.write(content, file_name.split("/")[-1])
+    return savename
+
+
 def correct_size(width, height, max_size) :
     if (width>height) :
         dim_max = width
