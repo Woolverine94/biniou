@@ -402,7 +402,6 @@ def hide_download_file_img2shape():
     return download_file_img2shape.update(visible=False)
 
 def change_output_type_img2shape(output_type_img2shape, out_size_img2shape, mesh_out_size_img2shape):
-    print(out_size_img2shape, type(out_size_img2shape), mesh_out_size_img2shape, type(mesh_out_size_img2shape))
     if output_type_img2shape == "gif" :
         return out_img2shape.update(visible=True), mesh_out_img2shape.update(visible=False), True, btn_img2shape_gif.update(visible=True), btn_img2shape_mesh.update(visible=False), download_btn_img2shape_gif.update(visible=True), download_btn_img2shape_gif.update(visible=False), download_file_img2shape.update(visible=False), frame_size_img2shape.update(value=out_size_img2shape)
     elif output_type_img2shape == "mesh" :
