@@ -32,6 +32,7 @@ from ressources.txt2vid_ms import *
 from ressources.txt2vid_ze import *
 from ressources.vid2vid_ze import *
 from ressources.txt2shape import *
+from ressources.img2shape import *
 
 tmp_biniou="./.tmp"
 if os.path.exists(tmp_biniou) :
@@ -81,8 +82,12 @@ def send_to_module_text(content, index, numtab, numtab_item):
     index = int(index)
     return content[index], gr.Tabs.update(selected=numtab), tabs_text.update(selected=numtab_item)    
     
-def send_to_module_video (content, numtab, numtab_item) : 
+def send_to_module_video(content, numtab, numtab_item) : 
 	return content, gr.Tabs.update(selected=numtab), tabs_video.update(selected=numtab_item)
+
+def send_to_module_3d(content, index, numtab, numtab_item) :
+    index = int(index)
+    return content[index], gr.Tabs.update(selected=numtab), tabs_3d.update(selected=numtab_item)
 
 def send_text_to_module_image (prompt, numtab, numtab_item):
     return prompt, gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item)
@@ -367,7 +372,6 @@ def zip_download_file_txt2shape(content):
     savename = zipper(content)
     return savename, download_file_txt2shape.update(visible=True) 
     
-## Fonctions spécifiques à txt2shape
 def zip_mesh_txt2shape(content):
     savename = zipper_file(content)
     return savename, download_file_txt2shape.update(visible=True)     
@@ -375,13 +379,36 @@ def zip_mesh_txt2shape(content):
 def hide_download_file_txt2shape():
     return download_file_txt2shape.update(visible=False)
 
-def change_output_type_txt2shape(output_type_txt2shape):
+def change_output_type_txt2shape(output_type_txt2shape, out_size_txt2shape, mesh_out_size_txt2shape):
     if output_type_txt2shape == "gif" :
-        return out_txt2shape.update(visible=True), mesh_out_txt2shape.update(visible=False), True, btn_txt2shape_gif.update(visible=True), btn_txt2shape_mesh.update(visible=False), download_btn_txt2shape_gif.update(visible=True), download_btn_txt2shape_gif.update(visible=False), download_file_txt2shape.update(visible=False)
+        return out_txt2shape.update(visible=True), mesh_out_txt2shape.update(visible=False), True, btn_txt2shape_gif.update(visible=True), btn_txt2shape_mesh.update(visible=False), download_btn_txt2shape_gif.update(visible=True), download_btn_txt2shape_gif.update(visible=False), download_file_txt2shape.update(visible=False), frame_size_txt2shape.update(value=out_size_txt2shape)
     elif output_type_txt2shape == "mesh" :
-        return out_txt2shape.update(visible=False), mesh_out_txt2shape.update(visible=True), False, btn_txt2shape_gif.update(visible=False), btn_txt2shape_mesh.update(visible=True), download_btn_txt2shape_gif.update(visible=False), download_btn_txt2shape_gif.update(visible=True), download_file_txt2shape.update(visible=False)
+        return out_txt2shape.update(visible=False), mesh_out_txt2shape.update(visible=True), False, btn_txt2shape_gif.update(visible=False), btn_txt2shape_mesh.update(visible=True), download_btn_txt2shape_gif.update(visible=False), download_btn_txt2shape_gif.update(visible=True), download_file_txt2shape.update(visible=False), frame_size_txt2shape.update(value=mesh_out_size_txt2shape)
 
 def read_ini_txt2shape(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7])
+
+## Fonctions spécifiques à img2shape
+def zip_download_file_img2shape(content):
+    savename = zipper(content)
+    return savename, download_file_img2shape.update(visible=True) 
+
+def zip_mesh_img2shape(content):
+    savename = zipper_file(content)
+    return savename, download_file_img2shape.update(visible=True)     
+
+def hide_download_file_img2shape():
+    return download_file_img2shape.update(visible=False)
+
+def change_output_type_img2shape(output_type_img2shape, out_size_img2shape, mesh_out_size_img2shape):
+    print(out_size_img2shape, type(out_size_img2shape), mesh_out_size_img2shape, type(mesh_out_size_img2shape))
+    if output_type_img2shape == "gif" :
+        return out_img2shape.update(visible=True), mesh_out_img2shape.update(visible=False), True, btn_img2shape_gif.update(visible=True), btn_img2shape_mesh.update(visible=False), download_btn_img2shape_gif.update(visible=True), download_btn_img2shape_gif.update(visible=False), download_file_img2shape.update(visible=False), frame_size_img2shape.update(value=out_size_img2shape)
+    elif output_type_img2shape == "mesh" :
+        return out_img2shape.update(visible=False), mesh_out_img2shape.update(visible=True), False, btn_img2shape_gif.update(visible=False), btn_img2shape_mesh.update(visible=True), download_btn_img2shape_gif.update(visible=False), download_btn_img2shape_gif.update(visible=True), download_file_img2shape.update(visible=False), frame_size_img2shape.update(value=mesh_out_size_img2shape)
+
+def read_ini_img2shape(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7])
 
@@ -929,8 +956,6 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
 
-
-
 # nllb 
                 with gr.TabItem("nllb translation 👥", id=15) as tab_nllb:
                     with gr.Accordion("About", open=False):
@@ -1240,6 +1265,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         txt2img_sd_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         txt2img_sd_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         txt2img_sd_gfpgan = gr.Button("🖼️ >> GFPGAN")
+                                        gr.HTML(value='... 3d module ...') 
+                                        txt2img_sd_img2shape = gr.Button("🖼️ >> Shap-E img2shape")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -1258,11 +1285,11 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 with gr.Box():                                
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
-                                        gr.HTML(value='... image module ...')                                                                            
+                                        gr.HTML(value='... image module ...') 
                                         txt2img_sd_img2img_both = gr.Button("🖼️ + ✍️ >> img2img")
                                         txt2img_sd_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
                                         txt2img_sd_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
-                                        txt2img_sd_controlnet_both = gr.Button("🖼️ + ✍️️ >> ControlNet")                                        
+                                        txt2img_sd_controlnet_both = gr.Button("🖼️ + ✍️️ >> ControlNet") 
 
 # Kandinsky
                 if ram_size() >= 16 :
@@ -1438,6 +1465,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         txt2img_kd_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         txt2img_kd_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         txt2img_kd_gfpgan = gr.Button("🖼️ >> GFPGAN")
+                                        gr.HTML(value='... 3d module ...') 
+                                        txt2img_kd_img2shape = gr.Button("🖼️ >> Shap-E img2shape")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -1637,6 +1666,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         txt2img_lcm_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         txt2img_lcm_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         txt2img_lcm_gfpgan = gr.Button("🖼️ >> GFPGAN")
+                                        gr.HTML(value='... 3d module ...') 
+                                        txt2img_lcm_img2shape = gr.Button("🖼️ >> Shap-E img2shape") 
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -1859,6 +1890,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         img2img_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         img2img_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         img2img_gfpgan = gr.Button("🖼️ >> GFPGAN")
+                                        gr.HTML(value='... 3d module ...') 
+                                        img2img_img2shape = gr.Button("🖼️ >> Shap-E img2shape") 
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -2054,6 +2087,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         img2var_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         img2var_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         img2var_gfpgan = gr.Button("🖼️ >> GFPGAN")
+                                        gr.HTML(value='... 3d module ...') 
+                                        img2var_img2shape = gr.Button("🖼️ >> Shap-E img2shape") 
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -2251,6 +2286,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         pix2pix_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         pix2pix_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         pix2pix_gfpgan = gr.Button("🖼️ >> GFPGAN")
+                                        gr.HTML(value='... 3d module ...') 
+                                        pix2pix_img2shape = gr.Button("🖼️ >> Shap-E img2shape") 
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -2467,6 +2504,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         inpaint_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         inpaint_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         inpaint_gfpgan = gr.Button("🖼️ >> GFPGAN")
+                                        gr.HTML(value='... 3d module ...') 
+                                        inpaint_img2shape = gr.Button("🖼️ >> Shap-E img2shape") 
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -2710,6 +2749,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         outpaint_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         outpaint_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         outpaint_gfpgan = gr.Button("🖼️ >> GFPGAN")
+                                        gr.HTML(value='... 3d module ...') 
+                                        outpaint_img2shape = gr.Button("🖼️ >> Shap-E img2shape") 
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -2984,6 +3025,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         controlnet_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         controlnet_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         controlnet_gfpgan = gr.Button("🖼️ >> GFPGAN")
+                                        gr.HTML(value='... 3d module ...') 
+                                        controlnet_img2shape = gr.Button("🖼️ >> Shap-E img2shape") 
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -3147,6 +3190,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         faceswap_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         faceswap_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         faceswap_gfpgan = gr.Button("🖼️ >> GFPGAN")
+                                        gr.HTML(value='... 3d module ...') 
+                                        faceswap_img2shape = gr.Button("🖼️ >> Shap-E img2shape") 
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -3280,6 +3325,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         resrgan_controlnet = gr.Button("🖼️ >> ControlNet")
                                         resrgan_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         resrgan_gfpgan = gr.Button("🖼️ >> GFPGAN")
+                                        gr.HTML(value='... 3d module ...') 
+                                        resrgan_img2shape = gr.Button("🖼️ >> Shap-E img2shape") 
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -3405,6 +3452,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gfpgan_controlnet = gr.Button("🖼️ >> ControlNet")
                                         gfpgan_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         gfpgan_resrgan = gr.Button("🖼️ >> Real ESRGAN")
+                                        gr.HTML(value='... 3d module ...') 
+                                        gfpgan_img2shape = gr.Button("🖼️ >> Shap-E img2shape") 
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -4496,7 +4545,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 <div style='text-align: justified'>
                                 <b>Usage :</b></br>
                                 - Fill the <b>prompt</b> with what you want to see in your output</br>
-                                - Select the desired output type : animated Gif or 3D Model (mesh). 
+                                - Select the desired output type : animated Gif or 3D Model (mesh)</br> 
                                 - (optional) Modify the settings to generate several images in a single run or change dimensions of the outputs</br>
                                 - Click the <b>Generate</b> button</br>
                                 - After generation, generated images or 3D models are displayed in the output field. Save them individually or create a downloadable zip of the whole gallery.
@@ -4577,14 +4626,16 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 height=400,
                                 visible=True
                             )    
+                            out_size_txt2shape = gr.Number(value=64, visible=False)
                             mesh_out_txt2shape = gr.Model3D(
                                 label="Generated object",
 #                                clear_color=[255.0, 255.0, 255.0, 255.0],
                                 height=400,
-                                zoom_speed=3,
+                                zoom_speed=5,
                                 visible=False,
 #                                interactive=False,
                             )    
+                            mesh_out_size_txt2shape = gr.Number(value=512, visible=False)
                             bool_output_type_txt2shape = gr.Checkbox(value=True, visible=False, interactive=False) 
                             gs_out_txt2shape = gr.State()
                             sel_out_txt2shape = gr.Number(precision=0, visible=False)
@@ -4647,7 +4698,11 @@ with gr.Blocks(theme=theme_gradio) as demo:
 
                             output_type_txt2shape.change(
                                 fn=change_output_type_txt2shape, 
-                                inputs=output_type_txt2shape, 
+                                inputs=[
+                                    output_type_txt2shape, 
+                                    out_size_txt2shape,
+                                    mesh_out_size_txt2shape,
+                                    ],
                                 outputs=[
                                     out_txt2shape, 
                                     mesh_out_txt2shape, 
@@ -4657,6 +4712,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                     download_btn_txt2shape_gif, 
                                     download_btn_txt2shape_mesh,
                                     download_file_txt2shape,
+                                    frame_size_txt2shape,
                                     ]
                             ) 
                     with gr.Accordion("Send ...", open=False):
@@ -4665,51 +4721,235 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 with gr.Box():                                
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
-#                                        gr.HTML(value='... text module ...')                                        
-#                                        txt2shape_img2txt_git = gr.Button("🖼️ >> GIT Captioning")      
-#                                        gr.HTML(value='... image module ...')
-#                                        txt2shape_img2img = gr.Button("🖼️ >> img2img")
-#                                        txt2shape_img2var = gr.Button("🖼️ >> Image variation")
-#                                        txt2shape_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
-#                                        txt2shape_inpaint = gr.Button("🖼️ >> inpaint")
-#                                        txt2shape_outpaint = gr.Button("🖼️ >> outpaint")
-#                                        txt2shape_controlnet = gr.Button("🖼️ >> ControlNet")
-#                                        txt2shape_faceswap = gr.Button("🖼️ >> Faceswap target")
-#                                        txt2shape_resrgan = gr.Button("🖼️ >> Real ESRGAN")
-#                                        txt2shape_gfpgan = gr.Button("🖼️ >> GFPGAN")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... input prompt(s) to ...')
-#                                        gr.HTML(value='... image module ...')
-#                                        txt2shape_txt2img_sd_input = gr.Button("✍️ >> Stable Diffusion")
-#                                        txt2shape_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")
-#                                        txt2shape_img2img_input = gr.Button("✍️ >> img2img")
-#                                        txt2shape_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
-#                                        txt2shape_inpaint_input = gr.Button("✍️ >> inpaint")
-#                                        txt2shape_controlnet_input = gr.Button("✍️ >> ControlNet")
-#                                        gr.HTML(value='... video module ...')
-#                                        txt2shape_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
-#                                        txt2shape_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
-#                                        gr.HTML(value='... image module ...')
-#                                        txt2shape_img2img_both = gr.Button("🖼️ + ✍️ >> img2img")
-#                                        txt2shape_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
-#                                        txt2shape_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
-#                                        txt2shape_controlnet_both = gr.Button("🖼️ + ✍️️ >> ControlNet")
+
+                if ram_size() >= 16 :
+                    titletab_img2shape = "Shap-E img2shape 🧊"
+                else :
+                    titletab_img2shape = "Shap-E img2shape ⛔"
+# img2shape
+                with gr.TabItem(titletab_img2shape, id=52) as tab_img2shape:
+                    with gr.Accordion("About", open=False):                
+                        with gr.Box():                       
+                            gr.HTML(
+                                """
+                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
+                                <b>Module : </b>img2shape</br>
+                                <b>Function : </b>Generate 3d animated gif or 3d mesh object from an imput image using <a href='https://github.com/openai/shap-e' target='_blank'>Shap-E</a></br>
+                                <b>Input(s) : </b>Input image</br>
+                                <b>Output(s) : </b>Animated gif or mesh object</br>
+                                <b>HF model page : </b>
+                                <a href='https://huggingface.co/openai/shap-e-img2img' target='_blank'>openai/shap-e-img2img</a>
+                                </br>
+                                """
+                            )
+                        with gr.Box():
+                            gr.HTML(
+                                """
+                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                <div style='text-align: justified'>
+                                <b>Usage :</b></br>
+                                - Upload or import an image using the <b>Input image</b> field. To achieve good results, objects to create should be on a white backgrounds</br>
+                                - Select the desired output type : animated Gif or 3D Model (mesh)</br>
+                                - (optional) Modify the settings to generate several images in a single run or change dimensions of the outputs</br>
+                                - Click the <b>Generate</b> button</br>
+                                - After generation, generated images or 3D models are displayed in the output field. Save them individually or create a downloadable zip of the whole gallery.
+                                </br>
+                                """
+                            ) 
+                    with gr.Accordion("Settings", open=False):
+                        with gr.Row():
+                            with gr.Column():
+                                model_img2shape = gr.Dropdown(choices=model_list_img2shape, value=model_list_img2shape[0], label="Model", info="Choose model to use for inference")
+                            with gr.Column():
+                                num_inference_step_img2shape = gr.Slider(1, 100, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                            with gr.Column():
+                                sampler_img2shape = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[11], label="Sampler", info="Sampler to use for inference", interactive=False)
+                        with gr.Row():
+                            with gr.Column():
+                                guidance_scale_img2shape = gr.Slider(0.1, 50.0, step=0.1, value=3.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                            with gr.Column():
+                                num_images_per_prompt_img2shape = gr.Slider(minimum=1, maximum=4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                            with gr.Column():
+                                num_prompt_img2shape = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                        with gr.Row():
+                            with gr.Column():
+                                frame_size_img2shape = gr.Slider(0, 1280, step=8, value=64, label="Frame size", info="Size of the outputs")
+                            with gr.Column():
+                                seed_img2shape = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility", interactive=False) 
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_img2shape = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_img2shape = gr.Textbox(value="img2shape", visible=False, interactive=False)
+                                load_ini_btn_img2shape = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_img2shape.value) else False)
+                                save_ini_btn_img2shape.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_img2shape, 
+                                        model_img2shape, 
+                                        num_inference_step_img2shape,
+                                        sampler_img2shape,
+                                        guidance_scale_img2shape,
+                                        num_images_per_prompt_img2shape,
+                                        num_prompt_img2shape,
+                                        frame_size_img2shape,
+                                        seed_img2shape,
+                                        ]
+                                    )
+                                save_ini_btn_img2shape.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_img2shape.click(fn=lambda: load_ini_btn_img2shape.update(interactive=True), outputs=load_ini_btn_img2shape)
+                                load_ini_btn_img2shape.click(
+                                    fn=read_ini_img2shape, 
+                                    inputs=module_name_img2shape, 
+                                    outputs = [
+                                        model_img2shape, 
+                                        num_inference_step_img2shape,
+                                        sampler_img2shape,
+                                        guidance_scale_img2shape,
+                                        num_images_per_prompt_img2shape,
+                                        num_prompt_img2shape,
+                                        frame_size_img2shape,
+                                        seed_img2shape,
+                                        ]
+                                    )
+                                load_ini_btn_img2shape.click(fn=lambda: gr.Info('Settings loaded'))
+                    with gr.Row():
+                        with gr.Column():
+                            with gr.Row():
+                                with gr.Column():                        
+                                    img_img2shape = gr.Image(label="Input image", height=320, type="pil")
+                            with gr.Row():
+                                with gr.Column():
+                                    output_type_img2shape = gr.Radio(choices=["gif", "mesh"], value="gif", label="Output type", info="Choose output type")
+                        with gr.Column(scale=2):
+                            out_img2shape = gr.Gallery(
+                                label="Generated images",
+                                show_label=True,
+                                elem_id="gallery",
+                                columns=3,
+                                height=400,
+                                visible=True
+                            )    
+                            out_size_img2shape = gr.Number(value=64, visible=False)
+                            mesh_out_img2shape = gr.Model3D(
+                                label="Generated object",
+#                                clear_color=[255.0, 255.0, 255.0, 255.0],
+                                height=400,
+                                zoom_speed=5,
+                                visible=False,
+#                                interactive=False,
+                            )    
+                            mesh_out_size_img2shape = gr.Number(value=512, visible=False)
+                            bool_output_type_img2shape = gr.Checkbox(value=True, visible=False, interactive=False) 
+                            gs_out_img2shape = gr.State()
+                            sel_out_img2shape = gr.Number(precision=0, visible=False)
+                            out_img2shape.select(get_select_index, None, sel_out_img2shape)
+                            gs_mesh_out_img2shape = gr.Textbox(visible=False)
+                            with gr.Row():
+                                with gr.Column():
+                                    download_btn_img2shape_gif = gr.Button("Zip gallery 💾", visible=True) 
+                                    download_btn_img2shape_mesh = gr.Button("Zip model 💾", visible=False) 
+                                with gr.Column():
+                                    download_file_img2shape = gr.File(label="Output", height=30, interactive=False, visible=False)
+                                    download_btn_img2shape_gif.click(fn=zip_download_file_img2shape, inputs=[out_img2shape], outputs=[download_file_img2shape, download_file_img2shape]) 
+                                    download_btn_img2shape_mesh.click(fn=zip_mesh_img2shape, inputs=[gs_mesh_out_img2shape], outputs=[download_file_img2shape, download_file_img2shape]) 
+                    with gr.Row():
+                        with gr.Column():
+                            btn_img2shape_gif = gr.Button("Generate 🚀", variant="primary", visible=True)
+                            btn_img2shape_mesh = gr.Button("Generate 🚀", variant="primary", visible=False) 
+                        with gr.Column():
+                            btn_img2shape_clear_input = gr.ClearButton(components=[img_img2shape], value="Clear inputs 🧹")
+                        with gr.Column():                            
+                            btn_img2shape_clear_output = gr.ClearButton(components=[out_img2shape, gs_out_img2shape, mesh_out_img2shape, gs_mesh_out_img2shape], value="Clear outputs 🧹")   
+                            btn_img2shape_gif.click(fn=hide_download_file_img2shape, inputs=None, outputs=download_file_img2shape)   
+                            btn_img2shape_gif.click(
+                            fn=image_img2shape, 
+                            inputs=[
+                                model_img2shape,
+                                sampler_img2shape,
+                                img_img2shape,
+                                num_images_per_prompt_img2shape,
+                                num_prompt_img2shape,
+                                guidance_scale_img2shape,
+                                num_inference_step_img2shape, 
+                                frame_size_img2shape,
+                                seed_img2shape,
+                                output_type_img2shape, 
+                                nsfw_filter,
+                                ],
+                                outputs=[out_img2shape, gs_out_img2shape],
+                                show_progress="full",
+                            )
+                            btn_img2shape_mesh.click(fn=hide_download_file_img2shape, inputs=None, outputs=download_file_img2shape) 
+                            btn_img2shape_mesh.click(
+                            fn=image_img2shape, 
+                            inputs=[
+                                model_img2shape,
+                                sampler_img2shape,
+                                img_img2shape,
+                                num_images_per_prompt_img2shape,
+                                num_prompt_img2shape,
+                                guidance_scale_img2shape,
+                                num_inference_step_img2shape, 
+                                frame_size_img2shape,
+                                seed_img2shape,
+                                output_type_img2shape, 
+                                nsfw_filter,
+                            ],
+                            outputs=[mesh_out_img2shape, gs_mesh_out_img2shape],
+                            show_progress="full",
+                            )
+                            output_type_img2shape.change(
+                                fn=change_output_type_img2shape, 
+                                inputs=[
+                                    output_type_img2shape, 
+                                    out_size_img2shape, 
+                                    mesh_out_size_img2shape
+                                ], 
+                                outputs=[
+                                    out_img2shape, 
+                                    mesh_out_img2shape, 
+                                    bool_output_type_img2shape, 
+                                    btn_img2shape_gif, 
+                                    btn_img2shape_mesh, 
+                                    download_btn_img2shape_gif, 
+                                    download_btn_img2shape_mesh,
+                                    download_file_img2shape,
+                                    frame_size_img2shape,
+                                    ]
+                            ) 
+                    with gr.Accordion("Send ...", open=False):
+                        with gr.Row():
+                            with gr.Column():
+                                with gr.Box():                                
+                                    with gr.Group():
+                                        gr.HTML(value='... selected output to ...')
+                            with gr.Column():
+                                with gr.Box():
+                                    with gr.Group():
+                                        gr.HTML(value='... input prompt(s) to ...')
+                            with gr.Column():
+                                with gr.Box():                                
+                                    with gr.Group():
+                                        gr.HTML(value='... both to ...')
 
 
 
     tab_text_num = gr.Number(value=tab_text.id, precision=0, visible=False)
-    tab_image_num = gr.Number(value=tab_image.id, precision=0, visible=False)
+    tab_image_num = gr.Number(value=tab_image.id, precision=0, visible=False) 
     tab_audio_num = gr.Number(value=tab_audio.id, precision=0, visible=False)    
-    tab_video_num = gr.Number(value=tab_video.id, precision=0, visible=False)
-    tab_3d_num = gr.Number(value=tab_3d.id, precision=0, visible=False)    
+    tab_video_num = gr.Number(value=tab_video.id, precision=0, visible=False) 
+    tab_3d_num = gr.Number(value=tab_3d.id, precision=0, visible=False) 
 
-    tab_llamacpp_num = gr.Number(value=tab_llamacpp.id, precision=0, visible=False)    
+    tab_llamacpp_num = gr.Number(value=tab_llamacpp.id, precision=0, visible=False) 
     tab_img2txt_git_num = gr.Number(value=tab_img2txt_git.id, precision=0, visible=False) 
     tab_whisper_num = gr.Number(value=tab_whisper.id, precision=0, visible=False) 
     tab_nllb_num = gr.Number(value=tab_nllb.id, precision=0, visible=False) 
@@ -4733,6 +4973,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
     tab_txt2vid_ze_num = gr.Number(value=tab_txt2vid_ze.id, precision=0, visible=False) 
     tab_vid2vid_ze_num = gr.Number(value=tab_vid2vid_ze.id, precision=0, visible=False) 
     tab_txt2shape_num = gr.Number(value=tab_txt2shape.id, precision=0, visible=False) 
+    tab_img2shape_num = gr.Number(value=tab_img2shape.id, precision=0, visible=False) 
 
 # Llamacpp outputs   
     llamacpp_nllb.click(fn=send_text_to_module_text, inputs=[last_reply_llamacpp, tab_text_num, tab_nllb_num], outputs=[prompt_nllb, tabs, tabs_text])
@@ -4810,6 +5051,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
     txt2img_sd_resrgan.click(fn=send_to_module, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     txt2img_sd_gfpgan.click(fn=send_to_module, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     txt2img_sd_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])    
+    txt2img_sd_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
 # txt2img_sd inputs
     txt2img_sd_txt2img_kd_input.click(fn=import_to_module, inputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tabs, tabs_image])
@@ -4838,6 +5080,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
     txt2img_kd_resrgan.click(fn=send_to_module, inputs=[gs_out_txt2img_kd, sel_out_txt2img_kd, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     txt2img_kd_gfpgan.click(fn=send_to_module, inputs=[gs_out_txt2img_kd, sel_out_txt2img_kd, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     txt2img_kd_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_txt2img_kd, sel_out_txt2img_kd, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
+    txt2img_kd_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_txt2img_kd, sel_out_txt2img_kd, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
     
 # txt2img_kd inputs
     txt2img_kd_txt2img_sd_input.click(fn=import_to_module, inputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tabs, tabs_image])
@@ -4866,6 +5109,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
     txt2img_lcm_resrgan.click(fn=send_to_module, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     txt2img_lcm_gfpgan.click(fn=send_to_module, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     txt2img_lcm_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])    
+    txt2img_lcm_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
 # txt2img_lcm inputs
     txt2img_lcm_txt2img_sd_input.click(fn=import_to_module_prompt_only, inputs=[prompt_txt2img_lcm, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, tabs, tabs_image])
@@ -4894,6 +5138,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
     img2img_resrgan.click(fn=send_to_module, inputs=[gs_out_img2img, sel_out_img2img, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     img2img_gfpgan.click(fn=send_to_module, inputs=[gs_out_img2img, sel_out_img2img, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     img2img_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_img2img, sel_out_img2img, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])    
+    img2img_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_img2img, sel_out_img2img, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
 # img2img inputs
     img2img_txt2img_sd_input.click(fn=import_to_module, inputs=[prompt_img2img, negative_prompt_img2img, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tabs, tabs_image])
@@ -4918,6 +5163,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
     img2var_resrgan.click(fn=send_to_module, inputs=[gs_out_img2var, sel_out_img2var, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     img2var_gfpgan.click(fn=send_to_module, inputs=[gs_out_img2var, sel_out_img2var, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     img2var_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_img2var, sel_out_img2var, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])    
+    img2var_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_img2var, sel_out_img2var, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
 # pix2pix outputs
     pix2pix_img2img.click(fn=send_to_module, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
@@ -4930,6 +5176,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
     pix2pix_resrgan.click(fn=send_to_module, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     pix2pix_gfpgan.click(fn=send_to_module, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     pix2pix_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
+    pix2pix_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
 # pix2pix inputs
     pix2pix_txt2img_sd_input.click(fn=import_to_module, inputs=[prompt_pix2pix, negative_prompt_pix2pix, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tabs, tabs_image])
@@ -4956,6 +5203,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
     inpaint_resrgan.click(fn=send_to_module, inputs=[gs_out_inpaint, sel_out_inpaint, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     inpaint_gfpgan.click(fn=send_to_module, inputs=[gs_out_inpaint, sel_out_inpaint, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     inpaint_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_inpaint, sel_out_inpaint, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])    
+    inpaint_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_inpaint, sel_out_inpaint, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
 # inpaint inputs
     inpaint_txt2img_sd_input.click(fn=import_to_module, inputs=[prompt_inpaint, negative_prompt_inpaint, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tabs, tabs_image])
@@ -4981,6 +5229,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
     outpaint_resrgan.click(fn=send_to_module, inputs=[gs_out_outpaint, sel_out_outpaint, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     outpaint_gfpgan.click(fn=send_to_module, inputs=[gs_out_outpaint, sel_out_outpaint, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     outpaint_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_outpaint, sel_out_outpaint, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])    
+    outpaint_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_outpaint, sel_out_outpaint, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
 # outpaint inputs
     outpaint_txt2img_sd_input.click(fn=import_to_module, inputs=[prompt_outpaint, negative_prompt_outpaint, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tabs, tabs_image])
@@ -5006,6 +5255,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
     controlnet_resrgan.click(fn=send_to_module, inputs=[gs_out_controlnet, sel_out_controlnet, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     controlnet_gfpgan.click(fn=send_to_module, inputs=[gs_out_controlnet, sel_out_controlnet, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     controlnet_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_controlnet, sel_out_controlnet, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
+    controlnet_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_controlnet, sel_out_controlnet, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
 # controlnet inputs
     controlnet_txt2img_sd_input.click(fn=import_to_module, inputs=[prompt_controlnet, negative_prompt_controlnet, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tabs, tabs_image])
@@ -5033,6 +5283,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
     faceswap_resrgan.click(fn=send_to_module, inputs=[gs_out_faceswap, sel_out_faceswap, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     faceswap_gfpgan.click(fn=send_to_module, inputs=[gs_out_faceswap, sel_out_faceswap, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     faceswap_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_faceswap, sel_out_faceswap, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
+    faceswap_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_faceswap, sel_out_faceswap, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
 # resrgan outputs
     resrgan_img2img.click(fn=send_to_module, inputs=[gs_out_resrgan, sel_out_resrgan, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
@@ -5043,7 +5294,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
     resrgan_controlnet.click(fn=send_to_module, inputs=[gs_out_resrgan, sel_out_resrgan, tab_image_num, tab_controlnet_num], outputs=[img_source_controlnet, gs_img_source_controlnet, tabs, tabs_image])            
     resrgan_faceswap.click(fn=send_to_module_inpaint, inputs=[gs_out_resrgan, sel_out_resrgan, tab_faceswap_num, tab_inpaint_num], outputs=[img_target_faceswap, gs_img_target_faceswap, tabs, tabs_image])       
     resrgan_gfpgan.click(fn=send_to_module, inputs=[gs_out_resrgan, sel_out_resrgan, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
-    resrgan_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_resrgan, sel_out_resrgan, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])        
+    resrgan_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_resrgan, sel_out_resrgan, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])     
+    resrgan_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_resrgan, sel_out_resrgan, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
 # gfpgan outputs
     gfpgan_img2img.click(fn=send_to_module, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
@@ -5055,6 +5307,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
     gfpgan_faceswap.click(fn=send_to_module_inpaint, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_faceswap_num, tab_inpaint_num], outputs=[img_target_faceswap, gs_img_target_faceswap, tabs, tabs_image])    
     gfpgan_resrgan.click(fn=send_to_module, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     gfpgan_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
+    gfpgan_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
 # Musicgen inputs
     musicgen_audiogen_input.click(fn=import_to_module_audio, inputs=[prompt_musicgen, tab_audio_num, tab_audiogen_num], outputs=[prompt_audiogen, tabs, tabs_audio])
