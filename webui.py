@@ -1633,9 +1633,6 @@ with gr.Blocks(theme=theme_gradio) as demo:
                     with gr.Row():
                         with gr.Column():
                             btn_txt2img_lcm = gr.Button("Generate 🚀", variant="primary")
-                        with gr.Column():                            
-                            btn_txt2img_lcm_cancel = gr.Button("Cancel 🛑", variant="stop")
-                            btn_txt2img_lcm_cancel.click(fn=initiate_stop_txt2img_lcm, inputs=None, outputs=None)                              
                         with gr.Column():
                             btn_txt2img_lcm_clear_input = gr.ClearButton(components=[prompt_txt2img_lcm], value="Clear inputs 🧹")
                         with gr.Column():                            
