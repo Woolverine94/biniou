@@ -17,13 +17,12 @@
 ---
 
 ## Updates
+  * 🆕 **2023-10-26** : ***Bugfix broken LCM module (2):*** use update script to upgrade diffusers and download the new version of the module. It seems that there is a lot of changes on the diffusers library concerning LCM , so it may be quite unstable for some times. Be patient, bugfixes will come asap if needed.<br/>
   * 🆕 **2023-10-25** : 🔥 ***New module : paintbyex.*** 🔥 Use **Paint by Example** to modify a masked area of an input image by providing an example image of the awaited result.<br/>
   * 🆕 **2023-10-25** : ***Bugfix broken LCM module:*** use update script to upgrade diffusers and download the new version of the module<br/>
   * 🆕 **2023-10-24** : 🔥 ***New module : img2shape.*** 🔥 generate 3D animated gifs and 3D models (.glb format) from a single input image. <br/>
   * 🆕 **2023-10-23** : 🔥 ***New category (3d) and new module : txt2shape.*** 🔥 Using OpenAI Shap-E, the new module txt2shape let you generate 3D animated gifs and 3D models (.glb format) from a single prompt. <br/>
   * 🆕 **2023-10-20** : 🔥 ***New module : LCM (Latent consistency model).*** 🔥 LCM is a brand new way of generating image contents in a very efficient and fast way (default setting uses only 4 steps for inference). <br/>
-
-  * 🆕 **2023-10-17** : *New Chatbot feature : prompt template setting*. Refers to each Model page to know what to use. Don't modify if you use the default model.<br/>
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
