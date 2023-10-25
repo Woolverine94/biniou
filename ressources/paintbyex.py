@@ -144,8 +144,4 @@ def image_paintbyex(
     del nsfw_filter_final, feat_ex, pipe_paintbyex, generator, image_input, mask_image_input, example_image_input, image
     clean_ram()
 
-    import gc
-    toto=gc.get_objects() 
-    print(toto)
-
     return final_image, final_image
