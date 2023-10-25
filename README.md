@@ -17,7 +17,7 @@
 ---
 
 ## Updates
-  * 🆕 **2023-10-24** : 🔥 ***New module : paintbyex.*** 🔥 Use **Paint by Example** to modify a masked area of an input image by providing an example image of the awaited result.<br/>
+  * 🆕 **2023-10-25** : 🔥 ***New module : paintbyex.*** 🔥 Use **Paint by Example** to modify a masked area of an input image by providing an example image of the awaited result.<br/>
   * 🆕 **2023-10-25** : ***Bugfix broken LCM module:*** use update script to upgrade diffusers and download the new version of the module<br/>
   * 🆕 **2023-10-24** : 🔥 ***New module : img2shape.*** 🔥 generate 3D animated gifs and 3D models (.glb format) from a single input image. <br/>
   * 🆕 **2023-10-23** : 🔥 ***New category (3d) and new module : txt2shape.*** 🔥 Using OpenAI Shap-E, the new module txt2shape let you generate 3D animated gifs and 3D models (.glb format) from a single prompt. <br/>
@@ -61,6 +61,7 @@
   - [Stable Diffusion Image variation module](https://github.com/Woolverine94/biniou/wiki/Image-variation) (require 16GB+ RAM) 
   - [Instruct Pix2Pix module](https://github.com/Woolverine94/biniou/wiki/Instruct-pix2pix)
   - [Stable Diffusion Inpaint module](https://github.com/Woolverine94/biniou/wiki/inpaint)
+  - [Fantasy Studio Paint by Example module](https://github.com/Woolverine94/biniou/wiki/Paint-by-Example) (require 16GB+ RAM)
   - [Stable Diffusion Outpaint module](https://github.com/Woolverine94/biniou/wiki/outpaint) (require 16GB+ RAM)
   - [Stable Diffusion ControlNet module](https://github.com/Woolverine94/biniou/wiki/ControlNet)
   - [Insight Face faceswapping module](https://github.com/Woolverine94/biniou/wiki/Insight-Face-faceswapping)
@@ -299,6 +300,7 @@ This application uses the following softwares and technologies :
 - [Kandinsky](https://github.com/ai-forever/Kandinsky-2) : txt2img
 - [Latent consistency models](https://github.com/luosiallen/latent-consistency-model) : txt2img
 - [Instruct pix2pix](https://www.timothybrooks.com/instruct-pix2pix) : pix2pix
+- [Fantasy Studio Paint by Example](https://github.com/Fantasy-Studio/Paint-by-Example) : paintbyex
 - [Controlnet Auxiliary models](https://github.com/patrickvonplaten/controlnet_aux) : preview models for ControlNet module
 - [Insight Face](https://insightface.ai/) : faceswapping
 - [Real ESRGAN](https://github.com/xinntao/Real-ESRGAN) : upscaler
