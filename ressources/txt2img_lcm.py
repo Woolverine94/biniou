@@ -35,7 +35,6 @@ scheduler_list_txt2img_lcm = [
     "LCMScheduler",
 ]
 
-
 # Bouton Cancel
 stop_txt2img_lcm = False
 
@@ -83,8 +82,6 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
             use_safetensors=True, 
             safety_checker=nsfw_filter_final, 
             feature_extractor=feat_ex,
-            custom_pipeline="latent_consistency_txt2img", 
-            custom_revision="main",
         )
     else :        
         pipe_txt2img_lcm = DiffusionPipeline.from_pretrained(
@@ -94,8 +91,6 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
             use_safetensors=True, 
             safety_checker=nsfw_filter_final, 
             feature_extractor=feat_ex,
-            custom_pipeline="latent_consistency_txt2img", 
-            custom_revision="main",
             resume_download=True,
             local_files_only=True if offline_test() else None
         )
@@ -127,7 +122,7 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
             num_images_per_prompt=num_images_per_prompt_txt2img_lcm,
             num_inference_steps=num_inference_step_txt2img_lcm,
             guidance_scale=guidance_scale_txt2img_lcm,
-            lcm_origin_steps=lcm_origin_steps_txt2img_lcm,
+#            lcm_origin_steps=lcm_origin_steps_txt2img_lcm,
         ).images
 
         for j in range(len(image)):
