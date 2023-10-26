@@ -128,7 +128,7 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
             num_images_per_prompt=num_images_per_prompt_txt2img_lcm,
             num_inference_steps=num_inference_step_txt2img_lcm,
             guidance_scale=guidance_scale_txt2img_lcm,
-#            lcm_origin_steps=lcm_origin_steps_txt2img_lcm,
+            lcm_origin_steps=lcm_origin_steps_txt2img_lcm,
         ).images
 
         for j in range(len(image)):
