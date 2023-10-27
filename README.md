@@ -17,7 +17,7 @@
 ---
 
 ## Updates
-  * 🆕 **2023-10-27** : 🔥 ***New module : Prompt generator.*** 🔥 Following idea of @koinkoin-project, you can now use the prompt generator module to create personas prompt for the chatbot or generate rich complex prompt for images and video modules .<br/>
+  * 🆕 **2023-10-27** : 🔥 ***New module : Prompt generator.*** 🔥 Following idea of [@koinkoin-project](https://github.com/koinkoin-project), you can now use the prompt generator module to create personas prompt for the chatbot or generate rich complex prompt for images and videos modules .<br/>
   * 🆕 **2023-10-26** : ***Bugfix broken LCM module (2):*** use update script to upgrade diffusers and download the new version of the module. It seems that there is a lot of changes on the diffusers library concerning LCM , so it may be quite unstable for some times. Be patient, bugfixes will come asap if needed.<br/>
   * 🆕 **2023-10-25** : 🔥 ***New module : paintbyex.*** 🔥 Use **Paint by Example** to modify a masked area of an input image by providing an example image of the expected result.<br/>
   * 🆕 **2023-10-25** : ***Bugfix broken LCM module:*** use update script to upgrade diffusers and download the new version of the module<br/>
@@ -52,7 +52,7 @@
   - [Microsoft GIT image captioning module](https://github.com/Woolverine94/biniou/wiki/GIT-image-captioning)
   - [Whisper speech-to-text module](https://github.com/Woolverine94/biniou/wiki/Whisper) (require 16GB+ RAM)
   - [nllb translation module](https://github.com/Woolverine94/biniou/wiki/nllb-translation) (200 languages)
-  - Prompt generator (require 16GB+ RAM)
+  - [Prompt generator](https://github.com/Woolverine94/biniou/wiki/Prompt-generator)) (require 16GB+ RAM for ChatGPT output type)
 
 * **Image generation and modification using :**
   - [Stable Diffusion module](https://github.com/Woolverine94/biniou/wiki/Stable-Diffusion)
