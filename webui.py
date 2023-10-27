@@ -1116,7 +1116,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 """
                                 <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
                                 <b>Module : </b>Prompt generator</br>
-                                <b>Function : </b>Create complex prompt from a simple instruction.
+                                <b>Function : </b>Create complex prompt from a simple instruction.</br>
                                 <b>Input(s) : </b>Prompt</br>
                                 <b>Output(s) : </b>Enhanced output prompt</br>
                                 <b>HF model page : </b>
@@ -1131,8 +1131,8 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                 <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
                                 <div style='text-align: justified'>
                                 <b>Usage :</b></br>
-                                - Define a <b>prompt</b>
-                                - Choose the type of output to produce : ChatGPT will produce a persona for the chatbot from your input, SD will generate a prompt usable for image and video modules   
+                                - Define a <b>prompt</b></br>
+                                - Choose the type of output to produce : ChatGPT will produce a persona for the chatbot from your input, SD will generate a prompt usable for image and video modules</br>
                                 - Click the <b>Generate</b> button</br>
                                 - After generation, output is displayed in the <b>Output text</b> field. Send them to the desired module (chatbot or media modules).
                                 </div>
