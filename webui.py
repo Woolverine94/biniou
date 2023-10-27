@@ -12,6 +12,7 @@ from ressources.llamacpp import *
 from ressources.img2txt_git import *
 from ressources.whisper import *
 from ressources.nllb import *
+from ressources.txt2prompt import *
 from ressources.txt2img_sd import *
 from ressources.txt2img_kd import *
 from ressources.txt2img_lcm import *
@@ -190,6 +191,17 @@ def read_ini_whisper(module) :
 def read_ini_nllb(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1])
+
+## Fonctions spécifiques à txt2prompt
+def read_ini_txt2prompt(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), float(content[2])
+
+def change_output_type_txt2prompt(output_type_txt2prompt) : 
+    if output_type_txt2prompt == "ChatGPT" :
+        return model_txt2prompt.update(value=model_list_txt2prompt[0]), max_tokens_txt2prompt.update(value=128)
+    elif output_type_txt2prompt == "SD" :
+        return model_txt2prompt.update(value=model_list_txt2prompt[1]), max_tokens_txt2prompt.update(value=77) 
 
 ## Fonctions spécifiques à Stable Diffusion 
 def zip_download_file_txt2img_sd(content):
@@ -459,7 +471,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
         with gr.TabItem("Text ✍️", id=1) as tab_text:
             with gr.Tabs() as tabs_text:
 # llamacpp
-                with gr.TabItem("Chatbot Llama-cpp (gguf) 📝", id=12) as tab_llamacpp:
+                with gr.TabItem("Chatbot Llama-cpp (gguf) 📝", id=11) as tab_llamacpp:
                     with gr.Accordion("About", open=False):
                         with gr.Box():                       
                             gr.HTML(
@@ -692,7 +704,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
 # Image captioning                                        
-                with gr.TabItem("Image captioning 👁️", id=13) as tab_img2txt_git:
+                with gr.TabItem("Image captioning 👁️", id=12) as tab_img2txt_git:
                     with gr.Accordion("About", open=False):
                         with gr.Box():                       
                             gr.HTML(
@@ -834,7 +846,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                 else :
                     titletab_whisper = "Whisper ⛔"
 
-                with gr.TabItem(titletab_whisper, id=14) as tab_whisper:
+                with gr.TabItem(titletab_whisper, id=13) as tab_whisper:
                     with gr.Accordion("About", open=False):
                         with gr.Box():                       
                             gr.HTML(
@@ -970,7 +982,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                         gr.HTML(value='... both to ...')
 
 # nllb 
-                with gr.TabItem("nllb translation 👥", id=15) as tab_nllb:
+                with gr.TabItem("nllb translation 👥", id=14) as tab_nllb:
                     with gr.Accordion("About", open=False):
                         with gr.Box():                       
                             gr.HTML(
@@ -1091,7 +1103,132 @@ with gr.Blocks(theme=theme_gradio) as demo:
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
 
+# txt2prompt
+                if ram_size() >= 16 :
+                    titletab_txt2prompt = "Prompt generator 📝"
+                else :
+                    titletab_txt2prompt = "Prompt generator ⛔"
 
+                with gr.TabItem(titletab_txt2prompt, id=15) as tab_txt2prompt:
+                    with gr.Accordion("About", open=False):
+                        with gr.Box():                       
+                            gr.HTML(
+                                """
+                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
+                                <b>Module : </b>Prompt generator</br>
+                                <b>Function : </b>Create complex prompt from a simple instruction.
+                                <b>Input(s) : </b>Prompt</br>
+                                <b>Output(s) : </b>Enhanced output prompt</br>
+                                <b>HF model page : </b>
+                                <a href='https://huggingface.co/PulsarAI/prompt-generator' target='_blank'>PulsarAI/prompt-generator</a>, 
+                                <a href='https://huggingface.co/RamAnanth1/distilgpt2-sd-prompts' target='_blank'>RamAnanth1/distilgpt2-sd-prompts</a>, 
+                                </br>
+                                """
+                            )
+                        with gr.Box():
+                            gr.HTML(
+                                """
+                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                <div style='text-align: justified'>
+                                <b>Usage :</b></br>
+                                - Define a <b>prompt</b>
+                                - Choose the type of output to produce : ChatGPT will produce a persona for the chatbot from your input, SD will generate a prompt usable for image and video modules   
+                                - Click the <b>Generate</b> button</br>
+                                - After generation, output is displayed in the <b>Output text</b> field. Send them to the desired module (chatbot or media modules).
+                                </div>
+                                """
+                            )
+                    with gr.Accordion("Settings", open=False):
+                        with gr.Row():
+                            with gr.Column():
+                                model_txt2prompt = gr.Dropdown(choices=model_list_txt2prompt, value=model_list_txt2prompt[0], label="Model", info="Choose model to use for inference")
+                            with gr.Column():
+                                max_tokens_txt2prompt = gr.Slider(0, 2048, step=1, value=128, label="Max tokens", info="Maximum number of tokens in output")
+                            with gr.Column():
+                                repetition_penalty_txt2prompt = gr.Slider(0.0, 10.0, step=0.01, value=1.05, label="Repetition penalty", info="The penalty to apply to repeated tokens")
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_txt2prompt = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_txt2prompt = gr.Textbox(value="txt2prompt", visible=False, interactive=False)
+                                load_ini_btn_txt2prompt = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_txt2prompt.value) else False)
+                                save_ini_btn_txt2prompt.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_txt2prompt, 
+                                        model_txt2prompt, 
+                                        max_tokens_txt2prompt,
+                                        repetition_penalty_txt2prompt,
+                                        ]
+                                    )
+                                save_ini_btn_txt2prompt.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_txt2prompt.click(fn=lambda: load_ini_btn_txt2prompt.update(interactive=True), outputs=load_ini_btn_txt2prompt)
+                                load_ini_btn_txt2prompt.click(
+                                    fn=read_ini_txt2prompt, 
+                                    inputs=module_name_txt2prompt, 
+                                    outputs = [
+                                        model_txt2prompt, 
+                                        max_tokens_txt2prompt,
+                                        repetition_penalty_txt2prompt,
+                                        ]
+                                    )
+                                load_ini_btn_txt2prompt.click(fn=lambda: gr.Info('Settings loaded'))
+                    with gr.Row():
+                        with gr.Column():
+                            with gr.Row():
+                                prompt_txt2prompt = gr.Textbox(label="Prompt", lines=9, max_lines=9, placeholder="a doctor")
+                            with gr.Row():
+                                output_type_txt2prompt = gr.Radio(choices=["ChatGPT", "SD"], value="ChatGPT", label="Output type", info="Choose type of prompt to generate")
+                                output_type_txt2prompt.change(fn=change_output_type_txt2prompt, inputs=output_type_txt2prompt, outputs=[model_txt2prompt, max_tokens_txt2prompt])
+                        with gr.Column():
+                            with gr.Row():
+                                out_txt2prompt = gr.Textbox(label="Output prompt", lines=16, max_lines=16, show_copy_button=True, interactive=False)
+                    with gr.Row():
+                        with gr.Column():
+                            btn_txt2prompt = gr.Button("Generate 🚀", variant="primary")
+                        with gr.Column():
+                            btn_txt2prompt_clear_input = gr.ClearButton(components=[prompt_txt2prompt], value="Clear inputs 🧹")
+                        with gr.Column():                            
+                            btn_txt2prompt_clear_output = gr.ClearButton(components=[out_txt2prompt], value="Clear outputs 🧹") 
+                        btn_txt2prompt.click(
+                            fn=text_txt2prompt,
+                            inputs=[
+                                model_txt2prompt,
+                                max_tokens_txt2prompt, 
+                                repetition_penalty_txt2prompt,
+                                prompt_txt2prompt, 
+                                output_type_txt2prompt,
+                            ],
+                            outputs=out_txt2prompt,
+                            show_progress="full",
+                        )
+                    with gr.Accordion("Send ...", open=False):
+                        with gr.Row():
+                            with gr.Column():
+                                with gr.Box():                                
+                                    with gr.Group():
+                                        gr.HTML(value='... output text to ...')
+                                        gr.HTML(value='... text module ...') 
+                                        txt2prompt_llamacpp = gr.Button("✍️ >> Chatbot llama-cpp")
+                                        gr.HTML(value='... image module ...')                                        
+                                        txt2prompt_txt2img_sd = gr.Button("✍️ >> Stable Diffusion")
+                                        txt2prompt_txt2img_kd = gr.Button("✍️ >> Kandinsky")                                        
+                                        txt2prompt_txt2img_lcm = gr.Button("✍️ >> LCM") 
+                                        txt2prompt_img2img = gr.Button("✍️ >> img2img")
+                                        txt2prompt_pix2pix = gr.Button("✍️ >> Instruct pix2pix")
+                                        txt2prompt_inpaint = gr.Button("✍️ >> inpaint")
+                                        txt2prompt_controlnet = gr.Button("✍️ >> ControlNet")                                        
+                                        gr.HTML(value='... video module ...')                                               
+                                        txt2prompt_txt2vid_ms = gr.Button("✍️ >> Modelscope")
+                                        txt2prompt_txt2vid_ze = gr.Button("✍️ >> Text2Video-Zero")                                        
+                            with gr.Column():
+                                with gr.Box():
+                                    with gr.Group():
+                                        gr.HTML(value='... input prompt(s) to ...')
+                            with gr.Column():
+                                with gr.Box():                                
+                                    with gr.Group():
+                                        gr.HTML(value='... both to ...')                                        
 
 # Image
         with gr.TabItem("Image 🖼️", id=2) as tab_image:
@@ -5188,6 +5325,7 @@ with gr.Blocks(theme=theme_gradio) as demo:
     tab_img2txt_git_num = gr.Number(value=tab_img2txt_git.id, precision=0, visible=False) 
     tab_whisper_num = gr.Number(value=tab_whisper.id, precision=0, visible=False) 
     tab_nllb_num = gr.Number(value=tab_nllb.id, precision=0, visible=False) 
+    tab_txt2prompt_num = gr.Number(value=tab_txt2prompt.id, precision=0, visible=False)     
     tab_txt2img_sd_num = gr.Number(value=tab_txt2img_sd.id, precision=0, visible=False) 
     tab_txt2img_kd_num = gr.Number(value=tab_txt2img_kd.id, precision=0, visible=False) 
     tab_txt2img_lcm_num = gr.Number(value=tab_txt2img_lcm.id, precision=0, visible=False) 
@@ -5275,6 +5413,19 @@ with gr.Blocks(theme=theme_gradio) as demo:
     nllb_bark.click(fn=import_to_module_audio, inputs=[out_nllb, tab_audio_num, tab_bark_num], outputs=[prompt_bark, tabs, tabs_audio])    
     nllb_txt2vid_ms.click(fn=import_text_to_module_video, inputs=[out_nllb, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, tabs, tabs_video])
     nllb_txt2vid_ze.click(fn=import_text_to_module_video, inputs=[out_nllb, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, tabs, tabs_video])
+
+# txt2prompt outputs
+    txt2prompt_llamacpp.click(fn=send_text_to_module_text, inputs=[out_txt2prompt, tab_text_num, tab_llamacpp_num], outputs=[prompt_llamacpp, tabs, tabs_text])
+    txt2prompt_txt2img_sd.click(fn=send_text_to_module_image, inputs=[out_txt2prompt, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, tabs, tabs_image])
+    txt2prompt_txt2img_kd.click(fn=send_text_to_module_image, inputs=[out_txt2prompt, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, tabs, tabs_image])
+    txt2prompt_txt2img_lcm.click(fn=send_text_to_module_image, inputs=[out_txt2prompt, tab_image_num, tab_txt2img_lcm_num], outputs=[prompt_txt2img_lcm, tabs, tabs_image])
+    txt2prompt_img2img.click(fn=send_text_to_module_image, inputs=[out_txt2prompt, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, tabs, tabs_image])
+    txt2prompt_pix2pix.click(fn=send_text_to_module_image, inputs=[out_txt2prompt, tab_image_num, tab_pix2pix_num], outputs=[prompt_pix2pix, tabs, tabs_image])
+    txt2prompt_inpaint.click(fn=send_text_to_module_image, inputs=[out_txt2prompt, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, tabs, tabs_image])
+    txt2prompt_controlnet.click(fn=send_text_to_module_image, inputs=[out_txt2prompt, tab_image_num, tab_controlnet_num], outputs=[prompt_controlnet, tabs, tabs_image])    
+    txt2prompt_txt2vid_ms.click(fn=import_text_to_module_video, inputs=[out_txt2prompt, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, tabs, tabs_video])
+    txt2prompt_txt2vid_ze.click(fn=import_text_to_module_video, inputs=[out_txt2prompt, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, tabs, tabs_video])
+
       
 # txt2img_sd outputs
     txt2img_sd_img2img.click(fn=send_to_module, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
