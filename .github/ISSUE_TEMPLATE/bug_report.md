@@ -37,7 +37,7 @@ If applicable, add screenshots to help explain your problem.
  - OS: [e.g. Windows 10 22H2, Ubuntu 22.04.3]
  - Browser [e.g. chrome, safari]
  - Version [e.g. 22]
- - Python version 
+ - Python version [e.g. 3.11.2]
 
 **Smartphone (please complete the following information):**
  - Device: [e.g. iPhone6]
