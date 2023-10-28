@@ -17,13 +17,13 @@
 ---
 
 ## Updates
+  * 🆕 **2023-10-28** : 🔥 ***New module : Midjourney-mini.*** 🔥 This module use a model presented as "trimmed-down version of Midjourney".<br/>
   * 🆕 **2023-10-27** : 🔥 ***New module : Prompt generator.*** 🔥 Following idea of [@koinkoin-project](https://github.com/koinkoin-project), you can now use the prompt generator module to create personas prompt for the chatbot or generate rich complex prompt for images and videos modules .<br/>
   * 🆕 **2023-10-26** : ***Bugfix broken LCM module (2):*** use update script to upgrade diffusers and download the new version of the module. It seems that there is a lot of changes on the diffusers library concerning LCM , so it may be quite unstable for some times. Be patient, bugfixes will come asap if needed.<br/>
   * 🆕 **2023-10-25** : 🔥 ***New module : paintbyex.*** 🔥 Use **Paint by Example** to modify a masked area of an input image by providing an example image of the expected result.<br/>
   * 🆕 **2023-10-25** : ***Bugfix broken LCM module:*** use update script to upgrade diffusers and download the new version of the module<br/>
   * 🆕 **2023-10-24** : 🔥 ***New module : img2shape.*** 🔥 generate 3D animated gifs and 3D models (.glb format) from a single input image. <br/>
   * 🆕 **2023-10-23** : 🔥 ***New category (3d) and new module : txt2shape.*** 🔥 Using OpenAI Shap-E, the new module txt2shape let you generate 3D animated gifs and 3D models (.glb format) from a single prompt. <br/>
-  * 🆕 **2023-10-20** : 🔥 ***New module : LCM (Latent consistency model).*** 🔥 LCM is a brand new way of generating image contents in a very efficient and fast way (default setting uses only 4 steps for inference). <br/>
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
@@ -52,7 +52,7 @@
   - [Microsoft GIT image captioning module](https://github.com/Woolverine94/biniou/wiki/GIT-image-captioning)
   - [Whisper speech-to-text module](https://github.com/Woolverine94/biniou/wiki/Whisper) (require 16GB+ RAM)
   - [nllb translation module](https://github.com/Woolverine94/biniou/wiki/nllb-translation) (200 languages)
-  - [Prompt generator](https://github.com/Woolverine94/biniou/wiki/Prompt-generator)) (require 16GB+ RAM for ChatGPT output type)
+  - [Prompt generator](https://github.com/Woolverine94/biniou/wiki/Prompt-generator) (require 16GB+ RAM for ChatGPT output type)
 
 * **Image generation and modification using :**
   - [Stable Diffusion module](https://github.com/Woolverine94/biniou/wiki/Stable-Diffusion)
