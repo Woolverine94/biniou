@@ -69,7 +69,7 @@ def image_txt2img_mjm(
     progress_txt2img_mjm=gr.Progress(track_tqdm=True)
     ):
     
-    global pipe_txt2img_mjm
+#    global pipe_txt2img_mjm
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2img_mjm_safetychecker, device_txt2img_mjm, nsfw_filter)
 
     if modelid_txt2img_mjm[0:9] == "./models/" :
@@ -136,8 +136,8 @@ def image_txt2img_mjm(
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
             final_image.append(image[j])
-    
-    del nsfw_filter_final, feat_ex, pipe_txt2img_mjm, generator, compel, conditioning, image
+
+    del nsfw_filter_final, feat_ex, pipe_txt2img_mjm, generator, compel, conditioning, neg_conditioning, image
     clean_ram()
     
     return final_image, final_image

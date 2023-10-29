@@ -11,19 +11,19 @@
 <p align="justify">biniou is a self-hosted webui for several kinds of GenAI (generative artificial intelligence). You can generate multimedia contents with AI and use chatbot on your own computer, even without dedicated GPU and starting from 8GB RAM. Can work offline (once deployed and required models downloaded).</p>
 
 <p style="text-align: center;">
-<a href="#debian-12---ubuntu-22043">Linux</a> • <a href="#windows-10--windows-11">Windows</a> • <a href="#macos-homebrew-install">macOS (experimental)</a> • <a href="#dockerfile">Docker</a> | <a href="https://github.com/Woolverine94/biniou/wiki">Documentation</a>
+<a href="#debian-12---ubuntu-22043">GNU/Linux</a> • <a href="#windows-10--windows-11">Windows</a> • <a href="#macos-homebrew-install">macOS (experimental)</a> • <a href="#dockerfile">Docker</a> | <a href="https://github.com/Woolverine94/biniou/wiki">Documentation</a>
 </p>
 
 ---
 
 ## Updates
+  * 🆕 **2023-10-29** : ***Introducing optional TCMalloc support for GNU/Linux.*** If TCMalloc is installed on your distribution, it will automatically be used by biniou. It will contribute to reduce the frequency of OOM crash encountered. You can install it as sudoer or root, using : `apt install google-perftools`<br/>
   * 🆕 **2023-10-28** : 🔥 ***New module : Midjourney-mini.*** 🔥 This module use a model presented as a "trimmed-down version of Midjourney".<br/>
   * 🆕 **2023-10-27** : 🔥 ***New module : Prompt generator.*** 🔥 Following idea of [@koinkoin-project](https://github.com/koinkoin-project), you can now use the prompt generator module to create personas prompt for the chatbot or generate rich complex prompt for images and videos modules .<br/>
   * 🆕 **2023-10-26** : ***Bugfix broken LCM module (2):*** use update script to upgrade diffusers and download the new version of the module. It seems that there is a lot of changes on the diffusers library concerning LCM , so it may be quite unstable for some times. Be patient, bugfixes will come asap if needed.<br/>
   * 🆕 **2023-10-25** : 🔥 ***New module : paintbyex.*** 🔥 Use **Paint by Example** to modify a masked area of an input image by providing an example image of the expected result.<br/>
   * 🆕 **2023-10-25** : ***Bugfix broken LCM module:*** use update script to upgrade diffusers and download the new version of the module<br/>
   * 🆕 **2023-10-24** : 🔥 ***New module : img2shape.*** 🔥 generate 3D animated gifs and 3D models (.glb format) from a single input image. <br/>
-  * 🆕 **2023-10-23** : 🔥 ***New category (3d) and new module : txt2shape.*** 🔥 Using OpenAI Shap-E, the new module txt2shape let you generate 3D animated gifs and 3D models (.glb format) from a single prompt. <br/>
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
@@ -58,6 +58,7 @@
   - [Stable Diffusion module](https://github.com/Woolverine94/biniou/wiki/Stable-Diffusion)
   - [Kandinsky module](https://github.com/Woolverine94/biniou/wiki/Kandinsky) (require 16GB+ RAM) 
   - [Latent Consistency Models module](https://github.com/Woolverine94/biniou/wiki/Latent-Consistency-Models)
+  - [Midjourney-mini module](https://github.com/Woolverine94/biniou/wiki/Midjourney%E2%80%90mini)
   - [Stable Diffusion Img2img module](https://github.com/Woolverine94/biniou/wiki/img2img)
   - [Stable Diffusion Image variation module](https://github.com/Woolverine94/biniou/wiki/Image-variation) (require 16GB+ RAM) 
   - [Instruct Pix2Pix module](https://github.com/Woolverine94/biniou/wiki/Instruct-pix2pix)
@@ -88,7 +89,7 @@
   - Communication between modules : send an output as an input to another module
   - Change your model by a simple dropdown menu or download and add it manually 
   - Powered by [🤗 Huggingface](https://huggingface.co/) and [gradio](https://www.gradio.app/)
-  - Cross platform : Linux, Windows 10/11 and macOS(experimental, via homebrew)
+  - Cross platform : GNU/Linux, Windows 10/11 and macOS(experimental, via homebrew)
   - Convenient Dockerfile for cloud instances
 
 ---
@@ -98,7 +99,7 @@
   - 64bit CPU
   - 8GB RAM
   - Storage requirements :
-    - for Linux : at least 20GB for installation without models.
+    - for GNU/Linux : at least 20GB for installation without models.
     - for Windows : at least 30GB for installation without models.
     - for macOS : at least ??GB for installation without models.
   - Storage type : SSD (HDD has not been tested)
@@ -108,7 +109,7 @@
   - Massively multicore 64bit CPU
   - 16GB+ RAM
   - Storage requirements :
-    - for Linux : around 100GB for installation including all defaults models.
+    - for GNU/Linux : around 100GB for installation including all defaults models.
     - for Windows : around 100GB for installation including all defaults models.
     - for macOS : around ??GB for installation including all defaults models.
   - Storage type : SSD Nvme
@@ -148,9 +149,15 @@ cd ./biniou
 ./install.sh
 ```
 
+  4. (optional) **Install** TCMalloc as root to optimize memory management :
+```bash
+apt install google-perftools
+```
+
+
 ### Windows 10 / Windows 11
 
-Windows installation has more prerequisites than linux one, and requires following softwares (that will be installed automatically during the install process) : 
+Windows installation has more prerequisites than GNU/Linux one, and requires following softwares (that will be installed automatically during the install process) : 
   - Git 
   - Python 
   - OpenSSL
@@ -234,7 +241,7 @@ biniou:latest
 ## How To Use
 
   1. **Launch** by executing from the biniou directory :
-  - **for Linux :**
+  - **for GNU/Linux :**
 ```bash
 cd /home/$USER/biniou
 ./webui.sh
@@ -253,7 +260,7 @@ You can also access biniou from any device (including smartphones) on the same L
 
   4. **Update** this application (biniou + python virtual environment) by running from the biniou directory : 
 
-  - **for Linux :**
+  - **for GNU/Linux :**
 
 ```bash
 ./update.sh

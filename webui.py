@@ -473,7 +473,7 @@ theme_gradio = gr.themes.Base().set(
     button_primary_text_color_dark='white',
 )
 
-with gr.Blocks(theme=theme_gradio) as demo:
+with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     gr.HTML(
         """<a href='https://github.com/Woolverine94/biniou' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='32' height='32'/></p>
         <p style='text-align: left; font-size: 32px; font-weight: bold; line-height:32px;'>biniou</p></a>"""
