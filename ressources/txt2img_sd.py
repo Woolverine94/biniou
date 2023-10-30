@@ -25,6 +25,7 @@ for filename in os.listdir(model_path_txt2img_sd):
 
 model_list_txt2img_sd_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
+    "segmind/SSD-1B",
 #    "ckpt/anything-v4.5-vae-swapped",
     "stabilityai/stable-diffusion-xl-base-1.0",
     "runwayml/stable-diffusion-v1-5",
@@ -74,12 +75,12 @@ def image_txt2img_sd(modelid_txt2img_sd,
     global pipe_txt2img_sd
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2img_sd, device_txt2img_sd, nsfw_filter)
 
-
-    if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_txt2img_sd :
+    if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_txt2img_sd or (modelid_txt2img_sd == "segmind/SSD-1B") :
+#    if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_txt2img_sd :
         is_xl_txt2img_sd: bool = True
     else :        
         is_xl_txt2img_sd: bool = False
-
+        
     if (is_xl_txt2img_sd == True) :
         if modelid_txt2img_sd[0:9] == "./models/" :
             pipe_txt2img_sd = StableDiffusionXLPipeline.from_single_file(
@@ -125,7 +126,7 @@ def image_txt2img_sd(modelid_txt2img_sd,
     pipe_txt2img_sd = pipe_txt2img_sd.to(device_txt2img_sd)
     pipe_txt2img_sd.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_txt2img_sd, ratio=tkme_txt2img_sd)
-    
+   
     if seed_txt2img_sd == 0:
         random_seed = torch.randint(0, 10000000000, (1,))
         generator = torch.manual_seed(random_seed)
