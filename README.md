@@ -17,13 +17,13 @@
 ---
 
 ## Updates
+  * 🆕 **2023-10-30** : ***New choice of model for Stable Diffusion module : SSD-1B.*** [SSD-1B](https://huggingface.co/segmind/SSD-1B) is a terrific brand new model distilled from SDXL. It produces awesome results at a 1024x1024 size (pretty long generation time comparing to other models ... but worth the wait !), and require to upgrade to the git version of diffusers, which will be done automatically by the update script.<br/>
   * 🆕 **2023-10-29** : ***Introducing optional TCMalloc support for GNU/Linux.*** If TCMalloc is installed on your distribution, it will automatically be used by biniou. It will contribute to reduce the frequency of OOM crash encountered. You can install it as sudoer or root, using : `apt install google-perftools`<br/>
   * 🆕 **2023-10-28** : 🔥 ***New module : Midjourney-mini.*** 🔥 This module use a model presented as a "trimmed-down version of Midjourney".<br/>
   * 🆕 **2023-10-27** : 🔥 ***New module : Prompt generator.*** 🔥 Following idea of [@koinkoin-project](https://github.com/koinkoin-project), you can now use the prompt generator module to create personas prompt for the chatbot or generate rich complex prompt for images and videos modules .<br/>
   * 🆕 **2023-10-26** : ***Bugfix broken LCM module (2):*** use update script to upgrade diffusers and download the new version of the module. It seems that there is a lot of changes on the diffusers library concerning LCM , so it may be quite unstable for some times. Be patient, bugfixes will come asap if needed.<br/>
   * 🆕 **2023-10-25** : 🔥 ***New module : paintbyex.*** 🔥 Use **Paint by Example** to modify a masked area of an input image by providing an example image of the expected result.<br/>
   * 🆕 **2023-10-25** : ***Bugfix broken LCM module:*** use update script to upgrade diffusers and download the new version of the module<br/>
-  * 🆕 **2023-10-24** : 🔥 ***New module : img2shape.*** 🔥 generate 3D animated gifs and 3D models (.glb format) from a single input image. <br/>
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
