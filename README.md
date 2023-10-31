@@ -17,7 +17,9 @@
 ---
 
 ## Updates
-  * 🆕 **2023-10-30** : ***New choice of model for Stable Diffusion module : SSD-1B.*** [SSD-1B](https://huggingface.co/segmind/SSD-1B) is a terrific brand new model distilled from SDXL. It produces awesome results at a 1024x1024 size (pretty long generation time comparing to other models ... but worth the wait !), and require to upgrade to the git version of diffusers, which will be done automatically by the update script.<br/>
+  * 🆕 **2023-10-30** : 
+    - 🔥 ***New choice of model for Stable Diffusion module : SSD-1B.*** 🔥 [SSD-1B](https://huggingface.co/segmind/SSD-1B) is a terrific brand new model distilled from SDXL. It produces awesome results at a 1024x1024 size (pretty long generation time comparing to other models ... but worth the wait !), and require to upgrade to the git version of diffusers, which will be done automatically by the update script.
+    - New features and simplification of code for Prompt generator : adding seed and batch size settings. These modifications change the default storage for Prompt generator models. You can delete the content of the /models/Prompt_generator directory to save some space.
   * 🆕 **2023-10-29** : ***Introducing optional TCMalloc support for GNU/Linux.*** If TCMalloc is installed on your distribution, it will automatically be used by biniou. It will contribute to reduce the frequency of OOM crash encountered. You can install it as sudoer or root, using : `apt install google-perftools`<br/>
   * 🆕 **2023-10-28** : 🔥 ***New module : Midjourney-mini.*** 🔥 This module use a model presented as a "trimmed-down version of Midjourney".<br/>
   * 🆕 **2023-10-27** : 🔥 ***New module : Prompt generator.*** 🔥 Following idea of [@koinkoin-project](https://github.com/koinkoin-project), you can now use the prompt generator module to create personas prompt for the chatbot or generate rich complex prompt for images and videos modules .<br/>
