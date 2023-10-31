@@ -209,17 +209,20 @@ def safety_checker_sd(model_path, device, nsfw_filter):
         safecheck = None
         feat_ex = None
     elif nsfw_filter == "1" :
+        device, model_arch = detect_device()
         safecheck = StableDiffusionSafetyChecker.from_pretrained(
             safety_checker_model, 
             cache_dir=model_path, 
-            torch_dtype=torch.float32,
+#            torch_dtype=torch.float32
+            torch_dtype=model_arch,
             resume_download=True,
             local_files_only=True if offline_test() else None
         ).to(device)
         feat_ex = AutoFeatureExtractor.from_pretrained(
             safety_checker_model, 
             cache_dir=model_path, 
-            torch_dtype=torch.float32,
+#            torch_dtype=torch.float32
+            torch_dtype=model_arch,
             resume_download=True,
             local_files_only=True if offline_test() else None            
             )
@@ -288,3 +291,16 @@ def test_cfg_exist(module) :
         return True
     else :
         return False   
+
+
+def detect_device():
+    if torch.cuda.is_available():
+        device = "cuda"
+        dtype = torch.float16
+    elif torch.backends.mps.is_available():
+        device = "mps"
+        dtype = torch.float32 
+    else :
+        device = "cpu"
+        dtype = torch.float32
+    return device, dtype

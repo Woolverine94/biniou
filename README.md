@@ -17,6 +17,7 @@
 ---
 
 ## Updates
+  * 🆕 **2023-11-01** : ***CUDA support*** Introducing experimental CUDA support on **module Stable Diffusion only**. See [this wiki page](https://github.com/Woolverine94/biniou/wiki/Experimental-features) for details on how to enable use of CUDA with biniou. Default biniou installation will stay on cpu-only, but autodetection of CUDA at install will be implemented in a near future. 
   * 🆕 **2023-10-30** : 
     - 🔥 ***New choice of model for Stable Diffusion module : SSD-1B.*** 🔥 [SSD-1B](https://huggingface.co/segmind/SSD-1B) is a terrific brand new model distilled from SDXL. It produces awesome results at a 1024x1024 size (pretty long generation time comparing to other models ... but worth the wait !), and require to upgrade to the git version of diffusers, which will be done automatically by the update script.
     - New features and simplification of code for Prompt generator : adding seed and batch size settings. These modifications change the default storage for Prompt generator models. You can delete the content of the /models/Prompt_generator directory to save some space.

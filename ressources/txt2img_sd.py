@@ -11,8 +11,11 @@ from ressources.scheduler import *
 from ressources.gfpgan import *
 import tomesd
 
-device_txt2img_sd = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+# device_txt2img_sd = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device, model_arch = detect_device()
+device_txt2img_sd = torch.device(device)
 
+ 
 # Gestion des modèles
 model_path_txt2img_sd = "./models/Stable_Diffusion/"
 os.makedirs(model_path_txt2img_sd, exist_ok=True)
@@ -85,7 +88,8 @@ def image_txt2img_sd(modelid_txt2img_sd,
         if modelid_txt2img_sd[0:9] == "./models/" :
             pipe_txt2img_sd = StableDiffusionXLPipeline.from_single_file(
                 modelid_txt2img_sd, 
-                torch_dtype=torch.float32, 
+#                torch_dtype=torch.float32, 
+                torch_dtype=model_arch, 
                 use_safetensors=True, 
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
@@ -94,7 +98,8 @@ def image_txt2img_sd(modelid_txt2img_sd,
             pipe_txt2img_sd = StableDiffusionXLPipeline.from_pretrained(
                 modelid_txt2img_sd, 
                 cache_dir=model_path_txt2img_sd, 
-                torch_dtype=torch.float32, 
+#                torch_dtype=torch.float32, 
+                torch_dtype=model_arch, 
                 use_safetensors=True, 
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
@@ -105,7 +110,8 @@ def image_txt2img_sd(modelid_txt2img_sd,
         if modelid_txt2img_sd[0:9] == "./models/" :
             pipe_txt2img_sd = StableDiffusionPipeline.from_single_file(
                 modelid_txt2img_sd, 
-                torch_dtype=torch.float32, 
+#                torch_dtype=torch.float32, 
+                torch_dtype=model_arch,                 
                 use_safetensors=True, 
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
@@ -114,7 +120,8 @@ def image_txt2img_sd(modelid_txt2img_sd,
             pipe_txt2img_sd = StableDiffusionPipeline.from_pretrained(
                 modelid_txt2img_sd, 
                 cache_dir=model_path_txt2img_sd, 
-                torch_dtype=torch.float32, 
+ #               torch_dtype=torch.float32, 
+                torch_dtype=model_arch, 
                 use_safetensors=True, 
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
@@ -123,10 +130,13 @@ def image_txt2img_sd(modelid_txt2img_sd,
             )
 
     pipe_txt2img_sd = get_scheduler(pipe=pipe_txt2img_sd, scheduler=sampler_txt2img_sd)
-    pipe_txt2img_sd = pipe_txt2img_sd.to(device_txt2img_sd)
     pipe_txt2img_sd.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_txt2img_sd, ratio=tkme_txt2img_sd)
-   
+    if device_txt2img_sd == "cuda" :
+        pipe_txt2img_sd.enable_sequential_cpu_offload()
+    else : 
+        pipe_txt2img_sd = pipe_txt2img_sd.to(device_txt2img_sd)
+
     if seed_txt2img_sd == 0:
         random_seed = torch.randint(0, 10000000000, (1,))
         generator = torch.manual_seed(random_seed)
