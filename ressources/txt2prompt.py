@@ -2,7 +2,8 @@
 # txt2prompt.py
 import gradio as gr
 import os
-from transformers import pipeline, GPT2Tokenizer, GPT2LMHeadModel
+import random
+from transformers import pipeline, set_seed
 from ressources.common import *
 
 device_txt2prompt = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -48,58 +49,44 @@ def text_txt2prompt(
     modelid_txt2prompt, 
     max_tokens_txt2prompt, 
     repetition_penalty_txt2prompt,
+    seed_txt2prompt, 
+    num_prompt_txt2prompt,
     prompt_txt2prompt, 
     output_type_txt2prompt, 
     progress_txt2prompt=gr.Progress(track_tqdm=True)
     ):
-          
+
+    output_txt2prompt=""
+
     if output_type_txt2prompt == "ChatGPT":   
          prompt_txt2prompt = f"\nAction:{prompt_txt2prompt}\nPrompt:"
 
-    if output_type_txt2prompt == "ChatGPT": 
-        pipeline_txt2prompt = pipeline(
-            task="text-generation",
-            model=modelid_txt2prompt,
-            local_files_only=True if offline_test() else None                
-        )
-        output_txt2prompt = pipeline_txt2prompt(prompt_txt2prompt, do_sample=True, max_new_tokens=max_tokens_txt2prompt)[0]["generated_text"]
-        output_txt2prompt = output_txt2prompt.replace(prompt_txt2prompt,"")
+    if seed_txt2prompt == 0:
+        seed_txt2prompt = random.randint(0, 4294967295)
 
-        filename_txt2prompt = write_file(output_txt2prompt)
+    pipeline_txt2prompt = pipeline(
+        task="text-generation",
+        model=modelid_txt2prompt,
+        torch_dtype=torch.float32, 
+        device=device_txt2prompt,
+        local_files_only=True if offline_test() else None 
+    )
+    set_seed(seed_txt2prompt)
+    generator_txt2prompt = pipeline_txt2prompt(
+        prompt_txt2prompt, 
+        do_sample=True, 
+        max_new_tokens=max_tokens_txt2prompt,
+        num_return_sequences=num_prompt_txt2prompt, 
+    )
+    for i in range(len(generator_txt2prompt)):
+        output_txt2prompt_int = generator_txt2prompt[i]["generated_text"]
+        if output_type_txt2prompt == "ChatGPT": 
+            output_txt2prompt_int = output_txt2prompt_int.replace(prompt_txt2prompt,"")
+        output_txt2prompt += output_txt2prompt_int+ "\n\n"
     
-        del pipeline_txt2prompt
-        clean_ram()
-        
-    elif output_type_txt2prompt == "SD":
-        tokenizer_txt2prompt = GPT2Tokenizer.from_pretrained(
-            modelid_txt2prompt, 
-            cache_dir=model_path_txt2prompt,
-            use_safetensors=True, 
-            resume_download=True, 
-            local_files_only=True if offline_test() else None
-        )
-        automodel_txt2prompt = GPT2LMHeadModel.from_pretrained(
-            modelid_txt2prompt,
-            cache_dir=model_path_txt2prompt,
-            use_safetensors=True,         
-            resume_download=True,
-            local_files_only=True if offline_test() else None                
-        )
-        inputs_txt2prompt = tokenizer_txt2prompt(prompt_txt2prompt, return_tensors="pt").to(device_txt2prompt) 	
-        input_ids_txt2prompt = inputs_txt2prompt.input_ids.to(device_txt2prompt)
-        attention_mask_txt2prompt = inputs_txt2prompt.attention_mask.to(device_txt2prompt)
-        generated_ids_txt2prompt = automodel_txt2prompt.generate(
-            input_ids_txt2prompt, 
-            attention_mask=attention_mask_txt2prompt, 
-            repetition_penalty=repetition_penalty_txt2prompt, 
-            max_length=max_tokens_txt2prompt, 
-            eos_token_id=tokenizer_txt2prompt.eos_token_id
-        )
-        output_txt2prompt = tokenizer_txt2prompt.decode(generated_ids_txt2prompt[0], skip_special_tokens=False)
+    filename_txt2prompt = write_file(output_txt2prompt)
 
-        filename_txt2prompt = write_file(output_txt2prompt)
-    
-        del tokenizer_txt2prompt, automodel_txt2prompt
-        clean_ram()
+    del pipeline_txt2prompt
+    clean_ram()        
 
     return output_txt2prompt

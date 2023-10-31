@@ -196,13 +196,13 @@ def read_ini_nllb(module) :
 ## Fonctions spécifiques à txt2prompt
 def read_ini_txt2prompt(module) :
     content = read_ini(module)
-    return str(content[0]), int(content[1]), float(content[2])
+    return str(content[0]), int(content[1]), float(content[2]), int(content[3]), int(content[4])
 
 def change_output_type_txt2prompt(output_type_txt2prompt) : 
     if output_type_txt2prompt == "ChatGPT" :
         return model_txt2prompt.update(value=model_list_txt2prompt[0]), max_tokens_txt2prompt.update(value=128)
     elif output_type_txt2prompt == "SD" :
-        return model_txt2prompt.update(value=model_list_txt2prompt[1]), max_tokens_txt2prompt.update(value=77) 
+        return model_txt2prompt.update(value=model_list_txt2prompt[1]), max_tokens_txt2prompt.update(value=70) 
 
 ## Fonctions spécifiques à Stable Diffusion 
 def zip_download_file_txt2img_sd(content):
@@ -1163,6 +1163,11 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 max_tokens_txt2prompt = gr.Slider(0, 2048, step=1, value=128, label="Max tokens", info="Maximum number of tokens in output")
                             with gr.Column():
                                 repetition_penalty_txt2prompt = gr.Slider(0.0, 10.0, step=0.01, value=1.05, label="Repetition penalty", info="The penalty to apply to repeated tokens")
+                        with gr.Row():                                
+                            with gr.Column():
+                                seed_txt2prompt = gr.Slider(0, 4294967295, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Permit reproducibility") 
+                            with gr.Column():
+                                num_prompt_txt2prompt = gr.Slider(1, 64, step=1, value=1, label="Batch size", info="Number of prompts to generate") 
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_txt2prompt = gr.Button("Save favorite settings 💾")
@@ -1176,6 +1181,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         model_txt2prompt, 
                                         max_tokens_txt2prompt,
                                         repetition_penalty_txt2prompt,
+                                        seed_txt2prompt,
+                                        num_prompt_txt2prompt,                                        
                                         ]
                                     )
                                 save_ini_btn_txt2prompt.click(fn=lambda: gr.Info('Settings saved'))
@@ -1187,6 +1194,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         model_txt2prompt, 
                                         max_tokens_txt2prompt,
                                         repetition_penalty_txt2prompt,
+                                        seed_txt2prompt,
+                                        num_prompt_txt2prompt,
                                         ]
                                     )
                                 load_ini_btn_txt2prompt.click(fn=lambda: gr.Info('Settings loaded'))
@@ -1213,6 +1222,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 model_txt2prompt,
                                 max_tokens_txt2prompt, 
                                 repetition_penalty_txt2prompt,
+                                seed_txt2prompt, 
+                                num_prompt_txt2prompt,
                                 prompt_txt2prompt, 
                                 output_type_txt2prompt,
                             ],
@@ -2937,7 +2948,6 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 - Upload or import an image using the <b>Input image</b> field</br>
                                 - Using the sketch tool of the <b>Input image field</b>, mask the area to be modified</br>
                                 - Upload or import an example image using the <b>Example image</b> field. This image will be used as an example on how to modify the masked area of the input image</br>
-                                - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output image</br>
                                 - (optional) Modify the settings to generate several images in a single run</br>
                                 - Click the <b>Generate button</b></br>
                                 - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
