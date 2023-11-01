@@ -12,9 +12,8 @@ from ressources.gfpgan import *
 import tomesd
 
 # device_txt2img_sd = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-device, model_arch = detect_device()
-device_txt2img_sd = torch.device(device)
-
+device_label_txt2img_sd, model_arch = detect_device()
+device_txt2img_sd = torch.device(device_label_txt2img_sd)
  
 # Gestion des modèles
 model_path_txt2img_sd = "./models/Stable_Diffusion/"
@@ -132,7 +131,7 @@ def image_txt2img_sd(modelid_txt2img_sd,
     pipe_txt2img_sd = get_scheduler(pipe=pipe_txt2img_sd, scheduler=sampler_txt2img_sd)
     pipe_txt2img_sd.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_txt2img_sd, ratio=tkme_txt2img_sd)
-    if device_txt2img_sd == "cuda" :
+    if device_label_txt2img_sd == "cuda" :
         pipe_txt2img_sd.enable_sequential_cpu_offload()
     else : 
         pipe_txt2img_sd = pipe_txt2img_sd.to(device_txt2img_sd)
