@@ -1,5 +1,7 @@
 # https://github.com/Woolverine94/biniou
 # Webui.py
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 import warnings
 warnings.filterwarnings('ignore') 
 import os
