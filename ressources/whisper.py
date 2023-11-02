@@ -30,6 +30,7 @@ model_list_whisper_builtin = {
     "openai/whisper-medium": "model.safetensors",
     "openai/whisper-large": "model.safetensors",
     "openai/whisper-large-v2": "model.safetensors", 
+    "distil-whisper/distil-large-v2": "model.safetensors", 
 }
 
 model_list_whisper.update(model_list_whisper_builtin)
@@ -145,10 +146,12 @@ def text_whisper(
     model_whisper = WhisperForConditionalGeneration.from_pretrained(
         modelid_whisper, 
         cache_dir=model_path_whisper, 
+        low_cpu_mem_usage=True,
         resume_download=True, 
         local_files_only=True if offline_test() else None
     )
-    
+    model_whisper = model_whisper.to_bettertransformer()
+
     tokenizer_whisper = AutoTokenizer.from_pretrained(
         modelid_whisper,
         cache_dir=model_path_whisper, 

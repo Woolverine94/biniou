@@ -858,12 +858,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         img2txt_git_controlnet_both = gr.Button("🖼️+✍️ >> ControlNet")
 
 # Whisper 
-                if ram_size() >= 16 :
-                    titletab_whisper = "Whisper 👂"
-                else :
-                    titletab_whisper = "Whisper ⛔"
-
-                with gr.TabItem(titletab_whisper, id=13) as tab_whisper:
+                with gr.TabItem("Whisper 👂", id=13) as tab_whisper:
                     with gr.Accordion("About", open=False):
                         with gr.Box():                       
                             gr.HTML(
@@ -878,7 +873,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <a href='https://huggingface.co/openai/whisper-base' target='_blank'>openai/whisper-base</a>, 
                                 <a href='https://huggingface.co/openai/whisper-medium' target='_blank'>openai/whisper-medium</a>,
                                 <a href='https://huggingface.co/openai/whisper-large' target='_blank'>openai/whisper-large</a>,
-                                <a href='https://huggingface.co/openai/whisper-large-v2' target='_blank'>openai/whisper-large-v2</a></br>
+                                <a href='https://huggingface.co/openai/whisper-large-v2' target='_blank'>openai/whisper-large-v2</a>,
+                                <a href='https://huggingface.co/distil-whisper/distil-large-v2' target='_blank'>distil-whisper/distil-large-v2</a></br>
                                 """
                             )
                         with gr.Box():
@@ -1279,8 +1275,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>,
                                 <a href='https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0' target='_blank'>stabilityai/stable-diffusion-xl-base-1.0</a>,
                                 <a href='https://huggingface.co/runwayml/stable-diffusion-v1-5' target='_blank'>runwayml/stable-diffusion-v1-5</a>,
-                                <a href='https://huggingface.co/nitrosocke/Ghibli-Diffusion' target='_blank'>nitrosocke/Ghibli-Diffusion</a>
-                                </br>
+                                <a href='https://huggingface.co/nitrosocke/Ghibli-Diffusion' target='_blank'>nitrosocke/Ghibli-Diffusion</a>,
+                                <a href='https://huggingface.co/segmind/SSD-1B' target='_blank'>segmind/SSD-1B</a></br>
                                 """
 #                                <a href='https://huggingface.co/ckpt/anything-v4.5-vae-swapped' target='_blank'>ckpt/anything-v4.5-vae-swapped</a>,
                             )
