@@ -122,6 +122,7 @@
   - a 64 bit OS :
     - Debian 12 
     - Ubuntu 22.04.3 
+    - Linux Mint 21.2
     - Windows 10 22H2
     - Windows 11 22H2
     - macOS ???
@@ -134,7 +135,7 @@
 
 ⚠️ As biniou is still in an early stage of development, it is **recommended** to install it in an "expendable" virtual machine ⚠️
 
-### Debian 12 /  Ubuntu 22.04.3
+### Debian 12 / Ubuntu 22.04.3 / Linux Mint 21.2
 
   1. **Install** the pre-requisites as root :
 ```bash
