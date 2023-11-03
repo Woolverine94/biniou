@@ -17,6 +17,7 @@
 ---
 
 ## Updates
+  * 🆕 **2023-11-03** : ***New model and optimizations for Whisper module*** Adding model [distil-whisper/distil-large-v2](https://huggingface.co/distil-whisper/distil-large-v2) and optimizations to Whisper module, which does not require 16GB RAM anymore.
   * 🆕 **2023-11-01** : ***Experimental CUDA support*** Introducing experimental CUDA support on **module Stable Diffusion only**. See [this wiki page](https://github.com/Woolverine94/biniou/wiki/Experimental-features) for details on how to enable use of CUDA with biniou. Default biniou installation will stay on cpu-only, but autodetection of CUDA at install will be implemented and CUDA support deployed for most modules in a near future. 
   * 🆕 **2023-10-30** : 
     - 🔥 ***New choice of model for Stable Diffusion module : SSD-1B.*** 🔥 [SSD-1B](https://huggingface.co/segmind/SSD-1B) is a terrific brand new model distilled from SDXL. It produces awesome results at a 1024x1024 size (pretty long generation time comparing to other models ... but worth the wait !), and require to upgrade to the git version of diffusers, which will be done automatically by the update script.
@@ -53,7 +54,7 @@
 * **Text generation using  :**
   - [llama-cpp based chatbot module](https://github.com/Woolverine94/biniou/wiki/Chatbot-llama%E2%80%90cpp) (uses .gguf models)
   - [Microsoft GIT image captioning module](https://github.com/Woolverine94/biniou/wiki/GIT-image-captioning)
-  - [Whisper speech-to-text module](https://github.com/Woolverine94/biniou/wiki/Whisper) (require 16GB+ RAM)
+  - [Whisper speech-to-text module](https://github.com/Woolverine94/biniou/wiki/Whisper)
   - [nllb translation module](https://github.com/Woolverine94/biniou/wiki/nllb-translation) (200 languages)
   - [Prompt generator](https://github.com/Woolverine94/biniou/wiki/Prompt-generator) (require 16GB+ RAM for ChatGPT output type)
 
@@ -153,7 +154,7 @@ cd ./biniou
 ./install.sh
 ```
 
-  4. (optional) **Install** TCMalloc as root to optimize memory management :
+  4. (optional, but highly recommended) **Install** TCMalloc as root to optimize memory management :
 ```bash
 apt install google-perftools
 ```
@@ -190,7 +191,7 @@ All the installation is automated, but Windows UAC will ask you confirmation for
 
 ### macOS Homebrew install
 
-⚠️ Homebrew install is ***theoretically*** compatible with macOS, but has not been tested. Use at your own risk. ⚠️
+⚠️ Homebrew install is ***theoretically*** compatible with macOS, but has not been tested. Use at your own risk. Any feedback on this procedure through discussions or an issue ticket will be really appreciated. ⚠️
 
   1. **Install** [Homebrew](https://brew.sh/) for your operating system
  
