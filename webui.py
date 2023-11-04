@@ -9,35 +9,7 @@ import gradio as gr
 import numpy as np
 import shutil
 from PIL import Image
-from ressources.common import *
-from ressources.llamacpp import *
-from ressources.img2txt_git import *
-from ressources.whisper import *
-from ressources.nllb import *
-from ressources.txt2prompt import *
-from ressources.txt2img_sd import *
-from ressources.txt2img_kd import *
-from ressources.txt2img_lcm import *
-from ressources.txt2img_mjm import *
-from ressources.img2img import *
-from ressources.img2var import *
-from ressources.pix2pix import *
-from ressources.inpaint import *
-from ressources.paintbyex import *
-from ressources.outpaint import *
-from ressources.controlnet import *
-from ressources.faceswapper import *
-from ressources.r_esrgan import *
-from ressources.gfpgan import *
-from ressources.musicgen import *
-from ressources.audiogen import *
-from ressources.harmonai import *
-from ressources.bark import *
-from ressources.txt2vid_ms import *
-from ressources.txt2vid_ze import *
-from ressources.vid2vid_ze import *
-from ressources.txt2shape import *
-from ressources.img2shape import *
+from ressources import *
 
 tmp_biniou="./.tmp"
 if os.path.exists(tmp_biniou) :
@@ -1381,7 +1353,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 show_label=True,
                                 elem_id="gallery",
                                 columns=3,
-                                height=400,
+                                height=400,                                
                             )    
                             gs_out_txt2img_sd = gr.State()
                             sel_out_txt2img_sd = gr.Number(precision=0, visible=False)

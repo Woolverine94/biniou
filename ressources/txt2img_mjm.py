@@ -98,10 +98,13 @@ def image_txt2img_mjm(
     tomesd.apply_patch(pipe_txt2img_mjm, ratio=tkme_txt2img_mjm)
     
     if seed_txt2img_mjm == 0:
-        random_seed = torch.randint(0, 10000000000, (1,))
-        generator = torch.manual_seed(random_seed)
+        random_seed = random.randrange(0, 10000000000, 1)
+        final_seed = random_seed
     else:
-        generator = torch.manual_seed(seed_txt2img_mjm)
+        final_seed = seed_txt2img_mjm
+    generator = []
+    for k in range(num_prompt_txt2img_mjm):
+        generator.append([torch.Generator(device_txt2img_mjm).manual_seed(final_seed + (k*num_images_per_prompt_txt2img_mjm) + l ) for l in range(num_images_per_prompt_txt2img_mjm)])
 
     prompt_txt2img_mjm = str(prompt_txt2img_mjm)
     negative_prompt_txt2img_mjm = str(negative_prompt_txt2img_mjm) 
@@ -125,17 +128,18 @@ def image_txt2img_mjm(
             num_images_per_prompt=num_images_per_prompt_txt2img_mjm,
             num_inference_steps=num_inference_step_txt2img_mjm,
             guidance_scale=guidance_scale_txt2img_mjm,
-            generator = generator,
+            generator = generator[i],
             callback = check_txt2img_mjm, 
         ).images
 
         for j in range(len(image)):
             timestamp = time.time()
-            savename = f"outputs/{timestamp}.png"
+            seed_id = random_seed + i*num_images_per_prompt_txt2img_mjm + j if (seed_txt2img_mjm == 0) else seed_txt2img_mjm + i*num_images_per_prompt_txt2img_mjm + j
+            savename = f"outputs/{seed_id}_{timestamp}.png"
             if use_gfpgan_txt2img_mjm == True :
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
-            final_image.append(image[j])
+            final_image.append(savename)
 
     del nsfw_filter_final, feat_ex, pipe_txt2img_mjm, generator, compel, conditioning, neg_conditioning, image
     clean_ram()

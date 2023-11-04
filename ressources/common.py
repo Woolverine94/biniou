@@ -61,6 +61,7 @@ def zipper(content):
         for idx, file in enumerate(content):
             file_name=file["name"].replace("\\", "/")
             myzip.write(file["name"], f"{idx}_"+ file_name.split("/")[-1])
+#            myzip.write(file["name"], file_name.split("/")[-1])
     return savename
 
 def zipper_file(content):

@@ -203,13 +203,14 @@ def image_img2img(
             if use_gfpgan_img2img == True :
                 image[j] = image_gfpgan_mini(image[j])             
             image[j].save(savename)
-            final_image.append(image[j])
+            final_image.append(savename)
 
     if source_type_img2img == "sketch" :
-        final_image.append(image_input)
+        savename_mask = f"outputs/input_image.png"
+        image_input.save(savename_mask)
+        final_image.append(savename_mask)
 
     del nsfw_filter_final, feat_ex, pipe_img2img, generator, image_input, compel, conditioning, neg_conditioning, image
     clean_ram()
    
-    return final_image, final_image   
-
+    return final_image, final_image 

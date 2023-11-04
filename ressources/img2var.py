@@ -76,10 +76,13 @@ def image_img2var(
     tomesd.apply_patch(pipe_img2var, ratio=tkme_img2var)
     
     if seed_img2var == 0:
-        random_seed = torch.randint(0, 10000000000, (1,))
-        generator = torch.manual_seed(random_seed)
+        random_seed = random.randrange(0, 10000000000, 1)
+        final_seed = random_seed
     else:
-        generator = torch.manual_seed(seed_img2var)
+        final_seed = seed_img2var
+    generator = []
+    for k in range(num_prompt_img2var):
+        generator.append([torch.Generator(device_img2var).manual_seed(final_seed + (k*num_images_per_prompt_img2var) + l ) for l in range(num_images_per_prompt_img2var)])
 
     dim_size = correct_size(width_img2var, height_img2var, 512)
     image_input = PIL.Image.open(img_img2var)
@@ -96,20 +99,20 @@ def image_img2var(
             num_inference_steps=num_inference_step_img2var,
             width=dim_size[0],
             height=dim_size[1],             
-            generator = generator,
-            callback = check_img2var,                
+            generator = generator[i], 
+            callback = check_img2var, 
         ).images
 
         for j in range(len(image)):
             timestamp = time.time()
-            savename = f"outputs/{timestamp}.png"
+            seed_id = random_seed + i*num_images_per_prompt_img2var + j if (seed_img2var == 0) else seed_img2var + i*num_images_per_prompt_img2var + j
+            savename = f"outputs/{seed_id}_{timestamp}.png"
             if use_gfpgan_img2var == True :
-                image[j] = image_gfpgan_mini(image[j])             
+                image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
-            final_image.append(image[j])
+            final_image.append(savename)
 
     del nsfw_filter_final, feat_ex, pipe_img2var, generator, image_input, image
     clean_ram()
    
-    return final_image, final_image   
-
+    return final_image, final_image 

@@ -292,10 +292,13 @@ def image_controlnet(
     tomesd.apply_patch(pipe_controlnet, ratio=tkme_controlnet)
 
     if seed_controlnet == 0:
-        random_seed = torch.randint(0, 10000000000, (1,))
-        generator = torch.manual_seed(random_seed)
+        random_seed = random.randrange(0, 10000000000, 1)
+        final_seed = random_seed
     else:
-        generator = torch.manual_seed(seed_controlnet)
+        final_seed = seed_controlnet
+    generator = []
+    for k in range(num_prompt_controlnet):
+        generator.append([torch.Generator(device_controlnet).manual_seed(final_seed + (k*num_images_per_prompt_controlnet) + l ) for l in range(num_images_per_prompt_controlnet)])
 
     prompt_controlnet = str(prompt_controlnet)
     negative_prompt_controlnet = str(negative_prompt_controlnet)
@@ -338,7 +341,7 @@ def image_controlnet(
                 controlnet_conditioning_scale=strength_controlnet,
                 control_guidance_start=start_controlnet,
                 control_guidance_end=stop_controlnet,                
-                generator=generator,
+                generator=generator[i],
                 callback=check_controlnet,
             ).images
         else :            
@@ -354,19 +357,22 @@ def image_controlnet(
                 controlnet_conditioning_scale=strength_controlnet,
                 control_guidance_start=start_controlnet,
                 control_guidance_end=stop_controlnet,
-                generator=generator,
+                generator=generator[i],
                 callback=check_controlnet,
             ).images
 
         for j in range(len(image)):
             timestamp = time.time()
-            savename = f"outputs/{timestamp}.png"
+            seed_id = random_seed + i*num_images_per_prompt_controlnet + j if (seed_controlnet == 0) else seed_controlnet + i*num_images_per_prompt_controlnet + j
+            savename = f"outputs/{seed_id}_{timestamp}.png"
             if use_gfpgan_controlnet == True :
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
-            final_image.append(image[j])
+            final_image.append(savename)
 
-    final_image.append(img_preview_controlnet)
+    savename_controlnet = f"outputs/controlnet.png"
+    img_preview_controlnet.save(savename_controlnet) 
+    final_image.append(savename_controlnet)
 
     del nsfw_filter_final, feat_ex, controlnet, img_preview_controlnet, pipe_controlnet, generator, compel, conditioning, neg_conditioning, image 
     clean_ram()

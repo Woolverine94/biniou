@@ -143,10 +143,13 @@ def image_outpaint(
     tomesd.apply_patch(pipe_outpaint, ratio=tkme_outpaint)
     
     if seed_outpaint == 0:
-        random_seed = torch.randint(0, 10000000000, (1,))
-        generator = torch.manual_seed(random_seed)
+        random_seed = random.randrange(0, 10000000000, 1)
+        final_seed = random_seed
     else:
-        generator = torch.manual_seed(seed_outpaint)
+        final_seed = seed_outpaint
+    generator = []
+    for k in range(num_prompt_outpaint):
+        generator.append([torch.Generator(device_outpaint).manual_seed(final_seed + (k*num_images_per_prompt_outpaint) + l ) for l in range(num_images_per_prompt_outpaint)])
 
 #   angle_outpaint = 360 - rotation_img_outpaint   
 #   img_outpaint["image"] = img_outpaint["image"].rotate(angle_outpaint, expand=True)
@@ -162,6 +165,8 @@ def image_outpaint(
     image_input = img_outpaint.convert("RGB")
     mask_image_input = mask_outpaint.convert("RGB")
     dim_size = round_size(image_input)
+    savename_mask = f"outputs/mask.png"
+    mask_image_input.save(savename_mask) 
 
 #    mask_image_input = PIL.Image.open(mask_outpaint)
 #    mask_image_input = image_input.convert("RGB")    
@@ -192,19 +197,20 @@ def image_outpaint(
             width=dim_size[0],
             height=dim_size[1],
             num_inference_steps=num_inference_step_outpaint,
-            generator = generator,
+            generator = generator[i],
             callback = check_outpaint,
         ).images
 
         for j in range(len(image)):
             timestamp = time.time()
-            savename = f"outputs/{timestamp}.png"
+            seed_id = random_seed + i*num_images_per_prompt_outpaint + j if (seed_outpaint == 0) else seed_outpaint + i*num_images_per_prompt_outpaint + j
+            savename = f"outputs/{seed_id}_{timestamp}.png"
             if use_gfpgan_outpaint == True :
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
-            final_image.append(image[j])
+            final_image.append(savename)
 
-    final_image.append(mask_image_input)
+    final_image.append(savename_mask)
 
     del nsfw_filter_final, feat_ex, pipe_outpaint, generator, image_input, mask_image_input, image
     clean_ram()

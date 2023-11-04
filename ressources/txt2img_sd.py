@@ -137,10 +137,14 @@ def image_txt2img_sd(modelid_txt2img_sd,
         pipe_txt2img_sd = pipe_txt2img_sd.to(device_txt2img_sd)
 
     if seed_txt2img_sd == 0:
-        random_seed = torch.randint(0, 10000000000, (1,))
-        generator = torch.manual_seed(random_seed)
+        random_seed = random.randrange(0, 10000000000, 1)
+        final_seed = random_seed
     else:
-        generator = torch.manual_seed(seed_txt2img_sd)
+        final_seed = seed_txt2img_sd
+    generator = []
+    for k in range(num_prompt_txt2img_sd):
+        generator.append([torch.Generator(device_txt2img_sd).manual_seed(final_seed + (k*num_images_per_prompt_txt2img_sd) + l ) for l in range(num_images_per_prompt_txt2img_sd)])
+
 
     prompt_txt2img_sd = str(prompt_txt2img_sd)
     negative_prompt_txt2img_sd = str(negative_prompt_txt2img_sd)
@@ -178,7 +182,7 @@ def image_txt2img_sd(modelid_txt2img_sd,
                 num_images_per_prompt=num_images_per_prompt_txt2img_sd,
                 num_inference_steps=num_inference_step_txt2img_sd,
                 guidance_scale=guidance_scale_txt2img_sd,
-                generator = generator,
+                generator = generator[i],
                 callback = check_txt2img_sd,
             ).images
         else :
@@ -190,17 +194,18 @@ def image_txt2img_sd(modelid_txt2img_sd,
                 num_images_per_prompt=num_images_per_prompt_txt2img_sd,
                 num_inference_steps=num_inference_step_txt2img_sd,
                 guidance_scale=guidance_scale_txt2img_sd,
-                generator = generator,
+                generator = generator[i],
                 callback = check_txt2img_sd,
             ).images
-
+        
         for j in range(len(image)):
             timestamp = time.time()
-            savename = f"outputs/{timestamp}.png"
+            seed_id = random_seed + i*num_images_per_prompt_txt2img_sd + j if (seed_txt2img_sd == 0) else seed_txt2img_sd + i*num_images_per_prompt_txt2img_sd + j
+            savename = f"outputs/{seed_id}_{timestamp}.png"
             if use_gfpgan_txt2img_sd == True :
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
-            final_image.append(image[j])
+            final_image.append(savename)
     
     del nsfw_filter_final, feat_ex, pipe_txt2img_sd, generator, compel, conditioning, neg_conditioning, image
     clean_ram()
