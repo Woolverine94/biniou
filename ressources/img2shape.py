@@ -53,6 +53,7 @@ def check_img2shape(step, timestep, latents) :
             raise Exception("Interrupting ...")
     return
 
+@metrics_decoration
 def image_img2shape(
     modelid_img2shape, 
     sampler_img2shape,  

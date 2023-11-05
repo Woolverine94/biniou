@@ -47,6 +47,7 @@ def download_model(modelid_faceswap):
         modelid_faceswap = hf_hub_path_faceswap
     return modelid_faceswap    
 
+@metrics_decoration
 def image_faceswap(
     modelid_faceswap, 
     img_source_faceswap, 

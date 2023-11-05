@@ -38,7 +38,7 @@ def check_audiogen(generated_tokens, total_tokens) :
             raise Exception("Interrupting ...")
     return
 
-
+@metrics_decoration
 def music_audiogen(
     prompt_audiogen, 
     model_audiogen, 

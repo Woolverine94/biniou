@@ -33,6 +33,7 @@ model_list_harmonai_builtin = [
 for k in range(len(model_list_harmonai_builtin)):
     model_list_harmonai.append(model_list_harmonai_builtin[k])
 
+@metrics_decoration
 def music_harmonai(
     length_harmonai, 
     model_harmonai, 

@@ -56,6 +56,7 @@ def check_img2img(step, timestep, latents) :
             raise Exception("Interrupting ...")
     return
 
+@metrics_decoration
 def image_img2img(
     modelid_img2img, 
     sampler_img2img, 

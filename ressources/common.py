@@ -293,7 +293,6 @@ def test_cfg_exist(module) :
     else :
         return False   
 
-
 def detect_device():
     if torch.cuda.is_available():
         device = "cuda"
@@ -305,3 +304,12 @@ def detect_device():
         device = "cpu"
         dtype = torch.float32
     return device, dtype
+
+def metrics_decoration(func): 
+    def wrap_func(progress=gr.Progress(track_tqdm=True), *args, **kwargs): 
+        start_time = round(time.time()) 
+        result = func(*args, **kwargs) 
+        stop_time = round(time.time())
+        print(f">>> Generation finished in {(stop_time-start_time)} seconds") 
+        return result 
+    return wrap_func 

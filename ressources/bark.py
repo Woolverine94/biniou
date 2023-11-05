@@ -61,6 +61,7 @@ def check_bark(step, timestep, latents) :
             raise Exception("Interrupting ...")
     return
 
+@metrics_decoration
 def music_bark(prompt_bark, model_bark, voice_preset_bark, progress_bark=gr.Progress(track_tqdm=True)):
     
     processor = AutoProcessor.from_pretrained(

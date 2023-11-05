@@ -41,6 +41,7 @@ def check_img2var(step, timestep, latents) :
             raise Exception("Interrupting ...")
     return
 
+@metrics_decoration
 def image_img2var(
     modelid_img2var, 
     sampler_img2var, 

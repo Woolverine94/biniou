@@ -45,6 +45,7 @@ def check_txt2prompt(step, timestep, latents) :
             raise Exception("Interrupting ...")
     return
 
+@metrics_decoration
 def text_txt2prompt(
     modelid_txt2prompt, 
     max_tokens_txt2prompt, 

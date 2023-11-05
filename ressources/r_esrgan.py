@@ -22,6 +22,7 @@ model_list_resrgan = [
     "RealESRGAN_x8.pth",
 ]
 
+@metrics_decoration
 def image_resrgan(
     modelid_resrgan, 
     scale_resrgan, 

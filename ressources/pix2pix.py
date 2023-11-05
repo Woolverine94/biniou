@@ -53,6 +53,7 @@ def check_pix2pix(step, timestep, latents) :
             raise Exception("Interrupting ...")
     return
 
+@metrics_decoration
 def image_pix2pix(
     modelid_pix2pix, 
     sampler_pix2pix, 

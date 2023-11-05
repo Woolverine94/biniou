@@ -52,6 +52,7 @@ def check_paintbyex(step, timestep, latents) :
             raise Exception("Interrupting ...")
     return
 
+@metrics_decoration
 def image_paintbyex(
     modelid_paintbyex, 
     sampler_paintbyex, 

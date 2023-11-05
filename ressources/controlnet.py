@@ -195,6 +195,7 @@ def canny_controlnet(image, low_threshold, high_threshold):
     canny_image = Image.fromarray(image)
     return canny_image
 
+@metrics_decoration
 def image_controlnet(
     modelid_controlnet, 
     sampler_controlnet, 

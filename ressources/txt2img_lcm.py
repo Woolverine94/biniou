@@ -55,6 +55,7 @@ def check_txt2img_lcm(step, timestep, latents) :
             raise Exception("Interrupting ...")
     return
 
+@metrics_decoration
 def image_txt2img_lcm(modelid_txt2img_lcm, 
     sampler_txt2img_lcm, 
     prompt_txt2img_lcm, 

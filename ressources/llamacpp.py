@@ -42,6 +42,7 @@ def download_model(modelid_llamacpp):
         modelid_llamacpp = hf_hub_path_llamacpp
     return modelid_llamacpp        
 
+@metrics_decoration
 def text_llamacpp(
     modelid_llamacpp, 
     max_tokens_llamacpp, 
@@ -95,7 +96,8 @@ def text_llamacpp(
     clean_ram()
 
     return history_llamacpp, history_llamacpp[-1][1], filename_llamacpp
-    
+
+@metrics_decoration    
 def text_llamacpp_continue(
     modelid_llamacpp, 
     max_tokens_llamacpp, 

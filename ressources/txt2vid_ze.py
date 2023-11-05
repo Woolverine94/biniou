@@ -44,6 +44,7 @@ def check_txt2vid_ze(step, timestep, latents) :
             raise Exception("Interrupting ...")
     return
 
+@metrics_decoration
 def video_txt2vid_ze(
     modelid_txt2vid_ze, 
     num_inference_step_txt2vid_ze, 

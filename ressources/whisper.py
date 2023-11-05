@@ -126,6 +126,7 @@ def convert_seconds_to_timestamp(seconds):
     total = f"{str(heures).zfill(2)}:{str(minutes).zfill(2)}:{str(secondes).zfill(2)},{msecondes_final}"
     return total
 
+@metrics_decoration
 def text_whisper(
     modelid_whisper, 
     srt_output_whisper, 

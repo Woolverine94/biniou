@@ -17,6 +17,7 @@ model_list_img2txt_git = [
     "microsoft/git-large-coco",
 ]
 
+@metrics_decoration
 def text_img2txt_git(
     modelid_img2txt_git, 
     max_tokens_img2txt_git, 

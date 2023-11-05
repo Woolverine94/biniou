@@ -29,6 +29,7 @@ variant_list_gfpgan = [
 #    "RestoreFormer.pth",
 ]
 
+@metrics_decoration
 def image_gfpgan(modelid_gfpgan, variantid_gfpgan, img_gfpgan, progress_gfpgan=gr.Progress(track_tqdm=True)):
     path_gfpgan = os.path.join(model_path_gfpgan, variantid_gfpgan)
     device = torch.device(device_gfpgan)

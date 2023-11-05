@@ -41,6 +41,7 @@ def check_musicgen(generated_tokens, total_tokens) :
             raise Exception("Interrupting ...")
     return
 
+@metrics_decoration
 def music_musicgen(
     prompt_musicgen, 
     model_musicgen, 

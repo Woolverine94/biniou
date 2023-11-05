@@ -253,6 +253,7 @@ def check_nllb(step, timestep, latents) :
             raise Exception("Interrupting ...")
     return
 
+@metrics_decoration
 def text_nllb(
     modelid_nllb, 
     max_tokens_nllb, 

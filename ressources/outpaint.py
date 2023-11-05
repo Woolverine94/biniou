@@ -57,7 +57,6 @@ def check_outpaint(step, timestep, latents) :
     return
 
 def prepare_outpaint(img_outpaint, top, bottom, left, right) :
-#     image = cv2.imread(img_outpaint) 
     image = np.array(img_outpaint)
     mask = np.zeros((image.shape[0], image.shape[1], 3), dtype = np.uint8)
     top = int(top)
@@ -84,15 +83,9 @@ def prepare_outpaint(img_outpaint, top, bottom, left, right) :
         None, 
         [255, 255, 255]
     )
-#    timestamp = time.time()
-#    savename_image = f".tmp/{timestamp}_image.png"
-#    savename_mask = f".tmp/{timestamp}_mask.png"
-#    cv2.imwrite(savename_image, image) 
-#    cv2.imwrite(savename_mask, mask) 
     return image, image, mask, mask
 
-
-
+@metrics_decoration
 def image_outpaint(
     modelid_outpaint, 
     sampler_outpaint, 

@@ -51,6 +51,7 @@ def check_txt2img_kd(step, timestep, latents) :
             raise Exception("Interrupting ...")
     return
 
+@metrics_decoration
 def image_txt2img_kd(
     modelid_txt2img_kd, 
     sampler_txt2img_kd, 

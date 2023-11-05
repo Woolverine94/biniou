@@ -55,6 +55,7 @@ def check_vid2vid_ze(step, timestep, latents) :
             raise Exception("Interrupting ...")
     return
 
+@metrics_decoration
 def image_vid2vid_ze(
     modelid_vid2vid_ze,
     sampler_vid2vid_ze,

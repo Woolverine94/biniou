@@ -51,6 +51,7 @@ def check_txt2img_mjm(step, timestep, latents) :
             raise Exception("Interrupting ...")
     return
 
+@metrics_decoration
 def image_txt2img_mjm(
     modelid_txt2img_mjm,
     sampler_txt2img_mjm,

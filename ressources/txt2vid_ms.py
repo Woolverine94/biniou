@@ -44,6 +44,7 @@ def check_txt2vid_ms(step, timestep, latents) :
             raise Exception("Interrupting ...")
     return
 
+@metrics_decoration
 def video_txt2vid_ms(
     modelid_txt2vid_ms, 
     sampler_txt2vid_ms, 

@@ -52,6 +52,7 @@ def check_txt2shape(step, timestep, latents) :
             raise Exception("Interrupting ...")
     return
 
+@metrics_decoration
 def image_txt2shape(
     modelid_txt2shape, 
     sampler_txt2shape,  

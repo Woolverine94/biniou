@@ -57,6 +57,7 @@ def check_txt2img_sd(step, timestep, latents) :
             raise Exception("Interrupting ...")
     return
 
+@metrics_decoration
 def image_txt2img_sd(modelid_txt2img_sd, 
     sampler_txt2img_sd, 
     prompt_txt2img_sd, 
@@ -73,7 +74,7 @@ def image_txt2img_sd(modelid_txt2img_sd,
     tkme_txt2img_sd,
     progress_txt2img_sd=gr.Progress(track_tqdm=True)
     ):
-    
+
     global pipe_txt2img_sd
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2img_sd, device_txt2img_sd, nsfw_filter)
 
@@ -209,5 +210,5 @@ def image_txt2img_sd(modelid_txt2img_sd,
     
     del nsfw_filter_final, feat_ex, pipe_txt2img_sd, generator, compel, conditioning, neg_conditioning, image
     clean_ram()
-    
+
     return final_image, final_image

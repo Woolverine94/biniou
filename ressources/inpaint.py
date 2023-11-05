@@ -54,6 +54,7 @@ def check_inpaint(step, timestep, latents) :
             raise Exception("Interrupting ...")
     return
 
+@metrics_decoration
 def image_inpaint(
     modelid_inpaint, 
     sampler_inpaint, 
