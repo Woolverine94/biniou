@@ -8,7 +8,7 @@ source ./env/bin/activate
 ## Launch Biniou
 if [ "$TCMALLOC_NAME" != "" ]
   then
-    echo "Detected TCMalloc installation : using it."
+    echo ">>>[biniou 🧠]: Detected TCMalloc installation : using it."
     export LD_PRELOAD=/lib/x86_64-linux-gnu/$TCMALLOC_NAME:$LD_PRELOAD 
 fi
 
