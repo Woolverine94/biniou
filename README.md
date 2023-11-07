@@ -17,6 +17,7 @@
 ---
 
 ## Updates
+  * 🆕 **2023-11-07** : 🔥 ***Bugfix : Diffusers update.*** 🔥 Following today update of Diffusers to `0.22.1`, a lot of modules based on it were broken. This [quickfix](https://github.com/Woolverine94/biniou/commit/aeda0f266df533edf66edfb734ca77382130167a) temporarily freeze the Diffusers version to `0.22.0-dev` and (should) definitively fix the LCM module.
   * 🆕 **2023-11-05** : ***New feature : timer.*** Total duration is now reported in the console output at the end of the generation process. 
   * 🆕 **2023-11-04** : ***Enhancement of repdoducibility for images modules :*** *Stable Diffusion, Midjourney-mini, Image Variation, inpaint, Paint by example, outpaint and ControlNet* can now generates reproducible images batchs (seeds inside a batch are not random anymore, but pre-calculated), and the seed is now included in the name of the generated file. Images modules not cited in this list are not eligible to this modification or are not using random seed. 
   * 🆕 **2023-11-03** : ***New model and optimizations for Whisper module*** Adding model [distil-whisper/distil-large-v2](https://huggingface.co/distil-whisper/distil-large-v2) and optimizations to Whisper module, which does not require 16GB RAM anymore.
