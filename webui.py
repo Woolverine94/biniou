@@ -10,6 +10,7 @@ import numpy as np
 import shutil
 from PIL import Image
 from ressources import *
+import sys
 
 tmp_biniou="./.tmp"
 if os.path.exists(tmp_biniou) :
@@ -22,6 +23,11 @@ with open(blankfile_common, 'w') as savefile:
 
 ini_dir="./.ini"
 os.makedirs(ini_dir, exist_ok=True)
+
+log_dir="./.logs"
+os.makedirs(log_dir, exist_ok=True)
+logfile_biniou = f"{log_dir}/output.log"
+sys.stdout = Logger(logfile_biniou)
 
 get_window_url_params = """
     function(url_params) {
@@ -422,6 +428,17 @@ def change_output_type_img2shape(output_type_img2shape, out_size_img2shape, mesh
 def read_ini_img2shape(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7])
+
+## Fonctions spécifiques à console
+def refresh_logfile():
+    return logfile_biniou
+        
+def show_download_console() :
+    return btn_download_file_console.update(visible=False), download_file_console.update(visible=True)
+
+def hide_download_console() :
+    return btn_download_file_console.update(visible=True), download_file_console.update(visible=False)
+
 
 color_label = "#7B43EE"
 color_label_button = "#4361ee"
@@ -5996,8 +6013,26 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
 # Video Instruct-pix2pix inputs
     vid2vid_ze_pix2pix.click(fn=import_to_module, inputs=[prompt_vid2vid_ze, negative_prompt_vid2vid_ze, tab_image_num, tab_pix2pix_num], outputs=[prompt_pix2pix, negative_prompt_pix2pix, tabs, tabs_image]) 
 
+# Console output
+    with gr.Accordion("biniou console", open=False):
+        with gr.Row():
+            with gr.Column():
+                biniou_console_output = gr.Textbox(label="biniou output", value="", lines=5, max_lines=5, show_copy_button=True)
+        with gr.Row():
+            with gr.Column():
+                download_file_console = gr.File(label="Download logfile", value=logfile_biniou, height=30, interactive=False)
+                biniou_console_output.change(refresh_logfile, None, download_file_console)
+            with gr.Column():
+                gr.Number(visible=False)
+            with gr.Column():
+                gr.Number(visible=False)
+            with gr.Column():
+                gr.Number(visible=False)
+
 # Exécution de l'UI :
     demo.load(split_url_params, nsfw_filter, nsfw_filter, _js=get_window_url_params)
+    demo.load(read_logs, None, biniou_console_output, every=1)
+
 if __name__ == "__main__":
     demo.queue(concurrency_count=8).launch(server_name="0.0.0.0", server_port=7860, ssl_certfile="./ssl/cert.pem", favicon_path="./images/biniou_64.ico", ssl_keyfile="./ssl/key.pem", ssl_verify=False)
 

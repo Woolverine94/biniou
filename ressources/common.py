@@ -1,6 +1,7 @@
 # https://github.com/Woolverine94/biniou
 # common.py
 import os
+import sys
 from PIL import Image, ExifTags
 from io import BytesIO
 import gradio as gr
@@ -310,6 +311,27 @@ def metrics_decoration(func):
         start_time = round(time.time()) 
         result = func(*args, **kwargs) 
         stop_time = round(time.time())
-        print(f">>>[biniou 🧠]: Generation finished in {(stop_time-start_time)} seconds") 
+        print(f">>> Generation finished in {(stop_time-start_time)} seconds") 
         return result 
-    return wrap_func
+    return wrap_func 
+
+class Logger:
+    def __init__(self, filename):
+        self.terminal = sys.stdout
+        self.log = open(filename, "w")
+        
+    def write(self, message):
+        self.terminal.write(message)
+        self.log.write(message)
+                
+    def flush(self):
+        self.terminal.flush()
+        self.log.flush()
+        
+    def isatty(self):
+        return False 
+
+def read_logs():
+    sys.stdout.flush()
+    with open("./.logs/output.log", "r") as f:
+        return f.read()
