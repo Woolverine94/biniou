@@ -311,7 +311,7 @@ def metrics_decoration(func):
         start_time = round(time.time()) 
         result = func(*args, **kwargs) 
         stop_time = round(time.time())
-        print(f">>> Generation finished in {(stop_time-start_time)} seconds") 
+        print(f">>>[biniou 🧠]: Generation finished in {(stop_time-start_time)} seconds") 
         return result 
     return wrap_func 
 
