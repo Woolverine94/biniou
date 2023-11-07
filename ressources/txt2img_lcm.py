@@ -80,8 +80,8 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
         pipe_txt2img_lcm = DiffusionPipeline.from_single_file(
             modelid_txt2img_lcm, 
             torch_dtype=torch.float32, 
-            custom_pipeline="latent_consistency_txt2img", 
-            custom_revision="main", 
+#            custom_pipeline="latent_consistency_txt2img", 
+#            custom_revision="main", 
 #            revision="fb9c5d",
             use_safetensors=True, 
             safety_checker=nsfw_filter_final, 
@@ -92,8 +92,8 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
             modelid_txt2img_lcm, 
             cache_dir=model_path_txt2img_lcm, 
             torch_dtype=torch.float32, 
-            custom_pipeline="latent_consistency_txt2img", 
-            custom_revision="main", 
+#            custom_pipeline="latent_consistency_txt2img", 
+#            custom_revision="main", 
 #            revision="fb9c5d", 
             use_safetensors=True, 
             safety_checker=nsfw_filter_final, 
@@ -103,7 +103,7 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
         )
     
 #    pipe_txt2img_lcm = get_scheduler(pipe=pipe_txt2img_lcm, scheduler=sampler_txt2img_lcm)
-    pipe_txt2img_lcm = pipe_txt2img_lcm.to(device_txt2img_lcm)
+    pipe_txt2img_lcm = pipe_txt2img_lcm.to(torch_device=device_txt2img_lcm, torch_dtype=torch.float32)
     pipe_txt2img_lcm.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_txt2img_lcm, ratio=tkme_txt2img_lcm)
     
@@ -129,7 +129,7 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
             num_images_per_prompt=num_images_per_prompt_txt2img_lcm,
             num_inference_steps=num_inference_step_txt2img_lcm,
             guidance_scale=guidance_scale_txt2img_lcm,
-            lcm_origin_steps=lcm_origin_steps_txt2img_lcm,
+#            lcm_origin_steps=lcm_origin_steps_txt2img_lcm,
         ).images
 
         for j in range(len(image)):
