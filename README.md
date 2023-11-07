@@ -17,15 +17,18 @@
 ---
 
 ## Updates
-  * 🆕 **2023-11-07** : 🔥 ***Bugfix : Diffusers update.*** 🔥 Following today update of Diffusers to `0.22.1`, a lot of modules based on it were broken. This [quickfix](https://github.com/Woolverine94/biniou/commit/aeda0f266df533edf66edfb734ca77382130167a) temporarily freeze the Diffusers version to `0.22.0-dev` and (should) definitively fix the LCM module.
+  * 🆕 **2023-11-07** : 
+    - 🔥 ***Bugfix : Diffusers update.*** 🔥 Following today update of Diffusers to `0.22.1`, a lot of modules based on it were broken. This [quickfix](https://github.com/Woolverine94/biniou/commit/aeda0f266df533edf66edfb734ca77382130167a) temporarily freeze the Diffusers version to `0.22.0-dev` and (should) definitively fix the LCM module.
+
+    - Adding a ***biniou console*** at the bottom of the interface. This console is common to all modules and will show statistics and informations about generations. Note that this is NOT a log output and does not display messages outside of biniou itself.
+
   * 🆕 **2023-11-05** : ***New feature : timer.*** Total duration is now reported in the console output at the end of the generation process. 
-  * 🆕 **2023-11-04** : ***Enhancement of repdoducibility for images modules :*** *Stable Diffusion, Midjourney-mini, Image Variation, inpaint, Paint by example, outpaint and ControlNet* can now generates reproducible images batchs (seeds inside a batch are not random anymore, but pre-calculated), and the seed is now included in the name of the generated file. Images modules not cited in this list are not eligible to this modification or are not using random seed. 
+
+  * 🆕 **2023-11-04** : ***Enhancement of reproducibility for images modules :*** *Stable Diffusion, Midjourney-mini, Image Variation, inpaint, Paint by example, outpaint and ControlNet* can now generates reproducible images batchs (seeds inside a batch are not random anymore, but pre-calculated), and the seed is now included in the name of the generated file. Images modules not cited in this list are not eligible to this modification or are not using random seed. 
+
   * 🆕 **2023-11-03** : ***New model and optimizations for Whisper module*** Adding model [distil-whisper/distil-large-v2](https://huggingface.co/distil-whisper/distil-large-v2) and optimizations to Whisper module, which does not require 16GB RAM anymore.
+
   * 🆕 **2023-11-01** : ***Experimental CUDA support*** Introducing experimental CUDA support on **module Stable Diffusion only**. See [this wiki page](https://github.com/Woolverine94/biniou/wiki/Experimental-features) for details on how to enable use of CUDA with biniou. Default biniou installation will stay on cpu-only, but autodetection of CUDA at install will be implemented and CUDA support deployed for most modules in a near future. 
-  * 🆕 **2023-10-30** : 
-    - 🔥 ***New choice of model for Stable Diffusion module : SSD-1B.*** 🔥 [SSD-1B](https://huggingface.co/segmind/SSD-1B) is a terrific brand new model distilled from SDXL. It produces awesome results at a 1024x1024 size (pretty long generation time comparing to other models ... but worth the wait !), and require to upgrade to the git version of diffusers, which will be done automatically by the update script.
-    - New features and simplification of code for Prompt generator : adding seed and batch size settings. These modifications change the default storage for Prompt generator models. You can delete the content of the /models/Prompt_generator directory to save some space.
-  * 🆕 **2023-10-29** : ***Introducing optional TCMalloc support for GNU/Linux.*** If TCMalloc is installed on your distribution, it will automatically be used by biniou. It will contribute to reduce the frequency of OOM crash encountered. You can install it as sudoer or root, using : `apt install google-perftools`<br/>
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
