@@ -30,6 +30,8 @@ def image_resrgan(
     use_gfpgan_resrgan, 
     progress_resrgan=gr.Progress(track_tqdm=True)
     ):
+
+    print(">>>[Real ESRGAN 🔎]: starting module")
         
     model_resrgan_path  = os.path.join(model_path_resrgan, modelid_resrgan)
     device = torch.device(device_resrgan)
@@ -45,8 +47,16 @@ def image_resrgan(
         sr_image = image_gfpgan_mini(sr_image)    
     sr_image.save(savename)
     final_image.append(sr_image)
-    
+
+    print(f">>>[Real ESRGAN 🔎]: generated 1 batch(es) of 1")
+    reporting_resrgan = f">>>[Real ESRGAN 🔎]: "+\
+        f"Settings : Model={modelid_resrgan} | "+\
+        f"Scale={scale_resrgan} | "+\
+        f"GFPGAN={use_gfpgan_resrgan} | "
+    print(reporting_resrgan)
+            
     del model_resrgan, image, sr_image
     clean_ram()
-    
+
+    print(f">>>[Real ESRGAN 🔎]: leaving module")    
     return final_image, final_image

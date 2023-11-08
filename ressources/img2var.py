@@ -59,6 +59,8 @@ def image_img2var(
     progress_img2var=gr.Progress(track_tqdm=True)
     ):
 
+    print(">>>[Image variation 🖼️ ]: starting module")
+
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_img2var, device_img2var, nsfw_filter)
 
     pipe_img2var = StableDiffusionImageVariationPipeline.from_pretrained(
@@ -104,6 +106,7 @@ def image_img2var(
             callback = check_img2var, 
         ).images
 
+        final_seed = []
         for j in range(len(image)):
             timestamp = time.time()
             seed_id = random_seed + i*num_images_per_prompt_img2var + j if (seed_img2var == 0) else seed_img2var + i*num_images_per_prompt_img2var + j
@@ -112,8 +115,23 @@ def image_img2var(
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
             final_image.append(savename)
+            final_seed.append(seed_id)
+            
+    print(f">>>[Image variation 🖼️ ]: generated {num_prompt_img2var} batch(es) of {num_images_per_prompt_img2var}")
+    reporting_img2var = f">>>[Image variation 🖼️ ]: "+\
+        f"Settings : Model={modelid_img2var} | "+\
+        f"Sampler={sampler_img2var} | "+\
+        f"Steps={num_inference_step_img2var} | "+\
+        f"CFG scale={guidance_scale_img2var} | "+\
+        f"Size={dim_size[0]}x{dim_size[1]} | "+\
+        f"GFPGAN={use_gfpgan_img2var} | "+\
+        f"Token merging={tkme_img2var} | "+\
+        f"nsfw_filter={bool(int(nsfw_filter))} | "+\
+        f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
+    print(reporting_img2var)             
 
     del nsfw_filter_final, feat_ex, pipe_img2var, generator, image_input, image
     clean_ram()
-   
+ 
+    print(f">>>[Image variation 🖼️ ]: leaving module")  
     return final_image, final_image 

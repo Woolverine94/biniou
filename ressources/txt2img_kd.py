@@ -68,6 +68,8 @@ def image_txt2img_kd(
 #    tkme_txt2img_kd,
     progress_txt2img_kd=gr.Progress(track_tqdm=True)
     ):
+
+    print(">>>[Kandinsky 🖼️ ]: starting module")
         
     if modelid_txt2img_kd[0:9] == "./models/" :
         pipe_txt2img_kd = AutoPipelineForText2Image.from_single_file(
@@ -117,8 +119,21 @@ def image_txt2img_kd(
                 image[j] = image_gfpgan_mini(image[j])            
             image[j].save(savename)
             final_image.append(image[j])
+
+    print(f">>>[Kandinsky 🖼️ ]: generated {num_prompt_txt2img_kd} batch(es) of {num_images_per_prompt_txt2img_kd}")
+    reporting_txt2img_kd = f">>>[Kandinsky 🖼️ ]: "+\
+        f"Settings : Model={modelid_txt2img_kd} | "+\
+        f"Sampler={sampler_txt2img_kd} | "+\
+        f"Steps={num_inference_step_txt2img_kd} | "+\
+        f"CFG scale={guidance_scale_txt2img_kd} | "+\
+        f"Size={width_txt2img_kd}x{height_txt2img_kd} | "+\
+        f"GFPGAN={use_gfpgan_txt2img_kd} | "+\
+        f"Prompt={prompt_txt2img_kd} | "+\
+        f"Negative prompt={negative_prompt_txt2img_kd}"
+    print(reporting_txt2img_kd) 
             
     del pipe_txt2img_kd, generator, image 
     clean_ram()            
     
+    print(f">>>[Kandinsky 🖼️ ]: leaving module")    
     return final_image, final_image

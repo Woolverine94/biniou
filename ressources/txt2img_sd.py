@@ -75,6 +75,8 @@ def image_txt2img_sd(modelid_txt2img_sd,
     progress_txt2img_sd=gr.Progress(track_tqdm=True)
     ):
 
+    print(">>>[Stable Diffusion 🖼️ ]: starting module")
+
     global pipe_txt2img_sd
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2img_sd, device_txt2img_sd, nsfw_filter)
 
@@ -199,6 +201,7 @@ def image_txt2img_sd(modelid_txt2img_sd,
                 callback = check_txt2img_sd,
             ).images
         
+        final_seed = []
         for j in range(len(image)):
             timestamp = time.time()
             seed_id = random_seed + i*num_images_per_prompt_txt2img_sd + j if (seed_txt2img_sd == 0) else seed_txt2img_sd + i*num_images_per_prompt_txt2img_sd + j
@@ -207,8 +210,26 @@ def image_txt2img_sd(modelid_txt2img_sd,
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
             final_image.append(savename)
+            final_seed.append(seed_id)
+
+    print(f">>>[Stable Diffusion 🖼️ ]: generated {num_prompt_txt2img_sd} batch(es) of {num_images_per_prompt_txt2img_sd}")
+    reporting_txt2img_sd = f">>>[Stable Diffusion 🖼️ ]: "+\
+        f"Settings : Model={modelid_txt2img_sd} | "+\
+        f"XL model={is_xl_txt2img_sd} | "+\
+        f"Sampler={sampler_txt2img_sd} | "+\
+        f"Steps={num_inference_step_txt2img_sd} | "+\
+        f"CFG scale={guidance_scale_txt2img_sd} | "+\
+        f"Size={width_txt2img_sd}x{height_txt2img_sd} | "+\
+        f"GFPGAN={use_gfpgan_txt2img_sd} | "+\
+        f"Token merging={tkme_txt2img_sd} | "+\
+        f"nsfw_filter={bool(int(nsfw_filter))} | "+\
+        f"Prompt={prompt_txt2img_sd} | "+\
+        f"Negative prompt={negative_prompt_txt2img_sd} | "+\
+        f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
+    print(reporting_txt2img_sd) 
     
     del nsfw_filter_final, feat_ex, pipe_txt2img_sd, generator, compel, conditioning, neg_conditioning, image
     clean_ram()
 
+    print(f">>>[Stable Diffusion 🖼️ ]: leaving module")
     return final_image, final_image

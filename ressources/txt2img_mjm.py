@@ -69,6 +69,8 @@ def image_txt2img_mjm(
     tkme_txt2img_mjm,
     progress_txt2img_mjm=gr.Progress(track_tqdm=True)
     ):
+
+    print(">>>[Midjourney-mini 🖼️ ]: starting module")
     
 #    global pipe_txt2img_mjm
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2img_mjm_safetychecker, device_txt2img_mjm, nsfw_filter)
@@ -133,6 +135,7 @@ def image_txt2img_mjm(
             callback = check_txt2img_mjm, 
         ).images
 
+        final_seed = []
         for j in range(len(image)):
             timestamp = time.time()
             seed_id = random_seed + i*num_images_per_prompt_txt2img_mjm + j if (seed_txt2img_mjm == 0) else seed_txt2img_mjm + i*num_images_per_prompt_txt2img_mjm + j
@@ -141,8 +144,25 @@ def image_txt2img_mjm(
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
             final_image.append(savename)
+            final_seed.append(seed_id)
+
+    print(f">>>[Midjourney-mini 🖼️ ]: generated {num_prompt_txt2img_mjm} batch(es) of {num_images_per_prompt_txt2img_mjm}")
+    reporting_txt2img_mjm = f">>>[Midjourney-mini 🖼️ ]: "+\
+        f"Settings : Model={modelid_txt2img_mjm} | "+\
+        f"Sampler={sampler_txt2img_mjm} | "+\
+        f"Steps={num_inference_step_txt2img_mjm} | "+\
+        f"CFG scale={guidance_scale_txt2img_mjm} | "+\
+        f"Size={width_txt2img_mjm}x{height_txt2img_mjm} | "+\
+        f"GFPGAN={use_gfpgan_txt2img_mjm} | "+\
+        f"Token merging={tkme_txt2img_mjm} | "+\
+        f"nsfw_filter={bool(int(nsfw_filter))} | "+\
+        f"Prompt={prompt_txt2img_mjm} | "+\
+        f"Negative prompt={negative_prompt_txt2img_mjm} | "+\
+        f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
+    print(reporting_txt2img_mjm) 
 
     del nsfw_filter_final, feat_ex, pipe_txt2img_mjm, generator, compel, conditioning, neg_conditioning, image
     clean_ram()
-    
+
+    print(f">>>[Midjourney-mini 🖼️ ]: leaving module") 
     return final_image, final_image

@@ -58,6 +58,8 @@ def image_faceswap(
     progress_txt2img_sd=gr.Progress(track_tqdm=True)
     ):
    
+    print(">>>[Faceswap 🎭 ]: starting module")
+   
     if source_index_faceswap == "":
         source_index_faceswap = "0"
     if target_index_faceswap == "":
@@ -98,8 +100,15 @@ def image_faceswap(
     
     temp_frame.save(savename)
     final_image.append(temp_frame)
-    
+
+    print(f">>>[Faceswap 🎭 ]: generated 1 batch(es) of 1")
+    reporting_faceswap = f">>>[Faceswap 🎭 ]: "+\
+        f"Settings : Model={modelid_faceswap} | "+\
+        f"GFPGAN={use_gfpgan_faceswap}"
+    print(reporting_faceswap) 
+
     del source_img, target_img, providers, face_analyser, face_swapper, target_analyze, target_faces, source_analyze, source_faces, temp_frame    
     clean_ram()
-    
+
+    print(f">>>[Faceswap 🎭 ]: leaving module")
     return final_image, final_image 

@@ -31,6 +31,7 @@ variant_list_gfpgan = [
 
 @metrics_decoration
 def image_gfpgan(modelid_gfpgan, variantid_gfpgan, img_gfpgan, progress_gfpgan=gr.Progress(track_tqdm=True)):
+    print(">>>[GFPGAN 🔎]: starting module")
     path_gfpgan = os.path.join(model_path_gfpgan, variantid_gfpgan)
     device = torch.device(device_gfpgan)
     
@@ -69,8 +70,16 @@ def image_gfpgan(modelid_gfpgan, variantid_gfpgan, img_gfpgan, progress_gfpgan=g
     image_gfpgan_save.save(savename)
     final_image.append(image_gfpgan_save)
 
+    print(f">>>[GFPGAN 🔎]: generated 1 batch(es) of 1")
+    reporting_gfpgan = f">>>[GFPGAN 🔎]: "+\
+        f"Settings : Model={modelid_gfpgan} | "+\
+        f"Variant={variantid_gfpgan}"
+    print(reporting_gfpgan) 
+
     del model_gfpgan, image_inter_gfpgan, image_input_gfpgan, image_gfpgan
     clean_ram()
+
+    print(f">>>[GFPGAN 🔎]: leaving module")
     return final_image, final_image
 
 def image_gfpgan_mini(img_gfpgan):
@@ -114,5 +123,6 @@ def image_gfpgan_mini(img_gfpgan):
 
     del model_gfpgan, image_inter_gfpgan, image_input_gfpgan, image_gfpgan
     clean_ram()
-        
+
+    print(">>>[GFPGAN-mini 🔎]: enhanced 1 image") 
     return image_gfpgan_output

@@ -107,6 +107,8 @@ def image_outpaint(
     tkme_outpaint,
     progress_outpaint=gr.Progress(track_tqdm=True)
     ):
+
+    print(">>>[outpaint 🖌️ ]: starting module") 
     
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_safety_checker, device_outpaint, nsfw_filter)
 
@@ -194,6 +196,7 @@ def image_outpaint(
             callback = check_outpaint,
         ).images
 
+        final_seed = []
         for j in range(len(image)):
             timestamp = time.time()
             seed_id = random_seed + i*num_images_per_prompt_outpaint + j if (seed_outpaint == 0) else seed_outpaint + i*num_images_per_prompt_outpaint + j
@@ -202,10 +205,29 @@ def image_outpaint(
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
             final_image.append(savename)
+            final_seed.append(seed_id)
+
+    print(f">>>[outpaint 🖌️ ]: generated {num_prompt_outpaint} batch(es) of {num_images_per_prompt_outpaint}")
+    reporting_outpaint = f">>>[outpaint 🖌️ ]: "+\
+        f"Settings : Model={modelid_outpaint} | "+\
+        f"Sampler={sampler_outpaint} | "+\
+        f"Steps={num_inference_step_outpaint} | "+\
+        f"CFG scale={guidance_scale_outpaint} | "+\
+        f"Size={dim_size[0]}x{dim_size[1]} | "+\
+        f"GFPGAN={use_gfpgan_outpaint} | "+\
+        f"Token merging={tkme_outpaint} | "+\
+        f"nsfw_filter={bool(int(nsfw_filter))} | "+\
+        f"Denoising strength={denoising_strength_outpaint} | "+\
+        f"Prompt={prompt_outpaint} | "+\
+        f"Negative prompt={negative_prompt_outpaint} | "+\
+        f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
+    print(reporting_outpaint) 
 
     final_image.append(savename_mask)
 
     del nsfw_filter_final, feat_ex, pipe_outpaint, generator, image_input, mask_image_input, image
     clean_ram()
+
+    print(f">>>[outpaint 🖌️ ]: leaving module")
 
     return final_image, final_image

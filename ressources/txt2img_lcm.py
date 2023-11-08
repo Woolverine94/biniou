@@ -73,6 +73,8 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
     progress_txt2img_lcm=gr.Progress(track_tqdm=True)
     ):
     
+    print(">>>[LCM 🖼️ ]: starting module")
+    
     global pipe_txt2img_lcm
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2img_lcm_safetychecker, device_txt2img_lcm, nsfw_filter)
 
@@ -139,8 +141,21 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
             final_image.append(image[j])
-    
+
+    print(f">>>[LCM 🖼️ ]: generated {num_prompt_txt2img_lcm} batch(es) of {num_images_per_prompt_txt2img_lcm}")
+    reporting_txt2img_lcm = f">>>[LCM 🖼️ ]: "+\
+        f"Settings : Model={modelid_txt2img_lcm} | "+\
+        f"Steps={num_inference_step_txt2img_lcm} | "+\
+        f"CFG scale={guidance_scale_txt2img_lcm} | "+\
+        f"Size={width_txt2img_lcm}x{height_txt2img_lcm} | "+\
+        f"GFPGAN={use_gfpgan_txt2img_lcm} | "+\
+        f"nsfw_filter={bool(int(nsfw_filter))} | "+\
+        f"Prompt={prompt_txt2img_lcm}"
+    print(reporting_txt2img_lcm) 
+
     del nsfw_filter_final, feat_ex, pipe_txt2img_lcm, generator, compel, conditioning, image
     clean_ram()
+
+    print(f">>>[LCM 🖼️ ]: leaving module")
     
     return final_image, final_image

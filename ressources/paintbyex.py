@@ -71,7 +71,9 @@ def image_paintbyex(
     tkme_paintbyex,
     progress_paintbyex=gr.Progress(track_tqdm=True)
     ):
-    
+
+    print(">>>[Paint by example 🖌️ ]: starting module") 
+
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_safety_checker, device_paintbyex, nsfw_filter)
     
     if modelid_paintbyex[0:9] == "./models/" :
@@ -135,6 +137,7 @@ def image_paintbyex(
             callback = check_paintbyex,              
         ).images
 
+        final_seed = []
         for j in range(len(image)):
             timestamp = time.time()
             seed_id = random_seed + i*num_images_per_prompt_paintbyex + j if (seed_paintbyex == 0) else seed_paintbyex + i*num_images_per_prompt_paintbyex + j
@@ -143,10 +146,25 @@ def image_paintbyex(
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
             final_image.append(savename)
+            final_seed.append(seed_id)
+
+    print(f">>>[Paint by example 🖌️ ]: generated {num_prompt_paintbyex} batch(es) of {num_images_per_prompt_paintbyex}")
+    reporting_paintbyex = f">>>[Paint by example 🖌️ ]: "+\
+        f"Settings : Model={modelid_paintbyex} | "+\
+        f"Sampler={sampler_paintbyex} | "+\
+        f"Steps={num_inference_step_paintbyex} | "+\
+        f"CFG scale={guidance_scale_paintbyex} | "+\
+        f"Size={dim_size[0]}x{dim_size[1]} | "+\
+        f"GFPGAN={use_gfpgan_paintbyex} | "+\
+        f"Token merging={tkme_paintbyex} | "+\
+        f"nsfw_filter={bool(int(nsfw_filter))} | "+\
+        f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
+    print(reporting_paintbyex) 
 
     final_image.append(savename_mask)
 
     del nsfw_filter_final, feat_ex, pipe_paintbyex, generator, image_input, mask_image_input, example_image_input, image
     clean_ram()
 
+    print(f">>>[Paint by example 🖌️ ]: leaving module")
     return final_image, final_image

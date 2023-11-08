@@ -221,6 +221,8 @@ def image_controlnet(
     progress_controlnet=gr.Progress(track_tqdm=True)
     ):
 
+    print(">>>[ControlNet 🖼️ ]: starting module")
+
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_controlnet, device_controlnet, nsfw_filter)
     
     controlnet = ControlNetModel.from_pretrained(
@@ -362,6 +364,7 @@ def image_controlnet(
                 callback=check_controlnet,
             ).images
 
+        final_seed = [] 
         for j in range(len(image)):
             timestamp = time.time()
             seed_id = random_seed + i*num_images_per_prompt_controlnet + j if (seed_controlnet == 0) else seed_controlnet + i*num_images_per_prompt_controlnet + j
@@ -370,6 +373,28 @@ def image_controlnet(
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
             final_image.append(savename)
+            final_seed.append(seed_id)
+
+    print(f">>>[ControlNet 🖼️ ]: generated {num_prompt_controlnet} batch(es) of {num_images_per_prompt_controlnet}")
+    reporting_controlnet = f">>>[ControlNet 🖼️ ]: "+\
+        f"Settings : Model={modelid_controlnet} | "+\
+        f"XL model={is_xl_controlnet} | "+\
+        f"Sampler={sampler_controlnet} | "+\
+        f"Steps={num_inference_step_controlnet} | "+\
+        f"CFG scale={guidance_scale_controlnet} | "+\
+        f"Size={width_controlnet}x{height_controlnet} | "+\
+        f"ControlNet strength={strength_controlnet} | "+\
+        f"Start ControlNet={start_controlnet} | "+\
+        f"Stop ControlNet={stop_controlnet} | "+\
+        f"GFPGAN={use_gfpgan_controlnet} | "+\
+        f"Token merging={tkme_controlnet} | "+\
+        f"nsfw_filter={bool(int(nsfw_filter))} | "+\
+        f"ControlNet model={variant_controlnet} | "+\
+        f"Prompt={prompt_controlnet} | "+\
+        f"Negative prompt={negative_prompt_controlnet} | "+\
+        f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
+    print(reporting_controlnet) 
+
 
     savename_controlnet = f"outputs/controlnet.png"
     img_preview_controlnet.save(savename_controlnet) 
@@ -377,5 +402,6 @@ def image_controlnet(
 
     del nsfw_filter_final, feat_ex, controlnet, img_preview_controlnet, pipe_controlnet, generator, compel, conditioning, neg_conditioning, image 
     clean_ram()
-    
+
+    print(f">>>[ControlNet 🖼️ ]: leaving module")
     return final_image, final_image

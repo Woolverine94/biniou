@@ -74,6 +74,8 @@ def image_pix2pix(
     progress_pix2pix=gr.Progress(track_tqdm=True)
     ):
 
+    print(">>>[Instruct pix2pix 🖌️ ]: starting module")
+
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_safety_checker, device_pix2pix, nsfw_filter)
     
     pipe_pix2pix= StableDiffusionInstructPix2PixPipeline.from_pretrained(
@@ -137,9 +139,25 @@ def image_pix2pix(
                 image[j] = image_gfpgan_mini(image[j])             
             image[j].save(savename)
             final_image.append(image[j])
+
+    print(f">>>[Instruct pix2pix 🖌️ ]: generated {num_prompt_pix2pix} batch(es) of {num_images_per_prompt_pix2pix}")
+    reporting_pix2pix = f">>>[Instruct pix2pix 🖌️ ]: "+\
+        f"Settings : Model={modelid_pix2pix} | "+\
+        f"Sampler={sampler_pix2pix} | "+\
+        f"Steps={num_inference_step_pix2pix} | "+\
+        f"CFG scale={guidance_scale_pix2pix} | "+\
+        f"Img CFG scale={image_guidance_scale_pix2pix} | "+\
+        f"Size={width_pix2pix}x{height_pix2pix} | "+\
+        f"GFPGAN={use_gfpgan_pix2pix} | "+\
+        f"Token merging={tkme_pix2pix} | "+\
+        f"nsfw_filter={bool(int(nsfw_filter))} | "+\
+        f"Prompt={prompt_pix2pix} | "+\
+        f"Negative prompt={negative_prompt_pix2pix}"
+    print(reporting_pix2pix) 
             
     del nsfw_filter_final, feat_ex, pipe_pix2pix, generator, image_input, image
     clean_ram()            
 
+    print(f">>>[Instruct pix2pix 🖌️ ]: leaving module")
     return final_image, final_image
 

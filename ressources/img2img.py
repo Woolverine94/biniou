@@ -78,6 +78,8 @@ def image_img2img(
     progress_img2img=gr.Progress(track_tqdm=True)
     ):
 
+    print(">>>[img2img 🖌️ ]: starting module")
+
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_img2img, device_img2img, nsfw_filter)
 
     if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_img2img :
@@ -211,7 +213,24 @@ def image_img2img(
         image_input.save(savename_mask)
         final_image.append(savename_mask)
 
+    print(f">>>[img2img 🖌️ ]: generated {num_prompt_img2img} batch(es) of {num_images_per_prompt_img2img}")        
+    reporting_img2img = f">>>[img2img 🖌️ ]: "+\
+        f"Settings : Model={modelid_img2img} | "+\
+        f"XL model={is_xl_img2img} | "+\
+        f"Sampler={sampler_img2img} | "+\
+        f"Steps={num_inference_step_img2img} | "+\
+        f"CFG scale={guidance_scale_img2img} | "+\
+        f"Size={width_img2img}x{height_img2img} | "+\
+        f"GFPGAN={use_gfpgan_img2img} | "+\
+        f"Token merging={tkme_img2img} | "+\
+        f"nsfw_filter={bool(int(nsfw_filter))} | "+\
+        f"Denoising strength={denoising_strength_img2img} | "+\
+        f"Prompt={prompt_img2img} | "+\
+        f"Negative prompt={negative_prompt_img2img}"
+    print(reporting_img2img)         
+        
     del nsfw_filter_final, feat_ex, pipe_img2img, generator, image_input, compel, conditioning, neg_conditioning, image
     clean_ram()
-   
+
+    print(f">>>[img2img 🖌️ ]: leaving module")   
     return final_image, final_image 
