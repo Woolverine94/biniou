@@ -39,11 +39,12 @@ def initiate_stop_txt2img_kd() :
     global stop_txt2img_kd
     stop_txt2img_kd = True
 
-def check_txt2img_kd(step, timestep, latents) : 
+def check_txt2img_kd(pipe, step_index, timestep, callback_kwargs) : 
     global stop_txt2img_kd
     if stop_txt2img_kd == False :
-        return
+        return callback_kwargs
     elif stop_txt2img_kd == True :
+        print(">>>[Kandinsky 🖼️ ]: generation canceled by user")
         stop_txt2img_kd = False
         try:
             del ressources.txt2img_kd.pipe_txt2img_kd
@@ -109,7 +110,8 @@ def image_txt2img_kd(
             guidance_scale=guidance_scale_txt2img_kd,
             num_images_per_prompt=num_images_per_prompt_txt2img_kd,
             generator = generator,
-            callback = check_txt2img_kd,            
+            callback_on_step_end=check_txt2img_kd, 
+            callback_on_step_end_tensor_inputs=['latents'],
         ).images
 
         for j in range(len(image)):

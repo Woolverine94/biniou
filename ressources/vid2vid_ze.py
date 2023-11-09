@@ -43,11 +43,12 @@ def initiate_stop_vid2vid_ze() :
     global stop_vid2vid_ze
     stop_vid2vid_ze = True
 
-def check_vid2vid_ze(step, timestep, latents) : 
+def check_vid2vid_ze(pipe, step_index, timestep, callback_kwargs) : 
     global stop_vid2vid_ze
     if stop_vid2vid_ze == False :
-        return
+        return callback_kwargs
     elif stop_vid2vid_ze == True :
+        print(">>>[Video Instruct-Pix2Pix 🖌️ ]: generation canceled by user")
         stop_vid2vid_ze = False
         try:
             del ressources.vid2vid_ze.pipe_vid2vid_ze
@@ -71,12 +72,14 @@ def image_vid2vid_ze(
     width_vid2vid_ze,
     seed_vid2vid_ze,
     num_frames_vid2vid_ze,
-    num_fps_txt2vid_ze,
+    num_fps_vid2vid_ze,
     use_gfpgan_vid2vid_ze,
     nsfw_filter,
     tkme_vid2vid_ze,
     progress_vid2vid_ze=gr.Progress(track_tqdm=True)
     ):
+
+    print(">>>[Video Instruct-Pix2Pix 🖌️ ]: starting module")
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_safety_checker, device_vid2vid_ze, nsfw_filter)
     
@@ -129,7 +132,8 @@ def image_vid2vid_ze(
             image_guidance_scale=image_guidance_scale_vid2vid_ze,
             num_inference_steps=num_inference_step_vid2vid_ze,
             generator = generator,
-            callback = check_vid2vid_ze,             
+            callback_on_step_end=check_vid2vid_ze, 
+            callback_on_step_end_tensor_inputs=['latents'], 
         ).images
 
         for j in range(len(image)):
@@ -139,9 +143,28 @@ def image_vid2vid_ze(
             
     timestamp = time.time()
     savename = f"outputs/{timestamp}.mp4"
-    final_video = imageio.mimsave(savename, final_image, fps=num_fps_txt2vid_ze)            
-            
+    final_video = imageio.mimsave(savename, final_image, fps=num_fps_vid2vid_ze)            
+
+    print(f">>>[Video Instruct-Pix2Pix 🖌️ ]: generated {num_prompt_vid2vid_ze} batch(es) of {num_images_per_prompt_vid2vid_ze}")
+    reporting_vid2vid_ze = f">>>[Video Instruct-Pix2Pix 🖌️ ]: "+\
+        f"Settings : Model={modelid_vid2vid_ze} | "+\
+        f"Sampler={sampler_vid2vid_ze} | "+\
+        f"Steps={num_inference_step_vid2vid_ze} | "+\
+        f"CFG scale={guidance_scale_vid2vid_ze} | "+\
+        f"Image CFG scale={image_guidance_scale_vid2vid_ze} | "+\
+        f"Video length={num_frames_vid2vid_ze} frames | "+\
+        f"FPS={num_fps_vid2vid_ze} frames | "+\
+        f"Size={width_vid2vid_ze}x{height_vid2vid_ze} | "+\
+        f"GFPGAN={use_gfpgan_vid2vid_ze} | "+\
+        f"Token merging={tkme_vid2vid_ze} | "+\
+        f"nsfw_filter={bool(int(nsfw_filter))} | "+\
+        f"Prompt={prompt_vid2vid_ze} | "+\
+        f"Negative prompt={negative_prompt_vid2vid_ze} | "#+\
+#        f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
+    print(reporting_vid2vid_ze) 
+
     del nsfw_filter_final, feat_ex, pipe_vid2vid_ze, generator, image
     clean_ram()            
 
+    print(f">>>[Video Instruct-Pix2Pix 🖌️ ]: leaving module")
     return savename, savename

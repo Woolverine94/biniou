@@ -44,11 +44,12 @@ def initiate_stop_outpaint() :
     global stop_outpaint
     stop_outpaint = True
 
-def check_outpaint(step, timestep, latents) : 
+def check_outpaint(pipe, step_index, timestep, callback_kwargs) : 
     global stop_outpaint
     if stop_outpaint == False :
-        return
+        return callback_kwargs
     elif stop_outpaint == True :
+        print(">>>[outpaint 🖌️ ]: generation canceled by user")
         stop_outpaint = False
         try:
             del ressources.outpaint.pipe_outpaint
@@ -193,7 +194,8 @@ def image_outpaint(
             height=dim_size[1],
             num_inference_steps=num_inference_step_outpaint,
             generator = generator[i],
-            callback = check_outpaint,
+            callback_on_step_end=check_outpaint, 
+            callback_on_step_end_tensor_inputs=['latents'],
         ).images
 
         final_seed = []

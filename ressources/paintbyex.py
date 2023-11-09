@@ -45,6 +45,7 @@ def check_paintbyex(step, timestep, latents) :
     if stop_paintbyex == False :
         return
     elif stop_paintbyex == True :
+        print(">>>[Paint by example 🖌️ ]: generation canceled by user")
         stop_paintbyex = False
         try:
             del ressources.paintbyex.pipe_paintbyex

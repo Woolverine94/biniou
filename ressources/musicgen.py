@@ -34,6 +34,7 @@ def check_musicgen(generated_tokens, total_tokens) :
     if stop_musicgen == False :
         return
     elif stop_musicgen == True :
+        print(">>>[MusicGen 🎶 ]: generation canceled by user")
         stop_musicgen = False
         try:
             del ressources.musicgen.pipe_musicgen
@@ -55,6 +56,8 @@ def music_musicgen(
     progress_musicgen=gr.Progress(track_tqdm=True)
     ):
 
+    print(">>>[MusicGen 🎶 ]: starting module")
+
     pipe_musicgen = MusicGen.get_pretrained(model_musicgen, device=device_musicgen)
     pipe_musicgen.set_generation_params(
         duration=duration_musicgen, 
@@ -73,8 +76,21 @@ def music_musicgen(
             savename = f"outputs/{timestamp}_{idx}"
             savename_final = savename+ ".wav" 
             audio_write(savename, one_wav.cpu(), pipe_musicgen.sample_rate, strategy="loudness", loudness_compressor=True)
+
+    print(f">>>[MusicGen 🎶 ]: generated {num_batch_musicgen} batch(es) of 1")
+    reporting_musicgen = f">>>[MusicGen 🎶 ]: "+\
+        f"Settings : Model={model_musicgen} | "+\
+        f"Duration={duration_musicgen} | "+\
+        f"CFG scale={cfg_coef_musicgen} | "+\
+        f"Use sampling={use_sampling_musicgen} | "+\
+        f"Temperature={temperature_musicgen} | "+\
+        f"Top_k={top_k_musicgen} | "+\
+        f"Top_p={top_p_musicgen} | "+\
+        f"Prompt={prompt_musicgen}"
+    print(reporting_musicgen)
             
     del pipe_musicgen
     clean_ram()      
-            
+
+    print(f">>>[MusicGen 🎶 ]: leaving module")
     return savename_final           

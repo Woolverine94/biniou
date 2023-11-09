@@ -48,6 +48,7 @@ def check_txt2img_lcm(step, timestep, latents) :
 #        result_preview = preview_image(step, timestep, latents, pipe_txt2img_lcm)
         return
     elif stop_txt2img_lcm == True :
+        print(">>>[LCM 🖼️ ]: generation canceled by user")
         stop_txt2img_lcm = False
         try:
             del ressources.txt2img_lcm.pipe_txt2img_lcm

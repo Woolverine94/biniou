@@ -34,6 +34,7 @@ def check_img2var(step, timestep, latents) :
     if stop_img2var == False :
         return
     elif stop_img2var == True :
+        print(">>>[Image variation 🖼️ ]: generation canceled by user")
         stop_img2var = False
         try:
             del ressources.img2var.pipe_img2var
@@ -103,7 +104,9 @@ def image_img2var(
             width=dim_size[0],
             height=dim_size[1],             
             generator = generator[i], 
-            callback = check_img2var, 
+            callback=check_img2var, 
+#            callback_on_step_end=check_img2var, 
+#            callback_on_step_end_tensor_inputs=['latents'], 
         ).images
 
         final_seed = []

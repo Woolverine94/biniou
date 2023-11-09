@@ -41,11 +41,12 @@ def initiate_stop_pix2pix() :
     global stop_pix2pix
     stop_pix2pix = True
 
-def check_pix2pix(step, timestep, latents) : 
+def check_pix2pix(pipe, step_index, timestep, callback_kwargs) : 
     global stop_pix2pix
     if stop_pix2pix == False :
-        return
+        return callback_kwargs
     elif stop_pix2pix == True :
+        print(">>>[Instruct pix2pix 🖌️ ]: generation canceled by user")
         stop_pix2pix = False
         try:
             del ressources.pix2pix.pipe_pix2pix
@@ -129,7 +130,8 @@ def image_pix2pix(
             image_guidance_scale=image_guidance_scale_pix2pix,
             num_inference_steps=num_inference_step_pix2pix,
             generator = generator,
-            callback = check_pix2pix,             
+            callback_on_step_end=check_pix2pix, 
+            callback_on_step_end_tensor_inputs=['latents'],
         ).images
 
         for j in range(len(image)):

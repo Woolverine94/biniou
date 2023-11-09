@@ -37,6 +37,7 @@ def check_txt2vid_ms(step, timestep, latents) :
     if stop_txt2vid_ms == False :
         return
     elif stop_txt2vid_ms == True :
+        print(">>>[Modelscope 📼 ]: generation canceled by user")
         stop_txt2vid_ms = False
         try:
             del ressources.txt2vid_ms.pipe_txt2vid_ms
@@ -61,6 +62,8 @@ def video_txt2vid_ms(
 #    tkme_txt2vid_ms,
     progress_txt2vid_ms=gr.Progress(track_tqdm=True)
     ):
+
+    print(">>>[Modelscope 📼 ]: starting module")
 
     pipe_txt2vid_ms = DiffusionPipeline.from_pretrained(
         modelid_txt2vid_ms, 
@@ -102,15 +105,30 @@ def video_txt2vid_ms(
             guidance_scale=guidance_scale_txt2vid_ms,
             num_frames=num_frames_txt2vid_ms,
             generator = generator,
-            callback = check_txt2vid_ms,            
+            callback=check_txt2vid_ms, 
         ).frames
-        
+
         video_path = export_to_video(video_frames)
         timestamp = time.time()
         savename = f"outputs/{timestamp}.mp4"
         shutil.move(video_path, savename)
         
+    print(f">>>[Modelscope 📼 ]: generated {num_prompt_txt2vid_ms} batch(es) of 1")
+    reporting_txt2vid_ms = f">>>[Modelscope 📼 ]: "+\
+        f"Settings : Model={modelid_txt2vid_ms} | "+\
+        f"Sampler={sampler_txt2vid_ms} | "+\
+        f"Steps={num_inference_step_txt2vid_ms} | "+\
+        f"CFG scale={guidance_scale_txt2vid_ms} | "+\
+        f"Video length={num_frames_txt2vid_ms} frames | "+\
+        f"Size={width_txt2vid_ms}x{height_txt2vid_ms} | "+\
+        f"GFPGAN={use_gfpgan_txt2vid_ms} | "+\
+        f"Prompt={prompt_txt2vid_ms} | "+\
+        f"Negative prompt={negative_prompt_txt2vid_ms} |"#+\
+#        f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
+    print(reporting_txt2vid_ms) 
+
     del pipe_txt2vid_ms, generator, video_frames
     clean_ram()        
 
+    print(f">>>[Modelscope 📼 ]: leaving module")
     return savename

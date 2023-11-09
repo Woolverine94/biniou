@@ -37,6 +37,7 @@ def check_txt2vid_ze(step, timestep, latents) :
     if stop_txt2vid_ze == False :
         return
     elif stop_txt2vid_ze == True :
+        print(">>>[Text2Video-Zero 📼 ]: generation canceled by user")
         stop_txt2vid_ze = False
         try:
             del ressources.txt2vid_ze.pipe_txt2vid_ze
@@ -70,6 +71,8 @@ def video_txt2vid_ze(
     progress_txt2vid_ze=gr.Progress(track_tqdm=True)
     ):
     
+    print(">>>[Text2Video-Zero 📼 ]: starting module")
+
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2vid_ze, device_txt2vid_ze, nsfw_filter)
 
     pipe_txt2vid_ze = TextToVideoZeroPipeline.from_pretrained(
@@ -122,7 +125,7 @@ def video_txt2vid_ze(
                     t0=timestep_t0_txt2vid_ze,
                     t1=timestep_t1_txt2vid_ze,
                     generator = generator,
-                    callback = check_txt2vid_ze,
+                    callback=check_txt2vid_ze, 
                 )
                 result.append(output.images[1:])
             result = np.concatenate(result)
@@ -141,7 +144,7 @@ def video_txt2vid_ze(
                 t0=timestep_t0_txt2vid_ze,
                 t1=timestep_t1_txt2vid_ze,
                 generator = generator,
-                callback = check_txt2vid_ze,
+                callback=check_txt2vid_ze, 
             ).images
 
         result = [(r * 255).astype("uint8") for r in result]
@@ -153,9 +156,31 @@ def video_txt2vid_ze(
         timestamp = time.time()
         savename = f"outputs/{timestamp}.mp4"
         imageio.mimsave(savename, result, fps=num_fps_txt2vid_ze)
-        
+
+    print(f">>>[Text2Video-Zero 📼 ]: generated {num_prompt_txt2vid_ze} batch(es) of {num_videos_per_prompt_txt2vid_ze}")
+    reporting_txt2vid_ze = f">>>[Text2Video-Zero 📼 ]: "+\
+        f"Settings : Model={modelid_txt2vid_ze} | "+\
+        f"Sampler={sampler_txt2vid_ze} | "+\
+        f"Steps={num_inference_step_txt2vid_ze} | "+\
+        f"CFG scale={guidance_scale_txt2vid_ze} | "+\
+        f"Video length={num_frames_txt2vid_ze} frames | "+\
+        f"FPS={num_fps_txt2vid_ze} frames | "+\
+        f"Chunck size={num_chunks_txt2vid_ze} | "+\
+        f"Size={width_txt2vid_ze}x{height_txt2vid_ze} | "+\
+        f"Motion field strength x={motion_field_strength_x_txt2vid_ze} | "+\
+        f"Motion field strength y={motion_field_strength_y_txt2vid_ze} | "+\
+        f"Timestep t0={timestep_t0_txt2vid_ze} | "+\
+        f"Timestep t1={timestep_t1_txt2vid_ze} | "+\
+        f"GFPGAN={use_gfpgan_txt2vid_ze} | "+\
+        f"Token merging={tkme_txt2vid_ze} | "+\
+        f"nsfw_filter={bool(int(nsfw_filter))} | "+\
+        f"Prompt={prompt_txt2vid_ze} | "+\
+        f"Negative prompt={negative_prompt_txt2vid_ze} | "#+\
+#        f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
+    print(reporting_txt2vid_ze) 
+
     del nsfw_filter_final, feat_ex, pipe_txt2vid_ze, generator, result
     clean_ram()
-    
-    return savename
 
+    print(f">>>[Text2Video-Zero 📼 ]: leaving module")
+    return savename

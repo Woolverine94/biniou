@@ -44,11 +44,12 @@ def initiate_stop_img2img() :
     global stop_img2img
     stop_img2img = True
 
-def check_img2img(step, timestep, latents) : 
+def check_img2img(pipe, step_index, timestep, callback_kwargs) : 
     global stop_img2img
     if stop_img2img == False :
-        return
+        return callback_kwargs
     elif stop_img2img == True :
+        print(">>>[img2img 🖌️ ]: generation canceled by user")
         stop_img2img = False
         try:
             del ressources.img2img.pipe_img2img
@@ -185,7 +186,8 @@ def image_img2img(
                 strength=denoising_strength_img2img,
                 num_inference_steps=num_inference_step_img2img,
                 generator = generator,
-                callback = check_img2img,                
+                callback_on_step_end=check_img2img, 
+                callback_on_step_end_tensor_inputs=['latents'], 
             ).images
         else : 
             image = pipe_img2img(        
@@ -197,7 +199,8 @@ def image_img2img(
                 strength=denoising_strength_img2img,
                 num_inference_steps=num_inference_step_img2img,
                 generator = generator,
-                callback = check_img2img,                
+                callback_on_step_end=check_img2img, 
+                callback_on_step_end_tensor_inputs=['latents'], 
             ).images        
 
         for j in range(len(image)):

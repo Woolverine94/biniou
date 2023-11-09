@@ -42,11 +42,12 @@ def initiate_stop_inpaint() :
     global stop_inpaint
     stop_inpaint = True
 
-def check_inpaint(step, timestep, latents) : 
+def check_inpaint(pipe, step_index, timestep, callback_kwargs) : 
     global stop_inpaint
     if stop_inpaint == False :
-        return
+        return callback_kwargs
     elif stop_inpaint == True :
+        print(">>>[inpaint 🖌️ ]: generation canceled by user")
         stop_inpaint = False
         try:
             del ressources.inpaint.pipe_inpaint
@@ -151,7 +152,8 @@ def image_inpaint(
             height=dim_size[1],
             num_inference_steps=num_inference_step_inpaint,
             generator = generator[i],
-            callback = check_inpaint,              
+            callback_on_step_end=check_inpaint, 
+            callback_on_step_end_tensor_inputs=['latents'],
         ).images
 
         final_seed = [] 

@@ -44,12 +44,13 @@ def initiate_stop_txt2img_sd() :
     global stop_txt2img_sd
     stop_txt2img_sd = True
 
-def check_txt2img_sd(step, timestep, latents) :
+def check_txt2img_sd(pipe, step_index, timestep, callback_kwargs) :
     global stop_txt2img_sd
     if stop_txt2img_sd == False :
 #        result_preview = preview_image(step, timestep, latents, pipe_txt2img_sd)
-        return
-    elif stop_txt2img_sd == True :
+        return callback_kwargs
+    elif stop_txt2img_sd == True :		
+        print(">>>[Stable Diffusion 🖼️ ]: generation canceled by user")
         stop_txt2img_sd = False
         try:
             del ressources.txt2img_sd.pipe_txt2img_sd
@@ -186,7 +187,8 @@ def image_txt2img_sd(modelid_txt2img_sd,
                 num_inference_steps=num_inference_step_txt2img_sd,
                 guidance_scale=guidance_scale_txt2img_sd,
                 generator = generator[i],
-                callback = check_txt2img_sd,
+                callback_on_step_end=check_txt2img_sd, 
+                callback_on_step_end_tensor_inputs=['latents'], 
             ).images
         else :
             image = pipe_txt2img_sd(
@@ -198,7 +200,8 @@ def image_txt2img_sd(modelid_txt2img_sd,
                 num_inference_steps=num_inference_step_txt2img_sd,
                 guidance_scale=guidance_scale_txt2img_sd,
                 generator = generator[i],
-                callback = check_txt2img_sd,
+                callback_on_step_end=check_txt2img_sd, 
+                callback_on_step_end_tensor_inputs=['latents'], 
             ).images
         
         final_seed = []

@@ -94,6 +94,7 @@ def check_controlnet(step, timestep, latents) :
     if stop_controlnet == False :
         return
     elif stop_controlnet == True :
+        print(">>>[ControlNet 🖼️ ]: generation canceled by user")
         stop_controlnet = False
         try:
             del ressources.controlnet.pipe_controlnet

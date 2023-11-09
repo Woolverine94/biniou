@@ -38,12 +38,13 @@ def initiate_stop_txt2img_mjm() :
     global stop_txt2img_mjm
     stop_txt2img_mjm = True
 
-def check_txt2img_mjm(step, timestep, latents) :
+def check_txt2img_mjm(pipe, step_index, timestep, callback_kwargs) :
     global stop_txt2img_mjm
     if stop_txt2img_mjm == False :
 #        result_preview = preview_image(step, timestep, latents, pipe_txt2img_mjm)
-        return
+        return callback_kwargs
     elif stop_txt2img_mjm == True :
+        print(">>>[Midjourney-mini 🖼️ ]: generation canceled by user")
         stop_txt2img_mjm = False
         try:
             del ressources.txt2img_mjm.pipe_txt2img_mjm
@@ -132,7 +133,8 @@ def image_txt2img_mjm(
             num_inference_steps=num_inference_step_txt2img_mjm,
             guidance_scale=guidance_scale_txt2img_mjm,
             generator = generator[i],
-            callback = check_txt2img_mjm, 
+            callback_on_step_end=check_txt2img_mjm, 
+            callback_on_step_end_tensor_inputs=['latents'],
         ).images
 
         final_seed = []
