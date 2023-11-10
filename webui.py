@@ -159,8 +159,8 @@ def change_output_type_whisper(output_type_whisper):
         return output_language_whisper.update(visible=True)        
 
 def stop_recording_whisper(source_audio_whisper):
-    print(source_audio_whisper)
-    print(type(source_audio_whisper))
+#    print(source_audio_whisper)
+#    print(type(source_audio_whisper))
     return source_audio_whisper.update(source="upload"), source_audio_whisper
 
 def read_ini_whisper(module) :

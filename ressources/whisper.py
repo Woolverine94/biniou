@@ -136,7 +136,8 @@ def text_whisper(
     output_language_whisper, 
     progress_whisper=gr.Progress(track_tqdm=True)
     ):
-     
+
+    print(">>>[Whisper 👂 ]: starting module")
     sample_rate_whisper = 16000    
     audio_whisper = AudioSegment.from_file(source_audio_whisper)
     audio_whisper = audio_whisper.set_frame_rate(sample_rate_whisper)
@@ -202,7 +203,19 @@ def text_whisper(
 
     filename_whisper = write_file(transcription_whisper_final)
 
+    if output_type_whisper == "transcribe" :
+         output_language_whisper = source_language_whisper
+    print(f">>>[Whisper 👂 ]: generated 1 caption")
+    reporting_whisper = f">>>[Whisper 👂 ]: "+\
+        f"Settings : Model={modelid_whisper} | "+\
+        f"Output type={output_type_whisper} | "+\
+        f"SRT format output={srt_output_whisper} | "+\
+        f"Source language={source_language_whisper} | "+\
+        f"Output language={output_language_whisper}"
+    print(reporting_whisper)
+
     del audio_whisper, model_whisper, tokenizer_whisper, feat_ex_whisper, pipe_whisper
     clean_ram()
 
+    print(f">>>[Whisper 👂 ]: leaving module")
     return transcription_whisper_final

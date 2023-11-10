@@ -262,16 +262,22 @@ def text_nllb(
     output_language_nllb, 
     progress_nllb=gr.Progress(track_tqdm=True)
     ):
-        
+
+    print(">>>[nllb translation 👥 ]: starting module")
     source_language_nllb = language_list_nllb[source_language_nllb]
     output_language_nllb = language_list_nllb[output_language_nllb]
+
     model_nllb = snapshot_download(
         repo_id=modelid_nllb, 
         cache_dir=model_path_nllb, 
         resume_download=True,
         local_files_only=True if offline_test() else None
     )
-    tokenizer_nllb = NllbTokenizer.from_pretrained(model_nllb, src_lang=source_language_nllb, tgt_lang=output_language_nllb)
+    tokenizer_nllb = NllbTokenizer.from_pretrained(
+        model_nllb, 
+        src_lang=source_language_nllb, 
+        tgt_lang=output_language_nllb
+    )
     automodel_nllb = AutoModelForSeq2SeqLM.from_pretrained(model_nllb)
     inputs_nllb = tokenizer_nllb(prompt_nllb, return_tensors="pt").to(device_nllb)
     translated_tokens = automodel_nllb.generate(
@@ -281,8 +287,18 @@ def text_nllb(
     )
     output_nllb = tokenizer_nllb.batch_decode(translated_tokens, skip_special_tokens=True)[0]
     filename_nllb = write_file(output_nllb)
-    
+
+    print(f">>>[nllb translation 👥 ]: generated 1 translation")
+    reporting_nllb = f">>>[nllb translation 👥 ]: "+\
+        f"Settings : Model={modelid_nllb} | "+\
+        f"Max tokens={max_tokens_nllb} | "+\
+        f"Source language={source_language_nllb} | "+\
+        f"Output language={output_language_nllb} | "+\
+        f"Prompt={prompt_nllb}"
+    print(reporting_nllb)
+
     del model_nllb, tokenizer_nllb, automodel_nllb, inputs_nllb, translated_tokens
     clean_ram()
 
+    print(f">>>[nllb translation 👥 ]: leaving module")
     return output_nllb

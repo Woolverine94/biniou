@@ -17,7 +17,7 @@
 ---
 
 ## Updates
-  * 🆕 **2023-11-07** : 🔥 ***Bugfix : Rewriting of deprecated features in diffusers module.*** 🔥 Following the previous quickfix adressing the compatibility issue with diffusers 0.22.1+, biniou is now fully compatible with newest versions of diffusers. Use update script to upgrade.
+  * 🆕 **2023-11-09** : 🔥 ***Bugfix : Rewriting of deprecated features in diffusers module.*** 🔥 Following the previous quickfix adressing the compatibility issue with diffusers 0.22.1+, biniou is now fully compatible with newest versions of diffusers. Use update script to upgrade.
   * 🆕 **2023-11-07** : 
     - 🔥 ***Bugfix : Diffusers update.*** 🔥 Following today update of Diffusers to `0.22.1`, a lot of modules based on it were broken. This [quickfix](https://github.com/Woolverine94/biniou/commit/aeda0f266df533edf66edfb734ca77382130167a) temporarily freeze the Diffusers version to `0.22.0-dev` and (should) definitively fix the LCM module.
 

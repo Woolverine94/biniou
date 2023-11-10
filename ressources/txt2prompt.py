@@ -57,6 +57,7 @@ def text_txt2prompt(
     progress_txt2prompt=gr.Progress(track_tqdm=True)
     ):
 
+    print(">>>[Prompt generator 📝 ]: starting module")
     output_txt2prompt=""
 
     if output_type_txt2prompt == "ChatGPT":   
@@ -87,7 +88,18 @@ def text_txt2prompt(
     
     filename_txt2prompt = write_file(output_txt2prompt)
 
+    print(f">>>[Prompt generator 📝 ]: generated {num_prompt_txt2prompt} prompt(s)")
+    reporting_txt2prompt = f">>>[Prompt generator 📝 ]: "+\
+        f"Settings : Model={modelid_txt2prompt} | "+\
+        f"Max tokens={max_tokens_txt2prompt} | "+\
+        f"Repetition penalty={repetition_penalty_txt2prompt} | "+\
+        f"Output type={output_type_txt2prompt} | "+\
+        f"Prompt={prompt_txt2prompt} | "+\
+        f"Seed={seed_txt2prompt}"
+    print(reporting_txt2prompt)
+
     del pipeline_txt2prompt
     clean_ram()        
 
+    print(f">>>[Prompt generator 📝 ]: leaving module")
     return output_txt2prompt

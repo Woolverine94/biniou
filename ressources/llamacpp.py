@@ -59,6 +59,8 @@ def text_llamacpp(
     progress_txt2vid_ze=gr.Progress(track_tqdm=True)
     ):
 
+    print(">>>[Chatbot Llama-cpp 📝 ]: starting answer generation")
+    modelid_llamacpp_origin = modelid_llamacpp
     modelid_llamacpp = download_model(modelid_llamacpp)
     
     if prompt_template_llamacpp == "" :
@@ -92,9 +94,25 @@ def text_llamacpp(
     filename_llamacpp = write_file(history_final, prompt_llamacpp, last_answer_llamacpp)
     history_llamacpp.append((prompt_llamacpp, last_answer_llamacpp))
 
+    print(f">>>[Chatbot Llama-cpp 📝 ]: generated 1 answer")
+    reporting_llamacpp = f">>>[Chatbot Llama-cpp 📝 ]: "+\
+        f"Settings : Model={modelid_llamacpp_origin} | "+\
+        f"Max tokens={max_tokens_llamacpp} | "+\
+        f"Stream results={stream_llamacpp} | "+\
+        f"n_ctx={n_ctx_llamacpp} | "+\
+        f"Repeat penalty={repeat_penalty_llamacpp} | "+\
+        f"Temperature={temperature_llamacpp} | "+\
+        f"Top_k={top_k_llamacpp} | "+\
+        f"Top_p={top_p_llamacpp} | "+\
+        f"Prompt template={prompt_template_llamacpp} | "+\
+        f"Prompt={prompt_llamacpp} | "+\
+        f"Seed={seed_llamacpp}"
+    print(reporting_llamacpp) 
+
     del llm, output_llamacpp
     clean_ram()
 
+    print(f">>>[Chatbot Llama-cpp 📝 ]: leaving module")
     return history_llamacpp, history_llamacpp[-1][1], filename_llamacpp
 
 @metrics_decoration    
@@ -111,6 +129,8 @@ def text_llamacpp_continue(
     history_llamacpp, 
     ):
 
+    print(">>>[Chatbot Llama-cpp 📝 ]: continuing answer generation")
+    modelid_llamacpp_origin = modelid_llamacpp
     modelid_llamacpp = download_model(modelid_llamacpp)
 
     if history_llamacpp != "[]" :
@@ -138,7 +158,21 @@ def text_llamacpp_continue(
     history_llamacpp[-1][1] += last_answer_llamacpp
 #    history_llamacpp.append((prompt_llamacpp, last_answer_llamacpp))
 
+    print(f">>>[Chatbot Llama-cpp 📝 ]: continued 1 answer")
+    reporting_llamacpp = f">>>[Chatbot Llama-cpp 📝 ]: "+\
+        f"Settings : Model={modelid_llamacpp_origin} | "+\
+        f"Max tokens={max_tokens_llamacpp} | "+\
+        f"Stream results={stream_llamacpp} | "+\
+        f"n_ctx={n_ctx_llamacpp} | "+\
+        f"Repeat penalty={repeat_penalty_llamacpp} | "+\
+        f"Temperature={temperature_llamacpp} | "+\
+        f"Top_p={top_p_llamacpp} | "+\
+        f"Top_k={top_k_llamacpp} | "+\
+        f"Seed={seed_llamacpp}"
+    print(reporting_llamacpp) 
+   
     del llm, output_llamacpp
     clean_ram()
-        
+    
+    print(f">>>[Chatbot Llama-cpp 📝 ]: leaving module")
     return history_llamacpp, history_llamacpp[-1][1], filename_llamacpp

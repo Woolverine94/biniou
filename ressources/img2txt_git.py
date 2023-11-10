@@ -28,7 +28,8 @@ def text_img2txt_git(
     img_img2txt_git, 
     progress_img2txt_git=gr.Progress(track_tqdm=True)
     ):
-    
+
+    print(">>>[Image captioning 👁️ ]: starting module")
     processor_img2txt_git = AutoProcessor.from_pretrained(modelid_img2txt_git, cache_dir=model_path_img2txt_git)    
     pipe_img2txt_git = AutoModelForCausalLM.from_pretrained(
         modelid_img2txt_git, 
@@ -52,8 +53,19 @@ def text_img2txt_git(
     )
     captions_img2txt_git = processor_img2txt_git.batch_decode(ids_img2txt_git, skip_special_tokens=True)[0]
     filename_img2txt_git = write_file(captions_img2txt_git)
-    
+
+    print(f">>>[Image captioning 👁️ ]: generated 1 caption")
+    reporting_img2txt_git = f">>>[Image captioning 👁️ ]: "+\
+        f"Settings : Model={modelid_img2txt_git} | "+\
+        f"Max tokens={max_tokens_img2txt_git} | "+\
+        f"Min tokens={min_tokens_img2txt_git} | "+\
+        f"Num beams={num_beams_img2txt_git} | "+\
+        f"Num beam groups={num_beam_groups_img2txt_git} | "+\
+        f"Diversity penalty={diversity_penalty_img2txt_git}"
+    print(reporting_img2txt_git)
+
     del processor_img2txt_git, pipe_img2txt_git, inpipe_img2txt_git, ids_img2txt_git
     clean_ram()
-    
+
+    print(f">>>[Image captioning 👁️ ]: leaving module")
     return captions_img2txt_git
