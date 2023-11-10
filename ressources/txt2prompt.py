@@ -59,6 +59,7 @@ def text_txt2prompt(
 
     print(">>>[Prompt generator 📝 ]: starting module")
     output_txt2prompt=""
+    prompt_txt2prompt_origin = prompt_txt2prompt
 
     if output_type_txt2prompt == "ChatGPT":   
          prompt_txt2prompt = f"\nAction:{prompt_txt2prompt}\nPrompt:"
@@ -94,12 +95,12 @@ def text_txt2prompt(
         f"Max tokens={max_tokens_txt2prompt} | "+\
         f"Repetition penalty={repetition_penalty_txt2prompt} | "+\
         f"Output type={output_type_txt2prompt} | "+\
-        f"Prompt={prompt_txt2prompt} | "+\
+        f"Prompt={prompt_txt2prompt_origin} | "+\
         f"Seed={seed_txt2prompt}"
     print(reporting_txt2prompt)
 
     del pipeline_txt2prompt
-    clean_ram()        
+    clean_ram()
 
     print(f">>>[Prompt generator 📝 ]: leaving module")
     return output_txt2prompt
