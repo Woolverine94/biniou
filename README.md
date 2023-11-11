@@ -17,6 +17,7 @@
 ---
 
 ## Updates
+  * 🆕 **2023-11-11** : 🔥 ***New Chatbot feature : support for 128k context size.*** 🔥 Adding the model *Yarn-Mistral-7B-128k-GGUF* and rising the context size limit up to 128k tokens. Using this model setting the context size to the maximum value, and using a void prompt template, should allow to handle very long conversations, but requires a lot of RAM (16GB only permits 64k context size).
   * 🆕 **2023-11-09** : 🔥 ***Bugfix : Rewriting of deprecated features in diffusers module.*** 🔥 Following the previous quickfix adressing the compatibility issue with diffusers 0.22.1+, biniou is now fully compatible with newest versions of diffusers. Use update script to upgrade.
   * 🆕 **2023-11-07** : 
     - 🔥 ***Bugfix : Diffusers update.*** 🔥 Following today update of Diffusers to `0.22.1`, a lot of modules based on it were broken. This [quickfix](https://github.com/Woolverine94/biniou/commit/aeda0f266df533edf66edfb734ca77382130167a) temporarily freeze the Diffusers version to `0.22.0-dev` and (should) definitively fix the LCM module.
@@ -24,10 +25,6 @@
     - Adding a ***biniou console*** at the bottom of the interface. This console is common to all modules and will show statistics and informations about generations. Note that this is NOT a log output and does not display messages outside of biniou itself.
 
   * 🆕 **2023-11-05** : ***New feature : timer.*** Total duration is now reported in the console output at the end of the generation process. 
-
-  * 🆕 **2023-11-04** : ***Enhancement of reproducibility for images modules :*** *Stable Diffusion, Midjourney-mini, Image Variation, inpaint, Paint by example, outpaint and ControlNet* can now generates reproducible images batchs (seeds inside a batch are not random anymore, but pre-calculated), and the seed is now included in the name of the generated file. Images modules not cited in this list are not eligible to this modification or are not using random seed. 
-
-  * 🆕 **2023-11-03** : ***New model and optimizations for Whisper module*** Adding model [distil-whisper/distil-large-v2](https://huggingface.co/distil-whisper/distil-large-v2) and optimizations to Whisper module, which does not require 16GB RAM anymore.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
