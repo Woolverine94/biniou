@@ -311,7 +311,8 @@ def metrics_decoration(func):
         start_time = round(time.time()) 
         result = func(*args, **kwargs) 
         stop_time = round(time.time())
-        print(f">>>[biniou 🧠]: Generation finished in {(stop_time-start_time)} seconds") 
+        timestamp = convert_seconds_to_timestamp((stop_time-start_time))
+        print(f">>>[biniou 🧠]: Generation finished in {timestamp.split(',')[0]} ({(stop_time-start_time)} seconds)") 
         return result 
     return wrap_func 
 
@@ -335,3 +336,15 @@ def read_logs():
     sys.stdout.flush()
     with open("./.logs/output.log", "r") as f:
         return f.read()
+
+def convert_seconds_to_timestamp(seconds):
+    reliquat0 = int(seconds)
+    reliquat1 = int(seconds/60)
+    reliquat2 = int(reliquat1/60)
+    msecondes = round(seconds-(reliquat0), 3)
+    msecondes_final = str(int(msecondes*1000)).ljust(3, '0')
+    secondes = reliquat0-(reliquat1*60)
+    minutes = int((reliquat0-((reliquat2*3600)+secondes))/60)
+    heures = int((reliquat0-((minutes*60)+secondes))/3600)
+    total = f"{str(heures).zfill(2)}:{str(minutes).zfill(2)}:{str(secondes).zfill(2)},{msecondes_final}"
+    return total
