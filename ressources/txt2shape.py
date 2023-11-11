@@ -63,12 +63,12 @@ def image_txt2shape(
     num_inference_step_txt2shape, 
     frame_size_txt2shape, 
     seed_txt2shape, 
-    output_type_txt2shape,     
+    output_type_txt2shape, 
     nsfw_filter, 
     progress_txt2shape=gr.Progress(track_tqdm=True)
     ):
-    
-    global pipe_txt2shape
+
+    print(">>>[Shap-E txt2shape 🧊]: starting module") 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2shape_safetychecker, device_txt2shape, nsfw_filter)
 
     if modelid_txt2shape[0:9] == "./models/" :
@@ -124,9 +124,23 @@ def image_txt2shape(
             export_to_gif(image[j], savename)
             final_image.append(savename)
 
+        print(f">>>[Shap-E txt2shape 🧊 ]: generated {num_prompt_txt2shape} batch(es) of {num_images_per_prompt_txt2shape}")
+        reporting_txt2shape = f">>>[Shap-E txt2shape 🧊 ]: "+\
+            f"Settings : Model={modelid_txt2shape} | "+\
+            f"Sampler={sampler_txt2shape} | "+\
+            f"Steps={num_inference_step_txt2shape} | "+\
+            f"CFG scale={guidance_scale_txt2shape} | "+\
+            f"Frame size={frame_size_txt2shape} | "+\
+            f"Output type={output_type_txt2shape} | "+\
+            f"nsfw_filter={bool(int(nsfw_filter))} | "+\
+            f"Prompt={prompt_txt2shape} | "#+\
+#            f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
+        print(reporting_txt2shape) 
+
         del nsfw_filter_final, feat_ex, pipe_txt2shape, generator, image
         clean_ram()
 
+        print(f">>>[Shap-E txt2shape 🧊 ]: leaving module")
         return final_image, final_image
 
     else : 
@@ -144,8 +158,22 @@ def image_txt2shape(
         mesh.export(savename_glb, file_type="glb")
         mesh.export(savename_final, file_type="glb") 
 
+        print(f">>>[Shap-E txt2shape 🧊 ]: generated {num_prompt_txt2shape} batch(es) of {num_images_per_prompt_txt2shape}")
+        reporting_txt2shape = f">>>[Shap-E txt2shape 🧊 ]: "+\
+            f"Settings : Model={modelid_txt2shape} | "+\
+            f"Sampler={sampler_txt2shape} | "+\
+            f"Steps={num_inference_step_txt2shape} | "+\
+            f"CFG scale={guidance_scale_txt2shape} | "+\
+            f"Frame size={frame_size_txt2shape} | "+\
+            f"Output type={output_type_txt2shape} | "+\
+            f"nsfw_filter={bool(int(nsfw_filter))} | "+\
+            f"Prompt={prompt_txt2shape} | "#+\
+#            f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
+        print(reporting_txt2shape) 
+
         del nsfw_filter_final, feat_ex, pipe_txt2shape, generator, image
         clean_ram()
 
+        print(f">>>[Shap-E txt2shape 🧊 ]: leaving module")
         return savename_final, savename_final
     return

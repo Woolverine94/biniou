@@ -43,7 +43,9 @@ def music_harmonai(
     batch_repeat_harmonai, 
     progress_harmonai=gr.Progress(track_tqdm=True)
     ):
-        
+
+    print(">>>[Harmonai 🔊 ]: starting module")
+
     if model_harmonai[0:9] == "./models/" :
         pipe_harmonai = DiffusionPipeline.from_single_file(model_harmonai, torch_dtype=torch.float32)
     else : 
@@ -75,10 +77,16 @@ def music_harmonai(
             savename = f"outputs/{timestamp}_{j}.wav"
             scipy.io.wavfile.write(savename, pipe_harmonai.unet.config.sample_rate, audio.transpose())
 
+    print(f">>>[Harmonai 🔊 ]: generated {batch_repeat_harmonai} batch(es) of {batch_size_harmonai}")
+    reporting_harmonai = f">>>[Harmonai 🔊 ]: "+\
+        f"Settings : Model={model_harmonai} | "+\
+        f"Steps={steps_harmonai} | "+\
+        f"Duration={length_harmonai} sec. | "# +\
+#        f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
+    print(reporting_harmonai) 
+    
     del pipe_harmonai, generator, audios
     clean_ram()
 
+    print(f">>>[Harmonai 🔊 ]: leaving module")
     return savename
-
-
-

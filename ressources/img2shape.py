@@ -69,7 +69,7 @@ def image_img2shape(
     progress_img2shape=gr.Progress(track_tqdm=True)
     ):
     
-    global pipe_img2shape
+    print(">>>[Shap-E img2shape 🧊 ]: starting module") 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_img2shape_safetychecker, device_img2shape, nsfw_filter)
     
     if modelid_img2shape[0:9] == "./models/" :
@@ -125,9 +125,22 @@ def image_img2shape(
             export_to_gif(image[j], savename)
             final_image.append(savename)
 
+        print(f">>>[Shap-E img2shape 🧊 ]: generated {num_prompt_img2shape} batch(es) of {num_images_per_prompt_img2shape}")
+        reporting_img2shape = f">>>[Shap-E img2shape 🧊 ]: "+\
+            f"Settings : Model={modelid_img2shape} | "+\
+            f"Sampler={sampler_img2shape} | "+\
+            f"Steps={num_inference_step_img2shape} | "+\
+            f"CFG scale={guidance_scale_img2shape} | "+\
+            f"Frame size={frame_size_img2shape} | "+\
+            f"Output type={output_type_img2shape} | "+\
+            f"nsfw_filter={bool(int(nsfw_filter))} | "#+\
+#            f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
+        print(reporting_img2shape) 
+
         del nsfw_filter_final, feat_ex, pipe_img2shape, generator, image
         clean_ram()
 
+        print(f">>>[Shap-E img2shape 🧊 ]: leaving module")
         return final_image, final_image
 
     else : 
@@ -145,8 +158,21 @@ def image_img2shape(
         mesh.export(savename_glb, file_type="glb")
         mesh.export(savename_final, file_type="glb") 
 
+        print(f">>>[Shap-E img2shape 🧊 ]: generated {num_prompt_img2shape} batch(es) of {num_images_per_prompt_img2shape}")
+        reporting_img2shape = f">>>[Shap-E img2shape 🧊 ]: "+\
+            f"Settings : Model={modelid_img2shape} | "+\
+            f"Sampler={sampler_img2shape} | "+\
+            f"Steps={num_inference_step_img2shape} | "+\
+            f"CFG scale={guidance_scale_img2shape} | "+\
+            f"Frame size={frame_size_img2shape} | "+\
+            f"Output type={output_type_img2shape} | "+\
+            f"nsfw_filter={bool(int(nsfw_filter))} | "#+\
+#            f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
+        print(reporting_img2shape) 
+
         del nsfw_filter_final, feat_ex, pipe_img2shape, generator, image
         clean_ram()
 
+        print(f">>>[Shap-E img2shape 🧊 ]: leaving module")
         return savename_final, savename_final
     return

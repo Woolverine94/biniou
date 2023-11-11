@@ -62,7 +62,14 @@ def check_bark(step, timestep, latents) :
     return
 
 @metrics_decoration
-def music_bark(prompt_bark, model_bark, voice_preset_bark, progress_bark=gr.Progress(track_tqdm=True)):
+def music_bark(
+    prompt_bark, 
+    model_bark, 
+    voice_preset_bark, 
+    progress_bark=gr.Progress(track_tqdm=True)
+    ):
+
+    print(">>>[Bark 🗣️ ]: starting module")
     
     processor = AutoProcessor.from_pretrained(
         model_bark, 
@@ -87,8 +94,16 @@ def music_bark(prompt_bark, model_bark, voice_preset_bark, progress_bark=gr.Prog
     timestamp = time.time()
     savename = f"outputs/{timestamp}.wav"
     write_wav(savename, sample_rate, audio_array)
-    
+
+    print(f">>>[Bark 🗣️ ]: generated 1 audio file")
+    reporting_bark = f">>>[Bark 🗣️ ]: "+\
+        f"Settings : Model={model_bark} | "+\
+        f"Voice preset={voice_preset_bark} | "+\
+        f"Prompt={prompt_bark}"
+    print(reporting_bark) 
+   
     del processor, pipe_bark, audio_array    
     clean_ram()
-    
-    return savename 
+
+    print(f">>>[Bark 🗣️ ]: leaving module")    
+    return savename
