@@ -86,7 +86,7 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
         is_xl_txt2img_lcm: bool = False
         
     if (modelid_txt2img_lcm == "latent-consistency/lcm-ssd-1b") :
-        model_path_SD_txt2img_lcm = "./models/Stable Diffusion"
+        model_path_SD_txt2img_lcm = "./models/Stable_Diffusion"
         modelid_SD_txt2img_lcm = "segmind/SSD-1B"
         unet_txt2img_lcm = UNet2DConditionModel.from_pretrained(
             modelid_txt2img_lcm, 
