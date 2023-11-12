@@ -319,7 +319,7 @@ def metrics_decoration(func):
 class Logger:
     def __init__(self, filename):
         self.terminal = sys.stdout
-        self.log = open(filename, "w")
+        self.log = open(filename, "w", encoding="utf-8")
         
     def write(self, message):
         self.terminal.write(message)
@@ -334,7 +334,7 @@ class Logger:
 
 def read_logs():
     sys.stdout.flush()
-    with open("./.logs/output.log", "r") as f:
+    with open("./.logs/output.log", "r", encoding="utf-8") as f:
         return f.read()
 
 def convert_seconds_to_timestamp(seconds):
