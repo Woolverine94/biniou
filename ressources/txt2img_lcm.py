@@ -2,7 +2,7 @@
 # txt2img_lcm.py
 import gradio as gr
 import os
-from diffusers import DiffusionPipeline
+from diffusers import UNet2DConditionModel, DiffusionPipeline, LCMScheduler 
 from compel import Compel, ReturnedEmbeddingsType
 import torch
 import time
@@ -26,6 +26,7 @@ for filename in os.listdir(model_path_txt2img_lcm):
 
 model_list_txt2img_lcm_builtin = [
     "SimianLuo/LCM_Dreamshaper_v7",
+    "latent-consistency/lcm-ssd-1b",
 ]
 
 for k in range(len(model_list_txt2img_lcm_builtin)):
@@ -79,31 +80,56 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
     global pipe_txt2img_lcm
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2img_lcm_safetychecker, device_txt2img_lcm, nsfw_filter)
 
-    if modelid_txt2img_lcm[0:9] == "./models/" :
-        pipe_txt2img_lcm = DiffusionPipeline.from_single_file(
-            modelid_txt2img_lcm, 
-            torch_dtype=torch.float32, 
-#            custom_pipeline="latent_consistency_txt2img", 
-#            custom_revision="main", 
-#            revision="fb9c5d",
-            use_safetensors=True, 
-            safety_checker=nsfw_filter_final, 
-            feature_extractor=feat_ex,
-        )
+    if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_txt2img_lcm or (modelid_txt2img_lcm == "latent-consistency/lcm-ssd-1b") :
+        is_xl_txt2img_lcm: bool = True
     else :        
-        pipe_txt2img_lcm = DiffusionPipeline.from_pretrained(
+        is_xl_txt2img_lcm: bool = False
+        
+    if (modelid_txt2img_lcm == "latent-consistency/lcm-ssd-1b") :
+        model_path_SD_txt2img_lcm = "./models/Stable Diffusion"
+        modelid_SD_txt2img_lcm = "segmind/SSD-1B"
+        unet_txt2img_lcm = UNet2DConditionModel.from_pretrained(
             modelid_txt2img_lcm, 
             cache_dir=model_path_txt2img_lcm, 
             torch_dtype=torch.float32, 
-#            custom_pipeline="latent_consistency_txt2img", 
-#            custom_revision="main", 
-#            revision="fb9c5d", 
+            use_safetensors=True, 
+            safety_checker=nsfw_filter_final, 
+            feature_extractor=feat_ex,
+            resume_download=True,
+            local_files_only=True if offline_test() else None
+            )
+        pipe_txt2img_lcm = DiffusionPipeline.from_pretrained(
+            modelid_SD_txt2img_lcm, 
+            unet=unet_txt2img_lcm,
+            cache_dir=model_path_SD_txt2img_lcm, 
+            torch_dtype=torch.float32, 
             use_safetensors=True, 
             safety_checker=nsfw_filter_final, 
             feature_extractor=feat_ex,
             resume_download=True,
             local_files_only=True if offline_test() else None
         )
+        pipe_txt2img_lcm.scheduler = LCMScheduler.from_config(pipe_txt2img_lcm.scheduler.config)
+    else : 
+        if modelid_txt2img_lcm[0:9] == "./models/" :
+            pipe_txt2img_lcm = DiffusionPipeline.from_single_file(
+                modelid_txt2img_lcm, 
+                torch_dtype=torch.float32, 
+                use_safetensors=True, 
+                safety_checker=nsfw_filter_final, 
+                feature_extractor=feat_ex,
+            )
+        else :        
+            pipe_txt2img_lcm = DiffusionPipeline.from_pretrained(
+                modelid_txt2img_lcm, 
+                cache_dir=model_path_txt2img_lcm, 
+                torch_dtype=torch.float32, 
+                use_safetensors=True, 
+                safety_checker=nsfw_filter_final, 
+                feature_extractor=feat_ex,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
     
 #    pipe_txt2img_lcm = get_scheduler(pipe=pipe_txt2img_lcm, scheduler=sampler_txt2img_lcm)
     pipe_txt2img_lcm = pipe_txt2img_lcm.to(torch_device=device_txt2img_lcm, torch_dtype=torch.float32)
@@ -120,20 +146,42 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
     if prompt_txt2img_lcm == "None":
         prompt_txt2img_lcm = ""
 
-    compel = Compel(tokenizer=pipe_txt2img_lcm.tokenizer, text_encoder=pipe_txt2img_lcm.text_encoder, truncate_long_prompts=False)
-    conditioning = compel.build_conditioning_tensor(prompt_txt2img_lcm)
+    if (is_xl_txt2img_lcm == True) :
+        compel = Compel(
+            tokenizer=[pipe_txt2img_lcm.tokenizer, pipe_txt2img_lcm.tokenizer_2], 
+            text_encoder=[pipe_txt2img_lcm.text_encoder, pipe_txt2img_lcm.text_encoder_2], 
+            returned_embeddings_type=ReturnedEmbeddingsType.PENULTIMATE_HIDDEN_STATES_NON_NORMALIZED, 
+            requires_pooled=[False, True], 
+        )
+        conditioning, pooled = compel(prompt_txt2img_lcm)
+    else :
+        compel = Compel(tokenizer=pipe_txt2img_lcm.tokenizer, text_encoder=pipe_txt2img_lcm.text_encoder, truncate_long_prompts=False)
+        conditioning = compel.build_conditioning_tensor(prompt_txt2img_lcm)
    
     final_image = []
     for i in range (num_prompt_txt2img_lcm):
-        image = pipe_txt2img_lcm(
-            prompt_embeds=conditioning,
-            height=height_txt2img_lcm,
-            width=width_txt2img_lcm,
-            num_images_per_prompt=num_images_per_prompt_txt2img_lcm,
-            num_inference_steps=num_inference_step_txt2img_lcm,
-            guidance_scale=guidance_scale_txt2img_lcm,
-#            lcm_origin_steps=lcm_origin_steps_txt2img_lcm,
-        ).images
+        if (is_xl_txt2img_lcm == True):
+            image = pipe_txt2img_lcm(
+                prompt_embeds=conditioning,
+                pooled_prompt_embeds=pooled,
+                height=height_txt2img_lcm,
+                width=width_txt2img_lcm,
+                num_images_per_prompt=num_images_per_prompt_txt2img_lcm,
+                num_inference_steps=num_inference_step_txt2img_lcm,
+                guidance_scale=guidance_scale_txt2img_lcm,
+#                lcm_origin_steps=lcm_origin_steps_txt2img_lcm,
+            ).images
+
+        else:
+            image = pipe_txt2img_lcm(
+                prompt_embeds=conditioning,
+                height=height_txt2img_lcm,
+                width=width_txt2img_lcm,
+                num_images_per_prompt=num_images_per_prompt_txt2img_lcm,
+                num_inference_steps=num_inference_step_txt2img_lcm,
+                guidance_scale=guidance_scale_txt2img_lcm,
+#                lcm_origin_steps=lcm_origin_steps_txt2img_lcm,
+            ).images			
 
         for j in range(len(image)):
             timestamp = time.time()
