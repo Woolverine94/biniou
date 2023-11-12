@@ -17,7 +17,10 @@
 ---
 
 ## Updates
-  * 🆕 **2023-11-12** : 🔥 ***New model for LCM module*** 🔥 Adding the model *latent-consistency/lcm-ssd-1b* which allow usage of SSD-1B model in LCM module. Model SSD-1B for Stable Diffusion is required (will be downloaded if needed). 
+  * 🆕 **2023-11-12** : 
+    - 🔥 ***New module : PixArt-Alpha*** 🔥 Adding module [PixArt-Alpha](https://pixart-alpha.github.io/). Note that is module requires 8GB RAM for 512x512 default model, but 16GB for 1024x1024 model. Both models requires ***a lot*** of storage (around 25GB per model).
+    - ***Features enhancement*** : For modules handling both Stable Diffusion 1.5 and SDXL models flavors (Stable Diffusion, LCM, PixArt-Alpha, img2img and ControlNet), adding an automatic selection of recommended dimensions when choosing model.
+    - 🔥 ***New model for LCM module*** 🔥 Adding the model *latent-consistency/lcm-ssd-1b* which allow usage of SSD-1B model in LCM module. Model SSD-1B for Stable Diffusion is required (will be downloaded if needed). 
   * 🆕 **2023-11-11** : 🔥 ***New Chatbot feature : support for 128k context size.*** 🔥 Adding the model *Yarn-Mistral-7B-128k-GGUF* and rising the context size limit up to 128k tokens. Using this model setting the context size to the maximum value, and using a void prompt template, should allow to handle very long conversations, but requires a lot of RAM (16GB only permits 64k context size).
   * 🆕 **2023-11-09** : 🔥 ***Bugfix : Rewriting of deprecated features in diffusers module.*** 🔥 Following the previous quickfix adressing the compatibility issue with diffusers 0.22.1+, biniou is now fully compatible with newest versions of diffusers. Use update script to upgrade.
   * 🆕 **2023-11-07** : 
@@ -59,6 +62,7 @@
   - [Kandinsky module](https://github.com/Woolverine94/biniou/wiki/Kandinsky) (require 16GB+ RAM) 
   - [Latent Consistency Models module](https://github.com/Woolverine94/biniou/wiki/Latent-Consistency-Models)
   - [Midjourney-mini module](https://github.com/Woolverine94/biniou/wiki/Midjourney%E2%80%90mini)
+  - [PixArt-Alpha module](https://github.com/Woolverine94/biniou/wiki/PixArt%E2%80%90Alpha)
   - [Stable Diffusion Img2img module](https://github.com/Woolverine94/biniou/wiki/img2img)
   - [Stable Diffusion Image variation module](https://github.com/Woolverine94/biniou/wiki/Image-variation) (require 16GB+ RAM) 
   - [Instruct Pix2Pix module](https://github.com/Woolverine94/biniou/wiki/Instruct-pix2pix)
@@ -308,6 +312,7 @@ This application uses the following softwares and technologies :
 - [Stable Diffusion](https://stability.ai/stable-diffusion) : txt2img, img2img, Image variation, inpaint, ControlNet, Text2Video-Zero
 - [Kandinsky](https://github.com/ai-forever/Kandinsky-2) : txt2img
 - [Latent consistency models](https://github.com/luosiallen/latent-consistency-model) : txt2img
+- [PixArt-Alpha](https://pixart-alpha.github.io/) : PixArt-Alpha
 - [Instruct pix2pix](https://www.timothybrooks.com/instruct-pix2pix) : pix2pix
 - [Fantasy Studio Paint by Example](https://github.com/Fantasy-Studio/Paint-by-Example) : paintbyex
 - [Controlnet Auxiliary models](https://github.com/patrickvonplaten/controlnet_aux) : preview models for ControlNet module
