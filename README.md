@@ -76,11 +76,11 @@
   - [GFPGAN face restoration module](https://github.com/Woolverine94/biniou/wiki/GFPGAN-face-restoration)
 
 * **Audio generation using :**
-  - [Musicgen module](https://github.com/Woolverine94/biniou/wiki/MusicGen)
+  - [MusicGen module](https://github.com/Woolverine94/biniou/wiki/MusicGen)
+  - [MusicGen Melody module](https://github.com/Woolverine94/biniou/wiki/MusicGen-Melody) (require 16GB+ RAM)
   - [Audiogen module](https://github.com/Woolverine94/biniou/wiki/AudioGen) (require 16GB+ RAM)
   - [Harmonai module](https://github.com/Woolverine94/biniou/wiki/Harmonai)
-  - [Bark module](https://github.com/Woolverine94/biniou/wiki/Bark) text-to-speech 
-
+  - [Bark module](https://github.com/Woolverine94/biniou/wiki/Bark)
 * **Video generation and modification using :**
   - [Modelscope module](https://github.com/Woolverine94/biniou/wiki/Modelscope-txt2vid) (require 16GB+ RAM)
   - [Text2Video-Zero module](https://github.com/Woolverine94/biniou/wiki/Text2Video%E2%80%90Zero)
@@ -107,7 +107,7 @@
     - for GNU/Linux : at least 20GB for installation without models.
     - for Windows : at least 30GB for installation without models.
     - for macOS : at least ??GB for installation without models.
-  - Storage type : SSD (HDD has not been tested)
+  - Storage type : SSD (HDD has not been tested, feedback welcomed !)
   - Internet access (required only for installation) : unlimited bandwith optical fiber internet access
 
 * **Recommended hardware :**
@@ -280,9 +280,9 @@ You can also access biniou from any device (including smartphones) on the same L
 
 * Most frequent cause of crash is not enough memory on the host. Symptom is biniou program closing and returning to/closing the terminal without specific error message. You can use biniou with 8GB RAM, but 16GB at least is recommended to avoid OOM (out of memory) error. 
 
-* biniou use a lot of differents AI models, which requires a lot of space : if you want to use all the modules in biniou, you will need around 100GB of disk space only for the default model of each module. Models are downloaded on the first run of each module or when you select a new model in a module and generate content. Models are stored in the directory /models of the biniou installation. Unused models could be deleted to save some space. 
+* biniou use a lot of differents AI models, which requires a lot of space : if you want to use all the modules in biniou, you will need around 150GB of disk space only for the default model of each module. Models are downloaded on the first run of each module or when you select a new model in a module and generate content. Models are stored in the directory /models of the biniou installation. Unused models could be deleted to save some space. 
 
-* Consequently, you will need a fast internet access to download models.
+* ... consequently, you will need a fast internet access to download models.
 
 * A backup of every content generated is available inside the /outputs directory of the biniou folder.
 
@@ -320,7 +320,7 @@ This application uses the following softwares and technologies :
 - [Insight Face](https://insightface.ai/) : faceswapping
 - [Real ESRGAN](https://github.com/xinntao/Real-ESRGAN) : upscaler
 - [GFPGAN](https://github.com/TencentARC/GFPGAN) : face restoration
-- [Audiocraft](https://audiocraft.metademolab.com/) : musicgen, audiogen
+- [Audiocraft](https://audiocraft.metademolab.com/) : musicgen, musicgen melody, audiogen
 - [Harmonai](https://www.harmonai.org/) : harmonai
 - [Bark](https://github.com/suno-ai/bark) : text2speech
 - [Modelscope text-to-video-synthesis](https://modelscope.cn/models/damo/text-to-video-synthesis/summary) : txt2vid
