@@ -17,8 +17,9 @@
 ---
 
 ## Updates
+  * 🆕 **2023-11-13** : 🔥 ***New audio module : MusicGen Melody*** 🔥 Using the melody feature of MusicGen, this new module allow to generate music by extracting the melody of an audio file or recording from a microphone. 
   * 🆕 **2023-11-12** : 
-    - 🔥 ***New module : PixArt-Alpha*** 🔥 Adding module [PixArt-Alpha](https://pixart-alpha.github.io/). Note that is module requires 8GB RAM for 512x512 default model, but 16GB for 1024x1024 model. Both models requires ***a lot*** of storage (around 25GB per model).
+    - 🔥 ***New image module : PixArt-Alpha*** 🔥 Adding module [PixArt-Alpha](https://pixart-alpha.github.io/). Note that is module requires 8GB RAM for 512x512 default model, but 16GB for 1024x1024 model. Both models requires ***a lot*** of storage (around 25GB per model).
     - ***Features enhancement*** : For modules handling both Stable Diffusion 1.5 and SDXL models flavors (Stable Diffusion, LCM, PixArt-Alpha, img2img and ControlNet), adding an automatic selection of recommended dimensions when choosing model.
     - 🔥 ***New model for LCM module*** 🔥 Adding the model *latent-consistency/lcm-ssd-1b* which allow usage of SSD-1B model in LCM module. Model SSD-1B for Stable Diffusion is required (will be downloaded if needed). 
   * 🆕 **2023-11-11** : 🔥 ***New Chatbot feature : support for 128k context size.*** 🔥 Adding the model *Yarn-Mistral-7B-128k-GGUF* and rising the context size limit up to 128k tokens. Using this model setting the context size to the maximum value, and using a void prompt template, should allow to handle very long conversations, but requires a lot of RAM (16GB only permits 64k context size).
