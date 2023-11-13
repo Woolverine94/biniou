@@ -20,6 +20,7 @@ from .faceswapper import *
 from .r_esrgan import *
 from .gfpgan import *
 from .musicgen import *
+from .musicgen_mel import *
 from .audiogen import *
 from .harmonai import *
 from .bark import *
@@ -28,3 +29,4 @@ from .txt2vid_ze import *
 from .vid2vid_ze import *
 from .txt2shape import *
 from .img2shape import *
+

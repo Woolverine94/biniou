@@ -398,6 +398,17 @@ def read_ini_musicgen(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), float(content[2]), int(content[3]), bool(int(content[4])), float(content[5]), int(content[6]), int(content[7])
 
+## Fonctions spécifiques à MusicGen Melody
+def read_ini_musicgen_mel(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), float(content[2]), int(content[3]), bool(int(content[4])), float(content[5]), int(content[6]), int(content[7])
+
+def change_source_type_musicgen_mel(source_type_musicgen_mel):
+    if source_type_musicgen_mel == "audio" :
+        return source_audio_musicgen_mel.update(source="upload")
+    elif source_type_musicgen_mel == "micro" :
+        return source_audio_musicgen_mel.update(source="microphone")
+
 ## Fonctions spécifiques à AudioGen
 def read_ini_audiogen(module) :
     content = read_ini(module)
@@ -4333,7 +4344,6 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <a href='https://huggingface.co/facebook/musicgen-small' target='_blank'>facebook/musicgen-small</a>, 
                                 <a href='https://huggingface.co/facebook/musicgen-medium' target='_blank'>facebook/musicgen-medium</a>, 
                                 <a href='https://huggingface.co/facebook/musicgen-large' target='_blank'>facebook/musicgen-large</a>, 
-                                <a href='https://huggingface.co/facebook/musicgen-melody' target='_blank'>facebook/musicgen-melody</a></br>                                
                                 """
                             )
                         with gr.Box():
@@ -4442,16 +4452,172 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Box():                                
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
+                                        gr.HTML(value='... audio module ...')
+                                        musicgen_musicgen_mel = gr.Button("🎶 >> MusicGen Melody")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... input prompt(s) to ...')
                                         gr.HTML(value='... audio module ...')                                        
-                                        musicgen_audiogen_input = gr.Button("✍️ >> Audiogen")                                        
+                                        musicgen_musicgen_mel_input = gr.Button("✍️ >> MusicGen Melody")
+                                        musicgen_audiogen_input = gr.Button("✍️ >> Audiogen")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')                                    
+
+# Musicgen Melody
+                if ram_size() >= 16 :
+                    titletab_musicgen_mel = "MusicGen Melody 🎶"
+                else :
+                    titletab_musicgen_mel = "MusicGen Melody ⛔"
+
+                with gr.TabItem(titletab_musicgen_mel, id=32) as tab_musicgen_mel:
+                    with gr.Accordion("About", open=False):                
+                        with gr.Box():                       
+                            gr.HTML(
+                                """
+                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
+                                <b>Module : </b>MusicGen Melody</br>
+                                <b>Function : </b>Generate music from a prompt with guidance from an input audio, using <a href='https://github.com/facebookresearch/audiocraft' target='_blank'>MusicGen</a></br>
+                                <b>Input(s) : </b>Input prompt, Input audio</br>
+                                <b>Output(s) : </b>Generated music</br>
+                                <b>HF model page : </b>
+                                <a href='https://huggingface.co/facebook/musicgen-melody' target='_blank'>facebook/musicgen-melody</a></br>
+                                """
+                            )
+                        with gr.Box():
+                            gr.HTML(
+                                """
+                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                <div style='text-align: justified'>
+                                <b>Usage :</b></br>
+                                - Select an audio source type (file or micro recording)</br>
+                                - Select an audio source by choosing a file or recording something</br>
+                                - Fill the <b>prompt</b> by describing the music you want to generate from the audio source</br>
+                                - (optional) Modify the settings to change audio duration or inferences parameters</br>
+                                - Click the <b>Generate<b> button</br>
+                                - After generation, generated music is available to listen in the <b>Generated music<b> field.
+                                </div>
+                                """
+                            )                           
+                    with gr.Accordion("Settings", open=False):
+                        with gr.Row():
+                            with gr.Column():
+                                model_musicgen_mel= gr.Dropdown(choices=modellist_musicgen_mel, value=modellist_musicgen_mel[0], label="Model", info="Choose model to use for inference")
+                            with gr.Column():    
+                                duration_musicgen_mel = gr.Slider(1, 160, step=1, value=5, label="Audio length (sec)")
+                            with gr.Column():
+                                cfg_coef_musicgen_mel = gr.Slider(0.1, 20.0, step=0.1, value=3.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                            with gr.Column():
+                                num_batch_musicgen_mel = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")  
+                        with gr.Row():
+                            with gr.Column():    
+                                use_sampling_musicgen_mel = gr.Checkbox(value=True, label="Use sampling")
+                            with gr.Column():    
+                                temperature_musicgen_mel = gr.Slider(0.0, 10.0, step=0.1, value=1.0, label="temperature")
+                            with gr.Column():
+                                top_k_musicgen_mel = gr.Slider(0, 500, step=1, value=250, label="top_k")
+                            with gr.Column():
+                                top_p_musicgen_mel = gr.Slider(0.0, 500.0, step=1.0, value=0.0, label="top_p")
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_musicgen_mel = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_musicgen_mel = gr.Textbox(value="musicgen_mel", visible=False, interactive=False)
+                                load_ini_btn_musicgen_mel = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_musicgen_mel.value) else False)
+                                save_ini_btn_musicgen_mel.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_musicgen_mel, 
+                                        model_musicgen_mel, 
+                                        duration_musicgen_mel, 
+                                        cfg_coef_musicgen_mel,
+                                        num_batch_musicgen_mel,
+                                        use_sampling_musicgen_mel,
+                                        temperature_musicgen_mel,
+                                        top_k_musicgen_mel,
+                                        top_p_musicgen_mel,
+                                        ]
+                                    )
+                                save_ini_btn_musicgen_mel.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_musicgen_mel.click(fn=lambda: load_ini_btn_musicgen_mel.update(interactive=True), outputs=load_ini_btn_musicgen_mel)
+                                load_ini_btn_musicgen_mel.click(
+                                    fn=read_ini_musicgen_mel,
+                                    inputs=module_name_musicgen_mel,
+                                    outputs = [
+                                        model_musicgen_mel,
+                                        duration_musicgen_mel,
+                                        cfg_coef_musicgen_mel,
+                                        num_batch_musicgen_mel,
+                                        use_sampling_musicgen_mel,
+                                        temperature_musicgen_mel,
+                                        top_k_musicgen_mel,
+                                        top_p_musicgen_mel,
+                                        ]
+                                    )
+                                load_ini_btn_musicgen_mel.click(fn=lambda: gr.Info('Settings loaded'))
+                    with gr.Row():
+                        with gr.Column():
+                            with gr.Row():                                
+                                source_type_musicgen_mel = gr.Radio(choices=["audio", "micro"], value="audio", label="Source audio type", info="Choose source audio type")
+                    with gr.Row(equal_height=True):
+                        with gr.Column():
+                            source_audio_musicgen_mel = gr.Audio(label="Source audio", source="upload", type="filepath")
+                            source_type_musicgen_mel.change(fn=change_source_type_musicgen_mel, inputs=source_type_musicgen_mel, outputs=source_audio_musicgen_mel)
+                        with gr.Column():
+                            prompt_musicgen_mel = gr.Textbox(label="Describe your music", lines=8, max_lines=8, placeholder="90s rock song with loud guitars and heavy drums")
+                        with gr.Column():
+                            out_musicgen_mel = gr.Audio(label="Generated music", type="filepath", show_download_button=True, interactive=False)
+                    with gr.Row():
+                        with gr.Column():
+                            btn_musicgen_mel = gr.Button("Generate 🚀", variant="primary")
+                        with gr.Column():
+                            btn_musicgen_mel_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_musicgen_mel_cancel.click(fn=initiate_stop_musicgen_mel, inputs=None, outputs=None)
+                        with gr.Column():
+                            btn_musicgen_mel_clear_input = gr.ClearButton(components=[prompt_musicgen_mel, source_audio_musicgen_mel], value="Clear inputs 🧹")
+                        with gr.Column():
+                            btn_musicgen_mel_clear_output = gr.ClearButton(components=out_musicgen_mel, value="Clear outputs 🧹")
+                        btn_musicgen_mel.click(
+                            fn=music_musicgen_mel,
+                            inputs=[
+                                prompt_musicgen_mel,
+                                model_musicgen_mel,
+                                duration_musicgen_mel,
+                                num_batch_musicgen_mel,
+                                temperature_musicgen_mel,
+                                top_k_musicgen_mel,
+                                top_p_musicgen_mel,
+                                use_sampling_musicgen_mel,
+                                cfg_coef_musicgen_mel,
+                                source_audio_musicgen_mel,
+                                source_type_musicgen_mel,
+                            ],
+                            outputs=out_musicgen_mel,
+                            show_progress="full",
+                        )
+                    with gr.Accordion("Send ...", open=False):
+                        with gr.Row():
+                            with gr.Column():
+                                with gr.Box():
+                                    with gr.Group():
+                                        gr.HTML(value='... selected output to ...')
+                                        gr.HTML(value='... audio module ...')
+                                        musicgen_mel_musicgen_mel = gr.Button("🎶 >> MusicGen Melody")
+                            with gr.Column():
+                                with gr.Box():
+                                    with gr.Group():
+                                        gr.HTML(value='... input prompt(s) to ...')
+                                        gr.HTML(value='... audio module ...')
+                                        musicgen_mel_musicgen_input = gr.Button("✍️ >> MusicGen")
+                                        musicgen_mel_audiogen_input = gr.Button("✍️ >> Audiogen")
+                            with gr.Column():
+                                with gr.Box():
+                                    with gr.Group():
+                                        gr.HTML(value='... both to ...')
+
+
 
 # Audiogen
                 if ram_size() >= 16 :
@@ -4459,7 +4625,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                 else :
                     titletab_audiogen = "AudioGen ⛔"
                 
-                with gr.TabItem(titletab_audiogen, id=32) as tab_audiogen:
+                with gr.TabItem(titletab_audiogen, id=33) as tab_audiogen:
 
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
@@ -4580,19 +4746,22 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Box():                                
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
+                                        gr.HTML(value='... audio module ...')
+                                        audiogen_musicgen_mel = gr.Button("🎶 >> MusicGen Melody")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... input prompt(s) to ...')
                                         gr.HTML(value='... audio module ...')
                                         audiogen_musicgen_input = gr.Button("✍️ >> Musicgen")
+                                        audiogen_musicgen_mel_input = gr.Button("✍️ >> MusicGen Melody")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')                                    
 
 # Harmonai
-                with gr.TabItem("Harmonai 🔊", id=33) as tab_harmonai:
+                with gr.TabItem("Harmonai 🔊", id=34) as tab_harmonai:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -4697,6 +4866,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Box():                                
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
+                                        gr.HTML(value='... audio module ...')
+                                        harmonai_musicgen_mel = gr.Button("🎶 >> MusicGen Melody")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -4706,7 +4877,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')                       
 # Bark
-                with gr.TabItem("Bark 🗣️", id=34) as tab_bark:
+                with gr.TabItem("Bark 🗣️", id=35) as tab_bark:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -4804,7 +4975,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Box():                                
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
-                                        gr.HTML(value='... text module ...')                                        
+                                        gr.HTML(value='... audio module ...')
+                                        bark_musicgen_mel = gr.Button("🎶 >> MusicGen Melody")
+                                        gr.HTML(value='... text module ...')
                                         bark_whisper = gr.Button("🗣️ >> Whisper")                                      
                             with gr.Column():
                                 with gr.Box():
@@ -5827,6 +6000,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     tab_resrgan_num = gr.Number(value=tab_resrgan.id, precision=0, visible=False) 
     tab_gfpgan_num = gr.Number(value=tab_gfpgan.id, precision=0, visible=False) 
     tab_musicgen_num = gr.Number(value=tab_musicgen.id, precision=0, visible=False) 
+    tab_musicgen_mel_num = gr.Number(value=tab_musicgen_mel.id, precision=0, visible=False) 
     tab_audiogen_num = gr.Number(value=tab_audiogen.id, precision=0, visible=False) 
     tab_harmonai_num = gr.Number(value=tab_harmonai.id, precision=0, visible=False) 
     tab_bark_num = gr.Number(value=tab_bark.id, precision=0, visible=False) 
@@ -6301,11 +6475,31 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     gfpgan_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
     gfpgan_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
+# Musicgen outputs
+    musicgen_musicgen_mel.click(fn=import_to_module_audio, inputs=[out_musicgen, tab_audio_num, tab_musicgen_mel_num], outputs=[source_audio_musicgen_mel, tabs, tabs_audio])
+
 # Musicgen inputs
+    musicgen_musicgen_mel_input.click(fn=import_to_module_audio, inputs=[prompt_musicgen, tab_audio_num, tab_musicgen_mel_num], outputs=[prompt_musicgen_mel, tabs, tabs_audio])
     musicgen_audiogen_input.click(fn=import_to_module_audio, inputs=[prompt_musicgen, tab_audio_num, tab_audiogen_num], outputs=[prompt_audiogen, tabs, tabs_audio])
+
+#Musicgen melody outputs
+    musicgen_mel_musicgen_mel.click(fn=import_to_module_audio, inputs=[out_musicgen_mel, tab_audio_num, tab_musicgen_mel_num], outputs=[source_audio_musicgen_mel, tabs, tabs_audio])
+
+#Musicgen melody inputs
+    musicgen_mel_musicgen_input.click(fn=import_to_module_audio, inputs=[prompt_musicgen_mel, tab_audio_num, tab_musicgen_num], outputs=[prompt_musicgen, tabs, tabs_audio])
+
+# Audiogen outputs
+    audiogen_musicgen_mel.click(fn=import_to_module_audio, inputs=[out_audiogen, tab_audio_num, tab_musicgen_mel_num], outputs=[source_audio_musicgen_mel, tabs, tabs_audio])
     
 # Audiogen inputs    
     audiogen_musicgen_input.click(fn=import_to_module_audio, inputs=[prompt_audiogen, tab_audio_num, tab_musicgen_num], outputs=[prompt_musicgen, tabs, tabs_audio])
+    audiogen_musicgen_mel_input.click(fn=import_to_module_audio, inputs=[prompt_audiogen, tab_audio_num, tab_musicgen_mel_num], outputs=[prompt_musicgen_mel, tabs, tabs_audio])
+
+# Harmonai outputs
+    harmonai_musicgen_mel.click(fn=import_to_module_audio, inputs=[out_harmonai, tab_audio_num, tab_musicgen_mel_num], outputs=[source_audio_musicgen_mel, tabs, tabs_audio])
+
+# Bark outputs
+    bark_musicgen_mel.click(fn=import_to_module_audio, inputs=[out_bark, tab_audio_num, tab_musicgen_mel_num], outputs=[source_audio_musicgen_mel, tabs, tabs_audio])
 
 # Bark inputs
     bark_whisper.click(fn=send_audio_to_module_text, inputs=[out_bark, tab_text_num, tab_whisper_num], outputs=[source_audio_whisper, tabs, tabs_text])
