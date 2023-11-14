@@ -919,7 +919,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <a href='https://huggingface.co/openai/whisper-base' target='_blank'>openai/whisper-base</a>, 
                                 <a href='https://huggingface.co/openai/whisper-medium' target='_blank'>openai/whisper-medium</a>,
                                 <a href='https://huggingface.co/openai/whisper-large' target='_blank'>openai/whisper-large</a>,
-                                <a href='https://huggingface.co/openai/whisper-large-v2' target='_blank'>openai/whisper-large-v2</a>,
+                                <a href='https://huggingface.co/openai/whisper-large-v3' target='_blank'>openai/whisper-large-v3</a>,
                                 <a href='https://huggingface.co/distil-whisper/distil-large-v2' target='_blank'>distil-whisper/distil-large-v2</a></br>
                                 """
                             )
@@ -975,7 +975,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Column():
                                     source_type_whisper = gr.Radio(choices=["audio", "micro"], value="audio", label="Input type", info="Choose input type")
                                 with gr.Column():
-                                    source_language_whisper = gr.Dropdown(choices=language_list_whisper, value=language_list_whisper[13], label="Input language", info="Select input language")    
+                                    source_language_whisper = gr.Dropdown(choices=language_list_whisper, value=language_list_whisper[14], label="Input language", info="Select input language")    
                             with gr.Row():
                                 source_audio_whisper = gr.Audio(label="Source audio", source="upload", type="filepath")
                                 source_type_whisper.change(fn=change_source_type_whisper, inputs=source_type_whisper, outputs=source_audio_whisper)
@@ -984,7 +984,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Column():
                                     output_type_whisper = gr.Radio(choices=["transcribe", "translate"], value="transcribe", label="Task", info="Choose task to execute")
                                 with gr.Column():
-                                    output_language_whisper = gr.Dropdown(choices=language_list_whisper, value=language_list_whisper[13], label="Output language", info="Select output language", visible=False, interactive=False)
+                                    output_language_whisper = gr.Dropdown(choices=language_list_whisper, value=language_list_whisper[14], label="Output language", info="Select output language", visible=False, interactive=False)
                             with gr.Row():
                                 out_whisper = gr.Textbox(label="Output text", lines=9, max_lines=9, show_copy_button=True, interactive=False)
                                 output_type_whisper.change(fn=change_output_type_whisper, inputs=output_type_whisper, outputs=output_language_whisper)

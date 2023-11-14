@@ -29,7 +29,7 @@ model_list_whisper_builtin = {
     "openai/whisper-base": "model.safetensors",        
     "openai/whisper-medium": "model.safetensors",
     "openai/whisper-large": "model.safetensors",
-    "openai/whisper-large-v2": "model.safetensors", 
+    "openai/whisper-large-v3": "model.safetensors", 
     "distil-whisper/distil-large-v2": "model.safetensors", 
 }
 
@@ -43,6 +43,7 @@ language_list_whisper = [
     "belarusian",
     "bosnian",
     "bulgarian",
+    "cantonese",
     "catalan",
     "chinese",
     "croatian",
