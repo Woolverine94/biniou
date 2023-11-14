@@ -139,6 +139,9 @@ def show_download_llamacpp() :
 
 def hide_download_llamacpp() :
     return btn_download_file_llamacpp.update(visible=True), download_file_llamacpp.update(visible=False)
+
+def change_model_type_llamacpp(model_llamacpp):
+    return prompt_template_llamacpp.update(value=model_list_llamacpp[model_llamacpp][1])
         
 ## Fonctions spécifiques à img2txt_git
 def read_ini_img2txt_git(module) :
@@ -540,7 +543,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Input(s) : </b>Input text</br>
                                 <b>Output(s) : </b>Output text</br>
                                 <b>HF models pages : </b>
+                                <a href='https://huggingface.co/TheBloke/openchat_3.5-GGUF' target='_blank'>TheBloke/openchat_3.5-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/CollectiveCognition-v1.1-Mistral-7B-GGUF' target='_blank'>TheBloke/CollectiveCognition-v1.1-Mistral-7B-GGUF</a>, 
+                                <a href='https://huggingface.co/TheBloke/zephyr-7B-beta-GGUF' target='_blank'>TheBloke/zephyr-7B-beta-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/Yarn-Mistral-7B-128k-GGUF' target='_blank'>TheBloke/Yarn-Mistral-7B-128k-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/Mistral-7B-v0.1-GGUF' target='_blank'>TheBloke/Mistral-7B-v0.1-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/Vigogne-2-7B-Instruct-GGUF' target='_blank'>TheBloke/Vigogne-2-7B-Instruct-GGUF</a>, 
@@ -590,7 +595,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 top_k_llamacpp = gr.Slider(0, 500, step=1, value=40, label="top_k", info="The top-k value to use for sampling")
                         with gr.Row():
                             with gr.Column():
-                                prompt_template_llamacpp = gr.Textbox(label="Prompt template", value="USER: {prompt}\nASSISTANT:", lines=4, max_lines=4, info="Place your custom prompt template here. Keep the {prompt} tag, that will be replaced by your prompt.")
+                                prompt_template_llamacpp = gr.Textbox(label="Prompt template", value=model_list_llamacpp[model_llamacpp.value][1], lines=4, max_lines=4, info="Place your custom prompt template here. Keep the {prompt} tag, that will be replaced by your prompt.")
+                                model_llamacpp.change(fn=change_model_type_llamacpp, inputs=model_llamacpp, outputs=prompt_template_llamacpp)
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_llamacpp = gr.Button("Save favorite settings 💾")
@@ -644,7 +650,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         )
                         last_reply_llamacpp = gr.Textbox(value="", visible=False)                        
                     with gr.Row():
-                            prompt_llamacpp = gr.Textbox(label="Input", lines=1, max_lines=1, placeholder="Type your request here ...", autofocus=True)
+                            prompt_llamacpp = gr.Textbox(label="Input", lines=1, max_lines=3, placeholder="Type your request here ...", autofocus=True)
                             hidden_prompt_llamacpp = gr.Textbox(value="", visible=False)
                     with gr.Row():
                         with gr.Column():
@@ -2132,7 +2138,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_mjm_controlnet_both = gr.Button("🖼️ + ✍️️ >> ControlNet") 
 
 # txt2img_paa
-                with gr.TabItem("PixArt-Alpha🖼️", id=25) as tab_txt2img_paa:
+                with gr.TabItem("PixArt-Alpha 🖼️", id=25) as tab_txt2img_paa:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(

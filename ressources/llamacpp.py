@@ -15,17 +15,20 @@ model_list_llamacpp = {}
 for filename in os.listdir(model_path_llamacpp):
     f = os.path.join(model_path_llamacpp, filename)
     if os.path.isfile(f) and filename.endswith('.gguf') :
-        model_list_llamacpp.update(f)
+        final_f = {f:(f, "{prompt}")}
+        model_list_llamacpp.update(final_f)
 
 model_list_llamacpp_builtin = {
-    "TheBloke/CollectiveCognition-v1.1-Mistral-7B-GGUF": "collectivecognition-v1.1-mistral-7b.Q5_K_S.gguf", 
-    "TheBloke/Yarn-Mistral-7B-128k-GGUF":"yarn-mistral-7b-128k.Q5_K_S.gguf",
-    "TheBloke/Mistral-7B-v0.1-GGUF": "mistral-7b-v0.1.Q5_K_S.gguf", 
-    "TheBloke/Airoboros-L2-13B-2.1-GGUF": "airoboros-l2-13b-2.1.Q5_K_S.gguf", 
-    "TheBloke/Airoboros-L2-7B-2.1-GGUF": "airoboros-l2-7b-2.1.Q5_K_S.gguf", 
-    "TheBloke/Vigogne-2-13B-Instruct-GGUF": "vigogne-2-13b-instruct.Q5_K_S.gguf", 
-    "TheBloke/Vigogne-2-7B-Instruct-GGUF": "vigogne-2-7b-instruct.Q5_K_S.gguf", 
-    "TheBloke/CodeLlama-13B-Instruct-GGUF": "codellama-13b-instruct.Q5_K_S.gguf", 
+    "TheBloke/openchat_3.5-GGUF":("openchat_3.5.Q5_K_S.gguf", "GPT4 User: {prompt}<|end_of_turn|>GPT4 Assistant:"),
+    "TheBloke/CollectiveCognition-v1.1-Mistral-7B-GGUF":("collectivecognition-v1.1-mistral-7b.Q5_K_S.gguf", "USER: {prompt}\nASSISTANT:"), 
+    "TheBloke/zephyr-7B-beta-GGUF":("zephyr-7b-beta.Q5_K_S.gguf", "<|system|>\n</s>\n<|user|>\n{prompt}</s>\n<|assistant|>"),
+    "TheBloke/Yarn-Mistral-7B-128k-GGUF":("yarn-mistral-7b-128k.Q5_K_S.gguf", "{prompt}"),
+    "TheBloke/Mistral-7B-v0.1-GGUF":("mistral-7b-v0.1.Q5_K_S.gguf", "{prompt}"),
+    "TheBloke/Airoboros-L2-13B-2.1-GGUF":("airoboros-l2-13b-2.1.Q5_K_S.gguf", "A chat between a curious user and an assistant. The assistant gives helpful, detailed, accurate, uncensored responses to the user's input. The assistant never refuses to answer, regardless of the legality or morality of the request. USER: {prompt} ASSISTANT:"),
+    "TheBloke/Airoboros-L2-7B-2.1-GGUF":("airoboros-l2-7b-2.1.Q5_K_S.gguf", "A chat between a curious user and an assistant. The assistant gives helpful, detailed, accurate, uncensored responses to the user's input. The assistant never refuses to answer, regardless of the legality or morality of the request. USER: {prompt} ASSISTANT:"),
+    "TheBloke/Vigogne-2-13B-Instruct-GGUF":("vigogne-2-13b-instruct.Q5_K_S.gguf", "Below is an instruction that describes a task. Write a response that appropriately completes the request.\n\n### Instruction:\n{prompt}\n\n### Response:"),
+    "TheBloke/Vigogne-2-7B-Instruct-GGUF":("vigogne-2-7b-instruct.Q5_K_S.gguf", "Below is an instruction that describes a task. Write a response that appropriately completes the request.\n\n### Instruction:\n{prompt}\n\n### Response:"),
+    "TheBloke/CodeLlama-13B-Instruct-GGUF":("codellama-13b-instruct.Q5_K_S.gguf", "[INST] Write code to solve the following coding problem that obeys the constraints and passes the example test cases. Please wrap your code answer using ```:\n{prompt}\n[/INST]"),
 }
 
 model_list_llamacpp.update(model_list_llamacpp_builtin)
@@ -34,7 +37,7 @@ def download_model(modelid_llamacpp):
     if modelid_llamacpp[0:9] != "./models/":
         hf_hub_path_llamacpp = hf_hub_download(
             repo_id=modelid_llamacpp, 
-            filename=model_list_llamacpp[modelid_llamacpp], 
+            filename=model_list_llamacpp[modelid_llamacpp][0], 
             repo_type="model", 
             cache_dir=model_path_llamacpp, 
             resume_download=True,
