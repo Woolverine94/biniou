@@ -17,6 +17,8 @@
 ---
 
 ## Updates
+  * 🆕 **2023-11-15** : 🔥 ***New audio module : MusicLDM*** 🔥 MusicLDM allow generation of music using a prompt and a negative prompt. A very interesting alternative to Musicgen. 
+
   * 🆕 **2023-11-14** : 
     - 🔥 ***Chatbot llama-cpp module updates*** 🔥 New default model for the Chatbot, **Openchat-3.5**. This model is supposed to compete with GPT-3.5, which from the firsts tests under biniou ... really seems to be the case ! Also adding **zephyr-7B-beta** to the models list.
     - ***New chatbot feature :*** automatic prompt template management. For each model in the built-in list, a corresponding prompt template will be automatically loaded at model selection. For unknown models (e.g.: manually downloaded .gguf files), the default `{prompt}` template will be applied.
@@ -82,6 +84,7 @@
 * **Audio generation using :**
   - [MusicGen module](https://github.com/Woolverine94/biniou/wiki/MusicGen)
   - [MusicGen Melody module](https://github.com/Woolverine94/biniou/wiki/MusicGen-Melody) (require 16GB+ RAM)
+  - [MusicLDM module](https://github.com/Woolverine94/biniou/wiki/MusicLDM)
   - [Audiogen module](https://github.com/Woolverine94/biniou/wiki/AudioGen) (require 16GB+ RAM)
   - [Harmonai module](https://github.com/Woolverine94/biniou/wiki/Harmonai)
   - [Bark module](https://github.com/Woolverine94/biniou/wiki/Bark)
@@ -325,6 +328,7 @@ This application uses the following softwares and technologies :
 - [Real ESRGAN](https://github.com/xinntao/Real-ESRGAN) : upscaler
 - [GFPGAN](https://github.com/TencentARC/GFPGAN) : face restoration
 - [Audiocraft](https://audiocraft.metademolab.com/) : musicgen, musicgen melody, audiogen
+- [MusicLDM](https://musicldm.github.io/) : MusicLDM
 - [Harmonai](https://www.harmonai.org/) : harmonai
 - [Bark](https://github.com/suno-ai/bark) : text2speech
 - [Modelscope text-to-video-synthesis](https://modelscope.cn/models/damo/text-to-video-synthesis/summary) : txt2vid
