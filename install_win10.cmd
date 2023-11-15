@@ -48,7 +48,7 @@ REM ***********************************************
 call venv.cmd
 python.exe -m pip install --upgrade pip
 pip install wheel
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+pip install torch==2.1.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 pip install llama-cpp-python
 pip install -r requirements.txt
 echo "Installation finished ! You could now launch biniou by double-clicking %userprofile%\biniou\webui.cmd"
