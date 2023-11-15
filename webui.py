@@ -129,7 +129,7 @@ def both_to_module_inpaint_prompt_only(prompt, content, index, numtab, numtab_it
 def get_select_index(evt: gr.SelectData) :
     return evt.index
 
-## Fonctions spécifiques à llamacpp
+## Functions specific to llamacpp
 def read_ini_llamacpp(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), int(content[2]), bool(int(content[3])), int(content[4]), float(content[5]), float(content[6]), float(content[7]), int(content[8]), str(content[9])
@@ -143,12 +143,12 @@ def hide_download_llamacpp() :
 def change_model_type_llamacpp(model_llamacpp):
     return prompt_template_llamacpp.update(value=model_list_llamacpp[model_llamacpp][1])
         
-## Fonctions spécifiques à img2txt_git
+## Functions specific to img2txt_git
 def read_ini_img2txt_git(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), int(content[2]), int(content[3]), int(content[4]), float(content[5])
 
-## Fonctions spécifiques à whisper
+## Functions specific to whisper
 def change_source_type_whisper(source_type_whisper):
     if source_type_whisper == "audio" :
         return source_audio_whisper.update(source="upload")
@@ -170,13 +170,13 @@ def read_ini_whisper(module) :
     content = read_ini(module)
     return str(content[0]), bool(int(content[1]))
     
-## Fonctions spécifiques à nllb
+## Functions specific to nllb
 
 def read_ini_nllb(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1])
 
-## Fonctions spécifiques à txt2prompt
+## Functions specific to txt2prompt
 def read_ini_txt2prompt(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), float(content[2]), int(content[3]), int(content[4])
@@ -187,7 +187,7 @@ def change_output_type_txt2prompt(output_type_txt2prompt) :
     elif output_type_txt2prompt == "SD" :
         return model_txt2prompt.update(value=model_list_txt2prompt[1]), max_tokens_txt2prompt.update(value=70) 
 
-## Fonctions spécifiques à Stable Diffusion 
+## Functions specific to Stable Diffusion 
 def zip_download_file_txt2img_sd(content):
     savename = zipper(content)
     return savename, download_file_txt2img_sd.update(visible=True) 
@@ -208,7 +208,7 @@ def read_ini_txt2img_sd(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), bool(int(content[9])), float(content[10])
 
-## Fonctions spécifiques à Kandinsky 
+## Functions specific to Kandinsky 
 def zip_download_file_txt2img_kd(content):
     savename = zipper(content)
     return savename, download_file_txt2img_kd.update(visible=True) 
@@ -220,7 +220,7 @@ def read_ini_txt2img_kd(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), bool(int(content[9]))
 
-## Fonctions spécifiques à LCM
+## Functions specific to LCM
 def zip_download_file_txt2img_lcm(content):
     savename = zipper(content)
     return savename, download_file_txt2img_lcm.update(visible=True) 
@@ -242,7 +242,7 @@ def change_model_type_txt2img_lcm(model_txt2img_lcm):
         return width_txt2img_lcm.update(value=512), height_txt2img_lcm.update(value=512)
 
 
-## Fonctions spécifiques à Midjourney mini
+## Functions specific to Midjourney mini
 def zip_download_file_txt2img_mjm(content):
     savename = zipper(content)
     return savename, download_file_txt2img_mjm.update(visible=True) 
@@ -254,7 +254,7 @@ def read_ini_txt2img_mjm(module):
     content = read_ini(module)
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), bool(int(content[9])), float(content[10])
 
-## Fonctions spécifiques à PixArt-Alpha
+## Functions specific to PixArt-Alpha
 def zip_download_file_txt2img_paa(content):
     savename = zipper(content)
     return savename, download_file_txt2img_paa.update(visible=True) 
@@ -272,7 +272,7 @@ def change_model_type_txt2img_paa(model_txt2img_paa):
     else:
         return width_txt2img_paa.update(value=512), height_txt2img_paa.update(value=512)
 
-## Fonctions spécifiques à img2img 
+## Functions specific to img2img 
 def zip_download_file_img2img(content):
     savename = zipper(content)
     return savename, download_file_img2img.update(visible=True) 
@@ -296,7 +296,7 @@ def change_model_type_img2img(model_img2img):
     else:
         return width_img2img.update(value=512), height_img2img.update(value=512)
 
-## Fonctions spécifiques à img2var 
+## Functions specific to img2var 
 def zip_download_file_img2var(content):
     savename = zipper(content)
     return savename, download_file_img2var.update(visible=True) 
@@ -308,7 +308,7 @@ def read_ini_img2var(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), bool(int(content[9])), float(content[10])    
 
-## Fonctions spécifiques à pix2pix 
+## Functions specific to pix2pix 
 def zip_download_file_pix2pix(content):
     savename = zipper(content)
     return savename, download_file_pix2pix.update(visible=True) 
@@ -320,7 +320,7 @@ def read_ini_pix2pix(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), float(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), int(content[9]), bool(int(content[10])), float(content[11])
     
-## Fonctions spécifiques à inpaint 
+## Functions specific to inpaint 
 def zip_download_file_inpaint(content):
     savename = zipper(content)
     return savename, download_file_inpaint.update(visible=True) 
@@ -332,7 +332,7 @@ def read_ini_inpaint(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), bool(int(content[9])), float(content[10])    
     
-## Fonctions spécifiques à paintbyex 
+## Functions specific to paintbyex 
 def zip_download_file_paintbyex(content):
     savename = zipper(content)
     return savename, download_file_paintbyex.update(visible=True) 
@@ -344,7 +344,7 @@ def read_ini_paintbyex(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), bool(int(content[9])), float(content[10])        
 
-## Fonctions spécifiques à outpaint 
+## Functions specific to outpaint 
 def zip_download_file_outpaint(content):
     savename = zipper(content)
     return savename, download_file_outpaint.update(visible=True) 
@@ -356,7 +356,7 @@ def read_ini_outpaint(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), bool(int(content[9])), float(content[10])    
 
-## Fonctions spécifiques à controlnet 
+## Functions specific to controlnet 
 def zip_download_file_controlnet(content):
     savename = zipper(content)
     return savename, download_file_controlnet.update(visible=True) 
@@ -374,7 +374,7 @@ def change_model_type_controlnet(model_controlnet):
     else:
         return width_controlnet.update(value=512), height_controlnet.update(value=512)
 
-## Fonctions spécifiques à faceswap 
+## Functions specific to faceswap 
 def zip_download_file_faceswap(content):
     savename = zipper(content)
     return savename, download_file_faceswap.update(visible=True) 
@@ -386,22 +386,22 @@ def read_ini_faceswap(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), int(content[2]), bool(int(content[3]))
 
-## Fonctions spécifiques à Real ESRGAN
+## Functions specific to Real ESRGAN
 def read_ini_resrgan(module) :
     content = read_ini(module)
     return str(content[0]), str(content[1]), int(content[2]), int(content[3]), bool(int(content[4]))
 
-## Fonctions spécifiques à GFPGAN
+## Functions specific to GFPGAN
 def read_ini_gfpgan(module) :
     content = read_ini(module)
     return str(content[0]), str(content[1]), int(content[2]), int(content[3])
 
-## Fonctions spécifiques à MusicGen
+## Functions specific to MusicGen
 def read_ini_musicgen(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), float(content[2]), int(content[3]), bool(int(content[4])), float(content[5]), int(content[6]), int(content[7])
 
-## Fonctions spécifiques à MusicGen Melody
+## Functions specific to MusicGen Melody
 def read_ini_musicgen_mel(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), float(content[2]), int(content[3]), bool(int(content[4])), float(content[5]), int(content[6]), int(content[7])
@@ -412,37 +412,42 @@ def change_source_type_musicgen_mel(source_type_musicgen_mel):
     elif source_type_musicgen_mel == "micro" :
         return source_audio_musicgen_mel.update(source="microphone")
 
-## Fonctions spécifiques à AudioGen
+## Functions specific to MusicLDM
+def read_ini_musicldm(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7])
+
+## Functions specific to AudioGen
 def read_ini_audiogen(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), float(content[2]), int(content[3]), bool(int(content[4])), float(content[5]), int(content[6]), int(content[7])
 
-## Fonctions spécifiques à Harmonai
+## Functions specific to Harmonai
 def read_ini_harmonai(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), int(content[2]), int(content[3]), int(content[4]), int(content[5])
 
-## Fonctions spécifiques à Bark
+## Functions specific to Bark
 def read_ini_bark(module) :
     content = read_ini(module)
     return str(content[0]), str(content[1])
     
-## Fonctions spécifiques à Modelscope
+## Functions specific to Modelscope
 def read_ini_txt2vid_ms(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), bool(int(content[9]))
 
-## Fonctions spécifiques à Text2Video-Zero
+## Functions specific to Text2Video-Zero
 def read_ini_txt2vid_ze(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), int(content[9]), int(content[10]), int(content[11]), int(content[12]), int(content[13]), int(content[14]), int(content[15]), bool(int(content[16])), float(content[16])
 
-## Fonctions spécifiques à Video Instruct-Pix2Pix
+## Functions specific to Video Instruct-Pix2Pix
 def read_ini_vid2vid_ze(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), float(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), int(content[9]), int(content[10]), int(content[11]), bool(int(content[12])), float(content[13])
 
-## Fonctions spécifiques à txt2shape
+## Functions specific to txt2shape
 def zip_download_file_txt2shape(content):
     savename = zipper(content)
     return savename, download_file_txt2shape.update(visible=True) 
@@ -464,7 +469,7 @@ def read_ini_txt2shape(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7])
 
-## Fonctions spécifiques à img2shape
+## Functions specific to img2shape
 def zip_download_file_img2shape(content):
     savename = zipper(content)
     return savename, download_file_img2shape.update(visible=True) 
@@ -486,7 +491,7 @@ def read_ini_img2shape(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7])
 
-## Fonctions spécifiques à console
+## Functions specific to console
 def refresh_logfile():
     return logfile_biniou
         
@@ -4466,6 +4471,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... input prompt(s) to ...')
                                         gr.HTML(value='... audio module ...')                                        
                                         musicgen_musicgen_mel_input = gr.Button("✍️ >> MusicGen Melody")
+                                        musicgen_musicldm_input = gr.Button("✍️ >> MusicLDM")
                                         musicgen_audiogen_input = gr.Button("✍️ >> Audiogen")
                             with gr.Column():
                                 with gr.Box():                                
@@ -4617,13 +4623,154 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... input prompt(s) to ...')
                                         gr.HTML(value='... audio module ...')
                                         musicgen_mel_musicgen_input = gr.Button("✍️ >> MusicGen")
+                                        musicgen_mel_musicldm_input = gr.Button("✍️ >> MusicLDM")
                                         musicgen_mel_audiogen_input = gr.Button("✍️ >> Audiogen")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
 
-
+# MusicLDM
+                with gr.TabItem("MusicLDM 🎶", id=33) as tab_musicldm:
+                    with gr.Accordion("About", open=False):                
+                        with gr.Box():                       
+                            gr.HTML(
+                                """
+                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
+                                <b>Module : </b>MusicLDM</br>
+                                <b>Function : </b>Generate music from a prompt and a negative prompt, using <a href='https://musicldm.github.io' target='_blank'>MusicLDM</a></br>
+                                <b>Input(s) : </b>Prompt, negative prompt</br>
+                                <b>Output(s) : </b>Generated music</br>
+                                <b>HF model page : </b>
+                                <a href='https://huggingface.co/ucsd-reach/musicldm' target='_blank'>ucsd-reach/musicldm</a>, 
+                                """
+                            )
+                        with gr.Box():
+                            gr.HTML(
+                                """
+                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                <div style='text-align: justified'>
+                                <b>Usage :</b></br>
+                                - Fill the <b>prompt</b> by describing the music you want to generate</br>
+                                - Fill the <b>negative prompt</b> by describing what you DO NOT want to generate</br>
+                                - (optional) Modify the settings to use another model or change audio duration</br>
+                                - Click the <b>Generate<b> button</br>
+                                - After generation, generated music is available to listen in the <b>Generated music<b> field.
+                                </div>
+                                """
+                            )                           
+                    with gr.Accordion("Settings", open=False):
+                        with gr.Row():
+                            with gr.Column():
+                                model_musicldm = gr.Dropdown(choices=model_list_musicldm, value=model_list_musicldm[0], label="Model", info="Choose model to use for inference")
+                            with gr.Column():
+                                num_inference_step_musicldm = gr.Slider(1, 400, step=1, value=50, label="Steps", info="Number of iterations per audio. Results and speed depends of sampler")
+                            with gr.Column():
+                                sampler_musicldm = gr.Dropdown(choices=list(SCHEDULER_MAPPING_MUSICLDM.keys()), value=list(SCHEDULER_MAPPING_MUSICLDM.keys())[0], label="Sampler", info="Sampler to use for inference")
+                        with gr.Row():
+                            with gr.Column():
+                                guidance_scale_musicldm = gr.Slider(0.1, 20.0, step=0.1, value=2.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                            with gr.Column():
+                                audio_length_musicldm=gr.Slider(0, 160, step=1, value=10, label="Audio length", info="Duration of audio file to generate")
+                            with gr.Column():
+                                seed_musicldm = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")    
+                        with gr.Row():
+                            with gr.Column():
+                                num_audio_per_prompt_musicldm = gr.Slider(minimum=1, maximum=4, step=1, value=1, label="Batch size", info ="Number of audios to generate in a single run")
+                            with gr.Column():
+                                num_prompt_musicldm = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_musicldm = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_musicldm = gr.Textbox(value="musicldm", visible=False, interactive=False)
+                                load_ini_btn_musicldm = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_musicldm.value) else False)
+                                save_ini_btn_musicldm.click(
+                                    fn=write_ini, 
+                                    inputs=[
+                                        module_name_musicldm, 
+                                        model_musicldm,
+                                        num_inference_step_musicldm,
+                                        sampler_musicldm,
+                                        guidance_scale_musicldm,
+                                        audio_length_musicldm,
+                                        seed_musicldm,
+                                        num_audio_per_prompt_musicldm,
+                                        num_prompt_musicldm,
+                                        ]
+                                    )
+                                save_ini_btn_musicldm.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_musicldm.click(fn=lambda: load_ini_btn_musicldm.update(interactive=True), outputs=load_ini_btn_musicldm)
+                                load_ini_btn_musicldm.click(
+                                    fn=read_ini_musicldm, 
+                                    inputs=module_name_musicldm, 
+                                    outputs = [
+                                        model_musicldm,
+                                        num_inference_step_musicldm,
+                                        sampler_musicldm,
+                                        guidance_scale_musicldm,
+                                        audio_length_musicldm,
+                                        seed_musicldm,
+                                        num_audio_per_prompt_musicldm,
+                                        num_prompt_musicldm,
+                                        ]
+                                    )
+                                load_ini_btn_musicldm.click(fn=lambda: gr.Info('Settings loaded'))
+                    with gr.Row():
+                        with gr.Column():
+                            with gr.Row():
+                                prompt_musicldm = gr.Textbox(label="Prompt", lines=2, max_lines=2, info="Describe the content of your output audio file", placeholder="Techno music with a strong, upbeat tempo and high melodic riffs, high quality, clear")
+                            with gr.Row():
+                                negative_prompt_musicldm = gr.Textbox(label="Negative prompt", info="Describe what you DO NOT want in your output audio file", lines=2, max_lines=2, placeholder="low quality, average quality")
+                        with gr.Column():
+                            out_musicldm = gr.Audio(label="Generated music", type="filepath", show_download_button=True, interactive=False)
+                    with gr.Row():
+                        with gr.Column():
+                            btn_musicldm = gr.Button("Generate 🚀", variant="primary")
+                        with gr.Column():                            
+                            btn_musicldm_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_musicldm_cancel.click(fn=initiate_stop_musicldm, inputs=None, outputs=None)                              
+                        with gr.Column():
+                            btn_musicldm_clear_input = gr.ClearButton(components=prompt_musicldm, value="Clear inputs 🧹")
+                        with gr.Column():                            
+                            btn_musicldm_clear_output = gr.ClearButton(components=out_musicldm, value="Clear outputs 🧹")
+                        btn_musicldm.click(
+                            fn=music_musicldm, 
+                            inputs=[
+                                model_musicldm, 
+                                sampler_musicldm, 
+                                prompt_musicldm, 
+                                negative_prompt_musicldm, 
+                                num_audio_per_prompt_musicldm, 
+                                num_prompt_musicldm, 
+                                guidance_scale_musicldm, 
+                                num_inference_step_musicldm, 
+                                audio_length_musicldm,
+                                seed_musicldm,
+                            ], 
+                            outputs=out_musicldm,
+                            show_progress="full",                            
+                        )
+                    with gr.Accordion("Send ...", open=False):
+                        with gr.Row():
+                            with gr.Column():
+                                with gr.Box():                                
+                                    with gr.Group():
+                                        gr.HTML(value='... selected output to ...')
+                                        gr.HTML(value='... audio module ...')
+                                        musicldm_musicgen_mel = gr.Button("🎶 >> MusicGen Melody")
+                            with gr.Column():
+                                with gr.Box():
+                                    with gr.Group():
+                                        gr.HTML(value='... input prompt(s) to ...')
+                                        gr.HTML(value='... audio module ...')                                        
+                                        musicldm_musicgen_input = gr.Button("✍️ >> MusicGen")
+                                        musicldm_musicgen_mel_input = gr.Button("✍️ >> MusicGen Melody")
+                                        musicldm_audiogen_input = gr.Button("✍️ >> Audiogen")
+                            with gr.Column():
+                                with gr.Box():                                
+                                    with gr.Group():
+                                        gr.HTML(value='... both to ...')
 
 # Audiogen
                 if ram_size() >= 16 :
@@ -4631,7 +4778,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                 else :
                     titletab_audiogen = "AudioGen ⛔"
                 
-                with gr.TabItem(titletab_audiogen, id=33) as tab_audiogen:
+                with gr.TabItem(titletab_audiogen, id=34) as tab_audiogen:
 
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
@@ -4761,13 +4908,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... audio module ...')
                                         audiogen_musicgen_input = gr.Button("✍️ >> Musicgen")
                                         audiogen_musicgen_mel_input = gr.Button("✍️ >> MusicGen Melody")
+                                        audiogen_musicldm_input = gr.Button("✍️ >> MusicLDM")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')                                    
 
 # Harmonai
-                with gr.TabItem("Harmonai 🔊", id=34) as tab_harmonai:
+                with gr.TabItem("Harmonai 🔊", id=35) as tab_harmonai:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -4883,7 +5031,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')                       
 # Bark
-                with gr.TabItem("Bark 🗣️", id=35) as tab_bark:
+                with gr.TabItem("Bark 🗣️", id=36) as tab_bark:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -6007,6 +6155,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     tab_gfpgan_num = gr.Number(value=tab_gfpgan.id, precision=0, visible=False) 
     tab_musicgen_num = gr.Number(value=tab_musicgen.id, precision=0, visible=False) 
     tab_musicgen_mel_num = gr.Number(value=tab_musicgen_mel.id, precision=0, visible=False) 
+    tab_musicldm_num = gr.Number(value=tab_musicldm.id, precision=0, visible=False)     
     tab_audiogen_num = gr.Number(value=tab_audiogen.id, precision=0, visible=False) 
     tab_harmonai_num = gr.Number(value=tab_harmonai.id, precision=0, visible=False) 
     tab_bark_num = gr.Number(value=tab_bark.id, precision=0, visible=False) 
@@ -6264,8 +6413,6 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     txt2img_paa_inpaint_both.click(fn=both_to_module_inpaint, inputs=[prompt_txt2img_paa, negative_prompt_txt2img_paa, gs_out_txt2img_paa, sel_out_txt2img_paa, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, negative_prompt_inpaint,img_inpaint, gs_img_inpaint, tabs, tabs_image])
     txt2img_paa_controlnet_both.click(fn=both_to_module_inpaint, inputs=[prompt_txt2img_paa, negative_prompt_txt2img_paa, gs_out_txt2img_paa, sel_out_txt2img_paa, tab_image_num, tab_controlnet_num], outputs=[prompt_controlnet, negative_prompt_controlnet, img_source_controlnet, gs_img_source_controlnet, tabs, tabs_image])
 
-
-
 # img2img outputs
     img2img_img2img.click(fn=send_to_module, inputs=[gs_out_img2img, sel_out_img2img, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
     img2var_img2var.click(fn=send_to_module, inputs=[gs_out_img2var, sel_out_img2var, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])    
@@ -6486,6 +6633,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
 
 # Musicgen inputs
     musicgen_musicgen_mel_input.click(fn=import_to_module_audio, inputs=[prompt_musicgen, tab_audio_num, tab_musicgen_mel_num], outputs=[prompt_musicgen_mel, tabs, tabs_audio])
+    musicgen_musicldm_input.click(fn=import_to_module_audio, inputs=[prompt_musicgen, tab_audio_num, tab_musicldm_num], outputs=[prompt_musicldm, tabs, tabs_audio])
     musicgen_audiogen_input.click(fn=import_to_module_audio, inputs=[prompt_musicgen, tab_audio_num, tab_audiogen_num], outputs=[prompt_audiogen, tabs, tabs_audio])
 
 #Musicgen melody outputs
@@ -6493,6 +6641,16 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
 
 #Musicgen melody inputs
     musicgen_mel_musicgen_input.click(fn=import_to_module_audio, inputs=[prompt_musicgen_mel, tab_audio_num, tab_musicgen_num], outputs=[prompt_musicgen, tabs, tabs_audio])
+    musicgen_mel_musicldm_input.click(fn=import_to_module_audio, inputs=[prompt_musicgen_mel, tab_audio_num, tab_musicldm_num], outputs=[prompt_musicldm, tabs, tabs_audio])
+    musicgen_mel_audiogen_input.click(fn=import_to_module_audio, inputs=[prompt_musicgen_mel, tab_audio_num, tab_audiogen_num], outputs=[prompt_audiogen, tabs, tabs_audio])
+    
+# Musicgen outputs
+    musicldm_musicgen_mel.click(fn=import_to_module_audio, inputs=[out_musicldm, tab_audio_num, tab_musicgen_mel_num], outputs=[source_audio_musicgen_mel, tabs, tabs_audio])
+
+# Musicgen inputs
+    musicldm_musicgen_input.click(fn=import_to_module_audio, inputs=[prompt_musicldm, tab_audio_num, tab_musicgen_num], outputs=[prompt_musicgen, tabs, tabs_audio])
+    musicldm_musicgen_mel_input.click(fn=import_to_module_audio, inputs=[prompt_musicldm, tab_audio_num, tab_musicgen_mel_num], outputs=[prompt_musicgen_mel, tabs, tabs_audio])
+    musicldm_audiogen_input.click(fn=import_to_module_audio, inputs=[prompt_musicldm, tab_audio_num, tab_audiogen_num], outputs=[prompt_audiogen, tabs, tabs_audio])
 
 # Audiogen outputs
     audiogen_musicgen_mel.click(fn=import_to_module_audio, inputs=[out_audiogen, tab_audio_num, tab_musicgen_mel_num], outputs=[source_audio_musicgen_mel, tabs, tabs_audio])
@@ -6500,6 +6658,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
 # Audiogen inputs    
     audiogen_musicgen_input.click(fn=import_to_module_audio, inputs=[prompt_audiogen, tab_audio_num, tab_musicgen_num], outputs=[prompt_musicgen, tabs, tabs_audio])
     audiogen_musicgen_mel_input.click(fn=import_to_module_audio, inputs=[prompt_audiogen, tab_audio_num, tab_musicgen_mel_num], outputs=[prompt_musicgen_mel, tabs, tabs_audio])
+    audiogen_musicldm_input.click(fn=import_to_module_audio, inputs=[prompt_audiogen, tab_audio_num, tab_musicldm_num], outputs=[prompt_musicldm, tabs, tabs_audio])
 
 # Harmonai outputs
     harmonai_musicgen_mel.click(fn=import_to_module_audio, inputs=[out_harmonai, tab_audio_num, tab_musicgen_mel_num], outputs=[source_audio_musicgen_mel, tabs, tabs_audio])

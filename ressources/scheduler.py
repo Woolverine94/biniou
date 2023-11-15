@@ -32,6 +32,12 @@ SCHEDULER_MAPPING = {
     "LMS": LMSDiscreteScheduler,
 }
 
+SCHEDULER_MAPPING_MUSICLDM = {
+    "DDIM": DDIMScheduler,
+    "LMS": LMSDiscreteScheduler,
+    "PNDM": PNDMScheduler,
+}
+
 def get_scheduler(pipe, scheduler):
     if scheduler in SCHEDULER_MAPPING:
         SchedulerClass = SCHEDULER_MAPPING[scheduler]
