@@ -139,6 +139,7 @@ def image_txt2img_sd(modelid_txt2img_sd,
         pipe_txt2img_sd.enable_sequential_cpu_offload()
     else : 
         pipe_txt2img_sd = pipe_txt2img_sd.to(device_txt2img_sd)
+    pipe_txt2img_sd.enable_vae_slicing()
 
     if seed_txt2img_sd == 0:
         random_seed = random.randrange(0, 10000000000, 1)
