@@ -17,7 +17,7 @@
 ---
 
 ## Updates
-  * 🆕 **2023-11-17** : 🔥 ***New image module : MagicMix*** 🔥 MagicMix offers a very simple and fun way to edit pictures by prompt, while preservating layouts. It is a good alternative to Instruct pix2pix and img2img.
+  * 🆕 **2023-11-17** : 🔥 ***New image module : MagicMix*** 🔥 MagicMix offers a very simple and fun way to edit pictures by prompt, while preserving layouts. It is a good alternative to Instruct pix2pix and img2img.
 
   * 🆕 **2023-11-15** : 🔥 ***New audio module : MusicLDM*** 🔥 MusicLDM allow generation of music using a prompt and a negative prompt. A very interesting alternative to Musicgen. 
 
