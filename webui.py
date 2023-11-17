@@ -3020,7 +3020,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Usage :</b></br>
                                 - Upload or import an image using the <b>Input image</b> field</br>
                                 - Set the <b>Mix Factor</b> field to create a balance between input image and prompt</br>
-                                - Fill the <b>prompt</b> with the instructions for modifying your input image. Use simple prompt instruction (e.g. "a dog"), and "remove" to exclude an element of the input image (e.g "remove dog")</br>
+                                - Fill the <b>prompt</b> with the instructions for modifying your input image. Use simple prompt instruction (e.g. "a dog")</br>
                                 - (optional) Modify the settings to generate several images in a single run or generate several images in a single run</br>
                                 - Click the <b>Generate</b> button</br>
                                 - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery</br></br>
