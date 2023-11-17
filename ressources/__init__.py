@@ -12,6 +12,7 @@ from .txt2img_paa import *
 from .img2img import *
 from .img2var import *
 from .pix2pix import *
+from .magicmix import *
 from .inpaint import *
 from .paintbyex import *
 from .outpaint import *

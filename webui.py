@@ -319,7 +319,19 @@ def hide_download_file_pix2pix():
 def read_ini_pix2pix(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), float(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), int(content[9]), bool(int(content[10])), float(content[11])
+
+## Functions specific to magicmix 
+def zip_download_file_magicmix(content):
+    savename = zipper(content)
+    return savename, download_file_magicmix.update(visible=True) 
+
+def hide_download_file_magicmix():
+    return download_file_magicmix.update(visible=False) 
     
+def read_ini_magicmix(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), str(content[2]), float(content[3]), float(content[4]), float(content[5]), int(content[6]), int(content[7]), bool(int(content[8])), float(content[9])
+   
 ## Functions specific to inpaint 
 def zip_download_file_inpaint(content):
     savename = zipper(content)
@@ -1497,6 +1509,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_sd_img2img = gr.Button("🖼️ >> img2img")
                                         txt2img_sd_img2var = gr.Button("🖼️ >> Image variation")
                                         txt2img_sd_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
+                                        txt2img_sd_magicmix = gr.Button("🖼️ >> MagicMix")
                                         txt2img_sd_inpaint = gr.Button("🖼️ >> inpaint")
                                         txt2img_sd_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         txt2img_sd_outpaint = gr.Button("🖼️ >> outpaint")
@@ -1700,6 +1713,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_kd_img2img = gr.Button("🖼️ >> img2img")
                                         txt2img_kd_img2var = gr.Button("🖼️ >> Image variation")
                                         txt2img_kd_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
+                                        txt2img_kd_magicmix = gr.Button("🖼️ >> MagicMix")
                                         txt2img_kd_inpaint = gr.Button("🖼️ >> inpaint")
                                         txt2img_kd_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         txt2img_kd_outpaint = gr.Button("🖼️ >> outpaint")
@@ -1903,6 +1917,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_lcm_img2img = gr.Button("🖼️ >> img2img")
                                         txt2img_lcm_img2var = gr.Button("🖼️ >> Image variation")
                                         txt2img_lcm_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
+                                        txt2img_lcm_magicmix = gr.Button("🖼️ >> MagicMix")
                                         txt2img_lcm_inpaint = gr.Button("🖼️ >> inpaint")
                                         txt2img_lcm_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         txt2img_lcm_outpaint = gr.Button("🖼️ >> outpaint")
@@ -2107,6 +2122,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_mjm_img2img = gr.Button("🖼️ >> img2img")
                                         txt2img_mjm_img2var = gr.Button("🖼️ >> Image variation")
                                         txt2img_mjm_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
+                                        txt2img_mjm_magicmix = gr.Button("🖼️ >> MagicMix")
                                         txt2img_mjm_inpaint = gr.Button("🖼️ >> inpaint")
                                         txt2img_mjm_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         txt2img_mjm_outpaint = gr.Button("🖼️ >> outpaint")
@@ -2313,6 +2329,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_paa_img2img = gr.Button("🖼️ >> img2img")
                                         txt2img_paa_img2var = gr.Button("🖼️ >> Image variation")
                                         txt2img_paa_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
+                                        txt2img_paa_magicmix = gr.Button("🖼️ >> MagicMix")
                                         txt2img_paa_inpaint = gr.Button("🖼️ >> inpaint")
                                         txt2img_paa_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         txt2img_paa_outpaint = gr.Button("🖼️ >> outpaint")
@@ -2543,6 +2560,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         img2img_img2var = gr.Button("🖼️ >> Image variation")
                                         img2img_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
                                         img2img_inpaint = gr.Button("🖼️ >> inpaint")
+                                        img2img_magicmix = gr.Button("🖼️ >> MagicMix")
                                         img2img_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         img2img_outpaint = gr.Button("🖼️ >> outpaint")
                                         img2img_controlnet = gr.Button("🖼️ >> ControlNet")
@@ -2742,6 +2760,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         img2var_img2img = gr.Button("🖼️ >> img2img")
                                         img2var_img2var = gr.Button("🖼️ >> Image variation")
                                         img2var_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
+                                        img2var_magicmix = gr.Button("🖼️ >> MagicMix")
                                         img2var_inpaint = gr.Button("🖼️ >> inpaint")
                                         img2var_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         img2var_outpaint = gr.Button("🖼️ >> outpaint")
@@ -2785,7 +2804,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 - Upload or import an image using the <b>Input image</b> field</br>
                                 - Fill the <b>prompt</b> with the instructions for modifying your input image</br>
                                 - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output image</br>
-                                - (optional) Modify the settings to generate several images in a single run or generate several images in a single run</br>
+                                - (optional) Modify the settings to change image CFG scale or generate several images in a single run</br>
                                 - Click the <b>Generate</b> button</br>
                                 - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery</br></br>
                                 <b>Examples : </b><a href='https://www.timothybrooks.com/instruct-pix2pix/' target='_blank'>InstructPix2Pix : Learning to Follow Image Editing Instructions</a>
@@ -2942,6 +2961,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         pix2pix_img2img = gr.Button("🖼️ >> img2img")
                                         pix2pix_img2var = gr.Button("🖼️ >> Image variation")
                                         pix2pix_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
+                                        pix2pix_magicmix = gr.Button("🖼️ >> MagicMix")
                                         pix2pix_inpaint = gr.Button("🖼️ >> inpaint")
                                         pix2pix_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         pix2pix_outpaint = gr.Button("🖼️ >> outpaint")
@@ -2974,8 +2994,198 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         pix2pix_img2img_both = gr.Button("🖼️ + ✍️ >> img2img")
                                         pix2pix_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
                                         pix2pix_controlnet_both = gr.Button("🖼️ + ✍️ >> ControlNet")
+                                        
+# magicmix    
+                with gr.TabItem("MagicMix 🖌️", id=29) as tab_magicmix:
+                    with gr.Accordion("About", open=False):                
+                        with gr.Box():                       
+                            gr.HTML(
+                                """
+                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
+                                <b>Module : </b>MagicMix</br>
+                                <b>Function : </b>Edit an input image with instructions from a prompt using <a href='https://magicmix.github.io/' target='_blank'>MagicMix</a> and <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
+                                <b>Input(s) : </b>Input image, prompt</br>
+                                <b>Output(s) : </b>Image(s)</br>
+                                <b>HF model page : </b>
+                                <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>,
+                                <a href='https://huggingface.co/runwayml/stable-diffusion-v1-5' target='_blank'>runwayml/stable-diffusion-v1-5</a>,
+                                <a href='https://huggingface.co/nitrosocke/Ghibli-Diffusion' target='_blank'>nitrosocke/Ghibli-Diffusion</a>
+                                """
+                            )
+                        with gr.Box():
+                            gr.HTML(
+                                """
+                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                <div style='text-align: justified'>
+                                <b>Usage :</b></br>
+                                - Upload or import an image using the <b>Input image</b> field</br>
+                                - Set the <b>Mix Factor</b> field to create a balance between input image and prompt</br>
+                                - Fill the <b>prompt</b> with the instructions for modifying your input image. Use simple prompt instruction (e.g. "a dog"), and "remove" to exclude an element of the input image (e.g "remove dog")</br>
+                                - (optional) Modify the settings to generate several images in a single run or generate several images in a single run</br>
+                                - Click the <b>Generate</b> button</br>
+                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery</br></br>
+                                <b>Examples : </b><a href='https://magicmix.github.io/' target='_blank'>MagicMix: Semantic Mixing with Diffusion Models</a>
+                                </div>
+                                """
+                            )                
+                    with gr.Accordion("Settings", open=False):
+                        with gr.Row():
+                            with gr.Column():
+                                model_magicmix = gr.Dropdown(choices=model_list_magicmix, value=model_list_magicmix[0], label="Model", info="Choose model to use for inference")
+                            with gr.Column():
+                                num_inference_step_magicmix = gr.Slider(1, 100, step=1, value=15, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                            with gr.Column():
+                                sampler_magicmix = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[1], label="Sampler", info="Sampler to use for inference", interactive=False)
+                        with gr.Row():
+                            with gr.Column():
+                                guidance_scale_magicmix = gr.Slider(0.0, 20.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                            with gr.Column():
+                                kmin_magicmix = gr.Slider(0.0, 1.0, step=0.01, value=0.3, label="Kmin", info="Controls the number of steps during the content generation process")
+                            with gr.Column():
+                                kmax_magicmix = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Kmax", info="Determines how much information is kept in the layout of the original image")
+                        with gr.Row():
+                            with gr.Column():
+                                num_prompt_magicmix = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                            with gr.Column():
+                                seed_magicmix = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
+                        with gr.Row():
+                            with gr.Column():    
+                                use_gfpgan_magicmix = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                            with gr.Column():
+                                tkme_magicmix = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_magicmix = gr.Button("Save favorite settings 💾")
+                            with gr.Column():
+                                module_name_magicmix = gr.Textbox(value="magicmix", visible=False, interactive=False)
+                                load_ini_btn_magicmix = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_magicmix.value) else False)
+                                save_ini_btn_magicmix.click(
+                                    fn=write_ini,
+                                    inputs=[
+                                        module_name_magicmix, 
+                                        model_magicmix, 
+                                        num_inference_step_magicmix,
+                                        sampler_magicmix,
+                                        guidance_scale_magicmix,
+                                        kmin_magicmix,
+                                        kmax_magicmix,
+                                        num_prompt_magicmix,
+                                        seed_magicmix,
+                                        use_gfpgan_magicmix,
+                                        tkme_magicmix,
+                                        ]
+                                    )
+                                save_ini_btn_magicmix.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_magicmix.click(fn=lambda: load_ini_btn_magicmix.update(interactive=True), outputs=load_ini_btn_magicmix)
+                                load_ini_btn_magicmix.click(
+                                    fn=read_ini_magicmix, 
+                                    inputs=module_name_magicmix, 
+                                    outputs = [
+                                        model_magicmix, 
+                                        num_inference_step_magicmix,
+                                        sampler_magicmix,
+                                        guidance_scale_magicmix,
+                                        kmin_magicmix,
+                                        kmax_magicmix,
+                                        num_prompt_magicmix,
+                                        seed_magicmix,
+                                        use_gfpgan_magicmix,
+                                        tkme_magicmix,
+                                        ]
+                                    )
+                                load_ini_btn_magicmix.click(fn=lambda: gr.Info('Settings loaded'))
+                    with gr.Row():
+                        with gr.Column():
+                             img_magicmix = gr.Image(label="Input image", height=400, type="filepath")
+                        with gr.Column():
+                            with gr.Row():
+                                with gr.Column():
+                                    mix_factor_magicmix = gr.Slider(0.0, 1.0, step=0.01, value=0.5, label="Mix Factor", info="Determines how much influence the prompt has on the layout generation")
+                            with gr.Row(): 
+                                with gr.Column():
+                                    prompt_magicmix = gr.Textbox(lines=9, max_lines=9, label="Prompt", info="Describe how you want to modify your input image", placeholder="a bed")
+                        with gr.Column():
+                            with gr.Row():
+                                with gr.Column():
+                                    out_magicmix = gr.Gallery(
+                                        label="Generated images",
+                                        show_label=True,
+                                        elem_id="gallery_p2p",
+                                        columns=2,
+                                        height=400,
+                                        preview=True,                                        
+                                    )
+                                    gs_out_magicmix = gr.State()
+                                    sel_out_magicmix = gr.Number(precision=0, visible=False)                        
+                                    out_magicmix.select(get_select_index, None, sel_out_magicmix)
+                                    with gr.Row():
+                                        with gr.Column():
+                                            download_btn_magicmix = gr.Button("Zip gallery 💾")
+                                        with gr.Column():
+                                            download_file_magicmix = gr.File(label="Output", height=30, interactive=False, visible=False)
+                                            download_btn_magicmix.click(fn=zip_download_file_magicmix, inputs=out_magicmix, outputs=[download_file_magicmix, download_file_magicmix])                                       
+                    with gr.Row():
+                        with gr.Column():
+                            btn_magicmix = gr.Button("Generate 🚀", variant="primary")
+                        with gr.Column():
+                            btn_magicmix_clear_input = gr.ClearButton(components=[img_magicmix, prompt_magicmix], value="Clear inputs 🧹")
+                        with gr.Column():                            
+                            btn_magicmix_clear_output = gr.ClearButton(components=[out_magicmix, gs_out_magicmix], value="Clear outputs 🧹")
+                            btn_magicmix.click(fn=hide_download_file_magicmix, inputs=None, outputs=download_file_magicmix)                               
+                            btn_magicmix.click(
+                                fn=image_magicmix,
+                                inputs=[
+                                    model_magicmix, 
+                                    sampler_magicmix, 
+                                    num_inference_step_magicmix,
+                                    guidance_scale_magicmix,
+                                    kmin_magicmix,
+                                    kmax_magicmix,
+                                    num_prompt_magicmix,
+                                    seed_magicmix,
+                                    img_magicmix,
+                                    prompt_magicmix,
+                                    mix_factor_magicmix,
+                                    use_gfpgan_magicmix, 
+                                    nsfw_filter, 
+                                    tkme_magicmix,
+                                ],
+                                outputs=[out_magicmix, gs_out_magicmix],
+                                show_progress="full",
+                            )  
+                    with gr.Accordion("Send ...", open=False):
+                        with gr.Row():
+                            with gr.Column():
+                                with gr.Box():                                
+                                    with gr.Group():
+                                        gr.HTML(value='... selected output to ...')
+                                        gr.HTML(value='... text module ...')
+                                        magicmix_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
+                                        gr.HTML(value='... image module ...')
+                                        magicmix_img2img = gr.Button("🖼️ >> img2img")
+                                        magicmix_img2var = gr.Button("🖼️ >> Image variation")
+                                        magicmix_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
+                                        magicmix_magicmix = gr.Button("🖼️ >> MagicMix")
+                                        magicmix_inpaint = gr.Button("🖼️ >> inpaint")
+                                        magicmix_paintbyex = gr.Button("🖼️ >> Paint by example") 
+                                        magicmix_outpaint = gr.Button("🖼️ >> outpaint")
+                                        magicmix_controlnet = gr.Button("🖼️ >> ControlNet")
+                                        magicmix_faceswap = gr.Button("🖼️ >> Faceswap target")
+                                        magicmix_resrgan = gr.Button("🖼️ >> Real ESRGAN")
+                                        magicmix_gfpgan = gr.Button("🖼️ >> GFPGAN")
+                                        gr.HTML(value='... 3d module ...') 
+                                        magicmix_img2shape = gr.Button("🖼️ >> Shap-E img2shape") 
+                            with gr.Column():
+                                with gr.Box():
+                                    with gr.Group():
+                                        gr.HTML(value='... input prompt(s) to ...')
+                            with gr.Column():
+                                with gr.Box():                                
+                                    with gr.Group():
+                                        gr.HTML(value='... both to ...')
+                                       
 # inpaint    
-                with gr.TabItem("inpaint 🖌️", id=29) as tab_inpaint:
+                with gr.TabItem("inpaint 🖌️", id=291) as tab_inpaint:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -3163,6 +3373,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         inpaint_img2img = gr.Button("🖼️ >> img2img")
                                         inpaint_img2var = gr.Button("🖼️ >> Image variation")
                                         inpaint_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
+                                        inpaint_magicmix = gr.Button("🖼️ >> MagicMix")
                                         inpaint_inpaint = gr.Button("🖼️ >> inpaint")
                                         inpaint_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         inpaint_outpaint = gr.Button("🖼️ >> outpaint")
@@ -3200,7 +3411,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                 else :
                     titletab_paintbyex = "Paint by example ⛔"
 
-                with gr.TabItem(titletab_paintbyex, id=291) as tab_paintbyex: 
+                with gr.TabItem(titletab_paintbyex, id=292) as tab_paintbyex: 
                     with gr.Accordion("About", open=False): 
                         with gr.Box():                       
                             gr.HTML(
@@ -3374,6 +3585,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         paintbyex_img2img = gr.Button("🖼️ >> img2img")
                                         paintbyex_img2var = gr.Button("🖼️ >> Image variation") 
                                         paintbyex_pix2pix = gr.Button("🖼️ >> Instruct pix2pix") 
+                                        paintbyex_magicmix = gr.Button("🖼️ >> MagicMix")
                                         paintbyex_inpaint = gr.Button("🖼️ >> inpaint") 
                                         paintbyex_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         paintbyex_outpaint = gr.Button("🖼️ >> outpaint")
@@ -3397,7 +3609,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                 else :
                     titletab_outpaint = "outpaint ⛔"
 
-                with gr.TabItem(titletab_outpaint, id=292) as tab_outpaint:
+                with gr.TabItem(titletab_outpaint, id=293) as tab_outpaint:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -3608,6 +3820,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         outpaint_img2img = gr.Button("🖼️ >> img2img")
                                         outpaint_img2var = gr.Button("🖼️ >> Image variation")
                                         outpaint_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
+                                        outpaint_magicmix = gr.Button("🖼️ >> MagicMix")
                                         outpaint_inpaint = gr.Button("🖼️ >> inpaint")
                                         outpaint_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         outpaint_outpaint = gr.Button("🖼️ >> outpaint")
@@ -3639,7 +3852,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         outpaint_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
                                         outpaint_controlnet_both = gr.Button("🖼️ + ✍️ >> ControlNet")                                        
 # ControlNet
-                with gr.TabItem("ControlNet 🖼️", id=293) as tab_controlnet:
+                with gr.TabItem("ControlNet 🖼️", id=294) as tab_controlnet:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -3888,6 +4101,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         controlnet_img2img = gr.Button("🖼️ >> img2img")
                                         controlnet_img2var = gr.Button("🖼️ >> Image variation")
                                         controlnet_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
+                                        controlnet_magicmix = gr.Button("🖼️ >> MagicMix")
                                         controlnet_inpaint = gr.Button("🖼️ >> inpaint")
                                         controlnet_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         controlnet_outpaint = gr.Button("🖼️ >> outpaint")
@@ -3922,7 +4136,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         controlnet_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
                                         controlnet_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")                                        
 # faceswap    
-                with gr.TabItem("Faceswap 🎭", id=294) as tab_faceswap:
+                with gr.TabItem("Faceswap 🎭", id=295) as tab_faceswap:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -4056,6 +4270,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         faceswap_img2img = gr.Button("🖼️ >> img2img")
                                         faceswap_img2var = gr.Button("🖼️ >> Image variation")
                                         faceswap_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
+                                        faceswap_magicmix = gr.Button("🖼️ >> MagicMix")
                                         faceswap_inpaint = gr.Button("🖼️ >> inpaint")
                                         faceswap_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         faceswap_outpaint = gr.Button("🖼️ >> outpaint")
@@ -4075,7 +4290,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... both to ...')                                    
 
 # Real ESRGAN    
-                with gr.TabItem("Real ESRGAN 🔎", id=295) as tab_resrgan:
+                with gr.TabItem("Real ESRGAN 🔎", id=296) as tab_resrgan:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -4193,6 +4408,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         resrgan_img2img = gr.Button("🖼️ >> img2img")
                                         resrgan_img2var = gr.Button("🖼️ >> Image variation")
                                         resrgan_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
+                                        resrgan_magicmix = gr.Button("🖼️ >> MagicMix")
                                         resrgan_inpaint = gr.Button("🖼️ >> inpaint")
                                         resrgan_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         resrgan_outpaint = gr.Button("🖼️ >> outpaint")
@@ -4210,7 +4426,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')                         
 # GFPGAN    
-                with gr.TabItem("GFPGAN 🔎", id=296) as tab_gfpgan:
+                with gr.TabItem("GFPGAN 🔎", id=297) as tab_gfpgan:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -4321,6 +4537,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gfpgan_img2img = gr.Button("🖼️ >> img2img")
                                         gfpgan_img2var = gr.Button("🖼️ >> Image variation")
                                         gfpgan_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
+                                        gfpgan_magicmix = gr.Button("🖼️ >> MagicMix")
                                         gfpgan_inpaint = gr.Button("🖼️ >> inpaint")
                                         gfpgan_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         gfpgan_outpaint = gr.Button("🖼️ >> outpaint")
@@ -6146,6 +6363,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     tab_img2img_num = gr.Number(value=tab_img2img.id, precision=0, visible=False) 
     tab_img2var_num = gr.Number(value=tab_img2var.id, precision=0, visible=False) 
     tab_pix2pix_num = gr.Number(value=tab_pix2pix.id, precision=0, visible=False) 
+    tab_magicmix_num = gr.Number(value=tab_magicmix.id, precision=0, visible=False)
     tab_inpaint_num = gr.Number(value=tab_inpaint.id, precision=0, visible=False) 
     tab_paintbyex_num = gr.Number(value=tab_paintbyex.id, precision=0, visible=False)     
     tab_outpaint_num = gr.Number(value=tab_outpaint.id, precision=0, visible=False) 
@@ -6257,6 +6475,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     txt2img_sd_img2img.click(fn=send_to_module, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
     txt2img_sd_img2var.click(fn=send_to_module, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])  
     txt2img_sd_pix2pix.click(fn=send_to_module, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
+    txt2img_sd_magicmix.click(fn=send_to_module, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_image_num, tab_magicmix_num], outputs=[img_magicmix, tabs, tabs_image])    
     txt2img_sd_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image])    
     txt2img_sd_paintbyex.click(fn=send_to_module_inpaint, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_image_num, tab_paintbyex_num], outputs=[img_paintbyex, gs_img_paintbyex, tabs, tabs_image]) 
     txt2img_sd_outpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_image_num, tab_outpaint_num], outputs=[img_outpaint, gs_img_outpaint, tabs, tabs_image])
@@ -6289,6 +6508,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     txt2img_kd_img2img.click(fn=send_to_module, inputs=[gs_out_txt2img_kd, sel_out_txt2img_kd, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
     txt2img_kd_img2var.click(fn=send_to_module, inputs=[gs_out_txt2img_kd, sel_out_txt2img_kd, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])    
     txt2img_kd_pix2pix.click(fn=send_to_module, inputs=[gs_out_txt2img_kd, sel_out_txt2img_kd, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
+    txt2img_kd_magicmix.click(fn=send_to_module, inputs=[gs_out_txt2img_kd, sel_out_txt2img_kd, tab_image_num, tab_magicmix_num], outputs=[img_magicmix, tabs, tabs_image])
     txt2img_kd_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_txt2img_kd, sel_out_txt2img_kd, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image])    
     txt2img_kd_paintbyex.click(fn=send_to_module_inpaint, inputs=[gs_out_txt2img_kd, sel_out_txt2img_kd, tab_image_num, tab_paintbyex_num], outputs=[img_paintbyex, gs_img_paintbyex, tabs, tabs_image]) 
     txt2img_kd_outpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_txt2img_kd, sel_out_txt2img_kd, tab_image_num, tab_outpaint_num], outputs=[img_outpaint, gs_img_outpaint, tabs, tabs_image])        
@@ -6319,8 +6539,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
 
 # txt2img_lcm outputs
     txt2img_lcm_img2img.click(fn=send_to_module, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
-    txt2img_lcm_img2var.click(fn=send_to_module, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])  
+    txt2img_lcm_img2var.click(fn=send_to_module, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])
     txt2img_lcm_pix2pix.click(fn=send_to_module, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
+    txt2img_lcm_magicmix.click(fn=send_to_module, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_magicmix_num], outputs=[img_magicmix, tabs, tabs_image])
     txt2img_lcm_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image])    
     txt2img_lcm_paintbyex.click(fn=send_to_module_inpaint, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_paintbyex_num], outputs=[img_paintbyex, gs_img_paintbyex, tabs, tabs_image]) 
     txt2img_lcm_outpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_outpaint_num], outputs=[img_outpaint, gs_img_outpaint, tabs, tabs_image])
@@ -6353,6 +6574,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     txt2img_mjm_img2img.click(fn=send_to_module, inputs=[gs_out_txt2img_mjm, sel_out_txt2img_mjm, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
     txt2img_mjm_img2var.click(fn=send_to_module, inputs=[gs_out_txt2img_mjm, sel_out_txt2img_mjm, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])  
     txt2img_mjm_pix2pix.click(fn=send_to_module, inputs=[gs_out_txt2img_mjm, sel_out_txt2img_mjm, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
+    txt2img_mjm_magicmix.click(fn=send_to_module, inputs=[gs_out_txt2img_mjm, sel_out_txt2img_mjm, tab_image_num, tab_magicmix_num], outputs=[img_magicmix, tabs, tabs_image])
     txt2img_mjm_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_txt2img_mjm, sel_out_txt2img_mjm, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image])    
     txt2img_mjm_paintbyex.click(fn=send_to_module_inpaint, inputs=[gs_out_txt2img_mjm, sel_out_txt2img_mjm, tab_image_num, tab_paintbyex_num], outputs=[img_paintbyex, gs_img_paintbyex, tabs, tabs_image]) 
     txt2img_mjm_outpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_txt2img_mjm, sel_out_txt2img_mjm, tab_image_num, tab_outpaint_num], outputs=[img_outpaint, gs_img_outpaint, tabs, tabs_image])
@@ -6385,6 +6607,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     txt2img_paa_img2img.click(fn=send_to_module, inputs=[gs_out_txt2img_paa, sel_out_txt2img_paa, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
     txt2img_paa_img2var.click(fn=send_to_module, inputs=[gs_out_txt2img_paa, sel_out_txt2img_paa, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])  
     txt2img_paa_pix2pix.click(fn=send_to_module, inputs=[gs_out_txt2img_paa, sel_out_txt2img_paa, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
+    txt2img_paa_magicmix.click(fn=send_to_module, inputs=[gs_out_txt2img_paa, sel_out_txt2img_paa, tab_image_num, tab_magicmix_num], outputs=[img_magicmix, tabs, tabs_image])
     txt2img_paa_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_txt2img_paa, sel_out_txt2img_paa, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image])    
     txt2img_paa_paintbyex.click(fn=send_to_module_inpaint, inputs=[gs_out_txt2img_paa, sel_out_txt2img_paa, tab_image_num, tab_paintbyex_num], outputs=[img_paintbyex, gs_img_paintbyex, tabs, tabs_image]) 
     txt2img_paa_outpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_txt2img_paa, sel_out_txt2img_paa, tab_image_num, tab_outpaint_num], outputs=[img_outpaint, gs_img_outpaint, tabs, tabs_image])
@@ -6417,6 +6640,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     img2img_img2img.click(fn=send_to_module, inputs=[gs_out_img2img, sel_out_img2img, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
     img2var_img2var.click(fn=send_to_module, inputs=[gs_out_img2var, sel_out_img2var, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])    
     img2img_pix2pix.click(fn=send_to_module, inputs=[gs_out_img2img, sel_out_img2img, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
+    img2img_magicmix.click(fn=send_to_module, inputs=[gs_out_img2img, sel_out_img2img, tab_image_num, tab_magicmix_num], outputs=[img_magicmix, tabs, tabs_image])
     img2img_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_img2img, sel_out_img2img, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image])
     img2img_paintbyex.click(fn=send_to_module_inpaint, inputs=[gs_out_img2img, sel_out_img2img, tab_image_num, tab_paintbyex_num], outputs=[img_paintbyex, gs_img_paintbyex, tabs, tabs_image]) 
     img2img_outpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_img2img, sel_out_img2img, tab_image_num, tab_outpaint_num], outputs=[img_outpaint, gs_img_outpaint, tabs, tabs_image])
@@ -6446,6 +6670,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     img2var_img2img.click(fn=send_to_module, inputs=[gs_out_img2var, sel_out_img2var, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
     img2var_img2var.click(fn=send_to_module, inputs=[gs_out_img2var, sel_out_img2var, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])    
     img2var_pix2pix.click(fn=send_to_module, inputs=[gs_out_img2var, sel_out_img2var, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
+    img2var_magicmix.click(fn=send_to_module, inputs=[gs_out_img2var, sel_out_img2var, tab_image_num, tab_magicmix_num], outputs=[img_magicmix, tabs, tabs_image])
     img2var_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_img2var, sel_out_img2var, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image])
     img2var_paintbyex.click(fn=send_to_module_inpaint, inputs=[gs_out_img2var, sel_out_img2var, tab_image_num, tab_paintbyex_num], outputs=[img_paintbyex, gs_img_paintbyex, tabs, tabs_image]) 
     img2var_controlnet.click(fn=send_to_module_inpaint, inputs=[gs_out_img2var, sel_out_img2var, tab_image_num, tab_controlnet_num], outputs=[img_source_controlnet, gs_img_source_controlnet, tabs, tabs_image])    
@@ -6457,8 +6682,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
 
 # pix2pix outputs
     pix2pix_img2img.click(fn=send_to_module, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
-    pix2pix_img2var.click(fn=send_to_module, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])    
-    pix2pix_pix2pix.click(fn=send_to_module, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])    
+    pix2pix_img2var.click(fn=send_to_module, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])
+    pix2pix_pix2pix.click(fn=send_to_module, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
+    pix2pix_magicmix.click(fn=send_to_module, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_magicmix_num], outputs=[img_magicmix, tabs, tabs_image])
     pix2pix_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image])
     pix2pix_paintbyex.click(fn=send_to_module_inpaint, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_paintbyex_num], outputs=[img_paintbyex, gs_img_paintbyex, tabs, tabs_image]) 
     pix2pix_outpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_outpaint_num], outputs=[img_outpaint, gs_img_outpaint, tabs, tabs_image])
@@ -6485,10 +6711,26 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     pix2pix_inpaint_both.click(fn=both_to_module_inpaint, inputs=[prompt_pix2pix, negative_prompt_pix2pix, gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, negative_prompt_inpaint,img_inpaint, gs_img_inpaint, tabs, tabs_image])
     pix2pix_controlnet_both.click(fn=both_to_module_inpaint, inputs=[prompt_pix2pix, negative_prompt_pix2pix, gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_controlnet_num], outputs=[prompt_controlnet, negative_prompt_controlnet,img_source_controlnet, gs_img_source_controlnet, tabs, tabs_image])
 
+# magicmix outputs
+    magicmix_img2img.click(fn=send_to_module, inputs=[gs_out_magicmix, sel_out_magicmix, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
+    magicmix_img2var.click(fn=send_to_module, inputs=[gs_out_magicmix, sel_out_magicmix, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])
+    magicmix_pix2pix.click(fn=send_to_module, inputs=[gs_out_magicmix, sel_out_magicmix, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
+    magicmix_magicmix.click(fn=send_to_module, inputs=[gs_out_magicmix, sel_out_magicmix, tab_image_num, tab_magicmix_num], outputs=[img_magicmix, tabs, tabs_image])
+    magicmix_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_magicmix, sel_out_magicmix, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image])
+    magicmix_paintbyex.click(fn=send_to_module_inpaint, inputs=[gs_out_magicmix, sel_out_magicmix, tab_image_num, tab_paintbyex_num], outputs=[img_paintbyex, gs_img_paintbyex, tabs, tabs_image])
+    magicmix_outpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_magicmix, sel_out_magicmix, tab_image_num, tab_outpaint_num], outputs=[img_outpaint, gs_img_outpaint, tabs, tabs_image])
+    magicmix_controlnet.click(fn=send_to_module_inpaint, inputs=[gs_out_magicmix, sel_out_magicmix, tab_image_num, tab_controlnet_num], outputs=[img_source_controlnet, gs_img_source_controlnet, tabs, tabs_image])
+    magicmix_faceswap.click(fn=send_to_module_inpaint, inputs=[gs_out_magicmix, sel_out_magicmix, tab_image_num, tab_faceswap_num], outputs=[img_target_faceswap, gs_img_target_faceswap, tabs, tabs_image])
+    magicmix_resrgan.click(fn=send_to_module, inputs=[gs_out_magicmix, sel_out_magicmix, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
+    magicmix_gfpgan.click(fn=send_to_module, inputs=[gs_out_magicmix, sel_out_magicmix, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
+    magicmix_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_magicmix, sel_out_magicmix, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
+    magicmix_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_magicmix, sel_out_magicmix, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d])
+
 # inpaint outputs
     inpaint_img2img.click(fn=send_to_module, inputs=[gs_out_inpaint, sel_out_inpaint, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
     inpaint_img2var.click(fn=send_to_module, inputs=[gs_out_inpaint, sel_out_inpaint, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])    
-    inpaint_pix2pix.click(fn=send_to_module, inputs=[gs_out_inpaint, sel_out_inpaint, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])    
+    inpaint_pix2pix.click(fn=send_to_module, inputs=[gs_out_inpaint, sel_out_inpaint, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
+    inpaint_magicmix.click(fn=send_to_module, inputs=[gs_out_inpaint, sel_out_inpaint, tab_image_num, tab_magicmix_num], outputs=[img_magicmix, tabs, tabs_image])
     inpaint_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_inpaint, sel_out_inpaint, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image])    
     inpaint_paintbyex.click(fn=send_to_module_inpaint, inputs=[gs_out_inpaint, sel_out_inpaint, tab_image_num, tab_paintbyex_num], outputs=[img_paintbyex, gs_img_paintbyex, tabs, tabs_image]) 
     inpaint_outpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_inpaint, sel_out_inpaint, tab_image_num, tab_outpaint_num], outputs=[img_outpaint, gs_img_outpaint, tabs, tabs_image])    
@@ -6517,7 +6759,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
 # paintbyex outputs
     paintbyex_img2img.click(fn=send_to_module, inputs=[gs_out_paintbyex, sel_out_paintbyex, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
     paintbyex_img2var.click(fn=send_to_module, inputs=[gs_out_paintbyex, sel_out_paintbyex, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])    
-    paintbyex_pix2pix.click(fn=send_to_module, inputs=[gs_out_paintbyex, sel_out_paintbyex, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])    
+    paintbyex_pix2pix.click(fn=send_to_module, inputs=[gs_out_paintbyex, sel_out_paintbyex, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
+    paintbyex_magicmix.click(fn=send_to_module, inputs=[gs_out_paintbyex, sel_out_paintbyex, tab_image_num, tab_magicmix_num], outputs=[img_magicmix, tabs, tabs_image])
     paintbyex_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_paintbyex, sel_out_paintbyex, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image]) 
     paintbyex_paintbyex.click(fn=send_to_module_inpaint, inputs=[gs_out_paintbyex, sel_out_paintbyex, tab_image_num, tab_paintbyex_num], outputs=[img_paintbyex, gs_img_paintbyex, tabs, tabs_image]) 
     paintbyex_outpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_paintbyex, sel_out_paintbyex, tab_image_num, tab_outpaint_num], outputs=[img_outpaint, gs_img_outpaint, tabs, tabs_image]) 
@@ -6531,7 +6774,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
 # outpaint outputs
     outpaint_img2img.click(fn=send_to_module, inputs=[gs_out_outpaint, sel_out_outpaint, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
     outpaint_img2var.click(fn=send_to_module, inputs=[gs_out_outpaint, sel_out_outpaint, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])    
-    outpaint_pix2pix.click(fn=send_to_module, inputs=[gs_out_outpaint, sel_out_outpaint, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])    
+    outpaint_pix2pix.click(fn=send_to_module, inputs=[gs_out_outpaint, sel_out_outpaint, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
+    outpaint_magicmix.click(fn=send_to_module, inputs=[gs_out_outpaint, sel_out_outpaint, tab_image_num, tab_magicmix_num], outputs=[img_magicmix, tabs, tabs_image])
     outpaint_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_outpaint, sel_out_outpaint, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image])        
     outpaint_paintbyex.click(fn=send_to_module_inpaint, inputs=[gs_out_outpaint, sel_out_outpaint, tab_image_num, tab_paintbyex_num], outputs=[img_paintbyex, gs_img_paintbyex, tabs, tabs_image]) 
     outpaint_outpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_outpaint, sel_out_outpaint, tab_image_num, tab_outpaint_num], outputs=[img_outpaint, gs_img_outpaint, tabs, tabs_image])    
@@ -6561,6 +6805,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     controlnet_img2img.click(fn=send_to_module, inputs=[gs_out_controlnet, sel_out_controlnet, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
     controlnet_img2var.click(fn=send_to_module, inputs=[gs_out_controlnet, sel_out_controlnet, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])    
     controlnet_pix2pix.click(fn=send_to_module, inputs=[gs_out_controlnet, sel_out_controlnet, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
+    controlnet_magicmix.click(fn=send_to_module, inputs=[gs_out_controlnet, sel_out_controlnet, tab_image_num, tab_magicmix_num], outputs=[img_magicmix, tabs, tabs_image])
     controlnet_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_controlnet, sel_out_controlnet, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image]) 
     controlnet_paintbyex.click(fn=send_to_module_inpaint, inputs=[gs_out_controlnet, sel_out_controlnet, tab_image_num, tab_paintbyex_num], outputs=[img_paintbyex, gs_img_paintbyex, tabs, tabs_image]) 
     controlnet_outpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_controlnet, sel_out_controlnet, tab_image_num, tab_outpaint_num], outputs=[img_outpaint, gs_img_outpaint, tabs, tabs_image]) 
@@ -6592,6 +6837,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     faceswap_img2img.click(fn=send_to_module, inputs=[gs_out_faceswap, sel_out_faceswap, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
     faceswap_img2var.click(fn=send_to_module, inputs=[gs_out_faceswap, sel_out_faceswap, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])    
     faceswap_pix2pix.click(fn=send_to_module, inputs=[gs_out_faceswap, sel_out_faceswap, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
+    faceswap_magicmix.click(fn=send_to_module, inputs=[gs_out_faceswap, sel_out_faceswap, tab_image_num, tab_magicmix_num], outputs=[img_magicmix, tabs, tabs_image])
     faceswap_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_faceswap, sel_out_faceswap, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image]) 
     faceswap_paintbyex.click(fn=send_to_module_inpaint, inputs=[gs_out_faceswap, sel_out_faceswap, tab_image_num, tab_paintbyex_num], outputs=[img_paintbyex, gs_img_paintbyex, tabs, tabs_image]) 
     faceswap_outpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_faceswap, sel_out_faceswap, tab_image_num, tab_outpaint_num], outputs=[img_outpaint, gs_img_outpaint, tabs, tabs_image]) 
@@ -6606,6 +6852,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     resrgan_img2img.click(fn=send_to_module, inputs=[gs_out_resrgan, sel_out_resrgan, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
     resrgan_img2var.click(fn=send_to_module, inputs=[gs_out_resrgan, sel_out_resrgan, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])    
     resrgan_pix2pix.click(fn=send_to_module, inputs=[gs_out_resrgan, sel_out_resrgan, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
+    resrgan_magicmix.click(fn=send_to_module, inputs=[gs_out_resrgan, sel_out_resrgan, tab_image_num, tab_magicmix_num], outputs=[img_magicmix, tabs, tabs_image])
     resrgan_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_resrgan, sel_out_resrgan, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image])
     resrgan_paintbyex.click(fn=send_to_module_inpaint, inputs=[gs_out_resrgan, sel_out_resrgan, tab_image_num, tab_paintbyex_num], outputs=[img_paintbyex, gs_img_paintbyex, tabs, tabs_image]) 
     resrgan_outpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_resrgan, sel_out_resrgan, tab_image_num, tab_outpaint_num], outputs=[img_outpaint, gs_img_outpaint, tabs, tabs_image])
@@ -6619,6 +6866,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     gfpgan_img2img.click(fn=send_to_module, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
     gfpgan_img2var.click(fn=send_to_module, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_image_num, tab_img2var_num], outputs=[img_img2var, tabs, tabs_image])    
     gfpgan_pix2pix.click(fn=send_to_module, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_image_num, tab_pix2pix_num], outputs=[img_pix2pix, tabs, tabs_image])
+    gfpgan_magicmix.click(fn=send_to_module, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_image_num, tab_magicmix_num], outputs=[img_magicmix, tabs, tabs_image])
     gfpgan_inpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_image_num, tab_inpaint_num], outputs=[img_inpaint, gs_img_inpaint, tabs, tabs_image])  
     gfpgan_paintbyex.click(fn=send_to_module_inpaint, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_image_num, tab_paintbyex_num], outputs=[img_paintbyex, gs_img_paintbyex, tabs, tabs_image]) 
     gfpgan_outpaint.click(fn=send_to_module_inpaint, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_image_num, tab_outpaint_num], outputs=[img_outpaint, gs_img_outpaint, tabs, tabs_image])
