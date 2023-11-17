@@ -17,6 +17,8 @@
 ---
 
 ## Updates
+  * 🆕 **2023-11-17** : 🔥 ***New image module : MagicMix*** 🔥 MagicMix offers a very simple and fun way to edit pictures by prompt, while preservating layouts. It is a good alternative to Instruct pix2pix and img2img.
+
   * 🆕 **2023-11-15** : 🔥 ***New audio module : MusicLDM*** 🔥 MusicLDM allow generation of music using a prompt and a negative prompt. A very interesting alternative to Musicgen. 
 
   * 🆕 **2023-11-14** : 
@@ -32,8 +34,6 @@
     - 🔥 ***New model for LCM module*** 🔥 Adding the model *latent-consistency/lcm-ssd-1b* which allow usage of SSD-1B model in LCM module. Model SSD-1B for Stable Diffusion is required (will be downloaded if needed). 
 
   * 🆕 **2023-11-11** : 🔥 ***New Chatbot feature : support for 128k context size.*** 🔥 Adding the model *Yarn-Mistral-7B-128k-GGUF* and rising the context size limit up to 128k tokens. Using this model setting the context size to the maximum value, and using a void prompt template, should allow to handle very long conversations, but requires a lot of RAM (16GB only permits 64k context size).
-  * 
-  * 🆕 **2023-11-09** : 🔥 ***Bugfix : Rewriting of deprecated features in diffusers module.*** 🔥 Following the previous quickfix adressing the compatibility issue with diffusers 0.22.1+, biniou is now fully compatible with newest versions of diffusers. Use update script to upgrade.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
@@ -73,6 +73,7 @@
   - [Stable Diffusion Img2img module](https://github.com/Woolverine94/biniou/wiki/img2img)
   - [Stable Diffusion Image variation module](https://github.com/Woolverine94/biniou/wiki/Image-variation) (require 16GB+ RAM) 
   - [Instruct Pix2Pix module](https://github.com/Woolverine94/biniou/wiki/Instruct-pix2pix)
+  - [MagicMix module](https://github.com/Woolverine94/biniou/wiki/MagicMix)
   - [Stable Diffusion Inpaint module](https://github.com/Woolverine94/biniou/wiki/inpaint)
   - [Fantasy Studio Paint by Example module](https://github.com/Woolverine94/biniou/wiki/Paint-by-Example) (require 16GB+ RAM)
   - [Stable Diffusion Outpaint module](https://github.com/Woolverine94/biniou/wiki/outpaint) (require 16GB+ RAM)
@@ -322,6 +323,7 @@ This application uses the following softwares and technologies :
 - [Latent consistency models](https://github.com/luosiallen/latent-consistency-model) : txt2img
 - [PixArt-Alpha](https://pixart-alpha.github.io/) : PixArt-Alpha
 - [Instruct pix2pix](https://www.timothybrooks.com/instruct-pix2pix) : pix2pix
+- [MagicMix](https://magicmix.github.io/) : MagicMix
 - [Fantasy Studio Paint by Example](https://github.com/Fantasy-Studio/Paint-by-Example) : paintbyex
 - [Controlnet Auxiliary models](https://github.com/patrickvonplaten/controlnet_aux) : preview models for ControlNet module
 - [Insight Face](https://insightface.ai/) : faceswapping
