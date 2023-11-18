@@ -171,13 +171,13 @@ apt install google-perftools
 
 ### Windows 10 / Windows 11
 
-Windows installation has more prerequisites than GNU/Linux one, and requires following softwares (that will be installed automatically during the install process) : 
+Windows installation has more prerequisites than GNU/Linux one, and requires following softwares (which will be installed automatically) : 
   - Git 
   - Python 
   - OpenSSL
   - Visual Studio Build tools
   - Windows 10/11 SDK
-  - Vcredist x86/64
+  - Vcredist
   - ffmpeg
   - ... and all their dependencies.
 
@@ -185,8 +185,7 @@ Windows installation has more prerequisites than GNU/Linux one, and requires fol
 ⚠️ You should really make a backup of your system and datas before starting the installation process. ⚠️ 
 </p>
 
-  1. **Download and execute** from your default downloads folder :<br/> 
-[install_win.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win.cmd)<br/> 
+  1. **Download and execute**  : [install_win.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win.cmd)<br/> 
 
 *<p align=center>(right-click on the link and select "Save Target/Link as ..." to download)</br><br/></p>*
 
