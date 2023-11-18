@@ -185,14 +185,8 @@ Windows installation has more prerequisites than GNU/Linux one, and requires fol
 ⚠️ You should really make a backup of your system and datas before starting the installation process. ⚠️ 
 </p>
 
-  1. **Download** [wget](https://eternallybored.org/misc/wget/) for windows :<br/> 
-[https://eternallybored.org/misc/wget/1.21.4/64/wget.exe](https://eternallybored.org/misc/wget/1.21.4/64/wget.exe)<br/> 
-
-><u>Note :</u> **DO NOT** move wget from your default downloads folder, it will be used by the install script and is expected to be in the same directory.
-
-  2. **Download and execute** from your default downloads folder :<br/> 
-    * **for Windows 10 :** [install_win10.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win10.cmd)<br/> 
-    * **for Windows 11 :** [install_win11.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win11.cmd)<br/> 
+  1. **Download and execute** from your default downloads folder :<br/> 
+[install_win.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win.cmd)<br/> 
 
 *<p align=center>(right-click on the link and select "Save Target/Link as ..." to download)</br><br/></p>*
 
