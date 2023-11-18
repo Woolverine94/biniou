@@ -6,20 +6,24 @@ set URL_OPENSSL="https://download.firedaemon.com/FireDaemon-OpenSSL/FireDaemon-O
 set URL_PYTHON="https://www.python.org/ftp/python/3.11.5/python-3.11.5-amd64.exe"
 set URL_VSBT="https://aka.ms/vs/17/release/vs_BuildTools.exe"
 set URL_FFMPEG="https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip"
+set URL_VCREDIST="https://aka.ms/vs/17/release/vc_redist.x64.exe"
 set WIN10_SDK="Microsoft.VisualStudio.Component.Windows10SDK.20348"
+set WIN11_SDK="Microsoft.VisualStudio.Component.Windows11SDK.22621"
 
-wget.exe -O "%userprofile%\Downloads\vs_BuildTools.exe" %URL_VSBT%
-wget.exe -O "%userprofile%\Downloads\git.exe" %URL_GIT%
-wget.exe -O "%userprofile%\Downloads\openssl.exe" %URL_OPENSSL%
-wget.exe -O "%userprofile%\Downloads\python.exe" %URL_PYTHON% --no-check-certificate
-wget.exe -O "%userprofile%\Downloads\ffmpeg-master-latest-win64-gpl.zip" %URL_FFMPEG%
+curl -o "%tmp%\wget.exe" "https://eternallybored.org/misc/wget/1.21.4/64/wget.exe"
+%tmp%\wget -O "%tmp%\vs_BuildTools.exe" %URL_VSBT%
+%tmp%\wget -O "%tmp%\git.exe" %URL_GIT%
+%tmp%\wget -O "%tmp%\openssl.exe" %URL_OPENSSL%
+%tmp%\wget -O "%tmp%\python.exe" %URL_PYTHON% --no-check-certificate
+%tmp%\wget -O "%tmp%\ffmpeg-master-latest-win64-gpl.zip" %URL_FFMPEG%
+%tmp%\wget -O "%tmp%\vcredist.exe" %URL_VCREDIST%
 
-start /wait %userprofile%\Downloads\vs_BuildTools.exe --add %WIN10_SDK% --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --passive --wait
-start /wait %userprofile%\Downloads\git.exe /silent
-start /wait %userprofile%\Downloads\openssl.exe /passive
-start /wait %userprofile%\Downloads\python.exe /passive
-start /wait powershell -command "Expand-Archive %userprofile%\Downloads\ffmpeg-master-latest-win64-gpl.zip %userprofile%\AppData\Local\Programs\ffmpeg"
-
+start /wait %tmp%\vs_BuildTools.exe --add %WIN10_SDK% --add %WIN11_SDK% --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --passive --wait
+start /wait %tmp%\git.exe /silent
+start /wait %tmp%\openssl.exe /passive
+start /wait %tmp%\python.exe /passive
+start /wait %tmp%\vcredist.exe  /q /norestart
+start /wait powershell -command "Expand-Archive %tmp%\ffmpeg-master-latest-win64-gpl.zip %userprofile%\AppData\Local\Programs\ffmpeg"
 
 REM ****************************
 REM *** CLONING REPOSITORY : ***
@@ -29,14 +33,12 @@ set path=%path%%ProgramFiles%\Git\cmd;
 git clone https://github.com/Woolverine94/biniou.git
 cd "%userprofile%\biniou"
 
-
 REM ******************************
 REM *** CREATING DIRECTORIES : ***
 REM ******************************
 mkdir "%userprofile%\biniou\outputs"
 mkdir "%userprofile%\biniou\ssl"
 mkdir "%userprofile%\biniou\models\Audiocraft"
-
 
 REM ***********************************************
 REM *** INSTALLING PYTHON VIRTUAL ENVIRONMENT : ***
@@ -53,4 +55,3 @@ pip install llama-cpp-python
 pip install -r requirements.txt
 echo "Installation finished ! You could now launch biniou by double-clicking %userprofile%\biniou\webui.cmd"
 pause
-
