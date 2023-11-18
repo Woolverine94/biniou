@@ -1802,7 +1802,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 height_txt2img_lcm = gr.Slider(128, 1280, step=64, value=512, label="Image Height", info="Height of outputs")
                             with gr.Column():
-                                seed_txt2img_lcm = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility", interactive=False) 
+                                seed_txt2img_lcm = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility") 
                         with gr.Row():
                             with gr.Column():    
                                 use_gfpgan_txt2img_lcm = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
