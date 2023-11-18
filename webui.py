@@ -1786,7 +1786,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 num_inference_step_txt2img_lcm = gr.Slider(1, 100, step=1, value=4, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
                             with gr.Column():
-                                sampler_txt2img_lcm = gr.Dropdown(choices=list(scheduler_list_txt2img_lcm), value=scheduler_list_txt2img_lcm[0], label="Sampler", info="Sampler to use for inference")
+                                sampler_txt2img_lcm = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[13], label="Sampler", info="Sampler to use for inference", interactive=False)
                         with gr.Row():
                             with gr.Column():
                                 guidance_scale_txt2img_lcm = gr.Slider(0.1, 20.0, step=0.1, value=8.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
@@ -1879,6 +1879,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Row():
                         with gr.Column():
                             btn_txt2img_lcm = gr.Button("Generate 🚀", variant="primary")
+                        with gr.Column():
+                            btn_txt2img_lcm_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_txt2img_lcm_cancel.click(fn=initiate_stop_txt2img_lcm, inputs=None, outputs=None)
                         with gr.Column():
                             btn_txt2img_lcm_clear_input = gr.ClearButton(components=[prompt_txt2img_lcm], value="Clear inputs 🧹")
                         with gr.Column():                            

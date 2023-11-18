@@ -14,6 +14,7 @@ from diffusers import (
     DPMSolverMultistepScheduler,
     HeunDiscreteScheduler,
     LMSDiscreteScheduler,
+    LCMScheduler
 )
 
 SCHEDULER_MAPPING = {
@@ -30,6 +31,7 @@ SCHEDULER_MAPPING = {
     "DPM++ 2M": DPMSolverMultistepScheduler,
     "Heun":	HeunDiscreteScheduler,
     "LMS": LMSDiscreteScheduler,
+    "LCM": LCMScheduler,
 }
 
 SCHEDULER_MAPPING_MUSICLDM = {

@@ -2,7 +2,7 @@
 # txt2img_lcm.py
 import gradio as gr
 import os
-from diffusers import UNet2DConditionModel, DiffusionPipeline, LCMScheduler 
+from diffusers import UNet2DConditionModel, DiffusionPipeline
 from compel import Compel, ReturnedEmbeddingsType
 import torch
 import time
@@ -11,7 +11,8 @@ from ressources.scheduler import *
 from ressources.gfpgan import *
 import tomesd
 
-device_txt2img_lcm = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device_label_txt2img_lcm, model_arch = detect_device()
+device_txt2img_lcm = torch.device(device_label_txt2img_lcm)
 
 # Gestion des modèles
 model_path_txt2img_lcm = "./models/LCM/"
@@ -32,9 +33,9 @@ model_list_txt2img_lcm_builtin = [
 for k in range(len(model_list_txt2img_lcm_builtin)):
     model_list_txt2img_lcm.append(model_list_txt2img_lcm_builtin[k])
 
-scheduler_list_txt2img_lcm = [
-    "LCMScheduler",
-]
+# scheduler_list_txt2img_lcm = [
+#     "LCMScheduler",
+# ]
 
 # Bouton Cancel
 stop_txt2img_lcm = False
@@ -43,11 +44,11 @@ def initiate_stop_txt2img_lcm() :
     global stop_txt2img_lcm
     stop_txt2img_lcm = True
 
-def check_txt2img_lcm(step, timestep, latents) :
+def check_txt2img_lcm(pipe, step_index, timestep, callback_kwargs) :
     global stop_txt2img_lcm
     if stop_txt2img_lcm == False :
 #        result_preview = preview_image(step, timestep, latents, pipe_txt2img_lcm)
-        return
+        return callback_kwargs
     elif stop_txt2img_lcm == True :
         print(">>>[LCM 🖼️ ]: generation canceled by user")
         stop_txt2img_lcm = False
@@ -91,7 +92,8 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
         unet_txt2img_lcm = UNet2DConditionModel.from_pretrained(
             modelid_txt2img_lcm, 
             cache_dir=model_path_txt2img_lcm, 
-            torch_dtype=torch.float32, 
+#            torch_dtype=torch.float32, 
+            torch_dtype=model_arch, 
             use_safetensors=True, 
             safety_checker=nsfw_filter_final, 
             feature_extractor=feat_ex,
@@ -102,7 +104,8 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
             modelid_SD_txt2img_lcm, 
             unet=unet_txt2img_lcm,
             cache_dir=model_path_SD_txt2img_lcm, 
-            torch_dtype=torch.float32, 
+#            torch_dtype=torch.float32, 
+            torch_dtype=model_arch, 
             use_safetensors=True, 
             safety_checker=nsfw_filter_final, 
             feature_extractor=feat_ex,
@@ -114,7 +117,8 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
         if modelid_txt2img_lcm[0:9] == "./models/" :
             pipe_txt2img_lcm = DiffusionPipeline.from_single_file(
                 modelid_txt2img_lcm, 
-                torch_dtype=torch.float32, 
+#                torch_dtype=torch.float32, 
+                torch_dtype=model_arch, 
                 use_safetensors=True, 
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
@@ -123,7 +127,8 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
             pipe_txt2img_lcm = DiffusionPipeline.from_pretrained(
                 modelid_txt2img_lcm, 
                 cache_dir=model_path_txt2img_lcm, 
-                torch_dtype=torch.float32, 
+#                torch_dtype=torch.float32, 
+                torch_dtype=model_arch, 
                 use_safetensors=True, 
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
@@ -131,16 +136,23 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
                 local_files_only=True if offline_test() else None
             )
     
-#    pipe_txt2img_lcm = get_scheduler(pipe=pipe_txt2img_lcm, scheduler=sampler_txt2img_lcm)
-    pipe_txt2img_lcm = pipe_txt2img_lcm.to(torch_device=device_txt2img_lcm, torch_dtype=torch.float32)
+    pipe_txt2img_lcm = get_scheduler(pipe=pipe_txt2img_lcm, scheduler=sampler_txt2img_lcm)
     pipe_txt2img_lcm.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_txt2img_lcm, ratio=tkme_txt2img_lcm)
+    if device_label_txt2img_lcm == "cuda" :
+        pipe_txt2img_lcm.enable_sequential_cpu_offload()
+    else : 
+        pipe_txt2img_lcm = pipe_txt2img_lcm.to(device_txt2img_lcm)
+    pipe_txt2img_lcm.enable_vae_slicing()
     
     if seed_txt2img_lcm == 0:
-        random_seed = torch.randint(0, 10000000000, (1,))
-        generator = torch.manual_seed(random_seed)
+        random_seed = random.randrange(0, 10000000000, 1)
+        final_seed = random_seed
     else:
-        generator = torch.manual_seed(seed_txt2img_lcm)
+        final_seed = seed_txt2img_lcm
+    generator = []
+    for k in range(num_prompt_txt2img_lcm):
+        generator.append([torch.Generator(device_txt2img_lcm).manual_seed(final_seed + (k*num_images_per_prompt_txt2img_lcm) + l ) for l in range(num_images_per_prompt_txt2img_lcm)])
 
     prompt_txt2img_lcm = str(prompt_txt2img_lcm)
     if prompt_txt2img_lcm == "None":
@@ -159,6 +171,7 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
         conditioning = compel.build_conditioning_tensor(prompt_txt2img_lcm)
    
     final_image = []
+    final_seed = []
     for i in range (num_prompt_txt2img_lcm):
         if (is_xl_txt2img_lcm == True):
             image = pipe_txt2img_lcm(
@@ -169,6 +182,9 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
                 num_images_per_prompt=num_images_per_prompt_txt2img_lcm,
                 num_inference_steps=num_inference_step_txt2img_lcm,
                 guidance_scale=guidance_scale_txt2img_lcm,
+                generator=generator[i],
+                callback_on_step_end=check_txt2img_lcm,
+                callback_on_step_end_tensor_inputs=['latents'],
 #                lcm_origin_steps=lcm_origin_steps_txt2img_lcm,
             ).images
 
@@ -180,16 +196,21 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
                 num_images_per_prompt=num_images_per_prompt_txt2img_lcm,
                 num_inference_steps=num_inference_step_txt2img_lcm,
                 guidance_scale=guidance_scale_txt2img_lcm,
+                generator=generator[i],
+                callback_on_step_end=check_txt2img_lcm, 
+                callback_on_step_end_tensor_inputs=['latents'], 
 #                lcm_origin_steps=lcm_origin_steps_txt2img_lcm,
             ).images			
 
         for j in range(len(image)):
             timestamp = time.time()
-            savename = f"outputs/{timestamp}.png"
+            seed_id = random_seed + i*num_images_per_prompt_txt2img_lcm + j if (seed_txt2img_lcm == 0) else seed_txt2img_lcm + i*num_images_per_prompt_txt2img_lcm + j
+            savename = f"outputs/{seed_id}_{timestamp}.png"
             if use_gfpgan_txt2img_lcm == True :
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
-            final_image.append(image[j])
+            final_image.append(savename)
+            final_seed.append(seed_id)
 
     print(f">>>[LCM 🖼️ ]: generated {num_prompt_txt2img_lcm} batch(es) of {num_images_per_prompt_txt2img_lcm}")
     reporting_txt2img_lcm = f">>>[LCM 🖼️ ]: "+\
@@ -199,7 +220,8 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
         f"Size={width_txt2img_lcm}x{height_txt2img_lcm} | "+\
         f"GFPGAN={use_gfpgan_txt2img_lcm} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
-        f"Prompt={prompt_txt2img_lcm}"
+        f"Prompt={prompt_txt2img_lcm} | "+\
+        f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_txt2img_lcm) 
 
     del nsfw_filter_final, feat_ex, pipe_txt2img_lcm, generator, compel, conditioning, image
