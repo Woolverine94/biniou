@@ -103,7 +103,6 @@ def image_magicmix(
         )
    
     pipe_magicmix = get_scheduler(pipe=pipe_magicmix, scheduler=sampler_magicmix)
-    pipe_magicmix = pipe_magicmix.to(device_magicmix)
     pipe_magicmix.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_magicmix, ratio=tkme_magicmix)
     if device_label_magicmix == "cuda" :

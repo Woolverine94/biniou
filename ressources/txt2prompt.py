@@ -86,7 +86,7 @@ def text_txt2prompt(
         if output_type_txt2prompt == "ChatGPT": 
             output_txt2prompt_int = output_txt2prompt_int.replace(prompt_txt2prompt,"")
         output_txt2prompt += output_txt2prompt_int+ "\n\n"
-    
+    output_txt2prompt = output_txt2prompt.rstrip()
     filename_txt2prompt = write_file(output_txt2prompt)
 
     print(f">>>[Prompt generator 📝 ]: generated {num_prompt_txt2prompt} prompt(s)")
