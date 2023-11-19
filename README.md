@@ -17,6 +17,7 @@
 ---
 
 ## Updates
+  * 🆕 **2023-11-19** : 🔥 ***Adding Windows netinstall executable*** 🔥 This [little executable](https://github.com/Woolverine94/biniou/raw/main/biniou_netinstall.exe) -using NSIS installer-, offer a quick and simple way to install biniou on Windows 10/11. It is not required to run it as administrator, but doing it will avoid manual confirmation of each pre-requisite software installation.
   * 🆕 **2023-11-17** : 🔥 ***New image module : MagicMix*** 🔥 MagicMix offers a very simple and fun way to edit pictures by prompt, while preserving layouts. It is a good alternative to Instruct pix2pix and img2img.
 
   * 🆕 **2023-11-15** : 🔥 ***New audio module : MusicLDM*** 🔥 MusicLDM allow generation of music using a prompt and a negative prompt. A very interesting alternative to Musicgen. 
@@ -185,11 +186,13 @@ Windows installation has more prerequisites than GNU/Linux one, and requires fol
 ⚠️ You should really make a backup of your system and datas before starting the installation process. ⚠️ 
 </p>
 
-  1. **Download and execute**  : [install_win.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win.cmd)<br/> 
+  - **Download and execute**  : [biniou_netinstall.exe](https://github.com/Woolverine94/biniou/raw/main/biniou_netinstall.exe)<br/> 
+***<p align=left>OR</p>***
+  - **Download and execute**  : [install_win.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win.cmd)<br/> 
 
 *<p align=center>(right-click on the link and select "Save Target/Link as ..." to download)</br><br/></p>*
 
-All the installation is automated, but Windows UAC will ask you confirmation for each software installed during the "prerequisites" phase. 
+All the installation is automated, but Windows UAC will ask you confirmation for each software installed during the "prerequisites" phase. You can avoid this by running the choosen installer as administrator.
 
 ### macOS Homebrew install
 
