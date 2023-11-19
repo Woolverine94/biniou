@@ -23,7 +23,7 @@ start /wait %tmp%\git.exe /silent
 start /wait %tmp%\openssl.exe /passive
 start /wait %tmp%\python.exe /passive
 start /wait %tmp%\vcredist.exe  /q /norestart
-start /wait powershell -command "Expand-Archive %tmp%\ffmpeg-master-latest-win64-gpl.zip %userprofile%\AppData\Local\Programs\ffmpeg"
+start /wait powershell -command "Expand-Archive %tmp%\ffmpeg-master-latest-win64-gpl.zip %userprofile%\AppData\Local\Programs\ffmpeg -Force"
 
 REM ****************************
 REM *** CLONING REPOSITORY : ***
