@@ -43,7 +43,7 @@ mkdir "%userprofile%\biniou\models\Audiocraft"
 REM ***********************************************
 REM *** INSTALLING PYTHON VIRTUAL ENVIRONMENT : ***
 REM ***********************************************
-"%ProgramFiles%\FireDaemon OpenSSL 3\bin\openssl.exe" req -x509 -newkey rsa:4096 -keyout "%userprofile%\biniou\ssl\key.pem" -out "%userprofile%\biniou\ssl\cert.pem" -sha256 -days 3650 -nodes -subj "/C=FR/ST=Paris/L=Paris/O=Biniou/OU=/CN="
+"%ProgramW6432%\FireDaemon OpenSSL 3\bin\openssl.exe" req -x509 -newkey rsa:4096 -keyout "%userprofile%\biniou\ssl\key.pem" -out "%userprofile%\biniou\ssl\cert.pem" -sha256 -days 3650 -nodes -subj "/C=FR/ST=Paris/L=Paris/O=Biniou/OU=/CN="
 "%userprofile%\AppData\Local\Programs\Python\Python311\python.exe" -m pip install --upgrade pip
 "%userprofile%\AppData\Local\Programs\Python\Python311\Scripts\pip" install virtualenv
 "%userprofile%\AppData\Local\Programs\Python\Python311\python.exe" -m venv env
