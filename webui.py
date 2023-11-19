@@ -6966,6 +6966,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     demo.load(read_logs, None, biniou_console_output, every=1)
 
 if __name__ == "__main__":
-    demo.queue(concurrency_count=8).launch(server_name="0.0.0.0", server_port=7860, ssl_certfile="./ssl/cert.pem", favicon_path="./images/biniou_64.ico", ssl_keyfile="./ssl/key.pem", ssl_verify=False)
+    demo.queue(concurrency_count=8).launch(
+        server_name="0.0.0.0",
+        server_port=7860,
+        ssl_certfile="./ssl/cert.pem",
+        favicon_path="./images/biniou_64.ico",
+        ssl_keyfile="./ssl/key.pem",
+        ssl_verify=False,
+        inbrowser=True if len(sys.argv)>1 and sys.argv[1]=="--inbrowser" else False
+    )
 
 # Fin du fichier

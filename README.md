@@ -182,15 +182,14 @@ Windows installation has more prerequisites than GNU/Linux one, and requires fol
   - ffmpeg
   - ... and all their dependencies.
 
-<p align="justify">It's a lot of changes on your operating system, and this <b>could potentially</b> bring unwanted behaviors on your system, depending on which softwares are already installed on it.</br></br>
+<p align="justify">It's a lot of changes on your operating system, and this <b>could potentially</b> bring unwanted behaviors on your system, depending on which softwares are already installed on it.</br>
+
 ⚠️ You should really make a backup of your system and datas before starting the installation process. ⚠️ 
 </p>
 
   - **Download and execute**  : [biniou_netinstall.exe](https://github.com/Woolverine94/biniou/raw/main/biniou_netinstall.exe)<br/> 
 ***<p align=left>OR</p>***
-  - **Download and execute**  : [install_win.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win.cmd)<br/> 
-
-*<p align=center>(right-click on the link and select "Save Target/Link as ..." to download)</br><br/></p>*
+  - **Download and execute**  : [install_win.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win.cmd) *(right-click on the link and select "Save Target/Link as ..." to download)*<br/>
 
 All the installation is automated, but Windows UAC will ask you confirmation for each software installed during the "prerequisites" phase. You can avoid this by running the choosen installer as administrator.
 
