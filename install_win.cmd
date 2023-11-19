@@ -29,7 +29,7 @@ REM ****************************
 REM *** CLONING REPOSITORY : ***
 REM ****************************
 cd "%userprofile%"
-set path=%path%%ProgramFiles%\Git\cmd;
+set path=%path%;%ProgramW6432%\Git\cmd;
 git clone https://github.com/Woolverine94/biniou.git
 cd "%userprofile%\biniou"
 
