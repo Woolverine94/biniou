@@ -3,7 +3,6 @@ REM *** BINIOU UPDATE SCRIPT ***
 REM ****************************
 
 echo "Biniou update ..."
-set path=%path%%ProgramFiles%\Git\cmd;
 git pull
 
 echo "Biniou env update"
