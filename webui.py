@@ -41,9 +41,9 @@ def split_url_params(url_params) :
     url_params = eval(url_params.replace("'", "\""))
     if "nsfw_filter" in url_params.keys():
         output_nsfw = url_params["nsfw_filter"]
-        return output_nsfw
+        return output_nsfw, url_params
     else :         
-        return "1"
+        return "1", url_params
 
 ## Fonctions communes
 def dummy():
@@ -513,6 +513,24 @@ def show_download_console() :
 def hide_download_console() :
     return btn_download_file_console.update(visible=True), download_file_console.update(visible=False)
 
+## Functions specific to banner 
+
+def dict_to_url(url) :
+    url_final = "./?"
+    for key, value in url.items():
+        url_final += "&"+ key+ "="+ value
+    return url_final.replace("?&", "?")
+
+def url_params_theme(url) :
+    url = eval(url)
+    if url.get('__theme') != None and url['__theme'] == "dark" :
+        del url['__theme']
+        url_final = dict_to_url(url)
+        return f"<a href='https://github.com/Woolverine94/biniou' target='_blank' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='32' height='32'/></p><span style='text-align: left; font-size: 32px; font-weight: bold; line-height:32px;'>biniou</span></a><span style='vertical-align: top; line-height: 32px;'><button onclick=\"window.location.href='{url_final}';\" title='Switch to light mode and reload page'>☀️</button></span>"
+    elif url.get('__theme') == None :
+        url['__theme'] = "dark"
+        url_final = dict_to_url(url)
+        return f"<a href='https://github.com/Woolverine94/biniou' target='_blank' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='32' height='32'/></p><span style='text-align: left; font-size: 32px; font-weight: bold; line-height:32px;'>biniou</span></a><span style='vertical-align: top; line-height: 32px;'><button onclick=\"window.location.href='{url_final}';\" title='Switch to dark mode and reload page'>🌘</button></span>"
 
 color_label = "#7B43EE"
 color_label_button = "#4361ee"
@@ -539,11 +557,12 @@ theme_gradio = gr.themes.Base().set(
 )
 
 with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
-    gr.HTML(
-        """<a href='https://github.com/Woolverine94/biniou' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='32' height='32'/></p>
-        <p style='text-align: left; font-size: 32px; font-weight: bold; line-height:32px;'>biniou</p></a>"""
-    )
     nsfw_filter = gr.Textbox(value="1", visible=False)
+    url_params_current = gr.Textbox(value="", visible=False)
+    banner_biniou = gr.HTML(
+        """<a href='https://github.com/Woolverine94/biniou' target='_blank' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='32' height='32'/></p><span style='text-align: left; font-size: 32px; font-weight: bold; line-height:32px;'>biniou</span></a><span style='vertical-align: top; line-height: 32px;'><button onclick=\"window.location.href='./';\" title='Switch to dark mode and reload page'>🌘</button></span>"""
+    )
+    url_params_current.change(url_params_theme, url_params_current, banner_biniou)
     with gr.Tabs() as tabs:
 # Chat
         with gr.TabItem("Text ✍️", id=1) as tab_text:
@@ -6962,7 +6981,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                 gr.Number(visible=False)
 
 # Exécution de l'UI :
-    demo.load(split_url_params, nsfw_filter, nsfw_filter, _js=get_window_url_params)
+    demo.load(split_url_params, nsfw_filter, [nsfw_filter, url_params_current], _js=get_window_url_params)
     demo.load(read_logs, None, biniou_console_output, every=1)
 
 if __name__ == "__main__":
