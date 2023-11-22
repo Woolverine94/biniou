@@ -17,16 +17,15 @@
 ---
 
 ## Updates
+  * 🆕 **2023-11-22** : ***New feature : Custom defaults settings*** Changing the behavior of the *favorite settings* functionnality : saved settings are now automatically applied at startup, and could be deleted from the interface. Note that changing these defaults settings require biniou to be restarted and the browser refreshed as these settings are only loaded at startup.
+
   * 🆕 **2023-11-20** : ***New feature : dark mode switch button*** Adding an icon next to the biniou logo that permits switching easily between light and dark mode. Note that this will instantly reload the page, so do not use it during a generation.
+
   * 🆕 **2023-11-19** : 🔥 ***Adding Windows netinstall executable*** 🔥 This [little executable](https://github.com/Woolverine94/biniou/raw/main/biniou_netinstall.exe) -using NSIS installer-, offer a quick and simple way to install biniou on Windows 10/11. It is not required to run it as administrator, but doing it will avoid manual confirmation of each pre-requisite software installation.
+
   * 🆕 **2023-11-17** : 🔥 ***New image module : MagicMix*** 🔥 MagicMix offers a very simple and fun way to edit pictures by prompt, while preserving layouts. It is a good alternative to Instruct pix2pix and img2img.
 
   * 🆕 **2023-11-15** : 🔥 ***New audio module : MusicLDM*** 🔥 MusicLDM allow generation of music using a prompt and a negative prompt. A very interesting alternative to Musicgen. 
-
-  * 🆕 **2023-11-14** : 
-    - 🔥 ***Chatbot llama-cpp module updates*** 🔥 New default model for the Chatbot, **Openchat-3.5**. This model is supposed to compete with GPT-3.5, which from the firsts tests under biniou ... really seems to be the case ! Also adding **zephyr-7B-beta** to the models list.
-    - ***New chatbot feature :*** automatic prompt template management. For each model in the built-in list, a corresponding prompt template will be automatically loaded at model selection. For unknown models (e.g.: manually downloaded .gguf files), the default `{prompt}` template will be applied.
-    - ***Update of Whisper module :*** New default model (updated to whisper-large-v3), which also add the Cantonese language support.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
