@@ -562,7 +562,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     banner_biniou = gr.HTML(
         """<a href='https://github.com/Woolverine94/biniou' target='_blank' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='32' height='32'/></p><span style='text-align: left; font-size: 32px; font-weight: bold; line-height:32px;'>biniou</span></a><span style='vertical-align: top; line-height: 32px;'><button onclick=\"window.location.href='./';\" title='Switch to dark mode and reload page'>🌘</button></span>"""
     )
-    url_params_current.change(url_params_theme, url_params_current, banner_biniou)
+    url_params_current.change(url_params_theme, url_params_current, banner_biniou, show_progress="hidden")
     with gr.Tabs() as tabs:
 # Chat
         with gr.TabItem("Text ✍️", id=1) as tab_text:
@@ -635,10 +635,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 model_llamacpp.change(fn=change_model_type_llamacpp, inputs=model_llamacpp, outputs=prompt_template_llamacpp)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_llamacpp = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_llamacpp = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_llamacpp = gr.Textbox(value="llamacpp", visible=False, interactive=False)
-                                load_ini_btn_llamacpp = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_llamacpp.value) else False)
+                                del_ini_btn_llamacpp = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_llamacpp.value) else False)
                                 save_ini_btn_llamacpp.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -656,24 +656,22 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_llamacpp.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_llamacpp.click(fn=lambda: load_ini_btn_llamacpp.update(interactive=True), outputs=load_ini_btn_llamacpp)
-                                load_ini_btn_llamacpp.click(
-                                    fn=read_ini_llamacpp, 
-                                    inputs=module_name_llamacpp, 
-                                    outputs = [
-                                        model_llamacpp, 
-                                        max_tokens_llamacpp, 
-                                        seed_llamacpp, 
-                                        stream_llamacpp, 
-                                        n_ctx_llamacpp, 
-                                        repeat_penalty_llamacpp, 
-                                        temperature_llamacpp, 
-                                        top_p_llamacpp, 
-                                        top_k_llamacpp, 
-                                        prompt_template_llamacpp, 
-                                        ]
-                                    )
-                                load_ini_btn_llamacpp.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_llamacpp.click(fn=lambda: del_ini_btn_llamacpp.update(interactive=True), outputs=del_ini_btn_llamacpp)
+                                del_ini_btn_llamacpp.click(fn=lambda: del_ini(module_name_llamacpp.value))
+                                del_ini_btn_llamacpp.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_llamacpp.click(fn=lambda: del_ini_btn_llamacpp.update(interactive=False), outputs=del_ini_btn_llamacpp)
+                        if test_cfg_exist(module_name_llamacpp.value) :
+                            readcfg_llamacpp = read_ini_llamacpp(module_name_llamacpp.value) 
+                            model_llamacpp.value = readcfg_llamacpp[0] 
+                            max_tokens_llamacpp.value = readcfg_llamacpp[1]
+                            seed_llamacpp.value = readcfg_llamacpp[2]  
+                            stream_llamacpp.value = readcfg_llamacpp[3] 
+                            n_ctx_llamacpp.value = readcfg_llamacpp[4]  
+                            repeat_penalty_llamacpp.value = readcfg_llamacpp[5] 
+                            temperature_llamacpp.value = readcfg_llamacpp[6] 
+                            top_p_llamacpp.value = readcfg_llamacpp[7]  
+                            top_k_llamacpp.value = readcfg_llamacpp[8] 
+                            prompt_template_llamacpp.value = readcfg_llamacpp[9] 
                     with gr.Row():                            
                         history_llamacpp = gr.Chatbot(
                             label="Chatbot history", 
@@ -851,10 +849,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 diversity_penalty_img2txt_git = gr.Slider(0.0, 5.0, step=0.01, value=0.5, label="Diversity penalty", info="Penalty score value for a beam")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_img2txt_git = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_img2txt_git = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_img2txt_git = gr.Textbox(value="img2txt_git", visible=False, interactive=False)
-                                load_ini_btn_img2txt_git = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_img2txt_git.value) else False)
+                                del_ini_btn_img2txt_git = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_img2txt_git.value) else False)
                                 save_ini_btn_img2txt_git.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -867,21 +865,19 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         diversity_penalty_img2txt_git, 
                                         ]
                                     )
-                                save_ini_btn_img2txt_git.click(fn=lambda: gr.Info('Settings saved'))                                    
-                                save_ini_btn_img2txt_git.click(fn=lambda: load_ini_btn_img2txt_git.update(interactive=True), outputs=load_ini_btn_img2txt_git)
-                                load_ini_btn_img2txt_git.click(
-                                    fn=read_ini_img2txt_git, 
-                                    inputs=module_name_img2txt_git, 
-                                    outputs = [
-                                        model_img2txt_git, 
-                                        min_tokens_img2txt_git,
-                                        max_tokens_img2txt_git, 
-                                        num_beams_img2txt_git,
-                                        num_beam_groups_img2txt_git, 
-                                        diversity_penalty_img2txt_git, 
-                                        ]
-                                    )                                
-                                load_ini_btn_img2txt_git.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_img2txt_git.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_img2txt_git.click(fn=lambda: del_ini_btn_img2txt_git.update(interactive=True), outputs=del_ini_btn_img2txt_git)
+                                del_ini_btn_img2txt_git.click(fn=lambda: del_ini(module_name_img2txt_git.value))
+                                del_ini_btn_img2txt_git.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_img2txt_git.click(fn=lambda: del_ini_btn_img2txt_git.update(interactive=False), outputs=del_ini_btn_img2txt_git)
+                        if test_cfg_exist(module_name_img2txt_git.value) :
+                            readcfg_img2txt_git = read_ini_img2txt_git(module_name_img2txt_git.value)
+                            model_img2txt_git.value = readcfg_img2txt_git[0]
+                            min_tokens_img2txt_git.value = readcfg_img2txt_git[1]
+                            max_tokens_img2txt_git.value = readcfg_img2txt_git[2]
+                            num_beams_img2txt_git.value = readcfg_img2txt_git[3]
+                            num_beam_groups_img2txt_git.value = readcfg_img2txt_git[4]
+                            diversity_penalty_img2txt_git.value = readcfg_img2txt_git[5]
                     with gr.Row():
                         with gr.Column():
                             img_img2txt_git = gr.Image(label="Input image", type="pil", height=400)
@@ -988,10 +984,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 srt_output_whisper = gr.Checkbox(value=False, label=".srt format output", info="Generate an output in .srt format")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_whisper = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_whisper = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_whisper = gr.Textbox(value="whisper", visible=False, interactive=False)
-                                load_ini_btn_whisper = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_whisper.value) else False)
+                                del_ini_btn_whisper = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_whisper.value) else False)
                                 save_ini_btn_whisper.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -1000,17 +996,15 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         srt_output_whisper,
                                         ]
                                     )
-                                save_ini_btn_whisper.click(fn=lambda: gr.Info('Settings saved'))    
-                                save_ini_btn_whisper.click(fn=lambda: load_ini_btn_whisper.update(interactive=True), outputs=load_ini_btn_whisper)
-                                load_ini_btn_whisper.click(
-                                    fn=read_ini_whisper, 
-                                    inputs=module_name_whisper, 
-                                    outputs = [
-                                        model_whisper, 
-                                        srt_output_whisper,
-                                        ]
-                                    )
-                                load_ini_btn_whisper.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_whisper.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_whisper.click(fn=lambda: del_ini_btn_whisper.update(interactive=True), outputs=del_ini_btn_whisper)
+                                del_ini_btn_whisper.click(fn=lambda: del_ini(module_name_whisper.value))
+                                del_ini_btn_whisper.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_whisper.click(fn=lambda: del_ini_btn_whisper.update(interactive=False), outputs=del_ini_btn_whisper)
+                        if test_cfg_exist(module_name_whisper.value) :
+                            readcfg_whisper = read_ini_whisper(module_name_whisper.value)
+                            model_whisper.value = readcfg_whisper[0]
+                            srt_output_whisper.value = readcfg_whisper[1]
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -1123,10 +1117,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 max_tokens_nllb = gr.Slider(0, 1024, step=1, value=1024, label="Max tokens", info="Maximum number of tokens in output")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_nllb = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_nllb = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_nllb = gr.Textbox(value="nllb", visible=False, interactive=False)
-                                load_ini_btn_nllb = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_nllb.value) else False)
+                                del_ini_btn_nllb = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_nllb.value) else False)
                                 save_ini_btn_nllb.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -1136,16 +1130,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_nllb.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_nllb.click(fn=lambda: load_ini_btn_nllb.update(interactive=True), outputs=load_ini_btn_nllb)
-                                load_ini_btn_nllb.click(
-                                    fn=read_ini_nllb, 
-                                    inputs=module_name_nllb, 
-                                    outputs = [
-                                        model_nllb, 
-                                        max_tokens_nllb,
-                                        ]
-                                    )
-                                load_ini_btn_nllb.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_nllb.click(fn=lambda: del_ini_btn_nllb.update(interactive=True), outputs=del_ini_btn_nllb)
+                                del_ini_btn_nllb.click(fn=lambda: del_ini(module_name_nllb.value))
+                                del_ini_btn_nllb.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_nllb.click(fn=lambda: del_ini_btn_nllb.update(interactive=False), outputs=del_ini_btn_nllb)
+                        if test_cfg_exist(module_name_nllb.value) :
+                            readcfg_nllb = read_ini_nllb(module_name_nllb.value)
+                            model_nllb.value = readcfg_nllb[0]
+                            max_tokens_nllb.value = readcfg_nllb[1]
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -1258,10 +1250,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 num_prompt_txt2prompt = gr.Slider(1, 64, step=1, value=1, label="Batch size", info="Number of prompts to generate") 
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2prompt = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_txt2prompt = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_txt2prompt = gr.Textbox(value="txt2prompt", visible=False, interactive=False)
-                                load_ini_btn_txt2prompt = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_txt2prompt.value) else False)
+                                del_ini_btn_txt2prompt = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_txt2prompt.value) else False)
                                 save_ini_btn_txt2prompt.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -1270,23 +1262,21 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         max_tokens_txt2prompt,
                                         repetition_penalty_txt2prompt,
                                         seed_txt2prompt,
-                                        num_prompt_txt2prompt,                                        
-                                        ]
-                                    )
-                                save_ini_btn_txt2prompt.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_txt2prompt.click(fn=lambda: load_ini_btn_txt2prompt.update(interactive=True), outputs=load_ini_btn_txt2prompt)
-                                load_ini_btn_txt2prompt.click(
-                                    fn=read_ini_txt2prompt, 
-                                    inputs=module_name_txt2prompt, 
-                                    outputs = [
-                                        model_txt2prompt, 
-                                        max_tokens_txt2prompt,
-                                        repetition_penalty_txt2prompt,
-                                        seed_txt2prompt,
                                         num_prompt_txt2prompt,
                                         ]
                                     )
-                                load_ini_btn_txt2prompt.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_txt2prompt.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_txt2prompt.click(fn=lambda: del_ini_btn_txt2prompt.update(interactive=True), outputs=del_ini_btn_txt2prompt)
+                                del_ini_btn_txt2prompt.click(fn=lambda: del_ini(module_name_txt2prompt.value))
+                                del_ini_btn_txt2prompt.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_txt2prompt.click(fn=lambda: del_ini_btn_txt2prompt.update(interactive=False), outputs=del_ini_btn_txt2prompt)
+                        if test_cfg_exist(module_name_txt2prompt.value) :
+                            readcfg_txt2prompt = read_ini_txt2prompt(module_name_txt2prompt.value)
+                            model_txt2prompt.value = readcfg_txt2prompt[0]
+                            max_tokens_txt2prompt.value = readcfg_txt2prompt[1]
+                            repetition_penalty_txt2prompt.value = readcfg_txt2prompt[2]
+                            seed_txt2prompt.value = readcfg_txt2prompt[3]
+                            num_prompt_txt2prompt.value = readcfg_txt2prompt[4]
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -1418,10 +1408,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         model_txt2img_sd.change(fn=change_model_type_txt2img_sd, inputs=model_txt2img_sd, outputs=[width_txt2img_sd, height_txt2img_sd])
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2img_sd = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_txt2img_sd = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_txt2img_sd = gr.Textbox(value="txt2img_sd", visible=False, interactive=False)
-                                load_ini_btn_txt2img_sd = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_txt2img_sd.value) else False)
+                                del_ini_btn_txt2img_sd = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_txt2img_sd.value) else False)
                                 save_ini_btn_txt2img_sd.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -1440,25 +1430,23 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_txt2img_sd.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_txt2img_sd.click(fn=lambda: load_ini_btn_txt2img_sd.update(interactive=True), outputs=load_ini_btn_txt2img_sd)
-                                load_ini_btn_txt2img_sd.click(
-                                    fn=read_ini_txt2img_sd, 
-                                    inputs=module_name_txt2img_sd, 
-                                    outputs = [
-                                        model_txt2img_sd, 
-                                        num_inference_step_txt2img_sd,
-                                        sampler_txt2img_sd,
-                                        guidance_scale_txt2img_sd,
-                                        num_images_per_prompt_txt2img_sd,
-                                        num_prompt_txt2img_sd,
-                                        width_txt2img_sd,
-                                        height_txt2img_sd,
-                                        seed_txt2img_sd,
-                                        use_gfpgan_txt2img_sd,
-                                        tkme_txt2img_sd,
-                                        ]
-                                    )
-                                load_ini_btn_txt2img_sd.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_txt2img_sd.click(fn=lambda: del_ini_btn_txt2img_sd.update(interactive=True), outputs=del_ini_btn_txt2img_sd)
+                                del_ini_btn_txt2img_sd.click(fn=lambda: del_ini(module_name_txt2img_sd.value))
+                                del_ini_btn_txt2img_sd.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_txt2img_sd.click(fn=lambda: del_ini_btn_txt2img_sd.update(interactive=False), outputs=del_ini_btn_txt2img_sd)
+                        if test_cfg_exist(module_name_txt2img_sd.value) :
+                            readcfg_txt2img_sd = read_ini_txt2img_sd(module_name_txt2img_sd.value)
+                            model_txt2img_sd.value = readcfg_txt2img_sd[0]
+                            num_inference_step_txt2img_sd.value = readcfg_txt2img_sd[1]
+                            sampler_txt2img_sd.value = readcfg_txt2img_sd[2]
+                            guidance_scale_txt2img_sd.value = readcfg_txt2img_sd[3]
+                            num_images_per_prompt_txt2img_sd.value = readcfg_txt2img_sd[4]
+                            num_prompt_txt2img_sd.value = readcfg_txt2img_sd[5]
+                            width_txt2img_sd.value = readcfg_txt2img_sd[6]
+                            height_txt2img_sd.value = readcfg_txt2img_sd[7]
+                            seed_txt2img_sd.value = readcfg_txt2img_sd[8]
+                            use_gfpgan_txt2img_sd.value = readcfg_txt2img_sd[9]
+                            tkme_txt2img_sd.value = readcfg_txt2img_sd[10]
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -1626,10 +1614,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_txt2img_kd = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2img_kd = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_txt2img_kd = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_txt2img_kd = gr.Textbox(value="txt2img_kd", visible=False, interactive=False)
-                                load_ini_btn_txt2img_kd = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_txt2img_kd.value) else False)
+                                del_ini_btn_txt2img_kd = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_txt2img_kd.value) else False)
                                 save_ini_btn_txt2img_kd.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -1647,24 +1635,22 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_txt2img_kd.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_txt2img_kd.click(fn=lambda: load_ini_btn_txt2img_kd.update(interactive=True), outputs=load_ini_btn_txt2img_kd)
-                                load_ini_btn_txt2img_kd.click(
-                                    fn=read_ini_txt2img_kd, 
-                                    inputs=module_name_txt2img_kd, 
-                                    outputs = [
-                                        model_txt2img_kd, 
-                                        num_inference_step_txt2img_kd,
-                                        sampler_txt2img_kd,
-                                        guidance_scale_txt2img_kd,
-                                        num_images_per_prompt_txt2img_kd,
-                                        num_prompt_txt2img_kd,
-                                        width_txt2img_kd,
-                                        height_txt2img_kd,
-                                        seed_txt2img_kd,
-                                        use_gfpgan_txt2img_kd,
-                                        ]
-                                    )
-                                load_ini_btn_txt2img_kd.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_txt2img_kd.click(fn=lambda: del_ini_btn_txt2img_kd.update(interactive=True), outputs=del_ini_btn_txt2img_kd)
+                                del_ini_btn_txt2img_kd.click(fn=lambda: del_ini(module_name_txt2img_kd.value))
+                                del_ini_btn_txt2img_kd.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_txt2img_kd.click(fn=lambda: del_ini_btn_txt2img_kd.update(interactive=False), outputs=del_ini_btn_txt2img_kd)
+                        if test_cfg_exist(module_name_txt2img_kd.value) :
+                            readcfg_txt2img_kd = read_ini_txt2img_kd(module_name_txt2img_kd.value)
+                            model_txt2img_kd.value = readcfg_txt2img_kd[0]
+                            num_inference_step_txt2img_kd.value = readcfg_txt2img_kd[1]
+                            sampler_txt2img_kd.value = readcfg_txt2img_kd[2]
+                            guidance_scale_txt2img_kd.value = readcfg_txt2img_kd[3]
+                            num_images_per_prompt_txt2img_kd.value = readcfg_txt2img_kd[4]
+                            num_prompt_txt2img_kd.value = readcfg_txt2img_kd[5]
+                            width_txt2img_kd.value = readcfg_txt2img_kd[6]
+                            height_txt2img_kd.value = readcfg_txt2img_kd[7]
+                            seed_txt2img_kd.value = readcfg_txt2img_kd[8]
+                            use_gfpgan_txt2img_kd.value = readcfg_txt2img_kd[9]
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -1830,10 +1816,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         model_txt2img_lcm.change(fn=change_model_type_txt2img_lcm, inputs=model_txt2img_lcm, outputs=[width_txt2img_lcm, height_txt2img_lcm])
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2img_lcm = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_txt2img_lcm = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_txt2img_lcm = gr.Textbox(value="txt2img_lcm", visible=False, interactive=False)
-                                load_ini_btn_txt2img_lcm = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_txt2img_lcm.value) else False)
+                                del_ini_btn_txt2img_lcm = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_txt2img_lcm.value) else False)
                                 save_ini_btn_txt2img_lcm.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -1853,26 +1839,24 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_txt2img_lcm.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_txt2img_lcm.click(fn=lambda: load_ini_btn_txt2img_lcm.update(interactive=True), outputs=load_ini_btn_txt2img_lcm)
-                                load_ini_btn_txt2img_lcm.click(
-                                    fn=read_ini_txt2img_lcm, 
-                                    inputs=module_name_txt2img_lcm, 
-                                    outputs = [
-                                        model_txt2img_lcm, 
-                                        num_inference_step_txt2img_lcm,
-                                        sampler_txt2img_lcm,
-                                        guidance_scale_txt2img_lcm,
-                                        lcm_origin_steps_txt2img_lcm,
-                                        num_images_per_prompt_txt2img_lcm,
-                                        num_prompt_txt2img_lcm,
-                                        width_txt2img_lcm,
-                                        height_txt2img_lcm,
-                                        seed_txt2img_lcm,
-                                        use_gfpgan_txt2img_lcm,
-                                        tkme_txt2img_lcm,
-                                        ]
-                                    )
-                                load_ini_btn_txt2img_lcm.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_txt2img_lcm.click(fn=lambda: del_ini_btn_txt2img_lcm.update(interactive=True), outputs=del_ini_btn_txt2img_lcm)
+                                del_ini_btn_txt2img_lcm.click(fn=lambda: del_ini(module_name_txt2img_lcm.value))
+                                del_ini_btn_txt2img_lcm.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_txt2img_lcm.click(fn=lambda: del_ini_btn_txt2img_lcm.update(interactive=False), outputs=del_ini_btn_txt2img_lcm)
+                        if test_cfg_exist(module_name_txt2img_lcm.value) :
+                            readcfg_txt2img_lcm = read_ini_txt2img_lcm(module_name_txt2img_lcm.value)
+                            model_txt2img_lcm.value = readcfg_txt2img_lcm[0]
+                            num_inference_step_txt2img_lcm.value = readcfg_txt2img_lcm[1]
+                            sampler_txt2img_lcm.value = readcfg_txt2img_lcm[2]
+                            guidance_scale_txt2img_lcm.value = readcfg_txt2img_lcm[3]
+                            lcm_origin_steps_txt2img_lcm.value = readcfg_txt2img_lcm[4]
+                            num_images_per_prompt_txt2img_lcm.value = readcfg_txt2img_lcm[5]
+                            num_prompt_txt2img_lcm.value = readcfg_txt2img_lcm[6]
+                            width_txt2img_lcm.value = readcfg_txt2img_lcm[7]
+                            height_txt2img_lcm.value = readcfg_txt2img_lcm[8]
+                            seed_txt2img_lcm.value = readcfg_txt2img_lcm[9]
+                            use_gfpgan_txt2img_lcm.value = readcfg_txt2img_lcm[10]
+                            tkme_txt2img_lcm.value = readcfg_txt2img_lcm[11]
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -2034,10 +2018,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_txt2img_mjm = gr.Slider(0.0, 1.0, step=0.01, value=0.0, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2img_mjm = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_txt2img_mjm = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_txt2img_mjm = gr.Textbox(value="txt2img_mjm", visible=False, interactive=False)
-                                load_ini_btn_txt2img_mjm = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_txt2img_mjm.value) else False)
+                                del_ini_btn_txt2img_mjm = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_txt2img_mjm.value) else False)
                                 save_ini_btn_txt2img_mjm.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -2056,25 +2040,23 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_txt2img_mjm.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_txt2img_mjm.click(fn=lambda: load_ini_btn_txt2img_mjm.update(interactive=True), outputs=load_ini_btn_txt2img_mjm)
-                                load_ini_btn_txt2img_mjm.click(
-                                    fn=read_ini_txt2img_mjm, 
-                                    inputs=module_name_txt2img_mjm, 
-                                    outputs = [
-                                        model_txt2img_mjm, 
-                                        num_inference_step_txt2img_mjm,
-                                        sampler_txt2img_mjm,
-                                        guidance_scale_txt2img_mjm,
-                                        num_images_per_prompt_txt2img_mjm,
-                                        num_prompt_txt2img_mjm,
-                                        width_txt2img_mjm,
-                                        height_txt2img_mjm,
-                                        seed_txt2img_mjm,
-                                        use_gfpgan_txt2img_mjm,
-                                        tkme_txt2img_mjm,
-                                        ]
-                                    )
-                                load_ini_btn_txt2img_mjm.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_txt2img_mjm.click(fn=lambda: del_ini_btn_txt2img_mjm.update(interactive=True), outputs=del_ini_btn_txt2img_mjm)
+                                del_ini_btn_txt2img_mjm.click(fn=lambda: del_ini(module_name_txt2img_mjm.value))
+                                del_ini_btn_txt2img_mjm.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_txt2img_mjm.click(fn=lambda: del_ini_btn_txt2img_mjm.update(interactive=False), outputs=del_ini_btn_txt2img_mjm)
+                        if test_cfg_exist(module_name_txt2img_mjm.value) :
+                            readcfg_txt2img_mjm = read_ini_txt2img_mjm(module_name_txt2img_mjm.value)
+                            model_txt2img_mjm.value = readcfg_txt2img_mjm[0]
+                            num_inference_step_txt2img_mjm.value = readcfg_txt2img_mjm[1]
+                            sampler_txt2img_mjm.value = readcfg_txt2img_mjm[2]
+                            guidance_scale_txt2img_mjm.value = readcfg_txt2img_mjm[3]
+                            num_images_per_prompt_txt2img_mjm.value = readcfg_txt2img_mjm[4]
+                            num_prompt_txt2img_mjm.value = readcfg_txt2img_mjm[5]
+                            width_txt2img_mjm.value = readcfg_txt2img_mjm[6]
+                            height_txt2img_mjm.value = readcfg_txt2img_mjm[7]
+                            seed_txt2img_mjm.value = readcfg_txt2img_mjm[8]
+                            use_gfpgan_txt2img_mjm.value = readcfg_txt2img_mjm[9]
+                            tkme_txt2img_mjm.value = readcfg_txt2img_mjm[10]
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -2241,10 +2223,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         model_txt2img_paa.change(fn=change_model_type_txt2img_paa, inputs=model_txt2img_paa, outputs=[width_txt2img_paa, height_txt2img_paa])
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2img_paa = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_txt2img_paa = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_txt2img_paa = gr.Textbox(value="txt2img_paa", visible=False, interactive=False)
-                                load_ini_btn_txt2img_paa = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_txt2img_paa.value) else False)
+                                del_ini_btn_txt2img_paa = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_txt2img_paa.value) else False)
                                 save_ini_btn_txt2img_paa.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -2263,25 +2245,23 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_txt2img_paa.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_txt2img_paa.click(fn=lambda: load_ini_btn_txt2img_paa.update(interactive=True), outputs=load_ini_btn_txt2img_paa)
-                                load_ini_btn_txt2img_paa.click(
-                                    fn=read_ini_txt2img_paa, 
-                                    inputs=module_name_txt2img_paa, 
-                                    outputs = [
-                                        model_txt2img_paa, 
-                                        num_inference_step_txt2img_paa,
-                                        sampler_txt2img_paa,
-                                        guidance_scale_txt2img_paa,
-                                        num_images_per_prompt_txt2img_paa,
-                                        num_prompt_txt2img_paa,
-                                        width_txt2img_paa,
-                                        height_txt2img_paa,
-                                        seed_txt2img_paa,
-                                        use_gfpgan_txt2img_paa,
-                                        tkme_txt2img_paa,
-                                        ]
-                                    )
-                                load_ini_btn_txt2img_paa.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_txt2img_paa.click(fn=lambda: del_ini_btn_txt2img_paa.update(interactive=True), outputs=del_ini_btn_txt2img_paa)
+                                del_ini_btn_txt2img_paa.click(fn=lambda: del_ini(module_name_txt2img_paa.value))
+                                del_ini_btn_txt2img_paa.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_txt2img_paa.click(fn=lambda: del_ini_btn_txt2img_paa.update(interactive=False), outputs=del_ini_btn_txt2img_paa)
+                        if test_cfg_exist(module_name_txt2img_paa.value) :
+                            readcfg_txt2img_paa = read_ini_txt2img_paa(module_name_txt2img_paa.value)
+                            model_txt2img_paa.value = readcfg_txt2img_paa[0]
+                            num_inference_step_txt2img_paa.value = readcfg_txt2img_paa[1]
+                            sampler_txt2img_paa.value = readcfg_txt2img_paa[2]
+                            guidance_scale_txt2img_paa.value = readcfg_txt2img_paa[3]
+                            num_images_per_prompt_txt2img_paa.value = readcfg_txt2img_paa[4]
+                            num_prompt_txt2img_paa.value = readcfg_txt2img_paa[5]
+                            width_txt2img_paa.value = readcfg_txt2img_paa[6]
+                            height_txt2img_paa.value = readcfg_txt2img_paa[7]
+                            seed_txt2img_paa.value = readcfg_txt2img_paa[8]
+                            use_gfpgan_txt2img_paa.value = readcfg_txt2img_paa[9]
+                            tkme_txt2img_paa.value = readcfg_txt2img_paa[10]
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -2456,10 +2436,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         model_img2img.change(fn=change_model_type_img2img, inputs=model_img2img, outputs=[width_img2img, height_img2img])
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_img2img = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_img2img = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_img2img = gr.Textbox(value="img2img", visible=False, interactive=False)
-                                load_ini_btn_img2img = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_img2img.value) else False)
+                                del_ini_btn_img2img = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_img2img.value) else False)
                                 save_ini_btn_img2img.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -2478,25 +2458,23 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_img2img.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_img2img.click(fn=lambda: load_ini_btn_img2img.update(interactive=True), outputs=load_ini_btn_img2img)
-                                load_ini_btn_img2img.click(
-                                    fn=read_ini_img2img, 
-                                    inputs=module_name_img2img, 
-                                    outputs = [
-                                        model_img2img, 
-                                        num_inference_step_img2img,
-                                        sampler_img2img,
-                                        guidance_scale_img2img,
-                                        num_images_per_prompt_img2img,
-                                        num_prompt_img2img,
-                                        width_img2img,
-                                        height_img2img,
-                                        seed_img2img,
-                                        use_gfpgan_img2img,
-                                        tkme_img2img,
-                                        ]
-                                    )
-                                load_ini_btn_img2img.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_img2img.click(fn=lambda: del_ini_btn_img2img.update(interactive=True), outputs=del_ini_btn_img2img)
+                                del_ini_btn_img2img.click(fn=lambda: del_ini(module_name_img2img.value))
+                                del_ini_btn_img2img.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_img2img.click(fn=lambda: del_ini_btn_img2img.update(interactive=False), outputs=del_ini_btn_img2img)
+                        if test_cfg_exist(module_name_img2img.value) :
+                            readcfg_img2img = read_ini_img2img(module_name_img2img.value)
+                            model_img2img.value = readcfg_img2img[0]
+                            num_inference_step_img2img.value = readcfg_img2img[1]
+                            sampler_img2img.value = readcfg_img2img[2]
+                            guidance_scale_img2img.value = readcfg_img2img[3]
+                            num_images_per_prompt_img2img.value = readcfg_img2img[4]
+                            num_prompt_img2img.value = readcfg_img2img[5]
+                            width_img2img.value = readcfg_img2img[6]
+                            height_img2img.value = readcfg_img2img[7]
+                            seed_img2img.value = readcfg_img2img[8]
+                            use_gfpgan_img2img.value = readcfg_img2img[9]
+                            tkme_img2img.value = readcfg_img2img[10]
                     with gr.Row():
                         with gr.Column():
                             img_img2img = gr.Image(label="Input image", height=400, type="filepath")
@@ -2675,10 +2653,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_img2var = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_img2var = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_img2var = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_img2var = gr.Textbox(value="img2var", visible=False, interactive=False)
-                                load_ini_btn_img2var = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_img2var.value) else False)
+                                del_ini_btn_img2var = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_img2var.value) else False)
                                 save_ini_btn_img2var.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -2697,25 +2675,23 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_img2var.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_img2var.click(fn=lambda: load_ini_btn_img2var.update(interactive=True), outputs=load_ini_btn_img2var)
-                                load_ini_btn_img2var.click(
-                                    fn=read_ini_img2var, 
-                                    inputs=module_name_img2var, 
-                                    outputs = [
-                                        model_img2var, 
-                                        num_inference_step_img2var,
-                                        sampler_img2var,
-                                        guidance_scale_img2var,
-                                        num_images_per_prompt_img2var,
-                                        num_prompt_img2var,
-                                        width_img2var,
-                                        height_img2var,
-                                        seed_img2var,
-                                        use_gfpgan_img2var,
-                                        tkme_img2var,
-                                        ]
-                                    )
-                                load_ini_btn_img2var.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_img2var.click(fn=lambda: del_ini_btn_img2var.update(interactive=True), outputs=del_ini_btn_img2var)
+                                del_ini_btn_img2var.click(fn=lambda: del_ini(module_name_img2var.value))
+                                del_ini_btn_img2var.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_img2var.click(fn=lambda: del_ini_btn_img2var.update(interactive=False), outputs=del_ini_btn_img2var)
+                        if test_cfg_exist(module_name_img2var.value) :
+                            readcfg_img2var = read_ini_img2var(module_name_img2var.value)
+                            model_img2var.value = readcfg_img2var[0]
+                            num_inference_step_img2var.value = readcfg_img2var[1]
+                            sampler_img2var.value = readcfg_img2var[2]
+                            guidance_scale_img2var.value = readcfg_img2var[3]
+                            num_images_per_prompt_img2var.value = readcfg_img2var[4]
+                            num_prompt_img2var.value = readcfg_img2var[5]
+                            width_img2var.value = readcfg_img2var[6]
+                            height_img2var.value = readcfg_img2var[7]
+                            seed_img2var.value = readcfg_img2var[8]
+                            use_gfpgan_img2var.value = readcfg_img2var[9]
+                            tkme_img2var.value = readcfg_img2var[10]
                     with gr.Row():
                         with gr.Column():
                             img_img2var = gr.Image(label="Input image", height=400, type="filepath")
@@ -2864,10 +2840,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_pix2pix = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_pix2pix = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_pix2pix = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_pix2pix = gr.Textbox(value="pix2pix", visible=False, interactive=False)
-                                load_ini_btn_pix2pix = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_pix2pix.value) else False)
+                                del_ini_btn_pix2pix = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_pix2pix.value) else False)
                                 save_ini_btn_pix2pix.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -2887,26 +2863,24 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_pix2pix.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_pix2pix.click(fn=lambda: load_ini_btn_pix2pix.update(interactive=True), outputs=load_ini_btn_pix2pix)
-                                load_ini_btn_pix2pix.click(
-                                    fn=read_ini_pix2pix, 
-                                    inputs=module_name_pix2pix, 
-                                    outputs = [
-                                        model_pix2pix, 
-                                        num_inference_step_pix2pix,
-                                        sampler_pix2pix,
-                                        guidance_scale_pix2pix,
-                                        image_guidance_scale_pix2pix,                                         
-                                        num_images_per_prompt_pix2pix,
-                                        num_prompt_pix2pix,
-                                        width_pix2pix,
-                                        height_pix2pix,
-                                        seed_pix2pix,
-                                        use_gfpgan_pix2pix,
-                                        tkme_pix2pix,
-                                        ]
-                                    )
-                                load_ini_btn_pix2pix.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_pix2pix.click(fn=lambda: del_ini_btn_pix2pix.update(interactive=True), outputs=del_ini_btn_pix2pix)
+                                del_ini_btn_pix2pix.click(fn=lambda: del_ini(module_name_pix2pix.value))
+                                del_ini_btn_pix2pix.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_pix2pix.click(fn=lambda: del_ini_btn_pix2pix.update(interactive=False), outputs=del_ini_btn_pix2pix)
+                        if test_cfg_exist(module_name_pix2pix.value) :
+                            readcfg_pix2pix = read_ini_pix2pix(module_name_pix2pix.value)
+                            model_pix2pix.value = readcfg_pix2pix[0]
+                            num_inference_step_pix2pix.value = readcfg_pix2pix[1]
+                            sampler_pix2pix.value = readcfg_pix2pix[2]
+                            guidance_scale_pix2pix.value = readcfg_pix2pix[3]
+                            image_guidance_scale_pix2pix.value = readcfg_pix2pix[4]
+                            num_images_per_prompt_pix2pix.value = readcfg_pix2pix[5]
+                            num_prompt_pix2pix.value = readcfg_pix2pix[6]
+                            width_pix2pix.value = readcfg_pix2pix[7]
+                            height_pix2pix.value = readcfg_pix2pix[8]
+                            seed_pix2pix.value = readcfg_pix2pix[9]
+                            use_gfpgan_pix2pix.value = readcfg_pix2pix[10]
+                            tkme_pix2pix.value = readcfg_pix2pix[11]
                     with gr.Row():
                         with gr.Column():
                              img_pix2pix = gr.Image(label="Input image", height=400, type="filepath")
@@ -3077,12 +3051,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_magicmix = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_magicmix = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_magicmix = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_magicmix = gr.Textbox(value="magicmix", visible=False, interactive=False)
-                                load_ini_btn_magicmix = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_magicmix.value) else False)
+                                del_ini_btn_magicmix = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_magicmix.value) else False)
                                 save_ini_btn_magicmix.click(
-                                    fn=write_ini,
+                                    fn=write_ini, 
                                     inputs=[
                                         module_name_magicmix, 
                                         model_magicmix, 
@@ -3098,24 +3072,22 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_magicmix.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_magicmix.click(fn=lambda: load_ini_btn_magicmix.update(interactive=True), outputs=load_ini_btn_magicmix)
-                                load_ini_btn_magicmix.click(
-                                    fn=read_ini_magicmix, 
-                                    inputs=module_name_magicmix, 
-                                    outputs = [
-                                        model_magicmix, 
-                                        num_inference_step_magicmix,
-                                        sampler_magicmix,
-                                        guidance_scale_magicmix,
-                                        kmin_magicmix,
-                                        kmax_magicmix,
-                                        num_prompt_magicmix,
-                                        seed_magicmix,
-                                        use_gfpgan_magicmix,
-                                        tkme_magicmix,
-                                        ]
-                                    )
-                                load_ini_btn_magicmix.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_magicmix.click(fn=lambda: del_ini_btn_magicmix.update(interactive=True), outputs=del_ini_btn_magicmix)
+                                del_ini_btn_magicmix.click(fn=lambda: del_ini(module_name_magicmix.value))
+                                del_ini_btn_magicmix.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_magicmix.click(fn=lambda: del_ini_btn_magicmix.update(interactive=False), outputs=del_ini_btn_magicmix)
+                        if test_cfg_exist(module_name_magicmix.value) :
+                            readcfg_magicmix = read_ini_magicmix(module_name_magicmix.value)
+                            model_magicmix.value = readcfg_magicmix[0]
+                            num_inference_step_magicmix.value = readcfg_magicmix[1]
+                            sampler_magicmix.value = readcfg_magicmix[2]
+                            guidance_scale_magicmix.value = readcfg_magicmix[3]
+                            kmin_magicmix.value = readcfg_magicmix[4]
+                            kmax_magicmix.value = readcfg_magicmix[5]
+                            num_prompt_magicmix.value = readcfg_magicmix[6]
+                            seed_magicmix.value = readcfg_magicmix[7]
+                            use_gfpgan_magicmix.value = readcfg_magicmix[8]
+                            tkme_magicmix.value = readcfg_magicmix[9]
                     with gr.Row():
                         with gr.Column():
                              img_magicmix = gr.Image(label="Input image", height=400, type="filepath")
@@ -3271,10 +3243,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_inpaint = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_inpaint = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_inpaint = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_inpaint = gr.Textbox(value="inpaint", visible=False, interactive=False)
-                                load_ini_btn_inpaint = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_inpaint.value) else False)
+                                del_ini_btn_inpaint = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_inpaint.value) else False)
                                 save_ini_btn_inpaint.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -3293,25 +3265,23 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_inpaint.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_inpaint.click(fn=lambda: load_ini_btn_inpaint.update(interactive=True), outputs=load_ini_btn_inpaint)
-                                load_ini_btn_inpaint.click(
-                                    fn=read_ini_inpaint, 
-                                    inputs=module_name_inpaint, 
-                                    outputs = [
-                                        model_inpaint, 
-                                        num_inference_step_inpaint,
-                                        sampler_inpaint,
-                                        guidance_scale_inpaint,
-                                        num_images_per_prompt_inpaint,
-                                        num_prompt_inpaint,
-                                        width_inpaint,
-                                        height_inpaint,
-                                        seed_inpaint,
-                                        use_gfpgan_inpaint,
-                                        tkme_inpaint,
-                                        ]
-                                    )
-                                load_ini_btn_inpaint.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_inpaint.click(fn=lambda: del_ini_btn_inpaint.update(interactive=True), outputs=del_ini_btn_inpaint)
+                                del_ini_btn_inpaint.click(fn=lambda: del_ini(module_name_inpaint.value))
+                                del_ini_btn_inpaint.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_inpaint.click(fn=lambda: del_ini_btn_inpaint.update(interactive=False), outputs=del_ini_btn_inpaint)
+                        if test_cfg_exist(module_name_inpaint.value) :
+                            readcfg_inpaint = read_ini_inpaint(module_name_inpaint.value)
+                            model_inpaint.value = readcfg_inpaint[0]
+                            num_inference_step_inpaint.value = readcfg_inpaint[1]
+                            sampler_inpaint.value = readcfg_inpaint[2]
+                            guidance_scale_inpaint.value = readcfg_inpaint[3]
+                            num_images_per_prompt_inpaint.value = readcfg_inpaint[4]
+                            num_prompt_inpaint.value = readcfg_inpaint[5]
+                            width_inpaint.value = readcfg_inpaint[6]
+                            height_inpaint.value = readcfg_inpaint[7]
+                            seed_inpaint.value = readcfg_inpaint[8]
+                            use_gfpgan_inpaint.value = readcfg_inpaint[9]
+                            tkme_inpaint.value = readcfg_inpaint[10]
                     with gr.Row():
                         with gr.Column(scale=2):
                              rotation_img_inpaint = gr.Number(value=0, visible=False)
@@ -3492,10 +3462,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_paintbyex = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_paintbyex = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_paintbyex = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_paintbyex = gr.Textbox(value="paintbyex", visible=False, interactive=False)
-                                load_ini_btn_paintbyex = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_paintbyex.value) else False)
+                                del_ini_btn_paintbyex = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_paintbyex.value) else False)
                                 save_ini_btn_paintbyex.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -3514,25 +3484,23 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_paintbyex.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_paintbyex.click(fn=lambda: load_ini_btn_paintbyex.update(interactive=True), outputs=load_ini_btn_paintbyex)
-                                load_ini_btn_paintbyex.click(
-                                    fn=read_ini_paintbyex, 
-                                    inputs=module_name_paintbyex, 
-                                    outputs = [
-                                        model_paintbyex, 
-                                        num_inference_step_paintbyex,
-                                        sampler_paintbyex,
-                                        guidance_scale_paintbyex,
-                                        num_images_per_prompt_paintbyex,
-                                        num_prompt_paintbyex,
-                                        width_paintbyex,
-                                        height_paintbyex,
-                                        seed_paintbyex,
-                                        use_gfpgan_paintbyex,
-                                        tkme_paintbyex,
-                                        ]
-                                    )
-                                load_ini_btn_paintbyex.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_paintbyex.click(fn=lambda: del_ini_btn_paintbyex.update(interactive=True), outputs=del_ini_btn_paintbyex)
+                                del_ini_btn_paintbyex.click(fn=lambda: del_ini(module_name_paintbyex.value))
+                                del_ini_btn_paintbyex.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_paintbyex.click(fn=lambda: del_ini_btn_paintbyex.update(interactive=False), outputs=del_ini_btn_paintbyex)
+                        if test_cfg_exist(module_name_paintbyex.value) :
+                            readcfg_paintbyex = read_ini_paintbyex(module_name_paintbyex.value)
+                            model_paintbyex.value = readcfg_paintbyex[0]
+                            num_inference_step_paintbyex.value = readcfg_paintbyex[1]
+                            sampler_paintbyex.value = readcfg_paintbyex[2]
+                            guidance_scale_paintbyex.value = readcfg_paintbyex[3]
+                            num_images_per_prompt_paintbyex.value = readcfg_paintbyex[4]
+                            num_prompt_paintbyex.value = readcfg_paintbyex[5]
+                            width_paintbyex.value = readcfg_paintbyex[6]
+                            height_paintbyex.value = readcfg_paintbyex[7]
+                            seed_paintbyex.value = readcfg_paintbyex[8]
+                            use_gfpgan_paintbyex.value = readcfg_paintbyex[9]
+                            tkme_paintbyex.value = readcfg_paintbyex[10]
                     with gr.Row():
                         with gr.Column(scale=2):
                              rotation_img_paintbyex = gr.Number(value=0, visible=False)
@@ -3696,10 +3664,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_outpaint = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_outpaint = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_outpaint = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_outpaint = gr.Textbox(value="outpaint", visible=False, interactive=False)
-                                load_ini_btn_outpaint = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_outpaint.value) else False)
+                                del_ini_btn_outpaint = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_outpaint.value) else False)
                                 save_ini_btn_outpaint.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -3718,25 +3686,23 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_outpaint.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_outpaint.click(fn=lambda: load_ini_btn_outpaint.update(interactive=True), outputs=load_ini_btn_outpaint)
-                                load_ini_btn_outpaint.click(
-                                    fn=read_ini_outpaint, 
-                                    inputs=module_name_outpaint, 
-                                    outputs = [
-                                        model_outpaint, 
-                                        num_inference_step_outpaint,
-                                        sampler_outpaint,
-                                        guidance_scale_outpaint,
-                                        num_images_per_prompt_outpaint,
-                                        num_prompt_outpaint,
-                                        width_outpaint,
-                                        height_outpaint,
-                                        seed_outpaint,
-                                        use_gfpgan_outpaint,
-                                        tkme_outpaint,
-                                        ]
-                                    )
-                                load_ini_btn_outpaint.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_outpaint.click(fn=lambda: del_ini_btn_outpaint.update(interactive=True), outputs=del_ini_btn_outpaint)
+                                del_ini_btn_outpaint.click(fn=lambda: del_ini(module_name_outpaint.value))
+                                del_ini_btn_outpaint.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_outpaint.click(fn=lambda: del_ini_btn_outpaint.update(interactive=False), outputs=del_ini_btn_outpaint)
+                        if test_cfg_exist(module_name_outpaint.value) :
+                            readcfg_outpaint = read_ini_outpaint(module_name_outpaint.value)
+                            model_outpaint.value = readcfg_outpaint[0]
+                            num_inference_step_outpaint.value = readcfg_outpaint[1]
+                            sampler_outpaint.value = readcfg_outpaint[2]
+                            guidance_scale_outpaint.value = readcfg_outpaint[3]
+                            num_images_per_prompt_outpaint.value = readcfg_outpaint[4]
+                            num_prompt_outpaint.value = readcfg_outpaint[5]
+                            width_outpaint.value = readcfg_outpaint[6]
+                            height_outpaint.value = readcfg_outpaint[7]
+                            seed_outpaint.value = readcfg_outpaint[8]
+                            use_gfpgan_outpaint.value = readcfg_outpaint[9]
+                            tkme_outpaint.value = readcfg_outpaint[10]
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -3967,10 +3933,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         model_controlnet.change(fn=change_model_type_controlnet, inputs=model_controlnet, outputs=[width_controlnet, height_controlnet])
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_controlnet = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_controlnet = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_controlnet = gr.Textbox(value="controlnet", visible=False, interactive=False)
-                                load_ini_btn_controlnet = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_controlnet.value) else False)
+                                del_ini_btn_controlnet = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_controlnet.value) else False)
                                 save_ini_btn_controlnet.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -3994,30 +3960,28 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_controlnet.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_controlnet.click(fn=lambda: load_ini_btn_controlnet.update(interactive=True), outputs=load_ini_btn_controlnet)
-                                load_ini_btn_controlnet.click(
-                                    fn=read_ini_controlnet, 
-                                    inputs=module_name_controlnet, 
-                                    outputs = [
-                                        model_controlnet, 
-                                        num_inference_step_controlnet,
-                                        sampler_controlnet,
-                                        guidance_scale_controlnet,
-                                        num_images_per_prompt_controlnet,
-                                        num_prompt_controlnet,
-                                        width_controlnet,
-                                        height_controlnet,
-                                        seed_controlnet,
-                                        low_threshold_controlnet,
-                                        high_threshold_controlnet,
-                                        strength_controlnet,
-                                        start_controlnet,
-                                        stop_controlnet,
-                                        use_gfpgan_controlnet,
-                                        tkme_controlnet,
-                                        ]
-                                    )
-                                load_ini_btn_controlnet.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_controlnet.click(fn=lambda: del_ini_btn_controlnet.update(interactive=True), outputs=del_ini_btn_controlnet)
+                                del_ini_btn_controlnet.click(fn=lambda: del_ini(module_name_controlnet.value))
+                                del_ini_btn_controlnet.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_controlnet.click(fn=lambda: del_ini_btn_controlnet.update(interactive=False), outputs=del_ini_btn_controlnet)
+                        if test_cfg_exist(module_name_controlnet.value) :
+                            readcfg_controlnet = read_ini_controlnet(module_name_controlnet.value)
+                            model_controlnet.value = readcfg_controlnet[0]
+                            num_inference_step_controlnet.value = readcfg_controlnet[1]
+                            sampler_controlnet.value = readcfg_controlnet[2]
+                            guidance_scale_controlnet.value = readcfg_controlnet[3]
+                            num_images_per_prompt_controlnet.value = readcfg_controlnet[4]
+                            num_prompt_controlnet.value = readcfg_controlnet[5]
+                            width_controlnet.value = readcfg_controlnet[6]
+                            height_controlnet.value = readcfg_controlnet[7]
+                            seed_controlnet.value = readcfg_controlnet[8]
+                            low_threshold_controlnet.value = readcfg_controlnet[9]
+                            high_threshold_controlnet.value = readcfg_controlnet[10]
+                            strength_controlnet.value = readcfg_controlnet[11]
+                            start_controlnet.value = readcfg_controlnet[12]
+                            stop_controlnet.value = readcfg_controlnet[13]
+                            use_gfpgan_controlnet.value = readcfg_controlnet[14]
+                            tkme_controlnet.value = readcfg_controlnet[15]
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -4201,10 +4165,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_faceswap = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")    
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_faceswap = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_faceswap = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_faceswap = gr.Textbox(value="faceswap", visible=False, interactive=False)
-                                load_ini_btn_faceswap = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_faceswap.value) else False)
+                                del_ini_btn_faceswap = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_faceswap.value) else False)
                                 save_ini_btn_faceswap.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -4216,18 +4180,16 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_faceswap.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_faceswap.click(fn=lambda: load_ini_btn_faceswap.update(interactive=True), outputs=load_ini_btn_faceswap)
-                                load_ini_btn_faceswap.click(
-                                    fn=read_ini_faceswap, 
-                                    inputs=module_name_faceswap, 
-                                    outputs = [
-                                        model_faceswap, 
-                                        width_faceswap,
-                                        height_faceswap,
-                                        use_gfpgan_faceswap,
-                                        ]
-                                    )
-                                load_ini_btn_faceswap.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_faceswap.click(fn=lambda: del_ini_btn_faceswap.update(interactive=True), outputs=del_ini_btn_faceswap)
+                                del_ini_btn_faceswap.click(fn=lambda: del_ini(module_name_faceswap.value))
+                                del_ini_btn_faceswap.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_faceswap.click(fn=lambda: del_ini_btn_faceswap.update(interactive=False), outputs=del_ini_btn_faceswap)
+                        if test_cfg_exist(module_name_faceswap.value) :
+                            readcfg_faceswap = read_ini_faceswap(module_name_faceswap.value)
+                            model_faceswap.value = readcfg_faceswap[0]
+                            width_faceswap.value = readcfg_faceswap[1]
+                            height_faceswap.value = readcfg_faceswap[2]
+                            use_gfpgan_faceswap.value = readcfg_faceswap[3]
                     with gr.Row():
                         with gr.Column():
                              img_source_faceswap = gr.Image(label="Source image", height=400, type="filepath")
@@ -4275,7 +4237,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     img_target_faceswap, 
                                     source_index_faceswap, 
                                     target_index_faceswap,
-                                    use_gfpgan_faceswap,                                
+                                    use_gfpgan_faceswap,
                                 ],
                                 outputs=[out_faceswap, gs_out_faceswap],
                                 show_progress="full",
@@ -4356,10 +4318,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_resrgan = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")     
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_resrgan = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_resrgan = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_resrgan = gr.Textbox(value="resrgan", visible=False, interactive=False)
-                                load_ini_btn_resrgan = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_resrgan.value) else False)
+                                del_ini_btn_resrgan = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_resrgan.value) else False)
                                 save_ini_btn_resrgan.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -4372,19 +4334,17 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_resrgan.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_resrgan.click(fn=lambda: load_ini_btn_resrgan.update(interactive=True), outputs=load_ini_btn_resrgan)
-                                load_ini_btn_resrgan.click(
-                                    fn=read_ini_resrgan, 
-                                    inputs=module_name_resrgan, 
-                                    outputs = [
-                                        model_resrgan, 
-                                        scale_resrgan,                                         
-                                        width_resrgan,
-                                        height_resrgan,
-                                        use_gfpgan_resrgan,
-                                        ]
-                                    )
-                                load_ini_btn_resrgan.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_resrgan.click(fn=lambda: del_ini_btn_resrgan.update(interactive=True), outputs=del_ini_btn_resrgan)
+                                del_ini_btn_resrgan.click(fn=lambda: del_ini(module_name_resrgan.value))
+                                del_ini_btn_resrgan.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_resrgan.click(fn=lambda: del_ini_btn_resrgan.update(interactive=False), outputs=del_ini_btn_resrgan)
+                        if test_cfg_exist(module_name_resrgan.value) :
+                            readcfg_resrgan = read_ini_resrgan(module_name_resrgan.value)
+                            model_resrgan.value = readcfg_resrgan[0]
+                            scale_resrgan.value = readcfg_resrgan[1]
+                            width_resrgan.value = readcfg_resrgan[2]
+                            height_resrgan.value = readcfg_resrgan[3]
+                            use_gfpgan_resrgan.value = readcfg_resrgan[4]
                     with gr.Row():
                         with gr.Column():
                              img_resrgan = gr.Image(label="Input image", type="filepath", height=400)
@@ -4488,33 +4448,31 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 height_gfpgan = gr.Slider(128, 8192, step=64, value=512, label="Image Height", info="Height of outputs", interactive=False)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_gfpgan = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_gfpgan = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_gfpgan = gr.Textbox(value="gfpgan", visible=False, interactive=False)
-                                load_ini_btn_gfpgan = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_gfpgan.value) else False)
+                                del_ini_btn_gfpgan = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_gfpgan.value) else False)
                                 save_ini_btn_gfpgan.click(
                                     fn=write_ini, 
                                     inputs=[
                                         module_name_gfpgan, 
                                         model_gfpgan, 
-                                        variant_gfpgan,                                         
+                                        variant_gfpgan,
                                         width_gfpgan,
                                         height_gfpgan,
                                         ]
                                     )
                                 save_ini_btn_gfpgan.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_gfpgan.click(fn=lambda: load_ini_btn_gfpgan.update(interactive=True), outputs=load_ini_btn_gfpgan)
-                                load_ini_btn_gfpgan.click(
-                                    fn=read_ini_gfpgan, 
-                                    inputs=module_name_gfpgan, 
-                                    outputs = [
-                                        model_gfpgan, 
-                                        variant_gfpgan,                                  
-                                        width_gfpgan, 
-                                        height_gfpgan, 
-                                        ]
-                                    )
-                                load_ini_btn_gfpgan.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_gfpgan.click(fn=lambda: del_ini_btn_gfpgan.update(interactive=True), outputs=del_ini_btn_gfpgan)
+                                del_ini_btn_gfpgan.click(fn=lambda: del_ini(module_name_gfpgan.value))
+                                del_ini_btn_gfpgan.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_gfpgan.click(fn=lambda: del_ini_btn_gfpgan.update(interactive=False), outputs=del_ini_btn_gfpgan)
+                        if test_cfg_exist(module_name_gfpgan.value) :
+                            readcfg_gfpgan = read_ini_gfpgan(module_name_gfpgan.value)
+                            model_gfpgan.value = readcfg_gfpgan[0]
+                            variant_gfpgan.value = readcfg_gfpgan[1]
+                            width_gfpgan.value = readcfg_gfpgan[2]
+                            height_gfpgan.value = readcfg_gfpgan[3]
                     with gr.Row():
                         with gr.Column():
                             img_gfpgan = gr.Image(label="Input image", type="filepath", height=400)
@@ -4630,10 +4588,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 top_p_musicgen = gr.Slider(0.0, 500.0, step=1.0, value=0.0, label="top_p")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_musicgen = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_musicgen = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_musicgen = gr.Textbox(value="musicgen", visible=False, interactive=False)
-                                load_ini_btn_musicgen = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_musicgen.value) else False)
+                                del_ini_btn_musicgen = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_musicgen.value) else False)
                                 save_ini_btn_musicgen.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -4649,22 +4607,20 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_musicgen.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_musicgen.click(fn=lambda: load_ini_btn_musicgen.update(interactive=True), outputs=load_ini_btn_musicgen)
-                                load_ini_btn_musicgen.click(
-                                    fn=read_ini_musicgen, 
-                                    inputs=module_name_musicgen, 
-                                    outputs = [
-                                        model_musicgen, 
-                                        duration_musicgen,                                         
-                                        cfg_coef_musicgen,
-                                        num_batch_musicgen,
-                                        use_sampling_musicgen,
-                                        temperature_musicgen,
-                                        top_k_musicgen,
-                                        top_p_musicgen,
-                                        ]
-                                    )
-                                load_ini_btn_musicgen.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_musicgen.click(fn=lambda: del_ini_btn_musicgen.update(interactive=True), outputs=del_ini_btn_musicgen)
+                                del_ini_btn_musicgen.click(fn=lambda: del_ini(module_name_musicgen.value))
+                                del_ini_btn_musicgen.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_musicgen.click(fn=lambda: del_ini_btn_musicgen.update(interactive=False), outputs=del_ini_btn_musicgen)
+                        if test_cfg_exist(module_name_musicgen.value) :
+                            readcfg_musicgen = read_ini_musicgen(module_name_musicgen.value)
+                            model_musicgen.value = readcfg_musicgen[0]
+                            duration_musicgen.value = readcfg_musicgen[1]
+                            cfg_coef_musicgen.value = readcfg_musicgen[2]
+                            num_batch_musicgen.value = readcfg_musicgen[3]
+                            use_sampling_musicgen.value = readcfg_musicgen[4]
+                            temperature_musicgen.value = readcfg_musicgen[5]
+                            top_k_musicgen.value = readcfg_musicgen[6]
+                            top_p_musicgen.value = readcfg_musicgen[7]
                     with gr.Row():
                         with gr.Column():
                             prompt_musicgen = gr.Textbox(label="Describe your music", lines=2, max_lines=2, placeholder="90s rock song with loud guitars and heavy drums")
@@ -4773,10 +4729,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 top_p_musicgen_mel = gr.Slider(0.0, 500.0, step=1.0, value=0.0, label="top_p")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_musicgen_mel = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_musicgen_mel = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_musicgen_mel = gr.Textbox(value="musicgen_mel", visible=False, interactive=False)
-                                load_ini_btn_musicgen_mel = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_musicgen_mel.value) else False)
+                                del_ini_btn_musicgen_mel = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_musicgen_mel.value) else False)
                                 save_ini_btn_musicgen_mel.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -4792,22 +4748,20 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_musicgen_mel.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_musicgen_mel.click(fn=lambda: load_ini_btn_musicgen_mel.update(interactive=True), outputs=load_ini_btn_musicgen_mel)
-                                load_ini_btn_musicgen_mel.click(
-                                    fn=read_ini_musicgen_mel,
-                                    inputs=module_name_musicgen_mel,
-                                    outputs = [
-                                        model_musicgen_mel,
-                                        duration_musicgen_mel,
-                                        cfg_coef_musicgen_mel,
-                                        num_batch_musicgen_mel,
-                                        use_sampling_musicgen_mel,
-                                        temperature_musicgen_mel,
-                                        top_k_musicgen_mel,
-                                        top_p_musicgen_mel,
-                                        ]
-                                    )
-                                load_ini_btn_musicgen_mel.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_musicgen_mel.click(fn=lambda: del_ini_btn_musicgen_mel.update(interactive=True), outputs=del_ini_btn_musicgen_mel)
+                                del_ini_btn_musicgen_mel.click(fn=lambda: del_ini(module_name_musicgen_mel.value))
+                                del_ini_btn_musicgen_mel.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_musicgen_mel.click(fn=lambda: del_ini_btn_musicgen_mel.update(interactive=False), outputs=del_ini_btn_musicgen_mel)
+                        if test_cfg_exist(module_name_musicgen_mel.value) :
+                            readcfg_musicgen_mel = read_ini_musicgen_mel(module_name_musicgen_mel.value)
+                            model_musicgen_mel.value = readcfg_musicgen_mel[0]
+                            duration_musicgen_mel.value = readcfg_musicgen_mel[1]
+                            cfg_coef_musicgen_mel.value = readcfg_musicgen_mel[2]
+                            num_batch_musicgen_mel.value = readcfg_musicgen_mel[3]
+                            use_sampling_musicgen_mel.value = readcfg_musicgen_mel[4]
+                            temperature_musicgen_mel.value = readcfg_musicgen_mel[5]
+                            top_k_musicgen_mel.value = readcfg_musicgen_mel[6]
+                            top_p_musicgen_mel.value = readcfg_musicgen_mel[7]
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():                                
@@ -4920,10 +4874,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 num_prompt_musicldm = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_musicldm = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_musicldm = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_musicldm = gr.Textbox(value="musicldm", visible=False, interactive=False)
-                                load_ini_btn_musicldm = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_musicldm.value) else False)
+                                del_ini_btn_musicldm = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_musicldm.value) else False)
                                 save_ini_btn_musicldm.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -4939,22 +4893,20 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_musicldm.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_musicldm.click(fn=lambda: load_ini_btn_musicldm.update(interactive=True), outputs=load_ini_btn_musicldm)
-                                load_ini_btn_musicldm.click(
-                                    fn=read_ini_musicldm, 
-                                    inputs=module_name_musicldm, 
-                                    outputs = [
-                                        model_musicldm,
-                                        num_inference_step_musicldm,
-                                        sampler_musicldm,
-                                        guidance_scale_musicldm,
-                                        audio_length_musicldm,
-                                        seed_musicldm,
-                                        num_audio_per_prompt_musicldm,
-                                        num_prompt_musicldm,
-                                        ]
-                                    )
-                                load_ini_btn_musicldm.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_musicldm.click(fn=lambda: del_ini_btn_musicldm.update(interactive=True), outputs=del_ini_btn_musicldm)
+                                del_ini_btn_musicldm.click(fn=lambda: del_ini(module_name_musicldm.value))
+                                del_ini_btn_musicldm.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_musicldm.click(fn=lambda: del_ini_btn_musicldm.update(interactive=False), outputs=del_ini_btn_musicldm)
+                        if test_cfg_exist(module_name_musicldm.value) :
+                            readcfg_musicldm = read_ini_musicldm(module_name_musicldm.value)
+                            model_musicldm.value = readcfg_musicldm[0]
+                            num_inference_step_musicldm.value = readcfg_musicldm[1]
+                            sampler_musicldm.value = readcfg_musicldm[2]
+                            guidance_scale_musicldm.value = readcfg_musicldm[3]
+                            audio_length_musicldm.value = readcfg_musicldm[4]
+                            seed_musicldm.value = readcfg_musicldm[5]
+                            num_audio_per_prompt_musicldm.value = readcfg_musicldm[6]
+                            num_prompt_musicldm.value = readcfg_musicldm[7]
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -5066,16 +5018,16 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 top_p_audiogen = gr.Slider(0.0, 500.0, step=1.0, value=0.0, label="top_p")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_audiogen = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_audiogen = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_audiogen = gr.Textbox(value="audiogen", visible=False, interactive=False)
-                                load_ini_btn_audiogen = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_audiogen.value) else False)
+                                del_ini_btn_audiogen = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_audiogen.value) else False)
                                 save_ini_btn_audiogen.click(
                                     fn=write_ini, 
                                     inputs=[
                                         module_name_audiogen, 
                                         model_audiogen, 
-                                        duration_audiogen,                                         
+                                        duration_audiogen,
                                         cfg_coef_audiogen,
                                         num_batch_audiogen,
                                         use_sampling_audiogen,
@@ -5085,22 +5037,20 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_audiogen.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_audiogen.click(fn=lambda: load_ini_btn_audiogen.update(interactive=True), outputs=load_ini_btn_audiogen)
-                                load_ini_btn_audiogen.click(
-                                    fn=read_ini_audiogen, 
-                                    inputs=module_name_audiogen, 
-                                    outputs = [
-                                        model_audiogen, 
-                                        duration_audiogen,                                         
-                                        cfg_coef_audiogen,
-                                        num_batch_audiogen,
-                                        use_sampling_audiogen,
-                                        temperature_audiogen,
-                                        top_k_audiogen,
-                                        top_p_audiogen,
-                                        ]
-                                    )
-                                load_ini_btn_audiogen.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_audiogen.click(fn=lambda: del_ini_btn_audiogen.update(interactive=True), outputs=del_ini_btn_audiogen)
+                                del_ini_btn_audiogen.click(fn=lambda: del_ini(module_name_audiogen.value))
+                                del_ini_btn_audiogen.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_audiogen.click(fn=lambda: del_ini_btn_audiogen.update(interactive=False), outputs=del_ini_btn_audiogen)
+                        if test_cfg_exist(module_name_audiogen.value) :
+                            readcfg_audiogen = read_ini_audiogen(module_name_audiogen.value)
+                            model_audiogen.value = readcfg_audiogen[0]
+                            duration_audiogen.value = readcfg_audiogen[1]
+                            cfg_coef_audiogen.value = readcfg_audiogen[2]
+                            num_batch_audiogen.value = readcfg_audiogen[3]
+                            use_sampling_audiogen.value = readcfg_audiogen[4]
+                            temperature_audiogen.value = readcfg_audiogen[5]
+                            top_k_audiogen.value = readcfg_audiogen[6]
+                            top_p_audiogen.value = readcfg_audiogen[7]
                     with gr.Row():
                         with gr.Column():
                             prompt_audiogen = gr.Textbox(label="Describe your sound", lines=2, max_lines=2, placeholder="dog barking, sirens of an emergency vehicle, footsteps in a corridor")
@@ -5202,10 +5152,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 batch_repeat_harmonai = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_harmonai = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_harmonai = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_harmonai = gr.Textbox(value="harmonai", visible=False, interactive=False)
-                                load_ini_btn_harmonai = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_harmonai.value) else False)
+                                del_ini_btn_harmonai = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_harmonai.value) else False)
                                 save_ini_btn_harmonai.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -5219,20 +5169,18 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_harmonai.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_harmonai.click(fn=lambda: load_ini_btn_harmonai.update(interactive=True), outputs=load_ini_btn_harmonai)                                
-                                load_ini_btn_harmonai.click(
-                                    fn=read_ini_harmonai, 
-                                    inputs=module_name_harmonai, 
-                                    outputs = [
-                                        model_harmonai, 
-                                        steps_harmonai,
-                                        seed_harmonai,
-                                        length_harmonai,
-                                        batch_size_harmonai,
-                                        batch_repeat_harmonai,                                        
-                                        ]
-                                    )
-                                load_ini_btn_harmonai.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_harmonai.click(fn=lambda: del_ini_btn_harmonai.update(interactive=True), outputs=del_ini_btn_harmonai)
+                                del_ini_btn_harmonai.click(fn=lambda: del_ini(module_name_harmonai.value))
+                                del_ini_btn_harmonai.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_harmonai.click(fn=lambda: del_ini_btn_harmonai.update(interactive=False), outputs=del_ini_btn_harmonai)
+                        if test_cfg_exist(module_name_harmonai.value) :
+                            readcfg_harmonai = read_ini_harmonai(module_name_harmonai.value)
+                            model_harmonai.value = readcfg_harmonai[0]
+                            steps_harmonai.value = readcfg_harmonai[1]
+                            seed_harmonai.value = readcfg_harmonai[2]
+                            length_harmonai.value = readcfg_harmonai[3]
+                            batch_size_harmonai.value = readcfg_harmonai[4]
+                            batch_repeat_harmonai.value = readcfg_harmonai[5]
                     with gr.Row():
                         out_harmonai = gr.Audio(label="Output", type="filepath", show_download_button=True, interactive=False)
                     with gr.Row():
@@ -5317,10 +5265,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 voice_preset_bark = gr.Dropdown(choices=list(voice_preset_list_bark.keys()), value=list(voice_preset_list_bark.keys())[2], label="Voice")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_bark = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_bark = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_bark = gr.Textbox(value="bark", visible=False, interactive=False)
-                                load_ini_btn_bark = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_bark.value) else False)
+                                del_ini_btn_bark = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_bark.value) else False)
                                 save_ini_btn_bark.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -5330,16 +5278,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_bark.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_bark.click(fn=lambda: load_ini_btn_bark.update(interactive=True), outputs=load_ini_btn_bark)
-                                load_ini_btn_bark.click(
-                                    fn=read_ini_bark, 
-                                    inputs=module_name_bark, 
-                                    outputs = [
-                                        model_bark, 
-                                        voice_preset_bark,
-                                        ]
-                                    )
-                                load_ini_btn_bark.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_bark.click(fn=lambda: del_ini_btn_bark.update(interactive=True), outputs=del_ini_btn_bark)
+                                del_ini_btn_bark.click(fn=lambda: del_ini(module_name_bark.value))
+                                del_ini_btn_bark.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_bark.click(fn=lambda: del_ini_btn_bark.update(interactive=False), outputs=del_ini_btn_bark)
+                        if test_cfg_exist(module_name_bark.value):
+                            readcfg_bark = read_ini_bark(module_name_bark.value)
+                            model_bark.value = readcfg_bark[0]
+                            voice_preset_bark.value = readcfg_bark[1]
                     with gr.Row():
                         with gr.Column():                    
                             prompt_bark = gr.Textbox(label="Text to speech", lines=2, max_lines=2, placeholder="Type or past here what you want to hear ...")
@@ -5448,10 +5394,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_txt2vid_ms = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2vid_ms = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_txt2vid_ms = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_txt2vid_ms = gr.Textbox(value="txt2vid_ms", visible=False, interactive=False)
-                                load_ini_btn_txt2vid_ms = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_txt2vid_ms.value) else False)
+                                del_ini_btn_txt2vid_ms = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_txt2vid_ms.value) else False)
                                 save_ini_btn_txt2vid_ms.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -5469,24 +5415,22 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_txt2vid_ms.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_txt2vid_ms.click(fn=lambda: load_ini_btn_txt2vid_ms.update(interactive=True), outputs=load_ini_btn_txt2vid_ms)
-                                load_ini_btn_txt2vid_ms.click(
-                                    fn=read_ini_txt2vid_ms, 
-                                    inputs=module_name_txt2vid_ms, 
-                                    outputs = [
-                                        model_txt2vid_ms, 
-                                        num_inference_step_txt2vid_ms,
-                                        sampler_txt2vid_ms,
-                                        guidance_scale_txt2vid_ms,
-                                        num_frames_txt2vid_ms,
-                                        num_prompt_txt2vid_ms,
-                                        width_txt2vid_ms,
-                                        height_txt2vid_ms,
-                                        seed_txt2vid_ms,
-                                        use_gfpgan_txt2vid_ms,
-                                        ]
-                                    )
-                                load_ini_btn_txt2vid_ms.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_txt2vid_ms.click(fn=lambda: del_ini_btn_txt2vid_ms.update(interactive=True), outputs=del_ini_btn_txt2vid_ms)
+                                del_ini_btn_txt2vid_ms.click(fn=lambda: del_ini(module_name_txt2vid_ms.value))
+                                del_ini_btn_txt2vid_ms.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_txt2vid_ms.click(fn=lambda: del_ini_btn_txt2vid_ms.update(interactive=False), outputs=del_ini_btn_txt2vid_ms)
+                        if test_cfg_exist(module_name_txt2vid_ms.value) :
+                            readcfg_txt2vid_ms = read_ini_txt2vid_ms(module_name_txt2vid_ms.value)
+                            model_txt2vid_ms.value = readcfg_txt2vid_ms[0]
+                            num_inference_step_txt2vid_ms.value = readcfg_txt2vid_ms[1]
+                            sampler_txt2vid_ms.value = readcfg_txt2vid_ms[2]
+                            guidance_scale_txt2vid_ms.value = readcfg_txt2vid_ms[3]
+                            num_frames_txt2vid_ms.value = readcfg_txt2vid_ms[4]
+                            num_prompt_txt2vid_ms.value = readcfg_txt2vid_ms[5]
+                            width_txt2vid_ms.value = readcfg_txt2vid_ms[6]
+                            height_txt2vid_ms.value = readcfg_txt2vid_ms[7]
+                            seed_txt2vid_ms.value = readcfg_txt2vid_ms[8]
+                            use_gfpgan_txt2vid_ms.value = readcfg_txt2vid_ms[9]
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -5631,14 +5575,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_txt2vid_ze = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token Merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2vid_ze = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_txt2vid_ze = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_txt2vid_ze = gr.Textbox(value="txt2vid_ze", visible=False, interactive=False)
-                                load_ini_btn_txt2vid_ze = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_txt2vid_ze.value) else False)
+                                del_ini_btn_txt2vid_ze = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_txt2vid_ze.value) else False)
                                 save_ini_btn_txt2vid_ze.click(
                                     fn=write_ini, 
                                     inputs=[
-                                        module_name_txt2vid_ze, 
+                                        module_name_txt2vid_ze,
                                         model_txt2vid_ze, 
                                         num_inference_step_txt2vid_ze,
                                         sampler_txt2vid_ze,
@@ -5660,32 +5604,30 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_txt2vid_ze.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_txt2vid_ze.click(fn=lambda: load_ini_btn_txt2vid_ze.update(interactive=True), outputs=load_ini_btn_txt2vid_ze)
-                                load_ini_btn_txt2vid_ze.click(
-                                    fn=read_ini_txt2vid_ze, 
-                                    inputs=module_name_txt2vid_ze, 
-                                    outputs = [
-                                        model_txt2vid_ze, 
-                                        num_inference_step_txt2vid_ze,
-                                        sampler_txt2vid_ze,
-                                        guidance_scale_txt2vid_ze,
-                                        seed_txt2vid_ze,                                        
-                                        num_frames_txt2vid_ze,
-                                        num_fps_txt2vid_ze,
-                                        num_chunks_txt2vid_ze,
-                                        width_txt2vid_ze,
-                                        height_txt2vid_ze,
-                                        num_videos_per_prompt_txt2vid_ze,
-                                        num_prompt_txt2vid_ze,
-                                        motion_field_strength_x_txt2vid_ze,
-                                        motion_field_strength_y_txt2vid_ze,
-                                        timestep_t0_txt2vid_ze,
-                                        timestep_t1_txt2vid_ze,
-                                        use_gfpgan_txt2vid_ze,
-                                        tkme_txt2vid_ze,
-                                        ]
-                                    )
-                                load_ini_btn_txt2vid_ze.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_txt2vid_ze.click(fn=lambda: del_ini_btn_txt2vid_ze.update(interactive=True), outputs=del_ini_btn_txt2vid_ze)
+                                del_ini_btn_txt2vid_ze.click(fn=lambda: del_ini(module_name_txt2vid_ze.value))
+                                del_ini_btn_txt2vid_ze.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_txt2vid_ze.click(fn=lambda: del_ini_btn_txt2vid_ze.update(interactive=False), outputs=del_ini_btn_txt2vid_ze)
+                        if test_cfg_exist(module_name_txt2vid_ze.value) :
+                            readcfg_txt2vid_ze = read_ini_txt2vid_ze(module_name_txt2vid_ze.value)
+                            model_txt2vid_ze.value = readcfg_txt2vid_ze[0]
+                            num_inference_step_txt2vid_ze.value = readcfg_txt2vid_ze[1]
+                            sampler_txt2vid_ze.value = readcfg_txt2vid_ze[2]
+                            guidance_scale_txt2vid_ze.value = readcfg_txt2vid_ze[3]
+                            seed_txt2vid_ze.value = readcfg_txt2vid_ze[4]
+                            num_frames_txt2vid_ze.value = readcfg_txt2vid_ze[5]
+                            num_fps_txt2vid_ze.value = readcfg_txt2vid_ze[6]
+                            num_chunks_txt2vid_ze.value = readcfg_txt2vid_ze[7]
+                            width_txt2vid_ze.value = readcfg_txt2vid_ze[8]
+                            height_txt2vid_ze.value = readcfg_txt2vid_ze[9]
+                            num_videos_per_prompt_txt2vid_ze.value = readcfg_txt2vid_ze[10]
+                            num_prompt_txt2vid_ze.value = readcfg_txt2vid_ze[11]
+                            motion_field_strength_x_txt2vid_ze.value = readcfg_txt2vid_ze[12]
+                            motion_field_strength_y_txt2vid_ze.value = readcfg_txt2vid_ze[13]
+                            timestep_t0_txt2vid_ze.value = readcfg_txt2vid_ze[14]
+                            timestep_t1_txt2vid_ze.value = readcfg_txt2vid_ze[15]
+                            use_gfpgan_txt2vid_ze.value = readcfg_txt2vid_ze[16]
+                            tkme_txt2vid_ze.value = readcfg_txt2vid_ze[17]
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -5830,10 +5772,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_vid2vid_ze = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_vid2vid_ze = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_vid2vid_ze = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_vid2vid_ze = gr.Textbox(value="vid2vid_ze", visible=False, interactive=False)
-                                load_ini_btn_vid2vid_ze = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_vid2vid_ze.value) else False)
+                                del_ini_btn_vid2vid_ze = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_vid2vid_ze.value) else False)
                                 save_ini_btn_vid2vid_ze.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -5855,28 +5797,26 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_vid2vid_ze.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_vid2vid_ze.click(fn=lambda: load_ini_btn_vid2vid_ze.update(interactive=True), outputs=load_ini_btn_vid2vid_ze)
-                                load_ini_btn_vid2vid_ze.click(
-                                    fn=read_ini_vid2vid_ze, 
-                                    inputs=module_name_vid2vid_ze, 
-                                    outputs = [
-                                        model_vid2vid_ze, 
-                                        num_inference_step_vid2vid_ze,
-                                        sampler_vid2vid_ze,
-                                        guidance_scale_vid2vid_ze,
-                                        image_guidance_scale_vid2vid_ze, 
-                                        num_images_per_prompt_vid2vid_ze,
-                                        num_prompt_vid2vid_ze,
-                                        width_vid2vid_ze,
-                                        height_vid2vid_ze,
-                                        seed_vid2vid_ze,
-                                        num_frames_vid2vid_ze,
-                                        num_fps_vid2vid_ze,
-                                        use_gfpgan_vid2vid_ze,
-                                        tkme_vid2vid_ze,
-                                        ]
-                                    )
-                                load_ini_btn_vid2vid_ze.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_vid2vid_ze.click(fn=lambda: del_ini_btn_vid2vid_ze.update(interactive=True), outputs=del_ini_btn_vid2vid_ze)
+                                del_ini_btn_vid2vid_ze.click(fn=lambda: del_ini(module_name_vid2vid_ze.value))
+                                del_ini_btn_vid2vid_ze.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_vid2vid_ze.click(fn=lambda: del_ini_btn_vid2vid_ze.update(interactive=False), outputs=del_ini_btn_vid2vid_ze)
+                        if test_cfg_exist(module_name_vid2vid_ze.value) :
+                            readcfg_vid2vid_ze = read_ini_vid2vid_ze(module_name_vid2vid_ze.value)
+                            model_vid2vid_ze.value = readcfg_vid2vid_ze[0]
+                            num_inference_step_vid2vid_ze.value = readcfg_vid2vid_ze[1]
+                            sampler_vid2vid_ze.value = readcfg_vid2vid_ze[2]
+                            guidance_scale_vid2vid_ze.value = readcfg_vid2vid_ze[3]
+                            image_guidance_scale_vid2vid_ze.value = readcfg_vid2vid_ze[4]
+                            num_images_per_prompt_vid2vid_ze.value = readcfg_vid2vid_ze[5]
+                            num_prompt_vid2vid_ze.value = readcfg_vid2vid_ze[6]
+                            width_vid2vid_ze.value = readcfg_vid2vid_ze[7]
+                            height_vid2vid_ze.value = readcfg_vid2vid_ze[8]
+                            seed_vid2vid_ze.value = readcfg_vid2vid_ze[9]
+                            num_frames_vid2vid_ze.value = readcfg_vid2vid_ze[10]
+                            num_fps_vid2vid_ze.value = readcfg_vid2vid_ze[11]
+                            use_gfpgan_vid2vid_ze.value = readcfg_vid2vid_ze[12]
+                            tkme_vid2vid_ze.value = readcfg_vid2vid_ze[13]
                     with gr.Row():
                         with gr.Column():
                              vid_vid2vid_ze = gr.Video(label="Input video", height=400)
@@ -5997,10 +5937,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 seed_txt2shape = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility", interactive=False) 
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2shape = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_txt2shape = gr.Button("Save settings as defaults 💾")
                             with gr.Column():
                                 module_name_txt2shape = gr.Textbox(value="txt2shape", visible=False, interactive=False)
-                                load_ini_btn_txt2shape = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_txt2shape.value) else False)
+                                del_ini_btn_txt2shape = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_txt2shape.value) else False)
                                 save_ini_btn_txt2shape.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -6016,22 +5956,20 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_txt2shape.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_txt2shape.click(fn=lambda: load_ini_btn_txt2shape.update(interactive=True), outputs=load_ini_btn_txt2shape)
-                                load_ini_btn_txt2shape.click(
-                                    fn=read_ini_txt2shape, 
-                                    inputs=module_name_txt2shape, 
-                                    outputs = [
-                                        model_txt2shape, 
-                                        num_inference_step_txt2shape,
-                                        sampler_txt2shape,
-                                        guidance_scale_txt2shape,
-                                        num_images_per_prompt_txt2shape,
-                                        num_prompt_txt2shape,
-                                        frame_size_txt2shape,
-                                        seed_txt2shape,
-                                        ]
-                                    )
-                                load_ini_btn_txt2shape.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_txt2shape.click(fn=lambda: del_ini_btn_txt2shape.update(interactive=True), outputs=del_ini_btn_txt2shape)
+                                del_ini_btn_txt2shape.click(fn=lambda: del_ini(module_name_txt2shape.value))
+                                del_ini_btn_txt2shape.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_txt2shape.click(fn=lambda: del_ini_btn_txt2shape.update(interactive=False), outputs=del_ini_btn_txt2shape)
+                        if test_cfg_exist(module_name_txt2shape.value) :
+                            readcfg_txt2shape = read_ini_txt2shape(module_name_txt2shape.value)
+                            model_txt2shape.value = readcfg_txt2shape[0]
+                            num_inference_step_txt2shape.value = readcfg_txt2shape[1]
+                            sampler_txt2shape.value = readcfg_txt2shape[2]
+                            guidance_scale_txt2shape.value = readcfg_txt2shape[3]
+                            num_images_per_prompt_txt2shape.value = readcfg_txt2shape[4]
+                            num_prompt_txt2shape.value = readcfg_txt2shape[5]
+                            frame_size_txt2shape.value = readcfg_txt2shape[6]
+                            seed_txt2shape.value = readcfg_txt2shape[7]
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -6209,10 +6147,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 seed_img2shape = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility", interactive=False) 
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_img2shape = gr.Button("Save favorite settings 💾")
+                                save_ini_btn_img2shape = gr.Button("Save as custom defaults settings 💾")
                             with gr.Column():
                                 module_name_img2shape = gr.Textbox(value="img2shape", visible=False, interactive=False)
-                                load_ini_btn_img2shape = gr.Button("Load favorite settings ⏫", interactive=True if test_cfg_exist(module_name_img2shape.value) else False)
+                                del_ini_btn_img2shape = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_img2shape.value) else False)
                                 save_ini_btn_img2shape.click(
                                     fn=write_ini, 
                                     inputs=[
@@ -6228,22 +6166,20 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         ]
                                     )
                                 save_ini_btn_img2shape.click(fn=lambda: gr.Info('Settings saved'))
-                                save_ini_btn_img2shape.click(fn=lambda: load_ini_btn_img2shape.update(interactive=True), outputs=load_ini_btn_img2shape)
-                                load_ini_btn_img2shape.click(
-                                    fn=read_ini_img2shape, 
-                                    inputs=module_name_img2shape, 
-                                    outputs = [
-                                        model_img2shape, 
-                                        num_inference_step_img2shape,
-                                        sampler_img2shape,
-                                        guidance_scale_img2shape,
-                                        num_images_per_prompt_img2shape,
-                                        num_prompt_img2shape,
-                                        frame_size_img2shape,
-                                        seed_img2shape,
-                                        ]
-                                    )
-                                load_ini_btn_img2shape.click(fn=lambda: gr.Info('Settings loaded'))
+                                save_ini_btn_img2shape.click(fn=lambda: del_ini_btn_img2shape.update(interactive=True), outputs=del_ini_btn_img2shape)
+                                del_ini_btn_img2shape.click(fn=lambda: del_ini(module_name_img2shape.value))
+                                del_ini_btn_img2shape.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_img2shape.click(fn=lambda: del_ini_btn_img2shape.update(interactive=False), outputs=del_ini_btn_img2shape)
+                        if test_cfg_exist(module_name_img2shape.value) :
+                            readcfg_img2shape = read_ini_img2shape(module_name_img2shape.value)
+                            model_img2shape.value = readcfg_img2shape[0]
+                            num_inference_step_img2shape.value = readcfg_img2shape[1]
+                            sampler_img2shape.value = readcfg_img2shape[2]
+                            guidance_scale_img2shape.value = readcfg_img2shape[3]
+                            num_images_per_prompt_img2shape.value = readcfg_img2shape[4]
+                            num_prompt_img2shape.value = readcfg_img2shape[5]
+                            frame_size_img2shape.value = readcfg_img2shape[6]
+                            seed_img2shape.value = readcfg_img2shape[7]
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -6983,7 +6919,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
 # Exécution de l'UI :
     demo.load(split_url_params, nsfw_filter, [nsfw_filter, url_params_current], _js=get_window_url_params)
     demo.load(read_logs, None, biniou_console_output, every=1)
-
+#    demo.load(fn=lambda: gr.Info('Biniou loading completed. Ready to work !'))
+    
 if __name__ == "__main__":
     demo.queue(concurrency_count=8).launch(
         server_name="0.0.0.0",

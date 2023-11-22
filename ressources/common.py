@@ -294,6 +294,10 @@ def test_cfg_exist(module) :
     else :
         return False   
 
+def del_ini(module) :
+    os.remove(f".ini/{module}.cfg")
+    return 
+
 def detect_device():
     if torch.cuda.is_available():
         device = "cuda"
