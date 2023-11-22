@@ -635,7 +635,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 model_llamacpp.change(fn=change_model_type_llamacpp, inputs=model_llamacpp, outputs=prompt_template_llamacpp)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_llamacpp = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_llamacpp = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_llamacpp = gr.Textbox(value="llamacpp", visible=False, interactive=False)
                                 del_ini_btn_llamacpp = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_llamacpp.value) else False)
@@ -849,7 +849,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 diversity_penalty_img2txt_git = gr.Slider(0.0, 5.0, step=0.01, value=0.5, label="Diversity penalty", info="Penalty score value for a beam")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_img2txt_git = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_img2txt_git = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_img2txt_git = gr.Textbox(value="img2txt_git", visible=False, interactive=False)
                                 del_ini_btn_img2txt_git = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_img2txt_git.value) else False)
@@ -984,7 +984,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 srt_output_whisper = gr.Checkbox(value=False, label=".srt format output", info="Generate an output in .srt format")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_whisper = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_whisper = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_whisper = gr.Textbox(value="whisper", visible=False, interactive=False)
                                 del_ini_btn_whisper = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_whisper.value) else False)
@@ -1117,7 +1117,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 max_tokens_nllb = gr.Slider(0, 1024, step=1, value=1024, label="Max tokens", info="Maximum number of tokens in output")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_nllb = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_nllb = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_nllb = gr.Textbox(value="nllb", visible=False, interactive=False)
                                 del_ini_btn_nllb = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_nllb.value) else False)
@@ -1250,7 +1250,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 num_prompt_txt2prompt = gr.Slider(1, 64, step=1, value=1, label="Batch size", info="Number of prompts to generate") 
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2prompt = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_txt2prompt = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_txt2prompt = gr.Textbox(value="txt2prompt", visible=False, interactive=False)
                                 del_ini_btn_txt2prompt = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_txt2prompt.value) else False)
@@ -1408,7 +1408,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         model_txt2img_sd.change(fn=change_model_type_txt2img_sd, inputs=model_txt2img_sd, outputs=[width_txt2img_sd, height_txt2img_sd])
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2img_sd = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_txt2img_sd = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_txt2img_sd = gr.Textbox(value="txt2img_sd", visible=False, interactive=False)
                                 del_ini_btn_txt2img_sd = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_txt2img_sd.value) else False)
@@ -1614,7 +1614,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_txt2img_kd = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2img_kd = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_txt2img_kd = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_txt2img_kd = gr.Textbox(value="txt2img_kd", visible=False, interactive=False)
                                 del_ini_btn_txt2img_kd = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_txt2img_kd.value) else False)
@@ -1816,7 +1816,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         model_txt2img_lcm.change(fn=change_model_type_txt2img_lcm, inputs=model_txt2img_lcm, outputs=[width_txt2img_lcm, height_txt2img_lcm])
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2img_lcm = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_txt2img_lcm = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_txt2img_lcm = gr.Textbox(value="txt2img_lcm", visible=False, interactive=False)
                                 del_ini_btn_txt2img_lcm = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_txt2img_lcm.value) else False)
@@ -2018,7 +2018,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_txt2img_mjm = gr.Slider(0.0, 1.0, step=0.01, value=0.0, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2img_mjm = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_txt2img_mjm = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_txt2img_mjm = gr.Textbox(value="txt2img_mjm", visible=False, interactive=False)
                                 del_ini_btn_txt2img_mjm = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_txt2img_mjm.value) else False)
@@ -2223,7 +2223,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         model_txt2img_paa.change(fn=change_model_type_txt2img_paa, inputs=model_txt2img_paa, outputs=[width_txt2img_paa, height_txt2img_paa])
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2img_paa = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_txt2img_paa = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_txt2img_paa = gr.Textbox(value="txt2img_paa", visible=False, interactive=False)
                                 del_ini_btn_txt2img_paa = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_txt2img_paa.value) else False)
@@ -2436,7 +2436,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         model_img2img.change(fn=change_model_type_img2img, inputs=model_img2img, outputs=[width_img2img, height_img2img])
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_img2img = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_img2img = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_img2img = gr.Textbox(value="img2img", visible=False, interactive=False)
                                 del_ini_btn_img2img = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_img2img.value) else False)
@@ -2653,7 +2653,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_img2var = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_img2var = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_img2var = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_img2var = gr.Textbox(value="img2var", visible=False, interactive=False)
                                 del_ini_btn_img2var = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_img2var.value) else False)
@@ -2840,7 +2840,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_pix2pix = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_pix2pix = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_pix2pix = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_pix2pix = gr.Textbox(value="pix2pix", visible=False, interactive=False)
                                 del_ini_btn_pix2pix = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_pix2pix.value) else False)
@@ -3051,7 +3051,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_magicmix = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_magicmix = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_magicmix = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_magicmix = gr.Textbox(value="magicmix", visible=False, interactive=False)
                                 del_ini_btn_magicmix = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_magicmix.value) else False)
@@ -3243,7 +3243,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_inpaint = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_inpaint = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_inpaint = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_inpaint = gr.Textbox(value="inpaint", visible=False, interactive=False)
                                 del_ini_btn_inpaint = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_inpaint.value) else False)
@@ -3462,7 +3462,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_paintbyex = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_paintbyex = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_paintbyex = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_paintbyex = gr.Textbox(value="paintbyex", visible=False, interactive=False)
                                 del_ini_btn_paintbyex = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_paintbyex.value) else False)
@@ -3664,7 +3664,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_outpaint = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_outpaint = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_outpaint = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_outpaint = gr.Textbox(value="outpaint", visible=False, interactive=False)
                                 del_ini_btn_outpaint = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_outpaint.value) else False)
@@ -3933,7 +3933,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         model_controlnet.change(fn=change_model_type_controlnet, inputs=model_controlnet, outputs=[width_controlnet, height_controlnet])
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_controlnet = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_controlnet = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_controlnet = gr.Textbox(value="controlnet", visible=False, interactive=False)
                                 del_ini_btn_controlnet = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_controlnet.value) else False)
@@ -4165,7 +4165,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_faceswap = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")    
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_faceswap = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_faceswap = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_faceswap = gr.Textbox(value="faceswap", visible=False, interactive=False)
                                 del_ini_btn_faceswap = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_faceswap.value) else False)
@@ -4318,7 +4318,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_resrgan = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")     
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_resrgan = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_resrgan = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_resrgan = gr.Textbox(value="resrgan", visible=False, interactive=False)
                                 del_ini_btn_resrgan = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_resrgan.value) else False)
@@ -4448,7 +4448,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 height_gfpgan = gr.Slider(128, 8192, step=64, value=512, label="Image Height", info="Height of outputs", interactive=False)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_gfpgan = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_gfpgan = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_gfpgan = gr.Textbox(value="gfpgan", visible=False, interactive=False)
                                 del_ini_btn_gfpgan = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_gfpgan.value) else False)
@@ -4588,7 +4588,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 top_p_musicgen = gr.Slider(0.0, 500.0, step=1.0, value=0.0, label="top_p")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_musicgen = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_musicgen = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_musicgen = gr.Textbox(value="musicgen", visible=False, interactive=False)
                                 del_ini_btn_musicgen = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_musicgen.value) else False)
@@ -4729,7 +4729,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 top_p_musicgen_mel = gr.Slider(0.0, 500.0, step=1.0, value=0.0, label="top_p")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_musicgen_mel = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_musicgen_mel = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_musicgen_mel = gr.Textbox(value="musicgen_mel", visible=False, interactive=False)
                                 del_ini_btn_musicgen_mel = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_musicgen_mel.value) else False)
@@ -4874,7 +4874,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 num_prompt_musicldm = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_musicldm = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_musicldm = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_musicldm = gr.Textbox(value="musicldm", visible=False, interactive=False)
                                 del_ini_btn_musicldm = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_musicldm.value) else False)
@@ -5018,7 +5018,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 top_p_audiogen = gr.Slider(0.0, 500.0, step=1.0, value=0.0, label="top_p")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_audiogen = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_audiogen = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_audiogen = gr.Textbox(value="audiogen", visible=False, interactive=False)
                                 del_ini_btn_audiogen = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_audiogen.value) else False)
@@ -5152,7 +5152,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 batch_repeat_harmonai = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_harmonai = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_harmonai = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_harmonai = gr.Textbox(value="harmonai", visible=False, interactive=False)
                                 del_ini_btn_harmonai = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_harmonai.value) else False)
@@ -5265,7 +5265,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 voice_preset_bark = gr.Dropdown(choices=list(voice_preset_list_bark.keys()), value=list(voice_preset_list_bark.keys())[2], label="Voice")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_bark = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_bark = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_bark = gr.Textbox(value="bark", visible=False, interactive=False)
                                 del_ini_btn_bark = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_bark.value) else False)
@@ -5394,7 +5394,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_txt2vid_ms = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2vid_ms = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_txt2vid_ms = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_txt2vid_ms = gr.Textbox(value="txt2vid_ms", visible=False, interactive=False)
                                 del_ini_btn_txt2vid_ms = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_txt2vid_ms.value) else False)
@@ -5575,7 +5575,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_txt2vid_ze = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token Merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2vid_ze = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_txt2vid_ze = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_txt2vid_ze = gr.Textbox(value="txt2vid_ze", visible=False, interactive=False)
                                 del_ini_btn_txt2vid_ze = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_txt2vid_ze.value) else False)
@@ -5772,7 +5772,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_vid2vid_ze = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_vid2vid_ze = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_vid2vid_ze = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_vid2vid_ze = gr.Textbox(value="vid2vid_ze", visible=False, interactive=False)
                                 del_ini_btn_vid2vid_ze = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_vid2vid_ze.value) else False)
@@ -5937,7 +5937,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 seed_txt2shape = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility", interactive=False) 
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2shape = gr.Button("Save settings as defaults 💾")
+                                save_ini_btn_txt2shape = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_txt2shape = gr.Textbox(value="txt2shape", visible=False, interactive=False)
                                 del_ini_btn_txt2shape = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_txt2shape.value) else False)
