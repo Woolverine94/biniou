@@ -6147,7 +6147,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 seed_img2shape = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility", interactive=False) 
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_img2shape = gr.Button("Save as custom defaults settings 💾")
+                                save_ini_btn_img2shape = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_img2shape = gr.Textbox(value="img2shape", visible=False, interactive=False)
                                 del_ini_btn_img2shape = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_img2shape.value) else False)
