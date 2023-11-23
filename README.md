@@ -1,12 +1,9 @@
 <h1 align="center">
-  <br/>
-  <img src="./images/biniou_64.png"/>biniou
-  <br/>
+<p align="center">
+  <img src="./images/biniou.jpg" alt="biniou screenshot"/>
+</p>
 </h1>
 
-<p align="center">
-  <img src="./pix/biniou.png" alt="biniou screenshot"/>
-</p>
 
 <p align="justify">biniou is a self-hosted webui for several kinds of GenAI (generative artificial intelligence). You can generate multimedia contents with AI and use chatbot on your own computer, even without dedicated GPU and starting from 8GB RAM. Can work offline (once deployed and required models downloaded).</p>
 
