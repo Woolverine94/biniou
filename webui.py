@@ -11,6 +11,19 @@ import shutil
 from PIL import Image
 from ressources import *
 import sys
+import socket
+
+def local_ip():
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.settimeout(0)
+    try:
+        sock.connect(("10.0.0.1", 1))
+        host_ip = sock.getsockname()[0]
+    except Exception as e:
+        host_ip = "127.0.0.1"
+    finally:
+        sock.close()
+    return host_ip
 
 tmp_biniou="./.tmp"
 if os.path.exists(tmp_biniou) :
@@ -162,8 +175,6 @@ def change_output_type_whisper(output_type_whisper):
         return output_language_whisper.update(visible=True)        
 
 def stop_recording_whisper(source_audio_whisper):
-#    print(source_audio_whisper)
-#    print(type(source_audio_whisper))
     return source_audio_whisper.update(source="upload"), source_audio_whisper
 
 def read_ini_whisper(module) :
@@ -526,11 +537,11 @@ def url_params_theme(url) :
     if url.get('__theme') != None and url['__theme'] == "dark" :
         del url['__theme']
         url_final = dict_to_url(url)
-        return f"<a href='https://github.com/Woolverine94/biniou' target='_blank' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='32' height='32'/></p><span style='text-align: left; font-size: 32px; font-weight: bold; line-height:32px;'>biniou</span></a><span style='vertical-align: top; line-height: 32px;'><button onclick=\"window.location.href='{url_final}';\" title='Switch to light mode and reload page'>☀️</button></span>"
+        return f"<a href='https://github.com/Woolverine94/biniou' target='_blank' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='32' height='32'/></p><span style='text-align: left; font-size: 32px; font-weight: bold; line-height:32px;'>biniou</span></a><span style='vertical-align: top; line-height: 32px;'><button onclick=\"window.location.href='{url_final}';\" title='Switch to light mode and reload page'>☀️</button></span>", banner_biniou.update(visible=True)
     elif url.get('__theme') == None :
         url['__theme'] = "dark"
         url_final = dict_to_url(url)
-        return f"<a href='https://github.com/Woolverine94/biniou' target='_blank' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='32' height='32'/></p><span style='text-align: left; font-size: 32px; font-weight: bold; line-height:32px;'>biniou</span></a><span style='vertical-align: top; line-height: 32px;'><button onclick=\"window.location.href='{url_final}';\" title='Switch to dark mode and reload page'>🌘</button></span>"
+        return f"<a href='https://github.com/Woolverine94/biniou' target='_blank' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='32' height='32'/></p><span style='text-align: left; font-size: 32px; font-weight: bold; line-height:32px;'>biniou</span></a><span style='vertical-align: top; line-height: 32px;'><button onclick=\"window.location.href='{url_final}';\" title='Switch to dark mode and reload page'>🌘</button></span>", banner_biniou.update(visible=True)
 
 color_label = "#7B43EE"
 color_label_button = "#4361ee"
@@ -559,10 +570,8 @@ theme_gradio = gr.themes.Base().set(
 with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     nsfw_filter = gr.Textbox(value="1", visible=False)
     url_params_current = gr.Textbox(value="", visible=False)
-    banner_biniou = gr.HTML(
-        """<a href='https://github.com/Woolverine94/biniou' target='_blank' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='32' height='32'/></p><span style='text-align: left; font-size: 32px; font-weight: bold; line-height:32px;'>biniou</span></a><span style='vertical-align: top; line-height: 32px;'><button onclick=\"window.location.href='./';\" title='Switch to dark mode and reload page'>🌘</button></span>"""
-    )
-    url_params_current.change(url_params_theme, url_params_current, banner_biniou, show_progress="hidden")
+    banner_biniou = gr.HTML("""""", visible=False)
+    url_params_current.change(url_params_theme, url_params_current, [banner_biniou, banner_biniou], show_progress="hidden")
     with gr.Tabs() as tabs:
 # Chat
         with gr.TabItem("Text ✍️", id=1) as tab_text:
@@ -6920,7 +6929,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     demo.load(split_url_params, nsfw_filter, [nsfw_filter, url_params_current], _js=get_window_url_params)
     demo.load(read_logs, None, biniou_console_output, every=1)
 #    demo.load(fn=lambda: gr.Info('Biniou loading completed. Ready to work !'))
-    
+    print(f">>>[biniou 🧠]: Up and running at https://{local_ip()}:7860/?__theme=dark")
+
 if __name__ == "__main__":
     demo.queue(concurrency_count=8).launch(
         server_name="0.0.0.0",
@@ -6929,7 +6939,6 @@ if __name__ == "__main__":
         favicon_path="./images/biniou_64.ico",
         ssl_keyfile="./ssl/key.pem",
         ssl_verify=False,
-        inbrowser=True if len(sys.argv)>1 and sys.argv[1]=="--inbrowser" else False
+        inbrowser=True if len(sys.argv)>1 and sys.argv[1]=="--inbrowser" else False,
     )
-
 # Fin du fichier
