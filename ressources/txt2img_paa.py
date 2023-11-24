@@ -11,7 +11,8 @@ from ressources.scheduler import *
 from ressources.gfpgan import *
 # import tomesd
 
-device_txt2img_paa = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device_label_txt2img_paa, model_arch = detect_device()
+device_txt2img_paa = torch.device(device_label_txt2img_paa)
 
 # Gestion des modèles
 model_path_txt2img_paa = "./models/PixArtAlpha/"
@@ -80,7 +81,7 @@ def image_txt2img_paa(
     if modelid_txt2img_paa[0:9] == "./models/" :
         pipe_txt2img_paa = PixArtAlphaPipeline.from_single_file(
             modelid_txt2img_paa, 
-            torch_dtype=torch.float32, 
+            torch_dtype=model_arch,
             use_safetensors=True, 
             safety_checker=nsfw_filter_final, 
             feature_extractor=feat_ex,
@@ -89,7 +90,7 @@ def image_txt2img_paa(
         pipe_txt2img_paa = PixArtAlphaPipeline.from_pretrained(
             modelid_txt2img_paa, 
             cache_dir=model_path_txt2img_paa, 
-            torch_dtype=torch.float32, 
+            torch_dtype=model_arch,
             use_safetensors=True, 
             safety_checker=nsfw_filter_final, 
             feature_extractor=feat_ex,
@@ -98,9 +99,12 @@ def image_txt2img_paa(
         )
     
     pipe_txt2img_paa = get_scheduler(pipe=pipe_txt2img_paa, scheduler=sampler_txt2img_paa)
-    pipe_txt2img_paa = pipe_txt2img_paa.to(device_txt2img_paa)
     pipe_txt2img_paa.enable_attention_slicing("max")
 #    tomesd.apply_patch(pipe_txt2img_paa, ratio=tkme_txt2img_paa)
+    if device_label_txt2img_paa == "cuda" :
+        pipe_txt2img_paa.enable_sequential_cpu_offload()
+    else : 
+        pipe_txt2img_paa = pipe_txt2img_paa.to(device_txt2img_paa)
     
     if seed_txt2img_paa == 0:
         random_seed = random.randrange(0, 10000000000, 1)
@@ -124,6 +128,7 @@ def image_txt2img_paa(
 #   [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])   
 #   
     final_image = []
+    final_seed = []
     for i in range (num_prompt_txt2img_paa):
         image = pipe_txt2img_paa(
             prompt=prompt_txt2img_paa,
@@ -140,7 +145,6 @@ def image_txt2img_paa(
             callback=check_txt2img_paa, 
         ).images
 
-        final_seed = []
         for j in range(len(image)):
             timestamp = time.time()
             seed_id = random_seed + i*num_images_per_prompt_txt2img_paa + j if (seed_txt2img_paa == 0) else seed_txt2img_paa + i*num_images_per_prompt_txt2img_paa + j

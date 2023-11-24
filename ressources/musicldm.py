@@ -86,6 +86,7 @@ def music_musicldm(
         negative_prompt_musicldm = ""
 
     final_audio=[]
+    final_seed = []
     for i in range (num_prompt_musicldm):
         audio = pipe_musicldm(
             prompt=prompt_musicldm, 
@@ -98,7 +99,6 @@ def music_musicldm(
             callback=check_musicldm,              
         ).audios
         
-        final_seed = []
         for j in range(len(audio)):
             timestamp = time.time()
             seed_id = random_seed + i*num_audio_per_prompt_musicldm + j if (seed_musicldm == 0) else seed_musicldm + i*num_audio_per_prompt_musicldm + j

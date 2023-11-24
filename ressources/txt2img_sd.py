@@ -175,6 +175,7 @@ def image_txt2img_sd(modelid_txt2img_sd,
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
    
     final_image = []
+    final_seed = []
     for i in range (num_prompt_txt2img_sd):
         if (is_xl_txt2img_sd == True) :
             image = pipe_txt2img_sd(
@@ -205,7 +206,6 @@ def image_txt2img_sd(modelid_txt2img_sd,
                 callback_on_step_end_tensor_inputs=['latents'], 
             ).images
         
-        final_seed = []
         for j in range(len(image)):
             timestamp = time.time()
             seed_id = random_seed + i*num_images_per_prompt_txt2img_sd + j if (seed_txt2img_sd == 0) else seed_txt2img_sd + i*num_images_per_prompt_txt2img_sd + j

@@ -13,7 +13,8 @@ from ressources.gfpgan import *
 from controlnet_aux.processor import Processor
 import tomesd
 
-device_controlnet = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device_label_controlnet, model_arch = detect_device()
+device_controlnet = torch.device(device_label_controlnet)
 
 # Gestion des modèles
 model_path_controlnet = "./models/Stable_Diffusion/"
@@ -229,7 +230,7 @@ def image_controlnet(
     controlnet = ControlNetModel.from_pretrained(
         variant_controlnet, 
         cache_dir=model_path_base_controlnet, 
-        torch_dtype=torch.float32, 
+        torch_dtype=model_arch,
         use_safetensors=True,
         resume_download=True,
         local_files_only=True if offline_test() else None        
@@ -250,7 +251,7 @@ def image_controlnet(
             pipe_controlnet = StableDiffusionXLControlNetPipeline.from_single_file(
                 modelid_controlnet, 
                 controlnet=controlnet, 
-                torch_dtype=torch.float32, 
+                torch_dtype=model_arch,
                 use_safetensors=True, 
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex
@@ -260,7 +261,7 @@ def image_controlnet(
                 modelid_controlnet, 
                 controlnet=controlnet, 
                 cache_dir=model_path_controlnet, 
-                torch_dtype=torch.float32, 
+                torch_dtype=model_arch,
                 use_safetensors=True, 
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
@@ -272,7 +273,7 @@ def image_controlnet(
             pipe_controlnet = StableDiffusionControlNetPipeline.from_single_file(
                 modelid_controlnet, 
                 controlnet=controlnet, 
-                torch_dtype=torch.float32, 
+                torch_dtype=model_arch,
                 use_safetensors=True, 
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex
@@ -282,7 +283,7 @@ def image_controlnet(
                 modelid_controlnet, 
                 controlnet=controlnet, 
                 cache_dir=model_path_controlnet, 
-                torch_dtype=torch.float32, 
+                torch_dtype=model_arch,
                 use_safetensors=True, 
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
@@ -291,9 +292,13 @@ def image_controlnet(
             )
    
     pipe_controlnet = get_scheduler(pipe=pipe_controlnet, scheduler=sampler_controlnet)
-    pipe_controlnet = pipe_controlnet.to(device_controlnet)
     pipe_controlnet.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_controlnet, ratio=tkme_controlnet)
+    if device_label_controlnet == "cuda" :
+        pipe_controlnet.enable_sequential_cpu_offload()
+    else : 
+        pipe_controlnet = pipe_controlnet.to(device_controlnet)
+    pipe_controlnet.enable_vae_slicing()
 
     if seed_controlnet == 0:
         random_seed = random.randrange(0, 10000000000, 1)
@@ -328,7 +333,7 @@ def image_controlnet(
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
    
     final_image = []
-    
+    final_seed = []     
     for i in range (num_prompt_controlnet):
         if (is_xl_controlnet == True) : 
             image = pipe_controlnet(
@@ -365,7 +370,6 @@ def image_controlnet(
                 callback=check_controlnet,
             ).images
 
-        final_seed = [] 
         for j in range(len(image)):
             timestamp = time.time()
             seed_id = random_seed + i*num_images_per_prompt_controlnet + j if (seed_controlnet == 0) else seed_controlnet + i*num_images_per_prompt_controlnet + j

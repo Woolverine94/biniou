@@ -13,7 +13,8 @@ from ressources.common import *
 from ressources.gfpgan import *
 import tomesd
 
-device_inpaint = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device_label_inpaint, model_arch = detect_device()
+device_inpaint = torch.device(device_label_inpaint)
 
 # Gestion des modèles
 model_path_inpaint = "./models/inpaint/"
@@ -84,7 +85,7 @@ def image_inpaint(
     if modelid_inpaint[0:9] == "./models/" :
         pipe_inpaint = StableDiffusionInpaintPipeline.from_single_file(
             modelid_inpaint, 
-            torch_dtype=torch.float32, 
+            torch_dtype=model_arch,
             use_safetensors=True, 
             safety_checker=nsfw_filter_final, 
             feature_extractor=feat_ex
@@ -93,7 +94,7 @@ def image_inpaint(
         pipe_inpaint = StableDiffusionInpaintPipeline.from_pretrained(
             modelid_inpaint, 
             cache_dir=model_path_inpaint, 
-            torch_dtype=torch.float32, 
+            torch_dtype=model_arch,
             use_safetensors=True, 
             safety_checker=nsfw_filter_final, 
             feature_extractor=feat_ex,
@@ -102,9 +103,12 @@ def image_inpaint(
         )
 
     pipe_inpaint = get_scheduler(pipe=pipe_inpaint, scheduler=sampler_inpaint)
-    pipe_inpaint = pipe_inpaint.to(device_inpaint)
     pipe_inpaint.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_inpaint, ratio=tkme_inpaint)
+    if device_label_inpaint == "cuda" :
+        pipe_inpaint.enable_sequential_cpu_offload()
+    else : 
+        pipe_inpaint = pipe_inpaint.to(device_inpaint)
     
     if seed_inpaint == 0:
         random_seed = random.randrange(0, 10000000000, 1)
@@ -138,7 +142,7 @@ def image_inpaint(
     [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
     
     final_image = []
-    
+    final_seed = []
     for i in range (num_prompt_inpaint):
         image = pipe_inpaint(
             image=image_input,
@@ -156,7 +160,6 @@ def image_inpaint(
             callback_on_step_end_tensor_inputs=['latents'],
         ).images
 
-        final_seed = [] 
         for j in range(len(image)):
             timestamp = time.time()
             seed_id = random_seed + i*num_images_per_prompt_inpaint + j if (seed_inpaint == 0) else seed_inpaint + i*num_images_per_prompt_inpaint + j

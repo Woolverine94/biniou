@@ -13,7 +13,8 @@ from ressources.common import *
 from ressources.gfpgan import *
 import tomesd
 
-device_pix2pix = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device_label_pix2pix, model_arch = detect_device()
+device_pix2pix = torch.device(device_label_pix2pix)
 
 # Gestion des modèles -> pas concerné (safetensors refusé)
 model_path_pix2pix = "./models/pix2pix/"
@@ -82,7 +83,7 @@ def image_pix2pix(
     pipe_pix2pix= StableDiffusionInstructPix2PixPipeline.from_pretrained(
         modelid_pix2pix, 
         cache_dir=model_path_pix2pix, 
-        torch_dtype=torch.float32, 
+        torch_dtype=model_arch,
         use_safetensors=True, 
         safety_checker=nsfw_filter_final, 
         feature_extractor=feat_ex,
@@ -91,9 +92,12 @@ def image_pix2pix(
     )
     
     pipe_pix2pix = get_scheduler(pipe=pipe_pix2pix, scheduler=sampler_pix2pix)
-    pipe_pix2pix = pipe_pix2pix.to(device_pix2pix)
     pipe_pix2pix.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_pix2pix, ratio=tkme_pix2pix)
+    if device_label_pix2pix == "cuda" :
+        pipe_pix2pix.enable_sequential_cpu_offload()
+    else : 
+        pipe_pix2pix = pipe_pix2pix.to(device_pix2pix)
     
     if seed_pix2pix == 0:
         random_seed = torch.randint(0, 10000000000, (1,))

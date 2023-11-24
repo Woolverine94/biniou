@@ -11,7 +11,8 @@ from RealESRGAN import RealESRGAN
 from ressources.common import *
 from ressources.gfpgan import *
 
-device_resrgan = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device_label_resrgan, model_arch = detect_device()
+device_resrgan = torch.device(device_label_resrgan)
 
 model_path_resrgan = "./models/Real_ESRGAN/"
 os.makedirs(model_path_resrgan, exist_ok=True)

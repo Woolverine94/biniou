@@ -11,7 +11,8 @@ from ressources.scheduler import *
 from ressources.gfpgan import *
 import tomesd
 
-device_txt2img_kd = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device_label_txt2img_kd, model_arch = detect_device()
+device_txt2img_kd = torch.device(device_label_txt2img_kd)
 
 # Gestion des modèles
 model_path_txt2img_kd = "./models/Kandinsky/"
@@ -75,23 +76,25 @@ def image_txt2img_kd(
     if modelid_txt2img_kd[0:9] == "./models/" :
         pipe_txt2img_kd = AutoPipelineForText2Image.from_single_file(
             modelid_txt2img_kd, 
-            torch_dtype=torch.float32, 
+            torch_dtype=model_arch,
             use_safetensors=True,
         )
     else :        
         pipe_txt2img_kd = AutoPipelineForText2Image.from_pretrained(
             modelid_txt2img_kd, 
             cache_dir=model_path_txt2img_kd, 
-            torch_dtype=torch.float32, 
+            torch_dtype=model_arch,
             use_safetensors=True,
             resume_download=True,
             local_files_only=True if offline_test() else None
         )
         
     pipe_txt2img_kd = get_scheduler(pipe=pipe_txt2img_kd, scheduler=sampler_txt2img_kd)
-    pipe_txt2img_kd = pipe_txt2img_kd.to(device_txt2img_kd)
     pipe_txt2img_kd.enable_attention_slicing("max")  
-#    tomesd.apply_patch(pipe_txt2img_kd, ratio=tkme_txt2img_kd)
+    if device_label_txt2img_kd == "cuda" :
+        pipe_txt2img_kd.enable_sequential_cpu_offload()
+    else : 
+        pipe_txt2img_kd = pipe_txt2img_kd.to(device_txt2img_kd)
 
     if seed_txt2img_kd == 0:
         random_seed = torch.randint(0, 10000000000, (1,))

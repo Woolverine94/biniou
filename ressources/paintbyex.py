@@ -12,7 +12,8 @@ from ressources.common import *
 from ressources.gfpgan import *
 import tomesd
 
-device_paintbyex = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device_label_paintbyex, model_arch = detect_device()
+device_paintbyex = torch.device(device_label_paintbyex)
 
 # Gestion des modèles
 model_path_paintbyex = "./models/Paint_by_example/"
@@ -80,7 +81,7 @@ def image_paintbyex(
     if modelid_paintbyex[0:9] == "./models/" :
         pipe_paintbyex = PaintByExamplePipeline.from_single_file(
             modelid_paintbyex, 
-            torch_dtype=torch.float32, 
+            torch_dtype=model_arch,
 #            use_safetensors=True, 
             safety_checker=nsfw_filter_final, 
 #            feature_extractor=feat_ex, 
@@ -89,7 +90,7 @@ def image_paintbyex(
         pipe_paintbyex = PaintByExamplePipeline.from_pretrained(
             modelid_paintbyex, 
             cache_dir=model_path_paintbyex, 
-            torch_dtype=torch.float32, 
+            torch_dtype=model_arch,
 #            use_safetensors=True, 
             safety_checker=nsfw_filter_final, 
 #            feature_extractor=feat_ex, 
@@ -98,10 +99,13 @@ def image_paintbyex(
         )
 
     pipe_paintbyex = get_scheduler(pipe=pipe_paintbyex, scheduler=sampler_paintbyex)
-    pipe_paintbyex = pipe_paintbyex.to(device_paintbyex)
     pipe_paintbyex.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_paintbyex, ratio=tkme_paintbyex)
-    
+    if device_label_paintbyex == "cuda" :
+        pipe_paintbyex.enable_sequential_cpu_offload()
+    else : 
+        pipe_paintbyex = pipe_paintbyex.to(device_paintbyex)
+
     if seed_paintbyex == 0:
         random_seed = random.randrange(0, 10000000000, 1)
         final_seed = random_seed
@@ -123,7 +127,7 @@ def image_paintbyex(
     mask_image_input.save(savename_mask) 
    
     final_image = []
-    
+    final_seed = []
     for i in range (num_prompt_paintbyex):
         image = pipe_paintbyex(
             image=image_input,
@@ -138,7 +142,6 @@ def image_paintbyex(
             callback = check_paintbyex,              
         ).images
 
-        final_seed = []
         for j in range(len(image)):
             timestamp = time.time()
             seed_id = random_seed + i*num_images_per_prompt_paintbyex + j if (seed_paintbyex == 0) else seed_paintbyex + i*num_images_per_prompt_paintbyex + j

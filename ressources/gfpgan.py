@@ -11,7 +11,8 @@ from gfpgan.utils import GFPGANer
 from ressources.common import *
 from huggingface_hub import snapshot_download, hf_hub_download
 
-device_gfpgan = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device_label_gfpgan, model_arch = detect_device()
+device_gfpgan = torch.device(device_label_gfpgan)
 
 model_path_gfpgan = "./models/gfpgan/"
 os.makedirs(model_path_gfpgan, exist_ok=True)

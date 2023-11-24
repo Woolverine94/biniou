@@ -11,7 +11,8 @@ from ressources.scheduler import *
 from ressources.gfpgan import *
 import tomesd
 
-device_txt2img_mjm = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device_label_txt2img_mjm, model_arch = detect_device()
+device_txt2img_mjm = torch.device(device_label_txt2img_mjm)
 
 # Gestion des modèles
 model_path_txt2img_mjm = "./models/Midjourney_mini/"
@@ -79,7 +80,7 @@ def image_txt2img_mjm(
     if modelid_txt2img_mjm[0:9] == "./models/" :
         pipe_txt2img_mjm = DiffusionPipeline.from_single_file(
             modelid_txt2img_mjm, 
-            torch_dtype=torch.float32, 
+            torch_dtype=model_arch, 
 #            use_safetensors=True, 
             safety_checker=nsfw_filter_final, 
             feature_extractor=feat_ex,
@@ -88,7 +89,7 @@ def image_txt2img_mjm(
         pipe_txt2img_mjm = DiffusionPipeline.from_pretrained(
             modelid_txt2img_mjm, 
             cache_dir=model_path_txt2img_mjm, 
-            torch_dtype=torch.float32, 
+            torch_dtype=model_arch, 
 #            use_safetensors=True, 
             safety_checker=nsfw_filter_final, 
             feature_extractor=feat_ex,
@@ -97,10 +98,14 @@ def image_txt2img_mjm(
         )
     
     pipe_txt2img_mjm = get_scheduler(pipe=pipe_txt2img_mjm, scheduler=sampler_txt2img_mjm)
-    pipe_txt2img_mjm = pipe_txt2img_mjm.to(device_txt2img_mjm)
     pipe_txt2img_mjm.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_txt2img_mjm, ratio=tkme_txt2img_mjm)
-    
+    if device_label_txt2img_mjm == "cuda" :
+        pipe_txt2img_mjm.enable_sequential_cpu_offload()
+    else : 
+        pipe_txt2img_mjm = pipe_txt2img_mjm.to(device_txt2img_mjm)
+    pipe_txt2img_mjm.enable_vae_slicing()
+
     if seed_txt2img_mjm == 0:
         random_seed = random.randrange(0, 10000000000, 1)
         final_seed = random_seed
@@ -123,6 +128,7 @@ def image_txt2img_mjm(
     [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])   
     
     final_image = []
+    final_seed = []
     for i in range (num_prompt_txt2img_mjm):
         image = pipe_txt2img_mjm(
             prompt_embeds=conditioning,
@@ -137,7 +143,6 @@ def image_txt2img_mjm(
             callback_on_step_end_tensor_inputs=['latents'],
         ).images
 
-        final_seed = []
         for j in range(len(image)):
             timestamp = time.time()
             seed_id = random_seed + i*num_images_per_prompt_txt2img_mjm + j if (seed_txt2img_mjm == 0) else seed_txt2img_mjm + i*num_images_per_prompt_txt2img_mjm + j
