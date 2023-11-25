@@ -5563,7 +5563,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 height_txt2vid_ze = gr.Slider(128, 1280, step=64, value=320, label="Video Height", info="Height of outputs")
                             with gr.Column():
-                                num_videos_per_prompt_txt2vid_ze = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of videos to generate in a single run")
+                                num_videos_per_prompt_txt2vid_ze = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of videos to generate in a single run", interactive=False)
                             with gr.Column():
                                 num_prompt_txt2vid_ze = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")                            
                         with gr.Accordion("Advanced Settings", open=False):
@@ -5759,7 +5759,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 image_guidance_scale_vid2vid_ze = gr.Slider(0.0, 10.0, step=0.1, value=1.5, label="Img CFG Scale", info="Low values : more creativity. High values : more fidelity to the input video")
                             with gr.Column():
-                                num_images_per_prompt_vid2vid_ze = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of videos to generate in a single run")
+                                num_images_per_prompt_vid2vid_ze = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of videos to generate in a single run", interactive=False)
                             with gr.Column():
                                 num_prompt_vid2vid_ze = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
@@ -6308,8 +6308,6 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Box():                                
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
-
-
 
     tab_text_num = gr.Number(value=tab_text.id, precision=0, visible=False)
     tab_image_num = gr.Number(value=tab_image.id, precision=0, visible=False) 

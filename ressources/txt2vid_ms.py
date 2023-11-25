@@ -13,7 +13,8 @@ from ressources.scheduler import *
 from ressources.common import *
 import tomesd
 
-device_txt2vid_ms = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device_label_txt2vid_ms, model_arch = detect_device()
+device_txt2vid_ms = torch.device(device_label_txt2vid_ms)
 
 # Gestion des modèles
 model_path_txt2vid_ms = "./models/Modelscope/"
@@ -68,21 +69,27 @@ def video_txt2vid_ms(
     pipe_txt2vid_ms = DiffusionPipeline.from_pretrained(
         modelid_txt2vid_ms, 
         cache_dir=model_path_txt2vid_ms, 
-        torch_dtype=torch.float32,
+        torch_dtype=model_arch, 
         resume_download=True,
         local_files_only=True if offline_test() else None         
     )
     pipe_txt2vid_ms = get_scheduler(pipe=pipe_txt2vid_ms, scheduler=sampler_txt2vid_ms)
-    pipe_txt2vid_ms = pipe_txt2vid_ms.to(device_txt2vid_ms)
     pipe_txt2vid_ms.unet.enable_forward_chunking(chunk_size=1, dim=1)
+    if device_label_txt2vid_ms == "cuda" :
+        pipe_txt2vid_ms.enable_sequential_cpu_offload()
+    else : 
+        pipe_txt2vid_ms = pipe_txt2vid_ms.to(device_txt2vid_ms)
     pipe_txt2vid_ms.enable_vae_slicing()
-
+    
     if seed_txt2vid_ms == 0:
-        random_seed = torch.randint(0, 10000000000, (1,))
-        generator = torch.manual_seed(random_seed)
+        random_seed = random.randrange(0, 10000000000, 1)
+        final_seed = random_seed
     else:
-        generator = torch.manual_seed(seed_txt2vid_ms)
-
+        final_seed = seed_txt2vid_ms
+    generator = []
+    for k in range(num_prompt_txt2vid_ms):
+        generator.append(torch.Generator(device_txt2vid_ms).manual_seed(final_seed + k))
+        
     prompt_txt2vid_ms = str(prompt_txt2vid_ms)
     negative_prompt_txt2vid_ms = str(negative_prompt_txt2vid_ms)
     if prompt_txt2vid_ms == "None":
@@ -95,6 +102,7 @@ def video_txt2vid_ms(
     neg_conditioning = compel.build_conditioning_tensor(negative_prompt_txt2vid_ms)
     [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])    
 
+    final_seed = []
     for i in range (num_prompt_txt2vid_ms):
         video_frames = pipe_txt2vid_ms(
             prompt_embeds=conditioning,            
@@ -104,15 +112,17 @@ def video_txt2vid_ms(
             num_inference_steps=num_inference_step_txt2vid_ms,
             guidance_scale=guidance_scale_txt2vid_ms,
             num_frames=num_frames_txt2vid_ms,
-            generator = generator,
+            generator = generator[i],
             callback=check_txt2vid_ms, 
         ).frames
 
         video_path = export_to_video(video_frames)
         timestamp = time.time()
-        savename = f"outputs/{timestamp}.mp4"
+        seed_id = random_seed + i if (seed_txt2vid_ms == 0) else seed_txt2vid_ms + i
+        savename = f"outputs/{seed_id}_{timestamp}.mp4"
         shutil.move(video_path, savename)
-        
+        final_seed.append(seed_id)
+                    
     print(f">>>[Modelscope 📼 ]: generated {num_prompt_txt2vid_ms} batch(es) of 1")
     reporting_txt2vid_ms = f">>>[Modelscope 📼 ]: "+\
         f"Settings : Model={modelid_txt2vid_ms} | "+\
@@ -123,8 +133,8 @@ def video_txt2vid_ms(
         f"Size={width_txt2vid_ms}x{height_txt2vid_ms} | "+\
         f"GFPGAN={use_gfpgan_txt2vid_ms} | "+\
         f"Prompt={prompt_txt2vid_ms} | "+\
-        f"Negative prompt={negative_prompt_txt2vid_ms} |"#+\
-#        f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
+        f"Negative prompt={negative_prompt_txt2vid_ms} |"+\
+        f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_txt2vid_ms) 
 
     del pipe_txt2vid_ms, generator, video_frames

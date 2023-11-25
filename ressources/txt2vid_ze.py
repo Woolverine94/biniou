@@ -13,7 +13,8 @@ from ressources.common import *
 from ressources.gfpgan import *
 import tomesd
 
-device_txt2vid_ze = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device_label_txt2vid_ze, model_arch = detect_device()
+device_txt2vid_ze = torch.device(device_label_txt2vid_ze)
 
 model_path_txt2vid_ze = "./models/Stable_Diffusion/"
 os.makedirs(model_path_txt2vid_ze, exist_ok=True)
@@ -78,7 +79,7 @@ def video_txt2vid_ze(
     pipe_txt2vid_ze = TextToVideoZeroPipeline.from_pretrained(
         modelid_txt2vid_ze, 
         cache_dir=model_path_txt2vid_ze, 
-        torch_dtype=torch.float32, 
+        torch_dtype=model_arch, 
         use_safetensors=True, 
         safety_checker=nsfw_filter_final, 
         feature_extractor=feat_ex, 
@@ -87,20 +88,28 @@ def video_txt2vid_ze(
     )
     
     pipe_txt2vid_ze = get_scheduler(pipe=pipe_txt2vid_ze, scheduler=sampler_txt2vid_ze)
-    pipe_txt2vid_ze = pipe_txt2vid_ze.to(device_txt2vid_ze)
     tomesd.apply_patch(pipe_txt2vid_ze, ratio=tkme_txt2vid_ze)
+    if device_label_txt2vid_ze == "cuda" :
+        pipe_txt2vid_ze.enable_sequential_cpu_offload()
+    else : 
+        pipe_txt2vid_ze = pipe_txt2vid_ze.to(device_txt2vid_ze)
+    pipe_txt2vid_ze.enable_vae_slicing()
     
     if seed_txt2vid_ze == 0:
-        random_seed = torch.randint(0, 10000000000, (1,))
-        generator = torch.manual_seed(random_seed)
+        random_seed = random.randrange(0, 10000000000, 1)
+        final_seed = random_seed
     else:
-        generator = torch.manual_seed(seed_txt2vid_ze)
+        final_seed = seed_txt2vid_ze
+    generator = []
+    for k in range(num_prompt_txt2vid_ze):
+        generator.append(torch.Generator(device_txt2vid_ze).manual_seed(final_seed + k))
 
+    final_seed = []
     for j in range (num_prompt_txt2vid_ze):
         if num_chunks_txt2vid_ze != 1 :
             result = []
             chunk_ids = np.arange(0, num_frames_txt2vid_ze, num_chunks_txt2vid_ze)
-            generator = torch.Generator(device=device_txt2vid_ze)
+#            generator = torch.Generator(device=device_txt2vid_ze)
             for i in range(len(chunk_ids)):
                 print(f"Processing chunk {i + 1} / {len(chunk_ids)}")
                 ch_start = chunk_ids[i]
@@ -109,7 +118,7 @@ def video_txt2vid_ze(
                     frame_ids = [0] + list(range(ch_start, ch_end))
                 else :
                     frame_ids = [ch_start -1] + list(range(ch_start, ch_end))
-                generator = generator.manual_seed(seed_txt2vid_ze)
+#                generator = generator.manual_seed(seed_txt2vid_ze)
                 output = pipe_txt2vid_ze(
                     prompt=prompt_txt2vid_ze,
                     negative_prompt=negative_prompt_txt2vid_ze,
@@ -124,7 +133,7 @@ def video_txt2vid_ze(
                     motion_field_strength_y=motion_field_strength_y_txt2vid_ze,
                     t0=timestep_t0_txt2vid_ze,
                     t1=timestep_t1_txt2vid_ze,
-                    generator = generator,
+                    generator = generator[j],
                     callback=check_txt2vid_ze, 
                 )
                 result.append(output.images[1:])
@@ -143,19 +152,29 @@ def video_txt2vid_ze(
                 motion_field_strength_y=motion_field_strength_y_txt2vid_ze,
                 t0=timestep_t0_txt2vid_ze,
                 t1=timestep_t1_txt2vid_ze,
-                generator = generator,
+                generator = generator[j],
                 callback=check_txt2vid_ze, 
             ).images
-
+         
         result = [(r * 255).astype("uint8") for r in result]
 
-        for j in range(len(result)):
+        for n in range(len(result)):
             if use_gfpgan_txt2vid_ze == True :
-                result[j] = image_gfpgan_mini(result[j])
+                result[n] = image_gfpgan_mini(result[n])
 
-        timestamp = time.time()
-        savename = f"outputs/{timestamp}.mp4"
-        imageio.mimsave(savename, result, fps=num_fps_txt2vid_ze)
+        a = 1
+        b = 0
+        for o in range(len(result)):
+            if (a < num_frames_txt2vid_ze):
+                a += 1
+            elif (a == num_frames_txt2vid_ze):
+                timestamp = time.time()
+                seed_id = random_seed + j*num_videos_per_prompt_txt2vid_ze + b if (seed_txt2vid_ze == 0) else seed_txt2vid_ze + j*num_videos_per_prompt_txt2vid_ze + b
+                savename = f"outputs/{seed_id}_{timestamp}.mp4"
+                imageio.mimsave(savename, result, fps=num_fps_txt2vid_ze)
+                final_seed.append(seed_id)
+                a = 1
+                b += 1
 
     print(f">>>[Text2Video-Zero 📼 ]: generated {num_prompt_txt2vid_ze} batch(es) of {num_videos_per_prompt_txt2vid_ze}")
     reporting_txt2vid_ze = f">>>[Text2Video-Zero 📼 ]: "+\
@@ -175,8 +194,8 @@ def video_txt2vid_ze(
         f"Token merging={tkme_txt2vid_ze} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Prompt={prompt_txt2vid_ze} | "+\
-        f"Negative prompt={negative_prompt_txt2vid_ze} | "#+\
-#        f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
+        f"Negative prompt={negative_prompt_txt2vid_ze} | "+\
+        f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_txt2vid_ze) 
 
     del nsfw_filter_final, feat_ex, pipe_txt2vid_ze, generator, result

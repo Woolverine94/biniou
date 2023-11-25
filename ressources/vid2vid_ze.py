@@ -15,7 +15,8 @@ from ressources.common import *
 from ressources.gfpgan import *
 import tomesd
 
-device_vid2vid_ze = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device_label_vid2vid_ze, model_arch = detect_device()
+device_vid2vid_ze = torch.device(device_label_vid2vid_ze)
 
 # Gestion des modèles -> pas concerné (safetensors refusé)
 model_path_vid2vid_ze = "./models/pix2pix/"
@@ -94,7 +95,7 @@ def image_vid2vid_ze(
     pipe_vid2vid_ze= StableDiffusionInstructPix2PixPipeline.from_pretrained(
         modelid_vid2vid_ze, 
         cache_dir=model_path_vid2vid_ze, 
-        torch_dtype=torch.float32, 
+        torch_dtype=model_arch, 
         use_safetensors=True, 
         safety_checker=nsfw_filter_final, 
         feature_extractor=feat_ex,
@@ -103,16 +104,22 @@ def image_vid2vid_ze(
     )
     
     pipe_vid2vid_ze = get_scheduler(pipe=pipe_vid2vid_ze, scheduler=sampler_vid2vid_ze)
-    pipe_vid2vid_ze = pipe_vid2vid_ze.to(device_vid2vid_ze)
     pipe_vid2vid_ze.unet.set_attn_processor(CrossFrameAttnProcessor(batch_size=3))
     tomesd.apply_patch(pipe_vid2vid_ze, ratio=tkme_vid2vid_ze)
+    if device_label_vid2vid_ze == "cuda" :
+        pipe_vid2vid_ze.enable_sequential_cpu_offload()
+    else : 
+        pipe_vid2vid_ze = pipe_vid2vid_ze.to(device_vid2vid_ze)
     
     if seed_vid2vid_ze == 0:
-        random_seed = torch.randint(0, 10000000000, (1,))
-        generator = torch.manual_seed(random_seed)
+        random_seed = random.randrange(0, 10000000000, 1)
+        final_seed = random_seed
     else:
-        generator = torch.manual_seed(seed_vid2vid_ze)
-        
+        final_seed = seed_vid2vid_ze
+    generator = []
+    for k in range(num_prompt_vid2vid_ze):
+        generator.append(torch.Generator(device_vid2vid_ze).manual_seed(final_seed + k))
+
     prompt_vid2vid_ze = str(prompt_vid2vid_ze)
     negative_prompt_vid2vid_ze = str(negative_prompt_vid2vid_ze)
     if prompt_vid2vid_ze == "None":
@@ -120,9 +127,9 @@ def image_vid2vid_ze(
     if negative_prompt_vid2vid_ze == "None":
         negative_prompt_vid2vid_ze = ""
 
-    final_image = []
-    
+    final_seed = []
     for i in range (num_prompt_vid2vid_ze):
+        final_image = []
         image = pipe_vid2vid_ze(
             image=video,
             prompt=[prompt_vid2vid_ze] * len(video),
@@ -131,7 +138,7 @@ def image_vid2vid_ze(
             guidance_scale=guidance_scale_vid2vid_ze,
             image_guidance_scale=image_guidance_scale_vid2vid_ze,
             num_inference_steps=num_inference_step_vid2vid_ze,
-            generator = generator,
+            generator = generator[i],
             callback_on_step_end=check_vid2vid_ze, 
             callback_on_step_end_tensor_inputs=['latents'], 
         ).images
@@ -140,10 +147,12 @@ def image_vid2vid_ze(
             if use_gfpgan_vid2vid_ze == True :
                 image[j] = image_gfpgan_mini(image[j])             
             final_image.append(image[j])
-            
-    timestamp = time.time()
-    savename = f"outputs/{timestamp}.mp4"
-    final_video = imageio.mimsave(savename, final_image, fps=num_fps_vid2vid_ze)            
+
+        timestamp = time.time()
+        seed_id = random_seed + i if (seed_vid2vid_ze == 0) else seed_vid2vid_ze + i
+        savename = f"outputs/{seed_id}_{timestamp}.mp4"
+        final_seed.append(seed_id)
+        final_video = imageio.mimsave(savename, final_image, fps=num_fps_vid2vid_ze)            
 
     print(f">>>[Video Instruct-Pix2Pix 🖌️ ]: generated {num_prompt_vid2vid_ze} batch(es) of {num_images_per_prompt_vid2vid_ze}")
     reporting_vid2vid_ze = f">>>[Video Instruct-Pix2Pix 🖌️ ]: "+\
@@ -159,8 +168,8 @@ def image_vid2vid_ze(
         f"Token merging={tkme_vid2vid_ze} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Prompt={prompt_vid2vid_ze} | "+\
-        f"Negative prompt={negative_prompt_vid2vid_ze} | "#+\
-#        f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
+        f"Negative prompt={negative_prompt_vid2vid_ze} | "+\
+        f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_vid2vid_ze) 
 
     del nsfw_filter_final, feat_ex, pipe_vid2vid_ze, generator, image
