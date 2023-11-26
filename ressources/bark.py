@@ -2,7 +2,6 @@
 # bark.py
 import gradio as gr
 import os
-from optimum import *
 from transformers import AutoProcessor, BarkModel
 from scipy.io.wavfile import write as write_wav
 import time
