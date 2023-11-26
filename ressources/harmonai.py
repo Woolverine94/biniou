@@ -9,7 +9,8 @@ import torch
 import random
 from ressources.common import *
 
-device_harmonai = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device_label_harmonai, model_arch = detect_device()
+device_harmonai = torch.device(device_label_harmonai)
 
 model_path_harmonai = "./models/harmonai/"
 os.makedirs(model_path_harmonai, exist_ok=True)
@@ -52,37 +53,47 @@ def music_harmonai(
         pipe_harmonai = DiffusionPipeline.from_pretrained(
             model_harmonai, 
             cache_dir=model_path_harmonai, 
-            torch_dtype=torch.float32, 
+            torch_dtype=model_arch,
             resume_download=True,
             local_files_only=True if offline_test() else None
             )
-    pipe_harmonai = pipe_harmonai.to(device_harmonai)
+#    pipe_harmonai = pipe_harmonai.to(device_harmonai)
+    if device_label_harmonai == "cuda" :
+        pipe_harmonai.enable_sequential_cpu_offload()
+    else : 
+        pipe_harmonai = pipe_harmonai.to(device_harmonai)
 
     if seed_harmonai == 0:
-        random_seed = torch.randint(0, 10000000000, (1,))
-        generator = torch.manual_seed(random_seed)
+        random_seed = random.randrange(0, 10000000000, 1)
+        final_seed = random_seed
     else:
-        generator = torch.manual_seed(seed_harmonai)
+        final_seed = seed_harmonai
+    generator = []
+    for k in range(batch_repeat_harmonai):
+        generator.append([torch.Generator(device_harmonai).manual_seed(final_seed + (k*batch_size_harmonai) + l ) for l in range(batch_size_harmonai)])
 
+    final_seed = []
     for i in range (batch_repeat_harmonai):
         audios = pipe_harmonai(
             audio_length_in_s=length_harmonai,
             num_inference_steps=steps_harmonai,
-            generator=generator,
+            generator=generator[i],
             batch_size=batch_size_harmonai,
         ).audios
 
         for j, audio in enumerate(audios):
             timestamp = time.time()
-            savename = f"outputs/{timestamp}_{j}.wav"
+            seed_id = random_seed + i*batch_size_harmonai + j if (seed_harmonai == 0) else seed_harmonai + i*batch_size_harmonai + j
+            savename = f"outputs/{seed_id}_{timestamp}.wav"
             scipy.io.wavfile.write(savename, pipe_harmonai.unet.config.sample_rate, audio.transpose())
+            final_seed.append(seed_id)
 
     print(f">>>[Harmonai 🔊 ]: generated {batch_repeat_harmonai} batch(es) of {batch_size_harmonai}")
     reporting_harmonai = f">>>[Harmonai 🔊 ]: "+\
         f"Settings : Model={model_harmonai} | "+\
         f"Steps={steps_harmonai} | "+\
-        f"Duration={length_harmonai} sec. | "# +\
-#        f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
+        f"Duration={length_harmonai} sec. | "+\
+        f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_harmonai) 
     
     del pipe_harmonai, generator, audios

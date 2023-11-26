@@ -10,7 +10,8 @@ import time
 import random
 from ressources.common import *
 
-device_musicgen = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device_label_musicgen, model_arch = detect_device()
+device_musicgen = torch.device(device_label_musicgen)
 
 model_path_musicgen = "./models/Audiocraft/"
 os.makedirs(model_path_musicgen, exist_ok=True)

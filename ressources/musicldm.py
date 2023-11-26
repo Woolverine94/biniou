@@ -10,7 +10,8 @@ import random
 from ressources.common import *
 from ressources.scheduler import *
 
-device_musicldm = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device_label_musicldm, model_arch = detect_device()
+device_musicldm = torch.device(device_label_musicldm)
 
 model_path_musicldm = "./models/MusicLDM/"
 os.makedirs(model_path_musicldm, exist_ok=True)
@@ -59,7 +60,7 @@ def music_musicldm(
     pipe_musicldm = MusicLDMPipeline.from_pretrained(
         modelid_musicldm, 
         cache_dir=model_path_musicldm, 
-        torch_dtype=torch.float32, 
+        torch_dtype=model_arch,
         use_safetensors=True, 
         resume_download=True,
         local_files_only=True if offline_test() else None
@@ -67,7 +68,12 @@ def music_musicldm(
 
     pipe_musicldm = get_scheduler(pipe=pipe_musicldm, scheduler=sampler_musicldm)
     pipe_musicldm.enable_attention_slicing("max")
-    pipe_musicldm = pipe_musicldm.to(device_musicldm)
+
+    if device_label_musicldm == "cuda" :
+        pipe_musicldm.enable_sequential_cpu_offload()
+    else : 
+        pipe_musicldm = pipe_musicldm.to(device_musicldm)
+    pipe_musicldm.enable_vae_slicing()
     
     if seed_musicldm == 0:
         random_seed = random.randrange(0, 10000000000, 1)

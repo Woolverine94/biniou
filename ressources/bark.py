@@ -2,11 +2,15 @@
 # bark.py
 import gradio as gr
 import os
+from optimum import *
 from transformers import AutoProcessor, BarkModel
 from scipy.io.wavfile import write as write_wav
 import time
 import random
 from ressources.common import *
+
+device_label_bark, model_arch = detect_device()
+device_bark = torch.device(device_label_bark)
 
 model_path_bark = "./models/Bark/"
 os.makedirs(model_path_bark, exist_ok=True)
@@ -74,6 +78,7 @@ def music_bark(
     processor = AutoProcessor.from_pretrained(
         model_bark, 
         cache_dir=model_path_bark, 
+        torch_dtype=model_arch,
         resume_download=True,
         local_files_only=True if offline_test() else None
     )
@@ -81,11 +86,18 @@ def music_bark(
     pipe_bark = BarkModel.from_pretrained(
         model_bark, 
         cache_dir=model_path_bark,
+        torch_dtype=model_arch,
         resume_download=True,
         local_files_only=True if offline_test() else None        
         )
-        
+
+#    pipe_bark = BetterTransformer.transform(pipe_bark, keep_original_model=False)
+    if device_label_bark == "cuda" :
+        pipe_bark.enable_cpu_offload()
+    else : 
+        pipe_bark = pipe_bark.to(device_bark)
     pipe_bark = pipe_bark.to_bettertransformer()
+
     voice_preset = voice_preset_list_bark[voice_preset_bark]
     inputs = processor(prompt_bark, voice_preset=voice_preset)
     audio_array = pipe_bark.generate(**inputs, do_sample=True)
