@@ -20,7 +20,8 @@ for filename in os.listdir(model_path_llamacpp):
 
 model_list_llamacpp_builtin = {
     "TheBloke/openchat_3.5-GGUF":("openchat_3.5.Q5_K_S.gguf", "GPT4 User: {prompt}<|end_of_turn|>GPT4 Assistant:"),
-    "TheBloke/CollectiveCognition-v1.1-Mistral-7B-GGUF":("collectivecognition-v1.1-mistral-7b.Q5_K_S.gguf", "USER: {prompt}\nASSISTANT:"), 
+    "TheBloke/neural-chat-7B-v3-1-GGUF":("neural-chat-7b-v3-1.Q5_K_S.gguf", "### System:\nYou are a chatbot developed by Intel. Please answer all questions to the best of your ability.\n\n### User:\n{prompt}\n\n### Assistant:"),
+    "TheBloke/CollectiveCognition-v1.1-Mistral-7B-GGUF":("collectivecognition-v1.1-mistral-7b.Q5_K_S.gguf", "USER: {prompt}\nASSISTANT:"),
     "TheBloke/zephyr-7B-beta-GGUF":("zephyr-7b-beta.Q5_K_S.gguf", "<|system|>\n</s>\n<|user|>\n{prompt}</s>\n<|assistant|>"),
     "TheBloke/Yarn-Mistral-7B-128k-GGUF":("yarn-mistral-7b-128k.Q5_K_S.gguf", "{prompt}"),
     "TheBloke/Mistral-7B-v0.1-GGUF":("mistral-7b-v0.1.Q5_K_S.gguf", "{prompt}"),
