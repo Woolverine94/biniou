@@ -12,7 +12,8 @@ import numpy as np
 from ressources.scheduler import *
 from ressources.common import *
 
-device_txt2shape = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device_label_txt2shape, model_arch = detect_device()
+device_txt2shape = torch.device(device_label_txt2shape)
 
 # Gestion des modèles
 model_path_txt2shape = "./models/Shap-E/"
@@ -74,8 +75,8 @@ def image_txt2shape(
     if modelid_txt2shape[0:9] == "./models/" :
         pipe_txt2shape = ShapEPipeline.from_single_file(
             modelid_txt2shape, 
-            torch_dtype=torch.float32, 
-#            use_safetensors=True, 
+            torch_dtype=model_arch,
+#            use_safetensors=True,
             safety_checker=nsfw_filter_final, 
             feature_extractor=feat_ex,
         )
@@ -83,8 +84,8 @@ def image_txt2shape(
         pipe_txt2shape = ShapEPipeline.from_pretrained(
             modelid_txt2shape, 
             cache_dir=model_path_txt2shape, 
-            torch_dtype=torch.float32, 
-#            use_safetensors=True, 
+            torch_dtype=model_arch,
+#            use_safetensors=True,
             safety_checker=nsfw_filter_final, 
             feature_extractor=feat_ex,
             resume_download=True,
@@ -92,88 +93,79 @@ def image_txt2shape(
         )
     
     pipe_txt2shape = get_scheduler(pipe=pipe_txt2shape, scheduler=sampler_txt2shape)
-    pipe_txt2shape = pipe_txt2shape.to(device_txt2shape)
     pipe_txt2shape.enable_attention_slicing("max")
+    if device_label_txt2shape == "cuda" :
+        pipe_txt2shape.enable_sequential_cpu_offload()
+    else : 
+        pipe_txt2shape = pipe_txt2shape.to(device_txt2shape)
     
     if seed_txt2shape == 0:
-        random_seed = torch.randint(0, 10000000000, (1,))
-        generator = torch.manual_seed(random_seed)
+        random_seed = random.randrange(0, 10000000000, 1)
+        final_seed = random_seed
     else:
-        generator = torch.manual_seed(seed_txt2shape)
+        final_seed = seed_txt2shape
+    generator = []
+    for k in range(num_prompt_txt2shape):
+        generator.append([torch.Generator(device_txt2shape).manual_seed(final_seed + (k*num_images_per_prompt_txt2shape) + l ) for l in range(num_images_per_prompt_txt2shape)])
 
     prompt_txt2shape = str(prompt_txt2shape)
     if prompt_txt2shape == "None":
         prompt_txt2shape = ""
  
-    final_image = []
+    savename_final = []
+    final_seed = []
     for i in range (num_prompt_txt2shape):
+        image = [] 
         image = pipe_txt2shape(
             prompt=prompt_txt2shape,
             frame_size=frame_size_txt2shape,
             num_images_per_prompt=num_images_per_prompt_txt2shape,
             num_inference_steps=num_inference_step_txt2shape,
             guidance_scale=guidance_scale_txt2shape,
-            generator = generator,
+            generator = generator[i],
             output_type="pil" if output_type_txt2shape=="gif" else "mesh",
         ).images
+        
+        seed_id = random_seed + i*num_images_per_prompt_txt2shape if (seed_txt2shape == 0) else seed_txt2shape + i*num_images_per_prompt_txt2shape
        
-    if output_type_txt2shape=="gif" :
-        for j in range(len(image)):
+        if output_type_txt2shape=="gif" :
             timestamp = time.time()
-            savename = f"outputs/{timestamp}.gif"
-            export_to_gif(image[j], savename)
-            final_image.append(savename)
+            savename = f"outputs/{seed_id}_{timestamp}.gif"
+            export_to_gif(image[0], savename)
+            savename_final.append(savename)
+            final_seed.append(seed_id)
+       
+        else : 
+            timestamp = time.time()
+            savename = f".tmp/{seed_id}_{timestamp}.ply"
+            savename_glb = f"outputs/{seed_id}_{timestamp}.glb"
+            savename_final = f".tmp/{seed_id}_output.glb" 
+            ply_file = export_to_ply(image[0], savename) 
+            mesh = trimesh.load(savename)
+            mesh = mesh.scene()
+            rot = trimesh.transformations.rotation_matrix(np.pi / 2, [1, 0, 0])
+            mesh = mesh.apply_transform(rot)
+            rot = trimesh.transformations.rotation_matrix(np.pi, [0, 0, 1])
+            mesh = mesh.apply_transform(rot)
+            mesh.export(savename_glb, file_type="glb")
+            mesh.export(savename_final, file_type="glb") 
+            final_seed.append(seed_id)
 
-        print(f">>>[Shap-E txt2shape 🧊 ]: generated {num_prompt_txt2shape} batch(es) of {num_images_per_prompt_txt2shape}")
-        reporting_txt2shape = f">>>[Shap-E txt2shape 🧊 ]: "+\
-            f"Settings : Model={modelid_txt2shape} | "+\
-            f"Sampler={sampler_txt2shape} | "+\
-            f"Steps={num_inference_step_txt2shape} | "+\
-            f"CFG scale={guidance_scale_txt2shape} | "+\
-            f"Frame size={frame_size_txt2shape} | "+\
-            f"Output type={output_type_txt2shape} | "+\
-            f"nsfw_filter={bool(int(nsfw_filter))} | "+\
-            f"Prompt={prompt_txt2shape} | "#+\
-#            f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
-        print(reporting_txt2shape) 
-
-        del nsfw_filter_final, feat_ex, pipe_txt2shape, generator, image
-        clean_ram()
-
-        print(f">>>[Shap-E txt2shape 🧊 ]: leaving module")
-        return final_image, final_image
-
-    else : 
-        timestamp = time.time()
-        savename = f".tmp/{timestamp}.ply"
-        savename_glb = f"outputs/{timestamp}.glb"
-        savename_final = f".tmp/output.glb" 
-        ply_file = export_to_ply(image[0], savename) 
-        mesh = trimesh.load(savename)
-        mesh = mesh.scene()
-        rot = trimesh.transformations.rotation_matrix(np.pi / 2, [1, 0, 0])
-        mesh = mesh.apply_transform(rot)
-        rot = trimesh.transformations.rotation_matrix(np.pi, [0, 0, 1])
-        mesh = mesh.apply_transform(rot)
-        mesh.export(savename_glb, file_type="glb")
-        mesh.export(savename_final, file_type="glb") 
-
-        print(f">>>[Shap-E txt2shape 🧊 ]: generated {num_prompt_txt2shape} batch(es) of {num_images_per_prompt_txt2shape}")
-        reporting_txt2shape = f">>>[Shap-E txt2shape 🧊 ]: "+\
-            f"Settings : Model={modelid_txt2shape} | "+\
-            f"Sampler={sampler_txt2shape} | "+\
-            f"Steps={num_inference_step_txt2shape} | "+\
-            f"CFG scale={guidance_scale_txt2shape} | "+\
-            f"Frame size={frame_size_txt2shape} | "+\
-            f"Output type={output_type_txt2shape} | "+\
-            f"nsfw_filter={bool(int(nsfw_filter))} | "+\
-            f"Prompt={prompt_txt2shape} | "#+\
-#            f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
-        print(reporting_txt2shape) 
-
-        del nsfw_filter_final, feat_ex, pipe_txt2shape, generator, image
-        clean_ram()
-
-        print(f">>>[Shap-E txt2shape 🧊 ]: leaving module")
-        return savename_final, savename_final
-    return
+    print(f">>>[Shap-E txt2shape 🧊 ]: generated {num_prompt_txt2shape} batch(es) of {num_images_per_prompt_txt2shape}")
+    reporting_txt2shape = f">>>[Shap-E txt2shape 🧊 ]: "+\
+        f"Settings : Model={modelid_txt2shape} | "+\
+        f"Sampler={sampler_txt2shape} | "+\
+        f"Steps={num_inference_step_txt2shape} | "+\
+        f"CFG scale={guidance_scale_txt2shape} | "+\
+        f"Frame size={frame_size_txt2shape} | "+\
+        f"Output type={output_type_txt2shape} | "+\
+        f"nsfw_filter={bool(int(nsfw_filter))} | "+\
+        f"Prompt={prompt_txt2shape} | "+\
+        f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
+    print(reporting_txt2shape) 
+    
+    del nsfw_filter_final, feat_ex, pipe_txt2shape, generator, image
+    clean_ram()
+    
+    print(f">>>[Shap-E txt2shape 🧊 ]: leaving module")
+    return savename_final, savename_final
