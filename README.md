@@ -14,15 +14,13 @@
 ---
 
 ## Updates
+  * 🆕 **2023-11-27** : 🔥 ***New feature : CUDA support for text, audio and 3d modules*** 🔥 CUDA support and optimizations are now added to all eligibles modules.  If you had not done it yet, follow [theses instructions](https://github.com/Woolverine94/biniou/wiki/Experimental-features#cuda-support) to enable.
+
   * 🆕 **2023-11-25** : 🔥 ***New feature : CUDA support for video modules*** 🔥 Enabling CUDA support and optimizations for all eligible video modules. If you had not done it yet, follow [theses instructions](https://github.com/Woolverine94/biniou/wiki/Experimental-features#cuda-support) to enable.
 
   * 🆕 **2023-11-24** : 🔥 ***New feature : CUDA support for image modules*** 🔥 Enabling CUDA support and optimizations for all eligible image modules. **Please note that these enhancements will only take effect after you replace PyTorch CPU with PyTorch CUDA, following [theses instructions](https://github.com/Woolverine94/biniou/wiki/Experimental-features#cuda-support)**. An automated system to activate CUDA will come very soon, as well as CUDA support for other modules.
 
   * 🆕 **2023-11-22** : ***New feature : Custom defaults settings*** Changing the behavior of the *favorite settings* functionnality : saved settings are now automatically applied at startup, and could be deleted from the interface. Note that changing these defaults settings require biniou to be restarted and the browser refreshed as these settings are only loaded at startup.
-
-  * 🆕 **2023-11-20** : ***New feature : dark mode switch button*** Adding an icon next to the biniou logo that permits switching easily between light and dark mode. Note that this will instantly reload the page, so do not use it during a generation.
-
-  * 🆕 **2023-11-19** : 🔥 ***Adding Windows netinstall executable*** 🔥 This [little executable](https://github.com/Woolverine94/biniou/raw/main/biniou_netinstall.exe) -using NSIS installer-, offer a quick and simple way to install biniou on Windows 10/11. It is not required to run it as administrator, but doing it will avoid manual confirmation of each pre-requisite software installation.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
