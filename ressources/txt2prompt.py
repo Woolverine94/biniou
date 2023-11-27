@@ -6,7 +6,8 @@ import random
 from transformers import pipeline, set_seed
 from ressources.common import *
 
-device_txt2prompt = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device_label_txt2prompt, model_arch = detect_device()
+device_txt2prompt = torch.device(device_label_txt2prompt)
 
 model_path_txt2prompt = "./models/Prompt_generator/"
 os.makedirs(model_path_txt2prompt, exist_ok=True)
@@ -67,20 +68,23 @@ def text_txt2prompt(
     if seed_txt2prompt == 0:
         seed_txt2prompt = random.randint(0, 4294967295)
 
-    pipeline_txt2prompt = pipeline(
+    pipe_txt2prompt = pipeline(
         task="text-generation",
         model=modelid_txt2prompt,
-        torch_dtype=torch.float32, 
+        torch_dtype=model_arch,
         device=device_txt2prompt,
         local_files_only=True if offline_test() else None 
     )
+    
     set_seed(seed_txt2prompt)
-    generator_txt2prompt = pipeline_txt2prompt(
+
+    generator_txt2prompt = pipe_txt2prompt(
         prompt_txt2prompt, 
         do_sample=True, 
         max_new_tokens=max_tokens_txt2prompt,
         num_return_sequences=num_prompt_txt2prompt, 
     )
+
     for i in range(len(generator_txt2prompt)):
         output_txt2prompt_int = generator_txt2prompt[i]["generated_text"]
         if output_type_txt2prompt == "ChatGPT": 
@@ -99,7 +103,7 @@ def text_txt2prompt(
         f"Seed={seed_txt2prompt}"
     print(reporting_txt2prompt)
 
-    del pipeline_txt2prompt
+    del pipe_txt2prompt
     clean_ram()
 
     print(f">>>[Prompt generator 📝 ]: leaving module")

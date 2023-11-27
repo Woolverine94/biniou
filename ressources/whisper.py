@@ -12,7 +12,8 @@ from huggingface_hub import snapshot_download, hf_hub_download
 from transformers import AutoModel, AutoTokenizer, AutoFeatureExtractor
 from ressources.common import *
 
-device_whisper = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device_label_whisper, model_arch = detect_device()
+device_whisper = torch.device(device_label_whisper)
 
 model_path_whisper = "./models/whisper/"
 os.makedirs(model_path_whisper, exist_ok=True)
@@ -137,6 +138,7 @@ def text_whisper(
     model_whisper = WhisperForConditionalGeneration.from_pretrained(
         modelid_whisper, 
         cache_dir=model_path_whisper, 
+        torch_dtype=model_arch,
         low_cpu_mem_usage=True,
         resume_download=True, 
         local_files_only=True if offline_test() else None
@@ -164,9 +166,9 @@ def text_whisper(
         feature_extractor=feat_ex_whisper, 
         chunk_length_s=30, 
         device=device_whisper, 
-        torch_dtype=torch.float32
+        torch_dtype=model_arch,
     )
-    
+
     if srt_output_whisper == False :
         transcription_whisper_final = pipe_whisper(
             audio_whisper.copy(), 

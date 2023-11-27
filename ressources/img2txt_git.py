@@ -7,7 +7,8 @@ import torch
 import time
 from ressources.common import *
 
-device_img2txt_git = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device_label_img2txt_git, model_arch = detect_device()
+device_img2txt_git = torch.device(device_label_img2txt_git)
 
 # Gestion des modèles
 model_path_img2txt_git = "./models/GIT"
@@ -34,11 +35,12 @@ def text_img2txt_git(
     pipe_img2txt_git = AutoModelForCausalLM.from_pretrained(
         modelid_img2txt_git, 
         cache_dir=model_path_img2txt_git, 
-        torch_dtype=torch.float32, 
+        torch_dtype=model_arch,
         use_safetensors=True,
         resume_download=True,
         local_files_only=True if offline_test() else None
         )
+    
     pipe_img2txt_git = pipe_img2txt_git.to(device_img2txt_git)
     inpipe_img2txt_git = processor_img2txt_git(images=img_img2txt_git, return_tensors="pt").to(device_img2txt_git)
 

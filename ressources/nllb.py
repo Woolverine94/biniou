@@ -7,7 +7,8 @@ from huggingface_hub import snapshot_download, hf_hub_download
 from transformers import NllbTokenizer, AutoModelForSeq2SeqLM, AutoTokenizer
 from ressources.common import *
 
-device_nllb = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device_label_nllb, model_arch = detect_device()
+device_nllb = torch.device(device_label_nllb)
 
 model_path_nllb = "./models/nllb/"
 os.makedirs(model_path_nllb, exist_ok=True)
@@ -273,18 +274,24 @@ def text_nllb(
         resume_download=True,
         local_files_only=True if offline_test() else None
     )
+
     tokenizer_nllb = NllbTokenizer.from_pretrained(
         model_nllb, 
+        torch_dtype=model_arch,
         src_lang=source_language_nllb, 
         tgt_lang=output_language_nllb
     )
-    automodel_nllb = AutoModelForSeq2SeqLM.from_pretrained(model_nllb)
+
+    automodel_nllb = AutoModelForSeq2SeqLM.from_pretrained(model_nllb).to(device_nllb)
     inputs_nllb = tokenizer_nllb(prompt_nllb, return_tensors="pt").to(device_nllb)
+    automodel_nllb = automodel_nllb.to_bettertransformer()
+                
     translated_tokens = automodel_nllb.generate(
         **inputs_nllb,
         forced_bos_token_id=tokenizer_nllb.lang_code_to_id[output_language_nllb],
         max_new_tokens=max_tokens_nllb, 
     )
+
     output_nllb = tokenizer_nllb.batch_decode(translated_tokens, skip_special_tokens=True)[0]
     filename_nllb = write_file(output_nllb)
 
