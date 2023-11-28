@@ -11,7 +11,7 @@ imageio-ffmpeg
 numpy==1.24.2
 gfpgan
 optimum
-spacy==3.5.2
+spacy==3.6.1
 git+https://github.com/facebookresearch/audiocraft.git
 git+https://github.com/ai-forever/Real-ESRGAN.git
 insightface
