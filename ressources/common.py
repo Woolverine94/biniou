@@ -247,6 +247,16 @@ def write_file(*args) :
         savefile.write(content)
     return savename
 
+def write_seeded_file(seed, *args) :
+    timestamp = time.time()
+    savename = f"outputs/{seed}_{timestamp}.txt"
+    content = ""
+    for idx, data in enumerate(args):
+        content += f"{data} \n"
+    with open(savename, 'w') as savefile:
+        savefile.write(content)
+    return savename
+
 def set_timestep_vid_ze(numstep) :
     factor = round(numstep/10)
     t1 = numstep-(factor+1)

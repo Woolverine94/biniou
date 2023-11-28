@@ -96,7 +96,7 @@ def text_llamacpp(
     
     answer_llamacpp = (output_llamacpp['choices'][0]['text'])
     last_answer_llamacpp = answer_llamacpp.replace(f"{prompt_final_llamacpp}", "")
-    filename_llamacpp = write_file(history_final, prompt_llamacpp, last_answer_llamacpp)
+    filename_llamacpp = write_seeded_file(seed_llamacpp, history_final, prompt_llamacpp, last_answer_llamacpp)
     history_llamacpp.append((prompt_llamacpp, last_answer_llamacpp))
 
     print(f">>>[Chatbot Llama-cpp 📝 ]: generated 1 answer")
@@ -159,7 +159,7 @@ def text_llamacpp_continue(
     answer_llamacpp = (output_llamacpp['choices'][0]['text'])
     last_answer_llamacpp = answer_llamacpp.replace(f"{history_final}", "")
     global_answer_llamacpp = f"{history_final}{answer_llamacpp}"
-    filename_llamacpp = write_file(global_answer_llamacpp)
+    filename_llamacpp = write_seeded_file(seed_llamacpp, global_answer_llamacpp)
     history_llamacpp[-1][1] += last_answer_llamacpp
 #    history_llamacpp.append((prompt_llamacpp, last_answer_llamacpp))
 
