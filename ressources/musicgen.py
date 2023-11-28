@@ -17,10 +17,12 @@ model_path_musicgen = "./models/Audiocraft/"
 os.makedirs(model_path_musicgen, exist_ok=True)
 
 modellist_musicgen = [
+    "facebook/musicgen-stereo-small",
     "facebook/musicgen-small",
+    "facebook/musicgen-stereo-medium",
     "facebook/musicgen-medium",
+    "facebook/musicgen-stereo-large",
     "facebook/musicgen-large",
-    "facebook/musicgen-melody",    
 ]
 
 # Bouton Cancel
