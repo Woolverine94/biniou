@@ -15,7 +15,9 @@
 
 ## Updates
 
-  * 🆕 **2023-11-29** : 🔥 ***New defaults models for MusicGen and Musicgen Melody*** 🔥 Adding all availables flavors of MusicGen stereo models in MusicGen and MusicGen Melody modules, and assigning stereo variants as defaults models.
+  * 🆕 **2023-11-29** : 
+    - 🔥 ***New defaults models for MusicGen and Musicgen Melody*** 🔥 Adding all availables flavors of MusicGen stereo models in MusicGen and MusicGen Melody modules, and assigning stereo variants as defaults models.
+    - ***New chatbot model : Starling-LM-7B-alpha*** Adding this brand new model to the chatbot. [Starling-LM-7B-alpha](https://huggingface.co/berkeley-nest/Starling-LM-7B-alpha) is provided by Berkeley and had been finetuned from Openchat-3.5 (the actual default model). According to the first benchmarks, it seems to be more performant than Claude-2 or GPT-3.5-Turbo. Give it a try ! 
 
   * 🆕 **2023-11-27** : 🔥 ***New feature : CUDA support for text, audio and 3d modules*** 🔥 CUDA support and optimizations are now added to all eligibles modules.  If you had not done it yet, follow [theses instructions](https://github.com/Woolverine94/biniou/wiki/Experimental-features#cuda-support) to enable.
 
