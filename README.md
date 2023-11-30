@@ -15,9 +15,11 @@
 
 ## Updates
 
+  * 🆕 **2023-11-30** : 🔥 ***New model for Stable Diffusion and img2img*** 🔥 Adding model [SDXL-Turbo](https://huggingface.co/stabilityai/sdxl-turbo) to module Stable Diffusion and img2img. This amazing model can generate SDXL-quality images in a single step (!), and has an awesome quality/generation time ratio. It generate 512x512 images as default, but support greater sizes. Like all others SDXL-family models, it will require 16GB RAM and around 15GB storage space. Please also note that it require specific settings to run (like a 0 CFG scale), that will be automatically handled by the UI.
+
   * 🆕 **2023-11-29** : 
     - 🔥 ***New defaults models for MusicGen and Musicgen Melody*** 🔥 Adding all availables flavors of MusicGen stereo models in MusicGen and MusicGen Melody modules, and assigning stereo variants as defaults models.
-    - ***New chatbot model : Starling-LM-7B-alpha*** Adding this brand new model to the chatbot. [Starling-LM-7B-alpha](https://huggingface.co/berkeley-nest/Starling-LM-7B-alpha) is provided by Berkeley and had been finetuned from Openchat-3.5 (the actual default model). According to the first benchmarks, it seems to be more performant than Claude-2 or GPT-3.5-Turbo. Give it a try ! 
+    - ***New chatbot model : Starling-LM-7B-alpha*** Adding this brand new model to the chatbot. [Starling-LM-7B-alpha](https://huggingface.co/berkeley-nest/Starling-LM-7B-alpha) is provided by Berkeley and had been finetuned from Openchat-3.5 (the current default model for biniou). According to the first benchmarks, it seems to be more performant than Claude-2 or GPT-3.5-Turbo. Give it a try ! 
 
   * 🆕 **2023-11-27** : 🔥 ***New feature : CUDA support for text, audio and 3d modules*** 🔥 CUDA support and optimizations are now added to all eligibles modules.  If you had not done it yet, follow [theses instructions](https://github.com/Woolverine94/biniou/wiki/Experimental-features#cuda-support) to enable.
 
