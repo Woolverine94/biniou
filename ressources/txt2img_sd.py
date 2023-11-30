@@ -2,7 +2,7 @@
 # txt2img_sd.py
 import gradio as gr
 import os
-from diffusers import StableDiffusionPipeline, StableDiffusionXLPipeline
+from diffusers import StableDiffusionPipeline, StableDiffusionXLPipeline, AutoPipelineForText2Image
 from compel import Compel, ReturnedEmbeddingsType
 import torch
 import time
@@ -27,6 +27,7 @@ for filename in os.listdir(model_path_txt2img_sd):
 
 model_list_txt2img_sd_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
+    "stabilityai/sdxl-turbo", 
     "segmind/SSD-1B",
 #    "ckpt/anything-v4.5-vae-swapped",
     "stabilityai/stable-diffusion-xl-base-1.0",
@@ -81,13 +82,41 @@ def image_txt2img_sd(modelid_txt2img_sd,
     global pipe_txt2img_sd
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2img_sd, device_txt2img_sd, nsfw_filter)
 
-    if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_txt2img_sd or (modelid_txt2img_sd == "segmind/SSD-1B") :
+    if (modelid_txt2img_sd == "stabilityai/sdxl-turbo"):
+        is_xlturbo_txt2img_sd: bool = True
+    else :
+        is_xlturbo_txt2img_sd: bool = False
+
+    if (('xl' or 'XL' or 'Xl' or 'xL') in modelid_txt2img_sd or (modelid_txt2img_sd == "segmind/SSD-1B")) :
+#  and (modelid_txt2img_sd != "stabilityai/sdxl-turbo")		
 #    if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_txt2img_sd :
         is_xl_txt2img_sd: bool = True
     else :        
         is_xl_txt2img_sd: bool = False
-        
-    if (is_xl_txt2img_sd == True) :
+
+    if (is_xlturbo_txt2img_sd == True) :
+        if modelid_txt2img_sd[0:9] == "./models/" :
+            pipe_txt2img_sd =AutoPipelineForText2Image.from_single_file(
+                modelid_txt2img_sd, 
+#                torch_dtype=torch.float32, 
+                torch_dtype=model_arch, 
+                use_safetensors=True, 
+                safety_checker=nsfw_filter_final, 
+                feature_extractor=feat_ex,
+            )
+        else :        
+            pipe_txt2img_sd = AutoPipelineForText2Image.from_pretrained(
+                modelid_txt2img_sd, 
+                cache_dir=model_path_txt2img_sd, 
+#                torch_dtype=torch.float32, 
+                torch_dtype=model_arch, 
+                use_safetensors=True, 
+                safety_checker=nsfw_filter_final, 
+                feature_extractor=feat_ex,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )       
+    elif (is_xl_txt2img_sd == True) :
         if modelid_txt2img_sd[0:9] == "./models/" :
             pipe_txt2img_sd = StableDiffusionXLPipeline.from_single_file(
                 modelid_txt2img_sd, 
@@ -149,7 +178,6 @@ def image_txt2img_sd(modelid_txt2img_sd,
     generator = []
     for k in range(num_prompt_txt2img_sd):
         generator.append([torch.Generator(device_txt2img_sd).manual_seed(final_seed + (k*num_images_per_prompt_txt2img_sd) + l ) for l in range(num_images_per_prompt_txt2img_sd)])
-
 
     prompt_txt2img_sd = str(prompt_txt2img_sd)
     negative_prompt_txt2img_sd = str(negative_prompt_txt2img_sd)

@@ -207,10 +207,12 @@ def hide_download_file_txt2img_sd():
     return download_file_txt2img_sd.update(visible=False)
 
 def change_model_type_txt2img_sd(model_txt2img_sd):
-    if (model_txt2img_sd == "segmind/SSD-1B") or  (model_txt2img_sd == "stabilityai/stable-diffusion-xl-base-1.0") :
-        return width_txt2img_sd.update(value=1024), height_txt2img_sd.update(value=1024)
+    if (model_txt2img_sd == "stabilityai/sdxl-turbo"):
+        return width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), negative_prompt_txt2img_sd.update(interactive=False)
+    elif (model_txt2img_sd == "segmind/SSD-1B") or (model_txt2img_sd == "stabilityai/stable-diffusion-xl-base-1.0"):
+        return width_txt2img_sd.update(value=1024), height_txt2img_sd.update(value=1024), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), negative_prompt_txt2img_sd.update(interactive=True)
     else:
-        return width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512)
+        return width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), negative_prompt_txt2img_sd.update(interactive=True)
     
 # def update_preview_txt2img_sd(preview):
 #     return out_txt2img_sd.update(preview)     
@@ -251,7 +253,6 @@ def change_model_type_txt2img_lcm(model_txt2img_lcm):
         return width_txt2img_lcm.update(value=1024), height_txt2img_lcm.update(value=1024)
     else:
         return width_txt2img_lcm.update(value=512), height_txt2img_lcm.update(value=512)
-
 
 ## Functions specific to Midjourney mini
 def zip_download_file_txt2img_mjm(content):
@@ -302,10 +303,12 @@ def read_ini_img2img(module) :
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), bool(int(content[9])), float(content[10])
 
 def change_model_type_img2img(model_img2img):
-    if model_img2img == "stabilityai/stable-diffusion-xl-refiner-1.0":
-        return width_img2img.update(value=1024), height_img2img.update(value=1024)
+    if (model_img2img == "stabilityai/sdxl-turbo"):
+        return width_img2img.update(value=512), height_img2img.update(value=512), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), negative_prompt_img2img.update(interactive=False)
+    elif model_img2img == "stabilityai/stable-diffusion-xl-refiner-1.0":
+        return width_img2img.update(value=1024), height_img2img.update(value=1024), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), negative_prompt_img2img.update(interactive=True)
     else:
-        return width_img2img.update(value=512), height_img2img.update(value=512)
+        return width_img2img.update(value=512), height_img2img.update(value=512), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), negative_prompt_img2img.update(interactive=True)
 
 ## Functions specific to img2var 
 def zip_download_file_img2var(content):
@@ -1365,6 +1368,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF model page : </b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>,
+                                <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>,
+                                <a href='https://huggingface.co/segmind/SSD-1B' target='_blank'>segmind/SSD-1B</a>,
                                 <a href='https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0' target='_blank'>stabilityai/stable-diffusion-xl-base-1.0</a>,
                                 <a href='https://huggingface.co/runwayml/stable-diffusion-v1-5' target='_blank'>runwayml/stable-diffusion-v1-5</a>,
                                 <a href='https://huggingface.co/nitrosocke/Ghibli-Diffusion' target='_blank'>nitrosocke/Ghibli-Diffusion</a>,
@@ -1399,7 +1404,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 sampler_txt2img_sd = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_txt2img_sd = gr.Slider(0.1, 20.0, step=0.1, value=7.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_txt2img_sd = gr.Slider(0.0, 20.0, step=0.1, value=7.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
                                 num_images_per_prompt_txt2img_sd = gr.Slider(minimum=1, maximum=4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
@@ -1416,7 +1421,6 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_txt2img_sd = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
                                 tkme_txt2img_sd = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
-                        model_txt2img_sd.change(fn=change_model_type_txt2img_sd, inputs=model_txt2img_sd, outputs=[width_txt2img_sd, height_txt2img_sd])
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_txt2img_sd = gr.Button("Save custom defaults settings 💾")
@@ -1466,6 +1470,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Row():
                                 with gr.Column(): 
                                     negative_prompt_txt2img_sd = gr.Textbox(lines=6, max_lines=6, label="Negative Prompt", info="Describe what you DO NOT want in your image", placeholder="out of frame, bad quality, medium quality, blurry, ugly, duplicate, text, characters, logo")
+                        model_txt2img_sd.change(fn=change_model_type_txt2img_sd, inputs=model_txt2img_sd, outputs=[width_txt2img_sd, height_txt2img_sd, num_inference_step_txt2img_sd, guidance_scale_txt2img_sd, negative_prompt_txt2img_sd])
                         with gr.Column(scale=2):
                             out_txt2img_sd = gr.Gallery(
                                 label="Generated images",
@@ -2392,6 +2397,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF model page : </b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>,
+                                <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>,
                                 <a href='https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0' target='_blank'>stabilityai/stable-diffusion-xl-refiner-1.0</a>,
                                 <a href='https://huggingface.co/runwayml/stable-diffusion-v1-5' target='_blank'>runwayml/stable-diffusion-v1-5</a>,
                                 <a href='https://huggingface.co/nitrosocke/Ghibli-Diffusion' target='_blank'>nitrosocke/Ghibli-Diffusion</a>
@@ -2444,7 +2450,6 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_img2img = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
                                 tkme_img2img = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")    
-                        model_img2img.change(fn=change_model_type_img2img, inputs=model_img2img, outputs=[width_img2img, height_img2img])
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_img2img = gr.Button("Save custom defaults settings 💾")
@@ -2503,6 +2508,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Row():                                    
                                 with gr.Column():
                                     negative_prompt_img2img = gr.Textbox(lines=5, max_lines=5, label="Negative Prompt", info="Describe what you DO NOT want in your image", placeholder="out of frame, bad quality, medium quality, blurry, ugly, duplicate, text, characters, logo")
+                        model_img2img.change(fn=change_model_type_img2img, inputs=model_img2img, outputs=[width_img2img, height_img2img, num_inference_step_img2img, guidance_scale_img2img, negative_prompt_img2img])
+                        denoising_strength_img2img.change(check_steps_strength, [num_inference_step_img2img, denoising_strength_img2img, model_img2img], [num_inference_step_img2img])
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():                            
@@ -6795,7 +6802,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     controlnet_txt2vid_ms_input.click(fn=import_to_module_video, inputs=[prompt_controlnet, negative_prompt_controlnet, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms, tabs, tabs_video])
     controlnet_txt2vid_ze_input.click(fn=import_to_module_video, inputs=[prompt_controlnet, negative_prompt_controlnet, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze, tabs, tabs_video])    
 
-# ControlNet both 
+# ControlNet both
     controlnet_img2img_both.click(fn=both_to_module, inputs=[prompt_controlnet, negative_prompt_controlnet, gs_out_controlnet, sel_out_controlnet, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, negative_prompt_img2img, img_img2img, tabs, tabs_image])
     controlnet_pix2pix_both.click(fn=both_to_module, inputs=[prompt_controlnet, negative_prompt_controlnet, gs_out_controlnet, sel_out_controlnet, tab_image_num, tab_pix2pix_num], outputs=[prompt_pix2pix, negative_prompt_pix2pix, img_pix2pix, tabs, tabs_image])
     controlnet_inpaint_both.click(fn=both_to_module_inpaint, inputs=[prompt_controlnet, negative_prompt_controlnet, gs_out_controlnet, sel_out_controlnet, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, negative_prompt_inpaint,img_inpaint, gs_img_inpaint, tabs, tabs_image])

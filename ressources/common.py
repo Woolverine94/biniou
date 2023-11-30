@@ -11,6 +11,7 @@ import re
 import zipfile as zf
 import time
 import gc
+from math import ceil
 import psutil
 import requests as rq
 from diffusers.pipelines.stable_diffusion import StableDiffusionSafetyChecker
@@ -362,3 +363,10 @@ def convert_seconds_to_timestamp(seconds):
     heures = int((reliquat0-((minutes*60)+secondes))/3600)
     total = f"{str(heures).zfill(2)}:{str(minutes).zfill(2)}:{str(secondes).zfill(2)},{msecondes_final}"
     return total
+
+def check_steps_strength (steps, strength, model):
+    if (model == "stabilityai/sdxl-turbo"):
+        if strength == 0:
+            strength = 0.01
+        steps = ceil(1/strength)
+    return int(steps)

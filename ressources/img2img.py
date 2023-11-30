@@ -4,7 +4,7 @@ import gradio as gr
 import os
 import PIL
 import torch
-from diffusers import StableDiffusionImg2ImgPipeline, StableDiffusionXLImg2ImgPipeline
+from diffusers import StableDiffusionImg2ImgPipeline, StableDiffusionXLImg2ImgPipeline, AutoPipelineForImage2Image
 from compel import Compel, ReturnedEmbeddingsType
 import time
 import random
@@ -29,6 +29,7 @@ for filename in os.listdir(model_path_img2img):
 
 model_list_img2img_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
+    "stabilityai/sdxl-turbo",
 #    "ckpt/anything-v4.5-vae-swapped",
     "stabilityai/stable-diffusion-xl-refiner-1.0",
     "runwayml/stable-diffusion-v1-5",
@@ -84,12 +85,37 @@ def image_img2img(
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_img2img, device_img2img, nsfw_filter)
 
+    if (modelid_img2img == "stabilityai/sdxl-turbo"):
+        is_xlturbo_img2img: bool = True
+    else :
+        is_xlturbo_img2img: bool = False
+
     if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_img2img :
         is_xl_img2img: bool = True
     else :        
         is_xl_img2img: bool = False        
 
-    if (is_xl_img2img == True) :
+    if (is_xlturbo_img2img == True) :
+        if modelid_img2img[0:9] == "./models/" :
+            pipe_img2img = AutoPipelineForImage2Image.from_single_file(
+                modelid_img2img, 
+                torch_dtype=model_arch,
+                use_safetensors=True, 
+                safety_checker=nsfw_filter_final, 
+                feature_extractor=feat_ex,
+            )
+        else :        
+            pipe_img2img = AutoPipelineForImage2Image.from_pretrained(
+                modelid_img2img, 
+                cache_dir=model_path_img2img, 
+                torch_dtype=model_arch,
+                use_safetensors=True, 
+                safety_checker=nsfw_filter_final, 
+                feature_extractor=feat_ex,
+                resume_download=True,
+                local_files_only=True if offline_test() else None                
+            )
+    elif (is_xl_img2img == True) :
         if modelid_img2img[0:9] == "./models/" :
             pipe_img2img = StableDiffusionXLImg2ImgPipeline.from_single_file(
                 modelid_img2img, 
@@ -178,7 +204,19 @@ def image_img2img(
     final_image = []
     
     for i in range (num_prompt_img2img):
-        if (is_xl_img2img == True) :
+        if (is_xlturbo_img2img == True) :
+            image = pipe_img2img(        
+                image=image_input,
+                prompt=prompt_img2img,
+                num_images_per_prompt=num_images_per_prompt_img2img,
+                guidance_scale=guidance_scale_img2img,
+                strength=denoising_strength_img2img,
+                num_inference_steps=num_inference_step_img2img,
+                generator = generator,
+                callback_on_step_end=check_img2img, 
+                callback_on_step_end_tensor_inputs=['latents'], 
+            ).images
+        elif (is_xl_img2img == True) :
             image = pipe_img2img(        
                 image=image_input,
                 prompt_embeds=conditioning, 
@@ -192,7 +230,7 @@ def image_img2img(
                 generator = generator,
                 callback_on_step_end=check_img2img, 
                 callback_on_step_end_tensor_inputs=['latents'], 
-            ).images
+            ).images            
         else : 
             image = pipe_img2img(        
                 image=image_input,
