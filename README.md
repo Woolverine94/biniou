@@ -15,7 +15,7 @@
 
 ## Updates
 
-  * 🆕 **2023-11-30** : 🔥 ***New model for Stable Diffusion and img2img*** 🔥 Adding model [SDXL-Turbo](https://huggingface.co/stabilityai/sdxl-turbo) to module Stable Diffusion and img2img. This amazing model can generate SDXL-quality images in a single step (!), and has an awesome quality/generation time ratio. It generate 512x512 images as default, but support greater sizes. Like all others SDXL-family models, it will require 16GB RAM and around 15GB storage space. Please also note that it require specific settings to run (like a 0 CFG scale), that will be automatically handled by the UI.
+  * 🆕 **2023-11-30** : 🔥 ***New model for Stable Diffusion and img2img : SDXL-Turbo*** 🔥 Adding model [SDXL-Turbo](https://huggingface.co/stabilityai/sdxl-turbo) to modules Stable Diffusion and img2img. This amazing model can generate SDXL-quality images in a single step (!), and has an awesome quality/generation time ratio. It generate 512x512 images as default, but support greater sizes. Like all others SDXL-family models, it will require 16GB RAM and around 15GB storage space. Please also note that it require specific settings to run (like a 0 CFG scale), that will be automatically handled by the UI.
 
   * 🆕 **2023-11-29** : 
     - 🔥 ***New defaults models for MusicGen and Musicgen Melody*** 🔥 Adding all availables flavors of MusicGen stereo models in MusicGen and MusicGen Melody modules, and assigning stereo variants as defaults models.
