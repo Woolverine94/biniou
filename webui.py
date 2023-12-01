@@ -5818,7 +5818,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 num_fps_img2vid = gr.Slider(1, 120, step=1, value=7, label="Frames per second", info="Number of frames per second")
                             with gr.Column():
-                                decode_chunk_size_img2vid = gr.Slider(1, 32, step=1, value=14, label="Chunk size", info="Number of frames processed in a chunk")
+                                decode_chunk_size_img2vid = gr.Slider(1, 32, step=1, value=7, label="Chunk size", info="Number of frames processed in a chunk")
                         with gr.Row():
                             with gr.Column():
                                 width_img2vid = gr.Slider(128, 1280, step=64, value=1024, label="Video Width", info="Width of outputs")
