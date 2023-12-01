@@ -28,6 +28,7 @@ from .harmonai import *
 from .bark import *
 from .txt2vid_ms import *
 from .txt2vid_ze import *
+from .img2vid import *
 from .vid2vid_ze import *
 from .txt2shape import *
 from .img2shape import *
