@@ -15,6 +15,8 @@
 
 ## Updates
 
+  * 🆕 **2023-12-01** : 🔥 ***New video module : Stable Video Diffusion*** 🔥  Adding Stable Video Diffusion to the video modules. It's a very slow -at least on cpu- but qualitative model that will transform a single image into a video. It requires 16GB RAM at least.
+
   * 🆕 **2023-11-30** : 🔥 ***New model for Stable Diffusion and img2img : SDXL-Turbo*** 🔥 Adding model [SDXL-Turbo](https://huggingface.co/stabilityai/sdxl-turbo) to modules Stable Diffusion and img2img. This amazing model can generate SDXL-quality images in a single step (!), and has an awesome quality/generation time ratio. It generate 512x512 images as default, but support greater sizes. Like all others SDXL-family models, it will require 16GB RAM and around 15GB storage space. Please also note that it require specific settings to run (like a 0 CFG scale), that will be automatically handled by the UI.
 
   * 🆕 **2023-11-29** : 
@@ -24,8 +26,6 @@
   * 🆕 **2023-11-27** : 🔥 ***New feature : CUDA support for text, audio and 3d modules*** 🔥 CUDA support and optimizations are now added to all eligibles modules.  If you had not done it yet, follow [theses instructions](https://github.com/Woolverine94/biniou/wiki/Experimental-features#cuda-support) to enable.
 
   * 🆕 **2023-11-25** : 🔥 ***New feature : CUDA support for video modules*** 🔥 Enabling CUDA support and optimizations for all eligible video modules. If you had not done it yet, follow [theses instructions](https://github.com/Woolverine94/biniou/wiki/Experimental-features#cuda-support) to enable.
-
-  * 🆕 **2023-11-24** : 🔥 ***New feature : CUDA support for image modules*** 🔥 Enabling CUDA support and optimizations for all eligible image modules. **Please note that these enhancements will only take effect after you replace PyTorch CPU with PyTorch CUDA, following [theses instructions](https://github.com/Woolverine94/biniou/wiki/Experimental-features#cuda-support)**. An automated system to activate CUDA will come very soon, as well as CUDA support for other modules.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
@@ -81,9 +81,11 @@
   - [Audiogen module](https://github.com/Woolverine94/biniou/wiki/AudioGen) (require 16GB+ RAM)
   - [Harmonai module](https://github.com/Woolverine94/biniou/wiki/Harmonai)
   - [Bark module](https://github.com/Woolverine94/biniou/wiki/Bark)
+
 * **Video generation and modification using :**
   - [Modelscope module](https://github.com/Woolverine94/biniou/wiki/Modelscope-txt2vid) (require 16GB+ RAM)
   - [Text2Video-Zero module](https://github.com/Woolverine94/biniou/wiki/Text2Video%E2%80%90Zero)
+  - [Stable Video Diffusion module](https://github.com/Woolverine94/biniou/wiki/Stable-Video-Diffusion) (require 16GB+ RAM)
   - [Video Instruct-Pix2Pix module](https://github.com/Woolverine94/biniou/wiki/Video-Instruct%E2%80%90pix2pix) (require 16GB+ RAM)
 
 * **3D objects generation using :**
@@ -96,6 +98,8 @@
   - Powered by [🤗 Huggingface](https://huggingface.co/) and [gradio](https://www.gradio.app/)
   - Cross platform : GNU/Linux, Windows 10/11 and macOS(experimental, via homebrew)
   - Convenient Dockerfile for cloud instances
+  - Support for CUDA (experimental) on almost all modules (see [this page](https://github.com/Woolverine94/biniou/wiki/Experimental-features#cuda-support))
+  - Support for Stable Diffusion SDXL and SDXL-Turbo models
 
 ---
 
@@ -304,7 +308,7 @@ This application uses the following softwares and technologies :
 - [Microsoft GIT](https://github.com/microsoft/GenerativeImage2Text) : Image2text
 - [Whisper](https://openai.com/research/whisper) : speech2text
 - [nllb translation](https://ai.meta.com/research/no-language-left-behind/) : language translation
-- [Stable Diffusion](https://stability.ai/stable-diffusion) : txt2img, img2img, Image variation, inpaint, ControlNet, Text2Video-Zero
+- [Stable Diffusion](https://stability.ai/stable-diffusion) : txt2img, img2img, Image variation, inpaint, ControlNet, Text2Video-Zero, img2vid
 - [Kandinsky](https://github.com/ai-forever/Kandinsky-2) : txt2img
 - [Latent consistency models](https://github.com/luosiallen/latent-consistency-model) : txt2img
 - [PixArt-Alpha](https://pixart-alpha.github.io/) : PixArt-Alpha
