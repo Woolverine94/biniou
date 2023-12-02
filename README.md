@@ -15,7 +15,7 @@
 
 ## Updates
 
-  * 🆕 **2023-12-02** : 🔥 ***New model for Stable Diffusion and img2img : SD-Turbo*** 🔥 Adding model [SD-Turbo](https://huggingface.co/stabilityai/sd-turbo) to modules Stable Diffusion and img2img. This model is a lightweight alternative to SDXL-Turbo as it use the same ADD (Adversarial Diffusion Distillation) training method, and is refined from SD2.1 instead of SDXL. It only require 8GB RAM to work and could produce content in less than 45 seconds on cpu-only.
+  * 🆕 **2023-12-02** : 🔥 ***New model for Stable Diffusion and img2img : SD-Turbo*** 🔥 Adding model [SD-Turbo](https://huggingface.co/stabilityai/sd-turbo) to modules Stable Diffusion and img2img. This model is a lightweight alternative to SDXL-Turbo as it use the same training method, but is refined from SD2.1 instead of SDXL. It only require 8GB RAM to work and lowered the bar of generation time under 45 seconds (44s) on cpu-only, which make it the fastest overall model for image generation in biniou.
 
   * 🆕 **2023-12-01** : 🔥 ***New video module : Stable Video Diffusion*** 🔥  Adding Stable Video Diffusion to the video modules. It's a very slow -at least on cpu- but qualitative model that will transform a single image into a video. It requires 16GB RAM at least.
 
