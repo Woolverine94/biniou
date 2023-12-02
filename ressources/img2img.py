@@ -29,6 +29,7 @@ for filename in os.listdir(model_path_img2img):
 
 model_list_img2img_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
+    "stabilityai/sd-turbo",
     "stabilityai/sdxl-turbo",
 #    "ckpt/anything-v4.5-vae-swapped",
     "stabilityai/stable-diffusion-xl-refiner-1.0",
@@ -85,7 +86,7 @@ def image_img2img(
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_img2img, device_img2img, nsfw_filter)
 
-    if (modelid_img2img == "stabilityai/sdxl-turbo"):
+    if (modelid_img2img == "stabilityai/sdxl-turbo") or (modelid_img2img == "stabilityai/sd-turbo"):
         is_xlturbo_img2img: bool = True
     else :
         is_xlturbo_img2img: bool = False

@@ -365,7 +365,7 @@ def convert_seconds_to_timestamp(seconds):
     return total
 
 def check_steps_strength (steps, strength, model):
-    if (model == "stabilityai/sdxl-turbo"):
+    if (model == "stabilityai/sdxl-turbo") or (model == "stabilityai/sd-turbo"):
         if strength == 0:
             strength = 0.01
         steps = ceil(1/strength)

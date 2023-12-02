@@ -211,7 +211,7 @@ def hide_download_file_txt2img_sd():
     return download_file_txt2img_sd.update(visible=False)
 
 def change_model_type_txt2img_sd(model_txt2img_sd):
-    if (model_txt2img_sd == "stabilityai/sdxl-turbo"):
+    if (model_txt2img_sd == "stabilityai/sdxl-turbo") or (model_txt2img_sd == "stabilityai/sd-turbo"):
         return width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), negative_prompt_txt2img_sd.update(interactive=False)
     elif (model_txt2img_sd == "segmind/SSD-1B") or (model_txt2img_sd == "stabilityai/stable-diffusion-xl-base-1.0"):
         return width_txt2img_sd.update(value=1024), height_txt2img_sd.update(value=1024), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), negative_prompt_txt2img_sd.update(interactive=True)
@@ -307,7 +307,7 @@ def read_ini_img2img(module) :
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), bool(int(content[9])), float(content[10])
 
 def change_model_type_img2img(model_img2img):
-    if (model_img2img == "stabilityai/sdxl-turbo"):
+    if (model_img2img == "stabilityai/sdxl-turbo") or (model_img2img == "stabilityai/sd-turbo"):
         return width_img2img.update(value=512), height_img2img.update(value=512), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), negative_prompt_img2img.update(interactive=False)
     elif model_img2img == "stabilityai/stable-diffusion-xl-refiner-1.0":
         return width_img2img.update(value=1024), height_img2img.update(value=1024), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), negative_prompt_img2img.update(interactive=True)
@@ -1385,6 +1385,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF model page : </b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>,
+                                <a href='https://huggingface.co/stabilityai/sd-turbo' target='_blank'>stabilityai/sd-turbo</a>,
                                 <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>,
                                 <a href='https://huggingface.co/segmind/SSD-1B' target='_blank'>segmind/SSD-1B</a>,
                                 <a href='https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0' target='_blank'>stabilityai/stable-diffusion-xl-base-1.0</a>,
@@ -2424,6 +2425,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF model page : </b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>,
+                                <a href='https://huggingface.co/stabilityai/sd-turbo' target='_blank'>stabilityai/sd-turbo</a>,
                                 <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>,
                                 <a href='https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0' target='_blank'>stabilityai/stable-diffusion-xl-refiner-1.0</a>,
                                 <a href='https://huggingface.co/runwayml/stable-diffusion-v1-5' target='_blank'>runwayml/stable-diffusion-v1-5</a>,
