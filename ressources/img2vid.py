@@ -16,7 +16,13 @@ import tomesd
 device_label_img2vid, model_arch = detect_device()
 device_img2vid = torch.device(device_label_img2vid)
 
-model_path_img2vid = "./models/Stable_Diffusion_Video/"
+# Block to remove :
+if os.path.exists("./models/Stable_Diffusion_Video/") :
+    os.rename("./models/Stable_Diffusion_Video/", "./models/Stable_Video_Diffusion/")
+# End of block
+
+model_path_img2vid = "./models/Stable_Video_Diffusion/"
+model_path_safetychecker_img2vid = "./models/Stable_Diffusion/"
 os.makedirs(model_path_img2vid, exist_ok=True)
 
 model_list_img2vid = [
@@ -68,9 +74,9 @@ def video_img2vid(
     progress_img2vid=gr.Progress(track_tqdm=True)
     ):
     
-    print(">>>[Text2Video-Zero 📼 ]: starting module")
+    print(">>>[Stable Video Diffusion 📼 ]: starting module")
 
-    nsfw_filter_final, feat_ex = safety_checker_sd(model_path_img2vid, device_img2vid, nsfw_filter)
+    nsfw_filter_final, feat_ex = safety_checker_sd(model_path_safetychecker_img2vid, device_img2vid, nsfw_filter)
 
     pipe_img2vid = StableVideoDiffusionPipeline.from_pretrained(
         modelid_img2vid,
@@ -129,8 +135,8 @@ def video_img2vid(
         export_to_video(result, savename, fps=num_fps_img2vid)
         final_seed.append(seed_id)
 
-    print(f">>>[Text2Video-Zero 📼 ]: generated {num_prompt_img2vid} batch(es) of {num_videos_per_prompt_img2vid}")
-    reporting_img2vid = f">>>[Text2Video-Zero 📼 ]: "+\
+    print(f">>>[Stable Video Diffusion 📼 ]: generated {num_prompt_img2vid} batch(es) of {num_videos_per_prompt_img2vid}")
+    reporting_img2vid = f">>>[Stable Video Diffusion 📼 ]: "+\
         f"Settings : Model={modelid_img2vid} | "+\
         f"Sampler={sampler_img2vid} | "+\
         f"Steps={num_inference_steps_img2vid} | "+\
@@ -150,5 +156,5 @@ def video_img2vid(
     del nsfw_filter_final, feat_ex, pipe_img2vid, generator, result
     clean_ram()
 
-    print(f">>>[Text2Video-Zero 📼 ]: leaving module")
+    print(f">>>[Stable Video Diffusion 📼 ]: leaving module")
     return savename

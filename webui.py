@@ -5769,9 +5769,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
-
 # img2vid
-                with gr.TabItem("Stable Video Diffusion 📼", id=43) as tab_img2vid:
+                if ram_size() >= 16 :
+                    titletab_img2vid = "Stable Video Diffusion 📼"
+                else :
+                    titletab_img2vid = "Stable Video Diffusion ⛔"
+                with gr.TabItem(titletab_img2vid, id=43) as tab_img2vid:
                     with gr.Accordion("About", open=False):
                         with gr.Box():
                             gr.HTML(
