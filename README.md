@@ -15,6 +15,8 @@
 
 ## Updates
 
+  * 🆕 **2023-12-02** : 🔥 ***New model for Stable Diffusion and img2img : SD-Turbo*** 🔥 Adding model [SD-Turbo](https://huggingface.co/stabilityai/sd-turbo) to modules Stable Diffusion and img2img. This model is a lightweight alternative to SDXL-Turbo as it use the same ADD (Adversarial Diffusion Distillation) training method, and is refined from SD2.1 instead of SDXL. It only require 8GB RAM to work and could produce content in less than 45 seconds on cpu-only.
+
   * 🆕 **2023-12-01** : 🔥 ***New video module : Stable Video Diffusion*** 🔥  Adding Stable Video Diffusion to the video modules. It's a very slow -at least on cpu- but qualitative model that will transform a single image into a video. It requires 16GB RAM at least.
 
   * 🆕 **2023-11-30** : 🔥 ***New model for Stable Diffusion and img2img : SDXL-Turbo*** 🔥 Adding model [SDXL-Turbo](https://huggingface.co/stabilityai/sdxl-turbo) to modules Stable Diffusion and img2img. This amazing model can generate SDXL-quality images in a single step (!), and has an awesome quality/generation time ratio. It generate 512x512 images as default, but support greater sizes. Like all others SDXL-family models, it will require 16GB RAM and around 15GB storage space. Please also note that it require specific settings to run (like a 0 CFG scale), that will be automatically handled by the UI.
@@ -24,8 +26,6 @@
     - ***New chatbot model : Starling-LM-7B-alpha*** Adding this brand new model to the chatbot. [Starling-LM-7B-alpha](https://huggingface.co/berkeley-nest/Starling-LM-7B-alpha) is provided by Berkeley and had been finetuned from Openchat-3.5 (the current default model for biniou). According to the first benchmarks, it seems to be more performant than Claude-2 or GPT-3.5-Turbo. Give it a try ! 
 
   * 🆕 **2023-11-27** : 🔥 ***New feature : CUDA support for text, audio and 3d modules*** 🔥 CUDA support and optimizations are now added to all eligibles modules.  If you had not done it yet, follow [theses instructions](https://github.com/Woolverine94/biniou/wiki/Experimental-features#cuda-support) to enable.
-
-  * 🆕 **2023-11-25** : 🔥 ***New feature : CUDA support for video modules*** 🔥 Enabling CUDA support and optimizations for all eligible video modules. If you had not done it yet, follow [theses instructions](https://github.com/Woolverine94/biniou/wiki/Experimental-features#cuda-support) to enable.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
