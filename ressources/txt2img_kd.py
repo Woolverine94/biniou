@@ -22,10 +22,11 @@ model_list_txt2img_kd = []
 
 for filename in os.listdir(model_path_txt2img_kd):
     f = os.path.join(model_path_txt2img_kd, filename)
-    if os.path.isfile(f) and (filename.endswith('.ckpt') or filename.endswith('.safetensors')):
+    if os.path.isfile(f) and (filename.endswith('.ckpt') or filename.endswith('.safetensors') or filename.endswith('.bin')):
         model_list_txt2img_kd.append(f)
 
 model_list_txt2img_kd_builtin = [
+#    "kandinsky-community/kandinsky-3",
     "kandinsky-community/kandinsky-2-2-decoder",
     "kandinsky-community/kandinsky-2-1",
 ]
@@ -72,28 +73,51 @@ def image_txt2img_kd(
     ):
 
     print(">>>[Kandinsky 🖼️ ]: starting module")
-        
-    if modelid_txt2img_kd[0:9] == "./models/" :
-        pipe_txt2img_kd = AutoPipelineForText2Image.from_single_file(
-            modelid_txt2img_kd, 
-            torch_dtype=model_arch,
-            use_safetensors=True,
-        )
-    else :        
-        pipe_txt2img_kd = AutoPipelineForText2Image.from_pretrained(
-            modelid_txt2img_kd, 
-            cache_dir=model_path_txt2img_kd, 
-            torch_dtype=model_arch,
-            use_safetensors=True,
-            resume_download=True,
-            local_files_only=True if offline_test() else None
-        )
-        
+
+    def check_model_type():
+        txt2img_kd_model_type = model_arch if (modelid_txt2img_kd != "kandinsky-community/kandinsky-3") else torch.float16
+        print(txt2img_kd_model_type)
+        return txt2img_kd_model_type
+
+    if (modelid_txt2img_kd == "kandinsky-community/kandinsky-3") :
+        if modelid_txt2img_kd[0:9] == "./models/" :
+            pipe_txt2img_kd = AutoPipelineForText2Image.from_single_file(
+                modelid_txt2img_kd,
+                torch_dtype=torch.float16,
+                use_safetensors=True,
+            )
+        else :
+            pipe_txt2img_kd = AutoPipelineForText2Image.from_pretrained(
+                modelid_txt2img_kd,
+                cache_dir=model_path_txt2img_kd,
+                torch_dtype=torch.float16,
+                variant="fp16",
+                use_safetensors=True,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+    else :
+        if modelid_txt2img_kd[0:9] == "./models/" :
+            pipe_txt2img_kd = AutoPipelineForText2Image.from_single_file(
+                modelid_txt2img_kd,
+                torch_dtype=model_arch,
+                use_safetensors=True,
+            )
+        else :
+            pipe_txt2img_kd = AutoPipelineForText2Image.from_pretrained(
+                modelid_txt2img_kd,
+                cache_dir=model_path_txt2img_kd,
+                torch_dtype=model_arch,
+                use_safetensors=True,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+
     pipe_txt2img_kd = get_scheduler(pipe=pipe_txt2img_kd, scheduler=sampler_txt2img_kd)
-    pipe_txt2img_kd.enable_attention_slicing("max")  
+    pipe_txt2img_kd.enable_attention_slicing("max")
     if device_label_txt2img_kd == "cuda" :
         pipe_txt2img_kd.enable_sequential_cpu_offload()
-    else : 
+    else :
         pipe_txt2img_kd = pipe_txt2img_kd.to(device_txt2img_kd)
 
     if seed_txt2img_kd == 0:
@@ -104,24 +128,37 @@ def image_txt2img_kd(
 
     final_image = []
     for i in range (num_prompt_txt2img_kd):
-        image = pipe_txt2img_kd(
-            prompt=prompt_txt2img_kd,
-            negative_prompt=negative_prompt_txt2img_kd,
-            height=height_txt2img_kd,
-            width=width_txt2img_kd,
-            num_inference_steps=num_inference_step_txt2img_kd,
-            guidance_scale=guidance_scale_txt2img_kd,
-            num_images_per_prompt=num_images_per_prompt_txt2img_kd,
-            generator = generator,
-            callback_on_step_end=check_txt2img_kd, 
-            callback_on_step_end_tensor_inputs=['latents'],
-        ).images
+        if (modelid_txt2img_kd == "kandinsky-community/kandinsky-3") :
+            image = pipe_txt2img_kd(
+                prompt=prompt_txt2img_kd,
+                negative_prompt=negative_prompt_txt2img_kd,
+                height=height_txt2img_kd,
+                width=width_txt2img_kd,
+                num_inference_steps=num_inference_step_txt2img_kd,
+                guidance_scale=guidance_scale_txt2img_kd,
+                num_images_per_prompt=num_images_per_prompt_txt2img_kd,
+                generator = generator,
+                callback=check_txt2img_kd,
+            ).images
+        else :
+            image = pipe_txt2img_kd(
+                prompt=prompt_txt2img_kd,
+                negative_prompt=negative_prompt_txt2img_kd,
+                height=height_txt2img_kd,
+                width=width_txt2img_kd,
+                num_inference_steps=num_inference_step_txt2img_kd,
+                guidance_scale=guidance_scale_txt2img_kd,
+                num_images_per_prompt=num_images_per_prompt_txt2img_kd,
+                generator = generator,
+                callback_on_step_end=check_txt2img_kd,
+                callback_on_step_end_tensor_inputs=['latents'],
+            ).images
 
         for j in range(len(image)):
             timestamp = time.time()
             savename = f"outputs/{timestamp}.png"
             if use_gfpgan_txt2img_kd == True :
-                image[j] = image_gfpgan_mini(image[j])            
+                image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
             final_image.append(image[j])
 
@@ -135,10 +172,10 @@ def image_txt2img_kd(
         f"GFPGAN={use_gfpgan_txt2img_kd} | "+\
         f"Prompt={prompt_txt2img_kd} | "+\
         f"Negative prompt={negative_prompt_txt2img_kd}"
-    print(reporting_txt2img_kd) 
-            
-    del pipe_txt2img_kd, generator, image 
-    clean_ram()            
-    
-    print(f">>>[Kandinsky 🖼️ ]: leaving module")    
+    print(reporting_txt2img_kd)
+
+    del pipe_txt2img_kd, generator, image
+    clean_ram()
+
+    print(f">>>[Kandinsky 🖼️ ]: leaving module")
     return final_image, final_image
