@@ -10,6 +10,7 @@ from .txt2img_lcm import *
 from .txt2img_mjm import *
 from .txt2img_paa import *
 from .img2img import *
+from .img2img_ip import *
 from .img2var import *
 from .pix2pix import *
 from .magicmix import *

@@ -96,7 +96,7 @@ def image_img2img(
     else :        
         is_xl_img2img: bool = False        
 
-    if (is_xlturbo_img2img == True) :
+    if (is_xlturbo_img2img == True):
         if modelid_img2img[0:9] == "./models/" :
             pipe_img2img = AutoPipelineForImage2Image.from_single_file(
                 modelid_img2img, 
@@ -116,7 +116,7 @@ def image_img2img(
                 resume_download=True,
                 local_files_only=True if offline_test() else None                
             )
-    elif (is_xl_img2img == True) :
+    elif (is_xl_img2img == True) and (is_xlturbo_img2img == False):
         if modelid_img2img[0:9] == "./models/" :
             pipe_img2img = StableDiffusionXLImg2ImgPipeline.from_single_file(
                 modelid_img2img, 
