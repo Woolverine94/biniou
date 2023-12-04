@@ -4,7 +4,7 @@ import gradio as gr
 import os
 import PIL
 import torch
-from diffusers import AutoPipelineForImage2Image, StableDiffusionXLImg2ImgPipeline, StableDiffusionImg2ImgPipeline, UNet2DConditionModel
+from diffusers import AutoPipelineForImage2Image, StableDiffusionXLImg2ImgPipeline, StableDiffusionImg2ImgPipeline
 from compel import Compel, ReturnedEmbeddingsType
 import time
 import random
@@ -31,7 +31,7 @@ for filename in os.listdir(model_path_img2img_ip):
 
 model_list_img2img_ip_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
-    "stabilityai/sd-turbo",
+#    "stabilityai/sd-turbo",
     "stabilityai/sdxl-turbo",
 #    "ckpt/anything-v4.5-vae-swapped",
     "stabilityai/stable-diffusion-xl-refiner-1.0",
