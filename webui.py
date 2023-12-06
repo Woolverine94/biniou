@@ -1443,7 +1443,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
                                 </br>
                                 <b>Models :</b></br>
-                                - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or  <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors models in the directory ./biniou/models/Stable Diffusion. Restart Biniou to see them in the models list.  
+                                - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or  <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors models in the directory ./biniou/models/Stable Diffusion. Restart Biniou to see them in the models list.</br>
                                 <b>LoRA models :</b></br>
                                 - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or  <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors LoRA models in the directory ./biniou/models/lora/SD or ./biniou/models/lora/SDXL (depending on the LoRA model type : SD 1.5 or SDXL). Restart Biniou to see them in the models list.
                                 </div>                                
@@ -1517,12 +1517,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             seed_txt2img_sd.value = readcfg_txt2img_sd[8]
                             use_gfpgan_txt2img_sd.value = readcfg_txt2img_sd[9]
                             tkme_txt2img_sd.value = readcfg_txt2img_sd[10]
-                        with gr.Accordion("LoRA", open=True):
+                        with gr.Accordion("LoRA models", open=True):
                             with gr.Row():
                                 with gr.Column():
-                                    lora_model_txt2img_sd = gr.Dropdown(choices=list(lora_model_list(model_txt2img_sd.value).keys()), value="", label="Lora model", info="Choose Lora model to use for inference")
+                                    lora_model_txt2img_sd = gr.Dropdown(choices=list(lora_model_list(model_txt2img_sd.value).keys()), value="", label="LoRA model", info="Choose LoRA model to use for inference")
                                 with gr.Column():
-                                    lora_weight_txt2img_sd = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label="Lora weight", info="Weight of the Lora model in the final result")
+                                    lora_weight_txt2img_sd = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label="LoRA weight", info="Weight of the LoRA model in the final result")
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
