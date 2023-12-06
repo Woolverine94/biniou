@@ -370,3 +370,35 @@ def check_steps_strength (steps, strength, model):
             strength = 0.01
         steps = ceil(1/strength)
     return int(steps)
+
+def lora_model_list(model):
+    if (('xl' or 'XL' or 'Xl' or 'xL') in model or (model == "segmind/SSD-1B")):
+        model_path_lora = "./models/lora/SDXL"
+        model_list_lora_builtin = {
+            "ostris/ikea-instructions-lora-sdxl":("ikea_instructions_xl_v1_5.safetensors", ""),
+            "ostris/super-cereal-sdxl-lora":("cereal_box_sdxl_v1.safetensors", ""),
+            "Norod78/SDXL-JojosoStyle-Lora-v2":("SDXL-JojosoStyle-Lora-v2-r16.safetensors", "JojoSostyle"),
+            "Norod78/SDXL-simpstyle-Lora-v2":("SDXL-Simpstyle-Lora-v2-r16.safetensors", "simpstyle"),
+            "Norod78/SDXL-Caricaturized-Lora":("SDXL-Caricaturized-Lora.safetensors", "Caricaturized"),
+            "Norod78/SDXL-StickerSheet-Lora":("SDXL-StickerSheet-Lora.safetensors", "StickerSheet"),
+    }
+    else :        
+        model_path_lora = "./models/lora/SD"
+        model_list_lora_builtin = {
+            "Norod78/SD15-IllusionDiffusionPattern-LoRA":("SD15-IllusionDiffusionPattern-LoRA.safetensors","IllusionDiffusionPattern"),
+
+        }
+
+    os.makedirs(model_path_lora, exist_ok=True)
+    model_list_lora = {
+        "":("", ""),
+    }
+    
+    for filename in os.listdir(model_path_lora):
+        f = os.path.join(model_path_lora, filename)
+        if os.path.isfile(f) and filename.endswith('.safetensors') :
+            final_f = {f:(f.split("/")[-1], "")}
+            model_list_lora.update(final_f)
+
+    model_list_lora.update(model_list_lora_builtin)
+    return model_list_lora

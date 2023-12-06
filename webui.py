@@ -211,15 +211,24 @@ def hide_download_file_txt2img_sd():
     return download_file_txt2img_sd.update(visible=False)
 
 def change_model_type_txt2img_sd(model_txt2img_sd):
-    if (model_txt2img_sd == "stabilityai/sdxl-turbo") or (model_txt2img_sd == "stabilityai/sd-turbo"):
-        return width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), negative_prompt_txt2img_sd.update(interactive=False)
+    if (model_txt2img_sd == "stabilityai/sdxl-turbo"):
+        return width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=False)
+    elif (model_txt2img_sd == "stabilityai/sd-turbo"):
+        return width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=False), negative_prompt_txt2img_sd.update(interactive=False)
     elif (model_txt2img_sd == "segmind/SSD-1B") or (model_txt2img_sd == "stabilityai/stable-diffusion-xl-base-1.0"):
-        return width_txt2img_sd.update(value=1024), height_txt2img_sd.update(value=1024), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), negative_prompt_txt2img_sd.update(interactive=True)
+        return width_txt2img_sd.update(value=1024), height_txt2img_sd.update(value=1024), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=True)
     else:
-        return width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), negative_prompt_txt2img_sd.update(interactive=True)
-    
+        return width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=True)
+
+def change_lora_model_txt2img_sd(model, lora_model, prompt):
+    if lora_model != "":
+        lora_prompt_txt2img_sd = prompt+ " "+ lora_model_list(model)[lora_model][1]
+    else:
+        lora_prompt_txt2img_sd = prompt
+    return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd)
+
 # def update_preview_txt2img_sd(preview):
-#     return out_txt2img_sd.update(preview)     
+#     return out_txt2img_sd.update(preview)
 
 def read_ini_txt2img_sd(module) :
     content = read_ini(module)
@@ -1426,15 +1435,18 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
                                 <div style='text-align: justified'>
                                 <b>Usage :</b></br>
+                                - (optional) Modify the settings to use another model, generate several images in a single run or change dimensions of the outputs</br>
+                                - (optional) Select a LoRA model and set its weight</br>
                                 - Fill the <b>prompt</b> with what you want to see in your output image</br>
                                 - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output image</br>
-                                - (optional) Modify the settings to use another model, generate several images in a single run or change dimensions of the outputs</br>
                                 - Click the <b>Generate</b> button</br>
                                 - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
                                 </br>
                                 <b>Models :</b></br>
                                 - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or  <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors models in the directory ./biniou/models/Stable Diffusion. Restart Biniou to see them in the models list.  
-                                </div>
+                                <b>LoRA models :</b></br>
+                                - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or  <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors LoRA models in the directory ./biniou/models/lora/SD or ./biniou/models/lora/SDXL (depending on the LoRA model type : SD 1.5 or SDXL). Restart Biniou to see them in the models list.
+                                </div>                                
                                 """
                             )                
                     with gr.Accordion("Settings", open=False):
@@ -1505,6 +1517,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             seed_txt2img_sd.value = readcfg_txt2img_sd[8]
                             use_gfpgan_txt2img_sd.value = readcfg_txt2img_sd[9]
                             tkme_txt2img_sd.value = readcfg_txt2img_sd[10]
+                        with gr.Accordion("LoRA", open=True):
+                            with gr.Row():
+                                with gr.Column():
+                                    lora_model_txt2img_sd = gr.Dropdown(choices=list(lora_model_list(model_txt2img_sd.value).keys()), value="", label="Lora model", info="Choose Lora model to use for inference")
+                                with gr.Column():
+                                    lora_weight_txt2img_sd = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label="Lora weight", info="Weight of the Lora model in the final result")
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -1513,7 +1531,19 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Row():
                                 with gr.Column(): 
                                     negative_prompt_txt2img_sd = gr.Textbox(lines=6, max_lines=6, label="Negative Prompt", info="Describe what you DO NOT want in your image", placeholder="out of frame, bad quality, medium quality, blurry, ugly, duplicate, text, characters, logo")
-                        model_txt2img_sd.change(fn=change_model_type_txt2img_sd, inputs=model_txt2img_sd, outputs=[width_txt2img_sd, height_txt2img_sd, num_inference_step_txt2img_sd, guidance_scale_txt2img_sd, negative_prompt_txt2img_sd])
+                        model_txt2img_sd.change(
+                            fn=change_model_type_txt2img_sd, 
+                            inputs=[model_txt2img_sd],
+                            outputs=[
+                                width_txt2img_sd,
+                                height_txt2img_sd,
+                                num_inference_step_txt2img_sd,
+                                guidance_scale_txt2img_sd,
+                                lora_model_txt2img_sd,
+                                negative_prompt_txt2img_sd
+                            ]
+                        )
+                        lora_model_txt2img_sd.change(fn=change_lora_model_txt2img_sd, inputs=[model_txt2img_sd, lora_model_txt2img_sd, prompt_txt2img_sd], outputs=[prompt_txt2img_sd])
                         with gr.Column(scale=2):
                             out_txt2img_sd = gr.Gallery(
                                 label="Generated images",
@@ -1559,6 +1589,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_txt2img_sd,
                                 nsfw_filter,
                                 tkme_txt2img_sd,
+                                lora_model_txt2img_sd,
+                                lora_weight_txt2img_sd,
                             ],
                                 outputs=[out_txt2img_sd, gs_out_txt2img_sd],
                                 show_progress="full",

@@ -20,3 +20,4 @@ mediapipe
 tomesd
 ffmpeg-python
 trimesh
+peft

@@ -14,10 +14,16 @@ import tomesd
 # device_txt2img_sd = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 device_label_txt2img_sd, model_arch = detect_device()
 device_txt2img_sd = torch.device(device_label_txt2img_sd)
- 
+
 # Gestion des modèles
 model_path_txt2img_sd = "./models/Stable_Diffusion/"
 os.makedirs(model_path_txt2img_sd, exist_ok=True)
+
+model_path_lora_sd = "./models/lora/SD"
+model_path_lora_sdxl = "./models/lora/SDXL"
+os.makedirs(model_path_lora_sd, exist_ok=True)
+os.makedirs(model_path_lora_sdxl, exist_ok=True)
+
 model_list_txt2img_sd = []
 
 for filename in os.listdir(model_path_txt2img_sd):
@@ -61,7 +67,8 @@ def check_txt2img_sd(pipe, step_index, timestep, callback_kwargs) :
     return
 
 @metrics_decoration
-def image_txt2img_sd(modelid_txt2img_sd, 
+def image_txt2img_sd(
+    modelid_txt2img_sd, 
     sampler_txt2img_sd, 
     prompt_txt2img_sd, 
     negative_prompt_txt2img_sd, 
@@ -75,6 +82,8 @@ def image_txt2img_sd(modelid_txt2img_sd,
     use_gfpgan_txt2img_sd, 
     nsfw_filter, 
     tkme_txt2img_sd,
+    lora_model_txt2img_sd,
+    lora_weight_txt2img_sd,
     progress_txt2img_sd=gr.Progress(track_tqdm=True)
     ):
 
@@ -163,6 +172,7 @@ def image_txt2img_sd(modelid_txt2img_sd,
             )
 
     pipe_txt2img_sd = get_scheduler(pipe=pipe_txt2img_sd, scheduler=sampler_txt2img_sd)
+#    if lora_model_txt2img_sd == "":
     pipe_txt2img_sd.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_txt2img_sd, ratio=tkme_txt2img_sd)
     if device_label_txt2img_sd == "cuda" :
@@ -170,6 +180,31 @@ def image_txt2img_sd(modelid_txt2img_sd,
     else : 
         pipe_txt2img_sd = pipe_txt2img_sd.to(device_txt2img_sd)
     pipe_txt2img_sd.enable_vae_slicing()
+
+    if lora_model_txt2img_sd != "":
+        model_list_lora_txt2img_sd = lora_model_list(modelid_txt2img_sd)
+        if modelid_txt2img_sd[0:9] == "./models/":
+            pipe_txt2img_sd.load_lora_weights(
+                os.path.dirname(lora_model_txt2img_sd),
+                weight_name=model_list_lora_txt2img_sd[lora_model_txt2img_sd][0],
+                use_safetensors=True,
+                adapter_name="adapter1",
+            )
+        else:
+            if is_xl_txt2img_sd:
+                lora_model_path = model_path_lora_sdxl
+            else: 
+                lora_model_path = model_path_lora_sd
+            pipe_txt2img_sd.load_lora_weights(
+                lora_model_txt2img_sd,
+                weight_name=model_list_lora_txt2img_sd[lora_model_txt2img_sd][0],
+                cache_dir=lora_model_path,
+                use_safetensors=True,
+                adapter_name="adapter1",
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+        pipe_txt2img_sd.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_txt2img_sd)])
 
     if seed_txt2img_sd == 0:
         random_seed = random.randrange(0, 10000000000, 1)
