@@ -15,7 +15,7 @@
 
 ## Updates
 
-  * 🆕 **2023-12-06** : 🔥 ***New feature for img2img module : support for LoRA models*** 🔥  Adding experimental LoRA options at the bottom of the settings panel in the img2img module. Same usage and modalities than the Stable Diffusion LoRA features (see below)
+  * 🆕 **2023-12-06** : 🔥 ***New feature for img2img module : support for LoRA models*** 🔥  Adding experimental LoRA options at the bottom of the settings panel in the img2img module. Same usage and modalities than the Stable Diffusion LoRA features (see below).
 
 
   * 🆕 **2023-12-06** : 🔥 ***New feature for Stable Diffusion module : support for LoRA models*** 🔥  Adding experimental LoRA options at the bottom of the settings panel in the Stable Diffusion module. Both SD1.5 and SDXL LoRA could be used. You can place your safetensors files from civitai or hugginface in ./biniou/models/lora/SDXL and ./biniou/models/lora/SD. LoRA support should be extended to other eligibles modules.
