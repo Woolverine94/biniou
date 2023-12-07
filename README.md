@@ -15,6 +15,9 @@
 
 ## Updates
 
+  * 🆕 **2023-12-06** : 🔥 ***New feature for img2img module : support for LoRA models*** 🔥  Adding experimental LoRA options at the bottom of the settings panel in the img2img module. Same usage and modalities than the Stable Diffusion LoRA features (see below)
+
+
   * 🆕 **2023-12-06** : 🔥 ***New feature for Stable Diffusion module : support for LoRA models*** 🔥  Adding experimental LoRA options at the bottom of the settings panel in the Stable Diffusion module. Both SD1.5 and SDXL LoRA could be used. You can place your safetensors files from civitai or hugginface in ./biniou/models/lora/SDXL and ./biniou/models/lora/SD. LoRA support should be extended to other eligibles modules.
 
   * 🆕 **2023-12-04** : 🔥 ***New image module : IP-Adapter*** 🔥  Adding IP-Adapter to the image modules. Using [IP-Adapter](https://ip-adapter.github.io/), you can transform an input image using both a conditional image and a textual prompt. It is pretty good at this game, and produce amazing results.
@@ -22,8 +25,6 @@
   * 🆕 **2023-12-02** : 🔥 ***New model for Stable Diffusion and img2img : SD-Turbo*** 🔥 Adding model [SD-Turbo](https://huggingface.co/stabilityai/sd-turbo) to modules Stable Diffusion and img2img. This model is a lightweight alternative to SDXL-Turbo as it use the same training method, but is refined from SD2.1 instead of SDXL. It only require 8GB RAM to work and lowered the bar of generation time under 45 seconds (44s) on cpu-only, which make it the fastest overall model for image generation in biniou.
 
   * 🆕 **2023-12-01** : 🔥 ***New video module : Stable Video Diffusion*** 🔥  Adding [Stable Video Diffusion](https://stability.ai/stable-video) to the video modules. It's a very slow -at least on cpu- but qualitative model that will transform a single image into a video. It requires 16GB RAM at least.
-
-  * 🆕 **2023-11-30** : 🔥 ***New model for Stable Diffusion and img2img : SDXL-Turbo*** 🔥 Adding model [SDXL-Turbo](https://huggingface.co/stabilityai/sdxl-turbo) to modules Stable Diffusion and img2img. This amazing model can generate SDXL-quality images in a single step (!), and has an awesome quality/generation time ratio. It generate 512x512 images as default, but support greater sizes. Like all others SDXL-family models, it will require 16GB RAM and around 15GB storage space. Please also note that it require specific settings to run (like a 0 CFG scale), that will be automatically handled by the UI.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
@@ -98,7 +99,8 @@
   - Cross platform : GNU/Linux, Windows 10/11 and macOS(experimental, via homebrew)
   - Convenient Dockerfile for cloud instances
   - Support for CUDA (experimental) on almost all modules (see [this page](https://github.com/Woolverine94/biniou/wiki/Experimental-features#cuda-support))
-  - Support for Stable Diffusion SDXL and SDXL-Turbo models
+  - Support for Stable Diffusion SDXL, SDXL-Turbo and Segmind SSD-1B models
+  - Experimental support for LoRA models
 
 ---
 
