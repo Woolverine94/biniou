@@ -28,6 +28,8 @@ for filename in os.listdir(model_path_controlnet):
 
 model_list_controlnet_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
+#    "stabilityai/sd-turbo",
+#    "stabilityai/sdxl-turbo",
 #    "ckpt/anything-v4.5-vae-swapped",
     "stabilityai/stable-diffusion-xl-base-1.0",
     "runwayml/stable-diffusion-v1-5",
@@ -90,10 +92,10 @@ def initiate_stop_controlnet() :
     global stop_controlnet
     stop_controlnet = True
 
-def check_controlnet(step, timestep, latents) :
+def check_controlnet(pipe, step_index, timestep, callback_kwargs) :
     global stop_controlnet
     if stop_controlnet == False :
-        return
+        return callback_kwargs
     elif stop_controlnet == True :
         print(">>>[ControlNet 🖼️ ]: generation canceled by user")
         stop_controlnet = False
@@ -220,6 +222,8 @@ def image_controlnet(
     img_preview_controlnet, 
     nsfw_filter, 
     tkme_controlnet,
+    lora_model_controlnet,
+    lora_weight_controlnet,    
     progress_controlnet=gr.Progress(track_tqdm=True)
     ):
 
@@ -240,6 +244,11 @@ def image_controlnet(
     strength_controlnet = float(strength_controlnet)
     start_controlnet = float(start_controlnet)
     stop_controlnet = float(stop_controlnet)
+
+    if (modelid_controlnet == "stabilityai/sdxl-turbo") or  (modelid_controlnet == "stabilityai/sd-turbo"):
+        is_xlturbo_controlnet: bool = True
+    else :
+        is_xlturbo_controlnet: bool = False
     
     if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_controlnet :
         is_xl_controlnet: bool = True
@@ -300,6 +309,31 @@ def image_controlnet(
         pipe_controlnet = pipe_controlnet.to(device_controlnet)
     pipe_controlnet.enable_vae_slicing()
 
+    if lora_model_controlnet != "":
+        model_list_lora_controlnet = lora_model_list(modelid_controlnet)
+        if modelid_controlnet[0:9] == "./models/":
+            pipe_controlnet.load_lora_weights(
+                os.path.dirname(lora_model_controlnet),
+                weight_name=model_list_lora_controlnet[lora_model_controlnet][0],
+                use_safetensors=True,
+                adapter_name="adapter1",
+            )
+        else:
+            if is_xl_controlnet:
+                lora_model_path = "./models/lora/SDXL"
+            else: 
+                lora_model_path = "./models/lora/SD"
+            pipe_controlnet.load_lora_weights(
+                lora_model_controlnet,
+                weight_name=model_list_lora_controlnet[lora_model_controlnet][0],
+                cache_dir=lora_model_path,
+                use_safetensors=True,
+                adapter_name="adapter1",
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+        pipe_controlnet.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_controlnet)])
+
     if seed_controlnet == 0:
         random_seed = random.randrange(0, 10000000000, 1)
         final_seed = random_seed
@@ -333,9 +367,25 @@ def image_controlnet(
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
    
     final_image = []
-    final_seed = []     
+    final_seed = []
     for i in range (num_prompt_controlnet):
-        if (is_xl_controlnet == True) : 
+        if (is_xlturbo_controlnet == True):
+            image = pipe_controlnet(
+                prompt=prompt_controlnet,
+                image=img_preview_controlnet,
+                height=height_controlnet,
+                width=width_controlnet,
+                num_images_per_prompt=num_images_per_prompt_controlnet,
+                num_inference_steps=num_inference_step_controlnet,
+                guidance_scale=guidance_scale_controlnet,
+                controlnet_conditioning_scale=strength_controlnet,
+                control_guidance_start=start_controlnet,
+                control_guidance_end=stop_controlnet,                
+                generator=generator[i],
+                callback_on_step_end=check_controlnet, 
+                callback_on_step_end_tensor_inputs=['latents'], 
+            ).images
+        elif (is_xl_controlnet == True) : 
             image = pipe_controlnet(
                 prompt_embeds=conditioning, 
                 pooled_prompt_embeds=pooled, 
@@ -351,7 +401,8 @@ def image_controlnet(
                 control_guidance_start=start_controlnet,
                 control_guidance_end=stop_controlnet,                
                 generator=generator[i],
-                callback=check_controlnet,
+                callback_on_step_end=check_controlnet, 
+                callback_on_step_end_tensor_inputs=['latents'], 
             ).images
         else :            
             image = pipe_controlnet(
@@ -367,7 +418,8 @@ def image_controlnet(
                 control_guidance_start=start_controlnet,
                 control_guidance_end=stop_controlnet,
                 generator=generator[i],
-                callback=check_controlnet,
+                callback_on_step_end=check_controlnet, 
+                callback_on_step_end_tensor_inputs=['latents'], 
             ).images
 
         for j in range(len(image)):

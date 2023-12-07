@@ -447,10 +447,25 @@ def read_ini_controlnet(module) :
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), int(content[9]), int(content[10]), float(content[11]), float(content[12]), float(content[13]), bool(int(content[14])), float(content[15])    
 
 def change_model_type_controlnet(model_controlnet):
-    if model_controlnet == "stabilityai/stable-diffusion-xl-base-1.0":
-        return width_controlnet.update(value=1024), height_controlnet.update(value=1024)
+    if (model_controlnet == "stabilityai/sdxl-turbo"):
+        return width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=1), guidance_scale_controlnet.update(value=0.0), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), negative_prompt_controlnet.update(interactive=False)
+    elif (model_controlnet == "stabilityai/sd-turbo"):
+        return width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=1), guidance_scale_controlnet.update(value=0.0), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=False), negative_prompt_controlnet.update(interactive=False)
+    elif (model_controlnet == "segmind/SSD-1B") or (model_controlnet == "stabilityai/stable-diffusion-xl-base-1.0"):
+        return width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=7.5), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), negative_prompt_controlnet.update(interactive=True)
     else:
-        return width_controlnet.update(value=512), height_controlnet.update(value=512)
+        return width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=7.5), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), negative_prompt_controlnet.update(interactive=True)
+
+def change_lora_model_controlnet(model, lora_model, prompt):
+    if lora_model != "":
+        lora_keyword = lora_model_list(model)[lora_model][1]
+        if lora_keyword != "":
+            lora_prompt_controlnet = prompt+ " "+ lora_keyword
+        else:
+            lora_prompt_controlnet = prompt
+    else:
+        lora_prompt_controlnet = prompt
+    return prompt_controlnet.update(value=lora_prompt_controlnet)
 
 ## Functions specific to faceswap 
 def zip_download_file_faceswap(content):
@@ -4264,7 +4279,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF Stable Diffusion models pages : </b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>,  
-
+                                <a href='https://huggingface.co/stabilityai/sd-turbo' target='_blank'>stabilityai/sd-turbo</a>,
+                                <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>,
                                 <a href='https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0' target='_blank'>stabilityai/stable-diffusion-xl-refiner-1.0</a>, 
                                 <a href='https://huggingface.co/runwayml/stable-diffusion-v1-5' target='_blank'>runwayml/stable-diffusion-v1-5</a>, 
                                 <a href='https://huggingface.co/nitrosocke/Ghibli-Diffusion' target='_blank'>nitrosocke/Ghibli-Diffusion</a></br>
@@ -4289,6 +4305,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <div style='text-align: justified'>
                                 <b>Usage :</b></br>
                                 - (optional) Modify the settings to use another model, change the settings for ControlNet or adjust threshold on canny</br>
+                                - (optional) Select a LoRA model and set its weight</br>                                     
                                 - Select a <b>Source image</b> that will be used to generate the control image</br>
                                 - Select a <b>pre-processor</b> for the control image</br> 
                                 - Click the <b>Preview</b> button</br>
@@ -4299,7 +4316,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 - Click the <b>Generate button</b></br>
                                 - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery</br>
                                 <b>Models :</b></br>
-                                - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors models in the directory ./biniou/models/Stable Diffusion. Restart Biniou to see them in the models list.
+                                - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors models in the directory ./biniou/models/Stable Diffusion. Restart Biniou to see them in the models list.</br>
+                                <b>LoRA models :</b></br>
+                                - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or  <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors LoRA models in the directory ./biniou/models/lora/SD or ./biniou/models/lora/SDXL (depending on the LoRA model type : SD 1.5 or SDXL). Restart Biniou to see them in the models list.</br>
                                 </div>
                                 """
                             )                
@@ -4313,7 +4332,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 sampler_controlnet = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_controlnet = gr.Slider(0.1, 20.0, step=0.1, value=7.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_controlnet = gr.Slider(0.0, 20.0, step=0.1, value=7.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
                                 num_images_per_prompt_controlnet = gr.Slider(minimum=1, maximum=4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
@@ -4394,6 +4413,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             stop_controlnet.value = readcfg_controlnet[13]
                             use_gfpgan_controlnet.value = readcfg_controlnet[14]
                             tkme_controlnet.value = readcfg_controlnet[15]
+                        with gr.Accordion("LoRA Model", open=True):
+                            with gr.Row():
+                                with gr.Column():
+                                    lora_model_controlnet = gr.Dropdown(choices=list(lora_model_list(model_controlnet.value).keys()), value="", label="LoRA model", info="Choose LoRA model to use for inference")
+                                with gr.Column():
+                                    lora_weight_controlnet = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label="LoRA weight", info="Weight of the LoRA model in the final result")                            
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -4430,6 +4455,19 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Row():
                                 with gr.Column(): 
                                     negative_prompt_controlnet = gr.Textbox(lines=6, max_lines=6, label="Negative Prompt", info="Describe what you DO NOT want in your image", placeholder="out of frame, bad quality, medium quality, blurry, ugly, duplicate, text, characters, logo")
+                            model_controlnet.change(
+                                fn=change_model_type_controlnet, 
+                                inputs=[model_controlnet],
+                                outputs=[
+                                    width_controlnet,
+                                    height_controlnet,
+                                    num_inference_step_controlnet,
+                                    guidance_scale_controlnet,
+                                    lora_model_controlnet,
+                                    negative_prompt_controlnet,
+                                ]
+                            )
+                            lora_model_controlnet.change(fn=change_lora_model_controlnet, inputs=[model_controlnet, lora_model_controlnet, prompt_controlnet], outputs=[prompt_controlnet])
                         with gr.Column():
                             out_controlnet = gr.Gallery(
                                 label="Generated images",
@@ -4483,6 +4521,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 img_preview_controlnet,
                                 nsfw_filter,
                                 tkme_controlnet,
+                                lora_model_controlnet,
+                                lora_weight_controlnet,
                             ],
                                 outputs=[out_controlnet, gs_out_controlnet],
                                 show_progress="full",
