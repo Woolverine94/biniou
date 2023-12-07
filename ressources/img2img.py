@@ -78,7 +78,9 @@ def image_img2img(
     source_type_img2img, 
     use_gfpgan_img2img, 
     nsfw_filter, 
-    tkme_img2img,    
+    tkme_img2img,
+    lora_model_img2img,
+    lora_weight_img2img,
     progress_img2img=gr.Progress(track_tqdm=True)
     ):
 
@@ -158,12 +160,37 @@ def image_img2img(
             )
 
     pipe_img2img = get_scheduler(pipe=pipe_img2img, scheduler=sampler_img2img)
-    pipe_img2img.enable_attention_slicing("max")  
+    pipe_img2img.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_img2img, ratio=tkme_img2img)
     if device_label_img2img == "cuda" :
         pipe_img2img.enable_sequential_cpu_offload()
     else : 
         pipe_img2img = pipe_img2img.to(device_img2img)
+
+    if lora_model_img2img != "":
+        model_list_lora_img2img = lora_model_list(modelid_img2img)
+        if modelid_img2img[0:9] == "./models/":
+            pipe_img2img.load_lora_weights(
+                os.path.dirname(lora_model_img2img),
+                weight_name=model_list_lora_img2img[lora_model_img2img][0],
+                use_safetensors=True,
+                adapter_name="adapter1",
+            )
+        else:
+            if is_xl_img2img:
+                lora_model_path = "./models/lora/SDXL"
+            else: 
+                lora_model_path = "./models/lora/SD"
+            pipe_img2img.load_lora_weights(
+                lora_model_img2img,
+                weight_name=model_list_lora_img2img[lora_model_img2img][0],
+                cache_dir=lora_model_path,
+                use_safetensors=True,
+                adapter_name="adapter1",
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+        pipe_img2img.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_img2img)])
     
     if seed_img2img == 0:
         random_seed = torch.randint(0, 10000000000, (1,))
@@ -173,7 +200,9 @@ def image_img2img(
 
     if source_type_img2img == "sketch" :
         dim_size=[512, 512]
-    else :        
+    elif (is_xl_img2img == True) and not (is_xlturbo_img2img == True) :
+        dim_size = correct_size(width_img2img, height_img2img, 1024)
+    else :
         dim_size = correct_size(width_img2img, height_img2img, 512)
     image_input = PIL.Image.open(img_img2img)
     image_input = image_input.convert("RGB")
@@ -203,7 +232,6 @@ def image_img2img(
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
     
     final_image = []
-    
     for i in range (num_prompt_img2img):
         if (is_xlturbo_img2img == True) :
             image = pipe_img2img(        
@@ -233,7 +261,7 @@ def image_img2img(
                 callback_on_step_end_tensor_inputs=['latents'], 
             ).images            
         else : 
-            image = pipe_img2img(        
+            image = pipe_img2img(
                 image=image_input,
                 prompt_embeds=conditioning,
                 negative_prompt_embeds=neg_conditioning,
@@ -242,9 +270,9 @@ def image_img2img(
                 strength=denoising_strength_img2img,
                 num_inference_steps=num_inference_step_img2img,
                 generator = generator,
-                callback_on_step_end=check_img2img, 
-                callback_on_step_end_tensor_inputs=['latents'], 
-            ).images        
+                callback_on_step_end=check_img2img,
+                callback_on_step_end_tensor_inputs=['latents'],
+            ).images
 
         for j in range(len(image)):
             timestamp = time.time()

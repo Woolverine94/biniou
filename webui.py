@@ -222,7 +222,11 @@ def change_model_type_txt2img_sd(model_txt2img_sd):
 
 def change_lora_model_txt2img_sd(model, lora_model, prompt):
     if lora_model != "":
-        lora_prompt_txt2img_sd = prompt+ " "+ lora_model_list(model)[lora_model][1]
+        lora_keyword = lora_model_list(model)[lora_model][1]
+        if lora_keyword != "":		
+            lora_prompt_txt2img_sd = prompt+ " "+ lora_keyword
+        else:
+            lora_prompt_txt2img_sd = prompt
     else:
         lora_prompt_txt2img_sd = prompt
     return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd)
@@ -316,12 +320,26 @@ def read_ini_img2img(module) :
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), bool(int(content[9])), float(content[10])
 
 def change_model_type_img2img(model_img2img):
-    if (model_img2img == "stabilityai/sdxl-turbo") or (model_img2img == "stabilityai/sd-turbo"):
-        return width_img2img.update(value=512), height_img2img.update(value=512), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), negative_prompt_img2img.update(interactive=False)
-    elif model_img2img == "stabilityai/stable-diffusion-xl-refiner-1.0":
-        return width_img2img.update(value=1024), height_img2img.update(value=1024), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), negative_prompt_img2img.update(interactive=True)
+    if (model_img2img == "stabilityai/sdxl-turbo"):
+        return width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), negative_prompt_img2img.update(interactive=False)
+    elif (model_img2img == "stabilityai/sd-turbo"):
+        return width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=False), negative_prompt_img2img.update(interactive=False)
+    elif (model_img2img == "segmind/SSD-1B") or (model_img2img == "stabilityai/stable-diffusion-xl-base-1.0"):
+        return width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), negative_prompt_img2img.update(interactive=True)
     else:
-        return width_img2img.update(value=512), height_img2img.update(value=512), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), negative_prompt_img2img.update(interactive=True)
+        return width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), negative_prompt_img2img.update(interactive=True)
+
+def change_lora_model_img2img(model, lora_model, prompt):
+    if lora_model != "":
+        lora_keyword = lora_model_list(model)[lora_model][1]
+        if lora_keyword != "":
+            lora_prompt_img2img = prompt+ " "+ lora_keyword
+        else:
+            lora_prompt_img2img = prompt
+    else:
+        lora_prompt_img2img = prompt
+    return prompt_img2img.update(value=lora_prompt_img2img)
+
 
 ## Functions specific to img2img_ip 
 def zip_download_file_img2img_ip(content):
@@ -2511,16 +2529,19 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
                                 <div style='text-align: justified'>
                                 <b>Usage :</b></br>
+                                - (optional) Modify the settings to use another model, generate several images in a single run</br>
+                                - (optional) Select a LoRA model and set its weight</br>                                
                                 - Upload, import an image or draw a sketch as an <b>Input image</b></br>
                                 - Set the balance between the input image and the prompt (<b>denoising strength</b>) to a value between 0 and 1 : 0 will completely ignore the prompt, 1 will completely ignore the input image</br>                                
                                 - Fill the <b>prompt</b> with what you want to see in your output image</br>
                                 - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output image</br>
-                                - (optional) Modify the settings to use another model or generate several images in a single run</br>
                                 - Click the <b>Generate</b> button</br>
                                 - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
                                 </br>
                                 <b>Models :</b></br>
-                                - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or  <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors models in the directory /biniou/models/Stable Diffusion. Restart Biniou to see them in the models list. 
+                                - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or  <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors models in the directory /biniou/models/Stable Diffusion. Restart Biniou to see them in the models list.</br>
+                                <b>LoRA models :</b></br>
+                                - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or  <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors LoRA models in the directory ./biniou/models/lora/SD or ./biniou/models/lora/SDXL (depending on the LoRA model type : SD 1.5 or SDXL). Restart Biniou to see them in the models list.</br>
                                 </div>
                                 """
                             )               
@@ -2529,7 +2550,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_img2img = gr.Dropdown(choices=model_list_img2img, value=model_list_img2img[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_step_img2img = gr.Slider(1, 100, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_img2img = gr.Slider(2, 100, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
                             with gr.Column():
                                 sampler_img2img = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
@@ -2592,6 +2613,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             seed_img2img.value = readcfg_img2img[8]
                             use_gfpgan_img2img.value = readcfg_img2img[9]
                             tkme_img2img.value = readcfg_img2img[10]
+                        with gr.Accordion("LoRA Model", open=True):
+                            with gr.Row():
+                                with gr.Column():
+                                    lora_model_img2img = gr.Dropdown(choices=list(lora_model_list(model_img2img.value).keys()), value="", label="LoRA model", info="Choose LoRA model to use for inference")
+                                with gr.Column():
+                                    lora_weight_img2img = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label="LoRA weight", info="Weight of the LoRA model in the final result")
                     with gr.Row():
                         with gr.Column():
                             img_img2img = gr.Image(label="Input image", height=400, type="filepath")
@@ -2609,7 +2636,19 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Row():                                    
                                 with gr.Column():
                                     negative_prompt_img2img = gr.Textbox(lines=5, max_lines=5, label="Negative Prompt", info="Describe what you DO NOT want in your image", placeholder="out of frame, bad quality, medium quality, blurry, ugly, duplicate, text, characters, logo")
-                        model_img2img.change(fn=change_model_type_img2img, inputs=model_img2img, outputs=[width_img2img, height_img2img, num_inference_step_img2img, guidance_scale_img2img, negative_prompt_img2img])
+                        model_img2img.change(
+                            fn=change_model_type_img2img, 
+                            inputs=[model_img2img],
+                            outputs=[
+                                width_img2img,
+                                height_img2img,
+                                num_inference_step_img2img,
+                                guidance_scale_img2img,
+                                lora_model_img2img,
+                                negative_prompt_img2img,
+                            ]
+                        )
+                        lora_model_img2img.change(fn=change_lora_model_img2img, inputs=[model_img2img, lora_model_img2img, prompt_img2img], outputs=[prompt_img2img])
                         denoising_strength_img2img.change(check_steps_strength, [num_inference_step_img2img, denoising_strength_img2img, model_img2img], [num_inference_step_img2img])
                         with gr.Column():
                             with gr.Row():
@@ -2630,7 +2669,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         download_btn_img2img = gr.Button("Zip gallery 💾")
                                     with gr.Column():
                                         download_file_img2img = gr.File(label="Output", height=30, interactive=False, visible=False)
-                                        download_btn_img2img.click(fn=zip_download_file_img2img, inputs=out_img2img, outputs=[download_file_img2img, download_file_img2img])                                
+                                        download_btn_img2img.click(fn=zip_download_file_img2img, inputs=out_img2img, outputs=[download_file_img2img, download_file_img2img])
                     with gr.Row():
                         with gr.Column():
                             btn_img2img = gr.Button("Generate 🚀", variant="primary")
@@ -2662,6 +2701,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     use_gfpgan_img2img,
                                     nsfw_filter,
                                     tkme_img2img,
+                                    lora_model_img2img,
+                                    lora_weight_img2img,
                                 ],
                                 outputs=[out_img2img, gs_out_img2img], 
                                 show_progress="full",
