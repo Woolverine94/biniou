@@ -19,7 +19,7 @@
 
   * 🆕 **2023-12-06** : 🔥 ***New feature for img2img module : support for LoRA models*** 🔥  Adding experimental LoRA options at the bottom of the settings panel in the img2img module. Same usage and modalities than the Stable Diffusion LoRA features (see below).
 
-  * 🆕 **2023-12-06** : 🔥 ***New feature for Stable Diffusion module : support for LoRA models*** 🔥  Adding experimental LoRA options at the bottom of the settings panel in the Stable Diffusion module. Both SD1.5 and SDXL LoRA could be used. You can place your safetensors files from civitai or hugginface in ./biniou/models/lora/SDXL and ./biniou/models/lora/SD. LoRA support should be extended to other eligibles modules.
+  * 🆕 **2023-12-06** : 🔥 ***New feature for Stable Diffusion module : support for LoRA models*** 🔥  Adding experimental LoRA options at the bottom of the settings panel in the Stable Diffusion module. Both SD1.5 and SDXL LoRA could be used. You can place your safetensors files from [civitai](https://civitai.com/) or [hugginface](https://huggingface.co/) in ./biniou/models/lora/SDXL and ./biniou/models/lora/SD. LoRA support should be extended to other eligibles modules.
 
   * 🆕 **2023-12-04** : 🔥 ***New image module : IP-Adapter*** 🔥  Adding IP-Adapter to the image modules. Using [IP-Adapter](https://ip-adapter.github.io/), you can transform an input image using both a conditional image and a textual prompt. It is pretty good at this game, and produce amazing results.
 
