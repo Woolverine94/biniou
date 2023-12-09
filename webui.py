@@ -670,6 +670,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Output(s) : </b>Output text</br>
                                 <b>HF models pages : </b>
                                 <a href='https://huggingface.co/TheBloke/openchat_3.5-GGUF' target='_blank'>TheBloke/openchat_3.5-GGUF</a>, 
+                                <a href='https://huggingface.co/TheBloke/MetaMath-Cybertron-Starling-GGUF' target='_blank'>TheBloke/MetaMath-Cybertron-Starling-GGUF</a>,
+                                <a href='https://huggingface.co/TheBloke/una-cybertron-7B-v2-GGUF' target='_blank'>TheBloke/una-cybertron-7B-v2-GGUF</a>,
                                 <a href='https://huggingface.co/TheBloke/Starling-LM-7B-alpha-GGUF' target='_blank'>TheBloke/Starling-LM-7B-alpha-GGUF</a>,
                                 <a href='https://huggingface.co/TheBloke/neural-chat-7B-v3-2-GGUF' target='_blank'>TheBloke/neural-chat-7B-v3-2-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/CollectiveCognition-v1.1-Mistral-7B-GGUF' target='_blank'>TheBloke/CollectiveCognition-v1.1-Mistral-7B-GGUF</a>, 

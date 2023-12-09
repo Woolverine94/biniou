@@ -15,6 +15,8 @@
 
 ## Updates
 
+  * 🆕 **2023-12-09** : 🔥 ***New models for Chatbot*** 🔥 Adding models [TheBloke/una-cybertron-7B-v2-GGUF](https://huggingface.co/TheBloke/una-cybertron-7B-v2-GGUF) and [TheBloke/MetaMath-Cybertron-Starling-GGUF](https://huggingface.co/TheBloke/MetaMath-Cybertron-Starling-GGUF). The latter is currently the best ranked 7B model of the [Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard), with an average score of 71,35 and is #9 in the global ranking.
+
   * 🆕 **2023-12-08** : 🔥 ***New feature for ControlNet module : support for LoRA models*** 🔥  Adding experimental LoRA options at the bottom of the settings panel in the ControlNet module. Same usage and modalities than the Stable Diffusion LoRA features (see below).
 
   * 🆕 **2023-12-06** : 🔥 ***New feature for img2img module : support for LoRA models*** 🔥  Adding experimental LoRA options at the bottom of the settings panel in the img2img module. Same usage and modalities than the Stable Diffusion LoRA features (see below).
@@ -22,8 +24,6 @@
   * 🆕 **2023-12-06** : 🔥 ***New feature for Stable Diffusion module : support for LoRA models*** 🔥  Adding experimental LoRA options at the bottom of the settings panel in the Stable Diffusion module. Both SD1.5 and SDXL LoRA could be used. You can place your safetensors files from [civitai](https://civitai.com/) or [hugginface](https://huggingface.co/) in ./biniou/models/lora/SDXL and ./biniou/models/lora/SD. LoRA support should be extended to other eligibles modules.
 
   * 🆕 **2023-12-04** : 🔥 ***New image module : IP-Adapter*** 🔥  Adding IP-Adapter to the image modules. Using [IP-Adapter](https://ip-adapter.github.io/), you can transform an input image using both a conditional image and a textual prompt. It is pretty good at this game, and produce amazing results.
-
-  * 🆕 **2023-12-02** : 🔥 ***New model for Stable Diffusion and img2img : SD-Turbo*** 🔥 Adding model [SD-Turbo](https://huggingface.co/stabilityai/sd-turbo) to modules Stable Diffusion and img2img. This model is a lightweight alternative to SDXL-Turbo as it use the same training method, but is refined from SD2.1 instead of SDXL. It only require 8GB RAM to work and lowered the bar of generation time under 45 seconds (44s) on cpu-only, which make it the fastest overall model for image generation in biniou.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 

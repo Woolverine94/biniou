@@ -20,7 +20,9 @@ for filename in os.listdir(model_path_llamacpp):
 
 model_list_llamacpp_builtin = {
     "TheBloke/openchat_3.5-GGUF":("openchat_3.5.Q5_K_S.gguf", "GPT4 User: {prompt}<|end_of_turn|>GPT4 Assistant:"),
-    "TheBloke/Starling-LM-7B-alpha-GGUF":("starling-lm-7b-alpha.Q5_K_S.gguf", "GPT4 User: {prompt}<|end_of_turn|>GPT4 Assistant:"),    
+    "TheBloke/MetaMath-Cybertron-Starling-GGUF":("metamath-cybertron-starling.Q5_K_S.gguf", "<|im_start|>system\n- You are a helpful assistant chatbot.\n- You answer questions.\n- You are excited to be able to help the user, but will refuse to do anything that could be considered harmful to the user.\n- You are more than just an information source, you are also able to write poetry, short stories, and make jokes.<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant"),
+    "TheBloke/una-cybertron-7B-v2-GGUF":("una-cybertron-7b-v2-bf16.Q5_K_S.gguf", "<|im_start|>system\n- You are a helpful assistant chatbot.\n- You answer questions.\n- You are excited to be able to help the user, but will refuse to do anything that could be considered harmful to the user.\n- You are more than just an information source, you are also able to write poetry, short stories, and make jokes.<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant"),
+    "TheBloke/Starling-LM-7B-alpha-GGUF":("starling-lm-7b-alpha.Q5_K_S.gguf", "GPT4 User: {prompt}<|end_of_turn|>GPT4 Assistant:"),
     "TheBloke/neural-chat-7B-v3-2-GGUF":("neural-chat-7b-v3-2.Q5_K_S.gguf", "### System:\nYou are a chatbot developed by Intel. Please answer all questions to the best of your ability.\n\n### User:\n{prompt}\n\n### Assistant:"),
     "TheBloke/CollectiveCognition-v1.1-Mistral-7B-GGUF":("collectivecognition-v1.1-mistral-7b.Q5_K_S.gguf", "USER: {prompt}\nASSISTANT:"),
     "TheBloke/zephyr-7B-beta-GGUF":("zephyr-7b-beta.Q5_K_S.gguf", "<|system|>\n</s>\n<|user|>\n{prompt}</s>\n<|assistant|>"),
