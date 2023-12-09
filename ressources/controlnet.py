@@ -63,26 +63,26 @@ variant_list_controlnet = [
 
 
 preprocessor_list_controlnet = [
-    "canny", 
-    "depth_leres", 
-    "depth_leres++", 
-    "depth_midas", 
+    "canny",
+    "depth_leres",
+    "depth_leres++",
+    "depth_midas",
     "lineart_anime",
-    "lineart_coarse", 
-    "lineart_realistic", 
-    "mlsd", 
-    "normal_bae", 
-    "openpose", 
-    "openpose_face", 
-    "openpose_faceonly", 
-    "openpose_full", 
+    "lineart_coarse",
+    "lineart_realistic",
+    "mlsd",
+    "normal_bae",
+    "openpose",
+    "openpose_face",
+    "openpose_faceonly",
+    "openpose_full",
     "openpose_hand",
-    "scribble_hed", 
-    "scribble_pidinet", 
-    "softedge_hed", 
+    "scribble_hed",
+    "scribble_pidinet",
+    "softedge_hed",
     "softedge_hedsafe",
-    "softedge_pidinet", 
-    "softedge_pidsafe", 
+    "softedge_pidinet",
+    "softedge_pidsafe",
 ]
 
 # Bouton Cancel
@@ -108,16 +108,16 @@ def check_controlnet(pipe, step_index, timestep, callback_kwargs) :
 
 def dispatch_controlnet_preview(
     modelid_controlnet,
-    low_threshold_controlnet, 
-    high_threshold_controlnet, 
-    img_source_controlnet, 
-    preprocessor_controlnet, 
+    low_threshold_controlnet,
+    high_threshold_controlnet,
+    img_source_controlnet,
+    preprocessor_controlnet,
     progress_controlnet=gr.Progress(track_tqdm=True)
-    ): 
+    ):
 
     if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_controlnet :
         is_xl_controlnet: bool = True
-    else :        
+    else :
         is_xl_controlnet: bool = False
 
     img_source_controlnet = Image.open(img_source_controlnet)
@@ -171,7 +171,7 @@ def dispatch_controlnet_preview(
             result = processor_controlnet(img_source_controlnet, to_pil=True)
             return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[6]
         case "openpose_hand":
-            result = processor_controlnet(img_source_controlnet, to_pil=True)            
+            result = processor_controlnet(img_source_controlnet, to_pil=True)
             return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[6]
         case "scribble_hed":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
@@ -191,7 +191,7 @@ def dispatch_controlnet_preview(
         case "softedge_pidsafe":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
             return result, result, variant_list_controlnet[13] if is_xl_controlnet else variant_list_controlnet[8]
-    
+
 def canny_controlnet(image, low_threshold, high_threshold):
     image = cv2.Canny(image, low_threshold, high_threshold)
     image = image[:, :, None]
@@ -201,46 +201,46 @@ def canny_controlnet(image, low_threshold, high_threshold):
 
 @metrics_decoration
 def image_controlnet(
-    modelid_controlnet, 
-    sampler_controlnet, 
-    prompt_controlnet, 
-    negative_prompt_controlnet, 
-    num_images_per_prompt_controlnet, 
-    num_prompt_controlnet, 
-    guidance_scale_controlnet, 
-    num_inference_step_controlnet, 
-    height_controlnet, 
-    width_controlnet, 
-    seed_controlnet, 
-    low_threshold_controlnet, 
-    high_threshold_controlnet, 
-    strength_controlnet, 
-    start_controlnet, 
-    stop_controlnet, 
-    use_gfpgan_controlnet, 
-    variant_controlnet, 
-    img_preview_controlnet, 
+    modelid_controlnet,
+    sampler_controlnet,
+    prompt_controlnet,
+    negative_prompt_controlnet,
+    num_images_per_prompt_controlnet,
+    num_prompt_controlnet,
+    guidance_scale_controlnet,
+    num_inference_step_controlnet,
+    height_controlnet,
+    width_controlnet,
+    seed_controlnet,
+    low_threshold_controlnet,
+    high_threshold_controlnet,
+    strength_controlnet,
+    start_controlnet,
+    stop_controlnet,
+    use_gfpgan_controlnet,
+    variant_controlnet,
+    img_preview_controlnet,
     nsfw_filter, 
     tkme_controlnet,
     lora_model_controlnet,
-    lora_weight_controlnet,    
+    lora_weight_controlnet,
     progress_controlnet=gr.Progress(track_tqdm=True)
     ):
 
     print(">>>[ControlNet 🖼️ ]: starting module")
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_controlnet, device_controlnet, nsfw_filter)
-    
+
     controlnet = ControlNetModel.from_pretrained(
-        variant_controlnet, 
-        cache_dir=model_path_base_controlnet, 
+        variant_controlnet,
+        cache_dir=model_path_base_controlnet,
         torch_dtype=model_arch,
         use_safetensors=True,
         resume_download=True,
-        local_files_only=True if offline_test() else None        
+        local_files_only=True if offline_test() else None
         )
-        
-    img_preview_controlnet = Image.open(img_preview_controlnet)
+
+#    img_preview_controlnet = Image.open(img_preview_controlnet)
     strength_controlnet = float(strength_controlnet)
     start_controlnet = float(start_controlnet)
     stop_controlnet = float(stop_controlnet)
@@ -249,30 +249,30 @@ def image_controlnet(
         is_xlturbo_controlnet: bool = True
     else :
         is_xlturbo_controlnet: bool = False
-    
+
     if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_controlnet :
         is_xl_controlnet: bool = True
     else :        
         is_xl_controlnet: bool = False
-        
+
     if (is_xl_controlnet == True) :
         if modelid_controlnet[0:9] == "./models/" :
             pipe_controlnet = StableDiffusionXLControlNetPipeline.from_single_file(
-                modelid_controlnet, 
-                controlnet=controlnet, 
+                modelid_controlnet,
+                controlnet=controlnet,
                 torch_dtype=model_arch,
-                use_safetensors=True, 
-                safety_checker=nsfw_filter_final, 
+                use_safetensors=True,
+                safety_checker=nsfw_filter_final,
                 feature_extractor=feat_ex
             )
-        else :        
+        else :
             pipe_controlnet = StableDiffusionXLControlNetPipeline.from_pretrained(
-                modelid_controlnet, 
-                controlnet=controlnet, 
-                cache_dir=model_path_controlnet, 
+                modelid_controlnet,
+                controlnet=controlnet,
+                cache_dir=model_path_controlnet,
                 torch_dtype=model_arch,
                 use_safetensors=True, 
-                safety_checker=nsfw_filter_final, 
+                safety_checker=nsfw_filter_final,
                 feature_extractor=feat_ex,
                 resume_download=True,
                 local_files_only=True if offline_test() else None
@@ -280,21 +280,21 @@ def image_controlnet(
     else :
         if modelid_controlnet[0:9] == "./models/" :
             pipe_controlnet = StableDiffusionControlNetPipeline.from_single_file(
-                modelid_controlnet, 
-                controlnet=controlnet, 
+                modelid_controlnet,
+                controlnet=controlnet,
                 torch_dtype=model_arch,
                 use_safetensors=True, 
-                safety_checker=nsfw_filter_final, 
+                safety_checker=nsfw_filter_final,
                 feature_extractor=feat_ex
             )
         else :        
             pipe_controlnet = StableDiffusionControlNetPipeline.from_pretrained(
-                modelid_controlnet, 
-                controlnet=controlnet, 
-                cache_dir=model_path_controlnet, 
+                modelid_controlnet,
+                controlnet=controlnet,
+                cache_dir=model_path_controlnet,
                 torch_dtype=model_arch,
                 use_safetensors=True, 
-                safety_checker=nsfw_filter_final, 
+                safety_checker=nsfw_filter_final,
                 feature_extractor=feat_ex,
                 resume_download=True,
                 local_files_only=True if offline_test() else None
@@ -343,6 +343,15 @@ def image_controlnet(
     for k in range(num_prompt_controlnet):
         generator.append([torch.Generator(device_controlnet).manual_seed(final_seed + (k*num_images_per_prompt_controlnet) + l ) for l in range(num_images_per_prompt_controlnet)])
 
+    if (is_xl_controlnet == True) and not (is_xlturbo_controlnet == True) :
+        dim_size = correct_size(width_controlnet, height_controlnet, 1024)
+    else :
+        dim_size = correct_size(width_controlnet, height_controlnet, 512)
+    image_input = PIL.Image.open(img_preview_controlnet)
+    image_input = image_input.convert("RGB")
+    image_input = image_input.resize((dim_size[0], dim_size[1]))
+    width_controlnet, height_controlnet = dim_size
+
     prompt_controlnet = str(prompt_controlnet)
     negative_prompt_controlnet = str(negative_prompt_controlnet)
     if prompt_controlnet == "None":
@@ -355,7 +364,7 @@ def image_controlnet(
             tokenizer=[pipe_controlnet.tokenizer, pipe_controlnet.tokenizer_2], 
             text_encoder=[pipe_controlnet.text_encoder, pipe_controlnet.text_encoder_2], 
             returned_embeddings_type=ReturnedEmbeddingsType.PENULTIMATE_HIDDEN_STATES_NON_NORMALIZED, 
-            requires_pooled=[False, True], 
+            requires_pooled=[False, True],
         )
         conditioning, pooled = compel(prompt_controlnet)
         neg_conditioning, neg_pooled = compel(negative_prompt_controlnet)
@@ -363,7 +372,7 @@ def image_controlnet(
     else : 
         compel = Compel(tokenizer=pipe_controlnet.tokenizer, text_encoder=pipe_controlnet.text_encoder, truncate_long_prompts=False)
         conditioning = compel.build_conditioning_tensor(prompt_controlnet)
-        neg_conditioning = compel.build_conditioning_tensor(negative_prompt_controlnet)    
+        neg_conditioning = compel.build_conditioning_tensor(negative_prompt_controlnet)
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
    
     final_image = []
@@ -372,43 +381,7 @@ def image_controlnet(
         if (is_xlturbo_controlnet == True):
             image = pipe_controlnet(
                 prompt=prompt_controlnet,
-                image=img_preview_controlnet,
-                height=height_controlnet,
-                width=width_controlnet,
-                num_images_per_prompt=num_images_per_prompt_controlnet,
-                num_inference_steps=num_inference_step_controlnet,
-                guidance_scale=guidance_scale_controlnet,
-                controlnet_conditioning_scale=strength_controlnet,
-                control_guidance_start=start_controlnet,
-                control_guidance_end=stop_controlnet,                
-                generator=generator[i],
-                callback_on_step_end=check_controlnet, 
-                callback_on_step_end_tensor_inputs=['latents'], 
-            ).images
-        elif (is_xl_controlnet == True) : 
-            image = pipe_controlnet(
-                prompt_embeds=conditioning, 
-                pooled_prompt_embeds=pooled, 
-                negative_prompt_embeds=neg_conditioning,
-                negative_pooled_prompt_embeds=neg_pooled,            
-                image=img_preview_controlnet,
-                height=height_controlnet,
-                width=width_controlnet,
-                num_images_per_prompt=num_images_per_prompt_controlnet,
-                num_inference_steps=num_inference_step_controlnet,
-                guidance_scale=guidance_scale_controlnet,
-                controlnet_conditioning_scale=strength_controlnet,
-                control_guidance_start=start_controlnet,
-                control_guidance_end=stop_controlnet,                
-                generator=generator[i],
-                callback_on_step_end=check_controlnet, 
-                callback_on_step_end_tensor_inputs=['latents'], 
-            ).images
-        else :            
-            image = pipe_controlnet(
-                prompt_embeds=conditioning,
-                negative_prompt_embeds=neg_conditioning,
-                image=img_preview_controlnet,                
+                image=image_input,
                 height=height_controlnet,
                 width=width_controlnet,
                 num_images_per_prompt=num_images_per_prompt_controlnet,
@@ -419,7 +392,43 @@ def image_controlnet(
                 control_guidance_end=stop_controlnet,
                 generator=generator[i],
                 callback_on_step_end=check_controlnet, 
-                callback_on_step_end_tensor_inputs=['latents'], 
+                callback_on_step_end_tensor_inputs=['latents'],
+            ).images
+        elif (is_xl_controlnet == True) : 
+            image = pipe_controlnet(
+                prompt_embeds=conditioning,
+                pooled_prompt_embeds=pooled,
+                negative_prompt_embeds=neg_conditioning,
+                negative_pooled_prompt_embeds=neg_pooled,
+                image=image_input,
+                height=height_controlnet,
+                width=width_controlnet,
+                num_images_per_prompt=num_images_per_prompt_controlnet,
+                num_inference_steps=num_inference_step_controlnet,
+                guidance_scale=guidance_scale_controlnet,
+                controlnet_conditioning_scale=strength_controlnet,
+                control_guidance_start=start_controlnet,
+                control_guidance_end=stop_controlnet,                
+                generator=generator[i],
+                callback_on_step_end=check_controlnet,
+                callback_on_step_end_tensor_inputs=['latents'],
+            ).images
+        else :            
+            image = pipe_controlnet(
+                prompt_embeds=conditioning,
+                negative_prompt_embeds=neg_conditioning,
+                image=image_input,
+                height=height_controlnet,
+                width=width_controlnet,
+                num_images_per_prompt=num_images_per_prompt_controlnet,
+                num_inference_steps=num_inference_step_controlnet,
+                guidance_scale=guidance_scale_controlnet,
+                controlnet_conditioning_scale=strength_controlnet,
+                control_guidance_start=start_controlnet,
+                control_guidance_end=stop_controlnet,
+                generator=generator[i],
+                callback_on_step_end=check_controlnet,
+                callback_on_step_end_tensor_inputs=['latents'],
             ).images
 
         for j in range(len(image)):
@@ -450,14 +459,14 @@ def image_controlnet(
         f"Prompt={prompt_controlnet} | "+\
         f"Negative prompt={negative_prompt_controlnet} | "+\
         f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
-    print(reporting_controlnet) 
+    print(reporting_controlnet)
 
 
     savename_controlnet = f"outputs/controlnet.png"
-    img_preview_controlnet.save(savename_controlnet) 
+    image_input.save(savename_controlnet)
     final_image.append(savename_controlnet)
 
-    del nsfw_filter_final, feat_ex, controlnet, img_preview_controlnet, pipe_controlnet, generator, compel, conditioning, neg_conditioning, image 
+    del nsfw_filter_final, feat_ex, controlnet, img_preview_controlnet, pipe_controlnet, generator, image_input, compel, conditioning, neg_conditioning, image
     clean_ram()
 
     print(f">>>[ControlNet 🖼️ ]: leaving module")
