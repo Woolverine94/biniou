@@ -99,6 +99,9 @@ def text_llamacpp(
     
     answer_llamacpp = (output_llamacpp['choices'][0]['text'])
     last_answer_llamacpp = answer_llamacpp.replace(f"{prompt_final_llamacpp}", "")
+    last_answer_llamacpp = last_answer_llamacpp.replace("<|im_end|>", "")
+    last_answer_llamacpp = last_answer_llamacpp.replace("<|im_start|>user", "")
+    last_answer_llamacpp = last_answer_llamacpp.replace("<|im_start|>assistant", "")
     filename_llamacpp = write_seeded_file(seed_llamacpp, history_final, prompt_llamacpp, last_answer_llamacpp)
     history_llamacpp.append((prompt_llamacpp, last_answer_llamacpp))
 
@@ -161,6 +164,9 @@ def text_llamacpp_continue(
     
     answer_llamacpp = (output_llamacpp['choices'][0]['text'])
     last_answer_llamacpp = answer_llamacpp.replace(f"{history_final}", "")
+    last_answer_llamacpp = last_answer_llamacpp.replace("<|im_end|>", "")
+    last_answer_llamacpp = last_answer_llamacpp.replace("<|im_start|>user", "")
+    last_answer_llamacpp = last_answer_llamacpp.replace("<|im_start|>assistant", "")
     global_answer_llamacpp = f"{history_final}{answer_llamacpp}"
     filename_llamacpp = write_seeded_file(seed_llamacpp, global_answer_llamacpp)
     history_llamacpp[-1][1] += last_answer_llamacpp
