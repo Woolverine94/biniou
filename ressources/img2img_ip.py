@@ -54,7 +54,7 @@ def check_img2img_ip(pipe, step_index, timestep, callback_kwargs) :
     if stop_img2img_ip == False :
         return callback_kwargs
     elif stop_img2img_ip == True :
-        print(">>>[img2img_ip 🖌️ ]: generation canceled by user")
+        print(">>>[IP-Adapter 🖌️ ]: generation canceled by user")
         stop_img2img_ip = False
         try:
             del ressources.img2img_ip.pipe_img2img_ip
@@ -84,7 +84,7 @@ def image_img2img_ip(
     progress_img2img_ip=gr.Progress(track_tqdm=True)
     ):
 
-    print(">>>[img2img_ip 🖌️ ]: starting module")
+    print(">>>[IP-Adapter 🖌️ ]: starting module")
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_img2img_ip, device_img2img_ip, nsfw_filter)
 
@@ -95,7 +95,7 @@ def image_img2img_ip(
 
     if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_img2img_ip :
         is_xl_img2img_ip: bool = True
-    else :        
+    else :
         is_xl_img2img_ip: bool = False        
 
     if (is_xlturbo_img2img_ip == True) :
@@ -292,8 +292,8 @@ def image_img2img_ip(
             image[j].save(savename)
             final_image.append(savename)
 
-    print(f">>>[img2img_ip 🖌️ ]: generated {num_prompt_img2img_ip} batch(es) of {num_images_per_prompt_img2img_ip}")        
-    reporting_img2img_ip = f">>>[img2img_ip 🖌️ ]: "+\
+    print(f">>>[IP-Adapter 🖌️ ]: generated {num_prompt_img2img_ip} batch(es) of {num_images_per_prompt_img2img_ip}")
+    reporting_img2img_ip = f">>>[IP-Adapter 🖌️ ]: "+\
         f"Settings : Model={modelid_img2img_ip} | "+\
         f"XL model={is_xl_img2img_ip} | "+\
         f"Sampler={sampler_img2img_ip} | "+\
@@ -311,5 +311,5 @@ def image_img2img_ip(
     del nsfw_filter_final, feat_ex, pipe_img2img_ip, generator, image_input, image_input_ipa, compel, conditioning, neg_conditioning, image
     clean_ram()
 
-    print(f">>>[img2img_ip 🖌️ ]: leaving module")   
+    print(f">>>[IP-Adapter 🖌️ ]: leaving module")
     return final_image, final_image 
