@@ -1,5 +1,5 @@
 #!/bin/bash
-PYVER=$(python --version|sed -ne 's/^.* \([0-9]\)\.\([0-9]*\)\.[0-9]*/\1\2/p')
+PYVER=$(python3 --version|sed -ne 's/^.* \([0-9]\)\.\([0-9]*\)\.[0-9]*/\1\2/p')
 
 echo "Biniou update ..."
 git pull
