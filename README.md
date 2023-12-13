@@ -15,15 +15,13 @@
 
 ## Updates
 
+  * 🆕 **2023-12-13** : 🔥 ***New text module : Llava 1.5*** 🔥 Using this new module, you can interrogate a chatbot about an input image. This module use llama-cpp compatibles .gguf quantized models. BakLLava is the default model, not only for its good results, but also because it's the only model usable with 8GB RAM.
+
   * 🆕 **2023-12-09** : 🔥 ***New models for Chatbot*** 🔥 Adding models [TheBloke/una-cybertron-7B-v2-GGUF](https://huggingface.co/TheBloke/una-cybertron-7B-v2-GGUF) and [TheBloke/MetaMath-Cybertron-Starling-GGUF](https://huggingface.co/TheBloke/MetaMath-Cybertron-Starling-GGUF). The latter is currently the best ranked 7B model of the [Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard), with an average score of 71,35 and is #9 in the global ranking.
 
   * 🆕 **2023-12-08** : 🔥 ***New feature for ControlNet module : support for LoRA models*** 🔥  Adding experimental LoRA options at the bottom of the settings panel in the ControlNet module. Same usage and modalities than the Stable Diffusion LoRA features (see below).
 
   * 🆕 **2023-12-06** : 🔥 ***New feature for img2img module : support for LoRA models*** 🔥  Adding experimental LoRA options at the bottom of the settings panel in the img2img module. Same usage and modalities than the Stable Diffusion LoRA features (see below).
-
-  * 🆕 **2023-12-06** : 🔥 ***New feature for Stable Diffusion module : support for LoRA models*** 🔥  Adding experimental LoRA options at the bottom of the settings panel in the Stable Diffusion module. Both SD1.5 and SDXL LoRA could be used. You can place your safetensors files from [civitai](https://civitai.com/) or [hugginface](https://huggingface.co/) in ./biniou/models/lora/SDXL and ./biniou/models/lora/SD. LoRA support should be extended to other eligibles modules.
-
-  * 🆕 **2023-12-04** : 🔥 ***New image module : IP-Adapter*** 🔥  Adding IP-Adapter to the image modules. Using [IP-Adapter](https://ip-adapter.github.io/), you can transform an input image using both a conditional image and a textual prompt. It is pretty good at this game, and produce amazing results.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
@@ -49,6 +47,7 @@
 ## Features
 * **Text generation using  :**
   - [llama-cpp based chatbot module](https://github.com/Woolverine94/biniou/wiki/Chatbot-llama%E2%80%90cpp) (uses .gguf models)
+  - [Llava 1.5 multimodal chatbot module](https://github.com/Woolverine94/biniou/wiki/Llava-1.5) (uses .gguf models)
   - [Microsoft GIT image captioning module](https://github.com/Woolverine94/biniou/wiki/GIT-image-captioning)
   - [Whisper speech-to-text module](https://github.com/Woolverine94/biniou/wiki/Whisper)
   - [nllb translation module](https://github.com/Woolverine94/biniou/wiki/nllb-translation) (200 languages)
@@ -305,6 +304,8 @@ This application uses the following softwares and technologies :
 - [🤗 Huggingface](https://huggingface.co/) : Diffusers and Transformers libraries and almost all the generatives models.
 - [Gradio](https://www.gradio.app/) : webUI
 - [llama-cpp-python](https://github.com/abetlen/llama-cpp-python) : python bindings for llama-cpp
+- [Llava 1.5](https://llava-vl.github.io/)
+- [BakLLava](https://github.com/SkunkworksAI/BakLLaVA)
 - [Microsoft GIT](https://github.com/microsoft/GenerativeImage2Text) : Image2text
 - [Whisper](https://openai.com/research/whisper) : speech2text
 - [nllb translation](https://ai.meta.com/research/no-language-left-behind/) : language translation
