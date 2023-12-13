@@ -1,5 +1,6 @@
 from .common import *
 from .llamacpp import *
+from .llava import *
 from .img2txt_git import *
 from .whisper import *
 from .nllb import *

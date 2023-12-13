@@ -159,6 +159,22 @@ def hide_download_llamacpp() :
 
 def change_model_type_llamacpp(model_llamacpp):
     return prompt_template_llamacpp.update(value=model_list_llamacpp[model_llamacpp][1])
+
+## Functions specific to llava
+def read_ini_llava(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), int(content[2]), bool(int(content[3])), int(content[4]), float(content[5]), float(content[6]), float(content[7]), int(content[8]), str(content[9])
+
+def show_download_llava() :
+    return btn_download_file_llava.update(visible=False), download_file_llava.update(visible=True)
+
+def hide_download_llava() :
+    return btn_download_file_llava.update(visible=True), download_file_llava.update(visible=False)
+
+# def change_model_type_llava(model_llava):
+#     return prompt_template_llava.update(value=model_list_llava[model_llava][1])
+
+
         
 ## Functions specific to img2txt_git
 def read_ini_img2txt_git(module) :
@@ -899,8 +915,249 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Box():                                
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
-# Image captioning                                        
-                with gr.TabItem("Image captioning 👁️", id=12) as tab_img2txt_git:
+
+
+# llava
+                with gr.TabItem("Llava 1.5 (gguf) 👁️", id=12) as tab_llava:
+                    with gr.Accordion("About", open=False):
+                        with gr.Box():
+                            gr.HTML(
+                                """
+                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
+                                <b>Module : </b>Llava 1.5 (gguf)</br>
+                                <b>Function : </b>Interrogate a chatbot about an input image using <a href='https://github.com/abetlen/llama-cpp-python' target='_blank'>llama-cpp-python</a>, <a href='https://llava-vl.github.io/' target='_blank'></a>Llava 1.5</br> and  <a href='https://github.com/SkunkworksAI/BakLLaVA' target='_blank'>BakLLaVA</a></br>
+                                <b>Input(s) : </b>Image input, Input text</br>
+                                <b>Output(s) : </b>Output text</br>
+                                <b>HF models pages : </b>
+                                <a href='https://huggingface.co/mys/ggml_llava-v1.5-7b' target='_blank'>mys/ggml_llava-v1.5-7b</a>, 
+                                <a href='https://huggingface.co/mys/ggml_llava-v1.5-13b' target='_blank'>mys/ggml_llava-v1.5-13b</a>, 
+                                <a href='https://huggingface.co/mys/ggml_bakllava-1' target='_blank'>mys/ggml_bakllava-1</a>
+                           </br>
+                                """
+                            )
+                        with gr.Box():
+                            gr.HTML(
+                                """
+                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                <div style='text-align: justified'>
+                                <b>Usage :</b></br>
+                                - Upload or import an <b>Input image</b>
+                                - Type your request in the <b>Input</b> textbox field</br>
+                                - (optional) modify settings to use another model, change context size or modify maximum number of tokens generated.</br>
+                                - Click the <b>Generate</b> button to generate a response to your input, using the chatbot history to keep a context.</br>
+                                - Click the <b>Continue</b> button to complete the last reply.
+                                </br>
+                                <b>Models :</b></br>
+                                - You could place llama-cpp compatible .gguf models in the directory ./biniou/models/llava. Restart Biniou to see them in the models list.
+                                </div>
+                                """
+                            )
+                    with gr.Accordion("Settings", open=False):
+                        with gr.Row():
+                            with gr.Column():
+                                model_llava = gr.Dropdown(choices=model_list_llava, value=model_list_llava[0], label="Model", info="Choose model to use for inference")
+                            with gr.Column():
+                                max_tokens_llava = gr.Slider(0, 131072, step=16, value=512, label="Max tokens", info="Maximum number of tokens to generate")
+                            with gr.Column():
+                                seed_llava = gr.Slider(0, 10000000000, step=1, value=1337, label="Seed(0 for random)", info="Seed to use for generation.")
+                        with gr.Row():
+                            with gr.Column():
+                                stream_llava = gr.Checkbox(value=False, label="Stream", info="Stream results", interactive=False)
+                            with gr.Column():
+                                n_ctx_llava = gr.Slider(0, 131072, step=128, value=8192, label="n_ctx", info="Maximum context size")
+                            with gr.Column():
+                                repeat_penalty_llava = gr.Slider(0.0, 10.0, step=0.1, value=1.1, label="Repeat penalty", info="The penalty to apply to repeated tokens")
+                        with gr.Row():
+                            with gr.Column():
+                                temperature_llava = gr.Slider(0.0, 10.0, step=0.1, value=0.8, label="Temperature", info="Temperature to use for sampling")
+                            with gr.Column():
+                                top_p_llava = gr.Slider(0.0, 10.0, step=0.05, value=0.95, label="top_p", info="The top-p value to use for sampling")
+                            with gr.Column():
+                                top_k_llava = gr.Slider(0, 500, step=1, value=40, label="top_k", info="The top-k value to use for sampling")
+                        with gr.Row():
+                            with gr.Column():
+                                prompt_template_llava = gr.Textbox(label="Prompt template", value="{prompt}", lines=4, max_lines=4, info="Place your custom prompt template here. Keep the {prompt} tag, that will be replaced by your prompt.")
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_llava = gr.Button("Save custom defaults settings 💾")
+                            with gr.Column():
+                                module_name_llava = gr.Textbox(value="llava", visible=False, interactive=False)
+                                del_ini_btn_llava = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_llava.value) else False)
+                                save_ini_btn_llava.click(
+                                    fn=write_ini,
+                                    inputs=[
+                                        module_name_llava,
+                                        model_llava,
+                                        max_tokens_llava,
+                                        seed_llava,
+                                        stream_llava,
+                                        n_ctx_llava,
+                                        repeat_penalty_llava,
+                                        temperature_llava,
+                                        top_p_llava,
+                                        top_k_llava,
+                                        prompt_template_llava,
+                                        ]
+                                    )
+                                save_ini_btn_llava.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_llava.click(fn=lambda: del_ini_btn_llava.update(interactive=True), outputs=del_ini_btn_llava)
+                                del_ini_btn_llava.click(fn=lambda: del_ini(module_name_llava.value))
+                                del_ini_btn_llava.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_llava.click(fn=lambda: del_ini_btn_llava.update(interactive=False), outputs=del_ini_btn_llava)
+                        if test_cfg_exist(module_name_llava.value) :
+                            readcfg_llava = read_ini_llava(module_name_llava.value)
+                            model_llava.value = readcfg_llava[0]
+                            max_tokens_llava.value = readcfg_llava[1]
+                            seed_llava.value = readcfg_llava[2]
+                            stream_llava.value = readcfg_llava[3]
+                            n_ctx_llava.value = readcfg_llava[4]
+                            repeat_penalty_llava.value = readcfg_llava[5]
+                            temperature_llava.value = readcfg_llava[6]
+                            top_p_llava.value = readcfg_llava[7]
+                            top_k_llava.value = readcfg_llava[8]
+                            prompt_template_llava.value = readcfg_llava[9]
+                    with gr.Row():
+                        with gr.Column(scale=1):
+                            img_llava = gr.Image(label="Input image", type="filepath", height=400)
+                        with gr.Column(scale=3):
+                            history_llava = gr.Chatbot(
+                                label="Chatbot history",
+                                height=400,
+                                autoscroll=True,
+                                show_copy_button=True,
+                                interactive=True,
+                                bubble_full_width = False,
+                                avatar_images = ("./images/avatar_cat_64.png", "./images/biniou_64.png"),
+                            )
+                            last_reply_llava = gr.Textbox(value="", visible=False)
+                    with gr.Row():
+                            prompt_llava = gr.Textbox(label="Input", lines=1, max_lines=3, placeholder="Type your request here ...", autofocus=True)
+                            hidden_prompt_llava = gr.Textbox(value="", visible=False)
+                    with gr.Row():
+                        with gr.Column():
+                            btn_llava = gr.Button("Generate 🚀", variant="primary")
+                        with gr.Column():
+                            btn_llava_clear_input = gr.ClearButton(components=[img_llava, prompt_llava], value="Clear inputs 🧹")
+                            btn_llava_continue = gr.Button("Continue ➕", visible=False)
+                        with gr.Column():
+                            btn_llava_clear_output = gr.ClearButton(components=[history_llava], value="Clear outputs 🧹")
+                        with gr.Column():
+                            btn_download_file_llava = gr.ClearButton(value="Download full conversation 💾", visible=True)
+                            download_file_llava = gr.File(label="Download full conversation", value=blankfile_common, height=30, interactive=False, visible=False)
+                            download_file_llava_hidden = gr.Textbox(value=blankfile_common, interactive=False, visible=False)
+                            btn_download_file_llava.click(fn=show_download_llava, outputs=[btn_download_file_llava, download_file_llava])
+                            download_file_llava_hidden.change(fn=lambda x:x, inputs=download_file_llava_hidden, outputs=download_file_llava)
+                        btn_llava.click(
+                            fn=text_llava,
+                            inputs=[
+                                model_llava,
+                                max_tokens_llava,
+                                seed_llava,
+                                stream_llava,
+                                n_ctx_llava, 
+                                repeat_penalty_llava,
+                                temperature_llava,
+                                top_p_llava,
+                                top_k_llava,
+                                img_llava,
+                                prompt_llava,
+                                history_llava,
+                                prompt_template_llava,
+                            ],
+                            outputs=[
+                                history_llava,
+                                last_reply_llava,
+                                download_file_llava_hidden,
+                            ],
+                            show_progress="full",
+                        )
+                        btn_llava.click(fn=hide_download_llava, outputs=[btn_download_file_llava, download_file_llava])
+                        prompt_llava.submit(
+                            fn=text_llava,
+                            inputs=[
+                                model_llava,
+                                max_tokens_llava,
+                                seed_llava,
+                                stream_llava,
+                                n_ctx_llava, 
+                                repeat_penalty_llava,
+                                temperature_llava,
+                                top_p_llava,
+                                top_k_llava,
+                                img_llava,
+                                prompt_llava,
+                                history_llava,
+                                prompt_template_llava,
+                            ],
+                            outputs=[
+                                history_llava,
+                                last_reply_llava,
+                                download_file_llava_hidden,
+                            ],
+                            show_progress="full",
+                        )
+                        prompt_llava.submit(fn=hide_download_llava, outputs=[btn_download_file_llava, download_file_llava])
+                        btn_llava_continue.click(
+                            fn=text_llava_continue,
+                            inputs=[
+                                model_llava,
+                                max_tokens_llava,
+                                seed_llava,
+                                stream_llava,
+                                n_ctx_llava,
+                                repeat_penalty_llava,
+                                temperature_llava,
+                                top_p_llava,
+                                top_k_llava,
+                                img_llava,
+                                history_llava,
+                            ],
+                            outputs=[
+                                history_llava,
+                                last_reply_llava,
+                                download_file_llava_hidden,
+                            ],
+                            show_progress="full",
+                        )
+                        btn_llava_continue.click(fn=hide_download_llava, outputs=[btn_download_file_llava, download_file_llava])
+                        btn_llava.click(fn=lambda x:x, inputs=hidden_prompt_llava, outputs=prompt_llava)
+                        prompt_llava.submit(fn=lambda x:x, inputs=hidden_prompt_llava, outputs=prompt_llava)
+                    with gr.Accordion("Send ...", open=False):
+                        with gr.Row():
+                            with gr.Column():
+                                with gr.Box():
+                                    with gr.Group():
+                                        gr.HTML(value='... last chatbot reply to ...')
+                                        gr.HTML(value='... text module ...')
+                                        llava_nllb = gr.Button("✍️ >> Nllb translation")
+                                        gr.HTML(value='... image module ...')
+                                        llava_txt2img_sd = gr.Button("✍️ >> Stable Diffusion")
+                                        llava_txt2img_kd = gr.Button("✍️ >> Kandinsky") 
+                                        llava_txt2img_lcm = gr.Button("✍️ >> LCM") 
+                                        llava_txt2img_mjm = gr.Button("✍️ >> Midjourney-mini") 
+                                        llava_txt2img_paa = gr.Button("✍️ >> PixArt-Alpha") 
+                                        llava_img2img = gr.Button("✍️ >> img2img")
+                                        llava_img2img_ip = gr.Button("✍️ >>  IP-Adapter")
+                                        llava_pix2pix = gr.Button("✍️ >> Instruct pix2pix")
+                                        llava_inpaint = gr.Button("✍️ >> inpaint")
+                                        llava_controlnet = gr.Button("✍️ >> ControlNet")
+                                        gr.HTML(value='... audio module ...')
+                                        llava_musicgen = gr.Button("✍️ >> Musicgen")
+                                        llava_audiogen = gr.Button("✍️ >> Audiogen")
+                                        llava_bark = gr.Button("✍️ >> Bark")
+                                        gr.HTML(value='... video module ...')
+                                        llava_txt2vid_ms = gr.Button("✍️ >> Modelscope")
+                                        llava_txt2vid_ze = gr.Button("✍️ >> Text2Video-Zero")
+                            with gr.Column():
+                                with gr.Box():
+                                    with gr.Group():
+                                        gr.HTML(value='... input prompt(s) to ...')
+                            with gr.Column():
+                                with gr.Box():                                
+                                    with gr.Group():
+                                        gr.HTML(value='... both to ...')
+# Image captioning
+                with gr.TabItem("Image captioning 👁️", id=13) as tab_img2txt_git:
                     with gr.Accordion("About", open=False):
                         with gr.Box():                       
                             gr.HTML(
@@ -1039,7 +1296,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         img2txt_git_controlnet_both = gr.Button("🖼️+✍️ >> ControlNet")
 
 # Whisper 
-                with gr.TabItem("Whisper 👂", id=13) as tab_whisper:
+                with gr.TabItem("Whisper 👂", id=14) as tab_whisper:
                     with gr.Accordion("About", open=False):
                         with gr.Box():                       
                             gr.HTML(
@@ -1177,7 +1434,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... both to ...')
 
 # nllb 
-                with gr.TabItem("nllb translation 👥", id=14) as tab_nllb:
+                with gr.TabItem("nllb translation 👥", id=15) as tab_nllb:
                     with gr.Accordion("About", open=False):
                         with gr.Box():                       
                             gr.HTML(
@@ -1305,7 +1562,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                 else :
                     titletab_txt2prompt = "Prompt generator ⛔"
 
-                with gr.TabItem(titletab_txt2prompt, id=15) as tab_txt2prompt:
+                with gr.TabItem(titletab_txt2prompt, id=16) as tab_txt2prompt:
                     with gr.Accordion("About", open=False):
                         with gr.Box():                       
                             gr.HTML(
@@ -1637,7 +1894,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')                                        
-                                        txt2img_sd_img2txt_git = gr.Button("🖼️ >> GIT Captioning")      
+                                        txt2img_sd_llava = gr.Button("🖼️ >> Llava 1.5")
+                                        txt2img_sd_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         txt2img_sd_img2img = gr.Button("🖼️ >> img2img")
                                         txt2img_sd_img2img_ip = gr.Button("🖼️ >> IP-Adapter")
@@ -1844,6 +2102,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
+                                        txt2img_kd_llava = gr.Button("🖼️ >> Llava 1.5")
                                         txt2img_kd_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         txt2img_kd_img2img = gr.Button("🖼️ >> img2img")
@@ -2054,6 +2313,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')                                        
+                                        txt2img_lcm_llava = gr.Button("🖼️ >> Llava 1.5")
                                         txt2img_lcm_img2txt_git = gr.Button("🖼️ >> GIT Captioning")      
                                         gr.HTML(value='... image module ...')
                                         txt2img_lcm_img2img = gr.Button("🖼️ >> img2img")
@@ -2261,8 +2521,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Box():                                
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
-                                        gr.HTML(value='... text module ...')                                        
-                                        txt2img_mjm_img2txt_git = gr.Button("🖼️ >> GIT Captioning")      
+                                        gr.HTML(value='... text module ...')
+                                        txt2img_mjm_llava = gr.Button("🖼️ >> Llava 1.5")
+                                        txt2img_mjm_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         txt2img_mjm_img2img = gr.Button("🖼️ >> img2img")
                                         txt2img_mjm_img2img_ip = gr.Button("🖼️ >> IP-Adapter")
@@ -2471,7 +2732,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Box():                                
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
-                                        gr.HTML(value='... text module ...')                                        
+                                        gr.HTML(value='... text module ...')
+                                        txt2img_paa_llava = gr.Button("🖼️ >> Llava 1.5")
                                         txt2img_paa_img2txt_git = gr.Button("🖼️ >> GIT Captioning")      
                                         gr.HTML(value='... image module ...')
                                         txt2img_paa_img2img = gr.Button("🖼️ >> img2img")
@@ -2731,6 +2993,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
+                                        img2img_llava = gr.Button("🖼️ >> Llava 1.5")
                                         img2img_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         img2img_img2img = gr.Button("🖼️ >> img2img")
@@ -2956,6 +3219,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
+                                        img2img_ip_llava = gr.Button("🖼️ >> Llava 1.5")
                                         img2img_ip_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         img2img_ip_img2img = gr.Button("🖼️ >> img2img")
@@ -3158,6 +3422,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
+                                        img2var_llava = gr.Button("🖼️ >> Llava 1.5")
                                         img2var_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         img2var_img2img = gr.Button("🖼️ >> img2img")
@@ -3360,6 +3625,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
+                                        pix2pix_llava = gr.Button("🖼️ >> Llava 1.5")
                                         pix2pix_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         pix2pix_img2img = gr.Button("🖼️ >> img2img")
@@ -3567,6 +3833,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
+                                        magicmix_llava = gr.Button("🖼️ >> Llava 1.5")
                                         magicmix_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         magicmix_img2img = gr.Button("🖼️ >> img2img")
@@ -3776,6 +4043,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
+                                        inpaint_llava = gr.Button("🖼️ >> Llava 1.5")
                                         inpaint_img2txt_git = gr.Button("🖼️ >> GIT Captioning")      
                                         gr.HTML(value='... image module ...')
                                         inpaint_img2img = gr.Button("🖼️ >> img2img")
@@ -3991,7 +4259,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
-                                        paintbyex_img2txt_git = gr.Button("🖼️ >> GIT Captioning")      
+                                        paintbyex_llava = gr.Button("🖼️ >> Llava 1.5")
+                                        paintbyex_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         paintbyex_img2img = gr.Button("🖼️ >> img2img")
                                         paintbyex_img2img_ip = gr.Button("🖼️ >> IP-Adapter")
@@ -4227,6 +4496,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
+                                        outpaint_llava = gr.Button("🖼️ >> Llava 1.5")
                                         outpaint_img2txt_git = gr.Button("🖼️ >> GIT Captioning")      
                                         gr.HTML(value='... image module ...')
                                         outpaint_img2img = gr.Button("🖼️ >> img2img")
@@ -4536,6 +4806,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')                                        
+                                        controlnet_llava = gr.Button("🖼️ >> Llava 1.5")
                                         controlnet_img2txt_git = gr.Button("🖼️ >> GIT Captioning")         
                                         gr.HTML(value='... image module ...')
                                         controlnet_img2img = gr.Button("🖼️ >> img2img")
@@ -4708,6 +4979,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')                                        
+                                        faceswap_llava = gr.Button("🖼️ >> Llava 1.5")
                                         faceswap_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         faceswap_img2img = gr.Button("🖼️ >> img2img")
@@ -4847,6 +5119,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
+                                        resrgan_llava = gr.Button("🖼️ >> Llava 1.5")
                                         resrgan_img2txt_git = gr.Button("🖼️ >> GIT Captioning") 
                                         gr.HTML(value='... image module ...')
                                         resrgan_img2img = gr.Button("🖼️ >> img2img")
@@ -4977,6 +5250,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')                                        
+                                        gfpgan_llava = gr.Button("🖼️ >> Llava 1.5")
                                         gfpgan_img2txt_git = gr.Button("🖼️ >> GIT Captioning")   
                                         gr.HTML(value='... image module ...')
                                         gfpgan_img2img = gr.Button("🖼️ >> img2img")
@@ -6965,6 +7239,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     tab_3d_num = gr.Number(value=tab_3d.id, precision=0, visible=False) 
 
     tab_llamacpp_num = gr.Number(value=tab_llamacpp.id, precision=0, visible=False)
+    tab_llava_num = gr.Number(value=tab_llava.id, precision=0, visible=False)
     tab_img2txt_git_num = gr.Number(value=tab_img2txt_git.id, precision=0, visible=False)
     tab_whisper_num = gr.Number(value=tab_whisper.id, precision=0, visible=False)
     tab_nllb_num = gr.Number(value=tab_nllb.id, precision=0, visible=False)
@@ -7016,6 +7291,25 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     llamacpp_bark.click(fn=import_to_module_audio, inputs=[last_reply_llamacpp, tab_audio_num, tab_bark_num], outputs=[prompt_bark, tabs, tabs_audio])    
     llamacpp_txt2vid_ms.click(fn=import_text_to_module_video, inputs=[last_reply_llamacpp, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, tabs, tabs_video])
     llamacpp_txt2vid_ze.click(fn=import_text_to_module_video, inputs=[last_reply_llamacpp, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, tabs, tabs_video])    
+    
+# llava outputs   
+    llava_nllb.click(fn=send_text_to_module_text, inputs=[last_reply_llava, tab_text_num, tab_nllb_num], outputs=[prompt_nllb, tabs, tabs_text])
+    llava_txt2img_sd.click(fn=send_text_to_module_image, inputs=[last_reply_llava, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, tabs, tabs_image])
+    llava_txt2img_kd.click(fn=send_text_to_module_image, inputs=[last_reply_llava, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, tabs, tabs_image])
+    llava_txt2img_lcm.click(fn=send_text_to_module_image, inputs=[last_reply_llava, tab_image_num, tab_txt2img_lcm_num], outputs=[prompt_txt2img_lcm, tabs, tabs_image]) 
+    llava_txt2img_mjm.click(fn=send_text_to_module_image, inputs=[last_reply_llava, tab_image_num, tab_txt2img_mjm_num], outputs=[prompt_txt2img_mjm, tabs, tabs_image])     
+    llava_txt2img_paa.click(fn=send_text_to_module_image, inputs=[last_reply_llava, tab_image_num, tab_txt2img_paa_num], outputs=[prompt_txt2img_paa, tabs, tabs_image])         
+    llava_img2img.click(fn=send_text_to_module_image, inputs=[last_reply_llava, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, tabs, tabs_image])
+    llava_img2img_ip.click(fn=send_text_to_module_image, inputs=[last_reply_llava, tab_image_num, tab_img2img_ip_num], outputs=[prompt_img2img_ip, tabs, tabs_image])
+    llava_pix2pix.click(fn=send_text_to_module_image, inputs=[last_reply_llava, tab_image_num, tab_pix2pix_num], outputs=[prompt_pix2pix, tabs, tabs_image])
+    llava_inpaint.click(fn=send_text_to_module_image, inputs=[last_reply_llava, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, tabs, tabs_image])
+    llava_controlnet.click(fn=send_text_to_module_image, inputs=[last_reply_llava, tab_image_num, tab_controlnet_num], outputs=[prompt_controlnet, tabs, tabs_image])    
+    llava_musicgen.click(fn=import_to_module_audio, inputs=[last_reply_llava, tab_audio_num, tab_musicgen_num], outputs=[prompt_musicgen, tabs, tabs_audio])    
+    llava_audiogen.click(fn=import_to_module_audio, inputs=[last_reply_llava, tab_audio_num, tab_audiogen_num], outputs=[prompt_audiogen, tabs, tabs_audio])
+    llava_bark.click(fn=import_to_module_audio, inputs=[last_reply_llava, tab_audio_num, tab_bark_num], outputs=[prompt_bark, tabs, tabs_audio])    
+    llava_txt2vid_ms.click(fn=import_text_to_module_video, inputs=[last_reply_llava, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, tabs, tabs_video])
+    llava_txt2vid_ze.click(fn=import_text_to_module_video, inputs=[last_reply_llava, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, tabs, tabs_video])    
+    
 
 # GIT Captions outputs
     img2txt_git_nllb.click(fn=send_text_to_module_text, inputs=[out_img2txt_git, tab_text_num, tab_nllb_num], outputs=[prompt_nllb, tabs, tabs_text])    
@@ -7107,7 +7401,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     txt2img_sd_resrgan.click(fn=send_to_module, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     txt2img_sd_gfpgan.click(fn=send_to_module, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     txt2img_sd_img2vid.click(fn=send_image_to_module_video, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_video_num, tab_img2vid_num], outputs=[img_img2vid, tabs, tabs_video]) 
-    txt2img_sd_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])    
+    txt2img_sd_llava.click(fn=send_to_module_text, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_text_num, tab_llava_num], outputs=[img_llava, tabs, tabs_text])
+    txt2img_sd_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
     txt2img_sd_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
 # txt2img_sd inputs
@@ -7144,6 +7439,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     txt2img_kd_resrgan.click(fn=send_to_module, inputs=[gs_out_txt2img_kd, sel_out_txt2img_kd, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     txt2img_kd_gfpgan.click(fn=send_to_module, inputs=[gs_out_txt2img_kd, sel_out_txt2img_kd, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     txt2img_kd_img2vid.click(fn=send_image_to_module_video, inputs=[gs_out_txt2img_kd, sel_out_txt2img_kd, tab_video_num, tab_img2vid_num], outputs=[img_img2vid, tabs, tabs_video]) 
+    txt2img_kd_llava.click(fn=send_to_module_text, inputs=[gs_out_txt2img_kd, sel_out_txt2img_kd, tab_text_num, tab_llava_num], outputs=[img_llava, tabs, tabs_text])
     txt2img_kd_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_txt2img_kd, sel_out_txt2img_kd, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
     txt2img_kd_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_txt2img_kd, sel_out_txt2img_kd, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
     
@@ -7181,7 +7477,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     txt2img_lcm_resrgan.click(fn=send_to_module, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     txt2img_lcm_gfpgan.click(fn=send_to_module, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     txt2img_lcm_img2vid.click(fn=send_image_to_module_video, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_video_num, tab_img2vid_num], outputs=[img_img2vid, tabs, tabs_video]) 
-    txt2img_lcm_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])    
+    txt2img_lcm_llava.click(fn=send_to_module_text, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_text_num, tab_llava_num], outputs=[img_llava, tabs, tabs_text])
+    txt2img_lcm_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
     txt2img_lcm_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
 # txt2img_lcm inputs
@@ -7218,7 +7515,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     txt2img_mjm_resrgan.click(fn=send_to_module, inputs=[gs_out_txt2img_mjm, sel_out_txt2img_mjm, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     txt2img_mjm_gfpgan.click(fn=send_to_module, inputs=[gs_out_txt2img_mjm, sel_out_txt2img_mjm, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     txt2img_mjm_img2vid.click(fn=send_image_to_module_video, inputs=[gs_out_txt2img_mjm, sel_out_txt2img_mjm, tab_video_num, tab_img2vid_num], outputs=[img_img2vid, tabs, tabs_video]) 
-    txt2img_mjm_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_txt2img_mjm, sel_out_txt2img_mjm, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])    
+    txt2img_mjm_llava.click(fn=send_to_module_text, inputs=[gs_out_txt2img_mjm, sel_out_txt2img_mjm, tab_text_num, tab_llava_num], outputs=[img_llava, tabs, tabs_text])
+    txt2img_mjm_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_txt2img_mjm, sel_out_txt2img_mjm, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
     txt2img_mjm_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_txt2img_mjm, sel_out_txt2img_mjm, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
 # txt2img_mjm inputs
@@ -7255,7 +7553,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     txt2img_paa_resrgan.click(fn=send_to_module, inputs=[gs_out_txt2img_paa, sel_out_txt2img_paa, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     txt2img_paa_gfpgan.click(fn=send_to_module, inputs=[gs_out_txt2img_paa, sel_out_txt2img_paa, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     txt2img_paa_img2vid.click(fn=send_image_to_module_video, inputs=[gs_out_txt2img_paa, sel_out_txt2img_paa, tab_video_num, tab_img2vid_num], outputs=[img_img2vid, tabs, tabs_video]) 
-    txt2img_paa_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_txt2img_paa, sel_out_txt2img_paa, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])    
+    txt2img_paa_llava.click(fn=send_to_module_text, inputs=[gs_out_txt2img_paa, sel_out_txt2img_paa, tab_text_num, tab_llava_num], outputs=[img_llava, tabs, tabs_text])
+    txt2img_paa_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_txt2img_paa, sel_out_txt2img_paa, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
     txt2img_paa_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_txt2img_paa, sel_out_txt2img_paa, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
 # txt2img_paa inputs
@@ -7292,7 +7591,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     img2img_resrgan.click(fn=send_to_module, inputs=[gs_out_img2img, sel_out_img2img, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     img2img_gfpgan.click(fn=send_to_module, inputs=[gs_out_img2img, sel_out_img2img, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     img2img_img2vid.click(fn=send_image_to_module_video, inputs=[gs_out_img2img, sel_out_img2img, tab_video_num, tab_img2vid_num], outputs=[img_img2vid, tabs, tabs_video]) 
-    img2img_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_img2img, sel_out_img2img, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])    
+    img2img_llava.click(fn=send_to_module_text, inputs=[gs_out_img2img, sel_out_img2img, tab_text_num, tab_llava_num], outputs=[img_llava, tabs, tabs_text])
+    img2img_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_img2img, sel_out_img2img, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
     img2img_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_img2img, sel_out_img2img, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
 # img2img inputs
@@ -7325,7 +7625,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     img2img_ip_resrgan.click(fn=send_to_module, inputs=[gs_out_img2img_ip, sel_out_img2img_ip, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     img2img_ip_gfpgan.click(fn=send_to_module, inputs=[gs_out_img2img_ip, sel_out_img2img_ip, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     img2img_ip_img2vid.click(fn=send_image_to_module_video, inputs=[gs_out_img2img_ip, sel_out_img2img_ip, tab_video_num, tab_img2vid_num], outputs=[img_img2vid, tabs, tabs_video]) 
-    img2img_ip_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_img2img_ip, sel_out_img2img_ip, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])    
+    img2img_ip_llava.click(fn=send_to_module_text, inputs=[gs_out_img2img_ip, sel_out_img2img_ip, tab_text_num, tab_llava_num], outputs=[img_llava, tabs, tabs_text])
+    img2img_ip_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_img2img_ip, sel_out_img2img_ip, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
     img2img_ip_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_img2img_ip, sel_out_img2img_ip, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
 # img2img_ip inputs
@@ -7357,7 +7658,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     img2var_resrgan.click(fn=send_to_module, inputs=[gs_out_img2var, sel_out_img2var, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     img2var_gfpgan.click(fn=send_to_module, inputs=[gs_out_img2var, sel_out_img2var, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     img2var_img2vid.click(fn=send_image_to_module_video, inputs=[gs_out_img2var, sel_out_img2var, tab_video_num, tab_img2vid_num], outputs=[img_img2vid, tabs, tabs_video]) 
-    img2var_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_img2var, sel_out_img2var, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])    
+    img2var_llava.click(fn=send_to_module_text, inputs=[gs_out_img2var, sel_out_img2var, tab_text_num, tab_llava_num], outputs=[img_llava, tabs, tabs_text])
+    img2var_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_img2var, sel_out_img2var, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
     img2var_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_img2var, sel_out_img2var, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
 # pix2pix outputs
@@ -7374,6 +7676,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     pix2pix_resrgan.click(fn=send_to_module, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     pix2pix_gfpgan.click(fn=send_to_module, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     pix2pix_img2vid.click(fn=send_image_to_module_video, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_video_num, tab_img2vid_num], outputs=[img_img2vid, tabs, tabs_video]) 
+    pix2pix_llava.click(fn=send_to_module_text, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_text_num, tab_llava_num], outputs=[img_llava, tabs, tabs_text])
     pix2pix_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
     pix2pix_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_pix2pix, sel_out_pix2pix, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
@@ -7409,6 +7712,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     magicmix_resrgan.click(fn=send_to_module, inputs=[gs_out_magicmix, sel_out_magicmix, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     magicmix_gfpgan.click(fn=send_to_module, inputs=[gs_out_magicmix, sel_out_magicmix, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     magicmix_img2vid.click(fn=send_image_to_module_video, inputs=[gs_out_magicmix, sel_out_magicmix, tab_video_num, tab_img2vid_num], outputs=[img_img2vid, tabs, tabs_video]) 
+    magicmix_llava.click(fn=send_to_module_text, inputs=[gs_out_magicmix, sel_out_magicmix, tab_text_num, tab_llava_num], outputs=[img_llava, tabs, tabs_text])
     magicmix_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_magicmix, sel_out_magicmix, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
     magicmix_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_magicmix, sel_out_magicmix, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d])
 
@@ -7426,7 +7730,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     inpaint_resrgan.click(fn=send_to_module, inputs=[gs_out_inpaint, sel_out_inpaint, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     inpaint_gfpgan.click(fn=send_to_module, inputs=[gs_out_inpaint, sel_out_inpaint, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     inpaint_img2vid.click(fn=send_image_to_module_video, inputs=[gs_out_inpaint, sel_out_inpaint, tab_video_num, tab_img2vid_num], outputs=[img_img2vid, tabs, tabs_video]) 
-    inpaint_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_inpaint, sel_out_inpaint, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])    
+    inpaint_llava.click(fn=send_to_module_text, inputs=[gs_out_inpaint, sel_out_inpaint, tab_text_num, tab_llava_num], outputs=[img_llava, tabs, tabs_text])
+    inpaint_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_inpaint, sel_out_inpaint, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
     inpaint_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_inpaint, sel_out_inpaint, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
 # inpaint inputs
@@ -7460,7 +7765,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     paintbyex_resrgan.click(fn=send_to_module, inputs=[gs_out_paintbyex, sel_out_paintbyex, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     paintbyex_gfpgan.click(fn=send_to_module, inputs=[gs_out_paintbyex, sel_out_paintbyex, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     paintbyex_img2vid.click(fn=send_image_to_module_video, inputs=[gs_out_paintbyex, sel_out_paintbyex, tab_video_num, tab_img2vid_num], outputs=[img_img2vid, tabs, tabs_video]) 
-    paintbyex_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_paintbyex, sel_out_paintbyex, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])    
+    paintbyex_llava.click(fn=send_to_module_text, inputs=[gs_out_paintbyex, sel_out_paintbyex, tab_text_num, tab_llava_num], outputs=[img_llava, tabs, tabs_text])
+    paintbyex_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_paintbyex, sel_out_paintbyex, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
     paintbyex_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_paintbyex, sel_out_paintbyex, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
 # outpaint outputs
@@ -7477,7 +7783,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     outpaint_resrgan.click(fn=send_to_module, inputs=[gs_out_outpaint, sel_out_outpaint, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     outpaint_gfpgan.click(fn=send_to_module, inputs=[gs_out_outpaint, sel_out_outpaint, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     outpaint_img2vid.click(fn=send_image_to_module_video, inputs=[gs_out_outpaint, sel_out_outpaint, tab_video_num, tab_img2vid_num], outputs=[img_img2vid, tabs, tabs_video]) 
-    outpaint_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_outpaint, sel_out_outpaint, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])    
+    outpaint_llava.click(fn=send_to_module_text, inputs=[gs_out_outpaint, sel_out_outpaint, tab_text_num, tab_llava_num], outputs=[img_llava, tabs, tabs_text])
+    outpaint_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_outpaint, sel_out_outpaint, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
     outpaint_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_outpaint, sel_out_outpaint, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
 # outpaint inputs
@@ -7511,6 +7818,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     controlnet_resrgan.click(fn=send_to_module, inputs=[gs_out_controlnet, sel_out_controlnet, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     controlnet_gfpgan.click(fn=send_to_module, inputs=[gs_out_controlnet, sel_out_controlnet, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     controlnet_img2vid.click(fn=send_image_to_module_video, inputs=[gs_out_controlnet, sel_out_controlnet, tab_video_num, tab_img2vid_num], outputs=[img_img2vid, tabs, tabs_video]) 
+    controlnet_llava.click(fn=send_to_module_text, inputs=[gs_out_controlnet, sel_out_controlnet, tab_text_num, tab_llava_num], outputs=[img_llava, tabs, tabs_text])
     controlnet_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_controlnet, sel_out_controlnet, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
     controlnet_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_controlnet, sel_out_controlnet, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
@@ -7547,6 +7855,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     faceswap_resrgan.click(fn=send_to_module, inputs=[gs_out_faceswap, sel_out_faceswap, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     faceswap_gfpgan.click(fn=send_to_module, inputs=[gs_out_faceswap, sel_out_faceswap, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     faceswap_img2vid.click(fn=send_image_to_module_video, inputs=[gs_out_faceswap, sel_out_faceswap, tab_video_num, tab_img2vid_num], outputs=[img_img2vid, tabs, tabs_video]) 
+    faceswap_llava.click(fn=send_to_module_text, inputs=[gs_out_faceswap, sel_out_faceswap, tab_text_num, tab_llava_num], outputs=[img_llava, tabs, tabs_text])
     faceswap_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_faceswap, sel_out_faceswap, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
     faceswap_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_faceswap, sel_out_faceswap, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
@@ -7563,7 +7872,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     resrgan_faceswap.click(fn=send_to_module_inpaint, inputs=[gs_out_resrgan, sel_out_resrgan, tab_faceswap_num, tab_inpaint_num], outputs=[img_target_faceswap, gs_img_target_faceswap, tabs, tabs_image])       
     resrgan_gfpgan.click(fn=send_to_module, inputs=[gs_out_resrgan, sel_out_resrgan, tab_image_num, tab_gfpgan_num], outputs=[img_gfpgan, tabs, tabs_image])
     resrgan_img2vid.click(fn=send_image_to_module_video, inputs=[gs_out_resrgan, sel_out_resrgan, tab_video_num, tab_img2vid_num], outputs=[img_img2vid, tabs, tabs_video]) 
-    resrgan_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_resrgan, sel_out_resrgan, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])     
+    resrgan_llava.click(fn=send_to_module_text, inputs=[gs_out_resrgan, sel_out_resrgan, tab_text_num, tab_llava_num], outputs=[img_llava, tabs, tabs_text])
+    resrgan_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_resrgan, sel_out_resrgan, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
     resrgan_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_resrgan, sel_out_resrgan, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
 # gfpgan outputs
@@ -7579,6 +7889,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     gfpgan_faceswap.click(fn=send_to_module_inpaint, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_faceswap_num, tab_inpaint_num], outputs=[img_target_faceswap, gs_img_target_faceswap, tabs, tabs_image])    
     gfpgan_resrgan.click(fn=send_to_module, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_image_num, tab_resrgan_num], outputs=[img_resrgan, tabs, tabs_image])
     gfpgan_img2vid.click(fn=send_image_to_module_video, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_video_num, tab_img2vid_num], outputs=[img_img2vid, tabs, tabs_video]) 
+    gfpgan_llava.click(fn=send_to_module_text, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_text_num, tab_llava_num], outputs=[img_llava, tabs, tabs_text])
     gfpgan_img2txt_git.click(fn=send_to_module_text, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_text_num, tab_img2txt_git_num], outputs=[img_img2txt_git, tabs, tabs_text])
     gfpgan_img2shape.click(fn=send_to_module_3d, inputs=[gs_out_gfpgan, sel_out_gfpgan, tab_3d_num, tab_img2shape_num], outputs=[img_img2shape, tabs, tabs_3d]) 
 
