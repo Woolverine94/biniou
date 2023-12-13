@@ -244,7 +244,7 @@ def write_file(*args) :
     content = ""
     for idx, data in enumerate(args):
         content += f"{data} \n"
-    with open(savename, 'w') as savefile:
+    with open(savename, 'w', encoding="utf-8") as savefile:
         savefile.write(content)
     return savename
 
@@ -254,7 +254,7 @@ def write_seeded_file(seed, *args) :
     content = ""
     for idx, data in enumerate(args):
         content += f"{data} \n"
-    with open(savename, 'w') as savefile:
+    with open(savename, 'w', encoding="utf-8") as savefile:
         savefile.write(content)
     return savename
 
@@ -278,14 +278,14 @@ def write_ini(module, *args) :
         content += f"{data} \n"
         content = content.replace("False", "0")
         content = content.replace("True", "1")
-    with open(savename, 'w') as savefile:
+    with open(savename, 'w', encoding="utf-8") as savefile:
         savefile.write(content)
     return
    
 def read_ini(module) :
     filename = f".ini/{module}.cfg"
     content = []
-    with open(filename, "r") as fichier :
+    with open(filename, "r", encoding="utf-8") as fichier :
         lignes = fichier.readlines()
         for ligne in lignes : 
             ligne = ligne.strip(' \n')
