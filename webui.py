@@ -44,6 +44,19 @@ sys.stdout = Logger(logfile_biniou)
 
 get_window_url_params = """
     function(url_params) {
+
+        function preventPageClose() {
+            // Attacher un événement au clic sur le bouton fermer du navigateur
+            window.addEventListener('beforeunload', function (event) {
+                // Prévenir la fermeture par défaut
+                event.preventDefault();
+
+                // Afficher un message de confirmation personnalisé
+                event.returnValue = 'Voulez-vous vraiment quitter cette page ?';
+            });
+        }
+        preventPageClose();
+
         const params = new URLSearchParams(window.location.search);
         url_params = Object.fromEntries(params);
         return url_params;
