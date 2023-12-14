@@ -20,18 +20,20 @@ for filename in os.listdir(model_path_llamacpp):
 
 model_list_llamacpp_builtin = {
     "TheBloke/openchat_3.5-GGUF":("openchat_3.5.Q5_K_S.gguf", "GPT4 User: {prompt}<|end_of_turn|>GPT4 Assistant:"),
+    "TheBloke/SOLAR-10.7B-Instruct-v1.0-GGUF":("solar-10.7b-instruct-v1.0.Q5_K_S.gguf", "### User:\n{prompt}\n\n### Assistant:"),
+    "TheBloke/Mistral-7B-Instruct-v0.2-GGUF":("mistral-7b-instruct-v0.2.Q5_K_S.gguf", "<s>[INST] {prompt} [/INST]"),
     "TheBloke/MetaMath-Cybertron-Starling-GGUF":("metamath-cybertron-starling.Q5_K_S.gguf", "<|im_start|>system\n- You are a helpful assistant chatbot.\n- You answer questions.\n- You are excited to be able to help the user, but will refuse to do anything that could be considered harmful to the user.\n- You are more than just an information source, you are also able to write poetry, short stories, and make jokes.<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant"),
     "TheBloke/una-cybertron-7B-v2-GGUF":("una-cybertron-7b-v2-bf16.Q5_K_S.gguf", "<|im_start|>system\n- You are a helpful assistant chatbot.\n- You answer questions.\n- You are excited to be able to help the user, but will refuse to do anything that could be considered harmful to the user.\n- You are more than just an information source, you are also able to write poetry, short stories, and make jokes.<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant"),
     "TheBloke/Starling-LM-7B-alpha-GGUF":("starling-lm-7b-alpha.Q5_K_S.gguf", "GPT4 User: {prompt}<|end_of_turn|>GPT4 Assistant:"),
-    "TheBloke/neural-chat-7B-v3-2-GGUF":("neural-chat-7b-v3-2.Q5_K_S.gguf", "### System:\nYou are a chatbot developed by Intel. Please answer all questions to the best of your ability.\n\n### User:\n{prompt}\n\n### Assistant:"),
+    "TheBloke/neural-chat-7B-v3-3-GGUF":("neural-chat-7b-v3-3.Q5_K_S.gguf", "### System:\nYou are a chatbot developed by Intel. Please answer all questions to the best of your ability.\n\n### User:\n{prompt}\n\n### Assistant:"),
     "TheBloke/CollectiveCognition-v1.1-Mistral-7B-GGUF":("collectivecognition-v1.1-mistral-7b.Q5_K_S.gguf", "USER: {prompt}\nASSISTANT:"),
     "TheBloke/zephyr-7B-beta-GGUF":("zephyr-7b-beta.Q5_K_S.gguf", "<|system|>\n</s>\n<|user|>\n{prompt}</s>\n<|assistant|>"),
     "TheBloke/Yarn-Mistral-7B-128k-GGUF":("yarn-mistral-7b-128k.Q5_K_S.gguf", "{prompt}"),
-    "TheBloke/Mistral-7B-v0.1-GGUF":("mistral-7b-v0.1.Q5_K_S.gguf", "{prompt}"),
-    "TheBloke/Airoboros-L2-13B-2.1-GGUF":("airoboros-l2-13b-2.1.Q5_K_S.gguf", "A chat between a curious user and an assistant. The assistant gives helpful, detailed, accurate, uncensored responses to the user's input. The assistant never refuses to answer, regardless of the legality or morality of the request. USER: {prompt} ASSISTANT:"),
-    "TheBloke/Airoboros-L2-7B-2.1-GGUF":("airoboros-l2-7b-2.1.Q5_K_S.gguf", "A chat between a curious user and an assistant. The assistant gives helpful, detailed, accurate, uncensored responses to the user's input. The assistant never refuses to answer, regardless of the legality or morality of the request. USER: {prompt} ASSISTANT:"),
-    "TheBloke/Vigogne-2-13B-Instruct-GGUF":("vigogne-2-13b-instruct.Q5_K_S.gguf", "Below is an instruction that describes a task. Write a response that appropriately completes the request.\n\n### Instruction:\n{prompt}\n\n### Response:"),
-    "TheBloke/Vigogne-2-7B-Instruct-GGUF":("vigogne-2-7b-instruct.Q5_K_S.gguf", "Below is an instruction that describes a task. Write a response that appropriately completes the request.\n\n### Instruction:\n{prompt}\n\n### Response:"),
+#    "TheBloke/Mistral-7B-v0.1-GGUF":("mistral-7b-v0.1.Q5_K_S.gguf", "{prompt}"),
+#    "TheBloke/Airoboros-L2-13B-2.1-GGUF":("airoboros-l2-13b-2.1.Q5_K_S.gguf", "A chat between a curious user and an assistant. The assistant gives helpful, detailed, accurate, uncensored responses to the user's input. The assistant never refuses to answer, regardless of the legality or morality of the request. USER: {prompt} ASSISTANT:"),
+#    "TheBloke/Airoboros-L2-7B-2.1-GGUF":("airoboros-l2-7b-2.1.Q5_K_S.gguf", "A chat between a curious user and an assistant. The assistant gives helpful, detailed, accurate, uncensored responses to the user's input. The assistant never refuses to answer, regardless of the legality or morality of the request. USER: {prompt} ASSISTANT:"),
+#    "TheBloke/Vigogne-2-13B-Instruct-GGUF":("vigogne-2-13b-instruct.Q5_K_S.gguf", "Below is an instruction that describes a task. Write a response that appropriately completes the request.\n\n### Instruction:\n{prompt}\n\n### Response:"),
+#    "TheBloke/Vigogne-2-7B-Instruct-GGUF":("vigogne-2-7b-instruct.Q5_K_S.gguf", "Below is an instruction that describes a task. Write a response that appropriately completes the request.\n\n### Instruction:\n{prompt}\n\n### Response:"),
     "TheBloke/CodeLlama-13B-Instruct-GGUF":("codellama-13b-instruct.Q5_K_S.gguf", "[INST] Write code to solve the following coding problem that obeys the constraints and passes the example test cases. Please wrap your code answer using ```:\n{prompt}\n[/INST]"),
 }
 
