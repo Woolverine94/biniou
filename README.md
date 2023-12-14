@@ -15,13 +15,16 @@
 
 ## Updates
 
+  * 🆕 **2023-12-14** : ***Chatbot and UI updates*** :
+
+    - Adding models [SOLAR-10.7B-Instruct-v1.0](https://huggingface.co/TheBloke/SOLAR-10.7B-Instruct-v1.0-GGUF) and [Mistral-7B-Instruct-v0.2-GGUF](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF) to the chatbot module. With only 11B parameters, SOLAR is currently the #1 model in the global ranking of the [Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard), with an average score of 74.2. Removing outdated models.
+    - Adding a new "Stay on page" functionnality, that will avoid to accidentally close/refresh biniou browser tab.
+
   * 🆕 **2023-12-13** : 🔥 ***New text module : Llava 1.5*** 🔥 Using this new module, you can interrogate a chatbot about an input image. This module use llama-cpp compatibles .gguf quantized models. BakLLava is the default model, not only for its good results, but also because it's the only model usable with 8GB RAM.
 
   * 🆕 **2023-12-09** : 🔥 ***New models for Chatbot*** 🔥 Adding models [TheBloke/una-cybertron-7B-v2-GGUF](https://huggingface.co/TheBloke/una-cybertron-7B-v2-GGUF) and [TheBloke/MetaMath-Cybertron-Starling-GGUF](https://huggingface.co/TheBloke/MetaMath-Cybertron-Starling-GGUF). The latter is currently the best ranked 7B model of the [Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard), with an average score of 71,35 and is #9 in the global ranking.
 
   * 🆕 **2023-12-08** : 🔥 ***New feature for ControlNet module : support for LoRA models*** 🔥  Adding experimental LoRA options at the bottom of the settings panel in the ControlNet module. Same usage and modalities than the Stable Diffusion LoRA features (see below).
-
-  * 🆕 **2023-12-06** : 🔥 ***New feature for img2img module : support for LoRA models*** 🔥  Adding experimental LoRA options at the bottom of the settings panel in the img2img module. Same usage and modalities than the Stable Diffusion LoRA features (see below).
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
