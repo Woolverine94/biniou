@@ -73,7 +73,7 @@ def music_bark(
     ):
 
     print(">>>[Bark 🗣️ ]: starting module")
-    
+
     processor = AutoProcessor.from_pretrained(
         model_bark, 
         cache_dir=model_path_bark, 
@@ -81,7 +81,7 @@ def music_bark(
         resume_download=True,
         local_files_only=True if offline_test() else None
     )
-    
+
     pipe_bark = BarkModel.from_pretrained(
         model_bark, 
         cache_dir=model_path_bark,
@@ -89,12 +89,11 @@ def music_bark(
         resume_download=True,
         local_files_only=True if offline_test() else None        
         )
+    pipe_bark = pipe_bark.to(device_bark)
 
 #    pipe_bark = BetterTransformer.transform(pipe_bark, keep_original_model=False)
     if device_label_bark == "cuda" :
         pipe_bark.enable_cpu_offload()
-    else : 
-        pipe_bark = pipe_bark.to(device_bark)
     pipe_bark = pipe_bark.to_bettertransformer()
 
     voice_preset = voice_preset_list_bark[voice_preset_bark]
