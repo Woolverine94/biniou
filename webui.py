@@ -3,7 +3,7 @@
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 import warnings
-warnings.filterwarnings('ignore') 
+warnings.filterwarnings('ignore')
 import os
 import gradio as gr
 import numpy as np
@@ -699,21 +699,24 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Output(s) : </b>Output text</br>
                                 <b>HF models pages : </b>
                                 <a href='https://huggingface.co/TheBloke/openchat_3.5-GGUF' target='_blank'>TheBloke/openchat_3.5-GGUF</a>, 
-                                <a href='https://huggingface.co/TheBloke/MetaMath-Cybertron-Starling-GGUF' target='_blank'>TheBloke/MetaMath-Cybertron-Starling-GGUF</a>,
-                                <a href='https://huggingface.co/TheBloke/una-cybertron-7B-v2-GGUF' target='_blank'>TheBloke/una-cybertron-7B-v2-GGUF</a>,
-                                <a href='https://huggingface.co/TheBloke/Starling-LM-7B-alpha-GGUF' target='_blank'>TheBloke/Starling-LM-7B-alpha-GGUF</a>,
+                                <a href='https://huggingface.co/TheBloke/SOLAR-10.7B-Instruct-v1.0-GGUF' target='_blank'>TheBloke/SOLAR-10.7B-Instruct-v1.0-GGUF</a>, 
+                                <a href='https://huggingface.co/TheBloke/mixtralnt-4x7b-test-GGUF' target='_blank'>TheBloke/mixtralnt-4x7b-test-GGUF</a>, 
+                                <a href='https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF' target='_blank'>TheBloke/Mistral-7B-Instruct-v0.2-GGUF</a>, 
+                                <a href='https://huggingface.co/TheBloke/MetaMath-Cybertron-Starling-GGUF' target='_blank'>TheBloke/MetaMath-Cybertron-Starling-GGUF</a>, 
+                                <a href='https://huggingface.co/TheBloke/una-cybertron-7B-v2-GGUF' target='_blank'>TheBloke/una-cybertron-7B-v2-GGUF</a>, 
+                                <a href='https://huggingface.co/TheBloke/Starling-LM-7B-alpha-GGUF' target='_blank'>TheBloke/Starling-LM-7B-alpha-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/neural-chat-7B-v3-2-GGUF' target='_blank'>TheBloke/neural-chat-7B-v3-2-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/CollectiveCognition-v1.1-Mistral-7B-GGUF' target='_blank'>TheBloke/CollectiveCognition-v1.1-Mistral-7B-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/zephyr-7B-beta-GGUF' target='_blank'>TheBloke/zephyr-7B-beta-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/Yarn-Mistral-7B-128k-GGUF' target='_blank'>TheBloke/Yarn-Mistral-7B-128k-GGUF</a>, 
-                                <a href='https://huggingface.co/TheBloke/Mistral-7B-v0.1-GGUF' target='_blank'>TheBloke/Mistral-7B-v0.1-GGUF</a>, 
-                                <a href='https://huggingface.co/TheBloke/Vigogne-2-7B-Instruct-GGUF' target='_blank'>TheBloke/Vigogne-2-7B-Instruct-GGUF</a>, 
-                                <a href='https://huggingface.co/TheBloke/Vigogne-2-13B-Instruct-GGUF' target='_blank'>TheBloke/Vigogne-2-13B-Instruct-GGUF</a>, 
-                                <a href='https://huggingface.co/TheBloke/Airoboros-L2-7B-2.1-GGUF' target='_blank'>TheBloke/Airoboros-L2-7B-2.1-GGUF</a>, 
-                                <a href='https://huggingface.co/TheBloke/Airoboros-L2-13B-2.1-GGUF' target='_blank'>TheBloke/Airoboros-L2-13B-2.1-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/CodeLlama-13B-Instruct-GGUF' target='_blank'>TheBloke/CodeLlama-13B-Instruct-GGUF</a></br>
                                 """
                             )
+#                                <a href='https://huggingface.co/TheBloke/Mistral-7B-v0.1-GGUF' target='_blank'>TheBloke/Mistral-7B-v0.1-GGUF</a>, 
+#                                <a href='https://huggingface.co/TheBloke/Vigogne-2-7B-Instruct-GGUF' target='_blank'>TheBloke/Vigogne-2-7B-Instruct-GGUF</a>, 
+#                                <a href='https://huggingface.co/TheBloke/Vigogne-2-13B-Instruct-GGUF' target='_blank'>TheBloke/Vigogne-2-13B-Instruct-GGUF</a>, 
+#                                <a href='https://huggingface.co/TheBloke/Airoboros-L2-7B-2.1-GGUF' target='_blank'>TheBloke/Airoboros-L2-7B-2.1-GGUF</a>, 
+#                                <a href='https://huggingface.co/TheBloke/Airoboros-L2-13B-2.1-GGUF' target='_blank'>TheBloke/Airoboros-L2-13B-2.1-GGUF</a>, 
                         with gr.Box():
                             gr.HTML(
                                 """
