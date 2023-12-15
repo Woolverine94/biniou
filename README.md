@@ -18,7 +18,7 @@
   * 🆕 **2023-12-15** : ***Chatbot update and introducing CUDA support*** :
 
     - Adding support for mixtral-based models (by upgrading to llama-cpp-python 2.23) and adding [TheBloke/mixtralnt-4x7b-test-GGUF](https://huggingface.co/TheBloke/mixtralnt-4x7b-test-GGUF) model. Note that this model is very performant and fast, but will require more than 16GB RAM to work (24GB at least). Works pretty well with 32GB+.
-    - Adding update_cuda.sh and update_win_cuda.cmd scripts, respectively for GNU/Linux and Windows. Launching one of this script will update biniou AND install required torch version to use CUDA. You can reverse this behavior by running the standard update script, which will re-install torch cpu-only.
+    - Adding `update_cuda.sh` and `update_win_cuda.cmd` scripts, respectively for GNU/Linux and Windows. Launching one of this script will update biniou AND install required torch version to use CUDA. You can reverse this behavior by running the standard update script, which will re-install torch cpu-only.
 
   * 🆕 **2023-12-14** : ***Chatbot and UI updates*** :
 
@@ -283,7 +283,7 @@ You can also access biniou from any device (including smartphones) on the same L
 
   4. **Update** this application (biniou + python virtual environment) by running from the biniou directory : 
 
-  - **for GNU/Linux :** `./update.sh` (or, if you're using CUDA : `./update_cuda.sh`)
+  - **for GNU/Linux :** `./update.sh` (or `./update_cuda.sh` if you're using CUDA)
 
   - **for Windows** : double-click `update_win.cmd` (or `update_win_cuda.cmd` if you're using CUDA)
 
@@ -299,7 +299,7 @@ You can also access biniou from any device (including smartphones) on the same L
 
 * A backup of every content generated is available inside the /outputs directory of the biniou folder.
 
-* biniou doesn't still use CUDA and only rely on CPU for all operations. It use a specific CPU-only version of pyTorch. The result is a better compatibility with a wide range of hardware, but degraded performances. Depending on your hardware, expect slowness. 
+* biniou natively only rely on CPU for all operations. It use a specific CPU-only version of PyTorch. The result is a better compatibility with a wide range of hardware, but degraded performances. Depending on your hardware, expect slowness. See [here](#cuda-support) for CUDA support.
 
 * Defaults settings are selected to permit generation of contents on low-end computers, with the best ratio performance/quality. If you have a configuration above the minimal settings, you could try using other models, increase media dimensions or duration, modify inference parameters or others settings (like token merging for images) to obtain better quality contents.
 
