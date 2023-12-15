@@ -15,6 +15,11 @@
 
 ## Updates
 
+  * 🆕 **2023-12-15** : ***Chatbot update and introducing CUDA support*** :
+
+    - Adding support for mixtral-based models (by upgrading to llama-cpp-python 2.23) and adding [TheBloke/mixtralnt-4x7b-test-GGUF](https://huggingface.co/TheBloke/mixtralnt-4x7b-test-GGUF) model. Note that this model is very performant and fast, but will require more than 16GB RAM to work (24GB at least). Works pretty well with 32GB+.
+    - Adding update_cuda.sh and update_win_cuda.cmd scripts, respectively for GNU/Linux and Windows. Launching one of this script will update biniou AND install required torch version to use CUDA. You can reverse this behavior by running the standard update script, which will re-install torch cpu-only.
+
   * 🆕 **2023-12-14** : ***Chatbot and UI updates*** :
 
     - Adding models [SOLAR-10.7B-Instruct-v1.0](https://huggingface.co/TheBloke/SOLAR-10.7B-Instruct-v1.0-GGUF) and [Mistral-7B-Instruct-v0.2-GGUF](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF) to the chatbot module. With only 11B parameters, SOLAR is currently the #1 model in the global ranking of the [Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard), with an average score of 74.2. Removing outdated models.
@@ -23,8 +28,6 @@
   * 🆕 **2023-12-13** : 🔥 ***New text module : Llava 1.5*** 🔥 Using this new module, you can interrogate a chatbot about an input image. This module use llama-cpp compatibles .gguf quantized models. BakLLava is the default model, not only for its good results, but also because it's the only model usable with 8GB RAM.
 
   * 🆕 **2023-12-09** : 🔥 ***New models for Chatbot*** 🔥 Adding models [TheBloke/una-cybertron-7B-v2-GGUF](https://huggingface.co/TheBloke/una-cybertron-7B-v2-GGUF) and [TheBloke/MetaMath-Cybertron-Starling-GGUF](https://huggingface.co/TheBloke/MetaMath-Cybertron-Starling-GGUF). The latter is currently the best ranked 7B model of the [Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard), with an average score of 71,35 and is #9 in the global ranking.
-
-  * 🆕 **2023-12-08** : 🔥 ***New feature for ControlNet module : support for LoRA models*** 🔥  Adding experimental LoRA options at the bottom of the settings panel in the ControlNet module. Same usage and modalities than the Stable Diffusion LoRA features (see below).
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
@@ -39,6 +42,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#windows-10--windows-11">Windows 10 / Windows 11</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#macos-homebrew-install">macOS Homebrew install</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#dockerfile">Dockerfile</a><br/>
+  • <a href="#cuda-support">CUDA support</a><br/>
   • <a href="#how-to-use">How To Use</a><br/>
   • <a href="#good-to-know">Good to know</a><br/>
   • <a href="#credits">Credits</a><br/>
@@ -99,7 +103,7 @@
   - Powered by [🤗 Huggingface](https://huggingface.co/) and [gradio](https://www.gradio.app/)
   - Cross platform : GNU/Linux, Windows 10/11 and macOS(experimental, via homebrew)
   - Convenient Dockerfile for cloud instances
-  - Support for CUDA (experimental) on almost all modules (see [this page](https://github.com/Woolverine94/biniou/wiki/Experimental-features#cuda-support))
+  - Support for CUDA on almost all modules (see [CUDA support](#cuda-support))
   - Support for Stable Diffusion SD-1.5, SD-2.1, SD-Turbo, SDXL, SDXL-Turbo and Segmind SSD-1B models
   - Experimental support for LoRA models
 
@@ -244,6 +248,19 @@ biniou:latest
 
 ---
 
+## CUDA support
+
+biniou is natively cpu-only, to ensure compatibility with a wide range of hardware, but you can easily activate CUDA support (if you have a functionnal CUDA 12.1 environment) by running :
+
+  - `update_cuda.sh` if you are a GNU/Linux user
+  - `update_win_cuda.cmd` if you are a Windows user
+
+You must now always update biniou using these CUDA updates scripts, as the standards updates scripts will do a rollback to the cpu-only PyTorch version.
+
+Currently, all modules except Chatbot, Llava 1.5 and faceswap modules, could benefits from CUDA optimization.
+
+---
+
 ## How To Use
 
   1. **Launch** by executing from the biniou directory :
@@ -266,13 +283,9 @@ You can also access biniou from any device (including smartphones) on the same L
 
   4. **Update** this application (biniou + python virtual environment) by running from the biniou directory : 
 
-  - **for GNU/Linux :**
+  - **for GNU/Linux :** `./update.sh` (or, if you're using CUDA : `./update_cuda.sh`)
 
-```bash
-./update.sh
-```
-
-  - **for Windows, double-click `update_win.cmd`**
+  - **for Windows** : double-click `update_win.cmd` (or `update_win_cuda.cmd` if you're using CUDA)
 
 ---
 
