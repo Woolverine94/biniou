@@ -26,8 +26,8 @@ for filename in os.listdir(model_path_txt2img_kd):
         model_list_txt2img_kd.append(f)
 
 model_list_txt2img_kd_builtin = [
-#    "kandinsky-community/kandinsky-3",
     "kandinsky-community/kandinsky-2-2-decoder",
+    "kandinsky-community/kandinsky-3",
     "kandinsky-community/kandinsky-2-1",
 ]
 
@@ -41,12 +41,25 @@ def initiate_stop_txt2img_kd() :
     global stop_txt2img_kd
     stop_txt2img_kd = True
 
-def check_txt2img_kd(pipe, step_index, timestep, callback_kwargs) : 
+def check_txt2img_kd(pipe, step_index, timestep, callback_kwargs):
     global stop_txt2img_kd
     if stop_txt2img_kd == False :
         return callback_kwargs
     elif stop_txt2img_kd == True :
         print(">>>[Kandinsky 🖼️ ]: generation canceled by user")
+        stop_txt2img_kd = False
+        try:
+            del ressources.txt2img_kd.pipe_txt2img_kd
+        except NameError as e:
+            raise Exception("Interrupting ...")
+    return
+
+def check_txt2img_kd21(step, timestep, latents) : 
+    global stop_txt2img_kd
+    if stop_txt2img_kd == False :
+        return
+    elif stop_txt2img_kd == True :
+        print(">>>[txt2img_kd 🎶 ]: generation canceled by user")
         stop_txt2img_kd = False
         try:
             del ressources.txt2img_kd.pipe_txt2img_kd
@@ -74,23 +87,18 @@ def image_txt2img_kd(
 
     print(">>>[Kandinsky 🖼️ ]: starting module")
 
-    def check_model_type():
-        txt2img_kd_model_type = model_arch if (modelid_txt2img_kd != "kandinsky-community/kandinsky-3") else torch.float16
-        print(txt2img_kd_model_type)
-        return txt2img_kd_model_type
-
     if (modelid_txt2img_kd == "kandinsky-community/kandinsky-3") :
         if modelid_txt2img_kd[0:9] == "./models/" :
             pipe_txt2img_kd = AutoPipelineForText2Image.from_single_file(
                 modelid_txt2img_kd,
-                torch_dtype=torch.float16,
+                torch_dtype=model_arch,
                 use_safetensors=True,
             )
         else :
             pipe_txt2img_kd = AutoPipelineForText2Image.from_pretrained(
                 modelid_txt2img_kd,
                 cache_dir=model_path_txt2img_kd,
-                torch_dtype=torch.float16,
+                torch_dtype=model_arch,
                 variant="fp16",
                 use_safetensors=True,
                 resume_download=True,
@@ -126,9 +134,16 @@ def image_txt2img_kd(
     else:
         generator = torch.manual_seed(seed_txt2img_kd)
 
+    prompt_txt2img_kd = str(prompt_txt2img_kd)
+    negative_prompt_txt2img_kd = str(negative_prompt_txt2img_kd)
+    if prompt_txt2img_kd == "None":
+        prompt_txt2img_kd = ""
+    if negative_prompt_txt2img_kd == "None":
+        negative_prompt_txt2img_kd = ""
+
     final_image = []
     for i in range (num_prompt_txt2img_kd):
-        if (modelid_txt2img_kd == "kandinsky-community/kandinsky-3") :
+        if (modelid_txt2img_kd == "kandinsky-community/kandinsky-2-1"):
             image = pipe_txt2img_kd(
                 prompt=prompt_txt2img_kd,
                 negative_prompt=negative_prompt_txt2img_kd,
@@ -138,9 +153,9 @@ def image_txt2img_kd(
                 guidance_scale=guidance_scale_txt2img_kd,
                 num_images_per_prompt=num_images_per_prompt_txt2img_kd,
                 generator = generator,
-                callback=check_txt2img_kd,
+                callback=check_txt2img_kd21,
             ).images
-        else :
+        else:
             image = pipe_txt2img_kd(
                 prompt=prompt_txt2img_kd,
                 negative_prompt=negative_prompt_txt2img_kd,

@@ -275,6 +275,12 @@ def zip_download_file_txt2img_kd(content):
 def hide_download_file_txt2img_kd():
     return download_file_txt2img_kd.update(visible=False)
 
+def change_model_type_txt2img_kd(model_txt2img_kd):
+    if (model_txt2img_kd == "kandinsky-community/kandinsky-3"):
+        return width_txt2img_kd.update(value=1024), height_txt2img_kd.update(value=1024), num_inference_step_txt2img_kd.update(value=15), sampler_txt2img_kd.update(value=list(SCHEDULER_MAPPING.keys())[1])
+    else:
+        return width_txt2img_kd.update(value=512), height_txt2img_kd.update(value=512), num_inference_step_txt2img_kd.update(value=25), sampler_txt2img_kd.update(value=list(SCHEDULER_MAPPING.keys())[5])
+
 def read_ini_txt2img_kd(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), bool(int(content[9]))
@@ -1974,7 +1980,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Input(s) : </b>Prompt, negative prompt</br>
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF model page : </b>
-                                <a href='https://huggingface.co/kandinsky-community/kandinsky-2-2-decoder' target='_blank'>kandinsky-community/kandinsky-2-2-decoder</a>,
+                                <a href='https://huggingface.co/kandinsky-community/kandinsky-2-2-decoder' target='_blank'>kandinsky-community/kandinsky-2-2-decoder</a>, 
+                                <a href='https://huggingface.co/kandinsky-community/kandinsky-3' target='_blank'>kandinsky-community/kandinsky-3</a>, 
                                 <a href='https://huggingface.co/kandinsky-community/kandinsky-2-1' target='_blank'>kandinsky-community/kandinsky-2-1</a></br>
                                 """
                             )
@@ -2064,6 +2071,16 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Row():
                                 with gr.Column():
                                     negative_prompt_txt2img_kd = gr.Textbox(lines=6, max_lines=6, label="Negative Prompt", info="Describe what you DO NOT want in your image", placeholder="low quality, bad quality")
+                        model_txt2img_kd.change(
+                            fn=change_model_type_txt2img_kd,
+                            inputs=[model_txt2img_kd],
+                            outputs=[
+                                width_txt2img_kd,
+                                height_txt2img_kd,
+                                num_inference_step_txt2img_kd,
+                                sampler_txt2img_kd,
+                            ]
+                        )
                         with gr.Column(scale=2):
                             out_txt2img_kd = gr.Gallery(
                                 label="Generated images",
