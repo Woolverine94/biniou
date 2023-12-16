@@ -15,6 +15,8 @@
 
 ## Updates
 
+  * 🆕 **2023-12-16** : 🔥 ***New Kandinsky model : Kandinsky 3.0*** 🔥 Thanks to the contribution of [@trolley813](https://github.com/trolley813) 🙏, biniou now officially support Kandinsky 3.0 on CPU. It's a "huge fat baby" that barely works with 48GB RAM. 64GB RAM seems to be the minimal to generate 1024x1024 images. Compatibility with CUDA is uncertain.
+
   * 🆕 **2023-12-15** : ***Chatbot update and introducing CUDA support*** :
 
     - Adding support for mixtral-based models (by upgrading to llama-cpp-python 2.23) and adding [TheBloke/mixtralnt-4x7b-test-GGUF](https://huggingface.co/TheBloke/mixtralnt-4x7b-test-GGUF) model. Note that this model is very performant and fast, but will require more than 16GB RAM to work (24GB at least). Works pretty well with 32GB+. ⚠️ *Please note that you'll have to update  twice (or run `git pull` before update), as a new version of the update script is needed to install llama-cpp-python 2.23* ⚠️
