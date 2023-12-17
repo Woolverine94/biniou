@@ -19,12 +19,14 @@ for filename in os.listdir(model_path_llamacpp):
         model_list_llamacpp.update(final_f)
 
 model_list_llamacpp_builtin = {
-    "TheBloke/openchat_3.5-GGUF":("openchat_3.5.Q5_K_S.gguf", "GPT4 User: {prompt}<|end_of_turn|>GPT4 Assistant:"),
+#    "TheBloke/openchat_3.5-GGUF":("openchat_3.5.Q5_K_S.gguf", "GPT4 Correct User: {prompt}<|end_of_turn|>GPT4 Correct Assistant:"),
+    "TheBloke/openchat-3.5-1210-GGUF":("openchat-3.5-1210.Q5_K_S.gguf", "GPT4 User: {prompt}<|end_of_turn|>GPT4 Assistant:"),
     "TheBloke/SOLAR-10.7B-Instruct-v1.0-GGUF":("solar-10.7b-instruct-v1.0.Q5_K_S.gguf", "### User:\n{prompt}\n\n### Assistant:"),
     "TheBloke/mixtralnt-4x7b-test-GGUF":("mixtralnt-4x7b-test.Q5_K_M.gguf", "{prompt}"),
     "TheBloke/Mistral-7B-Instruct-v0.2-GGUF":("mistral-7b-instruct-v0.2.Q5_K_S.gguf", "<s>[INST] {prompt} [/INST]"),
     "TheBloke/MetaMath-Cybertron-Starling-GGUF":("metamath-cybertron-starling.Q5_K_S.gguf", "<|im_start|>system\n- You are a helpful assistant chatbot.\n- You answer questions.\n- You are excited to be able to help the user, but will refuse to do anything that could be considered harmful to the user.\n- You are more than just an information source, you are also able to write poetry, short stories, and make jokes.<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant"),
     "TheBloke/una-cybertron-7B-v2-GGUF":("una-cybertron-7b-v2-bf16.Q5_K_S.gguf", "<|im_start|>system\n- You are a helpful assistant chatbot.\n- You answer questions.\n- You are excited to be able to help the user, but will refuse to do anything that could be considered harmful to the user.\n- You are more than just an information source, you are also able to write poetry, short stories, and make jokes.<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant"),
+#    "TheBloke/una-cybertron-7B-v3-OMA-GGUF":("una-cybertron-7b-v3-oma.Q5_K_S.gguf", "<|im_start|>system\n- You are a helpful assistant chatbot.\n- You answer questions.\n- You are excited to be able to help the user, but will refuse to do anything that could be considered harmful to the user.\n- You are more than just an information source, you are also able to write poetry, short stories, and make jokes.<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant"),
     "TheBloke/Starling-LM-7B-alpha-GGUF":("starling-lm-7b-alpha.Q5_K_S.gguf", "GPT4 User: {prompt}<|end_of_turn|>GPT4 Assistant:"),
     "TheBloke/neural-chat-7B-v3-3-GGUF":("neural-chat-7b-v3-3.Q5_K_S.gguf", "### System:\nYou are a chatbot developed by Intel. Please answer all questions to the best of your ability.\n\n### User:\n{prompt}\n\n### Assistant:"),
     "TheBloke/CollectiveCognition-v1.1-Mistral-7B-GGUF":("collectivecognition-v1.1-mistral-7b.Q5_K_S.gguf", "USER: {prompt}\nASSISTANT:"),
