@@ -15,7 +15,9 @@
 
 ## Updates
 
-  * 🆕 **2023-12-16** : 🔥 ***New Kandinsky model : Kandinsky 3.0*** 🔥 Thanks to the contribution of [@trolley813](https://github.com/trolley813) 🙏, biniou now officially support Kandinsky 3.0 on CPU. It's a "huge fat baby" that barely works with 48GB RAM. 64GB RAM seems to be the minimal to generate 1024x1024 images. Compatibility with CUDA is uncertain.
+  * 🆕 **2023-12-17** : ***Chatbot models updates*** : Updating default model to   [TheBloke/openchat-3.5-1210-GGUF](https://huggingface.co/TheBloke/openchat-3.5-1210-GGUF).
+
+  * 🆕 **2023-12-16** : 🔥 ***New Kandinsky model : Kandinsky 3.0*** 🔥 Thanks to the contribution of [@trolley813](https://github.com/trolley813) 🙏, biniou now officially support Kandinsky 3.0 on CPU. It's a "huge fat baby" that barely works with 48GB RAM. 64GB RAM seems to be the minimal to generate 1024x1024 images. Compatibility with CUDA is ~~uncertain~~ confirmed.
 
   * 🆕 **2023-12-15** : ***Chatbot update and introducing CUDA support*** :
 
@@ -28,8 +30,6 @@
     - Adding a new "Stay on page" functionnality, that will avoid to accidentally close/refresh biniou browser tab.
 
   * 🆕 **2023-12-13** : 🔥 ***New text module : Llava 1.5*** 🔥 Using this new module, you can interrogate a chatbot about an input image. This module use llama-cpp compatibles .gguf quantized models. BakLLava is the default model, not only for its good results, but also because it's the only model usable with 8GB RAM.
-
-  * 🆕 **2023-12-09** : 🔥 ***New models for Chatbot*** 🔥 Adding models [TheBloke/una-cybertron-7B-v2-GGUF](https://huggingface.co/TheBloke/una-cybertron-7B-v2-GGUF) and [TheBloke/MetaMath-Cybertron-Starling-GGUF](https://huggingface.co/TheBloke/MetaMath-Cybertron-Starling-GGUF). The latter is currently the best ranked 7B model of the [Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard), with an average score of 71,35 and is #9 in the global ranking.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
@@ -101,12 +101,12 @@
 
 * **Other features**
   - Communication between modules : send an output as an input to another module
-  - Change your model by a simple dropdown menu or download and add it manually 
   - Powered by [🤗 Huggingface](https://huggingface.co/) and [gradio](https://www.gradio.app/)
   - Cross platform : GNU/Linux, Windows 10/11 and macOS(experimental, via homebrew)
   - Convenient Dockerfile for cloud instances
   - Support for CUDA on almost all modules (see [CUDA support](#cuda-support))
-  - Support for Stable Diffusion SD-1.5, SD-2.1, SD-Turbo, SDXL, SDXL-Turbo and Segmind SSD-1B models
+  - Support for Stable Diffusion SD-1.5, SD-2.1, SD-Turbo, SDXL, SDXL-Turbo,  Segmind SSD-1B and compatible models, through built-in model list or standalone .safetensors files
+  - Support for Llama, Mistral, Mixtral and compatible quantized models, through built-in model list or standalone .gguf files.
   - Experimental support for LoRA models
 
 ---
