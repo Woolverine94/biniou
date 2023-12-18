@@ -15,6 +15,8 @@
 
 ## Updates
 
+  * 🆕 **2023-12-18** : 🔥 ***Experimental ROCm support*** 🔥 : Introducing experimental (and non-tested) support for AMD ROCm 5.6 through an update script. See [here](https://github.com/Woolverine94/biniou/wiki/Experimental-features#rocm-support-under-gnulinux) for details.
+
   * 🆕 **2023-12-17** : ***Chatbot models updates*** : Updating default model to   [TheBloke/openchat-3.5-1210-GGUF](https://huggingface.co/TheBloke/openchat-3.5-1210-GGUF).
 
   * 🆕 **2023-12-16** : 🔥 ***New Kandinsky model : Kandinsky 3.0*** 🔥 Thanks to the contribution of [@trolley813](https://github.com/trolley813) 🙏, biniou now officially support Kandinsky 3.0 on CPU. It's a "huge fat baby" that barely works with 48GB RAM. 64GB RAM seems to be the minimal to generate 1024x1024 images. Compatibility with CUDA is ~~uncertain~~ confirmed.
@@ -105,6 +107,7 @@
   - Cross platform : GNU/Linux, Windows 10/11 and macOS(experimental, via homebrew)
   - Convenient Dockerfile for cloud instances
   - Support for CUDA on almost all modules (see [CUDA support](#cuda-support))
+  - Experimental support for ROCm on almost all modules (see [here](https://github.com/Woolverine94/biniou/wiki/Experimental-features#rocm-support-under-gnulinux))
   - Support for Stable Diffusion SD-1.5, SD-2.1, SD-Turbo, SDXL, SDXL-Turbo,  Segmind SSD-1B and compatible models, through built-in model list or standalone .safetensors files
   - Support for Llama, Mistral, Mixtral and compatible quantized models, through built-in model list or standalone .gguf files.
   - Experimental support for LoRA models
@@ -252,9 +255,10 @@ biniou:latest
 
 ## CUDA support
 
-biniou is natively cpu-only, to ensure compatibility with a wide range of hardware, but you can easily activate CUDA support (if you have a functionnal CUDA 12.1 environment) by running :
+biniou is natively cpu-only, to ensure compatibility with a wide range of hardware, but you can easily activate CUDA support through Nvidia CUDA (if you have a functionnal CUDA 12.1 environment) or AMD ROCm (if you have a functionnal ROCm 5.6 environment) by running :
 
-  - `update_cuda.sh` if you are a GNU/Linux user
+  - `update_cuda.sh` if you are a GNU/Linux user with a Nvidia GPU
+  - `update_ROCm.sh` if you are a GNU/Linux user with an AMD GPU (experimental)
   - `update_win_cuda.cmd` if you are a Windows user
 
 You must now always update biniou using these CUDA updates scripts, as the standards updates scripts will do a rollback to the cpu-only PyTorch version.
@@ -301,7 +305,7 @@ You can also access biniou from any device (including smartphones) on the same L
 
 * A backup of every content generated is available inside the /outputs directory of the biniou folder.
 
-* biniou natively only rely on CPU for all operations. It use a specific CPU-only version of PyTorch. The result is a better compatibility with a wide range of hardware, but degraded performances. Depending on your hardware, expect slowness. See [here](#cuda-support) for CUDA support.
+* biniou natively only rely on CPU for all operations. It use a specific CPU-only version of PyTorch. The result is a better compatibility with a wide range of hardware, but degraded performances. Depending on your hardware, expect slowness. See [here](#cuda-support) for Nvidia CUDA support and AMD ROCm experimental support (GNU/Linux only).
 
 * Defaults settings are selected to permit generation of contents on low-end computers, with the best ratio performance/quality. If you have a configuration above the minimal settings, you could try using other models, increase media dimensions or duration, modify inference parameters or others settings (like token merging for images) to obtain better quality contents.
 
