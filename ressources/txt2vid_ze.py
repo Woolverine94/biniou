@@ -93,7 +93,7 @@ def video_txt2vid_ze(
         pipe_txt2vid_ze.enable_sequential_cpu_offload()
     else : 
         pipe_txt2vid_ze = pipe_txt2vid_ze.to(device_txt2vid_ze)
-    pipe_txt2vid_ze.enable_vae_slicing()
+#    pipe_txt2vid_ze.enable_vae_slicing()
     
     if seed_txt2vid_ze == 0:
         random_seed = random.randrange(0, 10000000000, 1)
