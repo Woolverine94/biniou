@@ -246,6 +246,8 @@ def change_model_type_txt2img_sd(model_txt2img_sd):
         return width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=False), negative_prompt_txt2img_sd.update(interactive=False)
     elif (model_txt2img_sd == "segmind/SSD-1B") or (model_txt2img_sd == "stabilityai/stable-diffusion-xl-base-1.0"):
         return width_txt2img_sd.update(value=1024), height_txt2img_sd.update(value=1024), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=True)
+    elif (model_txt2img_sd == "segmind/Segmind-Vega"):
+        return width_txt2img_sd.update(value=1024), height_txt2img_sd.update(value=1024), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=9.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=True)
     else:
         return width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=True)
 
@@ -301,7 +303,7 @@ def read_ini_txt2img_lcm(module) :
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), int(content[9]), bool(int(content[10])), float(content[11])
 
 def change_model_type_txt2img_lcm(model_txt2img_lcm):
-    if (model_txt2img_lcm == "latent-consistency/lcm-ssd-1b") :
+    if (model_txt2img_lcm == "latent-consistency/lcm-ssd-1b") or (model_txt2img_lcm == "segmind/Segmind-VegaRT"):
         return width_txt2img_lcm.update(value=1024), height_txt2img_lcm.update(value=1024)
     else:
         return width_txt2img_lcm.update(value=512), height_txt2img_lcm.update(value=512)
@@ -309,7 +311,7 @@ def change_model_type_txt2img_lcm(model_txt2img_lcm):
 ## Functions specific to Midjourney mini
 def zip_download_file_txt2img_mjm(content):
     savename = zipper(content)
-    return savename, download_file_txt2img_mjm.update(visible=True) 
+    return savename, download_file_txt2img_mjm.update(visible=True)
 
 def hide_download_file_txt2img_mjm():
     return download_file_txt2img_mjm.update(visible=False)

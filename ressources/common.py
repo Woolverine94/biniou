@@ -375,7 +375,7 @@ def check_steps_strength (steps, strength, model):
     return int(steps)
 
 def lora_model_list(model):
-    if (('xl' or 'XL' or 'Xl' or 'xL') in model or (model == "segmind/SSD-1B")):
+    if (('xl' or 'XL' or 'Xl' or 'xL') in model or (model == "segmind/SSD-1B") or (model == "segmind/Segmind-Vega")):
         model_path_lora = "./models/lora/SDXL"
         model_list_lora_builtin = {
             "ostris/ikea-instructions-lora-sdxl":("ikea_instructions_xl_v1_5.safetensors", ""),

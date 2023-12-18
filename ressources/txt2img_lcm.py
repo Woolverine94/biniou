@@ -2,7 +2,7 @@
 # txt2img_lcm.py
 import gradio as gr
 import os
-from diffusers import UNet2DConditionModel, DiffusionPipeline
+from diffusers import UNet2DConditionModel, DiffusionPipeline, AutoPipelineForText2Image
 from compel import Compel, ReturnedEmbeddingsType
 import torch
 import time
@@ -27,6 +27,7 @@ for filename in os.listdir(model_path_txt2img_lcm):
 
 model_list_txt2img_lcm_builtin = [
     "SimianLuo/LCM_Dreamshaper_v7",
+    "segmind/Segmind-VegaRT",
     "latent-consistency/lcm-ssd-1b",
 ]
 
@@ -81,12 +82,12 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
     global pipe_txt2img_lcm
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2img_lcm_safetychecker, device_txt2img_lcm, nsfw_filter)
 
-    if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_txt2img_lcm or (modelid_txt2img_lcm == "latent-consistency/lcm-ssd-1b") :
+    if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_txt2img_lcm or (modelid_txt2img_lcm == "latent-consistency/lcm-ssd-1b") or (modelid_txt2img_lcm == "segmind/Segmind-VegaRT"):
         is_xl_txt2img_lcm: bool = True
     else :        
         is_xl_txt2img_lcm: bool = False
         
-    if (modelid_txt2img_lcm == "latent-consistency/lcm-ssd-1b") :
+    if (modelid_txt2img_lcm == "latent-consistency/lcm-ssd-1b"):
         model_path_SD_txt2img_lcm = "./models/Stable_Diffusion"
         modelid_SD_txt2img_lcm = "segmind/SSD-1B"
         unet_txt2img_lcm = UNet2DConditionModel.from_pretrained(
@@ -113,6 +114,29 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
             local_files_only=True if offline_test() else None
         )
         pipe_txt2img_lcm.scheduler = LCMScheduler.from_config(pipe_txt2img_lcm.scheduler.config)
+    elif (modelid_txt2img_lcm == "segmind/Segmind-VegaRT"):
+        model_path_SD_txt2img_lcm = "./models/Stable_Diffusion"
+        modelid_SD_txt2img_lcm = "segmind/Segmind-Vega"
+        pipe_txt2img_lcm = AutoPipelineForText2Image.from_pretrained(
+            modelid_SD_txt2img_lcm,
+            cache_dir=model_path_SD_txt2img_lcm,
+#            torch_dtype=torch.float32,
+            torch_dtype=model_arch,
+            use_safetensors=True,
+            safety_checker=nsfw_filter_final,
+            feature_extractor=feat_ex,
+            resume_download=True,
+            local_files_only=True if offline_test() else None
+        )
+        pipe_txt2img_lcm.scheduler = LCMScheduler.from_config(pipe_txt2img_lcm.scheduler.config)
+        pipe_txt2img_lcm.load_lora_weights(
+            modelid_txt2img_lcm,
+            cache_dir=model_path_txt2img_lcm,
+            use_safetensors=True,
+            resume_download=True,
+            local_files_only=True if offline_test() else None
+        )
+        pipe_txt2img_lcm.fuse_lora()
     else : 
         if modelid_txt2img_lcm[0:9] == "./models/" :
             pipe_txt2img_lcm = DiffusionPipeline.from_single_file(
@@ -123,7 +147,7 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
             )
-        else :        
+        else:
             pipe_txt2img_lcm = DiffusionPipeline.from_pretrained(
                 modelid_txt2img_lcm, 
                 cache_dir=model_path_txt2img_lcm, 
@@ -135,11 +159,10 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
-    
-    pipe_txt2img_lcm = get_scheduler(pipe=pipe_txt2img_lcm, scheduler=sampler_txt2img_lcm)
+        pipe_txt2img_lcm = get_scheduler(pipe=pipe_txt2img_lcm, scheduler=sampler_txt2img_lcm)
     pipe_txt2img_lcm.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_txt2img_lcm, ratio=tkme_txt2img_lcm)
-    if device_label_txt2img_lcm == "cuda" :
+    if device_label_txt2img_lcm == "cuda":
         pipe_txt2img_lcm.enable_sequential_cpu_offload()
     else : 
         pipe_txt2img_lcm = pipe_txt2img_lcm.to(device_txt2img_lcm)

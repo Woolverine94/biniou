@@ -35,6 +35,7 @@ model_list_txt2img_sd_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
     "stabilityai/sd-turbo", 
     "stabilityai/sdxl-turbo", 
+    "segmind/Segmind-Vega",
     "segmind/SSD-1B",
 #    "ckpt/anything-v4.5-vae-swapped",
     "stabilityai/stable-diffusion-xl-base-1.0",
@@ -97,7 +98,7 @@ def image_txt2img_sd(
     else :
         is_xlturbo_txt2img_sd: bool = False
 
-    if (('xl' or 'XL' or 'Xl' or 'xL') in modelid_txt2img_sd or (modelid_txt2img_sd == "segmind/SSD-1B")) :
+    if (('xl' or 'XL' or 'Xl' or 'xL') in modelid_txt2img_sd or (modelid_txt2img_sd == "segmind/SSD-1B") or (modelid_txt2img_sd == "segmind/Segmind-Vega")) :
 #  and (modelid_txt2img_sd != "stabilityai/sdxl-turbo")		
 #    if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_txt2img_sd :
         is_xl_txt2img_sd: bool = True
