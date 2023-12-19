@@ -260,7 +260,7 @@ biniou:latest
 biniou is natively cpu-only, to ensure compatibility with a wide range of hardware, but you can easily activate CUDA support through Nvidia CUDA (if you have a functionnal CUDA 12.1 environment) or AMD ROCm (if you have a functionnal ROCm 5.6 environment) by running :
 
   - `update_cuda.sh` if you are a GNU/Linux user with a Nvidia GPU
-  - `update_ROCm.sh` if you are a GNU/Linux user with an AMD GPU (experimental)
+  - `update_rocm.sh` if you are a GNU/Linux user with an AMD GPU (experimental)
   - `update_win_cuda.cmd` if you are a Windows user
 
 You must now always update biniou using these CUDA updates scripts, as the standards updates scripts will do a rollback to the cpu-only PyTorch version.
