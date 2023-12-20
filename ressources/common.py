@@ -378,6 +378,18 @@ def lora_model_list(model):
     if (('xl' or 'XL' or 'Xl' or 'xL') in model or (model == "segmind/SSD-1B") or (model == "segmind/Segmind-Vega")):
         model_path_lora = "./models/lora/SDXL"
         model_list_lora_builtin = {
+            "openskyml/dalle-3-xl":("Dall-e_3_0.3-v2.safetensors", ""),
+            "KappaNeuro/1987-action-figure-playset-packaging":("1987 Action Figure Playset Packaging.safetensors", "1987 Action Figure Playset Packaging - "),
+            "KappaNeuro/director-tim-burton-style":("Director Tim Burton style.safetensors", "Director Tim Burton style - "),
+            "KappaNeuro/vintage-postage-stamps":("Vintage Postage Stamps.safetensors", "Vintage Postage Stamps - "),
+            "KappaNeuro/diorama":("Diorama.safetensors", "Diorama - "),
+            "artificialguybr/movie-poster-redmond-for-sd-xl-create-movie-poster-images":("MoviePosterRedmond-MoviePoster-MoviePosterRedAF.safetensors", "Movie Poster, MoviePosterAF"),
+            "KappaNeuro/movie-poster":("Movie Poster.safetensors", "Movie Poster - "),
+            "DoctorDiffusion/doctor-diffusion-s-xray-xl-lora":("DD-xray-v1.safetensors", "xray"),
+            "openskyml/soviet-diffusion-xl":("Soviet-poster.safetensors", "soviet poster"),
+            "HarroweD/HarrlogosXL":("Harrlogos_v2.0.safetensors", "text logo"),
+            "SvenN/sdxl-emoji":("lora.safetensors", "emoji"),
+            "KappaNeuro/cute-animals":("Cute Animals.safetensors", "Cute Animals - "),
             "ostris/ikea-instructions-lora-sdxl":("ikea_instructions_xl_v1_5.safetensors", ""),
             "ostris/super-cereal-sdxl-lora":("cereal_box_sdxl_v1.safetensors", ""),
             "Norod78/SDXL-JojosoStyle-Lora-v2":("SDXL-JojosoStyle-Lora-v2-r16.safetensors", "JojoSostyle"),
