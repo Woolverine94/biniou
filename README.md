@@ -15,6 +15,8 @@
 
 ## Updates
 
+  * 🆕 **2023-12-20** : ***New LoRA models*** : Adding 12 LoRA models to the built-in list. See [here](https://github.com/Woolverine94/biniou/wiki/LoRA-models) for the complete model list and LoRA models documentation.
+
   * 🆕 **2023-12-18** : 🔥 ***Experimental ROCm support and Segmind-Vega models*** 🔥 
     - Introducing experimental (and non-tested) support for AMD ROCm 5.6 through an update script. See [here](https://github.com/Woolverine94/biniou/wiki/Experimental-features#rocm-support-under-gnulinux) for details.
     - Adding [Segmind-Vega](https://huggingface.co/segmind/Segmind-Vega) to Stable Diffusion module and [segmind/Segmind-VegaRT](https://huggingface.co/segmind/Segmind-VegaRT) to LCM module. Please note that this latter model seems to require CUDA and is not working on CPU.
