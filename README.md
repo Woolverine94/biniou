@@ -15,6 +15,11 @@
 
 ## Updates
 
+  * 🆕 **2023-12-21** : ***Chatbot update and LoRA models in IP-Adapter module*** :
+
+    - Adding support for phi-2, a small 2.7B model that is said to compete with 70B models. It is -at least- very fast. ⚠️ *Please note that you'll have to update  twice (or run `git pull` before update), as a new version of the update script is needed to install llama-cpp-python 2.24* ⚠️
+    - Adding support for LoRA models in module IP-Adapter.
+
   * 🆕 **2023-12-20** : ***New LoRA models*** : Adding 12 LoRA models to the built-in list. See [here](https://github.com/Woolverine94/biniou/wiki/LoRA-models) for the complete model list and LoRA models documentation.
 
   * 🆕 **2023-12-18** : 🔥 ***Experimental ROCm support and Segmind-Vega models*** 🔥 
@@ -29,13 +34,6 @@
 
     - Adding support for mixtral-based models (by upgrading to llama-cpp-python 2.23) and adding [TheBloke/mixtralnt-4x7b-test-GGUF](https://huggingface.co/TheBloke/mixtralnt-4x7b-test-GGUF) model. Note that this model is very performant and fast, but will require more than 16GB RAM to work (24GB at least). Works pretty well with 32GB+. ⚠️ *Please note that you'll have to update  twice (or run `git pull` before update), as a new version of the update script is needed to install llama-cpp-python 2.23* ⚠️
     - Adding `update_cuda.sh` and `update_win_cuda.cmd` scripts, respectively for GNU/Linux and Windows. Launching one of this script will update biniou AND install required torch version to use CUDA. You can reverse this behavior by running the standard update script, which will re-install torch cpu-only.
-
-  * 🆕 **2023-12-14** : ***Chatbot and UI updates*** :
-
-    - Adding models [SOLAR-10.7B-Instruct-v1.0](https://huggingface.co/TheBloke/SOLAR-10.7B-Instruct-v1.0-GGUF) and [Mistral-7B-Instruct-v0.2-GGUF](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF) to the chatbot module. With only 11B parameters, SOLAR is currently the #1 model in the global ranking of the [Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard), with an average score of 74.2. Removing outdated models.
-    - Adding a new "Stay on page" functionnality, that will avoid to accidentally close/refresh biniou browser tab.
-
-  * 🆕 **2023-12-13** : 🔥 ***New text module : Llava 1.5*** 🔥 Using this new module, you can interrogate a chatbot about an input image. This module use llama-cpp compatibles .gguf quantized models. BakLLava is the default model, not only for its good results, but also because it's the only model usable with 8GB RAM.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
