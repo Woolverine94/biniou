@@ -81,6 +81,8 @@ def image_img2img_ip(
     use_gfpgan_img2img_ip, 
     nsfw_filter, 
     tkme_img2img_ip,    
+    lora_model_img2img_ip,
+    lora_weight_img2img_ip,
     progress_img2img_ip=gr.Progress(track_tqdm=True)
     ):
 
@@ -192,6 +194,31 @@ def image_img2img_ip(
     else : 
         pipe_img2img_ip = pipe_img2img_ip.to(device_img2img_ip)
     
+    if lora_model_img2img_ip != "":
+        model_list_lora_img2img_ip = lora_model_list(modelid_img2img_ip)
+        if modelid_img2img_ip[0:9] == "./models/":
+            pipe_img2img_ip.load_lora_weights(
+                os.path.dirname(lora_model_img2img_ip),
+                weight_name=model_list_lora_img2img_ip[lora_model_img2img_ip][0],
+                use_safetensors=True,
+                adapter_name="adapter1",
+            )
+        else:
+            if is_xl_img2img_ip:
+                lora_model_path = "./models/lora/SDXL"
+            else: 
+                lora_model_path = "./models/lora/SD"
+            pipe_img2img_ip.load_lora_weights(
+                lora_model_img2img_ip,
+                weight_name=model_list_lora_img2img_ip[lora_model_img2img_ip][0],
+                cache_dir=lora_model_path,
+                use_safetensors=True,
+                adapter_name="adapter1",
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+        pipe_img2img_ip.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_img2img_ip)])
+
     if seed_img2img_ip == 0:
         random_seed = torch.randint(0, 10000000000, (1,))
         generator = torch.manual_seed(random_seed)

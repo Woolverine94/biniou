@@ -391,13 +391,25 @@ def read_ini_img2img_ip(module) :
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), bool(int(content[9])), float(content[10])
 
 def change_model_type_img2img_ip(model_img2img_ip):
-    if (model_img2img_ip == "stabilityai/sdxl-turbo") or (model_img2img_ip == "stabilityai/sd-turbo"):
-        return width_img2img_ip.update(value=512), height_img2img_ip.update(value=512), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), negative_prompt_img2img_ip.update(interactive=False)
+    if (model_img2img_ip == "stabilityai/sdxl-turbo"):
+        return width_img2img_ip.update(value=512), height_img2img_ip.update(value=512), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), negative_prompt_img2img_ip.update(interactive=False)
+    elif (model_img2img_ip == "stabilityai/sd-turbo"):
+        return width_img2img_ip.update(value=512), height_img2img_ip.update(value=512), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=False), negative_prompt_img2img_ip.update(interactive=False)
     elif model_img2img_ip == "stabilityai/stable-diffusion-xl-refiner-1.0":
-        return width_img2img_ip.update(value=1024), height_img2img_ip.update(value=1024), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=7.5), negative_prompt_img2img_ip.update(interactive=True)
+        return width_img2img_ip.update(value=1024), height_img2img_ip.update(value=1024), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), negative_prompt_img2img_ip.update(interactive=True)
     else:
-        return width_img2img_ip.update(value=512), height_img2img_ip.update(value=512), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=7.5), negative_prompt_img2img_ip.update(interactive=True)
+        return width_img2img_ip.update(value=512), height_img2img_ip.update(value=512), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), negative_prompt_img2img_ip.update(interactive=True)
 
+def change_lora_model_img2img_ip(model, lora_model, prompt):
+    if lora_model != "":
+        lora_keyword = lora_model_list(model)[lora_model][1]
+        if lora_keyword != "":
+            lora_prompt_img2img_ip = prompt+ " "+ lora_keyword
+        else:
+            lora_prompt_img2img_ip = prompt
+    else:
+        lora_prompt_img2img_ip = prompt
+    return prompt_img2img_ip.update(value=lora_prompt_img2img_ip)
 
 ## Functions specific to img2var 
 def zip_download_file_img2var(content):
@@ -708,6 +720,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>HF models pages : </b>
                                 <a href='https://huggingface.co/TheBloke/openchat-3.5-1210-GGUF' target='_blank'>TheBloke/openchat-3.5-1210-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/SOLAR-10.7B-Instruct-v1.0-GGUF' target='_blank'>TheBloke/SOLAR-10.7B-Instruct-v1.0-GGUF</a>, 
+                                <a href='https://huggingface.co/TheBloke/phi-2-GGUF' target='_blank'>TheBloke/phi-2-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/mixtralnt-4x7b-test-GGUF' target='_blank'>TheBloke/mixtralnt-4x7b-test-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF' target='_blank'>TheBloke/Mistral-7B-Instruct-v0.2-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/MetaMath-Cybertron-Starling-GGUF' target='_blank'>TheBloke/MetaMath-Cybertron-Starling-GGUF</a>, 
@@ -939,7 +952,6 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Box():                                
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
-
 
 # llava
                 with gr.TabItem("Llava 1.5 (gguf) 👁️", id=12) as tab_llava:
@@ -1553,6 +1565,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Box():                                
                                     with gr.Group():
                                         gr.HTML(value='... output text to ...')
+                                        nllb_llamacpp = gr.Button("✍️ >> Chatbot Llama-cpp")
                                         gr.HTML(value='... image module ...')                                        
                                         nllb_txt2img_sd = gr.Button("✍️ >> Stable Diffusion")
                                         nllb_txt2img_kd = gr.Button("✍️ >> Kandinsky")                                        
@@ -1695,6 +1708,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... output text to ...')
                                         gr.HTML(value='... text module ...') 
+                                        txt2prompt_nllb = gr.Button("✍️ >> Nllb translation")
                                         txt2prompt_llamacpp = gr.Button("✍️ >> Chatbot llama-cpp")
                                         gr.HTML(value='... image module ...')                                        
                                         txt2prompt_txt2img_sd = gr.Button("✍️ >> Stable Diffusion")
@@ -2844,7 +2858,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <div style='text-align: justified'>
                                 <b>Usage :</b></br>
                                 - (optional) Modify the settings to use another model, generate several images in a single run</br>
-                                - (optional) Select a LoRA model and set its weight</br>                                
+                                - (optional) Select a LoRA model and set its weight</br>
                                 - Upload, import an image or draw a sketch as an <b>Input image</b></br>
                                 - Set the balance between the input image and the prompt (<b>denoising strength</b>) to a value between 0 and 1 : 0 will completely ignore the prompt, 1 will completely ignore the input image</br>                                
                                 - Fill the <b>prompt</b> with what you want to see in your output image</br>
@@ -3095,14 +3109,17 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
                                 <div style='text-align: justified'>
                                 <b>Usage :</b></br>
+                                - (optional) Modify the settings to use another model or generate several images in a single run</br>
+                                - (optional) Select a LoRA model and set its weight</br>
                                 - Upload or import an image as an <b>Input image</b></br>
                                 - Upload an image as an <b>IP-Adapter image</b></br>
                                 - Set the balance between the input image and the prompts (Ip-Adapter image, prompts, negative prompt) by choosing a <b>denoising strength</b> value between 0.01 and 1 : 0.01 will mostly ignore the prompts, 1 will completely ignore the input image</br>
                                 - Fill the <b>prompt</b> with what you want to see in your output image</br>
                                 - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output image</br>
-                                - (optional) Modify the settings to use another model or generate several images in a single run</br>
                                 - Click the <b>Generate</b> button</br>
-                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
+                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.</br>
+                                <b>LoRA models :</b></br>
+                                - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or  <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors LoRA models in the directory ./biniou/models/lora/SD or ./biniou/models/lora/SDXL (depending on the LoRA model type : SD 1.5 or SDXL). Restart Biniou to see them in the models list.</br>
                                 </br>
                                 """
                             )
@@ -3174,6 +3191,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             seed_img2img_ip.value = readcfg_img2img_ip[8]
                             use_gfpgan_img2img_ip.value = readcfg_img2img_ip[9]
                             tkme_img2img_ip.value = readcfg_img2img_ip[10]
+                        with gr.Accordion("LoRA Model", open=True):
+                            with gr.Row():
+                                with gr.Column():
+                                    lora_model_img2img_ip = gr.Dropdown(choices=list(lora_model_list(model_img2img_ip.value).keys()), value="", label="LoRA model", info="Choose LoRA model to use for inference")
+                                with gr.Column():
+                                    lora_weight_img2img_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label="LoRA weight", info="Weight of the LoRA model in the final result")
                     with gr.Row():
                         with gr.Column():
                             img_img2img_ip = gr.Image(label="Input image", height=400, type="filepath")
@@ -3190,8 +3213,20 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Row():                                    
                                 with gr.Column():
                                     negative_prompt_img2img_ip = gr.Textbox(lines=1, max_lines=1, label="Negative Prompt", info="Describe what you DO NOT want in your image", placeholder="low quality, medium quality, blurry")
-                        model_img2img_ip.change(fn=change_model_type_img2img_ip, inputs=model_img2img_ip, outputs=[width_img2img_ip, height_img2img_ip, num_inference_step_img2img_ip, guidance_scale_img2img_ip, negative_prompt_img2img_ip])
                         denoising_strength_img2img_ip.change(check_steps_strength, [num_inference_step_img2img_ip, denoising_strength_img2img_ip, model_img2img_ip], [num_inference_step_img2img_ip])
+                        model_img2img_ip.change(
+                            fn=change_model_type_img2img_ip,
+                            inputs=[model_img2img_ip],
+                            outputs=[
+                                width_img2img_ip,
+                                height_img2img_ip,
+                                num_inference_step_img2img_ip,
+                                guidance_scale_img2img_ip,
+                                lora_model_img2img_ip,
+                                negative_prompt_img2img_ip,
+                            ]
+                        )
+                        lora_model_img2img_ip.change(fn=change_lora_model_img2img_ip, inputs=[model_img2img_ip, lora_model_img2img_ip, prompt_img2img_ip], outputs=[prompt_img2img_ip])
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():                            
@@ -3243,10 +3278,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     use_gfpgan_img2img_ip,
                                     nsfw_filter,
                                     tkme_img2img_ip,
+                                    lora_model_img2img_ip,
+                                    lora_weight_img2img_ip,
                                 ],
-                                outputs=[out_img2img_ip, gs_out_img2img_ip], 
+                                outputs=[out_img2img_ip, gs_out_img2img_ip],
                                 show_progress="full",
-                            )  
+                            )
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():
@@ -7390,6 +7427,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     whisper_txt2vid_ze.click(fn=import_text_to_module_video, inputs=[out_whisper, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, tabs, tabs_video])       
 
 # Nllb outputs
+    nllb_llamacpp.click(fn=send_text_to_module_text, inputs=[out_nllb, tab_text_num, tab_llamacpp_num], outputs=[prompt_llamacpp, tabs, tabs_text])
     nllb_txt2img_sd.click(fn=send_text_to_module_image, inputs=[out_nllb, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, tabs, tabs_image])
     nllb_txt2img_kd.click(fn=send_text_to_module_image, inputs=[out_nllb, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, tabs, tabs_image])
     nllb_txt2img_lcm.click(fn=send_text_to_module_image, inputs=[out_nllb, tab_image_num, tab_txt2img_lcm_num], outputs=[prompt_txt2img_lcm, tabs, tabs_image])
@@ -7407,6 +7445,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     nllb_txt2vid_ze.click(fn=import_text_to_module_video, inputs=[out_nllb, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, tabs, tabs_video])
 
 # txt2prompt outputs
+    txt2prompt_nllb.click(fn=send_text_to_module_text, inputs=[out_txt2prompt, tab_text_num, tab_nllb_num], outputs=[prompt_nllb, tabs, tabs_text])
     txt2prompt_llamacpp.click(fn=send_text_to_module_text, inputs=[out_txt2prompt, tab_text_num, tab_llamacpp_num], outputs=[prompt_llamacpp, tabs, tabs_text])
     txt2prompt_txt2img_sd.click(fn=send_text_to_module_image, inputs=[out_txt2prompt, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, tabs, tabs_image])
     txt2prompt_txt2img_kd.click(fn=send_text_to_module_image, inputs=[out_txt2prompt, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, tabs, tabs_image])
