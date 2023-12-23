@@ -374,6 +374,9 @@ def check_steps_strength (steps, strength, model):
         steps = ceil(1/strength)
     return int(steps)
 
+def which_os():
+    return sys.platform
+
 def lora_model_list(model):
     if (('xl' or 'XL' or 'Xl' or 'xL') in model or (model == "segmind/SSD-1B") or (model == "segmind/Segmind-Vega")):
         model_path_lora = "./models/lora/SDXL"

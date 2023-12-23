@@ -5,6 +5,7 @@ import os
 import PIL
 import torch
 from diffusers import AutoPipelineForImage2Image, StableDiffusionXLImg2ImgPipeline, StableDiffusionImg2ImgPipeline
+from huggingface_hub import snapshot_download, hf_hub_download
 from compel import Compel, ReturnedEmbeddingsType
 import time
 import random
@@ -89,7 +90,7 @@ def image_img2img_ip(
     print(">>>[IP-Adapter 🖌️ ]: starting module")
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_img2img_ip, device_img2img_ip, nsfw_filter)
-
+    
     if (modelid_img2img_ip == "stabilityai/sdxl-turbo") or (modelid_img2img_ip == "stabilityai/sd-turbo"):
         is_xlturbo_img2img_ip: bool = True
     else :
@@ -98,7 +99,59 @@ def image_img2img_ip(
     if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_img2img_ip :
         is_xl_img2img_ip: bool = True
     else :
-        is_xl_img2img_ip: bool = False        
+        is_xl_img2img_ip: bool = False     
+
+    if which_os() == "win32":
+        if (is_xl_img2img_ip == True):
+            hf_hub_download(
+                repo_id="h94/IP-Adapter", 
+                filename="sdxl_models/image_encoder/config.json",
+                repo_type="model",
+                local_dir=model_path_ipa_img2img_ip,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+            hf_hub_download(
+                repo_id="h94/IP-Adapter", 
+                filename="sdxl_models/ip-adapter_sdxl.safetensors",
+                repo_type="model",
+                local_dir=model_path_ipa_img2img_ip,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+            hf_hub_download(
+                repo_id="h94/IP-Adapter", 
+                filename="sdxl_models/image_encoder/model.safetensors",
+                repo_type="model",
+                local_dir=model_path_ipa_img2img_ip,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+        else:
+            hf_hub_download(
+                repo_id="h94/IP-Adapter", 
+                filename="models/image_encoder/config.json",
+                repo_type="model",
+                local_dir=model_path_ipa_img2img_ip,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+            hf_hub_download(
+                repo_id="h94/IP-Adapter", 
+                filename="models/ip-adapter_sd15.safetensors",
+                repo_type="model",
+                local_dir=model_path_ipa_img2img_ip,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+            hf_hub_download(
+                repo_id="h94/IP-Adapter", 
+                filename="models/image_encoder/model.safetensors",
+                repo_type="model",
+                local_dir=model_path_ipa_img2img_ip,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
 
     if (is_xlturbo_img2img_ip == True) :
         if modelid_img2img_ip[0:9] == "./models/" :
@@ -162,29 +215,52 @@ def image_img2img_ip(
             )
 
 #    if (is_xl_img2img_ip == True) or (is_xlturbo_img2img_ip == True):
-    if (is_xl_img2img_ip == True):
-        pipe_img2img_ip.load_ip_adapter(
-            "h94/IP-Adapter", 
-            cache_dir=model_path_ipa_img2img_ip,
-            subfolder="sdxl_models", 
-            weight_name="ip-adapter_sdxl.bin",
-            torch_dtype=model_arch,
-            use_safetensors=True,
-            resume_download=True,
-            local_files_only=True if offline_test() else None
-        )
+    if (which_os() == "win32"):
+        if (is_xl_img2img_ip == True):
+            pipe_img2img_ip.load_ip_adapter(
+                model_path_ipa_img2img_ip,
+                subfolder="sdxl_models",
+                weight_name="ip-adapter_sdxl.safetensors",
+                torch_dtype=model_arch,
+                use_safetensors=True,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+        else:
+            pipe_img2img_ip.load_ip_adapter(
+                model_path_ipa_img2img_ip,
+                subfolder="models",
+                weight_name="ip-adapter_sd15.safetensors",
+                torch_dtype=model_arch,
+                use_safetensors=True, 
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
     else:
-        pipe_img2img_ip.load_ip_adapter(
-            "h94/IP-Adapter", 
-            cache_dir=model_path_ipa_img2img_ip,            
-            subfolder="models", 
-            weight_name="ip-adapter_sd15.bin",
-            torch_dtype=model_arch,
-            use_safetensors=True, 
-            resume_download=True,
-            local_files_only=True if offline_test() else None
-        )
- 
+        if (is_xl_img2img_ip == True):
+            pipe_img2img_ip.load_ip_adapter(
+                "h94/IP-Adapter", 
+                cache_dir=model_path_ipa_img2img_ip,
+                subfolder="sdxl_models",
+                weight_name="ip-adapter_sdxl.safetensors",
+                torch_dtype=model_arch,
+                use_safetensors=True,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+        else:
+            pipe_img2img_ip.load_ip_adapter(
+                "h94/IP-Adapter",
+                cache_dir=model_path_ipa_img2img_ip,
+                subfolder="models",
+                weight_name="ip-adapter_sd15.safetensors",
+                torch_dtype=model_arch,
+                use_safetensors=True, 
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+
+
 #    pipe_img2img_ip.set_ip_adapter_scale(denoising_strength_img2img_ip)    
     pipe_img2img_ip = get_scheduler(pipe=pipe_img2img_ip, scheduler=sampler_img2img_ip)
 #    pipe_img2img_ip.enable_attention_slicing("max")  
