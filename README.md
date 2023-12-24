@@ -15,6 +15,8 @@
 
 ## Updates
 
+  * 🆕 **2023-12-24** : ***Chatbot models updates*** : Adding model [TheBloke/Mixtral_7Bx2_MoE-GGUF](https://huggingface.co/TheBloke/Mixtral_7Bx2_MoE-GGUF) to the chatbot module. This model is usable starting from 16GB RAM.
+
   * 🆕 **2023-12-21** : ***Chatbot update and LoRA models in IP-Adapter module*** :
 
     - Adding support for phi-2, a small 2.7B model that is said to compete with 70B models. It is -at least- very fast. ⚠️ *Please note that you'll have to update  twice (or run `git pull` before update), as a new version of the update script is needed to install llama-cpp-python 2.24* ⚠️
@@ -25,15 +27,6 @@
   * 🆕 **2023-12-18** : 🔥 ***Experimental ROCm support and Segmind-Vega models*** 🔥 
     - Introducing experimental (and non-tested) support for AMD ROCm 5.6 through an update script. See [here](https://github.com/Woolverine94/biniou/wiki/Experimental-features#rocm-support-under-gnulinux) for details.
     - Adding [Segmind-Vega](https://huggingface.co/segmind/Segmind-Vega) to Stable Diffusion module and [segmind/Segmind-VegaRT](https://huggingface.co/segmind/Segmind-VegaRT) to LCM module. Please note that this latter model seems to require CUDA and is not working on CPU.
-
-  * 🆕 **2023-12-17** : ***Chatbot models updates*** : Updating default model to   [TheBloke/openchat-3.5-1210-GGUF](https://huggingface.co/TheBloke/openchat-3.5-1210-GGUF).
-
-  * 🆕 **2023-12-16** : 🔥 ***New Kandinsky model : Kandinsky 3.0*** 🔥 Thanks to the contribution of [@trolley813](https://github.com/trolley813) 🙏, biniou now officially support Kandinsky 3.0 on CPU. It's a "huge fat baby" that barely works with 48GB RAM. 64GB RAM seems to be the minimal to generate 1024x1024 images. Compatibility with CUDA is ~~uncertain~~ confirmed.
-
-  * 🆕 **2023-12-15** : ***Chatbot update and introducing CUDA support*** :
-
-    - Adding support for mixtral-based models (by upgrading to llama-cpp-python 2.23) and adding [TheBloke/mixtralnt-4x7b-test-GGUF](https://huggingface.co/TheBloke/mixtralnt-4x7b-test-GGUF) model. Note that this model is very performant and fast, but will require more than 16GB RAM to work (24GB at least). Works pretty well with 32GB+. ⚠️ *Please note that you'll have to update  twice (or run `git pull` before update), as a new version of the update script is needed to install llama-cpp-python 2.23* ⚠️
-    - Adding `update_cuda.sh` and `update_win_cuda.cmd` scripts, respectively for GNU/Linux and Windows. Launching one of this script will update biniou AND install required torch version to use CUDA. You can reverse this behavior by running the standard update script, which will re-install torch cpu-only.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
