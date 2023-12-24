@@ -23,6 +23,7 @@ model_list_llamacpp_builtin = {
     "TheBloke/openchat-3.5-1210-GGUF":("openchat-3.5-1210.Q5_K_S.gguf", "GPT4 User: {prompt}<|end_of_turn|>GPT4 Assistant:"),
     "TheBloke/SOLAR-10.7B-Instruct-v1.0-GGUF":("solar-10.7b-instruct-v1.0.Q5_K_S.gguf", "### User:\n{prompt}\n\n### Assistant:"),
     "TheBloke/phi-2-GGUF":("phi-2.Q8_0.gguf", "Instruct: {prompt}\nOutput:"),
+    "TheBloke/Mixtral_7Bx2_MoE-GGUF":("mixtral_7bx2_moe.Q5_K_M.gguf", "{prompt}"),
     "TheBloke/mixtralnt-4x7b-test-GGUF":("mixtralnt-4x7b-test.Q5_K_M.gguf", "{prompt}"),
     "TheBloke/Mistral-7B-Instruct-v0.2-GGUF":("mistral-7b-instruct-v0.2.Q5_K_S.gguf", "<s>[INST] {prompt} [/INST]"),
     "TheBloke/MetaMath-Cybertron-Starling-GGUF":("metamath-cybertron-starling.Q5_K_S.gguf", "<|im_start|>system\n- You are a helpful assistant chatbot.\n- You answer questions.\n- You are excited to be able to help the user, but will refuse to do anything that could be considered harmful to the user.\n- You are more than just an information source, you are also able to write poetry, short stories, and make jokes.<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant"),
@@ -108,6 +109,7 @@ def text_llamacpp(
     last_answer_llamacpp = last_answer_llamacpp.replace("<|im_end|>", "")
     last_answer_llamacpp = last_answer_llamacpp.replace("<|im_start|>user", "")
     last_answer_llamacpp = last_answer_llamacpp.replace("<|im_start|>assistant", "")
+    last_answer_llamacpp = last_answer_llamacpp.replace("<0x0A>", "\n")
     filename_llamacpp = write_seeded_file(seed_llamacpp, history_final, prompt_llamacpp, last_answer_llamacpp)
     history_llamacpp.append((prompt_llamacpp, last_answer_llamacpp))
 
@@ -173,6 +175,7 @@ def text_llamacpp_continue(
     last_answer_llamacpp = last_answer_llamacpp.replace("<|im_end|>", "")
     last_answer_llamacpp = last_answer_llamacpp.replace("<|im_start|>user", "")
     last_answer_llamacpp = last_answer_llamacpp.replace("<|im_start|>assistant", "")
+    last_answer_llamacpp = last_answer_llamacpp.replace("<0x0A>", "\n")
     global_answer_llamacpp = f"{history_final}{answer_llamacpp}"
     filename_llamacpp = write_seeded_file(seed_llamacpp, global_answer_llamacpp)
     history_llamacpp[-1][1] += last_answer_llamacpp
