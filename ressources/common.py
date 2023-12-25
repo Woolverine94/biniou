@@ -378,7 +378,7 @@ def which_os():
     return sys.platform
 
 def lora_model_list(model):
-    if (('xl' or 'XL' or 'Xl' or 'xL') in model or (model == "segmind/SSD-1B") or (model == "segmind/Segmind-Vega")):
+    if (('xl' or 'XL' or 'Xl' or 'xL') in model or (model == "segmind/SSD-1B") or (model == "segmind/Segmind-Vega")  or (model == "dataautogpt3/OpenDalleV1.1")):
         model_path_lora = "./models/lora/SDXL"
         model_list_lora_builtin = {
             "openskyml/dalle-3-xl":("Dall-e_3_0.3-v2.safetensors", ""),
