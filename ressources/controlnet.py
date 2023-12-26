@@ -29,7 +29,10 @@ for filename in os.listdir(model_path_controlnet):
 model_list_controlnet_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
 #    "stabilityai/sd-turbo",
-#    "stabilityai/sdxl-turbo",
+    "stabilityai/sdxl-turbo",
+    "dataautogpt3/OpenDalleV1.1",
+    "segmind/Segmind-Vega",
+    "segmind/SSD-1B",
 #    "ckpt/anything-v4.5-vae-swapped",
     "stabilityai/stable-diffusion-xl-base-1.0",
     "runwayml/stable-diffusion-v1-5",
@@ -115,7 +118,7 @@ def dispatch_controlnet_preview(
     progress_controlnet=gr.Progress(track_tqdm=True)
     ):
 
-    if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_controlnet :
+    if (('xl' or 'XL' or 'Xl' or 'xL') in modelid_controlnet or (modelid_controlnet == "segmind/SSD-1B") or (modelid_controlnet == "segmind/Segmind-Vega") or (modelid_controlnet == "dataautogpt3/OpenDalleV1.1")):
         is_xl_controlnet: bool = True
     else :
         is_xl_controlnet: bool = False
@@ -250,7 +253,7 @@ def image_controlnet(
     else :
         is_xlturbo_controlnet: bool = False
 
-    if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_controlnet :
+    if (('xl' or 'XL' or 'Xl' or 'xL') in modelid_controlnet or (modelid_controlnet == "segmind/SSD-1B") or (modelid_controlnet == "segmind/Segmind-Vega") or (modelid_controlnet == "dataautogpt3/OpenDalleV1.1")):
         is_xl_controlnet: bool = True
     else :        
         is_xl_controlnet: bool = False

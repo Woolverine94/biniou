@@ -31,6 +31,9 @@ model_list_img2img_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
     "stabilityai/sd-turbo",
     "stabilityai/sdxl-turbo",
+#    "dataautogpt3/OpenDalleV1.1",
+#    "segmind/Segmind-Vega",
+#    "segmind/SSD-1B",
 #    "ckpt/anything-v4.5-vae-swapped",
     "stabilityai/stable-diffusion-xl-refiner-1.0",
     "runwayml/stable-diffusion-v1-5",
@@ -93,7 +96,7 @@ def image_img2img(
     else :
         is_xlturbo_img2img: bool = False
 
-    if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_img2img :
+    if (('xl' or 'XL' or 'Xl' or 'xL') in modelid_img2img  or (modelid_img2img == "segmind/SSD-1B") or (modelid_img2img == "segmind/Segmind-Vega") or (modelid_img2img == "dataautogpt3/OpenDalleV1.1")):
         is_xl_img2img: bool = True
     else :        
         is_xl_img2img: bool = False        

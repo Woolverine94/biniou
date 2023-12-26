@@ -34,8 +34,11 @@ model_list_img2img_ip_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
 #    "stabilityai/sd-turbo",
     "stabilityai/sdxl-turbo",
+#    "dataautogpt3/OpenDalleV1.1",
+#    "segmind/Segmind-Vega",
+#    "segmind/SSD-1B",
 #    "ckpt/anything-v4.5-vae-swapped",
-    "stabilityai/stable-diffusion-xl-refiner-1.0",
+#    "stabilityai/stable-diffusion-xl-refiner-1.0",
     "runwayml/stable-diffusion-v1-5",
     "nitrosocke/Ghibli-Diffusion",     
 ]
@@ -96,7 +99,7 @@ def image_img2img_ip(
     else :
         is_xlturbo_img2img_ip: bool = False
 
-    if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_img2img_ip :
+    if (('xl' or 'XL' or 'Xl' or 'xL') in modelid_img2img_ip or (modelid_img2img_ip == "segmind/SSD-1B") or (modelid_img2img_ip == "segmind/Segmind-Vega") or (modelid_img2img_ip == "dataautogpt3/OpenDalleV1.1")):
         is_xl_img2img_ip: bool = True
     else :
         is_xl_img2img_ip: bool = False     
@@ -302,7 +305,10 @@ def image_img2img_ip(
         generator = torch.manual_seed(seed_img2img_ip)
 
     if (img_img2img_ip != None):
-        dim_size = correct_size(width_img2img_ip, height_img2img_ip, 512)
+        if (is_xl_img2img_ip == True) and not (is_xlturbo_img2img_ip == True):
+            dim_size = correct_size(width_img2img_ip, height_img2img_ip, 1024)
+        else: 
+            dim_size = correct_size(width_img2img_ip, height_img2img_ip, 512)
         image_input = PIL.Image.open(img_img2img_ip)
         image_input = image_input.convert("RGB")
         image_input = image_input.resize((dim_size[0], dim_size[1]))
@@ -311,7 +317,10 @@ def image_img2img_ip(
 
     if (img_ipa_img2img_ip != None):
         image_input_ipa = PIL.Image.open(img_ipa_img2img_ip)
-        dim_size_ipa = correct_size(image_input_ipa.size[0], image_input_ipa.size[1], 512)
+        if (is_xl_img2img_ip == True) and not (is_xlturbo_img2img_ip == True):
+            dim_size_ipa = correct_size(image_input_ipa.size[0], image_input_ipa.size[1], 1024)
+        else:
+            dim_size_ipa = correct_size(image_input_ipa.size[0], image_input_ipa.size[1], 512)
         image_input_ipa = image_input_ipa.convert("RGB")
         image_input_ipa = image_input_ipa.resize((dim_size_ipa[0], dim_size_ipa[1]))
     else:
