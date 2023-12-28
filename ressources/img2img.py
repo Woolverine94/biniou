@@ -52,16 +52,11 @@ def initiate_stop_img2img() :
 
 def check_img2img(pipe, step_index, timestep, callback_kwargs) : 
     global stop_img2img
-    if stop_img2img == False :
-        return callback_kwargs
-    elif stop_img2img == True :
+    if stop_img2img == True :
         print(">>>[img2img 🖌️ ]: generation canceled by user")
         stop_img2img = False
-        try:
-            del ressources.img2img.pipe_img2img
-        except NameError as e:
-            raise Exception("Interrupting ...")
-    return
+        pipe._interrupt = True
+    return callback_kwargs
 
 @metrics_decoration
 def image_img2img(

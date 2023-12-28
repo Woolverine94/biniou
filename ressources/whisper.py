@@ -97,25 +97,6 @@ language_list_whisper = [
     "welsh",
 ]
 
-# Bouton Cancel
-stop_whisper = False
-
-def initiate_stop_whisper() :
-    global stop_whisper
-    stop_whisper = True
-
-def check_whisper(step, timestep, latents) :
-    global stop_whisper
-    if stop_whisper == False :
-        return
-    elif stop_whisper == True :
-        stop_whisper = False
-        try:
-            del ressources.whisper.pipe_whisper
-        except NameError as e:
-            raise Exception("Interrupting ...")
-    return
-
 @metrics_decoration
 def text_whisper(
     modelid_whisper, 

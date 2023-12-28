@@ -45,25 +45,6 @@ voice_preset_list_bark = {
     "ZH Female": "v2/zh_speaker_9",
 }
 
-# Bouton Cancel
-stop_bark = False
-
-def initiate_stop_bark() :
-    global stop_bark
-    stop_bark = True
-
-def check_bark(step, timestep, latents) : 
-    global stop_bark
-    if stop_bark == False :
-        return
-    elif stop_bark== True :
-        stop_bark = False
-        try:
-            del ressources.bark.pipe_bark
-        except NameError as e:
-            raise Exception("Interrupting ...")
-    return
-
 @metrics_decoration
 def music_bark(
     prompt_bark, 

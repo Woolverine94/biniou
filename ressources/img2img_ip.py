@@ -53,18 +53,13 @@ def initiate_stop_img2img_ip() :
     global stop_img2img_ip
     stop_img2img_ip = True
 
-def check_img2img_ip(pipe, step_index, timestep, callback_kwargs) : 
+def check_img2img_ip(pipe, step_index, timestep, callback_kwargs): 
     global stop_img2img_ip
-    if stop_img2img_ip == False :
-        return callback_kwargs
-    elif stop_img2img_ip == True :
+    if stop_img2img_ip == True:
         print(">>>[IP-Adapter 🖌️ ]: generation canceled by user")
         stop_img2img_ip = False
-        try:
-            del ressources.img2img_ip.pipe_img2img_ip
-        except NameError as e:
-            raise Exception("Interrupting ...")
-    return
+        pipe._interrupt = True
+    return callback_kwargs
 
 @metrics_decoration
 def image_img2img_ip(
@@ -272,7 +267,7 @@ def image_img2img_ip(
         pipe_img2img_ip.enable_sequential_cpu_offload()
     else : 
         pipe_img2img_ip = pipe_img2img_ip.to(device_img2img_ip)
-    
+
     if lora_model_img2img_ip != "":
         model_list_lora_img2img_ip = lora_model_list(modelid_img2img_ip)
         if modelid_img2img_ip[0:9] == "./models/":

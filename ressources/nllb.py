@@ -235,25 +235,6 @@ language_list_nllb = {
     "Zulu 	 	 	 	 	 	 	 	": "zul_Latn",
 }
 
-# Bouton Cancel
-stop_nllb = False
-
-def initiate_stop_nllb() :
-    global stop_nllb
-    stop_nllb = True
-
-def check_nllb(step, timestep, latents) :
-    global stop_nllb
-    if stop_nllb == False :
-        return
-    elif stop_nllb == True :
-        stop_nllb = False
-        try:
-            del ressources.nllb.pipe_nllb
-        except NameError as e:
-            raise Exception("Interrupting ...")
-    return
-
 @metrics_decoration
 def text_nllb(
     modelid_nllb, 

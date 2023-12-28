@@ -47,16 +47,11 @@ def initiate_stop_outpaint() :
 
 def check_outpaint(pipe, step_index, timestep, callback_kwargs) : 
     global stop_outpaint
-    if stop_outpaint == False :
-        return callback_kwargs
-    elif stop_outpaint == True :
+    if stop_outpaint == True :
         print(">>>[outpaint 🖌️ ]: generation canceled by user")
         stop_outpaint = False
-        try:
-            del ressources.outpaint.pipe_outpaint
-        except NameError as e:
-            raise Exception("Interrupting ...")
-    return
+        pipe._interrupt = True
+    return callback_kwargs
 
 def prepare_outpaint(img_outpaint, top, bottom, left, right) :
     image = np.array(img_outpaint)

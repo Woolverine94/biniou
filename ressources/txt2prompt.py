@@ -27,25 +27,6 @@ model_list_txt2prompt_builtin = [
 for k in range(len(model_list_txt2prompt_builtin)):
     model_list_txt2prompt.append(model_list_txt2prompt_builtin[k])
 
-# Bouton Cancel
-stop_txt2prompt = False
-
-def initiate_stop_txt2prompt() :
-    global stop_txt2prompt
-    stop_txt2prompt = True
-
-def check_txt2prompt(step, timestep, latents) :
-    global stop_txt2prompt
-    if stop_txt2prompt == False :
-        return
-    elif stop_txt2prompt == True :
-        stop_txt2prompt = False
-        try:
-            del ressources.txt2prompt.pipe_txt2prompt
-        except NameError as e:
-            raise Exception("Interrupting ...")
-    return
-
 @metrics_decoration
 def text_txt2prompt(
     modelid_txt2prompt, 

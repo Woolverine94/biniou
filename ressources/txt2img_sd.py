@@ -56,17 +56,11 @@ def initiate_stop_txt2img_sd() :
 
 def check_txt2img_sd(pipe, step_index, timestep, callback_kwargs) :
     global stop_txt2img_sd
-    if stop_txt2img_sd == False :
-#        result_preview = preview_image(step, timestep, latents, pipe_txt2img_sd)
-        return callback_kwargs
-    elif stop_txt2img_sd == True :		
+    if stop_txt2img_sd == True :
         print(">>>[Stable Diffusion 🖼️ ]: generation canceled by user")
         stop_txt2img_sd = False
-        try:
-            del ressources.txt2img_sd.pipe_txt2img_sd
-        except NameError as e:
-            raise Exception("Interrupting ...")
-    return
+        pipe._interrupt = True
+    return callback_kwargs
 
 @metrics_decoration
 def image_txt2img_sd(

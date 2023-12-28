@@ -43,18 +43,13 @@ def initiate_stop_inpaint() :
     global stop_inpaint
     stop_inpaint = True
 
-def check_inpaint(pipe, step_index, timestep, callback_kwargs) : 
+def check_inpaint(pipe, step_index, timestep, callback_kwargs):
     global stop_inpaint
-    if stop_inpaint == False :
-        return callback_kwargs
-    elif stop_inpaint == True :
+    if stop_inpaint == True:
         print(">>>[inpaint 🖌️ ]: generation canceled by user")
         stop_inpaint = False
-        try:
-            del ressources.inpaint.pipe_inpaint
-        except NameError as e:
-            raise Exception("Interrupting ...")
-    return
+        pipe._interrupt = True
+    return callback_kwargs
 
 @metrics_decoration
 def image_inpaint(
