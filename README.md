@@ -15,6 +15,8 @@
 
 ## Updates
 
+  * 🆕 **2023-12-29** : ***Inpaint and outpaint modules update*** : Adding SDXL missing pipelines to inpaint and outpaint modules.
+
   * 🆕 **2023-12-24** : ***Chatbot models updates*** : Adding model [TheBloke/Mixtral_7Bx2_MoE-GGUF](https://huggingface.co/TheBloke/Mixtral_7Bx2_MoE-GGUF) to the chatbot module. This model is usable starting from 16GB RAM.
 
   * 🆕 **2023-12-21** : ***Chatbot update and LoRA models in IP-Adapter module*** :
