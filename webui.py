@@ -462,7 +462,7 @@ def hide_download_file_inpaint():
 def read_ini_inpaint(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), bool(int(content[9])), float(content[10])    
-    
+
 ## Functions specific to paintbyex 
 def zip_download_file_paintbyex(content):
     savename = zipper(content)
@@ -3954,7 +3954,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Input(s) : </b>Input image, inpaint masked area, prompt, negative prompt</br>
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF model page : </b>
-                                <a href='https://huggingface.co/Uminosachi/realisticVisionV30_v30VAE-inpainting' target='_blank'>Uminosachi/realisticVisionV30_v30VAE-inpainting</a> ,     
+                                <a href='https://huggingface.co/Uminosachi/realisticVisionV30_v30VAE-inpainting' target='_blank'>Uminosachi/realisticVisionV30_v30VAE-inpainting</a> ,
+                                <a href='https://huggingface.co/Uminosachi/diffusers/stable-diffusion-xl-1.0-inpainting-0.1' target='_blank'>diffusers/stable-diffusion-xl-1.0-inpainting-0.1</a> ,
                                 <a href='https://huggingface.co/runwayml/stable-diffusion-inpainting' target='_blank'>runwayml/stable-diffusion-inpainting</a></br>
                                 """
                             )
@@ -4050,7 +4051,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column(scale=2):
                              rotation_img_inpaint = gr.Number(value=0, visible=False)
                              img_inpaint = gr.Image(label="Input image", type="pil", height=400, tool="sketch")
-                             img_inpaint.upload(image_upload_event_inpaint, inputs=img_inpaint, outputs=[width_inpaint, height_inpaint, img_inpaint, rotation_img_inpaint], preprocess=False)
+                             img_inpaint.upload(image_upload_event_inpaint_c, inputs=[img_inpaint, model_inpaint], outputs=[width_inpaint, height_inpaint, img_inpaint, rotation_img_inpaint], preprocess=False)
                              gs_img_inpaint = gr.Image(type="pil", visible=False)
                              gs_img_inpaint.change(image_upload_event_inpaint_b, inputs=gs_img_inpaint, outputs=[width_inpaint, height_inpaint], preprocess=False)
                         with gr.Column():
@@ -4384,7 +4385,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Input(s) : </b>Input image, outpaint mask, prompt, negative prompt</br>
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF model page : </b>
-                                <a href='https://huggingface.co/Uminosachi/realisticVisionV30_v30VAE-inpainting' target='_blank'>Uminosachi/realisticVisionV30_v30VAE-inpainting</a> ,     
+                                <a href='https://huggingface.co/Uminosachi/realisticVisionV30_v30VAE-inpainting' target='_blank'>Uminosachi/realisticVisionV30_v30VAE-inpainting</a> ,
+                                <a href='https://huggingface.co/Uminosachi/diffusers/stable-diffusion-xl-1.0-inpainting-0.1' target='_blank'>diffusers/stable-diffusion-xl-1.0-inpainting-0.1</a> ,
                                 <a href='https://huggingface.co/runwayml/stable-diffusion-inpainting' target='_blank'>runwayml/stable-diffusion-inpainting</a></br>
                                 """
                             )

@@ -4,8 +4,8 @@ import gradio as gr
 import os
 import PIL
 import torch
-from diffusers import StableDiffusionInpaintPipeline
-from compel import Compel
+from diffusers import StableDiffusionInpaintPipeline, StableDiffusionXLInpaintPipeline
+from compel import Compel, ReturnedEmbeddingsType
 import time
 import random
 from ressources.scheduler import *
@@ -30,6 +30,7 @@ for filename in os.listdir(model_path_inpaint):
 
 model_list_inpaint_builtin = [
     "Uminosachi/realisticVisionV30_v30VAE-inpainting",
+    "diffusers/stable-diffusion-xl-1.0-inpainting-0.1",
     "runwayml/stable-diffusion-inpainting",
 ]
 
@@ -77,26 +78,51 @@ def image_inpaint(
     
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_safety_checker, device_inpaint, nsfw_filter)
 
-    if modelid_inpaint[0:9] == "./models/" :
-        pipe_inpaint = StableDiffusionInpaintPipeline.from_single_file(
-            modelid_inpaint, 
-            torch_dtype=model_arch,
-            use_safetensors=True, 
-            safety_checker=nsfw_filter_final, 
-            feature_extractor=feat_ex
-        )
+    if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_inpaint:
+        is_xl_inpaint: bool = True
     else :        
-        pipe_inpaint = StableDiffusionInpaintPipeline.from_pretrained(
-            modelid_inpaint, 
-            cache_dir=model_path_inpaint, 
-            torch_dtype=model_arch,
-            use_safetensors=True, 
-            safety_checker=nsfw_filter_final, 
-            feature_extractor=feat_ex,
-            resume_download=True,
-            local_files_only=True if offline_test() else None
-        )
+        is_xl_inpaint: bool = False
 
+    if (is_xl_inpaint == True):
+        if modelid_inpaint[0:9] == "./models/" :
+            pipe_inpaint = StableDiffusionXLInpaintPipeline.from_single_file(
+                modelid_inpaint, 
+                torch_dtype=model_arch,
+                use_safetensors=True, 
+                safety_checker=nsfw_filter_final, 
+                feature_extractor=feat_ex
+            )
+        else :        
+            pipe_inpaint = StableDiffusionXLInpaintPipeline.from_pretrained(
+                modelid_inpaint, 
+                cache_dir=model_path_inpaint, 
+                torch_dtype=model_arch,
+                use_safetensors=True, 
+                safety_checker=nsfw_filter_final, 
+                feature_extractor=feat_ex,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+    else:
+        if modelid_inpaint[0:9] == "./models/" :
+            pipe_inpaint = StableDiffusionInpaintPipeline.from_single_file(
+                modelid_inpaint, 
+                torch_dtype=model_arch,
+                use_safetensors=True, 
+                safety_checker=nsfw_filter_final, 
+                feature_extractor=feat_ex
+            )
+        else :        
+            pipe_inpaint = StableDiffusionInpaintPipeline.from_pretrained(
+                modelid_inpaint, 
+                cache_dir=model_path_inpaint, 
+                torch_dtype=model_arch,
+                use_safetensors=True, 
+                safety_checker=nsfw_filter_final, 
+                feature_extractor=feat_ex,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
     pipe_inpaint = get_scheduler(pipe=pipe_inpaint, scheduler=sampler_inpaint)
     pipe_inpaint.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_inpaint, ratio=tkme_inpaint)
@@ -116,7 +142,10 @@ def image_inpaint(
 
     angle_inpaint = 360 - rotation_img_inpaint   
     img_inpaint["image"] = img_inpaint["image"].rotate(angle_inpaint, expand=True)
-    dim_size = correct_size(width_inpaint, height_inpaint, 512)
+    if (is_xl_inpaint == True):
+        dim_size = correct_size(width_inpaint, height_inpaint, 1024)
+    else:
+        dim_size = correct_size(width_inpaint, height_inpaint, 512)
     image_input = img_inpaint["image"].convert("RGB")
     mask_image_input = img_inpaint["mask"].convert("RGB")
     image_input = image_input.resize((dim_size[0],dim_size[1]))
@@ -131,29 +160,59 @@ def image_inpaint(
     if negative_prompt_inpaint == "None":
         negative_prompt_inpaint = ""
 
-    compel = Compel(tokenizer=pipe_inpaint.tokenizer, text_encoder=pipe_inpaint.text_encoder, truncate_long_prompts=False)
-    conditioning = compel.build_conditioning_tensor(prompt_inpaint)
-    neg_conditioning = compel.build_conditioning_tensor(negative_prompt_inpaint)
-    [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
-    
+    if (is_xl_inpaint == True):
+        compel = Compel(
+            tokenizer=[pipe_inpaint.tokenizer, pipe_inpaint.tokenizer_2],
+            text_encoder=[pipe_inpaint.text_encoder, pipe_inpaint.text_encoder_2],
+            returned_embeddings_type=ReturnedEmbeddingsType.PENULTIMATE_HIDDEN_STATES_NON_NORMALIZED,
+            requires_pooled=[False, True],
+        )
+        conditioning, pooled = compel(prompt_inpaint)
+        neg_conditioning, neg_pooled = compel(negative_prompt_inpaint)
+        [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
+    else:
+        compel = Compel(tokenizer=pipe_inpaint.tokenizer, text_encoder=pipe_inpaint.text_encoder, truncate_long_prompts=False)
+        conditioning = compel.build_conditioning_tensor(prompt_inpaint)
+        neg_conditioning = compel.build_conditioning_tensor(negative_prompt_inpaint)
+        [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
+
     final_image = []
     final_seed = []
     for i in range (num_prompt_inpaint):
-        image = pipe_inpaint(
-            image=image_input,
-            mask_image=mask_image_input,            
-            prompt_embeds=conditioning,
-            negative_prompt_embeds=neg_conditioning,
-            num_images_per_prompt=num_images_per_prompt_inpaint,
-            guidance_scale=guidance_scale_inpaint,
-            strength=denoising_strength_inpaint,
-            width=dim_size[0],
-            height=dim_size[1],
-            num_inference_steps=num_inference_step_inpaint,
-            generator = generator[i],
-            callback_on_step_end=check_inpaint, 
-            callback_on_step_end_tensor_inputs=['latents'],
-        ).images
+        if (is_xl_inpaint == True):
+            image = pipe_inpaint(
+                image=image_input,
+                mask_image=mask_image_input,
+                prompt_embeds=conditioning,
+                pooled_prompt_embeds=pooled, 
+                negative_prompt_embeds=neg_conditioning,
+                negative_pooled_prompt_embeds=neg_pooled,
+                num_images_per_prompt=num_images_per_prompt_inpaint,
+                guidance_scale=guidance_scale_inpaint,
+                strength=denoising_strength_inpaint,
+                width=dim_size[0],
+                height=dim_size[1],
+                num_inference_steps=num_inference_step_inpaint,
+                generator = generator[i],
+                callback_on_step_end=check_inpaint, 
+                callback_on_step_end_tensor_inputs=['latents'],
+            ).images
+        else:
+            image = pipe_inpaint(
+                image=image_input,
+                mask_image=mask_image_input,
+                prompt_embeds=conditioning,
+                negative_prompt_embeds=neg_conditioning,
+                num_images_per_prompt=num_images_per_prompt_inpaint,
+                guidance_scale=guidance_scale_inpaint,
+                strength=denoising_strength_inpaint,
+                width=dim_size[0],
+                height=dim_size[1],
+                num_inference_steps=num_inference_step_inpaint,
+                generator = generator[i],
+                callback_on_step_end=check_inpaint, 
+                callback_on_step_end_tensor_inputs=['latents'],
+            ).images
 
         for j in range(len(image)):
             timestamp = time.time()

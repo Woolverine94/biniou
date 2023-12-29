@@ -145,6 +145,36 @@ def image_upload_event_inpaint_b(im):
     else : 
         return (512, 512)
 
+def image_upload_event_inpaint_c(im, model):
+    type_image = type(im)
+    rotation_img = 360            
+    if (type_image == str):
+        image_out = Image.open(im)
+    else :
+        imbis = re.sub('^data:image/.+;base64,', '', im["image"])
+        image_out = Image.open(BytesIO(base64.b64decode(imbis)))
+    try :
+        exif_data = image_out._getexif()
+        orientation_img = exif_data[274]
+    except Exception as e:
+        orientation_img = ""
+    if (orientation_img == 3):
+        image_out = image_out.rotate(180, expand=True)
+        rotation_img = 180
+    elif (orientation_img == 6):
+        image_out = image_out.rotate(270, expand=True)
+        rotation_img = 270 
+    elif (orientation_img == 8):
+        image_out = image_out.rotate(90, expand=True)
+        rotation_img = 90
+    if ('xl' or 'XL' or 'Xl' or 'xL') in model:
+        dim = correct_size(image_out.size[0], image_out.size[1], 1024)
+    else:
+        dim = correct_size(image_out.size[0], image_out.size[1], 512)
+    image_out = image_out.convert("RGB").resize(dim)
+    return (image_out.size[0], image_out.size[1], image_out, rotation_img)
+
+
 def scale_image(im, size):
     max_size = int(size)
     if (im != None):
