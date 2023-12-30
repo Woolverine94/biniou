@@ -241,15 +241,15 @@ def hide_download_file_txt2img_sd():
 
 def change_model_type_txt2img_sd(model_txt2img_sd):
     if (model_txt2img_sd == "stabilityai/sdxl-turbo"):
-        return width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=False)
+        return sampler_txt2img_sd.update(value="Euler a"), width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=False)
     elif (model_txt2img_sd == "stabilityai/sd-turbo"):
-        return width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=False), negative_prompt_txt2img_sd.update(interactive=False)
+        return sampler_txt2img_sd.update(value="Euler a"), width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=False), negative_prompt_txt2img_sd.update(interactive=False)
     elif (model_txt2img_sd == "segmind/SSD-1B") or (model_txt2img_sd == "stabilityai/stable-diffusion-xl-base-1.0") or (model_txt2img_sd == "dataautogpt3/OpenDalleV1.1"):
-        return width_txt2img_sd.update(value=1024), height_txt2img_sd.update(value=1024), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=True)
+        return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=1024), height_txt2img_sd.update(value=1024), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=True)
     elif (model_txt2img_sd == "segmind/Segmind-Vega"):
-        return width_txt2img_sd.update(value=1024), height_txt2img_sd.update(value=1024), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=9.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=True)
+        return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=1024), height_txt2img_sd.update(value=1024), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=9.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=True)
     else:
-        return width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=True)
+        return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=True)
 
 def change_lora_model_txt2img_sd(model, lora_model, prompt):
     if lora_model != "":
@@ -358,15 +358,15 @@ def read_ini_img2img(module) :
 
 def change_model_type_img2img(model_img2img):
     if (model_img2img == "stabilityai/sdxl-turbo"):
-        return width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), negative_prompt_img2img.update(interactive=False)
+        return sampler_img2img.update(value="Euler a"), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), negative_prompt_img2img.update(interactive=False)
     elif (model_img2img == "stabilityai/sd-turbo"):
-        return width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=False), negative_prompt_img2img.update(interactive=False)
+        return sampler_img2img.update(value="Euler a"), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=False), negative_prompt_img2img.update(interactive=False)
     elif (model_img2img == "segmind/SSD-1B") or (model_img2img == "stabilityai/stable-diffusion-xl-refiner-1.0") or (model_img2img == "dataautogpt3/OpenDalleV1.1"):
-        return width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), negative_prompt_img2img.update(interactive=True)
+        return sampler_img2img.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), negative_prompt_img2img.update(interactive=True)
     elif (model_img2img == "segmind/Segmind-Vega"):
-        return width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=9.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), negative_prompt_img2img.update(interactive=True)
+        return sampler_img2img.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=9.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), negative_prompt_img2img.update(interactive=True)
     else:
-        return width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), negative_prompt_img2img.update(interactive=True)
+        return sampler_img2img.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), negative_prompt_img2img.update(interactive=True)
 
 def change_lora_model_img2img(model, lora_model, prompt):
     if lora_model != "":
@@ -394,15 +394,15 @@ def read_ini_img2img_ip(module) :
 
 def change_model_type_img2img_ip(model_img2img_ip):
     if (model_img2img_ip == "stabilityai/sdxl-turbo"):
-        return width_img2img_ip.update(value=512), height_img2img_ip.update(value=512), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), negative_prompt_img2img_ip.update(interactive=False)
+        return sampler_img2img_ip.update(value="Euler a"), width_img2img_ip.update(value=512), height_img2img_ip.update(value=512), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), negative_prompt_img2img_ip.update(interactive=False)
     elif (model_img2img_ip == "stabilityai/sd-turbo"):
-        return width_img2img_ip.update(value=512), height_img2img_ip.update(value=512), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=False), negative_prompt_img2img_ip.update(interactive=False)
+        return sampler_img2img_ip.update(value="Euler a"), width_img2img_ip.update(value=512), height_img2img_ip.update(value=512), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=False), negative_prompt_img2img_ip.update(interactive=False)
     elif (model_img2img_ip == "segmind/SSD-1B") or (model_img2img_ip == "stabilityai/stable-diffusion-xl-refiner-1.0") or (model_img2img_ip == "dataautogpt3/OpenDalleV1.1"):
-        return width_img2img_ip.update(value=1024), height_img2img_ip.update(value=1024), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), negative_prompt_img2img_ip.update(interactive=True)
+        return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(value=1024), height_img2img_ip.update(value=1024), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), negative_prompt_img2img_ip.update(interactive=True)
     elif (model_img2img_ip == "segmind/Segmind-Vega"):
-        return width_img2img_ip.update(value=1024), height_img2img_ip.update(value=1024), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=9.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), negative_prompt_img2img_ip.update(interactive=True)
+        return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(value=1024), height_img2img_ip.update(value=1024), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=9.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), negative_prompt_img2img_ip.update(interactive=True)
     else:
-        return width_img2img_ip.update(value=512), height_img2img_ip.update(value=512), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), negative_prompt_img2img_ip.update(interactive=True)
+        return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(value=512), height_img2img_ip.update(value=512), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), negative_prompt_img2img_ip.update(interactive=True)
 
 def change_lora_model_img2img_ip(model, lora_model, prompt):
     if lora_model != "":
@@ -501,15 +501,15 @@ def read_ini_controlnet(module) :
 
 def change_model_type_controlnet(model_controlnet):
     if (model_controlnet == "stabilityai/sdxl-turbo"):
-        return width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=1), guidance_scale_controlnet.update(value=0.0), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), negative_prompt_controlnet.update(interactive=False)
+        return sampler_controlnet.update(value="Euler a"), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=1), guidance_scale_controlnet.update(value=0.0), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), negative_prompt_controlnet.update(interactive=False)
     elif (model_controlnet == "stabilityai/sd-turbo"):
-        return width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=1), guidance_scale_controlnet.update(value=0.0), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=False), negative_prompt_controlnet.update(interactive=False)
+        return sampler_controlnet.update(value="Euler a"), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=1), guidance_scale_controlnet.update(value=0.0), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=False), negative_prompt_controlnet.update(interactive=False)
     elif (model_controlnet == "segmind/SSD-1B") or (model_controlnet == "stabilityai/stable-diffusion-xl-base-1.0") or (model_controlnet == "dataautogpt3/OpenDalleV1.1"):
-        return width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=7.5), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), negative_prompt_controlnet.update(interactive=True)
+        return sampler_controlnet.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=7.5), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), negative_prompt_controlnet.update(interactive=True)
     elif (model_controlnet == "segmind/Segmind-Vega"):
-        return width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=9.0), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), negative_prompt_controlnet.update(interactive=True)
+        return sampler_controlnet.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=9.0), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), negative_prompt_controlnet.update(interactive=True)
     else:
-        return width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=7.5), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), negative_prompt_controlnet.update(interactive=True)
+        return sampler_controlnet.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=7.5), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), negative_prompt_controlnet.update(interactive=True)
 
 def change_lora_model_controlnet(model, lora_model, prompt):
     if lora_model != "":
@@ -1874,6 +1874,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             fn=change_model_type_txt2img_sd, 
                             inputs=[model_txt2img_sd],
                             outputs=[
+                                sampler_txt2img_sd,
                                 width_txt2img_sd,
                                 height_txt2img_sd,
                                 num_inference_step_txt2img_sd,
@@ -2977,6 +2978,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             fn=change_model_type_img2img, 
                             inputs=[model_img2img],
                             outputs=[
+                                sampler_img2img,
                                 width_img2img,
                                 height_img2img,
                                 num_inference_step_img2img,
@@ -3227,6 +3229,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             fn=change_model_type_img2img_ip,
                             inputs=[model_img2img_ip],
                             outputs=[
+                                sampler_img2img_ip,
                                 width_img2img_ip,
                                 height_img2img_ip,
                                 num_inference_step_img2img_ip,
@@ -4719,7 +4722,6 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_controlnet = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
                                 tkme_controlnet = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
-                        model_controlnet.change(fn=change_model_type_controlnet, inputs=model_controlnet, outputs=[width_controlnet, height_controlnet])
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_controlnet = gr.Button("Save custom defaults settings 💾")
@@ -4817,6 +4819,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 fn=change_model_type_controlnet, 
                                 inputs=[model_controlnet],
                                 outputs=[
+                                    sampler_controlnet,
                                     width_controlnet,
                                     height_controlnet,
                                     num_inference_step_controlnet,
