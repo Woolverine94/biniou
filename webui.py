@@ -501,15 +501,15 @@ def read_ini_controlnet(module) :
 
 def change_model_type_controlnet(model_controlnet):
     if (model_controlnet == "stabilityai/sdxl-turbo"):
-        return sampler_controlnet.update(value="Euler a"), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=1), guidance_scale_controlnet.update(value=0.0), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), negative_prompt_controlnet.update(interactive=False)
+        return sampler_controlnet.update(value="Euler a"), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=1), guidance_scale_controlnet.update(value=0.0), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), negative_prompt_controlnet.update(interactive=False), img_preview_controlnet.update(value=None), gs_img_preview_controlnet.update(value=None)
     elif (model_controlnet == "stabilityai/sd-turbo"):
-        return sampler_controlnet.update(value="Euler a"), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=1), guidance_scale_controlnet.update(value=0.0), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=False), negative_prompt_controlnet.update(interactive=False)
+        return sampler_controlnet.update(value="Euler a"), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=1), guidance_scale_controlnet.update(value=0.0), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=False), negative_prompt_controlnet.update(interactive=False), img_preview_controlnet.update(value=None), gs_img_preview_controlnet.update(value=None)
     elif (model_controlnet == "segmind/SSD-1B") or (model_controlnet == "stabilityai/stable-diffusion-xl-base-1.0") or (model_controlnet == "dataautogpt3/OpenDalleV1.1"):
-        return sampler_controlnet.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=7.5), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), negative_prompt_controlnet.update(interactive=True)
+        return sampler_controlnet.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=7.5), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), negative_prompt_controlnet.update(interactive=True), img_preview_controlnet.update(value=None), gs_img_preview_controlnet.update(value=None)
     elif (model_controlnet == "segmind/Segmind-Vega"):
-        return sampler_controlnet.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=9.0), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), negative_prompt_controlnet.update(interactive=True)
+        return sampler_controlnet.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=9.0), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), negative_prompt_controlnet.update(interactive=True), img_preview_controlnet.update(value=None), gs_img_preview_controlnet.update(value=None)
     else:
-        return sampler_controlnet.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=7.5), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), negative_prompt_controlnet.update(interactive=True)
+        return sampler_controlnet.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=7.5), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), negative_prompt_controlnet.update(interactive=True), img_preview_controlnet.update(value=None), gs_img_preview_controlnet.update(value=None)
 
 def change_lora_model_controlnet(model, lora_model, prompt):
     if lora_model != "":
@@ -4797,7 +4797,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     img_preview_controlnet = gr.Image(label="Control image preview", height=250, type="filepath")
                                     gs_img_preview_controlnet = gr.Image(type="pil", visible=False)
                             with gr.Row():
-                                with gr.Column(): 
+                                with gr.Column():
                                     variant_controlnet = gr.Dropdown(choices=variant_list_controlnet, value=variant_list_controlnet[0], label="ControlNet Model", info="Choose ControlNet model to use")                                    
                                     gs_variant_controlnet = gr.Textbox(visible=False)
                                     gs_variant_controlnet.change(fn=in_and_out, inputs=gs_variant_controlnet, outputs=variant_controlnet) 
@@ -4826,6 +4826,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     guidance_scale_controlnet,
                                     lora_model_controlnet,
                                     negative_prompt_controlnet,
+                                    img_preview_controlnet,
+                                    gs_img_preview_controlnet,
                                 ]
                             )
                             lora_model_controlnet.change(fn=change_lora_model_controlnet, inputs=[model_controlnet, lora_model_controlnet, prompt_controlnet], outputs=[prompt_controlnet])
