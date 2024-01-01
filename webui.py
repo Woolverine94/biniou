@@ -726,6 +726,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>HF models pages : </b>
                                 <a href='https://huggingface.co/TheBloke/openchat-3.5-1210-GGUF' target='_blank'>TheBloke/openchat-3.5-1210-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/SOLAR-10.7B-Instruct-v1.0-GGUF' target='_blank'>TheBloke/SOLAR-10.7B-Instruct-v1.0-GGUF</a>, 
+                                <a href='https://huggingface.co/TinyLlama-1.1B-Chat-v1.0-GGUF' target='_blank'>TinyLlama-1.1B-Chat-v1.0-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/phi-2-GGUF' target='_blank'>TheBloke/phi-2-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/Mixtral_7Bx2_MoE-GGUF' target='_blank'>TheBloke/Mixtral_7Bx2_MoE-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/mixtralnt-4x7b-test-GGUF' target='_blank'>TheBloke/mixtralnt-4x7b-test-GGUF</a>, 
