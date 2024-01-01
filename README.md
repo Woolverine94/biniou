@@ -15,6 +15,8 @@
 
 ## Updates
 
+  * 🆕 **2024-01-01** : ***"A biniou year" 2024 to everyone !*** : Bugfixes and enhancements on modules using SDXL models.
+
   * 🆕 **2023-12-29** : ***Inpaint and outpaint modules update*** : Adding SDXL missing pipelines to inpaint and outpaint modules.
 
   * 🆕 **2023-12-24** : ***Chatbot models updates*** : Adding model [TheBloke/Mixtral_7Bx2_MoE-GGUF](https://huggingface.co/TheBloke/Mixtral_7Bx2_MoE-GGUF) to the chatbot module. This model is usable starting from 16GB RAM.
@@ -25,10 +27,6 @@
     - Adding support for LoRA models in module IP-Adapter.
 
   * 🆕 **2023-12-20** : ***New LoRA models*** : Adding 12 LoRA models to the built-in list. See [here](https://github.com/Woolverine94/biniou/wiki/LoRA-models) for the complete model list and LoRA models documentation.
-
-  * 🆕 **2023-12-18** : 🔥 ***Experimental ROCm support and Segmind-Vega models*** 🔥 
-    - Introducing experimental (and non-tested) support for AMD ROCm 5.6 through an update script. See [here](https://github.com/Woolverine94/biniou/wiki/Experimental-features#rocm-support-under-gnulinux) for details.
-    - Adding [Segmind-Vega](https://huggingface.co/segmind/Segmind-Vega) to Stable Diffusion module and [segmind/Segmind-VegaRT](https://huggingface.co/segmind/Segmind-VegaRT) to LCM module. Please note that this latter model seems to require CUDA and is not working on CPU.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
