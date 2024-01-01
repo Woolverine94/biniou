@@ -34,13 +34,14 @@ model_list_img2img_ip_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
 #    "stabilityai/sd-turbo",
     "stabilityai/sdxl-turbo",
-#    "dataautogpt3/OpenDalleV1.1",
+    "dataautogpt3/OpenDalleV1.1",
 #    "segmind/Segmind-Vega",
 #    "segmind/SSD-1B",
 #    "ckpt/anything-v4.5-vae-swapped",
+    "stabilityai/stable-diffusion-xl-base-1.0",
 #    "stabilityai/stable-diffusion-xl-refiner-1.0",
     "runwayml/stable-diffusion-v1-5",
-    "nitrosocke/Ghibli-Diffusion",     
+    "nitrosocke/Ghibli-Diffusion",
 ]
 
 for k in range(len(model_list_img2img_ip_builtin)):
@@ -364,10 +365,12 @@ def image_img2img_ip(
             image = pipe_img2img_ip(        
                 image=image_input,
                 ip_adapter_image=image_input_ipa,
-                prompt_embeds=conditioning,
-                pooled_prompt_embeds=pooled,
-                negative_prompt_embeds=neg_conditioning,
-                negative_pooled_prompt_embeds=neg_pooled,
+                prompt=prompt_img2img_ip,
+                negative_prompt=negative_prompt_img2img_ip,
+#                prompt_embeds=conditioning,
+#                pooled_prompt_embeds=pooled,
+#                negative_prompt_embeds=neg_conditioning,
+#                negative_pooled_prompt_embeds=neg_pooled,
                 num_images_per_prompt=num_images_per_prompt_img2img_ip,
                 guidance_scale=guidance_scale_img2img_ip,
                 strength=denoising_strength_img2img_ip,
