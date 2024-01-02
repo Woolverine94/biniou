@@ -114,18 +114,18 @@
     - for GNU/Linux : at least 20GB for installation without models.
     - for Windows : at least 30GB for installation without models.
     - for macOS : at least ??GB for installation without models.
-  - Storage type : SSD (HDD has not been tested, feedback welcomed !)
-  - Internet access (required only for installation) : unlimited bandwith optical fiber internet access
+  - Storage type : HDD
+  - Internet access (required only for installation and models download) : unlimited bandwith optical fiber internet access
 
 * **Recommended hardware :**
   - Massively multicore 64bit CPU
   - 16GB+ RAM
   - Storage requirements :
-    - for GNU/Linux : around 100GB for installation including all defaults models.
-    - for Windows : around 100GB for installation including all defaults models.
+    - for GNU/Linux : around 200GB for installation including all defaults models.
+    - for Windows : around 200GB for installation including all defaults models.
     - for macOS : around ??GB for installation including all defaults models.
   - Storage type : SSD Nvme
-  - Internet access (required only for installation) : unlimited bandwith optical fiber internet access
+  - Internet access (required only for installation and models download) : unlimited bandwith optical fiber internet access
 
 * **Operating system :**
   - a 64 bit OS :
@@ -136,13 +136,11 @@
     - Windows 11 22H2
     - macOS ???
 
-><u>Note :</u> biniou does not still support Cuda or ROCm and thus does not need a dedicated GPU to run. You can install it in a virtual machine.
+><u>Note :</u> biniou support Cuda or ROCm but does not require a dedicated GPU to run. You can install it in a virtual machine.
 
 ---
 
 ## Installation 
-
-⚠️ As biniou is still in an early stage of development, it is **recommended** to install it in an "expendable" virtual machine ⚠️
 
 ### Debian 12 / Ubuntu 22.04.3 / Linux Mint 21.2
 
