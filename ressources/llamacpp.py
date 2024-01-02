@@ -15,7 +15,7 @@ model_list_llamacpp = {}
 for filename in os.listdir(model_path_llamacpp):
     f = os.path.join(model_path_llamacpp, filename)
     if os.path.isfile(f) and filename.endswith('.gguf') :
-        final_f = {f:(f, "{prompt}")}
+        final_f = {f:(f, "{prompt}", "")}
         model_list_llamacpp.update(final_f)
 
 model_list_llamacpp_builtin = {
