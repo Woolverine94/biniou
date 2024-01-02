@@ -5,7 +5,7 @@
 </h1>
 
 
-<p align="justify">biniou is a self-hosted webui for several kinds of GenAI (generative artificial intelligence). You can generate multimedia contents with AI and use chatbot on your own computer, even without dedicated GPU and starting from 8GB RAM. Can work offline (once deployed and required models downloaded).</p>
+<p align="justify">biniou is a self-hosted webui for several kinds of GenAI (generative artificial intelligence). You can generate multimedia contents with AI and use a chatbot on your own computer, even without dedicated GPU and starting from 8GB RAM. Can work offline (once deployed and required models downloaded).</p>
 
 <p style="text-align: center;">
 <a href="#debian-12--ubuntu-22043--linux-mint-212">GNU/Linux</a> • <a href="#windows-10--windows-11">Windows</a> • <a href="#macos-homebrew-install">macOS (experimental)</a> • <a href="#dockerfile">Docker</a> | <a href="https://github.com/Woolverine94/biniou/wiki">Documentation</a>
@@ -15,18 +15,15 @@
 
 ## Updates
 
+  * 🆕 **2024-01-02** : ***Chatbot updates and enhancements***
+    - ***Adding system template field to the chatbot settings*** : Using this field, you could define a system template that will replace the {system} tag in the prompt template. Only models supporting this {system} tag will use this template.
+    - ***Adding TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF to the chatbot module*** : Following the "smaller-is-better" current trend, adding to the Chatbot module [TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF](https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF), a tiny 1.1B model that answers really fast and only weight 1.17GB (8bit quantisation). It has been tested and works with **as low as 4GB RAM**.
+
   * 🆕 **2024-01-01** : ***"A biniou year" 2024 to everyone !*** : Bugfixes and enhancements on modules using SDXL models.
 
   * 🆕 **2023-12-29** : ***Inpaint and outpaint modules update*** : Adding SDXL missing pipelines to inpaint and outpaint modules.
 
   * 🆕 **2023-12-24** : ***Chatbot models updates*** : Adding model [TheBloke/Mixtral_7Bx2_MoE-GGUF](https://huggingface.co/TheBloke/Mixtral_7Bx2_MoE-GGUF) to the chatbot module. This model is usable starting from 16GB RAM.
-
-  * 🆕 **2023-12-21** : ***Chatbot update and LoRA models in IP-Adapter module*** :
-
-    - Adding support for phi-2, a small 2.7B model that is said to compete with 70B models. It is -at least- very fast. ⚠️ *Please note that you'll have to update  twice (or run `git pull` before update), as a new version of the update script is needed to install llama-cpp-python 2.24* ⚠️
-    - Adding support for LoRA models in module IP-Adapter.
-
-  * 🆕 **2023-12-20** : ***New LoRA models*** : Adding 12 LoRA models to the built-in list. See [here](https://github.com/Woolverine94/biniou/wiki/LoRA-models) for the complete model list and LoRA models documentation.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
