@@ -162,7 +162,10 @@ def get_select_index(evt: gr.SelectData) :
 ## Functions specific to llamacpp
 def read_ini_llamacpp(module) :
     content = read_ini(module)
-    return str(content[0]), int(content[1]), int(content[2]), bool(int(content[3])), int(content[4]), float(content[5]), float(content[6]), float(content[7]), int(content[8]), str(content[9])
+    if (len(content))>10:
+        return str(content[0]), int(content[1]), int(content[2]), bool(int(content[3])), int(content[4]), float(content[5]), float(content[6]), float(content[7]), int(content[8]), str(content[9]), str(content[10])
+    else:
+        return str(content[0]), int(content[1]), int(content[2]), bool(int(content[3])), int(content[4]), float(content[5]), float(content[6]), float(content[7]), int(content[8]), str(content[9])
 
 def show_download_llamacpp() :
     return btn_download_file_llamacpp.update(visible=False), download_file_llamacpp.update(visible=True)
@@ -171,7 +174,7 @@ def hide_download_llamacpp() :
     return btn_download_file_llamacpp.update(visible=True), download_file_llamacpp.update(visible=False)
 
 def change_model_type_llamacpp(model_llamacpp):
-    return prompt_template_llamacpp.update(value=model_list_llamacpp[model_llamacpp][1])
+    return prompt_template_llamacpp.update(value=model_list_llamacpp[model_llamacpp][1]), system_template_llamacpp.update(value=model_list_llamacpp[model_llamacpp][2])
 
 ## Functions specific to llava
 def read_ini_llava(module) :
@@ -786,8 +789,11 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 top_k_llamacpp = gr.Slider(0, 500, step=1, value=40, label="top_k", info="The top-k value to use for sampling")
                         with gr.Row():
                             with gr.Column():
-                                prompt_template_llamacpp = gr.Textbox(label="Prompt template", value=model_list_llamacpp[model_llamacpp.value][1], lines=4, max_lines=4, info="Place your custom prompt template here. Keep the {prompt} tag, that will be replaced by your prompt.")
-                                model_llamacpp.change(fn=change_model_type_llamacpp, inputs=model_llamacpp, outputs=prompt_template_llamacpp)
+                                prompt_template_llamacpp = gr.Textbox(label="Prompt template", value=model_list_llamacpp[model_llamacpp.value][1], lines=4, max_lines=4, info="Place your custom prompt template here. Keep the {prompt} and {system} tags, they will be replaced by your prompt and system template.")
+                        with gr.Row():
+                            with gr.Column():
+                                system_template_llamacpp = gr.Textbox(label="System template", value=model_list_llamacpp[model_llamacpp.value][2], lines=4, max_lines=4, info="Place your custom system template here.")
+                                model_llamacpp.change(fn=change_model_type_llamacpp, inputs=model_llamacpp, outputs=[prompt_template_llamacpp, system_template_llamacpp])
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_llamacpp = gr.Button("Save custom defaults settings 💾")
@@ -807,7 +813,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         temperature_llamacpp, 
                                         top_p_llamacpp, 
                                         top_k_llamacpp, 
-                                        prompt_template_llamacpp, 
+                                        prompt_template_llamacpp,
+                                        system_template_llamacpp,
                                         ]
                                     )
                                 save_ini_btn_llamacpp.click(fn=lambda: gr.Info('Settings saved'))
@@ -827,7 +834,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             top_p_llamacpp.value = readcfg_llamacpp[7]  
                             top_k_llamacpp.value = readcfg_llamacpp[8] 
                             prompt_template_llamacpp.value = readcfg_llamacpp[9] 
-                    with gr.Row():                            
+#                           To remove : dirty temporary workaround
+                            if len(readcfg_llamacpp)>10:
+                                system_template_llamacpp.value = readcfg_llamacpp[10]
+                    with gr.Row():
                         history_llamacpp = gr.Chatbot(
                             label="Chatbot history", 
                             height=400,
@@ -858,7 +868,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             fn=text_llamacpp,
                             inputs=[
                                 model_llamacpp, 
-                                max_tokens_llamacpp,                                 
+                                max_tokens_llamacpp,
                                 seed_llamacpp, 
                                 stream_llamacpp, 
                                 n_ctx_llamacpp, 
@@ -869,6 +879,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 prompt_llamacpp, 
                                 history_llamacpp, 
                                 prompt_template_llamacpp, 
+                                system_template_llamacpp,
                             ],
                             outputs=[
                                 history_llamacpp, 
@@ -882,7 +893,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             fn=text_llamacpp,
                             inputs=[
                                 model_llamacpp, 
-                                max_tokens_llamacpp,                                 
+                                max_tokens_llamacpp,
                                 seed_llamacpp, 
                                 stream_llamacpp, 
                                 n_ctx_llamacpp, 
@@ -893,6 +904,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 prompt_llamacpp,
                                 history_llamacpp,
                                 prompt_template_llamacpp, 
+                                system_template_llamacpp,
                             ],
                             outputs=[
                                 history_llamacpp, 
@@ -906,7 +918,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             fn=text_llamacpp_continue,
                             inputs=[
                                 model_llamacpp, 
-                                max_tokens_llamacpp,                                 
+                                max_tokens_llamacpp,
                                 seed_llamacpp, 
                                 stream_llamacpp, 
                                 n_ctx_llamacpp, 
@@ -914,7 +926,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 temperature_llamacpp, 
                                 top_p_llamacpp, 
                                 top_k_llamacpp,
-                                history_llamacpp,                                
+                                history_llamacpp,
                             ],
                             outputs=[
                                 history_llamacpp, 

@@ -305,6 +305,7 @@ def write_ini(module, *args) :
     savename = f".ini/{module}.cfg"
     content = ""
     for idx, data in enumerate(args):
+        data = f"{data}".replace("\n", "\\n")
         content += f"{data} \n"
         content = content.replace("False", "0")
         content = content.replace("True", "1")
@@ -318,15 +319,9 @@ def read_ini(module) :
     with open(filename, "r", encoding="utf-8") as fichier :
         lignes = fichier.readlines()
         for ligne in lignes : 
+            ligne = ligne.replace("\\n", "\n")
             ligne = ligne.strip(' \n')
             content.append(ligne)
-        if module == "llamacpp" :
-            template_final = ""
-            template = content[9:]
-            content =  content[0:9]
-            for i in range(len(template)) : 
-                template_final += template[i]+ "\n"
-            content.append(template_final)
     return content
 
 def test_cfg_exist(module) :
