@@ -1768,16 +1768,16 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Input(s) : </b>Prompt, negative prompt</br>
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF model page : </b>
-                                <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>,
-                                <a href='https://huggingface.co/stabilityai/sd-turbo' target='_blank'>stabilityai/sd-turbo</a>,
-                                <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>,
-                                <a href='https://huggingface.co/dataautogpt3/OpenDalleV1.1' target='_blank'>dataautogpt3/OpenDalleV1.1</a>,
-                                <a href='https://huggingface.co/segmind/Segmind-Vega' target='_blank'>segmind/Segmind-Vega</a>,
-                                <a href='https://huggingface.co/segmind/SSD-1B' target='_blank'>segmind/SSD-1B</a>,
-                                <a href='https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0' target='_blank'>stabilityai/stable-diffusion-xl-base-1.0</a>,
-                                <a href='https://huggingface.co/runwayml/stable-diffusion-v1-5' target='_blank'>runwayml/stable-diffusion-v1-5</a>,
-                                <a href='https://huggingface.co/nitrosocke/Ghibli-Diffusion' target='_blank'>nitrosocke/Ghibli-Diffusion</a>,
-                                <a href='https://huggingface.co/segmind/SSD-1B' target='_blank'>segmind/SSD-1B</a></br>
+                                <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
+                                <a href='https://huggingface.co/stabilityai/sd-turbo' target='_blank'>stabilityai/sd-turbo</a>, 
+                                <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>, 
+                                <a href='https://huggingface.co/dataautogpt3/OpenDalleV1.1' target='_blank'>dataautogpt3/OpenDalleV1.1</a>, 
+                                <a href='https://huggingface.co/digiplay/AbsoluteReality_v1.8.1' target='_blank'>digiplay/AbsoluteReality_v1.8.1</a>, 
+                                <a href='https://huggingface.co/segmind/Segmind-Vega' target='_blank'>segmind/Segmind-Vega</a>, 
+                                <a href='https://huggingface.co/segmind/SSD-1B' target='_blank'>segmind/SSD-1B</a>, 
+                                <a href='https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0' target='_blank'>stabilityai/stable-diffusion-xl-base-1.0</a>, 
+                                <a href='https://huggingface.co/runwayml/stable-diffusion-v1-5' target='_blank'>runwayml/stable-diffusion-v1-5</a>, 
+                                <a href='https://huggingface.co/nitrosocke/Ghibli-Diffusion' target='_blank'>nitrosocke/Ghibli-Diffusion</a>, 
                                 """
 #                                <a href='https://huggingface.co/ckpt/anything-v4.5-vae-swapped' target='_blank'>ckpt/anything-v4.5-vae-swapped</a>,
                             )
@@ -2865,11 +2865,15 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Input(s) : </b>Input image, prompt, negative prompt</br>
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF model page : </b>
-                                <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>,
-                                <a href='https://huggingface.co/stabilityai/sd-turbo' target='_blank'>stabilityai/sd-turbo</a>,
-                                <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>,
-                                <a href='https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0' target='_blank'>stabilityai/stable-diffusion-xl-refiner-1.0</a>,
-                                <a href='https://huggingface.co/runwayml/stable-diffusion-v1-5' target='_blank'>runwayml/stable-diffusion-v1-5</a>,
+                                <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
+                                <a href='https://huggingface.co/stabilityai/sd-turbo' target='_blank'>stabilityai/sd-turbo</a>, 
+                                <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>, 
+                                <a href='https://huggingface.co/dataautogpt3/OpenDalleV1.1' target='_blank'>dataautogpt3/OpenDalleV1.1</a>, 
+                                <a href='https://huggingface.co/digiplay/AbsoluteReality_v1.8.1' target='_blank'>digiplay/AbsoluteReality_v1.8.1</a>, 
+                                <a href='https://huggingface.co/segmind/Segmind-Vega' target='_blank'>segmind/Segmind-Vega</a>, 
+                                <a href='https://huggingface.co/segmind/SSD-1B' target='_blank'>segmind/SSD-1B</a>, 
+                                <a href='https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0' target='_blank'>stabilityai/stable-diffusion-xl-refiner-1.0</a>, 
+                                <a href='https://huggingface.co/runwayml/stable-diffusion-v1-5' target='_blank'>runwayml/stable-diffusion-v1-5</a>, 
                                 <a href='https://huggingface.co/nitrosocke/Ghibli-Diffusion' target='_blank'>nitrosocke/Ghibli-Diffusion</a>
                                 """
 #                                <a href='https://huggingface.co/ckpt/anything-v4.5-vae-swapped' target='_blank'>ckpt/anything-v4.5-vae-swapped</a>,
@@ -3119,9 +3123,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Input(s) : </b>Input image, conditional IP-Adapter image, prompt, negative prompt</br>
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF model page : </b>
-                                <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>,
-                                <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>,
-                                <a href='https://huggingface.co/runwayml/stable-diffusion-v1-5' target='_blank'>runwayml/stable-diffusion-v1-5</a>,
+                                <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
+                                <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>, 
+                                <a href='https://huggingface.co/dataautogpt3/OpenDalleV1.1' target='_blank'>dataautogpt3/OpenDalleV1.1</a>, 
+                                <a href='https://huggingface.co/digiplay/AbsoluteReality_v1.8.1' target='_blank'>digiplay/AbsoluteReality_v1.8.1</a>, 
+                                <a href='https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0' target='_blank'>stabilityai/stable-diffusion-xl-base-1.0</a>, 
+                                <a href='https://huggingface.co/runwayml/stable-diffusion-v1-5' target='_blank'>runwayml/stable-diffusion-v1-5</a>, 
                                 <a href='https://huggingface.co/nitrosocke/Ghibli-Diffusion' target='_blank'>nitrosocke/Ghibli-Diffusion</a>
                                 """
 #                                <a href='https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0' target='_blank'>stabilityai/stable-diffusion-xl-refiner-1.0</a>,
@@ -4649,12 +4656,13 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Input(s) : </b>Prompt, negative prompt, ControlNet input</br>
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF Stable Diffusion models pages : </b>
-                                <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>,  
-                                <a href='https://huggingface.co/stabilityai/sd-turbo' target='_blank'>stabilityai/sd-turbo</a>,
-                                <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>,
-                                <a href='https://huggingface.co/dataautogpt3/OpenDalleV1.1' target='_blank'>dataautogpt3/OpenDalleV1.1</a>,
-                                <a href='https://huggingface.co/segmind/Segmind-Vega' target='_blank'>segmind/Segmind-Vega</a>,
-                                <a href='https://huggingface.co/segmind/SSD-1B' target='_blank'>segmind/SSD-1B</a>,
+                                <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
+                                <a href='https://huggingface.co/stabilityai/sd-turbo' target='_blank'>stabilityai/sd-turbo</a>, 
+                                <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>, 
+                                <a href='https://huggingface.co/dataautogpt3/OpenDalleV1.1' target='_blank'>dataautogpt3/OpenDalleV1.1</a>, 
+                                <a href='https://huggingface.co/digiplay/AbsoluteReality_v1.8.1' target='_blank'>digiplay/AbsoluteReality_v1.8.1</a>, 
+                                <a href='https://huggingface.co/segmind/Segmind-Vega' target='_blank'>segmind/Segmind-Vega</a>, 
+                                <a href='https://huggingface.co/segmind/SSD-1B' target='_blank'>segmind/SSD-1B</a>, 
                                 <a href='https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0' target='_blank'>stabilityai/stable-diffusion-xl-refiner-1.0</a>, 
                                 <a href='https://huggingface.co/runwayml/stable-diffusion-v1-5' target='_blank'>runwayml/stable-diffusion-v1-5</a>, 
                                 <a href='https://huggingface.co/nitrosocke/Ghibli-Diffusion' target='_blank'>nitrosocke/Ghibli-Diffusion</a></br>

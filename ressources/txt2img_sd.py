@@ -36,6 +36,7 @@ model_list_txt2img_sd_builtin = [
     "stabilityai/sd-turbo", 
     "stabilityai/sdxl-turbo", 
     "dataautogpt3/OpenDalleV1.1",
+    "digiplay/AbsoluteReality_v1.8.1",
     "segmind/Segmind-Vega",
     "segmind/SSD-1B",
 #    "ckpt/anything-v4.5-vae-swapped",
