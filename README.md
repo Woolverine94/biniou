@@ -15,6 +15,8 @@
 
 ## Updates
 
+  * 🆕 **2024-01-03** : ***Stable Diffusion-based modules update*** : Adding  [digiplay/AbsoluteReality_v1.8.1](https://huggingface.co/digiplay/AbsoluteReality_v1.8.1) model to the model list. It is an awesome photo realistic model. Also adding [Pclanglais/Mickey-1928](https://huggingface.co/Pclanglais/Mickey-1928) and [Norod78/SDXL-YarnArtStyle-LoRA](https://huggingface.co/Norod78/SDXL-YarnArtStyle-LoRA) LoRA models.
+
   * 🆕 **2024-01-02** : ***Chatbot updates and enhancements***
     - ***Adding system template field to the chatbot settings*** : Using this field, you could define a system template that will replace the {system} tag in the prompt template. Only models supporting this {system} tag will use this template.
     - ***Adding TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF to the chatbot module*** : Following the "smaller-is-better" current trend, adding to the Chatbot module [TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF](https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF), a tiny 1.1B model that answers really fast and only weight 1.17GB (8bit quantisation). It has been tested and works with **as low as 4GB RAM**.
@@ -22,8 +24,6 @@
   * 🆕 **2024-01-01** : ***"A biniou year" 2024 to everyone !*** : Bugfixes and enhancements on modules using SDXL models.
 
   * 🆕 **2023-12-29** : ***Inpaint and outpaint modules update*** : Adding SDXL missing pipelines to inpaint and outpaint modules.
-
-  * 🆕 **2023-12-24** : ***Chatbot models updates*** : Adding model [TheBloke/Mixtral_7Bx2_MoE-GGUF](https://huggingface.co/TheBloke/Mixtral_7Bx2_MoE-GGUF) to the chatbot module. This model is usable starting from 16GB RAM.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
