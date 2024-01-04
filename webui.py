@@ -258,7 +258,7 @@ def change_lora_model_txt2img_sd(model, lora_model, prompt):
     if lora_model != "":
         lora_keyword = lora_model_list(model)[lora_model][1]
         if lora_keyword != "":		
-            lora_prompt_txt2img_sd = prompt+ " "+ lora_keyword
+            lora_prompt_txt2img_sd = lora_keyword+ ", "+ prompt
         else:
             lora_prompt_txt2img_sd = prompt
     else:
@@ -375,7 +375,7 @@ def change_lora_model_img2img(model, lora_model, prompt):
     if lora_model != "":
         lora_keyword = lora_model_list(model)[lora_model][1]
         if lora_keyword != "":
-            lora_prompt_img2img = prompt+ " "+ lora_keyword
+            lora_prompt_img2img = lora_keyword+ ", "+ prompt
         else:
             lora_prompt_img2img = prompt
     else:
@@ -411,7 +411,7 @@ def change_lora_model_img2img_ip(model, lora_model, prompt):
     if lora_model != "":
         lora_keyword = lora_model_list(model)[lora_model][1]
         if lora_keyword != "":
-            lora_prompt_img2img_ip = prompt+ " "+ lora_keyword
+            lora_prompt_img2img_ip = lora_keyword+ ", "+ prompt
         else:
             lora_prompt_img2img_ip = prompt
     else:
@@ -518,7 +518,7 @@ def change_lora_model_controlnet(model, lora_model, prompt):
     if lora_model != "":
         lora_keyword = lora_model_list(model)[lora_model][1]
         if lora_keyword != "":
-            lora_prompt_controlnet = prompt+ " "+ lora_keyword
+            lora_prompt_controlnet = lora_keyword+ ", "+ prompt
         else:
             lora_prompt_controlnet = prompt
     else:
@@ -2984,7 +2984,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row(): 
                                 with gr.Column():
-                                    denoising_strength_img2img = gr.Slider(0.0, 1.0, step=0.01, value=0.75, label="Denoising strength", info="Balance between input image (0) and prompts (1)")  
+                                    denoising_strength_img2img = gr.Slider(0.01, 1.0, step=0.01, value=0.75, label="Denoising strength", info="Balance between input image (0) and prompts (1)")  
                             with gr.Row():
                                 with gr.Column():
                                     prompt_img2img = gr.Textbox(lines=5, max_lines=5, label="Prompt", info="Describe what you want in your image", placeholder="a cute kitten playing with a ball, dynamic pose, close-up cinematic still, photo realistic, ultra quality, 4k uhd, perfect lighting, HDR, bokeh")

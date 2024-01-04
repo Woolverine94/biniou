@@ -287,6 +287,8 @@ def image_txt2img_sd(
         f"Size={width_txt2img_sd}x{height_txt2img_sd} | "+\
         f"GFPGAN={use_gfpgan_txt2img_sd} | "+\
         f"Token merging={tkme_txt2img_sd} | "+\
+        f"LoRA model={lora_model_txt2img_sd} | "+\
+        f"LoRA weight={lora_weight_txt2img_sd} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Prompt={prompt_txt2img_sd} | "+\
         f"Negative prompt={negative_prompt_txt2img_sd} | "+\

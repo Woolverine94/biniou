@@ -298,6 +298,8 @@ def image_img2img(
         f"Size={width_img2img}x{height_img2img} | "+\
         f"GFPGAN={use_gfpgan_img2img} | "+\
         f"Token merging={tkme_img2img} | "+\
+        f"LoRA model={lora_model_img2img} | "+\
+        f"LoRA weight={lora_weight_img2img} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Denoising strength={denoising_strength_img2img} | "+\
         f"Prompt={prompt_img2img} | "+\

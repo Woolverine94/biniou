@@ -458,6 +458,8 @@ def image_controlnet(
         f"Stop ControlNet={stop_controlnet} | "+\
         f"GFPGAN={use_gfpgan_controlnet} | "+\
         f"Token merging={tkme_controlnet} | "+\
+        f"LoRA model={lora_model_controlnet} | "+\
+        f"LoRA weight={lora_weight_controlnet} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"ControlNet model={variant_controlnet} | "+\
         f"Prompt={prompt_controlnet} | "+\
