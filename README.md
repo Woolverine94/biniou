@@ -15,6 +15,8 @@
 
 ## Updates
 
+  * 🆕 **2024-01-05** : 🔥 ***ControlNet module update*** 🔥 : Adding QR preprocessor and QR ControlNet models for both SD1.5 and SDXL models. You can now use a QR code (or anything else !) to generate an image in which it will be blended. Pro-tip : if produced QR codes are not usables, raise ControlNet weight value. Also fixing errors related to unavailable ControlNet models for SDXL.
+
   * 🆕 **2024-01-03** : ***Stable Diffusion-based modules update*** : Adding  [digiplay/AbsoluteReality_v1.8.1](https://huggingface.co/digiplay/AbsoluteReality_v1.8.1) model to the model list. It is an awesome photo realistic model. Also adding [Pclanglais/Mickey-1928](https://huggingface.co/Pclanglais/Mickey-1928) and [Norod78/SDXL-YarnArtStyle-LoRA](https://huggingface.co/Norod78/SDXL-YarnArtStyle-LoRA) LoRA models.
 
   * 🆕 **2024-01-02** : ***Chatbot updates and enhancements***
