@@ -58,13 +58,13 @@ variant_list_controlnet = [
     "lllyasviel/control_v11p_sd15_openpose",
     "lllyasviel/control_v11p_sd15_scribble",
     "lllyasviel/control_v11p_sd15_softedge",
+    "Nacholmo/controlnet-qr-pattern-v2",
     "patrickvonplaten/controlnet-canny-sdxl-1.0",
     "patrickvonplaten/controlnet-depth-sdxl-1.0",
-    "zbulrush/controlnet-sd-xl-1.0-lineart",
     "thibaud/controlnet-openpose-sdxl-1.0",
     "SargeZT/controlnet-sd-xl-1.0-softedge-dexined",
+    "Nacholmo/controlnet-qr-pattern-sdxl"
 ]
-
 
 preprocessor_list_controlnet = [
     "canny",
@@ -87,6 +87,8 @@ preprocessor_list_controlnet = [
     "softedge_hedsafe",
     "softedge_pidinet",
     "softedge_pidsafe",
+    "qr",
+    "qr_invert",
 ]
 
 # Bouton Cancel
@@ -126,42 +128,43 @@ def dispatch_controlnet_preview(
 
     img_source_controlnet = Image.open(img_source_controlnet)
     img_source_controlnet = np.array(img_source_controlnet)
-    processor_controlnet = Processor(preprocessor_controlnet)
+    if (preprocessor_controlnet != "qr") and (preprocessor_controlnet != "qr_invert"):
+        processor_controlnet = Processor(preprocessor_controlnet)
 
     match preprocessor_controlnet:
         case "canny":
             result = canny_controlnet(img_source_controlnet, low_threshold_controlnet, high_threshold_controlnet)
-            return result, result, variant_list_controlnet[9] if is_xl_controlnet else variant_list_controlnet[0]
+            return result, result, variant_list_controlnet[10] if is_xl_controlnet else variant_list_controlnet[0]
         case "depth_leres":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[10] if is_xl_controlnet else variant_list_controlnet[1]
+            return result, result, variant_list_controlnet[11] if is_xl_controlnet else variant_list_controlnet[1]
         case "depth_leres++":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[10] if is_xl_controlnet else variant_list_controlnet[1]
+            return result, result, variant_list_controlnet[11] if is_xl_controlnet else variant_list_controlnet[1]
         case "depth_midas":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[10] if is_xl_controlnet else variant_list_controlnet[1]
+            return result, result, variant_list_controlnet[11] if is_xl_controlnet else variant_list_controlnet[1]
         case "depth_zoe":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[10] if is_xl_controlnet else variant_list_controlnet[1]
+            return result, result, variant_list_controlnet[11] if is_xl_controlnet else variant_list_controlnet[1]
         case "lineart_anime":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[11] if is_xl_controlnet else variant_list_controlnet[2]
+            return result, result, variant_list_controlnet[10] if is_xl_controlnet else variant_list_controlnet[2]
         case "lineart_coarse":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[11] if is_xl_controlnet else variant_list_controlnet[3]
+            return result, result, variant_list_controlnet[10] if is_xl_controlnet else variant_list_controlnet[3]
         case "lineart_realistic":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[11] if is_xl_controlnet else variant_list_controlnet[3]
+            return result, result, variant_list_controlnet[10] if is_xl_controlnet else variant_list_controlnet[3]
         case "mlsd":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[9] if is_xl_controlnet else variant_list_controlnet[4]
+            return result, result, variant_list_controlnet[10] if is_xl_controlnet else variant_list_controlnet[4]
         case "normal_bae":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[10] if is_xl_controlnet else variant_list_controlnet[5]
+            return result, result, variant_list_controlnet[11] if is_xl_controlnet else variant_list_controlnet[5]
         case "normal_midas":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[10] if is_xl_controlnet else variant_list_controlnet[5]
+            return result, result, variant_list_controlnet[11] if is_xl_controlnet else variant_list_controlnet[5]
         case "openpose":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
             return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[6]
@@ -195,6 +198,12 @@ def dispatch_controlnet_preview(
         case "softedge_pidsafe":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
             return result, result, variant_list_controlnet[13] if is_xl_controlnet else variant_list_controlnet[8]
+        case "qr":
+            result = qr_controlnet(img_source_controlnet, 0)
+            return result, result, variant_list_controlnet[14] if is_xl_controlnet else variant_list_controlnet[9]
+        case "qr_invert":
+            result = qr_controlnet(img_source_controlnet, 1)
+            return result, result, variant_list_controlnet[14] if is_xl_controlnet else variant_list_controlnet[9]
 
 def canny_controlnet(image, low_threshold, high_threshold):
     image = cv2.Canny(image, low_threshold, high_threshold)
@@ -202,6 +211,13 @@ def canny_controlnet(image, low_threshold, high_threshold):
     image = np.concatenate([image, image, image], axis=2)
     canny_image = Image.fromarray(image)
     return canny_image
+
+def qr_controlnet(image, switch):
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    (thresh, image) = cv2.threshold(image, 127, 255, cv2.THRESH_BINARY)
+    if (switch == 1):
+        image = cv2.bitwise_not(image)
+    return image
 
 @metrics_decoration
 def image_controlnet(
@@ -239,7 +255,7 @@ def image_controlnet(
         variant_controlnet,
         cache_dir=model_path_base_controlnet,
         torch_dtype=model_arch,
-        use_safetensors=True,
+#        use_safetensors=True,
         resume_download=True,
         local_files_only=True if offline_test() else None
         )
@@ -347,7 +363,7 @@ def image_controlnet(
     for k in range(num_prompt_controlnet):
         generator.append([torch.Generator(device_controlnet).manual_seed(final_seed + (k*num_images_per_prompt_controlnet) + l ) for l in range(num_images_per_prompt_controlnet)])
 
-    if (is_xl_controlnet == True) and not (is_xlturbo_controlnet == True) :
+    if (is_xl_controlnet == True) and not (is_xlturbo_controlnet == True):
         dim_size = correct_size(width_controlnet, height_controlnet, 1024)
     else :
         dim_size = correct_size(width_controlnet, height_controlnet, 512)
