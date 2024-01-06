@@ -15,6 +15,8 @@
 
 ## Updates
 
+  * 🆕 **2024-01-06** : ***New Windows netinstall*** : Replacing dysfunctional Windows netinstaller by a more stable one based on InnoSetup. You can click [here](https://github.com/Woolverine94/biniou/raw/main/win_installer/biniou_netinstall.exe) to download it.
+
   * 🆕 **2024-01-05** : 🔥 ***ControlNet module update*** 🔥 : Adding QR preprocessor and QR ControlNet models for both SD1.5 and SDXL models. You can now use a QR code (or anything else !) to generate an image in which it will be blended. Pro-tip : if produced QR codes are not usables, raise ControlNet weight value. Also fixing errors related to unavailable ControlNet models for SDXL.
 
   * 🆕 **2024-01-03** : ***Stable Diffusion-based modules update*** : Adding  [digiplay/AbsoluteReality_v1.8.1](https://huggingface.co/digiplay/AbsoluteReality_v1.8.1) model to the model list. It is an awesome photo realistic model. Also adding [Pclanglais/Mickey-1928](https://huggingface.co/Pclanglais/Mickey-1928) and [Norod78/SDXL-YarnArtStyle-LoRA](https://huggingface.co/Norod78/SDXL-YarnArtStyle-LoRA) LoRA models.
@@ -24,8 +26,6 @@
     - ***Adding TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF to the chatbot module*** : Following the "smaller-is-better" current trend, adding to the Chatbot module [TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF](https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF), a tiny 1.1B model that answers really fast and only weight 1.17GB (8bit quantisation). It has been tested and works with **as low as 4GB RAM**.
 
   * 🆕 **2024-01-01** : ***"A biniou year" 2024 to everyone !*** : Bugfixes and enhancements on modules using SDXL models.
-
-  * 🆕 **2023-12-29** : ***Inpaint and outpaint modules update*** : Adding SDXL missing pipelines to inpaint and outpaint modules.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
@@ -185,7 +185,8 @@ Windows installation has more prerequisites than GNU/Linux one, and requires fol
 ⚠️ You should really make a backup of your system and datas before starting the installation process. ⚠️ 
 </p>
 
-  - **Download and execute**  : [biniou_netinstall.exe](https://github.com/Woolverine94/biniou/raw/main/biniou_netinstall.exe)<br/> 
+  - **Download and execute**  : [biniou_netinstall.exe](https://github.com/Woolverine94/biniou/raw/main/win_installer/biniou_netinstall.exe)<br/> 
+
 ***<p align=left>OR</p>***
   - **Download and execute**  : [install_win.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win.cmd) *(right-click on the link and select "Save Target/Link as ..." to download)*<br/>
 
