@@ -7,4 +7,4 @@
 /.tmp
 /.ini
 /.logs
-/win_installer
+/win_installer/*
