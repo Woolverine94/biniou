@@ -7,4 +7,6 @@
 /.tmp
 /.ini
 /.logs
-/win_installer/*
+/win_installer
+/win_installer/biniou_netinstall.exe
+
