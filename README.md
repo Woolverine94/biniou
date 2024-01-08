@@ -1,3 +1,4 @@
+## Home
 <h1 align="center">
 <p align="center">
   <img src="./images/biniou.jpg" alt="biniou screenshot"/>
