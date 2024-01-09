@@ -3,6 +3,7 @@
 import os
 import sys
 from PIL import Image, ExifTags
+from PIL.PngImagePlugin import PngInfo
 from io import BytesIO
 import gradio as gr
 import torch
@@ -57,7 +58,7 @@ def send_input():
     return True
     
 def zipper(content):
-    timestamp = time.time()
+    timestamp = timestamper()
     savename = f"./.tmp/{timestamp}.zip"
     with zf.ZipFile(savename, 'w') as myzip:
         for idx, file in enumerate(content):
@@ -67,7 +68,7 @@ def zipper(content):
     return savename
 
 def zipper_file(content):
-    timestamp = time.time()
+    timestamp = timestamper()
     savename = f"./.tmp/{timestamp}.zip"
     with zf.ZipFile(savename, 'w') as myzip:
         file_name=content.replace("\\", "/")
@@ -212,7 +213,7 @@ def preview_image(step, timestep, latents, pipe):
         image = pipe.numpy_to_pil(image)
 #        for img in enumerate(image):
         for j in range(len(image)):
-            timestamp = time.time()
+            timestamp = timestamper()
             savename = f"/tmp/gradio/{timestamp}.png"
             image[j].save(savename)
             final_preview.append(savename)
@@ -269,7 +270,7 @@ def offline_test():
         return True
 
 def write_file(*args) :
-    timestamp = time.time()
+    timestamp = timestamper()
     savename = f"outputs/{timestamp}.txt"
     content = ""
     for idx, data in enumerate(args):
@@ -279,7 +280,7 @@ def write_file(*args) :
     return savename
 
 def write_seeded_file(seed, *args) :
-    timestamp = time.time()
+    timestamp = timestamper()
     savename = f"outputs/{seed}_{timestamp}.txt"
     content = ""
     for idx, data in enumerate(args):
@@ -401,6 +402,17 @@ def check_steps_strength (steps, strength, model):
 
 def which_os():
     return sys.platform
+
+def timestamper():
+	return str(time.time()).replace(".", "_")
+
+def exif_writer_png(exif_datas, filename):
+    datas = PngInfo()
+    datas.add_text("UserComment", f"biniou settings: {exif_datas}")
+    for j in range(len(filename)):
+        with Image.open(filename[j]) as image:
+            image.save(filename[j], pnginfo=datas, encoding="utf-8")
+    return
 
 def lora_model_list(model):
     if (('xl' or 'XL' or 'Xl' or 'xL') in model or (model == "segmind/SSD-1B") or (model == "segmind/Segmind-Vega")  or (model == "dataautogpt3/OpenDalleV1.1")):

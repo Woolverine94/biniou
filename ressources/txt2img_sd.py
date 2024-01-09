@@ -5,7 +5,6 @@ import os
 from diffusers import StableDiffusionPipeline, StableDiffusionXLPipeline, AutoPipelineForText2Image
 from compel import Compel, ReturnedEmbeddingsType
 import torch
-import time
 import random
 from ressources.scheduler import *
 from ressources.gfpgan import *
@@ -234,7 +233,7 @@ def image_txt2img_sd(
         conditioning = compel.build_conditioning_tensor(prompt_txt2img_sd)
         neg_conditioning = compel.build_conditioning_tensor(negative_prompt_txt2img_sd)    
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
-   
+
     final_image = []
     final_seed = []
     for i in range (num_prompt_txt2img_sd):
@@ -268,9 +267,8 @@ def image_txt2img_sd(
             ).images
         
         for j in range(len(image)):
-            timestamp = time.time()
             seed_id = random_seed + i*num_images_per_prompt_txt2img_sd + j if (seed_txt2img_sd == 0) else seed_txt2img_sd + i*num_images_per_prompt_txt2img_sd + j
-            savename = f"outputs/{seed_id}_{timestamp}.png"
+            savename = f"outputs/{seed_id}_{timestamper()}.png"
             if use_gfpgan_txt2img_sd == True :
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
@@ -294,7 +292,9 @@ def image_txt2img_sd(
         f"Negative prompt={negative_prompt_txt2img_sd} | "+\
         f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_txt2img_sd) 
-    
+
+    exif_writer_png(reporting_txt2img_sd, final_image)
+
     del nsfw_filter_final, feat_ex, pipe_txt2img_sd, generator, compel, conditioning, neg_conditioning, image
     clean_ram()
 
