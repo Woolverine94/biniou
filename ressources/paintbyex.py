@@ -5,7 +5,6 @@ import os
 import PIL
 import torch
 from diffusers import PaintByExamplePipeline
-import time
 import random
 from ressources.scheduler import *
 from ressources.common import *
@@ -143,9 +142,8 @@ def image_paintbyex(
         ).images
 
         for j in range(len(image)):
-            timestamp = time.time()
             seed_id = random_seed + i*num_images_per_prompt_paintbyex + j if (seed_paintbyex == 0) else seed_paintbyex + i*num_images_per_prompt_paintbyex + j
-            savename = f"outputs/{seed_id}_{timestamp}.png"
+            savename = f"outputs/{seed_id}_{timestamper()}.png"
             if use_gfpgan_paintbyex == True :
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
@@ -166,6 +164,8 @@ def image_paintbyex(
     print(reporting_paintbyex) 
 
     final_image.append(savename_mask)
+
+    exif_writer_png(reporting_paintbyex, final_image)
 
     del nsfw_filter_final, feat_ex, pipe_paintbyex, generator, image_input, mask_image_input, example_image_input, image
     clean_ram()

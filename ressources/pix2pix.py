@@ -6,7 +6,6 @@ import PIL
 import torch
 from diffusers import StableDiffusionInstructPix2PixPipeline
 from compel import Compel
-import time
 import random
 from ressources.scheduler import *
 from ressources.common import *
@@ -139,12 +138,11 @@ def image_pix2pix(
         ).images
 
         for j in range(len(image)):
-            timestamp = time.time()
-            savename = f"outputs/{timestamp}.png"
+            savename = f"outputs/{timestamper()}.png"
             if use_gfpgan_pix2pix == True :
                 image[j] = image_gfpgan_mini(image[j])             
             image[j].save(savename)
-            final_image.append(image[j])
+            final_image.append(savename)
 
     print(f">>>[Instruct pix2pix 🖌️ ]: generated {num_prompt_pix2pix} batch(es) of {num_images_per_prompt_pix2pix}")
     reporting_pix2pix = f">>>[Instruct pix2pix 🖌️ ]: "+\
@@ -160,7 +158,9 @@ def image_pix2pix(
         f"Prompt={prompt_pix2pix} | "+\
         f"Negative prompt={negative_prompt_pix2pix}"
     print(reporting_pix2pix) 
-            
+
+    exif_writer_png(reporting_pix2pix, final_image)
+
     del nsfw_filter_final, feat_ex, pipe_pix2pix, generator, image_input, image
     clean_ram()            
 

@@ -6,7 +6,6 @@ import cv2
 import torch
 from diffusers import StableDiffusionControlNetPipeline, StableDiffusionXLControlNetPipeline, ControlNetModel
 from compel import Compel, ReturnedEmbeddingsType
-import time
 import random
 from ressources.scheduler import *
 from ressources.gfpgan import *
@@ -452,9 +451,8 @@ def image_controlnet(
             ).images
 
         for j in range(len(image)):
-            timestamp = time.time()
             seed_id = random_seed + i*num_images_per_prompt_controlnet + j if (seed_controlnet == 0) else seed_controlnet + i*num_images_per_prompt_controlnet + j
-            savename = f"outputs/{seed_id}_{timestamp}.png"
+            savename = f"outputs/{seed_id}_{timestamper()}.png"
             if use_gfpgan_controlnet == True :
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
@@ -483,10 +481,11 @@ def image_controlnet(
         f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_controlnet)
 
-
     savename_controlnet = f"outputs/controlnet.png"
     image_input.save(savename_controlnet)
     final_image.append(savename_controlnet)
+
+    exif_writer_png(reporting_controlnet, final_image)
 
     del nsfw_filter_final, feat_ex, controlnet, img_preview_controlnet, pipe_controlnet, generator, image_input, compel, conditioning, neg_conditioning, image
     clean_ram()

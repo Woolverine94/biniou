@@ -6,7 +6,6 @@ import PIL
 import torch
 from diffusers import StableDiffusionInpaintPipeline, StableDiffusionXLInpaintPipeline
 from compel import Compel, ReturnedEmbeddingsType
-import time
 import random
 from ressources.scheduler import *
 from ressources.common import *
@@ -215,9 +214,8 @@ def image_inpaint(
             ).images
 
         for j in range(len(image)):
-            timestamp = time.time()
             seed_id = random_seed + i*num_images_per_prompt_inpaint + j if (seed_inpaint == 0) else seed_inpaint + i*num_images_per_prompt_inpaint + j
-            savename = f"outputs/{seed_id}_{timestamp}.png"
+            savename = f"outputs/{seed_id}_{timestamper()}.png"
             if use_gfpgan_inpaint == True :
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
@@ -241,6 +239,8 @@ def image_inpaint(
         f"Negative prompt={negative_prompt_inpaint} | "+\
         f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_inpaint) 
+
+    exif_writer_png(reporting_inpaint, final_image)
 
     del nsfw_filter_final, feat_ex, pipe_inpaint, generator, image_input, mask_image_input, image
     clean_ram()

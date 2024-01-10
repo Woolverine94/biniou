@@ -5,7 +5,6 @@ import os
 from diffusers import AutoPipelineForText2Image
 from compel import Compel
 import torch
-import time
 import random
 from ressources.scheduler import *
 from ressources.gfpgan import *
@@ -170,12 +169,11 @@ def image_txt2img_kd(
             ).images
 
         for j in range(len(image)):
-            timestamp = time.time()
-            savename = f"outputs/{timestamp}.png"
+            savename = f"outputs/{timestamper()}.png"
             if use_gfpgan_txt2img_kd == True :
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
-            final_image.append(image[j])
+            final_image.append(savename)
 
     print(f">>>[Kandinsky 🖼️ ]: generated {num_prompt_txt2img_kd} batch(es) of {num_images_per_prompt_txt2img_kd}")
     reporting_txt2img_kd = f">>>[Kandinsky 🖼️ ]: "+\
@@ -188,6 +186,8 @@ def image_txt2img_kd(
         f"Prompt={prompt_txt2img_kd} | "+\
         f"Negative prompt={negative_prompt_txt2img_kd}"
     print(reporting_txt2img_kd)
+
+    exif_writer_png(reporting_txt2img_kd, final_image)
 
     del pipe_txt2img_kd, generator, image
     clean_ram()

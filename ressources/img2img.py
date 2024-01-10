@@ -6,7 +6,6 @@ import PIL
 import torch
 from diffusers import StableDiffusionImg2ImgPipeline, StableDiffusionXLImg2ImgPipeline, AutoPipelineForImage2Image
 from compel import Compel, ReturnedEmbeddingsType
-import time
 import random
 from ressources.scheduler import *
 from ressources.common import *
@@ -276,8 +275,7 @@ def image_img2img(
             ).images
 
         for j in range(len(image)):
-            timestamp = time.time()
-            savename = f"outputs/{timestamp}.png"
+            savename = f"outputs/{timestamper()}.png"
             if use_gfpgan_img2img == True :
                 image[j] = image_gfpgan_mini(image[j])             
             image[j].save(savename)
@@ -305,7 +303,9 @@ def image_img2img(
         f"Prompt={prompt_img2img} | "+\
         f"Negative prompt={negative_prompt_img2img}"
     print(reporting_img2img)         
-        
+
+    exif_writer_png(reporting_img2img, final_image)
+
     del nsfw_filter_final, feat_ex, pipe_img2img, generator, image_input, compel, conditioning, neg_conditioning, image
     clean_ram()
 

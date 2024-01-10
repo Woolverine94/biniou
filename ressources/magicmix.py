@@ -4,7 +4,6 @@ import gradio as gr
 import os
 import torch
 from diffusers import DiffusionPipeline
-import time
 import random
 from ressources.scheduler import *
 from ressources.gfpgan import *
@@ -141,9 +140,8 @@ def image_magicmix(
             steps=num_inference_step_magicmix,
             guidance_scale=guidance_scale_magicmix,
         )
-        timestamp = time.time()
         seed_id = random_seed + i if (seed_magicmix == 0) else seed_magicmix + i
-        savename = f"outputs/{seed_id}_{timestamp}.png"
+        savename = f"outputs/{seed_id}_{timestamper()}.png"
         if use_gfpgan_magicmix == True :
             image = image_gfpgan_mini(image)
         image.save(savename)
@@ -161,9 +159,12 @@ def image_magicmix(
         f"GFPGAN={use_gfpgan_magicmix} | "+\
         f"Token merging={tkme_magicmix} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
+        f"Mix factor={mix_factor_magicmix} | "+\
         f"Prompt={prompt_magicmix} | "+\
         f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_magicmix) 
+
+    exif_writer_png(reporting_magicmix, final_image)
 
     del nsfw_filter_final, feat_ex, pipe_magicmix, generator, image 
     clean_ram()

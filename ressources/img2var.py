@@ -5,7 +5,6 @@ import os
 import PIL
 import torch
 from diffusers import StableDiffusionImageVariationPipeline
-import time
 import random
 from ressources.scheduler import *
 from ressources.common import *
@@ -114,9 +113,8 @@ def image_img2var(
         ).images
 
         for j in range(len(image)):
-            timestamp = time.time()
             seed_id = random_seed + i*num_images_per_prompt_img2var + j if (seed_img2var == 0) else seed_img2var + i*num_images_per_prompt_img2var + j
-            savename = f"outputs/{seed_id}_{timestamp}.png"
+            savename = f"outputs/{seed_id}_{timestamper()}.png"
             if use_gfpgan_img2var == True :
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
@@ -136,8 +134,10 @@ def image_img2var(
         f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_img2var)             
 
+    exif_writer_png(reporting_img2var, final_image)
+
     del nsfw_filter_final, feat_ex, pipe_img2var, generator, image_input, image
     clean_ram()
- 
+
     print(f">>>[Image variation 🖼️ ]: leaving module")  
     return final_image, final_image 

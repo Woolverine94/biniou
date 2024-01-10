@@ -5,7 +5,6 @@ import os
 from diffusers import DiffusionPipeline
 from compel import Compel, ReturnedEmbeddingsType
 import torch
-import time
 import random
 from ressources.scheduler import *
 from ressources.gfpgan import *
@@ -144,9 +143,8 @@ def image_txt2img_mjm(
         ).images
 
         for j in range(len(image)):
-            timestamp = time.time()
             seed_id = random_seed + i*num_images_per_prompt_txt2img_mjm + j if (seed_txt2img_mjm == 0) else seed_txt2img_mjm + i*num_images_per_prompt_txt2img_mjm + j
-            savename = f"outputs/{seed_id}_{timestamp}.png"
+            savename = f"outputs/{seed_id}_{timestamper()}.png"
             if use_gfpgan_txt2img_mjm == True :
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
@@ -167,6 +165,8 @@ def image_txt2img_mjm(
         f"Negative prompt={negative_prompt_txt2img_mjm} | "+\
         f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_txt2img_mjm) 
+
+    exif_writer_png(reporting_txt2img_mjm, final_image)
 
     del nsfw_filter_final, feat_ex, pipe_txt2img_mjm, generator, compel, conditioning, neg_conditioning, image
     clean_ram()

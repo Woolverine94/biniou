@@ -7,7 +7,6 @@ import torch
 from diffusers import AutoPipelineForImage2Image, StableDiffusionXLImg2ImgPipeline, StableDiffusionImg2ImgPipeline
 from huggingface_hub import snapshot_download, hf_hub_download
 from compel import Compel, ReturnedEmbeddingsType
-import time
 import random
 from ressources.scheduler import *
 from ressources.common import *
@@ -396,8 +395,7 @@ def image_img2img_ip(
             ).images        
 
         for j in range(len(image)):
-            timestamp = time.time()
-            savename = f"outputs/{timestamp}.png"
+            savename = f"outputs/{timestamper()}.png"
             if use_gfpgan_img2img_ip == True :
                 image[j] = image_gfpgan_mini(image[j])             
             image[j].save(savename)
@@ -420,7 +418,9 @@ def image_img2img_ip(
         f"Prompt={prompt_img2img_ip} | "+\
         f"Negative prompt={negative_prompt_img2img_ip}"
     print(reporting_img2img_ip)         
-        
+
+    exif_writer_png(reporting_img2img_ip, final_image)
+
     del nsfw_filter_final, feat_ex, pipe_img2img_ip, generator, image_input, image_input_ipa, compel, conditioning, neg_conditioning, image
     clean_ram()
 

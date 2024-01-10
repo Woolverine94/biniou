@@ -7,7 +7,6 @@ import insightface
 import onnxruntime
 import numpy as np
 from PIL import Image
-import time
 import random
 from ressources.scheduler import *
 from ressources.common import *
@@ -92,20 +91,23 @@ def image_faceswap(
         temp_frame = face_swapper.get(temp_frame, target_face, source_face, paste_back=True)
     
     temp_frame = Image.fromarray(cv2.cvtColor(temp_frame, cv2.COLOR_BGR2RGB))
-    timestamp = time.time()
-    savename = f"outputs/{timestamp}.png"
+    savename = f"outputs/{timestamper()}.png"
     
     if use_gfpgan_faceswap == True :
         temp_frame = image_gfpgan_mini(temp_frame)
     
     temp_frame.save(savename)
-    final_image.append(temp_frame)
+    final_image.append(savename)
 
     print(f">>>[Faceswap 🎭 ]: generated 1 batch(es) of 1")
     reporting_faceswap = f">>>[Faceswap 🎭 ]: "+\
         f"Settings : Model={modelid_faceswap} | "+\
-        f"GFPGAN={use_gfpgan_faceswap}"
+        f"GFPGAN={use_gfpgan_faceswap} | "+\
+        f"Source index={source_index_faceswap} | "+\
+        f"Target index={target_index_faceswap}"
     print(reporting_faceswap) 
+
+    exif_writer_png(reporting_faceswap, final_image)
 
     del source_img, target_img, providers, face_analyser, face_swapper, target_analyze, target_faces, source_analyze, source_faces, temp_frame    
     clean_ram()

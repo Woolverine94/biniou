@@ -8,7 +8,6 @@ import numpy as np
 import torch
 from diffusers import StableDiffusionInpaintPipeline, StableDiffusionXLInpaintPipeline
 from compel import Compel, ReturnedEmbeddingsType
-import time
 import random
 from ressources.scheduler import *
 from ressources.common import *
@@ -254,9 +253,8 @@ def image_outpaint(
             ).images
 
         for j in range(len(image)):
-            timestamp = time.time()
             seed_id = random_seed + i*num_images_per_prompt_outpaint + j if (seed_outpaint == 0) else seed_outpaint + i*num_images_per_prompt_outpaint + j
-            savename = f"outputs/{seed_id}_{timestamp}.png"
+            savename = f"outputs/{seed_id}_{timestamper()}.png"
             if use_gfpgan_outpaint == True :
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
@@ -280,6 +278,8 @@ def image_outpaint(
     print(reporting_outpaint) 
 
     final_image.append(savename_mask)
+
+    exif_writer_png(reporting_outpaint, final_image)
 
     del nsfw_filter_final, feat_ex, pipe_outpaint, generator, image_input, mask_image_input, image
     clean_ram()

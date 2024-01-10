@@ -4,7 +4,6 @@ import gradio as gr
 import os
 import cv2
 import PIL
-import time
 import torch
 import numpy as np
 from gfpgan.utils import GFPGANer
@@ -64,18 +63,19 @@ def image_gfpgan(modelid_gfpgan, variantid_gfpgan, img_gfpgan, progress_gfpgan=g
     )
     
     final_image = []
-    timestamp = time.time()
-    savename = f"outputs/{timestamp}.png"
+    savename = f"outputs/{timestamper()}.png"
     image_gfpgan = cv2.cvtColor(image_gfpgan, cv2.COLOR_BGR2RGB)
     image_gfpgan_save = Image.fromarray(image_gfpgan)
     image_gfpgan_save.save(savename)
-    final_image.append(image_gfpgan_save)
+    final_image.append(savename)
 
     print(f">>>[GFPGAN 🔎]: generated 1 batch(es) of 1")
     reporting_gfpgan = f">>>[GFPGAN 🔎]: "+\
         f"Settings : Model={modelid_gfpgan} | "+\
         f"Variant={variantid_gfpgan}"
     print(reporting_gfpgan) 
+
+    exif_writer_png(reporting_gfpgan, final_image)
 
     del model_gfpgan, image_inter_gfpgan, image_input_gfpgan, image_gfpgan
     clean_ram()

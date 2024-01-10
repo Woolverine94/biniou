@@ -5,7 +5,6 @@ import os
 from diffusers import PixArtAlphaPipeline
 # from compel import Compel, ReturnedEmbeddingsType
 import torch
-import time
 import random
 from ressources.scheduler import *
 from ressources.gfpgan import *
@@ -146,9 +145,8 @@ def image_txt2img_paa(
         ).images
 
         for j in range(len(image)):
-            timestamp = time.time()
             seed_id = random_seed + i*num_images_per_prompt_txt2img_paa + j if (seed_txt2img_paa == 0) else seed_txt2img_paa + i*num_images_per_prompt_txt2img_paa + j
-            savename = f"outputs/{seed_id}_{timestamp}.png"
+            savename = f"outputs/{seed_id}_{timestamper()}.png"
             if use_gfpgan_txt2img_paa == True :
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
@@ -169,6 +167,8 @@ def image_txt2img_paa(
         f"Negative prompt={negative_prompt_txt2img_paa} | "+\
         f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_txt2img_paa) 
+
+    exif_writer_png(reporting_txt2img_paa, final_image)
 
     del nsfw_filter_final, feat_ex, pipe_txt2img_paa, generator, image
     clean_ram()

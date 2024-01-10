@@ -3,7 +3,6 @@
 import gradio as gr
 import os
 import PIL
-import time
 import torch
 import numpy as np
 from RealESRGAN import RealESRGAN
@@ -41,13 +40,11 @@ def image_resrgan(
     image = Image.open(img_resrgan).convert('RGB')
     sr_image = model_resrgan.predict(image)
     final_image = [] 
-    timestamp = time.time()
-    savename = f"outputs/{timestamp}.png"
-    
+    savename = f"outputs/{timestamper()}.png"
     if use_gfpgan_resrgan == True :
         sr_image = image_gfpgan_mini(sr_image)    
     sr_image.save(savename)
-    final_image.append(sr_image)
+    final_image.append(savename)
 
     print(f">>>[Real ESRGAN 🔎]: generated 1 batch(es) of 1")
     reporting_resrgan = f">>>[Real ESRGAN 🔎]: "+\
@@ -55,7 +52,9 @@ def image_resrgan(
         f"Scale={scale_resrgan} | "+\
         f"GFPGAN={use_gfpgan_resrgan} | "
     print(reporting_resrgan)
-            
+
+    exif_writer_png(reporting_resrgan, final_image)
+
     del model_resrgan, image, sr_image
     clean_ram()
 

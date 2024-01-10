@@ -5,7 +5,6 @@ import os
 from diffusers import UNet2DConditionModel, DiffusionPipeline, AutoPipelineForText2Image
 from compel import Compel, ReturnedEmbeddingsType
 import torch
-import time
 import random
 from ressources.scheduler import *
 from ressources.gfpgan import *
@@ -226,9 +225,8 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
             ).images			
 
         for j in range(len(image)):
-            timestamp = time.time()
             seed_id = random_seed + i*num_images_per_prompt_txt2img_lcm + j if (seed_txt2img_lcm == 0) else seed_txt2img_lcm + i*num_images_per_prompt_txt2img_lcm + j
-            savename = f"outputs/{seed_id}_{timestamp}.png"
+            savename = f"outputs/{seed_id}_{timestamper()}.png"
             if use_gfpgan_txt2img_lcm == True :
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
@@ -246,6 +244,8 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
         f"Prompt={prompt_txt2img_lcm} | "+\
         f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_txt2img_lcm) 
+
+    exif_writer_png(reporting_txt2img_lcm, final_image)
 
     del nsfw_filter_final, feat_ex, pipe_txt2img_lcm, generator, compel, conditioning, image
     clean_ram()
