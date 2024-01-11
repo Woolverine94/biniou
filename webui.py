@@ -174,7 +174,14 @@ def hide_download_llamacpp() :
     return btn_download_file_llamacpp.update(visible=True), download_file_llamacpp.update(visible=False)
 
 def change_model_type_llamacpp(model_llamacpp):
-    return prompt_template_llamacpp.update(value=model_list_llamacpp[model_llamacpp][1]), system_template_llamacpp.update(value=model_list_llamacpp[model_llamacpp][2])
+    try:
+        test_model = model_list_llamacpp[model_llamacpp]
+    except KeyError as ke:
+        test_model = None
+    if (test_model != None):
+        return prompt_template_llamacpp.update(value=model_list_llamacpp[model_llamacpp][1]), system_template_llamacpp.update(value=model_list_llamacpp[model_llamacpp][2])
+    else:
+        return prompt_template_llamacpp.update(value="{prompt}"), system_template_llamacpp.update(value="")
 
 ## Functions specific to llava
 def read_ini_llava(module) :
@@ -761,14 +768,15 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 - Click the <b>Continue</b> button to complete the last reply.
                                 </br>
                                 <b>Models :</b></br>
-                                - You could place llama-cpp compatible .gguf models in the directory ./biniou/models/llamacpp. Restart Biniou to see them in the models list.                                  
+                                - You could place llama-cpp compatible .gguf models in the directory ./biniou/models/llamacpp. Restart Biniou to see them in the models list.</br>
+                                - You can also copy/paste in the <b>Model</b> dropdown menu a HF repo ID (e.g : TheBloke/some_model-GGUF) from <a href='https://huggingface.co/models?sort=trending&search=thebloke+gguf' target='_blank'>this list</a>. You must also set manually prompt and system templates according to the model page.
                                 </div>
                                 """
                             )
                     with gr.Accordion("Settings", open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_llamacpp = gr.Dropdown(choices=list(model_list_llamacpp.keys()), value=list(model_list_llamacpp.keys())[0], label="Model", info="Choose model to use for inference")
+                                model_llamacpp = gr.Dropdown(choices=list(model_list_llamacpp.keys()), value=list(model_list_llamacpp.keys())[0], label="Model", allow_custom_value=True, info="Choose model to use for inference or copy/paste a HF repo id (TheBloke GGUF models only). Manually set prompt and system templates according to model page.")
                             with gr.Column():
                                 max_tokens_llamacpp = gr.Slider(0, 131072, step=16, value=1024, label="Max tokens", info="Maximum number of tokens to generate")
                             with gr.Column():
