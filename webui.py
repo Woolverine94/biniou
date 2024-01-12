@@ -358,9 +358,9 @@ def hide_download_file_img2img():
     
 def change_source_type_img2img(source_type_img2img):
     if source_type_img2img == "image" :
-        return {"source": "upload", "tool": None, "__type__": "update"}
+        return {"source": "upload", "tool": "", "width" : "", "value": None, "__type__": "update"}
     elif source_type_img2img == "sketch" :
-        return {"source": "canvas", "tool": "color-sketch", "__type__": "update"}
+        return {"source": "canvas", "tool": "color-sketch", "width" : 400, "height" : 400,  "__type__": "update"}
 
 def read_ini_img2img(module) :
     content = read_ini(module)
