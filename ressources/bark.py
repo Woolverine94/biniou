@@ -4,7 +4,6 @@ import gradio as gr
 import os
 from transformers import AutoProcessor, BarkModel
 from scipy.io.wavfile import write as write_wav
-import time
 import random
 from ressources.common import *
 
@@ -82,8 +81,7 @@ def music_bark(
     audio_array = pipe_bark.generate(**inputs, do_sample=True)
     audio_array = audio_array.cpu().numpy().squeeze()
     sample_rate = pipe_bark.generation_config.sample_rate
-    timestamp = time.time()
-    savename = f"outputs/{timestamp}.wav"
+    savename = f"outputs/{timestamper()}.wav"
     write_wav(savename, sample_rate, audio_array)
 
     print(f">>>[Bark 🗣️ ]: generated 1 audio file")

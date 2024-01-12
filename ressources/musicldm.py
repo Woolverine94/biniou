@@ -5,7 +5,6 @@ import gradio as gr
 from diffusers import MusicLDMPipeline
 import torch
 import scipy
-import time
 import random
 from ressources.common import *
 from ressources.scheduler import *
@@ -106,9 +105,8 @@ def music_musicldm(
         ).audios
         
         for j in range(len(audio)):
-            timestamp = time.time()
             seed_id = random_seed + i*num_audio_per_prompt_musicldm + j if (seed_musicldm == 0) else seed_musicldm + i*num_audio_per_prompt_musicldm + j
-            savename = f"outputs/{seed_id}_{timestamp}.wav"
+            savename = f"outputs/{seed_id}_{timestamper()}.wav"
             scipy.io.wavfile.write(savename, rate=16000, data=audio[j])
             final_audio.append(savename) 
             final_seed.append(seed_id)

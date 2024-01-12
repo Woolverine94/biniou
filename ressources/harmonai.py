@@ -4,7 +4,6 @@ import gradio as gr
 import os
 from diffusers import DiffusionPipeline
 import scipy.io.wavfile
-import time
 import torch
 import random
 from ressources.common import *
@@ -82,9 +81,8 @@ def music_harmonai(
         ).audios
 
         for j, audio in enumerate(audios):
-            timestamp = time.time()
             seed_id = random_seed + i*batch_size_harmonai + j if (seed_harmonai == 0) else seed_harmonai + i*batch_size_harmonai + j
-            savename = f"outputs/{seed_id}_{timestamp}.wav"
+            savename = f"outputs/{seed_id}_{timestamper()}.wav"
             scipy.io.wavfile.write(savename, pipe_harmonai.unet.config.sample_rate, audio.transpose())
             final_seed.append(seed_id)
 

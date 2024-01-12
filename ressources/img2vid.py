@@ -6,7 +6,6 @@ from diffusers import StableVideoDiffusionPipeline
 from diffusers.utils import export_to_video
 import numpy as np
 import torch
-import time
 import random
 from ressources.scheduler import *
 from ressources.common import *
@@ -131,7 +130,7 @@ def video_img2vid(
 
         timestamp = time.time()
         seed_id = random_seed + i*num_videos_per_prompt_img2vid if (seed_img2vid == 0) else seed_img2vid + i*num_videos_per_prompt_img2vid
-        savename = f"outputs/{seed_id}_{timestamp}.mp4"
+        savename = f"outputs/{seed_id}_{timestamper()}.mp4"
         export_to_video(result, savename, fps=num_fps_img2vid)
         final_seed.append(seed_id)
 

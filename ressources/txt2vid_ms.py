@@ -6,7 +6,6 @@ from diffusers import DiffusionPipeline
 from diffusers.utils import export_to_video
 from compel import Compel
 import torch
-import time
 import random
 import shutil
 from ressources.scheduler import *
@@ -117,9 +116,8 @@ def video_txt2vid_ms(
         ).frames
 
         video_path = export_to_video(video_frames)
-        timestamp = time.time()
         seed_id = random_seed + i if (seed_txt2vid_ms == 0) else seed_txt2vid_ms + i
-        savename = f"outputs/{seed_id}_{timestamp}.mp4"
+        savename = f"outputs/{seed_id}_{timestamper()}.mp4"
         shutil.move(video_path, savename)
         final_seed.append(seed_id)
                     

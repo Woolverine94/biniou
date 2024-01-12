@@ -8,7 +8,6 @@ import imageio
 import ffmpeg
 from diffusers import StableDiffusionInstructPix2PixPipeline
 from diffusers.pipelines.text_to_video_synthesis.pipeline_text_to_video_zero import CrossFrameAttnProcessor
-import time
 import random
 from ressources.scheduler import *
 from ressources.common import *
@@ -148,9 +147,8 @@ def image_vid2vid_ze(
                 image[j] = image_gfpgan_mini(image[j])             
             final_image.append(image[j])
 
-        timestamp = time.time()
         seed_id = random_seed + i if (seed_vid2vid_ze == 0) else seed_vid2vid_ze + i
-        savename = f"outputs/{seed_id}_{timestamp}.mp4"
+        savename = f"outputs/{seed_id}_{timestamper()}.mp4"
         final_seed.append(seed_id)
         final_video = imageio.mimsave(savename, final_image, fps=num_fps_vid2vid_ze)            
 

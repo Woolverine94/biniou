@@ -2,7 +2,6 @@
 # nllb.py
 import gradio as gr
 import os
-import time
 from huggingface_hub import snapshot_download, hf_hub_download
 from transformers import NllbTokenizer, AutoModelForSeq2SeqLM, AutoTokenizer
 from ressources.common import *

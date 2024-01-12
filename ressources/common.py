@@ -58,18 +58,15 @@ def send_input():
     return True
     
 def zipper(content):
-    timestamp = timestamper()
-    savename = f"./.tmp/{timestamp}.zip"
+    savename = f"./.tmp/{timestamper()}.zip"
     with zf.ZipFile(savename, 'w') as myzip:
         for idx, file in enumerate(content):
             file_name=file["name"].replace("\\", "/")
             myzip.write(file["name"], f"{idx}_"+ file_name.split("/")[-1])
-#            myzip.write(file["name"], file_name.split("/")[-1])
     return savename
 
 def zipper_file(content):
-    timestamp = timestamper()
-    savename = f"./.tmp/{timestamp}.zip"
+    savename = f"./.tmp/{timestamper()}.zip"
     with zf.ZipFile(savename, 'w') as myzip:
         file_name=content.replace("\\", "/")
         myzip.write(content, file_name.split("/")[-1])
@@ -213,8 +210,7 @@ def preview_image(step, timestep, latents, pipe):
         image = pipe.numpy_to_pil(image)
 #        for img in enumerate(image):
         for j in range(len(image)):
-            timestamp = timestamper()
-            savename = f"/tmp/gradio/{timestamp}.png"
+            savename = f"/tmp/gradio/{timestamper()}.png"
             image[j].save(savename)
             final_preview.append(savename)
     return final_preview
@@ -270,8 +266,7 @@ def offline_test():
         return True
 
 def write_file(*args) :
-    timestamp = timestamper()
-    savename = f"outputs/{timestamp}.txt"
+    savename = f"outputs/{timestamper()}.txt"
     content = ""
     for idx, data in enumerate(args):
         content += f"{data} \n"
@@ -280,8 +275,7 @@ def write_file(*args) :
     return savename
 
 def write_seeded_file(seed, *args) :
-    timestamp = timestamper()
-    savename = f"outputs/{seed}_{timestamp}.txt"
+    savename = f"outputs/{seed}_{timestamper()}.txt"
     content = ""
     for idx, data in enumerate(args):
         content += f"{data} \n"

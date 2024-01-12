@@ -5,7 +5,6 @@ import os
 from diffusers import ShapEPipeline
 from diffusers.utils import export_to_gif, export_to_obj, export_to_ply
 import torch
-import time
 import random
 import trimesh
 import numpy as np
@@ -129,14 +128,13 @@ def image_txt2shape(
         seed_id = random_seed + i*num_images_per_prompt_txt2shape if (seed_txt2shape == 0) else seed_txt2shape + i*num_images_per_prompt_txt2shape
        
         if output_type_txt2shape=="gif" :
-            timestamp = time.time()
-            savename = f"outputs/{seed_id}_{timestamp}.gif"
+            savename = f"outputs/{seed_id}_{timestamper()}.gif"
             export_to_gif(image[0], savename)
             savename_final.append(savename)
             final_seed.append(seed_id)
        
         else : 
-            timestamp = time.time()
+            timestamp = timestamper()
             savename = f".tmp/{seed_id}_{timestamp}.ply"
             savename_glb = f"outputs/{seed_id}_{timestamp}.glb"
             savename_final = f".tmp/{seed_id}_output.glb" 

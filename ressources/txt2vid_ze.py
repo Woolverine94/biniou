@@ -6,7 +6,6 @@ import imageio
 from diffusers import TextToVideoZeroPipeline
 import numpy as np
 import torch
-import time
 import random
 from ressources.scheduler import *
 from ressources.common import *
@@ -168,9 +167,8 @@ def video_txt2vid_ze(
             if (a < num_frames_txt2vid_ze):
                 a += 1
             elif (a == num_frames_txt2vid_ze):
-                timestamp = time.time()
                 seed_id = random_seed + j*num_videos_per_prompt_txt2vid_ze + b if (seed_txt2vid_ze == 0) else seed_txt2vid_ze + j*num_videos_per_prompt_txt2vid_ze + b
-                savename = f"outputs/{seed_id}_{timestamp}.mp4"
+                savename = f"outputs/{seed_id}_{timestamper()}.mp4"
                 imageio.mimsave(savename, result, fps=num_fps_txt2vid_ze)
                 final_seed.append(seed_id)
                 a = 1

@@ -6,7 +6,6 @@ import torch
 import torchaudio
 from audiocraft.models import MusicGen
 from audiocraft.data.audio import audio_write
-import time
 import random
 from ressources.common import *
 
@@ -81,8 +80,7 @@ def music_musicgen_mel(
             progress=True,
         )
         for idx, one_wav in enumerate(wav):
-            timestamp = time.time()
-            savename = f"outputs/{timestamp}_{idx}"
+            savename = f"outputs/{timestamper()}_{idx}"
             savename_final = savename+ ".wav" 
             audio_write(
                 savename, 

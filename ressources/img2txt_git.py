@@ -4,7 +4,6 @@ import gradio as gr
 import os
 from transformers import AutoProcessor, AutoTokenizer, AutoImageProcessor, AutoModelForCausalLM, BlipForConditionalGeneration, VisionEncoderDecoderModel
 import torch
-import time
 from ressources.common import *
 
 device_label_img2txt_git, model_arch = detect_device()
