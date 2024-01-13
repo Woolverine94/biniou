@@ -7,7 +7,6 @@ import torch
 import scipy
 import random
 from ressources.common import *
-from ressources.scheduler import *
 
 device_label_musicldm, model_arch = detect_device()
 device_musicldm = torch.device(device_label_musicldm)
@@ -65,7 +64,7 @@ def music_musicldm(
         local_files_only=True if offline_test() else None
     )
 
-    pipe_musicldm = get_scheduler(pipe=pipe_musicldm, scheduler=sampler_musicldm)
+    pipe_musicldm = schedulerer(pipe_musicldm, sampler_musicldm)
     pipe_musicldm.enable_attention_slicing("max")
 
     if device_label_musicldm == "cuda" :

@@ -6,7 +6,6 @@ from diffusers import PixArtAlphaPipeline
 # from compel import Compel, ReturnedEmbeddingsType
 import torch
 import random
-from ressources.scheduler import *
 from ressources.gfpgan import *
 # import tomesd
 
@@ -97,7 +96,7 @@ def image_txt2img_paa(
             local_files_only=True if offline_test() else None
         )
     
-    pipe_txt2img_paa = get_scheduler(pipe=pipe_txt2img_paa, scheduler=sampler_txt2img_paa)
+    pipe_txt2img_paa = schedulerer(pipe_txt2img_paa, sampler_txt2img_paa)
     pipe_txt2img_paa.enable_attention_slicing("max")
 #    tomesd.apply_patch(pipe_txt2img_paa, ratio=tkme_txt2img_paa)
     if device_label_txt2img_paa == "cuda" :

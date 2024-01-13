@@ -158,7 +158,7 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
-        pipe_txt2img_lcm = get_scheduler(pipe=pipe_txt2img_lcm, scheduler=sampler_txt2img_lcm)
+        pipe_txt2img_lcm = schedulerer(pipe_txt2img_lcm, sampler_txt2img_lcm)
     pipe_txt2img_lcm.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_txt2img_lcm, ratio=tkme_txt2img_lcm)
     if device_label_txt2img_lcm == "cuda":

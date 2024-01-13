@@ -8,7 +8,6 @@ from compel import Compel
 import torch
 import random
 import shutil
-from ressources.scheduler import *
 from ressources.common import *
 import tomesd
 
@@ -72,7 +71,7 @@ def video_txt2vid_ms(
         resume_download=True,
         local_files_only=True if offline_test() else None         
     )
-    pipe_txt2vid_ms = get_scheduler(pipe=pipe_txt2vid_ms, scheduler=sampler_txt2vid_ms)
+    pipe_txt2vid_ms = schedulerer(pipe_txt2vid_ms, sampler_txt2vid_ms)
     pipe_txt2vid_ms.unet.enable_forward_chunking(chunk_size=1, dim=1)
     if device_label_txt2vid_ms == "cuda" :
         pipe_txt2vid_ms.enable_sequential_cpu_offload()

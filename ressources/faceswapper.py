@@ -8,7 +8,6 @@ import onnxruntime
 import numpy as np
 from PIL import Image
 import random
-from ressources.scheduler import *
 from ressources.common import *
 from ressources.gfpgan import *
 from huggingface_hub import snapshot_download, hf_hub_download
@@ -54,7 +53,7 @@ def image_faceswap(
     source_index_faceswap, 
     target_index_faceswap, 
     use_gfpgan_faceswap, 
-    progress_txt2img_sd=gr.Progress(track_tqdm=True)
+    progress_faceswap=gr.Progress(track_tqdm=True)
     ):
    
     print(">>>[Faceswap 🎭 ]: starting module")

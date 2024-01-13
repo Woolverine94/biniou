@@ -6,7 +6,6 @@ import PIL
 import torch
 from diffusers import PaintByExamplePipeline
 import random
-from ressources.scheduler import *
 from ressources.common import *
 from ressources.gfpgan import *
 import tomesd
@@ -97,7 +96,7 @@ def image_paintbyex(
             local_files_only=True if offline_test() else None
         )
 
-    pipe_paintbyex = get_scheduler(pipe=pipe_paintbyex, scheduler=sampler_paintbyex)
+    pipe_paintbyex = schedulerer(pipe_paintbyex, sampler_paintbyex)
     pipe_paintbyex.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_paintbyex, ratio=tkme_paintbyex)
     if device_label_paintbyex == "cuda" :

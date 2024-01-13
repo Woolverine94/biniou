@@ -6,7 +6,6 @@ from diffusers import AutoPipelineForText2Image
 from compel import Compel
 import torch
 import random
-from ressources.scheduler import *
 from ressources.gfpgan import *
 import tomesd
 
@@ -120,7 +119,7 @@ def image_txt2img_kd(
                 local_files_only=True if offline_test() else None
             )
 
-    pipe_txt2img_kd = get_scheduler(pipe=pipe_txt2img_kd, scheduler=sampler_txt2img_kd)
+    pipe_txt2img_kd = schedulerer(pipe_txt2img_kd, sampler_txt2img_kd)
     pipe_txt2img_kd.enable_attention_slicing("max")
     if device_label_txt2img_kd == "cuda" :
         pipe_txt2img_kd.enable_sequential_cpu_offload()

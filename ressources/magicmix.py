@@ -5,7 +5,6 @@ import os
 import torch
 from diffusers import DiffusionPipeline
 import random
-from ressources.scheduler import *
 from ressources.gfpgan import *
 import tomesd
 
@@ -101,7 +100,7 @@ def image_magicmix(
             local_files_only=True if offline_test() else None
         )
    
-    pipe_magicmix = get_scheduler(pipe=pipe_magicmix, scheduler=sampler_magicmix)
+    pipe_magicmix = schedulerer(pipe_magicmix, sampler_magicmix)
     pipe_magicmix.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_magicmix, ratio=tkme_magicmix)
     if device_label_magicmix == "cuda" :

@@ -8,7 +8,6 @@ from diffusers import AutoPipelineForImage2Image, StableDiffusionXLImg2ImgPipeli
 from huggingface_hub import snapshot_download, hf_hub_download
 from compel import Compel, ReturnedEmbeddingsType
 import random
-from ressources.scheduler import *
 from ressources.common import *
 from ressources.gfpgan import *
 import tomesd
@@ -261,7 +260,7 @@ def image_img2img_ip(
 
 
 #    pipe_img2img_ip.set_ip_adapter_scale(denoising_strength_img2img_ip)    
-    pipe_img2img_ip = get_scheduler(pipe=pipe_img2img_ip, scheduler=sampler_img2img_ip)
+    pipe_img2img_ip = schedulerer(pipe_img2img_ip, sampler_img2img_ip)
 #    pipe_img2img_ip.enable_attention_slicing("max")  
     tomesd.apply_patch(pipe_img2img_ip, ratio=tkme_img2img_ip)
     if device_label_img2img_ip == "cuda" :

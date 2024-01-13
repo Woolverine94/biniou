@@ -32,6 +32,13 @@ SCHEDULER_MAPPING = {
     "Heun":	HeunDiscreteScheduler,
     "LMS": LMSDiscreteScheduler,
     "LCM": LCMScheduler,
+    "DPM++ 2M Karras": DPMSolverMultistepScheduler,
+    "DPM++ 2M SDE": DPMSolverMultistepScheduler,
+    "DPM++ 2M SDE Karras": DPMSolverMultistepScheduler,
+    "DPM++ SDE Karras": DPMSolverSinglestepScheduler,
+    "DPM2 Karras": KDPM2DiscreteScheduler,
+    "DPM2 a Karras": KDPM2AncestralDiscreteScheduler,
+    "LMS Karras": LMSDiscreteScheduler,
 }
 
 SCHEDULER_MAPPING_MUSICLDM = {
@@ -40,11 +47,10 @@ SCHEDULER_MAPPING_MUSICLDM = {
     "PNDM": PNDMScheduler,
 }
 
-def get_scheduler(pipe, scheduler):
+def get_scheduler(pipe, scheduler, **kwargs):
     if scheduler in SCHEDULER_MAPPING:
         SchedulerClass = SCHEDULER_MAPPING[scheduler]
-        pipe.scheduler = SchedulerClass.from_config(pipe.scheduler.config)
+        pipe.scheduler = SchedulerClass.from_config(pipe.scheduler.config, **kwargs)
     else:
         raise ValueError(f"Invalid scheduler name {scheduler}")
-
     return pipe

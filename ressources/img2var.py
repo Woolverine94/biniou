@@ -6,7 +6,6 @@ import PIL
 import torch
 from diffusers import StableDiffusionImageVariationPipeline
 import random
-from ressources.scheduler import *
 from ressources.common import *
 from ressources.gfpgan import *
 import tomesd
@@ -74,7 +73,7 @@ def image_img2var(
         local_files_only=True if offline_test() else None                
         )
 
-    pipe_img2var = get_scheduler(pipe=pipe_img2var, scheduler=sampler_img2var)
+    pipe_img2var = schedulerer(pipe_img2var, sampler_img2var)
     pipe_img2var.enable_attention_slicing("max")  
     tomesd.apply_patch(pipe_img2var, ratio=tkme_img2var)
     if device_label_img2var == "cuda" :

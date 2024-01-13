@@ -9,7 +9,6 @@ import ffmpeg
 from diffusers import StableDiffusionInstructPix2PixPipeline
 from diffusers.pipelines.text_to_video_synthesis.pipeline_text_to_video_zero import CrossFrameAttnProcessor
 import random
-from ressources.scheduler import *
 from ressources.common import *
 from ressources.gfpgan import *
 import tomesd
@@ -102,7 +101,7 @@ def image_vid2vid_ze(
         local_files_only=True if offline_test() else None
     )
     
-    pipe_vid2vid_ze = get_scheduler(pipe=pipe_vid2vid_ze, scheduler=sampler_vid2vid_ze)
+    pipe_vid2vid_ze = schedulerer(pipe_vid2vid_ze, sampler_vid2vid_ze)
     pipe_vid2vid_ze.unet.set_attn_processor(CrossFrameAttnProcessor(batch_size=3))
     tomesd.apply_patch(pipe_vid2vid_ze, ratio=tkme_vid2vid_ze)
     if device_label_vid2vid_ze == "cuda" :

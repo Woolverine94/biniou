@@ -6,7 +6,6 @@ from diffusers import StableDiffusionPipeline, StableDiffusionXLPipeline, AutoPi
 from compel import Compel, ReturnedEmbeddingsType
 import torch
 import random
-from ressources.scheduler import *
 from ressources.gfpgan import *
 import tomesd
 
@@ -167,7 +166,7 @@ def image_txt2img_sd(
                 local_files_only=True if offline_test() else None
             )
 
-    pipe_txt2img_sd = get_scheduler(pipe=pipe_txt2img_sd, scheduler=sampler_txt2img_sd)
+    pipe_txt2img_sd = schedulerer(pipe_txt2img_sd, sampler_txt2img_sd)
 #    if lora_model_txt2img_sd == "":
     pipe_txt2img_sd.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_txt2img_sd, ratio=tkme_txt2img_sd)

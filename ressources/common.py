@@ -17,6 +17,7 @@ import psutil
 import requests as rq
 from diffusers.pipelines.stable_diffusion import StableDiffusionSafetyChecker
 from transformers import AutoFeatureExtractor
+from ressources.scheduler import *
 
 device_torch = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -407,6 +408,22 @@ def exif_writer_png(exif_datas, filename):
         with Image.open(filename[j]) as image:
             image.save(filename[j], pnginfo=datas, encoding="utf-8")
     return
+
+def schedulerer(pipe, scheduler):
+    karras = False
+    sde = False
+    if ('Karras') in scheduler:
+        karras = True
+    if ('DPM++ 2M SDE ' or 'DPM++ 2M SDE Karras') in scheduler:
+        sde = True
+    if karras and not sde:
+        return get_scheduler(pipe=pipe, scheduler=scheduler, use_karras_sigmas=True)
+    elif not karras and sde:
+        return get_scheduler(pipe=pipe, scheduler=scheduler, algorithm_type="sde-dpmsolver++")
+    elif karras and sde:
+        return get_scheduler(pipe=pipe, scheduler=scheduler, use_karras_sigmas=True, algorithm_type="sde-dpmsolver++")
+    elif not karras and not sde:
+        return get_scheduler(pipe=pipe, scheduler=scheduler)
 
 def lora_model_list(model):
     if (('xl' or 'XL' or 'Xl' or 'xL') in model or (model == "segmind/SSD-1B") or (model == "segmind/Segmind-Vega")  or (model == "dataautogpt3/OpenDalleV1.1")):

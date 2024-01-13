@@ -7,7 +7,6 @@ import torch
 from diffusers import StableDiffusionImg2ImgPipeline, StableDiffusionXLImg2ImgPipeline, AutoPipelineForImage2Image
 from compel import Compel, ReturnedEmbeddingsType
 import random
-from ressources.scheduler import *
 from ressources.common import *
 from ressources.gfpgan import *
 import tomesd
@@ -157,7 +156,7 @@ def image_img2img(
                 local_files_only=True if offline_test() else None                
             )
 
-    pipe_img2img = get_scheduler(pipe=pipe_img2img, scheduler=sampler_img2img)
+    pipe_img2img = schedulerer(pipe_img2img, sampler_img2img)
     pipe_img2img.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_img2img, ratio=tkme_img2img)
     if device_label_img2img == "cuda" :

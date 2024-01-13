@@ -9,7 +9,6 @@ import torch
 from diffusers import StableDiffusionInpaintPipeline, StableDiffusionXLInpaintPipeline
 from compel import Compel, ReturnedEmbeddingsType
 import random
-from ressources.scheduler import *
 from ressources.common import *
 from ressources.gfpgan import *
 import tomesd
@@ -154,7 +153,7 @@ def image_outpaint(
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
-    pipe_outpaint = get_scheduler(pipe=pipe_outpaint, scheduler=sampler_outpaint)
+    pipe_outpaint = schedulerer(pipe_outpaint, sampler_outpaint)
     pipe_outpaint.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_outpaint, ratio=tkme_outpaint)
     if device_label_outpaint == "cuda" :

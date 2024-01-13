@@ -7,7 +7,6 @@ from diffusers.utils import export_to_video
 import numpy as np
 import torch
 import random
-from ressources.scheduler import *
 from ressources.common import *
 from ressources.gfpgan import *
 import tomesd
@@ -88,7 +87,7 @@ def video_img2vid(
         local_files_only=True if offline_test() else None
     )
     
-    pipe_img2vid = get_scheduler(pipe=pipe_img2vid, scheduler=sampler_img2vid)
+    pipe_img2vid = schedulerer(pipe_img2vid, sampler_img2vid)
 #    tomesd.apply_patch(pipe_img2vid, ratio=tkme_img2vid)
     if device_label_img2vid == "cuda" :
 #        pipe_img2vid.enable_sequential_cpu_offload()

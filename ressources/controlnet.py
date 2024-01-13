@@ -7,7 +7,6 @@ import torch
 from diffusers import StableDiffusionControlNetPipeline, StableDiffusionXLControlNetPipeline, ControlNetModel
 from compel import Compel, ReturnedEmbeddingsType
 import random
-from ressources.scheduler import *
 from ressources.gfpgan import *
 from controlnet_aux.processor import Processor
 import tomesd
@@ -319,7 +318,7 @@ def image_controlnet(
                 local_files_only=True if offline_test() else None
             )
    
-    pipe_controlnet = get_scheduler(pipe=pipe_controlnet, scheduler=sampler_controlnet)
+    pipe_controlnet = schedulerer(pipe_controlnet, sampler_controlnet)
     pipe_controlnet.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_controlnet, ratio=tkme_controlnet)
     if device_label_controlnet == "cuda" :

@@ -8,7 +8,6 @@ import torch
 import random
 import trimesh
 import numpy as np
-from ressources.scheduler import *
 from ressources.common import *
 
 device_label_txt2shape, model_arch = detect_device()
@@ -91,7 +90,7 @@ def image_txt2shape(
             local_files_only=True if offline_test() else None
         )
     
-    pipe_txt2shape = get_scheduler(pipe=pipe_txt2shape, scheduler=sampler_txt2shape)
+    pipe_txt2shape = schedulerer(pipe_txt2shape, sampler_txt2shape)
     pipe_txt2shape.enable_attention_slicing("max")
     if device_label_txt2shape == "cuda" :
         pipe_txt2shape.enable_sequential_cpu_offload()

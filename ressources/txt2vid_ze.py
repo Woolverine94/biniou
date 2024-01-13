@@ -7,7 +7,6 @@ from diffusers import TextToVideoZeroPipeline
 import numpy as np
 import torch
 import random
-from ressources.scheduler import *
 from ressources.common import *
 from ressources.gfpgan import *
 import tomesd
@@ -86,7 +85,7 @@ def video_txt2vid_ze(
         local_files_only=True if offline_test() else None        
     )
     
-    pipe_txt2vid_ze = get_scheduler(pipe=pipe_txt2vid_ze, scheduler=sampler_txt2vid_ze)
+    pipe_txt2vid_ze = schedulerer(pipe_txt2vid_ze, sampler_txt2vid_ze)
     tomesd.apply_patch(pipe_txt2vid_ze, ratio=tkme_txt2vid_ze)
     if device_label_txt2vid_ze == "cuda" :
         pipe_txt2vid_ze.enable_sequential_cpu_offload()

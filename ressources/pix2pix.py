@@ -7,7 +7,6 @@ import torch
 from diffusers import StableDiffusionInstructPix2PixPipeline
 from compel import Compel
 import random
-from ressources.scheduler import *
 from ressources.common import *
 from ressources.gfpgan import *
 import tomesd
@@ -90,7 +89,7 @@ def image_pix2pix(
         local_files_only=True if offline_test() else None
     )
     
-    pipe_pix2pix = get_scheduler(pipe=pipe_pix2pix, scheduler=sampler_pix2pix)
+    pipe_pix2pix = schedulerer(pipe_pix2pix, sampler_pix2pix)
     pipe_pix2pix.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_pix2pix, ratio=tkme_pix2pix)
     if device_label_pix2pix == "cuda" :
