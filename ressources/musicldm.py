@@ -111,7 +111,7 @@ def music_musicldm(
             final_seed.append(seed_id)
 
     print(f">>>[MusicLDM 🎶 ]: generated {num_prompt_musicldm} batch(es) of {num_audio_per_prompt_musicldm} audio")
-    reporting_musicldm = f">>>[musicldm 🎶 ]: "+\
+    reporting_musicldm = f">>>[MusicLDM 🎶 ]: "+\
         f"Settings : Model={modelid_musicldm} | "+\
         f"Sampler={sampler_musicldm} | "+\
         f"Steps={num_inference_step_musicldm} | "+\
