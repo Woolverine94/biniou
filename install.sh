@@ -1,6 +1,4 @@
 #!/bin/bash
-PYVER=$(python3 --version|sed -ne 's/^.* \([0-9]\)\.\([0-9]*\)\.[0-9]*/\1\2/p')
-
 mkdir -p ./outputs
 mkdir -p ./ssl
 mkdir -p ./models/Audiocraft
@@ -16,8 +14,7 @@ source ./env/bin/activate
 pip install -U pip
 pip install wheel
 pip install torch==2.1.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-pip install https://github.com/abetlen/llama-cpp-python/releases/download/v0.2.24/llama_cpp_python-0.2.24-cp${PYVER}-cp${PYVER}-manylinux_2_17_x86_64.whl
-# FORCE_CMAKE=1 pip install llama-cpp-python==0.2.13
+FORCE_CMAKE=1 pip install llama-cpp-python
 pip install -r requirements.txt
 
 exit 0
