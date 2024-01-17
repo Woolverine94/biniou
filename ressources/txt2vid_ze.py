@@ -3,7 +3,7 @@
 import gradio as gr
 import os
 import imageio
-from diffusers import TextToVideoZeroPipeline
+from diffusers import TextToVideoZeroPipeline, TextToVideoZeroSDXLPipeline
 import numpy as np
 import torch
 import random
@@ -19,6 +19,11 @@ os.makedirs(model_path_txt2vid_ze, exist_ok=True)
 
 model_list_txt2vid_ze = [
     "SG161222/Realistic_Vision_V3.0_VAE",
+    "stabilityai/sdxl-turbo",
+    "dataautogpt3/OpenDalleV1.1",
+    "digiplay/AbsoluteReality_v1.8.1",
+    "segmind/Segmind-Vega",
+    "segmind/SSD-1B",
 #    "ckpt/anything-v4.5-vae-swapped",
     "runwayml/stable-diffusion-v1-5",
     "nitrosocke/Ghibli-Diffusion",
@@ -74,17 +79,34 @@ def video_txt2vid_ze(
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2vid_ze, device_txt2vid_ze, nsfw_filter)
 
-    pipe_txt2vid_ze = TextToVideoZeroPipeline.from_pretrained(
-        modelid_txt2vid_ze, 
-        cache_dir=model_path_txt2vid_ze, 
-        torch_dtype=model_arch, 
-        use_safetensors=True, 
-        safety_checker=nsfw_filter_final, 
-        feature_extractor=feat_ex, 
-        resume_download=True,
-        local_files_only=True if offline_test() else None        
-    )
-    
+    if (('xl' or 'XL' or 'Xl' or 'xL') in modelid_txt2vid_ze or (modelid_txt2vid_ze == "segmind/SSD-1B") or (modelid_txt2vid_ze == "segmind/Segmind-Vega") or (modelid_txt2vid_ze == "dataautogpt3/OpenDalleV1.1")) :
+        is_xl_txt2vid_ze: bool = True
+    else :        
+        is_xl_txt2vid_ze: bool = False
+
+    if (is_xl_txt2vid_ze == True):
+        pipe_txt2vid_ze = TextToVideoZeroSDXLPipeline.from_pretrained(
+            modelid_txt2vid_ze, 
+            cache_dir=model_path_txt2vid_ze, 
+            torch_dtype=model_arch, 
+            use_safetensors=True, 
+            safety_checker=nsfw_filter_final, 
+            feature_extractor=feat_ex, 
+            resume_download=True,
+            local_files_only=True if offline_test() else None
+        )
+    else:
+        pipe_txt2vid_ze = TextToVideoZeroPipeline.from_pretrained(
+            modelid_txt2vid_ze, 
+            cache_dir=model_path_txt2vid_ze, 
+            torch_dtype=model_arch, 
+            use_safetensors=True, 
+            safety_checker=nsfw_filter_final, 
+            feature_extractor=feat_ex, 
+            resume_download=True,
+            local_files_only=True if offline_test() else None
+        )
+
     pipe_txt2vid_ze = schedulerer(pipe_txt2vid_ze, sampler_txt2vid_ze)
     tomesd.apply_patch(pipe_txt2vid_ze, ratio=tkme_txt2vid_ze)
     if device_label_txt2vid_ze == "cuda" :

@@ -284,10 +284,14 @@ def write_seeded_file(seed, *args) :
         savefile.write(content)
     return savename
 
-def set_timestep_vid_ze(numstep) :
-    factor = round(numstep/10)
-    t1 = numstep-(factor+1)
-    t0 = t1-factor
+def set_timestep_vid_ze(numstep, model) :
+    if "turbo" not in model:
+        factor = round(numstep/10)
+        t1 = numstep-(factor+1)
+        t0 = t1-factor
+    else:
+        t0 = numstep - 2
+        t1 = numstep - 1
     return t0, t1
 
 def set_num_beam_groups_img2txt_git(numbeam, numbeam_groups) :

@@ -600,6 +600,16 @@ def read_ini_txt2vid_ze(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), int(content[9]), int(content[10]), int(content[11]), int(content[12]), int(content[13]), int(content[14]), int(content[15]), bool(int(content[16])), float(content[17])
 
+def change_model_type_txt2vid_ze(model_txt2vid_ze):
+    if (model_txt2vid_ze == "stabilityai/sdxl-turbo"):
+        return sampler_txt2vid_ze.update(value="Euler a"), width_txt2vid_ze.update(), height_txt2vid_ze.update(), num_inference_step_txt2vid_ze.update(value=2), guidance_scale_txt2vid_ze.update(value=0.0), negative_prompt_txt2vid_ze.update(interactive=False)
+    elif (model_txt2vid_ze == "segmind/SSD-1B") or (model_txt2vid_ze == "dataautogpt3/OpenDalleV1.1"):
+        return sampler_txt2vid_ze.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2vid_ze.update(), height_txt2vid_ze.update(), num_inference_step_txt2vid_ze.update(value=10), guidance_scale_txt2vid_ze.update(value=7.5), negative_prompt_txt2vid_ze.update(interactive=True)
+    elif (model_txt2vid_ze == "segmind/Segmind-Vega"):
+        return sampler_txt2vid_ze.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2vid_ze.update(), height_txt2vid_ze.update(), num_inference_step_txt2vid_ze.update(value=10), guidance_scale_txt2vid_ze.update(value=9.0), negative_prompt_txt2vid_ze.update(interactive=True)
+    else:
+        return sampler_txt2vid_ze.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2vid_ze.update(), height_txt2vid_ze.update(), num_inference_step_txt2vid_ze.update(value=10), guidance_scale_txt2vid_ze.update(value=7.5), negative_prompt_txt2vid_ze.update(interactive=True)
+
 ## Functions specific to Stable Video Diffusion
 def read_ini_img2vid(module) :
     content = read_ini(module)
@@ -6369,6 +6379,11 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Output(s) : </b>Video</br>
                                 <b>HF model page : </b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
+                                <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>, 
+                                <a href='https://huggingface.co/dataautogpt3/OpenDalleV1.1' target='_blank'>dataautogpt3/OpenDalleV1.1</a>, 
+                                <a href='https://huggingface.co/digiplay/AbsoluteReality_v1.8.1' target='_blank'>digiplay/AbsoluteReality_v1.8.1</a>, 
+                                <a href='https://huggingface.co/segmind/Segmind-Vega' target='_blank'>segmind/Segmind-Vega</a>, 
+                                <a href='https://huggingface.co/segmind/segmind/SSD-1B' target='_blank'>segmind/SSD-1B</a>, 
                                 <a href='https://huggingface.co/runwayml/stable-diffusion-v1-5' target='_blank'>runwayml/stable-diffusion-v1-5</a>, 
                                 <a href='https://huggingface.co/nitrosocke/Ghibli-Diffusion' target='_blank'>nitrosocke/Ghibli-Diffusion</a></br>
                                 """
@@ -6429,7 +6444,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     timestep_t0_txt2vid_ze = gr.Slider(0, 100, step=1, value=7, label="Timestep t0", interactive=False)
                                 with gr.Column():
                                     timestep_t1_txt2vid_ze = gr.Slider(1, 100, step=1, value=8, label="Timestep t1", interactive=False)
-                                    num_inference_step_txt2vid_ze.change(set_timestep_vid_ze, inputs=num_inference_step_txt2vid_ze, outputs=[timestep_t0_txt2vid_ze, timestep_t1_txt2vid_ze])
+                                    num_inference_step_txt2vid_ze.change(set_timestep_vid_ze, inputs=[num_inference_step_txt2vid_ze, model_txt2vid_ze], outputs=[timestep_t0_txt2vid_ze, timestep_t1_txt2vid_ze])
                         with gr.Row():
                             with gr.Column():    
                                 use_gfpgan_txt2vid_ze = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
@@ -6498,6 +6513,18 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Row():
                                 with gr.Column():
                                     negative_prompt_txt2vid_ze = gr.Textbox(lines=4, max_lines=4, label="Negative Prompt", info="Describe what you DO NOT want in your video", placeholder="out of frame, ugly")
+                        model_txt2vid_ze.change(
+                            fn=change_model_type_txt2vid_ze, 
+                            inputs=[model_txt2vid_ze],
+                            outputs=[
+                                sampler_txt2vid_ze,
+                                width_txt2vid_ze,
+                                height_txt2vid_ze,
+                                num_inference_step_txt2vid_ze,
+                                guidance_scale_txt2vid_ze,
+                                negative_prompt_txt2vid_ze,
+                            ]
+                        )
                         with gr.Column():
                             out_txt2vid_ze = gr.Video(label="Generated video", height=400, interactive=False)
                     with gr.Row():
