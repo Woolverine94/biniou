@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-01-17** : 🔥 ***Adding TextToVideoZeroSDXLPipeline*** 🔥 : Text2Video-Zero module could now generate content using Stable Diffusion SDXL models. Please note that even if SDXL-turbo has been added, it mostly produce unrelated frames (but it render them pretty fast !).
+
   * 🆕 **2024-01-13** : 🔥 ***Karras and SDE schedulers*** 🔥 : Adding missing Karras and SDE schedulers to the sampler list. All schedulers supported by diffusers are now usable inside biniou, in all concerned modules. 
 
   * 🆕 **2024-01-11** : 🔥 ***New Chatbot module feature*** 🔥 : You can now use most of [TheBloke GGUF models](https://huggingface.co/models?sort=trending&search=thebloke+gguf) as models for the chatbot. You only have to copy/paste the repo ID (e.g. TheBloke/some_model-GGUF) in the model dropdown menu field and set prompt and system template following indications of the model page. This adds 1000+ potentials models to the chatbot module ! 
