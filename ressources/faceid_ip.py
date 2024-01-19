@@ -111,30 +111,6 @@ def image_faceid_ip(
     else :
         is_xl_faceid_ip: bool = False     
 
-    ip_ckpt_faceid_ip = f"{model_path_ipa_faceid_ip}/ip-adapter-faceid_sdxl.bin" if is_xl_faceid_ip else f"{model_path_ipa_faceid_ip}/ip-adapter-faceid_sd15.bin"
-
-#    if which_os() == "win32":
-    if (is_xl_faceid_ip == True):
-        hf_hub_download(
-            repo_id="h94/IP-Adapter-FaceID", 
-            filename="ip-adapter-faceid_sdxl.bin",
-            repo_type="model",
-            local_dir=model_path_ipa_faceid_ip,
-            local_dir_use_symlinks=False,
-            resume_download=True,
-            local_files_only=True if offline_test() else None
-        )
-    else:
-        hf_hub_download(
-            repo_id="h94/IP-Adapter-FaceID", 
-            filename="ip-adapter-faceid_sd15.bin",
-            repo_type="model",
-            local_dir=model_path_ipa_faceid_ip,
-            local_dir_use_symlinks=False,
-            resume_download=True,
-            local_files_only=True if offline_test() else None
-        )
-
     if (is_xlturbo_faceid_ip == True) :
         if modelid_faceid_ip[0:9] == "./models/" :
             pipe_faceid_ip = AutoPipelineForText2Image.from_single_file(
@@ -202,57 +178,22 @@ def image_faceid_ip(
                 local_files_only=True if offline_test() else None
             )
 
-#    if (is_xl_faceid_ip == True) or (is_xlturbo_faceid_ip == True):
-
-#    if (which_os() == "win32"):
-#        if (is_xl_faceid_ip == True):
-#            pipe_faceid_ip.load_ip_adapter(
-#                model_path_ipa_faceid_ip,
-#                subfolder="",
-#                weight_name="ip-adapter-faceid_sdxl.bin",
-#                torch_dtype=model_arch,
-#                use_safetensors=True,
-#                resume_download=True,
-#                local_files_only=True if offline_test() else None
-#            )
-#        else:
-#            pipe_faceid_ip.load_ip_adapter(
-#                model_path_ipa_faceid_ip,
-#                subfolder="",
-#                weight_name="ip-adapter-faceid_sd15.bin",
-#                torch_dtype=model_arch,
-#                use_safetensors=True, 
-#                resume_download=True,
-#                local_files_only=True if offline_test() else None
-#            )
-#    else:
-#        if (is_xl_faceid_ip == True):
-#            pipe_faceid_ip.load_ip_adapter(
-#                "h94/IP-Adapter-FaceID", 
-#                cache_dir=model_path_ipa_faceid_ip,
-#                subfolder="",
-#                weight_name="ip-adapter-faceid_sdxl.bin",
-#                torch_dtype=model_arch,
-#                use_safetensors=True,
-#                resume_download=True,
-#                local_files_only=True if offline_test() else None
-#            )
-#        else:
-#            pipe_faceid_ip.load_ip_adapter(
-#                "h94/IP-Adapter-FaceID",
-#                cache_dir=model_path_ipa_faceid_ip,
-#                subfolder="",
-#                weight_name="ip-adapter-faceid_sd15.bin",
-#                torch_dtype=model_arch,
-#                use_safetensors=True, 
-#                resume_download=True,
-#                local_files_only=True if offline_test() else None
-#            )
-
         if (is_xl_faceid_ip == True):
-            pipe_faceid_ip.load_ip_adapter_face_id("h94/IP-Adapter-FaceID", weight_name="ip-adapter-faceid_sdxl.bin")
+            pipe_faceid_ip.load_ip_adapter_face_id(
+                "h94/IP-Adapter-FaceID",
+                cache_dir=model_path_ipa_faceid_ip,
+                weight_name="ip-adapter-faceid_sdxl.bin",
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
         else:
-            pipe_faceid_ip.load_ip_adapter_face_id("h94/IP-Adapter-FaceID", weight_name="ip-adapter-faceid_sd15.bin")
+            pipe_faceid_ip.load_ip_adapter_face_id(
+                "h94/IP-Adapter-FaceID",
+                cache_dir=model_path_ipa_faceid_ip,
+                weight_name="ip-adapter-faceid_sd15.bin",
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
 
     pipe_faceid_ip.set_ip_adapter_scale(denoising_strength_faceid_ip)
     pipe_faceid_ip = schedulerer(pipe_faceid_ip, sampler_faceid_ip)
@@ -288,8 +229,6 @@ def image_faceid_ip(
             )
         pipe_faceid_ip.fuse_lora(lora_scale=lora_weight_faceid_ip)
 #        pipe_faceid_ip.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_faceid_ip)])
-
-#    ip_model_faceid_ip = IPAdapterFaceID(pipe_faceid_ip, ip_ckpt_faceid_ip, device_faceid_ip)
 
     if seed_faceid_ip == 0:
         random_seed = torch.randint(0, 10000000000, (1,))
