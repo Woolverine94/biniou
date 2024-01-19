@@ -556,7 +556,7 @@ def change_model_type_faceid_ip(model_faceid_ip):
     elif (model_faceid_ip == "segmind/Segmind-Vega"):
         return sampler_faceid_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=10), guidance_scale_faceid_ip.update(value=9.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), negative_prompt_faceid_ip.update(interactive=True)
     else:
-        return sampler_faceid_ip.update(value="DDIM", width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), negative_prompt_faceid_ip.update(interactive=True)
+        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), negative_prompt_faceid_ip.update(interactive=True)
 
 def change_lora_model_faceid_ip(model, lora_model, prompt):
     if lora_model != "":
