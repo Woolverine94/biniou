@@ -291,7 +291,8 @@ def image_img2img_ip(
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
-        pipe_img2img_ip.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_img2img_ip)])
+        pipe_img2img_ip.fuse_lora(lora_scale=lora_weight_img2img_ip)
+#        pipe_img2img_ip.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_img2img_ip)])
 
     if seed_img2img_ip == 0:
         random_seed = torch.randint(0, 10000000000, (1,))

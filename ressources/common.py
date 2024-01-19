@@ -178,9 +178,9 @@ def scale_image(im, size):
     max_size = int(size)
     if (im != None):
         type_image = type(im)
-        if (type_image == str) :
+        if (type_image == str):
             image_out = Image.open(im)
-        else :
+        else:
             imbis = re.sub('^data:image/.+;base64,', '', im["image"])
             image_out = Image.open(BytesIO(base64.b64decode(imbis)))
         if image_out.size[0] > max_size or image_out.size[1] > max_size :
@@ -188,7 +188,21 @@ def scale_image(im, size):
             image_out = image_out.convert("RGB").resize(dim)
         return (image_out.size[0], image_out.size[1], image_out)
     return (max_size, max_size, "")
-        
+
+def scale_image_any(im, size):
+    max_size = int(size)
+    if (im != None):
+        type_image = type(im)
+        if (type_image == str):
+            image_out = Image.open(im)
+        else:
+            imbis = re.sub('^data:image/.+;base64,', '', im["image"])
+            image_out = Image.open(BytesIO(base64.b64decode(imbis)))
+        dim = correct_size(image_out.size[0], image_out.size[1], max_size)            
+        image_out = image_out.convert("RGB").resize(dim)
+        return (image_out)
+    return ""
+
 def scale_resrgan_change(scale_resrgan):
     if (RESRGAN_SCALES[scale_resrgan] < 3):
         scale_model_resrgan: str = "RealESRGAN_x2.pth"

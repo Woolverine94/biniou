@@ -199,7 +199,8 @@ def image_txt2img_sd(
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
-        pipe_txt2img_sd.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_txt2img_sd)])
+        pipe_txt2img_sd.fuse_lora(lora_scale=lora_weight_txt2img_sd)
+#        pipe_txt2img_sd.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_txt2img_sd)])
 
     if seed_txt2img_sd == 0:
         random_seed = random.randrange(0, 10000000000, 1)

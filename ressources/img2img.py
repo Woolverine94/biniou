@@ -187,7 +187,8 @@ def image_img2img(
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
-        pipe_img2img.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_img2img)])
+        pipe_img2img.fuse_lora(lora_scale=lora_weight_img2img)
+#        pipe_img2img.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_img2img)])
     
     if seed_img2img == 0:
         random_seed = torch.randint(0, 10000000000, (1,))

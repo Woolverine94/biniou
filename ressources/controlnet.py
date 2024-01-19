@@ -360,7 +360,8 @@ def image_controlnet(
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
-        pipe_controlnet.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_controlnet)])
+        pipe_controlnet.fuse_lora(lora_scale=lora_weight_controlnet)
+#        pipe_controlnet.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_controlnet)])
 
     if seed_controlnet == 0:
         random_seed = random.randrange(0, 10000000000, 1)

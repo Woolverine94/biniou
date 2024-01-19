@@ -19,6 +19,7 @@ from .inpaint import *
 from .paintbyex import *
 from .outpaint import *
 from .controlnet import *
+from .faceid_ip import *
 from .faceswapper import *
 from .r_esrgan import *
 from .gfpgan import *
