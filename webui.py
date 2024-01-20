@@ -5073,7 +5073,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 """
                                 <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
                                 <b>Module : </b>IP-Adapter Faceid</br>
-                                <b>Function : </b>Generate images portrait using the face taken from the input image from a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a>, <a href='https://huggingface.co/h94/IP-Adapter-FaceID' target='_blank'>IP-Adapter FaceID</a> and <a href='https://github.com/deepinsight/insightface' target='_blank'>Insight face</a>.</br>
+                                <b>Function : </b>Generate portraits using the face taken from the input image, a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a>, <a href='https://huggingface.co/h94/IP-Adapter-FaceID' target='_blank'>IP-Adapter FaceID</a> and <a href='https://github.com/deepinsight/insightface' target='_blank'>Insight face</a>.</br>
                                 <b>Input(s) : </b>Input image, prompt, negative prompt</br>
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF model page : </b>
