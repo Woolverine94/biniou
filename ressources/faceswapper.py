@@ -57,7 +57,7 @@ def image_faceswap(
     ):
    
     print(">>>[Faceswap 🎭 ]: starting module")
-   
+
     if source_index_faceswap == "":
         source_index_faceswap = "0"
     if target_index_faceswap == "":
@@ -67,8 +67,8 @@ def image_faceswap(
     modelid_faceswap = download_model(modelid_faceswap)
     source_img = cv2.imread(img_source_faceswap)
     target_img = cv2.imread(img_target_faceswap)
-    providers = onnxruntime.get_available_providers()
-    face_analyser = insightface.app.FaceAnalysis(name="buffalo_l", root=model_path_faceswap, providers=providers)
+#    providers = onnxruntime.get_available_providers()
+    face_analyser = insightface.app.FaceAnalysis(name="buffalo_l", root=model_path_faceswap, providers=['CUDAExecutionProvider', 'CPUExecutionProvider'])
     face_analyser.prepare(ctx_id=0, det_size=(320, 320))
     face_swapper = insightface.model_zoo.get_model(model_path)
     target_analyze = face_analyser.get(cv2.cvtColor(target_img, cv2.COLOR_RGB2BGR))
@@ -108,7 +108,8 @@ def image_faceswap(
 
     exif_writer_png(reporting_faceswap, final_image)
 
-    del source_img, target_img, providers, face_analyser, face_swapper, target_analyze, target_faces, source_analyze, source_faces, temp_frame    
+#    del source_img, target_img, providers, face_analyser, face_swapper, target_analyze, target_faces, source_analyze, source_faces, temp_frame
+    del source_img, target_img, face_analyser, face_swapper, target_analyze, target_faces, source_analyze, source_faces, temp_frame
     clean_ram()
 
     print(f">>>[Faceswap 🎭 ]: leaving module")

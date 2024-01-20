@@ -5073,7 +5073,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 """
                                 <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
                                 <b>Module : </b>IP-Adapter Faceid</br>
-                                <b>Function : </b>Generate portraits using the face taken from the input image, a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a>, <a href='https://huggingface.co/h94/IP-Adapter-FaceID' target='_blank'>IP-Adapter FaceID</a> and <a href='https://github.com/deepinsight/insightface' target='_blank'>Insight face</a>.</br>
+                                <b>Function : </b>Generate images portrait using the face taken from the input image from a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a>, <a href='https://huggingface.co/h94/IP-Adapter-FaceID' target='_blank'>IP-Adapter FaceID</a> and <a href='https://github.com/deepinsight/insightface' target='_blank'>Insight face</a>.</br>
                                 <b>Input(s) : </b>Input image, prompt, negative prompt</br>
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF model page : </b>
@@ -5388,13 +5388,15 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             use_gfpgan_faceswap.value = readcfg_faceswap[3]
                     with gr.Row():
                         with gr.Column():
-                             img_source_faceswap = gr.Image(label="Source image", height=400, type="filepath")
-                             with gr.Row():
-                                 source_index_faceswap = gr.Textbox(value=0, lines=1, label="Source index", info="Use a comma separated list of faces to export to target (numbers from left to right)")
+                            img_source_faceswap = gr.Image(label="Source image", height=400, type="filepath")
+                            scale_preview_faceswap = gr.Number(value=512, visible=False)
+                            img_source_faceswap.upload(fn=scale_image_any, inputs=[img_source_faceswap, scale_preview_faceswap], outputs=[img_source_faceswap])
+                            with gr.Row():
+                                source_index_faceswap = gr.Textbox(value=0, lines=1, label="Source index", info="Use a comma separated list of faces to export to target (numbers from left to right)")
                         with gr.Column():
                              img_target_faceswap = gr.Image(label="Target image", type="filepath", height=400)
                              gs_img_target_faceswap = gr.Image(type="pil", visible=False)
-                             img_target_faceswap.change(image_upload_event, inputs=img_target_faceswap, outputs=[width_faceswap, height_faceswap])                             
+                             img_target_faceswap.change(image_upload_event, inputs=img_target_faceswap, outputs=[width_faceswap, height_faceswap])
                              with gr.Row():
                                  target_index_faceswap = gr.Textbox(value=0, lines=1, label="Target index", info="Use a comma separated list of faces to replace in target (numbers from left to right)")                             
                         with gr.Column():
