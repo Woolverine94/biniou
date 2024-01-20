@@ -16,7 +16,7 @@
 
 ## Updates
 
-  * 🆕 **2024-01-19** : 🔥 ***New image module : IP-Adapter FaceID*** 🔥 : This module will allow you to extract a face from a single input image and use it as an adapter for your output image. You can see it as an quick'n'easy poor man's replacement for a Dreambooth or LoRA model. 
+  * 🆕 **2024-01-19** : 🔥 ***New image module : IP-Adapter FaceID*** 🔥 : This module will allow you to extract a face from a single input image and use it as an adapter for your output image. You can see it as a quick'n'easy poor man's replacement for a Dreambooth or LoRA model. 
 
   * 🆕 **2024-01-18** : 🔥 ***New model for Chatbot module*** 🔥 : Adding model [mlabonne/NeuralBeagle14-7B](https://huggingface.co/mlabonne/NeuralBeagle14-7B) to the Chatbot module. This model, which is a combination of merging models and DPO fine-tuning seems to open a new path for optimizing 7B models and score an honorable 74.74 on the [Open LLM leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard).
 
@@ -70,6 +70,7 @@
   - [Fantasy Studio Paint by Example module](https://github.com/Woolverine94/biniou/wiki/Paint-by-Example) (require 16GB+ RAM)
   - [Stable Diffusion Outpaint module](https://github.com/Woolverine94/biniou/wiki/outpaint) (require 16GB+ RAM)
   - [Stable Diffusion ControlNet module](https://github.com/Woolverine94/biniou/wiki/ControlNet)
+  - [IP-Adapter FaceID module](https://github.com/Woolverine94/biniou/wiki/IP%E2%80%90Adapter-FaceID)
   - [Insight Face faceswapping module](https://github.com/Woolverine94/biniou/wiki/Insight-Face-faceswapping)
   - [Real ESRGAN upscaler module](https://github.com/Woolverine94/biniou/wiki/Real-ESRGAN-upscaler)
   - [GFPGAN face restoration module](https://github.com/Woolverine94/biniou/wiki/GFPGAN-face-restoration)
