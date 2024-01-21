@@ -231,10 +231,13 @@ def image_faceid_ip(
 #        pipe_faceid_ip.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_faceid_ip)])
 
     if seed_faceid_ip == 0:
-        random_seed = torch.randint(0, 10000000000, (1,))
-        generator = torch.manual_seed(random_seed)
+        random_seed = random.randrange(0, 10000000000, 1)
+        final_seed = random_seed
     else:
-        generator = torch.manual_seed(seed_faceid_ip)
+        final_seed = seed_faceid_ip
+    generator = []
+    for k in range(num_prompt_faceid_ip):
+        generator.append([torch.Generator(device_faceid_ip).manual_seed(final_seed + (k*num_images_per_prompt_faceid_ip) + l ) for l in range(num_images_per_prompt_faceid_ip)])
 
     prompt_faceid_ip = str(prompt_faceid_ip)
     negative_prompt_faceid_ip = str(negative_prompt_faceid_ip)
@@ -262,7 +265,7 @@ def image_faceid_ip(
     faceid_embeds_faceid_ip = face_extractor(img_faceid_ip)
 
     final_image = []
-
+    final_seed = []
     for i in range (num_prompt_faceid_ip):
         if (is_xlturbo_faceid_ip == True) :
             image = pipe_faceid_ip(
@@ -274,7 +277,7 @@ def image_faceid_ip(
                 num_inference_steps=num_inference_step_faceid_ip,
                 height=height_faceid_ip,
                 width=width_faceid_ip,
-                generator = generator,
+                generator = generator[i],
                 callback_on_step_end=check_faceid_ip, 
                 callback_on_step_end_tensor_inputs=['latents'], 
             ).images
@@ -293,7 +296,7 @@ def image_faceid_ip(
                 num_inference_steps=num_inference_step_faceid_ip,
                 height=height_faceid_ip,
                 width=width_faceid_ip,
-                generator = generator,
+                generator = generator[i],
                 callback_on_step_end=check_faceid_ip, 
                 callback_on_step_end_tensor_inputs=['latents'], 
             ).images            
@@ -308,17 +311,19 @@ def image_faceid_ip(
                 num_inference_steps=num_inference_step_faceid_ip,
                 height=height_faceid_ip,
                 width=width_faceid_ip,
-                generator = generator,
+                generator = generator[i],
                 callback_on_step_end=check_faceid_ip, 
                 callback_on_step_end_tensor_inputs=['latents'], 
             ).images        
 
         for j in range(len(image)):
-            savename = f"outputs/{timestamper()}.png"
-            if use_gfpgan_faceid_ip == True :
-                image[j] = image_gfpgan_mini(image[j])             
+            seed_id = random_seed + i*num_images_per_prompt_faceid_ip + j if (seed_faceid_ip == 0) else seed_faceid_ip + i*num_images_per_prompt_faceid_ip + j
+            savename = f"outputs/{seed_id}_{timestamper()}.png"
+            if use_gfpgan_faceid_ip == True:
+                image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
             final_image.append(savename)
+            final_seed.append(seed_id)
 
     print(f">>>[IP-Adapter 🖌️ ]: generated {num_prompt_faceid_ip} batch(es) of {num_images_per_prompt_faceid_ip}")
     reporting_faceid_ip = f">>>[IP-Adapter 🖌️ ]: "+\
@@ -335,7 +340,8 @@ def image_faceid_ip(
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Denoising strength={denoising_strength_faceid_ip} | "+\
         f"Prompt={prompt_faceid_ip} | "+\
-        f"Negative prompt={negative_prompt_faceid_ip}"
+        f"Negative prompt={negative_prompt_faceid_ip}"+\
+        f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_faceid_ip)         
 
     exif_writer_png(reporting_faceid_ip, final_image)
