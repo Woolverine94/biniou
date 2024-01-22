@@ -33,6 +33,7 @@ model_list_txt2img_sd_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
     "stabilityai/sd-turbo", 
     "stabilityai/sdxl-turbo", 
+    "thibaud/sdxl_dpo_turbo",
     "dataautogpt3/OpenDalleV1.1",
     "digiplay/AbsoluteReality_v1.8.1",
     "segmind/Segmind-Vega",
@@ -87,7 +88,7 @@ def image_txt2img_sd(
     global pipe_txt2img_sd
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2img_sd, device_txt2img_sd, nsfw_filter)
 
-    if (modelid_txt2img_sd == "stabilityai/sdxl-turbo") or (modelid_txt2img_sd == "stabilityai/sd-turbo"):
+    if ("turbo" in modelid_txt2img_sd):
         is_xlturbo_txt2img_sd: bool = True
     else :
         is_xlturbo_txt2img_sd: bool = False
@@ -120,7 +121,7 @@ def image_txt2img_sd(
                 feature_extractor=feat_ex,
                 resume_download=True,
                 local_files_only=True if offline_test() else None
-            )       
+            )
     elif (is_xl_txt2img_sd == True) :
         if modelid_txt2img_sd[0:9] == "./models/" :
             pipe_txt2img_sd = StableDiffusionXLPipeline.from_single_file(

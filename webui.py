@@ -254,6 +254,8 @@ def hide_download_file_txt2img_sd():
 def change_model_type_txt2img_sd(model_txt2img_sd):
     if (model_txt2img_sd == "stabilityai/sdxl-turbo"):
         return sampler_txt2img_sd.update(value="Euler a"), width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=False)
+    if (model_txt2img_sd == "thibaud/sdxl_dpo_turbo"):
+        return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=2), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=False)
     elif (model_txt2img_sd == "stabilityai/sd-turbo"):
         return sampler_txt2img_sd.update(value="Euler a"), width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=False), negative_prompt_txt2img_sd.update(interactive=False)
     elif (model_txt2img_sd == "segmind/SSD-1B") or (model_txt2img_sd == "stabilityai/stable-diffusion-xl-base-1.0") or (model_txt2img_sd == "dataautogpt3/OpenDalleV1.1"):
