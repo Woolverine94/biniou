@@ -16,13 +16,13 @@
 
 ## Updates
 
+  * 🆕 **2024-01-23** : ***New model for Stable Diffusion-based modules*** : Adding [thibaud/sdxl_dpo_turbo](https://huggingface.co/thibaud/sdxl_dpo_turbo) to Stable Diffusion, img2img and ControlNet module. This interesting model is a merge between SDXL-turbo and SDXL-DPO, the latter being a flavor of SDXL with Direct Preference Optimization training. 
+
   * 🆕 **2024-01-19** : 🔥 ***New image module : IP-Adapter FaceID*** 🔥 : This module will allow you to extract a face from a single input image and use it as an adapter for your output image. You can see it as a quick'n'easy poor man's replacement for a Dreambooth or LoRA model. 
 
   * 🆕 **2024-01-18** : 🔥 ***New model for Chatbot module*** 🔥 : Adding model [mlabonne/NeuralBeagle14-7B](https://huggingface.co/mlabonne/NeuralBeagle14-7B) to the Chatbot module. This model, which is a combination of merging models and DPO fine-tuning seems to open a new path for optimizing 7B models and score an honorable 74.74 on the [Open LLM leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard).
 
   * 🆕 **2024-01-17** : 🔥 ***Adding TextToVideoZeroSDXLPipeline*** 🔥 : Text2Video-Zero module could now generate content using Stable Diffusion SDXL models. Please note that even if SDXL-turbo has been added, it mostly produce unrelated frames (but it render them pretty fast !).
-
-  * 🆕 **2024-01-13** : 🔥 ***Karras and SDE schedulers*** 🔥 : Adding missing Karras and SDE schedulers to the sampler list. All schedulers supported by diffusers are now usable inside biniou, in all concerned modules. 
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
