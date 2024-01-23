@@ -254,7 +254,7 @@ def hide_download_file_txt2img_sd():
 def change_model_type_txt2img_sd(model_txt2img_sd):
     if (model_txt2img_sd == "stabilityai/sdxl-turbo"):
         return sampler_txt2img_sd.update(value="Euler a"), width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=False)
-    if (model_txt2img_sd == "thibaud/sdxl_dpo_turbo"):
+    elif (model_txt2img_sd == "thibaud/sdxl_dpo_turbo"):
         return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=2), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=False)
     elif (model_txt2img_sd == "stabilityai/sd-turbo"):
         return sampler_txt2img_sd.update(value="Euler a"), width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=False), negative_prompt_txt2img_sd.update(interactive=False)
@@ -373,6 +373,8 @@ def read_ini_img2img(module) :
 def change_model_type_img2img(model_img2img):
     if (model_img2img == "stabilityai/sdxl-turbo"):
         return sampler_img2img.update(value="Euler a"), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), negative_prompt_img2img.update(interactive=False)
+    elif (model_img2img == "thibaud/sdxl_dpo_turbo"):
+        return sampler_img2img.update(value="UniPC"), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), negative_prompt_img2img.update(interactive=False)
     elif (model_img2img == "stabilityai/sd-turbo"):
         return sampler_img2img.update(value="Euler a"), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=False), negative_prompt_img2img.update(interactive=False)
     elif (model_img2img == "segmind/SSD-1B") or (model_img2img == "stabilityai/stable-diffusion-xl-refiner-1.0") or (model_img2img == "dataautogpt3/OpenDalleV1.1"):
@@ -409,6 +411,8 @@ def read_ini_img2img_ip(module) :
 def change_model_type_img2img_ip(model_img2img_ip):
     if (model_img2img_ip == "stabilityai/sdxl-turbo"):
         return sampler_img2img_ip.update(value="Euler a"), width_img2img_ip.update(value=512), height_img2img_ip.update(value=512), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), negative_prompt_img2img_ip.update(interactive=False)
+#    elif (model_img2img_ip == "thibaud/sdxl_dpo_turbo"):
+#        return sampler_img2img_ip.update(value="UniPC"), width_img2img_ip.update(value=512), height_img2img_ip.update(value=512), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), negative_prompt_img2img_ip.update(interactive=False)
     elif (model_img2img_ip == "stabilityai/sd-turbo"):
         return sampler_img2img_ip.update(value="Euler a"), width_img2img_ip.update(value=512), height_img2img_ip.update(value=512), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=False), negative_prompt_img2img_ip.update(interactive=False)
     elif (model_img2img_ip == "segmind/SSD-1B") or (model_img2img_ip == "stabilityai/stable-diffusion-xl-refiner-1.0") or (model_img2img_ip == "dataautogpt3/OpenDalleV1.1"):
@@ -516,6 +520,8 @@ def read_ini_controlnet(module) :
 def change_model_type_controlnet(model_controlnet):
     if (model_controlnet == "stabilityai/sdxl-turbo"):
         return sampler_controlnet.update(value="Euler a"), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=1), guidance_scale_controlnet.update(value=0.0), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), negative_prompt_controlnet.update(interactive=False), img_preview_controlnet.update(value=None), gs_img_preview_controlnet.update(value=None)
+    elif (model_controlnet == "thibaud/sdxl_dpo_turbo"):
+        return sampler_controlnet.update(value="UniPC"), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=2), guidance_scale_controlnet.update(value=0.0), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), negative_prompt_controlnet.update(interactive=False), img_preview_controlnet.update(value=None), gs_img_preview_controlnet.update(value=None)
     elif (model_controlnet == "stabilityai/sd-turbo"):
         return sampler_controlnet.update(value="Euler a"), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=1), guidance_scale_controlnet.update(value=0.0), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=False), negative_prompt_controlnet.update(interactive=False), img_preview_controlnet.update(value=None), gs_img_preview_controlnet.update(value=None)
     elif (model_controlnet == "segmind/SSD-1B") or (model_controlnet == "stabilityai/stable-diffusion-xl-base-1.0") or (model_controlnet == "dataautogpt3/OpenDalleV1.1"):
@@ -551,6 +557,8 @@ def read_ini_faceid_ip(module) :
 def change_model_type_faceid_ip(model_faceid_ip):
     if (model_faceid_ip == "stabilityai/sdxl-turbo"):
         return sampler_faceid_ip.update(value="Euler a"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), negative_prompt_faceid_ip.update(interactive=False)
+#    elif (model_faceid_ip == "thibaud/sdxl_dpo_turbo"):
+#        return sampler_faceid_ip.update(value="UniPC"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), negative_prompt_faceid_ip.update(interactive=False)
     elif (model_faceid_ip == "stabilityai/sd-turbo"):
         return sampler_faceid_ip.update(value="Euler a"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=False), negative_prompt_faceid_ip.update(interactive=False)
     elif (model_faceid_ip == "segmind/SSD-1B") or (model_faceid_ip == "stabilityai/stable-diffusion-xl-refiner-1.0") or (model_faceid_ip == "dataautogpt3/OpenDalleV1.1"):

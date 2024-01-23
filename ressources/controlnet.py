@@ -28,6 +28,7 @@ model_list_controlnet_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
 #    "stabilityai/sd-turbo",
     "stabilityai/sdxl-turbo",
+    "thibaud/sdxl_dpo_turbo",
     "dataautogpt3/OpenDalleV1.1",
     "digiplay/AbsoluteReality_v1.8.1",
     "segmind/Segmind-Vega",
@@ -273,10 +274,10 @@ def image_controlnet(
     start_controlnet = float(start_controlnet)
     stop_controlnet = float(stop_controlnet)
 
-    if (modelid_controlnet == "stabilityai/sdxl-turbo") or  (modelid_controlnet == "stabilityai/sd-turbo"):
-        is_xlturbo_controlnet: bool = True
+    if ("turbo" in modelid_controlnet):
+        is_turbo_controlnet: bool = True
     else :
-        is_xlturbo_controlnet: bool = False
+        is_turbo_controlnet: bool = False
 
     if (('xl' or 'XL' or 'Xl' or 'xL') in modelid_controlnet or (modelid_controlnet == "segmind/SSD-1B") or (modelid_controlnet == "segmind/Segmind-Vega") or (modelid_controlnet == "dataautogpt3/OpenDalleV1.1")):
         is_xl_controlnet: bool = True
@@ -372,7 +373,7 @@ def image_controlnet(
     for k in range(num_prompt_controlnet):
         generator.append([torch.Generator(device_controlnet).manual_seed(final_seed + (k*num_images_per_prompt_controlnet) + l ) for l in range(num_images_per_prompt_controlnet)])
 
-    if (is_xl_controlnet == True) and not (is_xlturbo_controlnet == True):
+    if (is_xl_controlnet == True) and not (is_turbo_controlnet == True):
         dim_size = correct_size(width_controlnet, height_controlnet, 1024)
     else :
         dim_size = correct_size(width_controlnet, height_controlnet, 512)
@@ -407,7 +408,7 @@ def image_controlnet(
     final_image = []
     final_seed = []
     for i in range (num_prompt_controlnet):
-        if (is_xlturbo_controlnet == True):
+        if (is_turbo_controlnet == True):
             image = pipe_controlnet(
                 prompt=prompt_controlnet,
                 image=image_input,

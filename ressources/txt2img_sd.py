@@ -89,9 +89,9 @@ def image_txt2img_sd(
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2img_sd, device_txt2img_sd, nsfw_filter)
 
     if ("turbo" in modelid_txt2img_sd):
-        is_xlturbo_txt2img_sd: bool = True
+        is_turbo_txt2img_sd: bool = True
     else :
-        is_xlturbo_txt2img_sd: bool = False
+        is_turbo_txt2img_sd: bool = False
 
     if (('xl' or 'XL' or 'Xl' or 'xL') in modelid_txt2img_sd or (modelid_txt2img_sd == "segmind/SSD-1B") or (modelid_txt2img_sd == "segmind/Segmind-Vega") or (modelid_txt2img_sd == "dataautogpt3/OpenDalleV1.1")) :
 #  and (modelid_txt2img_sd != "stabilityai/sdxl-turbo")		
@@ -100,7 +100,7 @@ def image_txt2img_sd(
     else :        
         is_xl_txt2img_sd: bool = False
 
-    if (is_xlturbo_txt2img_sd == True) :
+    if (is_turbo_txt2img_sd == True) :
         if modelid_txt2img_sd[0:9] == "./models/" :
             pipe_txt2img_sd =AutoPipelineForText2Image.from_single_file(
                 modelid_txt2img_sd, 

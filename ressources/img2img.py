@@ -29,6 +29,7 @@ model_list_img2img_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
     "stabilityai/sd-turbo",
     "stabilityai/sdxl-turbo",
+    "thibaud/sdxl_dpo_turbo",
     "dataautogpt3/OpenDalleV1.1",
     "digiplay/AbsoluteReality_v1.8.1",
     "segmind/Segmind-Vega",
@@ -85,17 +86,17 @@ def image_img2img(
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_img2img, device_img2img, nsfw_filter)
 
-    if (modelid_img2img == "stabilityai/sdxl-turbo") or (modelid_img2img == "stabilityai/sd-turbo"):
-        is_xlturbo_img2img: bool = True
+    if ("turbo" in modelid_img2img):
+        is_turbo_img2img: bool = True
     else :
-        is_xlturbo_img2img: bool = False
+        is_turbo_img2img: bool = False
 
     if (('xl' or 'XL' or 'Xl' or 'xL') in modelid_img2img  or (modelid_img2img == "segmind/SSD-1B") or (modelid_img2img == "segmind/Segmind-Vega") or (modelid_img2img == "dataautogpt3/OpenDalleV1.1")):
         is_xl_img2img: bool = True
     else :        
         is_xl_img2img: bool = False        
 
-    if (is_xlturbo_img2img == True):
+    if (is_turbo_img2img == True):
         if modelid_img2img[0:9] == "./models/" :
             pipe_img2img = AutoPipelineForImage2Image.from_single_file(
                 modelid_img2img, 
@@ -115,7 +116,7 @@ def image_img2img(
                 resume_download=True,
                 local_files_only=True if offline_test() else None                
             )
-    elif (is_xl_img2img == True) and (is_xlturbo_img2img == False):
+    elif (is_xl_img2img == True) and (is_turbo_img2img == False):
         if modelid_img2img[0:9] == "./models/" :
             pipe_img2img = StableDiffusionXLImg2ImgPipeline.from_single_file(
                 modelid_img2img, 
@@ -198,7 +199,7 @@ def image_img2img(
 
     if source_type_img2img == "sketch" :
         dim_size=[512, 512]
-    elif (is_xl_img2img == True) and not (is_xlturbo_img2img == True) :
+    elif (is_xl_img2img == True) and not (is_turbo_img2img == True) :
         dim_size = correct_size(width_img2img, height_img2img, 1024)
     else :
         dim_size = correct_size(width_img2img, height_img2img, 512)
@@ -231,7 +232,7 @@ def image_img2img(
     
     final_image = []
     for i in range (num_prompt_img2img):
-        if (is_xlturbo_img2img == True) :
+        if (is_turbo_img2img == True) :
             image = pipe_img2img(        
                 image=image_input,
                 prompt=prompt_img2img,

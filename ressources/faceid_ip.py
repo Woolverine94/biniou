@@ -101,17 +101,17 @@ def image_faceid_ip(
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_faceid_ip, device_faceid_ip, nsfw_filter)
 
-    if (modelid_faceid_ip == "stabilityai/sdxl-turbo") or (modelid_faceid_ip == "stabilityai/sd-turbo"):
-        is_xlturbo_faceid_ip: bool = True
+    if ("turbo" in modelid_faceid_ip):
+        is_turbo_faceid_ip: bool = True
     else :
-        is_xlturbo_faceid_ip: bool = False
+        is_turbo_faceid_ip: bool = False
 
     if (('xl' or 'XL' or 'Xl' or 'xL') in modelid_faceid_ip or (modelid_faceid_ip == "segmind/SSD-1B") or (modelid_faceid_ip == "segmind/Segmind-Vega") or (modelid_faceid_ip == "dataautogpt3/OpenDalleV1.1")):
         is_xl_faceid_ip: bool = True
     else :
         is_xl_faceid_ip: bool = False     
 
-    if (is_xlturbo_faceid_ip == True) :
+    if (is_turbo_faceid_ip == True) :
         if modelid_faceid_ip[0:9] == "./models/" :
             pipe_faceid_ip = AutoPipelineForText2Image.from_single_file(
                 modelid_faceid_ip, 
@@ -133,7 +133,7 @@ def image_faceid_ip(
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
-    elif (is_xl_faceid_ip == True) and (is_xlturbo_faceid_ip == False) :
+    elif (is_xl_faceid_ip == True) and (is_turbo_faceid_ip == False) :
         if modelid_faceid_ip[0:9] == "./models/" :
             pipe_faceid_ip = StableDiffusionXLPipeline.from_single_file(
                 modelid_faceid_ip, 
@@ -267,7 +267,7 @@ def image_faceid_ip(
     final_image = []
     final_seed = []
     for i in range (num_prompt_faceid_ip):
-        if (is_xlturbo_faceid_ip == True) :
+        if (is_turbo_faceid_ip == True) :
             image = pipe_faceid_ip(
                 image_embeds=faceid_embeds_faceid_ip,
                 prompt=prompt_faceid_ip,

@@ -32,6 +32,7 @@ model_list_img2img_ip_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
 #    "stabilityai/sd-turbo",
     "stabilityai/sdxl-turbo",
+#    "thibaud/sdxl_dpo_turbo",
     "dataautogpt3/OpenDalleV1.1",
     "digiplay/AbsoluteReality_v1.8.1",
 #    "segmind/Segmind-Vega",
@@ -89,10 +90,10 @@ def image_img2img_ip(
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_img2img_ip, device_img2img_ip, nsfw_filter)
     
-    if (modelid_img2img_ip == "stabilityai/sdxl-turbo") or (modelid_img2img_ip == "stabilityai/sd-turbo"):
-        is_xlturbo_img2img_ip: bool = True
+    if ("turbo" in modelid_img2img_ip):
+        is_turbo_img2img_ip: bool = True
     else :
-        is_xlturbo_img2img_ip: bool = False
+        is_turbo_img2img_ip: bool = False
 
     if (('xl' or 'XL' or 'Xl' or 'xL') in modelid_img2img_ip or (modelid_img2img_ip == "segmind/SSD-1B") or (modelid_img2img_ip == "segmind/Segmind-Vega") or (modelid_img2img_ip == "dataautogpt3/OpenDalleV1.1")):
         is_xl_img2img_ip: bool = True
@@ -151,7 +152,7 @@ def image_img2img_ip(
                 local_files_only=True if offline_test() else None
             )
 
-    if (is_xlturbo_img2img_ip == True) :
+    if (is_turbo_img2img_ip == True) :
         if modelid_img2img_ip[0:9] == "./models/" :
             pipe_img2img_ip = AutoPipelineForImage2Image.from_single_file(
                 modelid_img2img_ip, 
@@ -171,7 +172,7 @@ def image_img2img_ip(
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
-    elif (is_xl_img2img_ip == True) and (is_xlturbo_img2img_ip == False) :
+    elif (is_xl_img2img_ip == True) and (is_turbo_img2img_ip == False) :
         if modelid_img2img_ip[0:9] == "./models/" :
             pipe_img2img_ip = StableDiffusionXLImg2ImgPipeline.from_single_file(
                 modelid_img2img_ip, 
@@ -212,7 +213,7 @@ def image_img2img_ip(
                 local_files_only=True if offline_test() else None
             )
 
-#    if (is_xl_img2img_ip == True) or (is_xlturbo_img2img_ip == True):
+#    if (is_xl_img2img_ip == True) or (is_turbo_img2img_ip == True):
     if (which_os() == "win32"):
         if (is_xl_img2img_ip == True):
             pipe_img2img_ip.load_ip_adapter(
@@ -301,7 +302,7 @@ def image_img2img_ip(
         generator = torch.manual_seed(seed_img2img_ip)
 
     if (img_img2img_ip != None):
-        if (is_xl_img2img_ip == True) and not (is_xlturbo_img2img_ip == True):
+        if (is_xl_img2img_ip == True) and not (is_turbo_img2img_ip == True):
             dim_size = correct_size(width_img2img_ip, height_img2img_ip, 1024)
         else: 
             dim_size = correct_size(width_img2img_ip, height_img2img_ip, 512)
@@ -313,7 +314,7 @@ def image_img2img_ip(
 
     if (img_ipa_img2img_ip != None):
         image_input_ipa = PIL.Image.open(img_ipa_img2img_ip)
-        if (is_xl_img2img_ip == True) and not (is_xlturbo_img2img_ip == True):
+        if (is_xl_img2img_ip == True) and not (is_turbo_img2img_ip == True):
             dim_size_ipa = correct_size(image_input_ipa.size[0], image_input_ipa.size[1], 1024)
         else:
             dim_size_ipa = correct_size(image_input_ipa.size[0], image_input_ipa.size[1], 512)
@@ -348,7 +349,7 @@ def image_img2img_ip(
     final_image = []
 
     for i in range (num_prompt_img2img_ip):
-        if (is_xlturbo_img2img_ip == True) :
+        if (is_turbo_img2img_ip == True) :
             image = pipe_img2img_ip(        
                 image=image_input,
                 ip_adapter_image=image_input_ipa,
