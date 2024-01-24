@@ -579,8 +579,6 @@ def change_lora_model_faceid_ip(model, lora_model, prompt):
         lora_prompt_faceid_ip = prompt
     return prompt_faceid_ip.update(value=lora_prompt_faceid_ip)
 
-
-
 ## Functions specific to faceswap 
 def zip_download_file_faceswap(content):
     savename = zipper(content)
@@ -718,6 +716,10 @@ def change_output_type_img2shape(output_type_img2shape, out_size_img2shape, mesh
 def read_ini_img2shape(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7])
+
+## Functions specific to Models cleaner
+def refresh_models_cleaner_list():
+    return gr.CheckboxGroup(choices=biniouModelsManager("./models").modelslister(), value=None, type="value", label="Installed models list", info="Select the models you want to delete and click \"Delete selected models\" button")
 
 ## Functions specific to console
 def refresh_logfile():
@@ -7729,6 +7731,25 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Box():                                
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
+# Global settings
+        with gr.TabItem("Global settings 🛠️", id=6) as tab_settings:
+            with gr.Tabs() as tabs_settings:
+# Models cleaner
+                with gr.TabItem("Models cleaner 🧹", id=61) as tab_models_cleaner:
+                    with gr.Row():
+                        list_models_cleaner = gr.CheckboxGroup(choices=biniouModelsManager("./models").modelslister(), type="value", label="Installed models list", info="Select the models you want to delete and click \"Delete selected models\" button. Restart biniou to re-synchronize models list.")
+                    with gr.Row():
+                        with gr.Column():
+                            btn_models_cleaner = gr.Button("Delete selected models 🧹", variant="primary")
+                            btn_models_cleaner.click(fn=biniouModelsManager("./models").modelsdeleter, inputs=[list_models_cleaner])
+                            btn_models_cleaner.click(fn=refresh_models_cleaner_list, outputs=list_models_cleaner)
+                        with gr.Column():
+                            btn_models_cleaner_refresh = gr.Button("Refresh models list")
+                            btn_models_cleaner_refresh.click(fn=refresh_models_cleaner_list, outputs=list_models_cleaner)
+                        with gr.Column():
+                            gr.Number(visible=False)
+                        with gr.Column():
+                            gr.Number(visible=False)
 
     tab_text_num = gr.Number(value=tab_text.id, precision=0, visible=False)
     tab_image_num = gr.Number(value=tab_image.id, precision=0, visible=False) 
