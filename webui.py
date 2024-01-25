@@ -719,7 +719,7 @@ def read_ini_img2shape(module) :
 
 ## Functions specific to Models cleaner
 def refresh_models_cleaner_list():
-    return gr.CheckboxGroup(choices=biniouModelsManager("./models").modelslister(), value=None, type="value", label="Installed models list", info="Select the models you want to delete and click \"Delete selected models\" button")
+    return gr.CheckboxGroup(choices=biniouModelsManager("./models").modelslister(), value=None, type="value", label="Installed models list", info="Select the models you want to delete and click \"Delete selected models\" button. Restart biniou to re-synchronize models list.")
 
 ## Functions specific to console
 def refresh_logfile():
