@@ -721,6 +721,13 @@ def read_ini_img2shape(module) :
 def refresh_models_cleaner_list():
     return gr.CheckboxGroup(choices=biniouModelsManager("./models").modelslister(), value=None, type="value", label="Installed models list", info="Select the models you want to delete and click \"Delete selected models\" button. Restart biniou to re-synchronize models list.")
 
+## Functions specific to LoRA models manager
+def refresh_lora_models_manager_list_sd():
+    return gr.CheckboxGroup(choices=biniouLoraModelsManager("./models/lora/SD").modelslister(), value=None, type="value", label="Installed models list", info="Select the LoRA models you want to delete and click \"Delete selected models\" button. Restart biniou to re-synchronize LoRA models list.")
+
+def refresh_lora_models_manager_list_sdxl():
+    return gr.CheckboxGroup(choices=biniouLoraModelsManager("./models/lora/SDXL").modelslister(), value=None, type="value", label="Installed models list", info="Select the LoRA models you want to delete and click \"Delete selected models\" button. Restart biniou to re-synchronize LoRA models list.")
+
 ## Functions specific to console
 def refresh_logfile():
     return logfile_biniou
@@ -7744,18 +7751,63 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             btn_models_cleaner.click(fn=biniouModelsManager("./models").modelsdeleter, inputs=[list_models_cleaner])
                             btn_models_cleaner.click(fn=refresh_models_cleaner_list, outputs=list_models_cleaner)
                         with gr.Column():
-                            btn_models_cleaner_refresh = gr.Button("Refresh models list")
+                            btn_models_cleaner_refresh = gr.Button("Refresh models list ♻️")
                             btn_models_cleaner_refresh.click(fn=refresh_models_cleaner_list, outputs=list_models_cleaner)
                         with gr.Column():
                             gr.Number(visible=False)
                         with gr.Column():
                             gr.Number(visible=False)
+# LoRA Models manager
+                with gr.TabItem("LoRA models manager 🛠️", id=62) as tab_lora_models_manager:
+                    with gr.Row():
+                        with gr.Column():
+                            gr.HTML("""<span style='text-align: left; font-size: 24px; font-weight: bold; line-height:24px;'>SD models</span>""")
+                            with gr.Row():
+                                list_lora_models_manager_sd = gr.CheckboxGroup(choices=biniouLoraModelsManager("./models/lora/SD").modelslister(), type="value", label="Installed models list", info="Select the LoRA models you want to delete and click \"Delete selected models\" button. Restart biniou to re-synchronize LoRA models list.")
+                            with gr.Row():
+                                with gr.Column():
+                                    btn_lora_models_manager_sd = gr.Button("Delete selected models 🧹", variant="primary")
+                                    btn_lora_models_manager_sd.click(fn=biniouLoraModelsManager("./models/lora/SD").modelsdeleter, inputs=[list_lora_models_manager_sd])
+                                    btn_lora_models_manager_sd.click(fn=refresh_lora_models_manager_list_sd, outputs=list_lora_models_manager_sd)
+                                with gr.Column():
+                                    btn_lora_models_manager_refresh_sd = gr.Button("Refresh models list ♻️")
+                                    btn_lora_models_manager_refresh_sd.click(fn=refresh_lora_models_manager_list_sd, outputs=list_lora_models_manager_sd)
+                            with gr.Row():
+                                with gr.Column():
+                                    url_lora_models_manager_sd = gr.Textbox(value="", lines=1, max_lines=2, interactive=True, label="LoRA model URL", info="Paste here the url of the LoRA model you want to download. Restart biniou to re-synchronize LoRA models list. Safetensors files only.")
+                            with gr.Row():
+                                with gr.Column():
+                                    btn_url_lora_models_manager_sd = gr.Button("Download LoRA model 💾", variant="primary")
+                                    btn_url_lora_models_manager_sd.click(biniouLoraModelsManager("./models/lora/SD").modelsdownloader, inputs=url_lora_models_manager_sd, outputs=url_lora_models_manager_sd)
+                                with gr.Column():
+                                        gr.Number(visible=False)
+                        with gr.Column():
+                            gr.HTML("""<span style='text-align: left; font-size: 24px; font-weight: bold; line-height:24px;'>SDXL models</span>""")
+                            with gr.Row():
+                                list_lora_models_manager_sdxl = gr.CheckboxGroup(choices=biniouLoraModelsManager("./models/lora/SDXL").modelslister(), type="value", label="Installed models list", info="Select the LoRA models you want to delete and click \"Delete selected models\" button. Restart biniou to re-synchronize LoRA models list.")
+                            with gr.Row():
+                                with gr.Column():
+                                    btn_lora_models_manager_sdxl = gr.Button("Delete selected models 🧹", variant="primary")
+                                    btn_lora_models_manager_sdxl.click(fn=biniouLoraModelsManager("./models/lora/SDXL").modelsdeleter, inputs=[list_lora_models_manager_sdxl])
+                                    btn_lora_models_manager_sdxl.click(fn=refresh_lora_models_manager_list_sdxl, outputs=list_lora_models_manager_sdxl)
+                                with gr.Column():
+                                    btn_lora_models_manager_refresh_sdxl = gr.Button("Refresh models list ♻️")
+                                    btn_lora_models_manager_refresh_sdxl.click(fn=refresh_lora_models_manager_list_sdxl, outputs=list_lora_models_manager_sdxl)
+                            with gr.Row():
+                                with gr.Column():
+                                    url_lora_models_manager_sdxl = gr.Textbox(value="", lines=1, max_lines=2, interactive=True, label="LoRA model URL", info="Paste here the url of the LoRA model you want to download. Restart biniou to re-synchronize LoRA models list. Safetensors files only.")
+                            with gr.Row():
+                                with gr.Column():
+                                    btn_url_lora_models_manager_sdxl = gr.Button("Download LoRA model 💾", variant="primary")
+                                    btn_url_lora_models_manager_sdxl.click(biniouLoraModelsManager("./models/lora/SDXL").modelsdownloader, inputs=url_lora_models_manager_sdxl, outputs=url_lora_models_manager_sdxl)
+                                with gr.Column():
+                                        gr.Number(visible=False)
 
     tab_text_num = gr.Number(value=tab_text.id, precision=0, visible=False)
-    tab_image_num = gr.Number(value=tab_image.id, precision=0, visible=False) 
-    tab_audio_num = gr.Number(value=tab_audio.id, precision=0, visible=False)    
-    tab_video_num = gr.Number(value=tab_video.id, precision=0, visible=False) 
-    tab_3d_num = gr.Number(value=tab_3d.id, precision=0, visible=False) 
+    tab_image_num = gr.Number(value=tab_image.id, precision=0, visible=False)
+    tab_audio_num = gr.Number(value=tab_audio.id, precision=0, visible=False)
+    tab_video_num = gr.Number(value=tab_video.id, precision=0, visible=False)
+    tab_3d_num = gr.Number(value=tab_3d.id, precision=0, visible=False)
 
     tab_llamacpp_num = gr.Number(value=tab_llamacpp.id, precision=0, visible=False)
     tab_llava_num = gr.Number(value=tab_llava.id, precision=0, visible=False)
