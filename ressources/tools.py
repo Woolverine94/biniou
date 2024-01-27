@@ -19,11 +19,11 @@ class biniouModelsManager:
     def human_readable_size(self, size):
         self.size = size
         if 3 < len(str(size)) < 7:
-            self.size_final = f"{round((size/1024), 2)} Ko"
+            self.size_final = f"{round((size/1024), 2)} KiB"
         elif 7 <= len(str(size)) < 10:
-            self.size_final = f"{round((size/(1024 ** 2)), 2)} Mo"
+            self.size_final = f"{round((size/(1024 ** 2)), 2)} MiB"
         elif len(str(size)) >= 10:
-            self.size_final = f"{round((size/(1024 ** 3)), 2)} Go"
+            self.size_final = f"{round((size/(1024 ** 3)), 2)} GiB"
         else:
             self.size_final = f"{size} octets"
         return self.size_final
@@ -156,11 +156,28 @@ class biniouLoraModelsManager:
         with req.get(self.url, stream=True) as r:
             total_size = int(r.headers.get("content-length", 0))
             with tqdm(total=total_size, unit="B", unit_scale=True) as progress_bar:
-#                r.raise_for_status()
                 with open(self.path, 'wb') as f:
                     for chunk in r.iter_content(8192):
                         progress_bar.update(len(chunk))
                         f.write(chunk)
         print(f">>>[LoRA models manager 🛠️ ]: LoRA model {self.filename} downloaded.")
+        return
+
+class biniouSDModelsDownloader:
+    def __init__(self, models_dir):
+            self.models_dir = models_dir
+
+    def modelsdownloader(self, url, progress=gr.Progress(track_tqdm=True)):
+        self.url = url
+        self.filename = self.url.split('/')[-1]
+        self.path = self.models_dir+ "/"+ self.filename
+        with req.get(self.url, stream=True) as r:
+            total_size = int(r.headers.get("content-length", 0))
+            with tqdm(total=total_size, unit="B", unit_scale=True) as progress_bar:
+                with open(self.path, 'wb') as f:
+                    for chunk in r.iter_content(8192):
+                        progress_bar.update(len(chunk))
+                        f.write(chunk)
+        print(f">>>[SD models downloader 💾 ]: SD model {self.filename} downloaded.")
         return
 
