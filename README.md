@@ -16,15 +16,13 @@
 
 ## Updates
 
+  * 🆕 **2024-01-27** : ***SD models downloader module*** : You can now download .safetensors Stable Diffusion-based models files from this module. Restart biniou to see them appears in the models list.
+
   * 🆕 **2024-01-26** : ***LoRA models manager module*** : Using this new feature in the Global settings tab, you can now administrate LoRA models directly from biniou's interface.
 
   * 🆕 **2024-01-25** : ***New Global settings tab*** : You will find in this tab common tools to administrate biniou. First module is the Models cleaner, that allow you to delete unused models to make some space, without having to browse through models and cache directories.
 
   * 🆕 **2024-01-23** : ***New model for Stable Diffusion-based modules*** : Adding [thibaud/sdxl_dpo_turbo](https://huggingface.co/thibaud/sdxl_dpo_turbo) to Stable Diffusion, img2img and ControlNet module. This interesting model is a merge between SDXL-turbo and SDXL-DPO, the latter being a flavor of SDXL with Direct Preference Optimization training. 
-
-  * 🆕 **2024-01-19** : 🔥 ***New image module : IP-Adapter FaceID*** 🔥 : This module will allow you to extract a face from a single input image and use it as an adapter for your output image. You can see it as a quick'n'easy poor man's replacement for a Dreambooth or LoRA model. 
-
-  * 🆕 **2024-01-18** : 🔥 ***New model for Chatbot module*** 🔥 : Adding model [mlabonne/NeuralBeagle14-7B](https://huggingface.co/mlabonne/NeuralBeagle14-7B) to the Chatbot module. This model, which is a combination of merging models and DPO fine-tuning seems to open a new path for optimizing 7B models and score an honorable 74.74 on the [Open LLM leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard).
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
