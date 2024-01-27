@@ -25,10 +25,11 @@ os.makedirs(model_path_ipa_faceid_ip, exist_ok=True)
 
 model_list_faceid_ip = []
 
-for filename in os.listdir(model_path_faceid_ip):
-    f = os.path.join(model_path_faceid_ip, filename)
-    if os.path.isfile(f) and (filename.endswith('.ckpt') or filename.endswith('.safetensors')):
-        model_list_faceid_ip.append(f)
+# .from_single_file NOT compatible with FaceID community pipeline
+# for filename in os.listdir(model_path_faceid_ip):
+#     f = os.path.join(model_path_faceid_ip, filename)
+#     if os.path.isfile(f) and (filename.endswith('.ckpt') or filename.endswith('.safetensors')):
+#         model_list_faceid_ip.append(f)
 
 model_list_faceid_ip_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
