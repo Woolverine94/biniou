@@ -69,9 +69,9 @@ def split_url_params(url_params) :
     url_params = eval(url_params.replace("'", "\""))
     if "nsfw_filter" in url_params.keys():
         output_nsfw = url_params["nsfw_filter"]
-        return output_nsfw, url_params
+        return output_nsfw, url_params, bool(int(output_nsfw))
     else :         
-        return "1", url_params
+        return "1", url_params, "1"
 
 ## Fonctions communes
 def dummy():
@@ -7741,8 +7741,33 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
 # Global settings
         with gr.TabItem("Global settings 🛠️", id=6) as tab_settings:
             with gr.Tabs() as tabs_settings:
+
+
+# UI settings
+                with gr.TabItem("WebUI control 🧠", id=61) as tab_models_cleaner:
+                    with gr.Row():
+                         with gr.Accordion("System", open=True):
+                             with gr.Row():
+                                 with gr.Column():
+                                     btn_restart_ui_settings = gr.Button("Restart biniou ↩️")
+                                     btn_restart_ui_settings.click(fn=biniouUIControl.restart_program)
+                                 with gr.Column():
+                                     btn_refresh_ui_settings = gr.Button("Refresh webui ♻️")
+                                     btn_refresh_ui_settings.click(fn=biniouUIControl.refresh_ui, _js="window.location.reload()")
+                                 with gr.Column():
+                                     btn_close_ui_settings = gr.Button("Shutdown biniou 🛑")
+                                     btn_close_ui_settings.click(fn=biniouUIControl.close_program)
+                                 with gr.Column():
+                                     gr.Number(visible=False)
+                    with gr.Row():
+                        with gr.Accordion("NSFW filter", open=True):
+                            with gr.Row():
+                                with gr.Column():
+                                    safety_checker_ui_settings = gr.Checkbox(bool(int(nsfw_filter.value)), label="Use safety checker", info="⚠️ Warning : Unchecking this box will temporarily disable the safety checker which avoid generation of nsfw and disturbing media contents. This option is ONLY provided for debugging purposes and you should NEVER uncheck it in other use cases. ⚠️", interactive=True)
+                                    safety_checker_ui_settings.change(fn=lambda x:int(x), inputs=safety_checker_ui_settings, outputs=nsfw_filter)
+
 # Models cleaner
-                with gr.TabItem("Models cleaner 🧹", id=61) as tab_models_cleaner:
+                with gr.TabItem("Models cleaner 🧹", id=62) as tab_models_cleaner:
                     with gr.Row():
                         list_models_cleaner = gr.CheckboxGroup(choices=biniouModelsManager("./models").modelslister(), type="value", label="Installed models list", info="Select the models you want to delete and click \"Delete selected models\" button. Restart biniou to re-synchronize models list.")
                     with gr.Row():
@@ -7758,7 +7783,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             gr.Number(visible=False)
 # LoRA Models manager
-                with gr.TabItem("LoRA models manager 🛠️", id=62) as tab_lora_models_manager:
+                with gr.TabItem("LoRA models manager 🛠️", id=63) as tab_lora_models_manager:
                     with gr.Row():
                         with gr.Column():
                             gr.HTML("""<span style='text-align: left; font-size: 24px; font-weight: bold; line-height:24px;'>SD models</span>""")
@@ -7803,7 +7828,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Column():
                                         gr.Number(visible=False)
 # SD Models downloader
-                with gr.TabItem("SD models downloader 💾", id=63) as tab_lora_models_manager:
+                with gr.TabItem("SD models downloader 💾", id=64) as tab_lora_models_manager:
                     with gr.Row():
                         with gr.Column():
 #                            gr.HTML("""<span style='text-align: left; font-size: 24px; font-weight: bold; line-height:24px;'>SD models</span>""")
@@ -7820,6 +7845,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.Number(visible=False)
                                 with gr.Column():
                                         gr.Number(visible=False)
+
     tab_text_num = gr.Number(value=tab_text.id, precision=0, visible=False)
     tab_image_num = gr.Number(value=tab_image.id, precision=0, visible=False)
     tab_audio_num = gr.Number(value=tab_audio.id, precision=0, visible=False)
@@ -8645,7 +8671,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                 gr.Number(visible=False)
 
 # Exécution de l'UI :
-    demo.load(split_url_params, nsfw_filter, [nsfw_filter, url_params_current], _js=get_window_url_params)
+    demo.load(split_url_params, nsfw_filter, [nsfw_filter, url_params_current, safety_checker_ui_settings], _js=get_window_url_params)
     demo.load(read_logs, None, biniou_console_output, every=1)
 #    demo.load(fn=lambda: gr.Info('Biniou loading completed. Ready to work !'))
     print(f">>>[biniou 🧠]: Up and running at https://{local_ip()}:7860/?__theme=dark")

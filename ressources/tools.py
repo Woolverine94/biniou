@@ -181,3 +181,21 @@ class biniouSDModelsDownloader:
         print(f">>>[SD models downloader 💾 ]: SD model {self.filename} downloaded.")
         return
 
+class biniouUIControl:
+    def __init__(self, url):
+            self.url = url
+
+    def restart_program():
+        print(f">>>[WebUI control 🧠 ]: Restarting biniou ...")
+        os.execv(sys.executable, ['python'] + sys.argv)
+        return
+
+    def refresh_ui():
+        print(f">>>[WebUI control 🧠 ]: Restarting webui ...")
+        return
+
+    def close_program():
+        print(f">>>[WebUI control 🧠 ]: Closing biniou. Bye !")
+        os._exit(0)
+        return
+
