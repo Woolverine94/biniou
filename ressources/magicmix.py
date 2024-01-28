@@ -83,8 +83,9 @@ def image_magicmix(
 #            torch_dtype=torch.float32, 
             torch_dtype=model_arch,
             use_safetensors=True, 
-            safety_checker=nsfw_filter_final, 
-            feature_extractor=feat_ex
+            load_safety_checker=False if (nsfw_filter_final == None) else True,
+#            safety_checker=nsfw_filter_final, 
+#            feature_extractor=feat_ex
         )
     else :        
         pipe_magicmix = DiffusionPipeline.from_pretrained(

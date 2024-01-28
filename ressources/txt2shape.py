@@ -75,8 +75,9 @@ def image_txt2shape(
             modelid_txt2shape, 
             torch_dtype=model_arch,
 #            use_safetensors=True,
-            safety_checker=nsfw_filter_final, 
-            feature_extractor=feat_ex,
+            load_safety_checker=False if (nsfw_filter_final == None) else True,
+#            safety_checker=nsfw_filter_final, 
+#            feature_extractor=feat_ex,
         )
     else : 
         pipe_txt2shape = ShapEPipeline.from_pretrained(

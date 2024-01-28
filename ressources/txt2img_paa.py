@@ -81,8 +81,9 @@ def image_txt2img_paa(
             modelid_txt2img_paa, 
             torch_dtype=model_arch,
             use_safetensors=True, 
-            safety_checker=nsfw_filter_final, 
-            feature_extractor=feat_ex,
+            load_safety_checker=False if (nsfw_filter_final == None) else True,
+#            safety_checker=nsfw_filter_final, 
+#            feature_extractor=feat_ex,
         )
     else :        
         pipe_txt2img_paa = PixArtAlphaPipeline.from_pretrained(

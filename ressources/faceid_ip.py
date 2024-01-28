@@ -118,8 +118,9 @@ def image_faceid_ip(
                 modelid_faceid_ip, 
                 torch_dtype=model_arch,
                 use_safetensors=True, 
-                safety_checker=nsfw_filter_final, 
-                feature_extractor=feat_ex,
+                load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                safety_checker=nsfw_filter_final, 
+#                feature_extractor=feat_ex,
                 custom_pipeline="ip_adapter_face_id",
             )
         else :        
@@ -140,8 +141,9 @@ def image_faceid_ip(
                 modelid_faceid_ip, 
                 torch_dtype=model_arch,
                 use_safetensors=True, 
-                safety_checker=nsfw_filter_final, 
-                feature_extractor=feat_ex,
+                load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                safety_checker=nsfw_filter_final, 
+#                feature_extractor=feat_ex,
                 custom_pipeline="ip_adapter_face_id",
             )
         else :        
@@ -162,8 +164,9 @@ def image_faceid_ip(
                 modelid_faceid_ip, 
                 torch_dtype=model_arch,
                 use_safetensors=True, 
-                safety_checker=nsfw_filter_final, 
-                feature_extractor=feat_ex,
+                load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                safety_checker=nsfw_filter_final, 
+#                feature_extractor=feat_ex,
                 custom_pipeline="ip_adapter_face_id",
             )
         else :        

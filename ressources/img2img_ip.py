@@ -158,8 +158,9 @@ def image_img2img_ip(
                 modelid_img2img_ip, 
                 torch_dtype=model_arch,
                 use_safetensors=True, 
-                safety_checker=nsfw_filter_final, 
-                feature_extractor=feat_ex,
+                load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                safety_checker=nsfw_filter_final, 
+#                feature_extractor=feat_ex,
             )
         else :        
             pipe_img2img_ip = AutoPipelineForImage2Image.from_pretrained(
@@ -178,8 +179,9 @@ def image_img2img_ip(
                 modelid_img2img_ip, 
                 torch_dtype=model_arch,
                 use_safetensors=True, 
-                safety_checker=nsfw_filter_final, 
-                feature_extractor=feat_ex,
+                load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                safety_checker=nsfw_filter_final, 
+#                feature_extractor=feat_ex,
             )
         else :        
             pipe_img2img_ip = StableDiffusionXLImg2ImgPipeline.from_pretrained(
@@ -198,8 +200,9 @@ def image_img2img_ip(
                 modelid_img2img_ip, 
                 torch_dtype=model_arch,
                 use_safetensors=True, 
-                safety_checker=nsfw_filter_final, 
-                feature_extractor=feat_ex,
+                load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                safety_checker=nsfw_filter_final, 
+#                feature_extractor=feat_ex,
             )
         else :        
             pipe_img2img_ip = StableDiffusionImg2ImgPipeline.from_pretrained(
