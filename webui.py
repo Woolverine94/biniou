@@ -7739,10 +7739,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
 # Global settings
-        with gr.TabItem("Global settings 🛠️", id=6) as tab_settings:
+        with gr.TabItem("Global settings ⚙️", id=6) as tab_settings:
             with gr.Tabs() as tabs_settings:
-
-
 # UI settings
                 with gr.TabItem("WebUI control 🧠", id=61) as tab_models_cleaner:
                     with gr.Row():
@@ -7752,20 +7750,19 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                      btn_restart_ui_settings = gr.Button("Restart biniou ↩️")
                                      btn_restart_ui_settings.click(fn=biniouUIControl.restart_program)
                                  with gr.Column():
-                                     btn_refresh_ui_settings = gr.Button("Refresh webui ♻️")
-                                     btn_refresh_ui_settings.click(fn=biniouUIControl.refresh_ui, _js="window.location.reload()")
+                                     btn_reload_ui_settings = gr.Button("Reload WebUI ♻️")
+                                     btn_reload_ui_settings.click(fn=biniouUIControl.reload_ui, _js="window.location.reload()")
                                  with gr.Column():
                                      btn_close_ui_settings = gr.Button("Shutdown biniou 🛑")
                                      btn_close_ui_settings.click(fn=biniouUIControl.close_program)
                                  with gr.Column():
                                      gr.Number(visible=False)
                     with gr.Row():
-                        with gr.Accordion("NSFW filter", open=True):
+                        with gr.Accordion("NSFW filter", open=False):
                             with gr.Row():
                                 with gr.Column():
                                     safety_checker_ui_settings = gr.Checkbox(bool(int(nsfw_filter.value)), label="Use safety checker", info="⚠️ Warning : Unchecking this box will temporarily disable the safety checker which avoid generation of nsfw and disturbing media contents. This option is ONLY provided for debugging purposes and you should NEVER uncheck it in other use cases. ⚠️", interactive=True)
                                     safety_checker_ui_settings.change(fn=lambda x:int(x), inputs=safety_checker_ui_settings, outputs=nsfw_filter)
-
 # Models cleaner
                 with gr.TabItem("Models cleaner 🧹", id=62) as tab_models_cleaner:
                     with gr.Row():

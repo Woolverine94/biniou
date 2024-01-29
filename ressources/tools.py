@@ -190,8 +190,8 @@ class biniouUIControl:
         os.execv(sys.executable, ['python'] + sys.argv)
         return
 
-    def refresh_ui():
-        print(f">>>[WebUI control 🧠 ]: Restarting webui ...")
+    def reload_ui():
+        print(f">>>[WebUI control 🧠 ]: Reloading WebUI ...")
         return
 
     def close_program():
