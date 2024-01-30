@@ -13,5 +13,5 @@ python -m pip install --upgrade torch==2.1.0 torchvision torchaudio --index-url 
 python -m pip install --upgrade llama-cpp-python
 python -m pip install --upgrade -r requirements.txt
 echo "Update finished ! You could now launch biniou by double-clicking %userprofile%\biniou\webui.cmd"
-pause
+REM pause
 
