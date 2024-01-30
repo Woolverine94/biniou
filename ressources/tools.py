@@ -11,10 +11,11 @@ import shutil
 import requests as req
 import gradio as gr
 from tqdm import tqdm
+import torch
 
 class biniouModelsManager:
     def __init__(self, models_dir):
-            self.models_dir = models_dir
+        self.models_dir = models_dir
 
     def human_readable_size(self, size):
         self.size = size
@@ -104,7 +105,7 @@ class biniouModelsManager:
 
 class biniouLoraModelsManager:
     def __init__(self, models_dir):
-            self.models_dir = models_dir
+        self.models_dir = models_dir
 
     def dirlister_models(self, directory):
         self.directory = directory
@@ -165,7 +166,7 @@ class biniouLoraModelsManager:
 
 class biniouSDModelsDownloader:
     def __init__(self, models_dir):
-            self.models_dir = models_dir
+        self.models_dir = models_dir
 
     def modelsdownloader(self, url, progress=gr.Progress(track_tqdm=True)):
         self.url = url
@@ -182,8 +183,8 @@ class biniouSDModelsDownloader:
         return
 
 class biniouUIControl:
-    def __init__(self, url):
-            self.url = url
+    def __init__(self):
+        return
 
     def restart_program():
         print(f">>>[WebUI control 🧠 ]: Restarting biniou ...")
@@ -199,3 +200,47 @@ class biniouUIControl:
         os._exit(0)
         return
 
+    def detect_optimizer():
+        opt = torch.__version__
+        pf = sys.platform
+        if pf == "linux":
+            if "cpu" in opt:
+                optimizer = "cpu"
+            elif "rocm" in opt:
+                optimizer = "rocm"
+            else:
+                optimizer = "cuda"
+        elif pf == "win32":
+            if "cpu" in opt:
+                optimizer = "cpu"
+            else:
+                optimizer = "cuda"
+        return optimizer
+
+    def biniou_update(optimizer):
+        current = biniouUIControl.detect_optimizer()
+        untorch = "pip uninstall -y torch torchvision torchaudio"
+        if sys.platform == "win32":
+            if optimizer == "cpu":
+                if current != "cpu":
+                    os.system(untorch)
+                os.system(".\\update_win.cmd")
+            elif optimizer == "cuda":
+                if current != "cuda":
+                    os.system(untorch)
+                os.system(".\\update_win_cuda.cmd")
+        elif sys.platform == "linux":
+            if optimizer == "cpu":
+                if current != "cpu":
+                    os.system(untorch)
+                os.system("./update.sh")
+            elif optimizer == "cuda":
+                if current != "cuda":
+                    os.system(untorch)
+                os.system("./update_cuda.sh")
+            elif optimizer == "rocm":
+                if current != "rocm":
+                    os.system(untorch)
+                os.system("./update_rocm.sh")
+        print(f">>>[WebUI control 🧠 ]: update for {optimizer} finished.")
+        return optimizer

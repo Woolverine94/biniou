@@ -7758,6 +7758,21 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                  with gr.Column():
                                      gr.Number(visible=False)
                     with gr.Row():
+                         with gr.Accordion("Updates and optimizations", open=True):
+                             with gr.Row():
+                                 with gr.Column():
+                                     optimizer_update_ui = gr.Radio(choices=["cpu", "cuda", "rocm"], value=biniouUIControl.detect_optimizer(), label="Optimization type", info="Choose CPU (default) or a GPU optimization to use and click Update. You have to restart biniou and reload UI after update.")
+                             with gr.Row():
+                                 with gr.Column():
+                                     btn_update_ui = gr.Button("Update biniou ⤵️", variant="primary")
+                                     btn_update_ui.click(fn=biniouUIControl.biniou_update, inputs=optimizer_update_ui, outputs=optimizer_update_ui)
+                                 with gr.Column():
+                                     gr.Number(visible=False)
+                                 with gr.Column():
+                                     gr.Number(visible=False)
+                                 with gr.Column():
+                                     gr.Number(visible=False)
+                    with gr.Row():
                         with gr.Accordion("NSFW filter", open=False):
                             with gr.Row():
                                 with gr.Column():
