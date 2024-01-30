@@ -16,13 +16,13 @@
 
 ## Updates
 
+  * 🆕 **2024-01-30** : 🔥 ***WebUI control module*** 🔥 : Adding a control module for the WebUI : you can now restart/stop biniou, reload UI and update directly through the WebUI.
+
   * 🆕 **2024-01-27** : ***SD models downloader module*** : You can now download .safetensors Stable Diffusion-based models files from this module. Restart biniou to see them appears in the models list.
 
   * 🆕 **2024-01-26** : ***LoRA models manager module*** : Using this new feature in the Global settings tab, you can now administrate LoRA models directly from biniou's interface.
 
   * 🆕 **2024-01-25** : ***New Global settings tab*** : You will find in this tab common tools to administrate biniou. First module is the Models cleaner, that allow you to delete unused models to make some space, without having to browse through models and cache directories.
-
-  * 🆕 **2024-01-23** : ***New model for Stable Diffusion-based modules*** : Adding [thibaud/sdxl_dpo_turbo](https://huggingface.co/thibaud/sdxl_dpo_turbo) to Stable Diffusion, img2img and ControlNet module. This interesting model is a merge between SDXL-turbo and SDXL-DPO, the latter being a flavor of SDXL with Direct Preference Optimization training. 
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
@@ -248,13 +248,7 @@ biniou:latest
 
 ## CUDA support
 
-biniou is natively cpu-only, to ensure compatibility with a wide range of hardware, but you can easily activate CUDA support through Nvidia CUDA (if you have a functionnal CUDA 12.1 environment) or AMD ROCm (if you have a functionnal ROCm 5.6 environment) by running :
-
-  - `update_cuda.sh` if you are a GNU/Linux user with a Nvidia GPU
-  - `update_rocm.sh` if you are a GNU/Linux user with an AMD GPU (experimental)
-  - `update_win_cuda.cmd` if you are a Windows user
-
-You must now always update biniou using these CUDA updates scripts, as the standards updates scripts will do a rollback to the cpu-only PyTorch version.
+biniou is natively cpu-only, to ensure compatibility with a wide range of hardware, but you can easily activate CUDA support through Nvidia CUDA (if you have a functionnal CUDA 12.1 environment) or AMD ROCm (if you have a functionnal ROCm 5.6 environment) by selecting the type of optimization to activate (CPU, CUDA or ROCm for Linux), in the WebUI control module.
 
 Currently, all modules except Chatbot, Llava 1.5 and faceswap modules, could benefits from CUDA optimization.
 
@@ -280,11 +274,7 @@ You can also access biniou from any device (including smartphones) on the same L
 
   3. **Quit** by using the keyboard shortcut CTRL+C in the Terminal
 
-  4. **Update** this application (biniou + python virtual environment) by running from the biniou directory : 
-
-  - **for GNU/Linux :** `./update.sh` (or `./update_cuda.sh` if you're using CUDA)
-
-  - **for Windows** : double-click `update_win.cmd` (or `update_win_cuda.cmd` if you're using CUDA)
+  4. **Update** this application (biniou + python virtual environment) by using the WebUI control updates options.
 
 ---
 
