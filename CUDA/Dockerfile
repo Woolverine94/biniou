@@ -17,7 +17,7 @@ RUN mkdir -p /home/biniou/.cache/huggingface -p /home/biniou/biniou/gfpgan
 RUN chmod +x /home/biniou/biniou/webui.sh
 
 # Replace pyTorch cpu-only version by CUDA-enabled one
-# RUN . ./env/bin/activate && pip uninstall -y torch torchvision torchaudio && ./update_cuda.sh && deactivate
+RUN . ./env/bin/activate && pip uninstall -y torch torchvision torchaudio && ./update_cuda.sh && deactivate
 
 ENV DEBIAN_FRONTEND=dialog
 
