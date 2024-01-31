@@ -107,7 +107,7 @@ def image_faceid_ip(
     else :
         is_turbo_faceid_ip: bool = False
 
-    if (('xl' or 'XL' or 'Xl' or 'xL') in modelid_faceid_ip or (modelid_faceid_ip == "segmind/SSD-1B") or (modelid_faceid_ip == "segmind/Segmind-Vega") or (modelid_faceid_ip == "dataautogpt3/OpenDalleV1.1")):
+    if (("XL" in modelid_faceid_ip.upper()) or (modelid_faceid_ip == "segmind/SSD-1B") or (modelid_faceid_ip == "segmind/Segmind-Vega") or (modelid_faceid_ip == "dataautogpt3/OpenDalleV1.1")):
         is_xl_faceid_ip: bool = True
     else :
         is_xl_faceid_ip: bool = False     

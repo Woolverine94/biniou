@@ -95,7 +95,7 @@ def image_img2img_ip(
     else :
         is_turbo_img2img_ip: bool = False
 
-    if (('xl' or 'XL' or 'Xl' or 'xL') in modelid_img2img_ip or (modelid_img2img_ip == "segmind/SSD-1B") or (modelid_img2img_ip == "segmind/Segmind-Vega") or (modelid_img2img_ip == "dataautogpt3/OpenDalleV1.1")):
+    if (("XL" in modelid_img2img_ip.upper()) or (modelid_img2img_ip == "segmind/SSD-1B") or (modelid_img2img_ip == "segmind/Segmind-Vega") or (modelid_img2img_ip == "dataautogpt3/OpenDalleV1.1")):
         is_xl_img2img_ip: bool = True
     else :
         is_xl_img2img_ip: bool = False     

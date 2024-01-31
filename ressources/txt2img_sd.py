@@ -34,6 +34,7 @@ model_list_txt2img_sd_builtin = [
     "stabilityai/sd-turbo", 
     "stabilityai/sdxl-turbo", 
     "thibaud/sdxl_dpo_turbo",
+    "IDEA-CCNL/Taiyi-Stable-Diffusion-XL-3.5B",
     "dataautogpt3/OpenDalleV1.1",
     "digiplay/AbsoluteReality_v1.8.1",
     "segmind/Segmind-Vega",
@@ -93,9 +94,7 @@ def image_txt2img_sd(
     else :
         is_turbo_txt2img_sd: bool = False
 
-    if (('xl' or 'XL' or 'Xl' or 'xL') in modelid_txt2img_sd or (modelid_txt2img_sd == "segmind/SSD-1B") or (modelid_txt2img_sd == "segmind/Segmind-Vega") or (modelid_txt2img_sd == "dataautogpt3/OpenDalleV1.1")) :
-#  and (modelid_txt2img_sd != "stabilityai/sdxl-turbo")		
-#    if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_txt2img_sd :
+    if (("XL" in modelid_txt2img_sd.upper()) or (modelid_txt2img_sd == "segmind/SSD-1B") or (modelid_txt2img_sd == "segmind/Segmind-Vega") or (modelid_txt2img_sd == "dataautogpt3/OpenDalleV1.1")) :
         is_xl_txt2img_sd: bool = True
     else :        
         is_xl_txt2img_sd: bool = False

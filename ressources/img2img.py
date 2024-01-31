@@ -91,7 +91,7 @@ def image_img2img(
     else :
         is_turbo_img2img: bool = False
 
-    if (('xl' or 'XL' or 'Xl' or 'xL') in modelid_img2img  or (modelid_img2img == "segmind/SSD-1B") or (modelid_img2img == "segmind/Segmind-Vega") or (modelid_img2img == "dataautogpt3/OpenDalleV1.1")):
+    if (("XL" in modelid_img2img.upper())  or (modelid_img2img == "segmind/SSD-1B") or (modelid_img2img == "segmind/Segmind-Vega") or (modelid_img2img == "dataautogpt3/OpenDalleV1.1")):
         is_xl_img2img: bool = True
     else :        
         is_xl_img2img: bool = False        

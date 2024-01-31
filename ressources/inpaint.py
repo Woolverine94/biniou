@@ -76,7 +76,7 @@ def image_inpaint(
     
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_safety_checker, device_inpaint, nsfw_filter)
 
-    if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_inpaint:
+    if ("XL" in modelid_inpaint.upper()):
         is_xl_inpaint: bool = True
     else :        
         is_xl_inpaint: bool = False

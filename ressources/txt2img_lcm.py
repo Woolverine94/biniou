@@ -81,7 +81,7 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
     global pipe_txt2img_lcm
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2img_lcm_safetychecker, device_txt2img_lcm, nsfw_filter)
 
-    if ('xl' or 'XL' or 'Xl' or 'xL') in modelid_txt2img_lcm or (modelid_txt2img_lcm == "latent-consistency/lcm-ssd-1b") or (modelid_txt2img_lcm == "segmind/Segmind-VegaRT"):
+    if ("XL" in modelid_txt2img_lcm.upper()) or (modelid_txt2img_lcm == "latent-consistency/lcm-ssd-1b") or (modelid_txt2img_lcm == "segmind/Segmind-VegaRT"):
         is_xl_txt2img_lcm: bool = True
     else :        
         is_xl_txt2img_lcm: bool = False

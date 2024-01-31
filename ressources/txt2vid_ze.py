@@ -79,7 +79,7 @@ def video_txt2vid_ze(
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2vid_ze, device_txt2vid_ze, nsfw_filter)
 
-    if (('xl' or 'XL' or 'Xl' or 'xL') in modelid_txt2vid_ze or (modelid_txt2vid_ze == "segmind/SSD-1B") or (modelid_txt2vid_ze == "segmind/Segmind-Vega") or (modelid_txt2vid_ze == "dataautogpt3/OpenDalleV1.1")) :
+    if (("XL" in modelid_txt2vid_ze.upper()) or (modelid_txt2vid_ze == "segmind/SSD-1B") or (modelid_txt2vid_ze == "segmind/Segmind-Vega") or (modelid_txt2vid_ze == "dataautogpt3/OpenDalleV1.1")) :
         is_xl_txt2vid_ze: bool = True
     else :        
         is_xl_txt2vid_ze: bool = False

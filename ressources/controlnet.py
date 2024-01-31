@@ -124,7 +124,7 @@ def dispatch_controlnet_preview(
     progress_controlnet=gr.Progress(track_tqdm=True)
     ):
 
-    if (('xl' or 'XL' or 'Xl' or 'xL') in modelid_controlnet or (modelid_controlnet == "segmind/SSD-1B") or (modelid_controlnet == "segmind/Segmind-Vega") or (modelid_controlnet == "dataautogpt3/OpenDalleV1.1")):
+    if (("XL" in modelid_controlnet.upper()) or (modelid_controlnet == "segmind/SSD-1B") or (modelid_controlnet == "segmind/Segmind-Vega") or (modelid_controlnet == "dataautogpt3/OpenDalleV1.1")):
         is_xl_controlnet: bool = True
     else :
         is_xl_controlnet: bool = False
@@ -279,7 +279,7 @@ def image_controlnet(
     else :
         is_turbo_controlnet: bool = False
 
-    if (('xl' or 'XL' or 'Xl' or 'xL') in modelid_controlnet or (modelid_controlnet == "segmind/SSD-1B") or (modelid_controlnet == "segmind/Segmind-Vega") or (modelid_controlnet == "dataautogpt3/OpenDalleV1.1")):
+    if (("XL" in modelid_controlnet.upper()) or (modelid_controlnet == "segmind/SSD-1B") or (modelid_controlnet == "segmind/Segmind-Vega") or (modelid_controlnet == "dataautogpt3/OpenDalleV1.1")):
         is_xl_controlnet: bool = True
     else :        
         is_xl_controlnet: bool = False
