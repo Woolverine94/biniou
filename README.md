@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-02-01** : 🔥 ***CUDA support for Docker*** 🔥 : Following [contribution](https://github.com/Woolverine94/biniou/discussions/12#discussion-6161761) of [@AndrewDigitalChaos](https://github.com/AndrewDigitalChaos) (a huge thanks 🙏), biniou should now take benefits of CUDA acceleration in Docker. See [here](#dockerfile) for details. Any feedbacks will be really appreciated.
+
   * 🆕 **2024-01-30** : 🔥 ***WebUI control module*** 🔥 : Adding a control module for the WebUI : you can now restart/stop biniou, reload UI and update directly through the WebUI.
 
   * 🆕 **2024-01-27** : ***SD models downloader module*** : You can now download .safetensors Stable Diffusion-based models files from this module. Restart biniou to see them appears in the models list.
@@ -227,7 +229,12 @@ cd ./biniou
 ```bash
 docker build -t biniou https://github.com/Woolverine94/biniou.git
 ```
- 
+ or, for CUDA support : 
+
+```bash
+docker build -t biniou https://raw.githubusercontent.com/Woolverine94/biniou/main/CUDA/Dockerfile
+```
+
   2. **Launch** the container : 
 ```bash
 docker run -it --restart=always -p 7860:7860 \
@@ -237,6 +244,18 @@ docker run -it --restart=always -p 7860:7860 \
 -v biniou_gfpgan:/home/biniou/biniou/gfpgan \
 biniou:latest
 ```
+
+ or, for CUDA support : 
+ 
+```bash
+docker run -it --gpus all --restart=always -p 7860:7860 \
+-v biniou_outputs:/home/biniou/biniou/outputs \
+-v biniou_models:/home/biniou/biniou/models \
+-v biniou_cache:/home/biniou/.cache/huggingface \
+-v biniou_gfpgan:/home/biniou/biniou/gfpgan \
+biniou:latest
+```
+
 
  3. **Access** the webui by the url :<br/>
 [https://127.0.0.1:7860](https://127.0.0.1:7860) or [https://127.0.0.1:7860/?__theme=dark](https://127.0.0.1:7860/?__theme=dark) for dark theme (recommended) <br/>
