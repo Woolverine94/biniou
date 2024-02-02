@@ -98,7 +98,7 @@ def image_faceid_ip(
     progress_faceid_ip=gr.Progress(track_tqdm=True)
     ):
 
-    print(">>>[IP-Adapter 🖌️ ]: starting module")
+    print(">>>[IP-Adapter FaceID 🖌️ ]: starting module")
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_faceid_ip, device_faceid_ip, nsfw_filter)
 
@@ -329,8 +329,8 @@ def image_faceid_ip(
             final_image.append(savename)
             final_seed.append(seed_id)
 
-    print(f">>>[IP-Adapter 🖌️ ]: generated {num_prompt_faceid_ip} batch(es) of {num_images_per_prompt_faceid_ip}")
-    reporting_faceid_ip = f">>>[IP-Adapter 🖌️ ]: "+\
+    print(f">>>[IP-Adapter FaceID 🖌️ ]: generated {num_prompt_faceid_ip} batch(es) of {num_images_per_prompt_faceid_ip}")
+    reporting_faceid_ip = f">>>[IP-Adapter FaceID 🖌️ ]: "+\
         f"Settings : Model={modelid_faceid_ip} | "+\
         f"XL model={is_xl_faceid_ip} | "+\
         f"Sampler={sampler_faceid_ip} | "+\
@@ -353,5 +353,5 @@ def image_faceid_ip(
     del nsfw_filter_final, feat_ex, pipe_faceid_ip, generator, faceid_embeds_faceid_ip, compel, conditioning, neg_conditioning, image
     clean_ram()
 
-    print(f">>>[IP-Adapter 🖌️ ]: leaving module")
+    print(f">>>[IP-Adapter FaceID 🖌️ ]: leaving module")
     return final_image, final_image 
