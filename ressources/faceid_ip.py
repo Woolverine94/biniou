@@ -344,7 +344,7 @@ def image_faceid_ip(
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Denoising strength={denoising_strength_faceid_ip} | "+\
         f"Prompt={prompt_faceid_ip} | "+\
-        f"Negative prompt={negative_prompt_faceid_ip}"+\
+        f"Negative prompt={negative_prompt_faceid_ip} | "+\
         f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_faceid_ip)         
 
