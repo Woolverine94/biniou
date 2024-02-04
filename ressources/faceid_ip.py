@@ -122,6 +122,7 @@ def image_faceid_ip(
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex,
                 custom_pipeline="ip_adapter_face_id",
+                custom_revision="main",
             )
         else :        
             pipe_faceid_ip = AutoPipelineForText2Image.from_pretrained(
@@ -132,6 +133,7 @@ def image_faceid_ip(
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
                 custom_pipeline="ip_adapter_face_id",
+                custom_revision="main",
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
@@ -145,6 +147,7 @@ def image_faceid_ip(
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex,
                 custom_pipeline="ip_adapter_face_id",
+                custom_revision="main",
             )
         else :        
             pipe_faceid_ip = StableDiffusionXLPipeline.from_pretrained(
@@ -155,6 +158,7 @@ def image_faceid_ip(
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
                 custom_pipeline="ip_adapter_face_id",
+                custom_revision="main",
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
@@ -168,6 +172,7 @@ def image_faceid_ip(
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex,
                 custom_pipeline="ip_adapter_face_id",
+                custom_revision="main",
             )
         else :        
             pipe_faceid_ip = StableDiffusionPipeline.from_pretrained(
@@ -178,6 +183,7 @@ def image_faceid_ip(
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
                 custom_pipeline="ip_adapter_face_id",
+                custom_revision="main",
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )

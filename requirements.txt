@@ -2,7 +2,7 @@ gradio==3.50.2
 transformers
 sentencepiece
 accelerate
-git+https://github.com/huggingface/diffusers.git@03373de0db15512f4e785919409142f94ef86dcb
+git+https://github.com/huggingface/diffusers.git@13001ee315171c4f9e2fec4ed7862e19fa453a5e
 compel
 scipy
 opencv-python
