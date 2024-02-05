@@ -188,22 +188,22 @@ def image_faceid_ip(
                 local_files_only=True if offline_test() else None
             )
 
-        if (is_xl_faceid_ip == True):
-            pipe_faceid_ip.load_ip_adapter_face_id(
-                "h94/IP-Adapter-FaceID",
-                cache_dir=model_path_ipa_faceid_ip,
-                weight_name="ip-adapter-faceid_sdxl.bin",
-                resume_download=True,
-                local_files_only=True if offline_test() else None
-            )
-        else:
-            pipe_faceid_ip.load_ip_adapter_face_id(
-                "h94/IP-Adapter-FaceID",
-                cache_dir=model_path_ipa_faceid_ip,
-                weight_name="ip-adapter-faceid_sd15.bin",
-                resume_download=True,
-                local_files_only=True if offline_test() else None
-            )
+    if (is_xl_faceid_ip == True):
+        pipe_faceid_ip.load_ip_adapter_face_id(
+            "h94/IP-Adapter-FaceID",
+            cache_dir=model_path_ipa_faceid_ip,
+            weight_name="ip-adapter-faceid_sdxl.bin",
+            resume_download=True,
+            local_files_only=True if offline_test() else None
+        )
+    else:
+        pipe_faceid_ip.load_ip_adapter_face_id(
+            "h94/IP-Adapter-FaceID",
+            cache_dir=model_path_ipa_faceid_ip,
+            weight_name="ip-adapter-faceid_sd15.bin",
+            resume_download=True,
+            local_files_only=True if offline_test() else None
+        )
 
     pipe_faceid_ip.set_ip_adapter_scale(denoising_strength_faceid_ip)
     pipe_faceid_ip = schedulerer(pipe_faceid_ip, sampler_faceid_ip)
