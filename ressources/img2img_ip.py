@@ -37,6 +37,7 @@ model_list_img2img_ip_builtin = [
     "digiplay/AbsoluteReality_v1.8.1",
 #    "segmind/Segmind-Vega",
 #    "segmind/SSD-1B",
+    "gsdf/Counterfeit-V2.5",
 #    "ckpt/anything-v4.5-vae-swapped",
     "stabilityai/stable-diffusion-xl-base-1.0",
 #    "stabilityai/stable-diffusion-xl-refiner-1.0",
