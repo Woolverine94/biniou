@@ -398,12 +398,13 @@ def image_controlnet(
             text_encoder=[pipe_controlnet.text_encoder, pipe_controlnet.text_encoder_2], 
             returned_embeddings_type=ReturnedEmbeddingsType.PENULTIMATE_HIDDEN_STATES_NON_NORMALIZED, 
             requires_pooled=[False, True],
+            device=device_controlnet,
         )
         conditioning, pooled = compel(prompt_controlnet)
         neg_conditioning, neg_pooled = compel(negative_prompt_controlnet)
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
     else : 
-        compel = Compel(tokenizer=pipe_controlnet.tokenizer, text_encoder=pipe_controlnet.text_encoder, truncate_long_prompts=False)
+        compel = Compel(tokenizer=pipe_controlnet.tokenizer, text_encoder=pipe_controlnet.text_encoder, truncate_long_prompts=False, device=device_controlnet)
         conditioning = compel.build_conditioning_tensor(prompt_controlnet)
         neg_conditioning = compel.build_conditioning_tensor(negative_prompt_controlnet)
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])

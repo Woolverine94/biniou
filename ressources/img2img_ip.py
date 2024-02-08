@@ -340,12 +340,13 @@ def image_img2img_ip(
             text_encoder=pipe_img2img_ip.text_encoder_2, 
             returned_embeddings_type=ReturnedEmbeddingsType.PENULTIMATE_HIDDEN_STATES_NON_NORMALIZED, 
             requires_pooled=[False, True], 
+            device=device_img2img_ip,
         )
         conditioning, pooled = compel(prompt_img2img_ip)
         neg_conditioning, neg_pooled = compel(negative_prompt_img2img_ip)
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
     else :
-        compel = Compel(tokenizer=pipe_img2img_ip.tokenizer, text_encoder=pipe_img2img_ip.text_encoder, truncate_long_prompts=False)
+        compel = Compel(tokenizer=pipe_img2img_ip.tokenizer, text_encoder=pipe_img2img_ip.text_encoder, truncate_long_prompts=False, device=device_img2img_ip)
         conditioning = compel.build_conditioning_tensor(prompt_img2img_ip)
         neg_conditioning = compel.build_conditioning_tensor(negative_prompt_img2img_ip)
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])

@@ -223,13 +223,14 @@ def image_img2img(
             tokenizer=pipe_img2img.tokenizer_2, 
             text_encoder=pipe_img2img.text_encoder_2, 
             returned_embeddings_type=ReturnedEmbeddingsType.PENULTIMATE_HIDDEN_STATES_NON_NORMALIZED, 
-            requires_pooled=[False, True], 
+            requires_pooled=[False, True],
+            device=device_img2img,
         )
         conditioning, pooled = compel(prompt_img2img)
         neg_conditioning, neg_pooled = compel(negative_prompt_img2img)
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
     else :
-        compel = Compel(tokenizer=pipe_img2img.tokenizer, text_encoder=pipe_img2img.text_encoder, truncate_long_prompts=False)
+        compel = Compel(tokenizer=pipe_img2img.tokenizer, text_encoder=pipe_img2img.text_encoder, truncate_long_prompts=False, device=device_img2img)
         conditioning = compel.build_conditioning_tensor(prompt_img2img)
         neg_conditioning = compel.build_conditioning_tensor(negative_prompt_img2img)
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])

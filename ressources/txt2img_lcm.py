@@ -187,10 +187,11 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
             text_encoder=[pipe_txt2img_lcm.text_encoder, pipe_txt2img_lcm.text_encoder_2], 
             returned_embeddings_type=ReturnedEmbeddingsType.PENULTIMATE_HIDDEN_STATES_NON_NORMALIZED, 
             requires_pooled=[False, True], 
+            device=device_txt2img_lcm,
         )
         conditioning, pooled = compel(prompt_txt2img_lcm)
     else :
-        compel = Compel(tokenizer=pipe_txt2img_lcm.tokenizer, text_encoder=pipe_txt2img_lcm.text_encoder, truncate_long_prompts=False)
+        compel = Compel(tokenizer=pipe_txt2img_lcm.tokenizer, text_encoder=pipe_txt2img_lcm.text_encoder, truncate_long_prompts=False, device=device_txt2img_lcm)
         conditioning = compel.build_conditioning_tensor(prompt_txt2img_lcm)
    
     final_image = []

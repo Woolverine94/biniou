@@ -3,7 +3,6 @@
 import gradio as gr
 import os
 from diffusers import AutoPipelineForText2Image
-from compel import Compel
 import torch
 import random
 from ressources.gfpgan import *

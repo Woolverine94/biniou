@@ -95,7 +95,7 @@ def video_txt2vid_ms(
     if negative_prompt_txt2vid_ms == "None":
         negative_prompt_txt2vid_ms = ""
 
-    compel = Compel(tokenizer=pipe_txt2vid_ms.tokenizer, text_encoder=pipe_txt2vid_ms.text_encoder, truncate_long_prompts=False)
+    compel = Compel(tokenizer=pipe_txt2vid_ms.tokenizer, text_encoder=pipe_txt2vid_ms.text_encoder, truncate_long_prompts=False, device=device_txt2vid_ms)
     conditioning = compel.build_conditioning_tensor(prompt_txt2vid_ms)
     neg_conditioning = compel.build_conditioning_tensor(negative_prompt_txt2vid_ms)
     [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])    
@@ -112,7 +112,7 @@ def video_txt2vid_ms(
             num_frames=num_frames_txt2vid_ms,
             generator = generator[i],
             callback=check_txt2vid_ms, 
-        ).frames
+        ).frames[i]
 
         video_path = export_to_video(video_frames)
         seed_id = random_seed + i if (seed_txt2vid_ms == 0) else seed_txt2vid_ms + i

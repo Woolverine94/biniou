@@ -166,12 +166,13 @@ def image_inpaint(
             text_encoder=[pipe_inpaint.text_encoder, pipe_inpaint.text_encoder_2],
             returned_embeddings_type=ReturnedEmbeddingsType.PENULTIMATE_HIDDEN_STATES_NON_NORMALIZED,
             requires_pooled=[False, True],
+            device=device_inpaint,
         )
         conditioning, pooled = compel(prompt_inpaint)
         neg_conditioning, neg_pooled = compel(negative_prompt_inpaint)
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
     else:
-        compel = Compel(tokenizer=pipe_inpaint.tokenizer, text_encoder=pipe_inpaint.text_encoder, truncate_long_prompts=False)
+        compel = Compel(tokenizer=pipe_inpaint.tokenizer, text_encoder=pipe_inpaint.text_encoder, truncate_long_prompts=False, device=device_inpaint)
         conditioning = compel.build_conditioning_tensor(prompt_inpaint)
         neg_conditioning = compel.build_conditioning_tensor(negative_prompt_inpaint)
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])

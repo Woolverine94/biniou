@@ -115,7 +115,7 @@ def image_pix2pix(
     if negative_prompt_pix2pix == "None":
         negative_prompt_pix2pix = ""
 
-    compel = Compel(tokenizer=pipe_pix2pix.tokenizer, text_encoder=pipe_pix2pix.text_encoder, truncate_long_prompts=False)
+    compel = Compel(tokenizer=pipe_pix2pix.tokenizer, text_encoder=pipe_pix2pix.text_encoder, truncate_long_prompts=False, device=device_pix2pix)
     conditioning = compel.build_conditioning_tensor(prompt_pix2pix)
     neg_conditioning = compel.build_conditioning_tensor(negative_prompt_pix2pix)
     [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])

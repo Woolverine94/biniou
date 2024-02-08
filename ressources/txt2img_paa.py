@@ -3,7 +3,6 @@
 import gradio as gr
 import os
 from diffusers import PixArtAlphaPipeline
-# from compel import Compel, ReturnedEmbeddingsType
 import torch
 import random
 from ressources.gfpgan import *
@@ -120,20 +119,13 @@ def image_txt2img_paa(
         prompt_txt2img_paa = ""
     if negative_prompt_txt2img_paa == "None":
         negative_prompt_txt2img_paa = ""
-        
-#   compel = Compel(tokenizer=pipe_txt2img_paa.tokenizer, text_encoder=pipe_txt2img_paa.text_encoder, truncate_long_prompts=False)
-#   conditioning = compel.build_conditioning_tensor(prompt_txt2img_paa)
-#   neg_conditioning = compel.build_conditioning_tensor(negative_prompt_txt2img_paa)    
-#   [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])   
-#   
+
     final_image = []
     final_seed = []
     for i in range (num_prompt_txt2img_paa):
         image = pipe_txt2img_paa(
             prompt=prompt_txt2img_paa,
             negative_prompt=negative_prompt_txt2img_paa,
-#            prompt_embeds=conditioning,
-#            negative_prompt_embeds=neg_conditioning,
             height=height_txt2img_paa,
             width=width_txt2img_paa,
             num_images_per_prompt=num_images_per_prompt_txt2img_paa,

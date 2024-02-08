@@ -121,7 +121,7 @@ def image_txt2img_mjm(
     if negative_prompt_txt2img_mjm == "None":
         negative_prompt_txt2img_mjm = ""
         
-    compel = Compel(tokenizer=pipe_txt2img_mjm.tokenizer, text_encoder=pipe_txt2img_mjm.text_encoder, truncate_long_prompts=False)
+    compel = Compel(tokenizer=pipe_txt2img_mjm.tokenizer, text_encoder=pipe_txt2img_mjm.text_encoder, truncate_long_prompts=False, device=device_txt2img_mjm)
     conditioning = compel.build_conditioning_tensor(prompt_txt2img_mjm)
     neg_conditioning = compel.build_conditioning_tensor(negative_prompt_txt2img_mjm)    
     [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])   
