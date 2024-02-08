@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-02-08** : 🔥 ***Fixing bug breaking CUDA on most images modules*** 🔥 : Fixing an incompatibility between Compel and cpu_offloading. This issue only appears when using CUDA and crashes the modules at the beginning of generation with error `NotImplementedError: Cannot copy out of meta tensor; no data!`. As I don't have access to CUDA hardware to validate everything works again, feedbacks will be really appreciated. Also fixing a recent bug in modelscope that crash export of the final video.
+
   * 🆕 **2024-02-01** : 🔥 ***CUDA support for Docker*** 🔥 : Following [contribution](https://github.com/Woolverine94/biniou/discussions/12#discussion-6161761) of [@AndrewDigitalChaos](https://github.com/AndrewDigitalChaos) (a huge thanks 🙏), biniou should now take benefits of CUDA acceleration in Docker. See [here](#dockerfile) for details. Any feedbacks will be really appreciated.
 
   * 🆕 **2024-01-30** : 🔥 ***WebUI control module*** 🔥 : Adding a control module for the WebUI : you can now restart/stop biniou, reload UI and update directly through the WebUI.
@@ -23,8 +25,6 @@
   * 🆕 **2024-01-27** : ***SD models downloader module*** : You can now download .safetensors Stable Diffusion-based models files from this module. Restart biniou to see them appears in the models list.
 
   * 🆕 **2024-01-26** : ***LoRA models manager module*** : Using this new feature in the Global settings tab, you can now administrate LoRA models directly from biniou's interface.
-
-  * 🆕 **2024-01-25** : ***New Global settings tab*** : You will find in this tab common tools to administrate biniou. First module is the Models cleaner, that allow you to delete unused models to make some space, without having to browse through models and cache directories.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
