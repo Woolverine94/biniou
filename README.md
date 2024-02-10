@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-02-09** : 🔥 ***Updates and fixes in LCM Module*** 🔥 : Adding [lcm-lora-sdv1-5](https://huggingface.co/latent-consistency/lcm-lora-sdv1-5) and [lcm-lora-sdxl](https://huggingface.co/latent-consistency/lcm-lora-sdxl) to LCM module. These two models are way faster than the models they rely on, but still a bit slower than [sd-turbo](https://huggingface.co/stabilityai/sd-turbo) and [sdxl-turbo](https://huggingface.co/stabilityai/sdxl-turbo). Also fixing a misconfiguration in the settings of model [Segmind-VegaRT](https://huggingface.co/segmind/Segmind-VegaRT), which is now the fastest model in biniou for 1024x1024 generation.
+
   * 🆕 **2024-02-08** : 🔥 ***Fixing bug breaking CUDA on most images modules*** 🔥 : Fixing an incompatibility between Compel and cpu_offloading. This issue only appears when using CUDA and crashes the modules at the beginning of generation with error `NotImplementedError: Cannot copy out of meta tensor; no data!`. As I don't have access to CUDA hardware to validate everything works again, feedbacks will be really appreciated. Also fixing a recent bug in modelscope that crash export of the final video.
 
   * 🆕 **2024-02-01** : 🔥 ***CUDA support for Docker*** 🔥 : Following [contribution](https://github.com/Woolverine94/biniou/discussions/12#discussion-6161761) of [@AndrewDigitalChaos](https://github.com/AndrewDigitalChaos) (a huge thanks 🙏), biniou should now take benefits of CUDA acceleration in Docker. See [here](#dockerfile) for details. Any feedbacks will be really appreciated.
@@ -23,8 +25,6 @@
   * 🆕 **2024-01-30** : 🔥 ***WebUI control module*** 🔥 : Adding a control module for the WebUI : you can now restart/stop biniou, reload UI and update directly through the WebUI.
 
   * 🆕 **2024-01-27** : ***SD models downloader module*** : You can now download .safetensors Stable Diffusion-based models files from this module. Restart biniou to see them appears in the models list.
-
-  * 🆕 **2024-01-26** : ***LoRA models manager module*** : Using this new feature in the Global settings tab, you can now administrate LoRA models directly from biniou's interface.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
