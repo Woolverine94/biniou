@@ -317,10 +317,14 @@ def read_ini_txt2img_lcm(module) :
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), int(content[9]), bool(int(content[10])), float(content[11])
 
 def change_model_type_txt2img_lcm(model_txt2img_lcm):
-    if (model_txt2img_lcm == "latent-consistency/lcm-ssd-1b") or (model_txt2img_lcm == "segmind/Segmind-VegaRT"):
-        return width_txt2img_lcm.update(value=1024), height_txt2img_lcm.update(value=1024)
+    if (model_txt2img_lcm == "latent-consistency/lcm-ssd-1b") or (model_txt2img_lcm == "latent-consistency/lcm-lora-sdxl"):
+        return width_txt2img_lcm.update(value=1024), height_txt2img_lcm.update(value=1024), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4)
+    elif (model_txt2img_lcm == "latent-consistency/lcm-lora-sdv1-5"):
+        return width_txt2img_lcm.update(value=512), height_txt2img_lcm.update(value=512), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4)
+    elif (model_txt2img_lcm == "segmind/Segmind-VegaRT"):
+        return width_txt2img_lcm.update(value=1024), height_txt2img_lcm.update(value=1024), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4)
     else:
-        return width_txt2img_lcm.update(value=512), height_txt2img_lcm.update(value=512)
+        return width_txt2img_lcm.update(value=512), height_txt2img_lcm.update(value=512), guidance_scale_txt2img_lcm.update(value=8.0), num_inference_step_txt2img_lcm.update(value=4)
 
 ## Functions specific to Midjourney mini
 def zip_download_file_txt2img_mjm(content):
@@ -2324,7 +2328,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF model page : </b>
                                 <a href='https://huggingface.co/SimianLuo/LCM_Dreamshaper_v7' target='_blank'>SimianLuo/LCM_Dreamshaper_v7</a>, 
+                                <a href='https://huggingface.co/segmind/Segmind-VegaRT' target='_blank'>segmind/Segmind-VegaRT</a>, 
                                 <a href='https://huggingface.co/latent-consistency/lcm-ssd-1b' target='_blank'>latent-consistency/lcm-ssd-1b</a>, 
+                                <a href='https://huggingface.co/latent-consistency/lcm-lora-sdv1-5' target='_blank'>latent-consistency/lcm-lora-sdv1-5</a>, 
+                                <a href='https://huggingface.co/latent-consistency/lcm-lora-sdxl' target='_blank'>latent-consistency/lcm-lora-sdxl</a>, 
                                 </br>
                                 """
                             )
@@ -2369,8 +2376,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():    
                                 use_gfpgan_txt2img_lcm = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
-                                tkme_txt2img_lcm = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
-                        model_txt2img_lcm.change(fn=change_model_type_txt2img_lcm, inputs=model_txt2img_lcm, outputs=[width_txt2img_lcm, height_txt2img_lcm])
+                                tkme_txt2img_lcm = gr.Slider(0.0, 1.0, step=0.01, value=0.0, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                        model_txt2img_lcm.change(fn=change_model_type_txt2img_lcm, inputs=model_txt2img_lcm, outputs=[width_txt2img_lcm, height_txt2img_lcm, guidance_scale_txt2img_lcm, num_inference_step_txt2img_lcm])
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_txt2img_lcm = gr.Button("Save custom defaults settings 💾")

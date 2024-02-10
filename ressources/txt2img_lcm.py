@@ -28,6 +28,9 @@ model_list_txt2img_lcm_builtin = [
     "SimianLuo/LCM_Dreamshaper_v7",
     "segmind/Segmind-VegaRT",
     "latent-consistency/lcm-ssd-1b",
+    "latent-consistency/lcm-lora-sdv1-5",
+    "latent-consistency/lcm-lora-sdxl",
+
 ]
 
 for k in range(len(model_list_txt2img_lcm_builtin)):
@@ -112,10 +115,16 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
             resume_download=True,
             local_files_only=True if offline_test() else None
         )
-        pipe_txt2img_lcm.scheduler = LCMScheduler.from_config(pipe_txt2img_lcm.scheduler.config)
-    elif (modelid_txt2img_lcm == "segmind/Segmind-VegaRT"):
+        pipe_txt2img_lcm = schedulerer(pipe_txt2img_lcm, sampler_txt2img_lcm)
+#        pipe_txt2img_lcm.scheduler = LCMScheduler.from_config(pipe_txt2img_lcm.scheduler.config)
+    elif (modelid_txt2img_lcm == "segmind/Segmind-VegaRT") or (modelid_txt2img_lcm == "latent-consistency/lcm-lora-sdv1-5") or (modelid_txt2img_lcm == "latent-consistency/lcm-lora-sdxl"):
         model_path_SD_txt2img_lcm = "./models/Stable_Diffusion"
-        modelid_SD_txt2img_lcm = "segmind/Segmind-Vega"
+        if (modelid_txt2img_lcm == "segmind/Segmind-VegaRT"):
+            modelid_SD_txt2img_lcm = "segmind/Segmind-Vega"
+        elif (modelid_txt2img_lcm == "latent-consistency/lcm-lora-sdv1-5"):
+            modelid_SD_txt2img_lcm = "SG161222/Realistic_Vision_V3.0_VAE"
+        elif (modelid_txt2img_lcm == "latent-consistency/lcm-lora-sdxl"):
+            modelid_SD_txt2img_lcm = "stabilityai/stable-diffusion-xl-base-1.0"
         pipe_txt2img_lcm = AutoPipelineForText2Image.from_pretrained(
             modelid_SD_txt2img_lcm,
             cache_dir=model_path_SD_txt2img_lcm,
@@ -127,7 +136,8 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
             resume_download=True,
             local_files_only=True if offline_test() else None
         )
-        pipe_txt2img_lcm.scheduler = LCMScheduler.from_config(pipe_txt2img_lcm.scheduler.config)
+        pipe_txt2img_lcm = schedulerer(pipe_txt2img_lcm, sampler_txt2img_lcm)
+#        pipe_txt2img_lcm.scheduler = LCMScheduler.from_config(pipe_txt2img_lcm.scheduler.config)
         pipe_txt2img_lcm.load_lora_weights(
             modelid_txt2img_lcm,
             cache_dir=model_path_txt2img_lcm,
