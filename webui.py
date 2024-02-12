@@ -560,17 +560,17 @@ def read_ini_faceid_ip(module) :
 
 def change_model_type_faceid_ip(model_faceid_ip):
     if (model_faceid_ip == "stabilityai/sdxl-turbo"):
-        return sampler_faceid_ip.update(value="Euler a"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), negative_prompt_faceid_ip.update(interactive=False)
+        return sampler_faceid_ip.update(value="Euler a"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys())), negative_prompt_faceid_ip.update(interactive=False)
 #    elif (model_faceid_ip == "thibaud/sdxl_dpo_turbo"):
-#        return sampler_faceid_ip.update(value="UniPC"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), negative_prompt_faceid_ip.update(interactive=False)
+#        return sampler_faceid_ip.update(value="UniPC"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys())), negative_prompt_faceid_ip.update(interactive=False)
     elif (model_faceid_ip == "stabilityai/sd-turbo"):
-        return sampler_faceid_ip.update(value="Euler a"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=False), negative_prompt_faceid_ip.update(interactive=False)
+        return sampler_faceid_ip.update(value="Euler a"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=False), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys())), negative_prompt_faceid_ip.update(interactive=False)
     elif ("XL" in model_faceid_ip.upper()) or (model_faceid_ip == "segmind/SSD-1B") or (model_faceid_ip == "dataautogpt3/OpenDalleV1.1"):
-        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), negative_prompt_faceid_ip.update(interactive=True)
+        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys())), negative_prompt_faceid_ip.update(interactive=True)
     elif (model_faceid_ip == "segmind/Segmind-Vega"):
-        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=9.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), negative_prompt_faceid_ip.update(interactive=True)
+        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=9.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys())), negative_prompt_faceid_ip.update(interactive=True)
     else:
-        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), negative_prompt_faceid_ip.update(interactive=True)
+        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys())), negative_prompt_faceid_ip.update(interactive=True)
 
 def change_lora_model_faceid_ip(model, lora_model, prompt):
     if lora_model != "":
@@ -582,6 +582,23 @@ def change_lora_model_faceid_ip(model, lora_model, prompt):
     else:
         lora_prompt_faceid_ip = prompt
     return prompt_faceid_ip.update(value=lora_prompt_faceid_ip)
+
+def change_txtinv_faceid_ip(model, txtinv, prompt, negative_prompt):
+    if txtinv != "":
+        txtinv_keyword = txtinv_list(model)[txtinv][1]
+        if txtinv_keyword != "" and txtinv_keyword != "EasyNegative":
+            txtinv_prompt_faceid_ip = txtinv_keyword+ ", "+ prompt
+            txtinv_negative_prompt_faceid_ip = negative_prompt
+        elif txtinv_keyword != "" and txtinv_keyword == "EasyNegative":
+            txtinv_prompt_faceid_ip = prompt
+            txtinv_negative_prompt_faceid_ip = txtinv_keyword+ ", "+ negative_prompt
+        else:
+            txtinv_prompt_faceid_ip = prompt
+            txtinv_negative_prompt_faceid_ip = negative_prompt
+    else:
+        txtinv_prompt_faceid_ip = prompt
+        txtinv_negative_prompt_faceid_ip = negative_prompt
+    return prompt_faceid_ip.update(value=txtinv_prompt_faceid_ip), negative_prompt_faceid_ip.update(value=txtinv_negative_prompt_faceid_ip)
 
 ## Functions specific to faceswap 
 def zip_download_file_faceswap(content):
@@ -5207,6 +5224,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     lora_model_faceid_ip = gr.Dropdown(choices=list(lora_model_list(model_faceid_ip.value).keys()), value="", label="LoRA model", info="Choose LoRA model to use for inference")
                                 with gr.Column():
                                     lora_weight_faceid_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label="LoRA weight", info="Weight of the LoRA model in the final result")
+                        with gr.Accordion("Textual inversion", open=True):
+                            with gr.Row():
+                                with gr.Column():
+                                    txtinv_faceid_ip = gr.Dropdown(choices=list(txtinv_list(model_faceid_ip.value).keys()), value="", label="Textual inversion", info="Choose textual inversion to use for inference")
                     with gr.Row():
                         with gr.Column():
                             img_faceid_ip = gr.Image(label="Input image", height=400, type="filepath")
@@ -5233,10 +5254,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 num_inference_step_faceid_ip,
                                 guidance_scale_faceid_ip,
                                 lora_model_faceid_ip,
+                                txtinv_faceid_ip,
                                 negative_prompt_faceid_ip,
                             ]
                         )
                         lora_model_faceid_ip.change(fn=change_lora_model_faceid_ip, inputs=[model_faceid_ip, lora_model_faceid_ip, prompt_faceid_ip], outputs=[prompt_faceid_ip])
+                        txtinv_faceid_ip.change(fn=change_txtinv_faceid_ip, inputs=[model_faceid_ip, txtinv_faceid_ip, prompt_faceid_ip, negative_prompt_faceid_ip], outputs=[prompt_faceid_ip, negative_prompt_faceid_ip])
 #                        denoising_strength_faceid_ip.change(check_steps_strength, [num_inference_step_faceid_ip, denoising_strength_faceid_ip, model_faceid_ip], [num_inference_step_faceid_ip])
                         with gr.Column():
                             with gr.Row():
@@ -5290,6 +5313,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     tkme_faceid_ip,
                                     lora_model_faceid_ip,
                                     lora_weight_faceid_ip,
+                                    txtinv_faceid_ip,
                                 ],
                                 outputs=[out_faceid_ip, gs_out_faceid_ip], 
                                 show_progress="full",

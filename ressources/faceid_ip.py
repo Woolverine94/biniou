@@ -96,6 +96,7 @@ def image_faceid_ip(
     tkme_faceid_ip,    
     lora_model_faceid_ip,
     lora_weight_faceid_ip,
+    txtinv_faceid_ip,
     progress_faceid_ip=gr.Progress(track_tqdm=True)
     ):
 
@@ -241,6 +242,33 @@ def image_faceid_ip(
         pipe_faceid_ip.fuse_lora(lora_scale=lora_weight_faceid_ip)
 #        pipe_faceid_ip.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_faceid_ip)])
 
+    if txtinv_faceid_ip != "":
+        model_list_txtinv_faceid_ip = txtinv_list(modelid_faceid_ip)
+        weight_faceid_ip = model_list_txtinv_faceid_ip[txtinv_faceid_ip][0]
+        token_faceid_ip =  model_list_txtinv_faceid_ip[txtinv_faceid_ip][1]
+        if modelid_faceid_ip[0:9] == "./models/":
+            model_path_txtinv = "./models/TextualInversion"
+            pipe_faceid_ip.load_textual_inversion(
+                txtinv_faceid_ip,
+                weight_name=weight_faceid_ip,
+                use_safetensors=True,
+                token=token_faceid_ip,
+            )
+        else:
+            if is_xl_faceid_ip:
+                model_path_txtinv = "./models/lora/SDXL"
+            else: 
+                model_path_txtinv = "./models/lora/SD"
+            pipe_faceid_ip.load_textual_inversion(
+                txtinv_faceid_ip,
+                weight_name=weight_faceid_ip,
+                cache_dir=model_path_txtinv,
+                use_safetensors=True,
+                token=token_faceid_ip,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+
     if seed_faceid_ip == 0:
         random_seed = random.randrange(0, 10000000000, 1)
         final_seed = random_seed
@@ -349,6 +377,7 @@ def image_faceid_ip(
         f"Token merging={tkme_faceid_ip} | "+\
         f"LoRA model={lora_model_faceid_ip} | "+\
         f"LoRA weight={lora_weight_faceid_ip} | "+\
+        f"Textual inversion={txtinv_faceid_ip} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Denoising strength={denoising_strength_faceid_ip} | "+\
         f"Prompt={prompt_faceid_ip} | "+\

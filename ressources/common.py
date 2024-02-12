@@ -21,6 +21,15 @@ from ressources.scheduler import *
 
 device_torch = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
+model_path_lora_sd = "./models/lora/SD"
+model_path_lora_sdxl = "./models/lora/SDXL"
+model_path_txtinv_sd = "./models/TextualInversion/SD"
+model_path_txtinv_sdxl = "./models/TextualInversion/SDXL"
+os.makedirs(model_path_lora_sd, exist_ok=True)
+os.makedirs(model_path_lora_sdxl, exist_ok=True)
+os.makedirs(model_path_txtinv_sd, exist_ok=True)
+os.makedirs(model_path_txtinv_sdxl, exist_ok=True)
+
 ACTION_LIST = [
     "Outputs",
     "Inputs",
@@ -488,3 +497,31 @@ def lora_model_list(model):
 
     model_list_lora.update(model_list_lora_builtin)
     return model_list_lora
+
+
+def txtinv_list(model):
+    if (("XL" in model.upper()) or (model == "segmind/SSD-1B") or (model == "segmind/Segmind-Vega")  or (model == "dataautogpt3/OpenDalleV1.1")):
+        model_path_txtinv = "./models/TextualInversion/SD"
+        model_list_txtinv_builtin = {
+            "SalahZaidi/textual_inversion_cat_sdxl":("learned_embeds-steps-15000.safetensors", ""),
+        }
+
+    else:
+        model_path_txtinv = "./models/TextualInversion/SDXL"
+        model_list_txtinv_builtin = {
+            "embed/EasyNegative":("EasyNegative.safetensors", "EasyNegative"),
+        }
+
+    os.makedirs(model_path_txtinv, exist_ok=True)
+    model_list_txtinv = {
+        "":("", ""),
+    }
+    
+    for filename in os.listdir(model_path_txtinv):
+        f = os.path.join(model_path_txtinv, filename)
+        if os.path.isfile(f) and filename.endswith('.safetensors'):
+            final_f = {f:(f.split("/")[-1], "")}
+            model_list_txt.update(final_f)
+
+    model_list_txtinv.update(model_list_txtinv_builtin)
+    return model_list_txtinv

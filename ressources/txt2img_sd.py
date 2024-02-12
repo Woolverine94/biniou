@@ -17,11 +17,6 @@ device_txt2img_sd = torch.device(device_label_txt2img_sd)
 model_path_txt2img_sd = "./models/Stable_Diffusion/"
 os.makedirs(model_path_txt2img_sd, exist_ok=True)
 
-model_path_lora_sd = "./models/lora/SD"
-model_path_lora_sdxl = "./models/lora/SDXL"
-os.makedirs(model_path_lora_sd, exist_ok=True)
-os.makedirs(model_path_lora_sdxl, exist_ok=True)
-
 model_list_txt2img_sd = []
 
 for filename in os.listdir(model_path_txt2img_sd):
