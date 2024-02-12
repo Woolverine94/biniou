@@ -253,17 +253,17 @@ def hide_download_file_txt2img_sd():
 
 def change_model_type_txt2img_sd(model_txt2img_sd):
     if (model_txt2img_sd == "stabilityai/sdxl-turbo"):
-        return sampler_txt2img_sd.update(value="Euler a"), width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=False)
+        return sampler_txt2img_sd.update(value="Euler a"), width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=False)
     elif (model_txt2img_sd == "thibaud/sdxl_dpo_turbo"):
-        return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=2), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=False)
+        return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=2), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=False)
     elif (model_txt2img_sd == "stabilityai/sd-turbo"):
-        return sampler_txt2img_sd.update(value="Euler a"), width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=False), negative_prompt_txt2img_sd.update(interactive=False)
+        return sampler_txt2img_sd.update(value="Euler a"), width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=False), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=False)
     elif ("XL" in model_txt2img_sd.upper()) or (model_txt2img_sd == "segmind/SSD-1B") or (model_txt2img_sd == "dataautogpt3/OpenDalleV1.1"):
-        return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=1024), height_txt2img_sd.update(value=1024), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=True)
+        return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=1024), height_txt2img_sd.update(value=1024), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=True)
     elif (model_txt2img_sd == "segmind/Segmind-Vega"):
-        return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=1024), height_txt2img_sd.update(value=1024), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=9.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=True)
+        return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=1024), height_txt2img_sd.update(value=1024), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=9.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=True)
     else:
-        return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=True)
+        return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=True)
 
 def change_lora_model_txt2img_sd(model, lora_model, prompt):
     if lora_model != "":
@@ -278,6 +278,23 @@ def change_lora_model_txt2img_sd(model, lora_model, prompt):
 
 # def update_preview_txt2img_sd(preview):
 #     return out_txt2img_sd.update(preview)
+
+def change_txtinv_txt2img_sd(model, txtinv, prompt, negative_prompt):
+    if txtinv != "":
+        txtinv_keyword = txtinv_list(model)[txtinv][1]
+        if txtinv_keyword != "" and txtinv_keyword != "EasyNegative":
+            txtinv_prompt_txt2img_sd = txtinv_keyword+ ", "+ prompt
+            txtinv_negative_prompt_txt2img_sd = negative_prompt
+        elif txtinv_keyword != "" and txtinv_keyword == "EasyNegative":
+            txtinv_prompt_txt2img_sd = prompt
+            txtinv_negative_prompt_txt2img_sd = txtinv_keyword+ ", "+ negative_prompt
+        else:
+            txtinv_prompt_txt2img_sd = prompt
+            txtinv_negative_prompt_txt2img_sd = negative_prompt
+    else:
+        txtinv_prompt_txt2img_sd = prompt
+        txtinv_negative_prompt_txt2img_sd = negative_prompt
+    return prompt_txt2img_sd.update(value=txtinv_prompt_txt2img_sd), negative_prompt_txt2img_sd.update(value=txtinv_negative_prompt_txt2img_sd)
 
 def read_ini_txt2img_sd(module) :
     content = read_ini(module)
@@ -560,17 +577,17 @@ def read_ini_faceid_ip(module) :
 
 def change_model_type_faceid_ip(model_faceid_ip):
     if (model_faceid_ip == "stabilityai/sdxl-turbo"):
-        return sampler_faceid_ip.update(value="Euler a"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys())), negative_prompt_faceid_ip.update(interactive=False)
+        return sampler_faceid_ip.update(value="Euler a"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=False)
 #    elif (model_faceid_ip == "thibaud/sdxl_dpo_turbo"):
-#        return sampler_faceid_ip.update(value="UniPC"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys())), negative_prompt_faceid_ip.update(interactive=False)
+#        return sampler_faceid_ip.update(value="UniPC"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=False)
     elif (model_faceid_ip == "stabilityai/sd-turbo"):
-        return sampler_faceid_ip.update(value="Euler a"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=False), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys())), negative_prompt_faceid_ip.update(interactive=False)
+        return sampler_faceid_ip.update(value="Euler a"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=False), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=False)
     elif ("XL" in model_faceid_ip.upper()) or (model_faceid_ip == "segmind/SSD-1B") or (model_faceid_ip == "dataautogpt3/OpenDalleV1.1"):
-        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys())), negative_prompt_faceid_ip.update(interactive=True)
+        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True)
     elif (model_faceid_ip == "segmind/Segmind-Vega"):
-        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=9.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys())), negative_prompt_faceid_ip.update(interactive=True)
+        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=9.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True)
     else:
-        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys())), negative_prompt_faceid_ip.update(interactive=True)
+        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True)
 
 def change_lora_model_faceid_ip(model, lora_model, prompt):
     if lora_model != "":
@@ -1980,6 +1997,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     lora_model_txt2img_sd = gr.Dropdown(choices=list(lora_model_list(model_txt2img_sd.value).keys()), value="", label="LoRA model", info="Choose LoRA model to use for inference")
                                 with gr.Column():
                                     lora_weight_txt2img_sd = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label="LoRA weight", info="Weight of the LoRA model in the final result")
+                        with gr.Accordion("Textual inversion", open=True):
+                            with gr.Row():
+                                with gr.Column():
+                                    txtinv_txt2img_sd = gr.Dropdown(choices=list(txtinv_list(model_txt2img_sd.value).keys()), value="", label="Textual inversion", info="Choose textual inversion to use for inference")
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -1998,10 +2019,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 num_inference_step_txt2img_sd,
                                 guidance_scale_txt2img_sd,
                                 lora_model_txt2img_sd,
+                                txtinv_txt2img_sd,
                                 negative_prompt_txt2img_sd
                             ]
                         )
                         lora_model_txt2img_sd.change(fn=change_lora_model_txt2img_sd, inputs=[model_txt2img_sd, lora_model_txt2img_sd, prompt_txt2img_sd], outputs=[prompt_txt2img_sd])
+                        txtinv_txt2img_sd.change(fn=change_txtinv_txt2img_sd, inputs=[model_txt2img_sd, txtinv_txt2img_sd, prompt_txt2img_sd, negative_prompt_txt2img_sd], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd])
                         with gr.Column(scale=2):
                             out_txt2img_sd = gr.Gallery(
                                 label="Generated images",
@@ -2049,6 +2072,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_txt2img_sd,
                                 lora_model_txt2img_sd,
                                 lora_weight_txt2img_sd,
+                                txtinv_txt2img_sd,
                             ],
                                 outputs=[out_txt2img_sd, gs_out_txt2img_sd],
                                 show_progress="full",

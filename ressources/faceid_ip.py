@@ -256,9 +256,9 @@ def image_faceid_ip(
             )
         else:
             if is_xl_faceid_ip:
-                model_path_txtinv = "./models/lora/SDXL"
+                model_path_txtinv = "./models/TextualInversion/SDXL"
             else: 
-                model_path_txtinv = "./models/lora/SD"
+                model_path_txtinv = "./models/TextualInversion/SD"
             pipe_faceid_ip.load_textual_inversion(
                 txtinv_faceid_ip,
                 weight_name=weight_faceid_ip,

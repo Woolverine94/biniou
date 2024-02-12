@@ -77,6 +77,7 @@ def image_txt2img_sd(
     tkme_txt2img_sd,
     lora_model_txt2img_sd,
     lora_weight_txt2img_sd,
+    txtinv_txt2img_sd,
     progress_txt2img_sd=gr.Progress(track_tqdm=True)
     ):
 
@@ -201,6 +202,33 @@ def image_txt2img_sd(
         pipe_txt2img_sd.fuse_lora(lora_scale=lora_weight_txt2img_sd)
 #        pipe_txt2img_sd.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_txt2img_sd)])
 
+    if txtinv_txt2img_sd != "":
+        model_list_txtinv_txt2img_sd = txtinv_list(modelid_txt2img_sd)
+        weight_txt2img_sd = model_list_txtinv_txt2img_sd[txtinv_txt2img_sd][0]
+        token_txt2img_sd =  model_list_txtinv_txt2img_sd[txtinv_txt2img_sd][1]
+        if modelid_txt2img_sd[0:9] == "./models/":
+            model_path_txtinv = "./models/TextualInversion"
+            pipe_txt2img_sd.load_textual_inversion(
+                txtinv_txt2img_sd,
+                weight_name=weight_txt2img_sd,
+                use_safetensors=True,
+                token=token_txt2img_sd,
+            )
+        else:
+            if is_xl_txt2img_sd:
+                model_path_txtinv = "./models/TextualInversion/SDXL"
+            else: 
+                model_path_txtinv = "./models/TextualInversion/SD"
+            pipe_txt2img_sd.load_textual_inversion(
+                txtinv_txt2img_sd,
+                weight_name=weight_txt2img_sd,
+                cache_dir=model_path_txtinv,
+                use_safetensors=True,
+                token=token_txt2img_sd,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+
     if seed_txt2img_sd == 0:
         random_seed = random.randrange(0, 10000000000, 1)
         final_seed = random_seed
@@ -287,6 +315,7 @@ def image_txt2img_sd(
         f"Token merging={tkme_txt2img_sd} | "+\
         f"LoRA model={lora_model_txt2img_sd} | "+\
         f"LoRA weight={lora_weight_txt2img_sd} | "+\
+        f"Textual inversion={txtinv_txt2img_sd} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Prompt={prompt_txt2img_sd} | "+\
         f"Negative prompt={negative_prompt_txt2img_sd} | "+\
