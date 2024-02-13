@@ -393,17 +393,17 @@ def read_ini_img2img(module) :
 
 def change_model_type_img2img(model_img2img):
     if (model_img2img == "stabilityai/sdxl-turbo"):
-        return sampler_img2img.update(value="Euler a"), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), negative_prompt_img2img.update(interactive=False)
+        return sampler_img2img.update(value="Euler a"), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), txtinv_img2img.update(choices=list(txtinv_list(model_img2img).keys()), value=""), negative_prompt_img2img.update(interactive=False)
     elif (model_img2img == "thibaud/sdxl_dpo_turbo"):
-        return sampler_img2img.update(value="UniPC"), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), negative_prompt_img2img.update(interactive=False)
+        return sampler_img2img.update(value="UniPC"), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), txtinv_img2img.update(choices=list(txtinv_list(model_img2img).keys()), value=""), negative_prompt_img2img.update(interactive=False)
     elif (model_img2img == "stabilityai/sd-turbo"):
-        return sampler_img2img.update(value="Euler a"), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=False), negative_prompt_img2img.update(interactive=False)
+        return sampler_img2img.update(value="Euler a"), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=False), txtinv_img2img.update(choices=list(txtinv_list(model_img2img).keys()), value=""), negative_prompt_img2img.update(interactive=False)
     elif ("XL" in model_img2img.upper()) or (model_img2img == "segmind/SSD-1B") or (model_img2img == "dataautogpt3/OpenDalleV1.1"):
-        return sampler_img2img.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), negative_prompt_img2img.update(interactive=True)
+        return sampler_img2img.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), txtinv_img2img.update(choices=list(txtinv_list(model_img2img).keys()), value=""), negative_prompt_img2img.update(interactive=True)
     elif (model_img2img == "segmind/Segmind-Vega"):
-        return sampler_img2img.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=9.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), negative_prompt_img2img.update(interactive=True)
+        return sampler_img2img.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=9.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), txtinv_img2img.update(choices=list(txtinv_list(model_img2img).keys()), value=""), negative_prompt_img2img.update(interactive=True)
     else:
-        return sampler_img2img.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), negative_prompt_img2img.update(interactive=True)
+        return sampler_img2img.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), txtinv_img2img.update(choices=list(txtinv_list(model_img2img).keys()), value=""), negative_prompt_img2img.update(interactive=True)
 
 def change_lora_model_img2img(model, lora_model, prompt):
     if lora_model != "":
@@ -416,6 +416,22 @@ def change_lora_model_img2img(model, lora_model, prompt):
         lora_prompt_img2img = prompt
     return prompt_img2img.update(value=lora_prompt_img2img)
 
+def change_txtinv_img2img(model, txtinv, prompt, negative_prompt):
+    if txtinv != "":
+        txtinv_keyword = txtinv_list(model)[txtinv][1]
+        if txtinv_keyword != "" and txtinv_keyword != "EasyNegative":
+            txtinv_prompt_img2img = txtinv_keyword+ ", "+ prompt
+            txtinv_negative_prompt_img2img = negative_prompt
+        elif txtinv_keyword != "" and txtinv_keyword == "EasyNegative":
+            txtinv_prompt_img2img = prompt
+            txtinv_negative_prompt_img2img = txtinv_keyword+ ", "+ negative_prompt
+        else:
+            txtinv_prompt_img2img = prompt
+            txtinv_negative_prompt_img2img = negative_prompt
+    else:
+        txtinv_prompt_img2img = prompt
+        txtinv_negative_prompt_img2img = negative_prompt
+    return prompt_img2img.update(value=txtinv_prompt_img2img), negative_prompt_img2img.update(value=txtinv_negative_prompt_img2img)
 
 ## Functions specific to img2img_ip 
 def zip_download_file_img2img_ip(content):
@@ -3121,6 +3137,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     lora_model_img2img = gr.Dropdown(choices=list(lora_model_list(model_img2img.value).keys()), value="", label="LoRA model", info="Choose LoRA model to use for inference")
                                 with gr.Column():
                                     lora_weight_img2img = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label="LoRA weight", info="Weight of the LoRA model in the final result")
+                        with gr.Accordion("Textual inversion", open=True):
+                            with gr.Row():
+                                with gr.Column():
+                                    txtinv_img2img = gr.Dropdown(choices=list(txtinv_list(model_img2img.value).keys()), value="", label="Textual inversion", info="Choose textual inversion to use for inference")
                     with gr.Row():
                         with gr.Column():
                             img_img2img = gr.Image(label="Input image", height=400, type="filepath")
@@ -3148,10 +3168,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 num_inference_step_img2img,
                                 guidance_scale_img2img,
                                 lora_model_img2img,
+                                txtinv_img2img,
                                 negative_prompt_img2img,
                             ]
                         )
                         lora_model_img2img.change(fn=change_lora_model_img2img, inputs=[model_img2img, lora_model_img2img, prompt_img2img], outputs=[prompt_img2img])
+                        txtinv_img2img.change(fn=change_txtinv_img2img, inputs=[model_img2img, txtinv_img2img, prompt_img2img, negative_prompt_img2img], outputs=[prompt_img2img, negative_prompt_img2img])
                         denoising_strength_img2img.change(check_steps_strength, [num_inference_step_img2img, denoising_strength_img2img, model_img2img], [num_inference_step_img2img])
                         with gr.Column():
                             with gr.Row():
@@ -3206,6 +3228,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     tkme_img2img,
                                     lora_model_img2img,
                                     lora_weight_img2img,
+                                    txtinv_img2img,
                                 ],
                                 outputs=[out_img2img, gs_out_img2img], 
                                 show_progress="full",
