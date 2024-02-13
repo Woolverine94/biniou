@@ -254,6 +254,7 @@ def image_controlnet(
     tkme_controlnet,
     lora_model_controlnet,
     lora_weight_controlnet,
+    txtinv_controlnet,
     progress_controlnet=gr.Progress(track_tqdm=True)
     ):
 
@@ -366,6 +367,33 @@ def image_controlnet(
             )
         pipe_controlnet.fuse_lora(lora_scale=lora_weight_controlnet)
 #        pipe_controlnet.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_controlnet)])
+
+    if txtinv_controlnet != "":
+        model_list_txtinv_controlnet = txtinv_list(modelid_controlnet)
+        weight_controlnet = model_list_txtinv_controlnet[txtinv_controlnet][0]
+        token_controlnet =  model_list_txtinv_controlnet[txtinv_controlnet][1]
+        if modelid_controlnet[0:9] == "./models/":
+            model_path_txtinv = "./models/TextualInversion"
+            pipe_controlnet.load_textual_inversion(
+                txtinv_controlnet,
+                weight_name=weight_controlnet,
+                use_safetensors=True,
+                token=token_controlnet,
+            )
+        else:
+            if is_xl_controlnet:
+                model_path_txtinv = "./models/TextualInversion/SDXL"
+            else: 
+                model_path_txtinv = "./models/TextualInversion/SD"
+            pipe_controlnet.load_textual_inversion(
+                txtinv_controlnet,
+                weight_name=weight_controlnet,
+                cache_dir=model_path_txtinv,
+                use_safetensors=True,
+                token=token_controlnet,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
 
     if seed_controlnet == 0:
         random_seed = random.randrange(0, 10000000000, 1)
@@ -489,6 +517,7 @@ def image_controlnet(
         f"Token merging={tkme_controlnet} | "+\
         f"LoRA model={lora_model_controlnet} | "+\
         f"LoRA weight={lora_weight_controlnet} | "+\
+        f"Textual inversion={txtinv_controlnet} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"ControlNet model={variant_controlnet} | "+\
         f"Prompt={prompt_controlnet} | "+\
