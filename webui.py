@@ -447,17 +447,17 @@ def read_ini_img2img_ip(module) :
 
 def change_model_type_img2img_ip(model_img2img_ip):
     if (model_img2img_ip == "stabilityai/sdxl-turbo"):
-        return sampler_img2img_ip.update(value="Euler a"), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), negative_prompt_img2img_ip.update(interactive=False)
+        return sampler_img2img_ip.update(value="Euler a"), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=False)
 #    elif (model_img2img_ip == "thibaud/sdxl_dpo_turbo"):
-#        return sampler_img2img_ip.update(value="UniPC"), width_img2img_ip.update(value=512), height_img2img_ip.update(value=512), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), negative_prompt_img2img_ip.update(interactive=False)
+#        return sampler_img2img_ip.update(value="UniPC"), width_img2img_ip.update(value=512), height_img2img_ip.update(value=512), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=False)
     elif (model_img2img_ip == "stabilityai/sd-turbo"):
-        return sampler_img2img_ip.update(value="Euler a"), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=False), negative_prompt_img2img_ip.update(interactive=False)
+        return sampler_img2img_ip.update(value="Euler a"), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=False), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=False)
     elif ("XL" in model_img2img_ip.upper()) or (model_img2img_ip == "segmind/SSD-1B") or (model_img2img_ip == "dataautogpt3/OpenDalleV1.1"):
-        return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), negative_prompt_img2img_ip.update(interactive=True)
+        return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True)
     elif (model_img2img_ip == "segmind/Segmind-Vega"):
-        return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=9.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), negative_prompt_img2img_ip.update(interactive=True)
+        return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=9.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True)
     else:
-        return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), negative_prompt_img2img_ip.update(interactive=True)
+        return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True)
 
 def change_lora_model_img2img_ip(model, lora_model, prompt):
     if lora_model != "":
@@ -469,6 +469,23 @@ def change_lora_model_img2img_ip(model, lora_model, prompt):
     else:
         lora_prompt_img2img_ip = prompt
     return prompt_img2img_ip.update(value=lora_prompt_img2img_ip)
+
+def change_txtinv_img2img_ip(model, txtinv, prompt, negative_prompt):
+    if txtinv != "":
+        txtinv_keyword = txtinv_list(model)[txtinv][1]
+        if txtinv_keyword != "" and txtinv_keyword != "EasyNegative":
+            txtinv_prompt_img2img_ip = txtinv_keyword+ ", "+ prompt
+            txtinv_negative_prompt_img2img_ip = negative_prompt
+        elif txtinv_keyword != "" and txtinv_keyword == "EasyNegative":
+            txtinv_prompt_img2img_ip = prompt
+            txtinv_negative_prompt_img2img_ip = txtinv_keyword+ ", "+ negative_prompt
+        else:
+            txtinv_prompt_img2img_ip = prompt
+            txtinv_negative_prompt_img2img_ip = negative_prompt
+    else:
+        txtinv_prompt_img2img_ip = prompt
+        txtinv_negative_prompt_img2img_ip = negative_prompt
+    return prompt_img2img_ip.update(value=txtinv_prompt_img2img_ip), negative_prompt_img2img_ip.update(value=txtinv_negative_prompt_img2img_ip)
 
 ## Functions specific to img2var 
 def zip_download_file_img2var(content):
@@ -3401,6 +3418,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     lora_model_img2img_ip = gr.Dropdown(choices=list(lora_model_list(model_img2img_ip.value).keys()), value="", label="LoRA model", info="Choose LoRA model to use for inference")
                                 with gr.Column():
                                     lora_weight_img2img_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label="LoRA weight", info="Weight of the LoRA model in the final result")
+                        with gr.Accordion("Textual inversion", open=True):
+                            with gr.Row():
+                                with gr.Column():
+                                    txtinv_img2img_ip = gr.Dropdown(choices=list(txtinv_list(model_img2img_ip.value).keys()), value="", label="Textual inversion", info="Choose textual inversion to use for inference")
                     with gr.Row():
                         with gr.Column():
                             img_img2img_ip = gr.Image(label="Input image", height=400, type="filepath")
@@ -3428,10 +3449,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 num_inference_step_img2img_ip,
                                 guidance_scale_img2img_ip,
                                 lora_model_img2img_ip,
+                                txtinv_img2img_ip,
                                 negative_prompt_img2img_ip,
                             ]
                         )
                         lora_model_img2img_ip.change(fn=change_lora_model_img2img_ip, inputs=[model_img2img_ip, lora_model_img2img_ip, prompt_img2img_ip], outputs=[prompt_img2img_ip])
+                        txtinv_img2img_ip.change(fn=change_txtinv_img2img_ip, inputs=[model_img2img_ip, txtinv_img2img_ip, prompt_img2img_ip, negative_prompt_img2img_ip], outputs=[prompt_img2img_ip, negative_prompt_img2img_ip])
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():                            
@@ -3485,6 +3508,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     tkme_img2img_ip,
                                     lora_model_img2img_ip,
                                     lora_weight_img2img_ip,
+                                    txtinv_img2img_ip,
                                 ],
                                 outputs=[out_img2img_ip, gs_out_img2img_ip],
                                 show_progress="full",

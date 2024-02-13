@@ -84,6 +84,7 @@ def image_img2img_ip(
     tkme_img2img_ip,    
     lora_model_img2img_ip,
     lora_weight_img2img_ip,
+    txtinv_img2img_ip,
     progress_img2img_ip=gr.Progress(track_tqdm=True)
     ):
 
@@ -299,6 +300,33 @@ def image_img2img_ip(
         pipe_img2img_ip.fuse_lora(lora_scale=lora_weight_img2img_ip)
 #        pipe_img2img_ip.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_img2img_ip)])
 
+    if txtinv_img2img_ip != "":
+        model_list_txtinv_img2img_ip = txtinv_list(modelid_img2img_ip)
+        weight_img2img_ip = model_list_txtinv_img2img_ip[txtinv_img2img_ip][0]
+        token_img2img_ip =  model_list_txtinv_img2img_ip[txtinv_img2img_ip][1]
+        if modelid_img2img_ip[0:9] == "./models/":
+            model_path_txtinv = "./models/TextualInversion"
+            pipe_img2img_ip.load_textual_inversion(
+                txtinv_img2img_ip,
+                weight_name=weight_img2img_ip,
+                use_safetensors=True,
+                token=token_img2img_ip,
+            )
+        else:
+            if is_xl_img2img_ip:
+                model_path_txtinv = "./models/TextualInversion/SDXL"
+            else: 
+                model_path_txtinv = "./models/TextualInversion/SD"
+            pipe_img2img_ip.load_textual_inversion(
+                txtinv_img2img_ip,
+                weight_name=weight_img2img_ip,
+                cache_dir=model_path_txtinv,
+                use_safetensors=True,
+                token=token_img2img_ip,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+
     if seed_img2img_ip == 0:
         random_seed = torch.randint(0, 10000000000, (1,))
         generator = torch.manual_seed(random_seed)
@@ -419,6 +447,7 @@ def image_img2img_ip(
         f"Token merging={tkme_img2img_ip} | "+\
         f"LoRA model={lora_model_img2img_ip} | "+\
         f"LoRA weight={lora_weight_img2img_ip} | "+\
+        f"Textual inversion={txtinv_img2img_ip} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Denoising strength={denoising_strength_img2img_ip} | "+\
         f"Prompt={prompt_img2img_ip} | "+\
