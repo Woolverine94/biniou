@@ -453,7 +453,7 @@ def schedulerer(pipe, scheduler):
         return get_scheduler(pipe=pipe, scheduler=scheduler)
 
 def lora_model_list(model):
-    if (("XL" in model.upper()) or (model == "segmind/SSD-1B") or (model == "segmind/Segmind-Vega")  or (model == "dataautogpt3/OpenDalleV1.1")):
+    if (("XL" in model.upper()) or ("SSD-1B" in model.upper()) or ("SEGMIND-VEGA" in model.upper()) or (model == "dataautogpt3/OpenDalleV1.1")):
         model_path_lora = "./models/lora/SDXL"
         model_list_lora_builtin = {
             "openskyml/dalle-3-xl":("Dall-e_3_0.3-v2.safetensors", ""),

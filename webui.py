@@ -334,14 +334,27 @@ def read_ini_txt2img_lcm(module) :
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), int(content[9]), bool(int(content[10])), float(content[11])
 
 def change_model_type_txt2img_lcm(model_txt2img_lcm):
-    if (model_txt2img_lcm == "latent-consistency/lcm-ssd-1b") or (model_txt2img_lcm == "latent-consistency/lcm-lora-sdxl"):
-        return width_txt2img_lcm.update(value=1024), height_txt2img_lcm.update(value=1024), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4)
+    if (model_txt2img_lcm == "latent-consistency/lcm-ssd-1b"):
+        return width_txt2img_lcm.update(value=1024), height_txt2img_lcm.update(value=1024), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=False)
+    elif (model_txt2img_lcm == "latent-consistency/lcm-lora-sdxl"):
+        return width_txt2img_lcm.update(value=1024), height_txt2img_lcm.update(value=1024), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True)
     elif (model_txt2img_lcm == "latent-consistency/lcm-lora-sdv1-5"):
-        return width_txt2img_lcm.update(value=512), height_txt2img_lcm.update(value=512), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4)
+        return width_txt2img_lcm.update(value=512), height_txt2img_lcm.update(value=512), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True)
     elif (model_txt2img_lcm == "segmind/Segmind-VegaRT"):
-        return width_txt2img_lcm.update(value=1024), height_txt2img_lcm.update(value=1024), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4)
+        return width_txt2img_lcm.update(value=1024), height_txt2img_lcm.update(value=1024), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=False)
     else:
-        return width_txt2img_lcm.update(value=512), height_txt2img_lcm.update(value=512), guidance_scale_txt2img_lcm.update(value=8.0), num_inference_step_txt2img_lcm.update(value=4)
+        return width_txt2img_lcm.update(value=512), height_txt2img_lcm.update(value=512), guidance_scale_txt2img_lcm.update(value=8.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True)
+
+def change_lora_model_txt2img_lcm(model, lora_model, prompt):
+    if lora_model != "":
+        lora_keyword = lora_model_list(model)[lora_model][1]
+        if lora_keyword != "":		
+            lora_prompt_txt2img_lcm = lora_keyword+ ", "+ prompt
+        else:
+            lora_prompt_txt2img_lcm = prompt
+    else:
+        lora_prompt_txt2img_lcm = prompt
+    return prompt_txt2img_lcm.update(value=lora_prompt_txt2img_lcm)
 
 ## Functions specific to Midjourney mini
 def zip_download_file_txt2img_mjm(content):
@@ -2432,11 +2445,13 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
                                 <div style='text-align: justified'>
                                 <b>Usage :</b></br>
-                                - Fill the <b>prompt</b> with what you want to see in your output image</br>
                                 - (optional) Modify the settings to generate several images in a single run or change dimensions of the outputs</br>
+                                - (optional) Select a LoRA model and set its weight</br>
+                                - Fill the <b>prompt</b> with what you want to see in your output image</br>
                                 - Click the <b>Generate</b> button</br>
-                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
-                                </br>
+                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.</br>
+                                <b>LoRA models :</b></br>
+                                - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors LoRA models in the directory ./biniou/models/lora/SD or ./biniou/models/lora/SDXL (depending on the LoRA model type : SD 1.5 or SDXL). Restart Biniou to see them in the models list.</br>
                                 """
                             )                
                     with gr.Accordion("Settings", open=False):
@@ -2468,7 +2483,6 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_txt2img_lcm = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
                                 tkme_txt2img_lcm = gr.Slider(0.0, 1.0, step=0.01, value=0.0, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
-                        model_txt2img_lcm.change(fn=change_model_type_txt2img_lcm, inputs=model_txt2img_lcm, outputs=[width_txt2img_lcm, height_txt2img_lcm, guidance_scale_txt2img_lcm, num_inference_step_txt2img_lcm])
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_txt2img_lcm = gr.Button("Save custom defaults settings 💾")
@@ -2512,11 +2526,28 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             seed_txt2img_lcm.value = readcfg_txt2img_lcm[9]
                             use_gfpgan_txt2img_lcm.value = readcfg_txt2img_lcm[10]
                             tkme_txt2img_lcm.value = readcfg_txt2img_lcm[11]
+                        with gr.Accordion("LoRA Model", open=True):
+                            with gr.Row():
+                                with gr.Column():
+                                    lora_model_txt2img_lcm = gr.Dropdown(choices=list(lora_model_list(model_txt2img_lcm.value).keys()), value="", label="LoRA model", info="Choose LoRA model to use for inference")
+                                with gr.Column():
+                                    lora_weight_txt2img_lcm = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label="LoRA weight", info="Weight of the LoRA model in the final result")
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():                        
                                     prompt_txt2img_lcm = gr.Textbox(lines=18, max_lines=18, label="Prompt", info="Describe what you want in your image", placeholder="Self-portrait oil painting, a beautiful cyborg with golden hair, 8k")
+                        model_txt2img_lcm.change(fn=change_model_type_txt2img_lcm,
+                            inputs=model_txt2img_lcm, 
+                            outputs=[
+                                width_txt2img_lcm, 
+                                height_txt2img_lcm, 
+                                guidance_scale_txt2img_lcm, 
+                                num_inference_step_txt2img_lcm,
+                                lora_model_txt2img_lcm,
+                            ]
+                        )
+                        lora_model_txt2img_lcm.change(fn=change_lora_model_txt2img_lcm, inputs=[model_txt2img_lcm, lora_model_txt2img_lcm, prompt_txt2img_lcm], outputs=[prompt_txt2img_lcm])
                         with gr.Column(scale=2):
                             out_txt2img_lcm = gr.Gallery(
                                 label="Generated images",
@@ -2562,6 +2593,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_txt2img_lcm,
                                 nsfw_filter,
                                 tkme_txt2img_lcm,
+                                lora_model_txt2img_lcm,
+                                lora_weight_txt2img_lcm,
                             ],
                                 outputs=[out_txt2img_lcm, gs_out_txt2img_lcm],
                                 show_progress="full",

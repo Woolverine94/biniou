@@ -76,6 +76,8 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
     use_gfpgan_txt2img_lcm, 
     nsfw_filter, 
     tkme_txt2img_lcm,
+    lora_model_txt2img_lcm,
+    lora_weight_txt2img_lcm,
     progress_txt2img_lcm=gr.Progress(track_tqdm=True)
     ):
     
@@ -177,7 +179,34 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
     else : 
         pipe_txt2img_lcm = pipe_txt2img_lcm.to(device_txt2img_lcm)
     pipe_txt2img_lcm.enable_vae_slicing()
-    
+
+    if lora_model_txt2img_lcm != "":
+        model_list_lora_txt2img_lcm = lora_model_list(modelid_txt2img_lcm)
+        if modelid_txt2img_lcm[0:9] == "./models/":
+            pipe_txt2img_lcm.load_lora_weights(
+                os.path.dirname(lora_model_txt2img_lcm),
+                weight_name=model_list_lora_txt2img_lcm[lora_model_txt2img_lcm][0],
+                use_safetensors=True,
+                adapter_name="adapter1",
+            )
+        else:
+            if is_xl_txt2img_lcm:
+                lora_model_path = "./models/lora/SDXL"
+            else: 
+                lora_model_path = "./models/lora/SD"
+            pipe_txt2img_lcm.load_lora_weights(
+                lora_model_txt2img_lcm,
+                weight_name=model_list_lora_txt2img_lcm[lora_model_txt2img_lcm][0],
+                cache_dir=lora_model_path,
+                use_safetensors=True,
+                adapter_name="adapter1",
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+        pipe_txt2img_lcm.fuse_lora(lora_scale=lora_weight_txt2img_lcm)
+#            pipe_txt2img_lcm.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_txt2img_lcm)])
+
+
     if seed_txt2img_lcm == 0:
         random_seed = random.randrange(0, 10000000000, 1)
         final_seed = random_seed
@@ -252,6 +281,8 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
         f"CFG scale={guidance_scale_txt2img_lcm} | "+\
         f"Size={width_txt2img_lcm}x{height_txt2img_lcm} | "+\
         f"GFPGAN={use_gfpgan_txt2img_lcm} | "+\
+        f"LoRA model={lora_model_txt2img_lcm} | "+\
+        f"LoRA weight={lora_weight_txt2img_lcm} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Prompt={prompt_txt2img_lcm} | "+\
         f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
