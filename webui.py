@@ -337,15 +337,15 @@ def read_ini_txt2img_lcm(module) :
 
 def change_model_type_txt2img_lcm(model_txt2img_lcm):
     if (model_txt2img_lcm == "latent-consistency/lcm-ssd-1b"):
-        return width_txt2img_lcm.update(value=1024), height_txt2img_lcm.update(value=1024), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=False)
+        return width_txt2img_lcm.update(value=1024), height_txt2img_lcm.update(value=1024), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=False), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
     elif (model_txt2img_lcm == "latent-consistency/lcm-lora-sdxl"):
-        return width_txt2img_lcm.update(value=1024), height_txt2img_lcm.update(value=1024), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True)
+        return width_txt2img_lcm.update(value=1024), height_txt2img_lcm.update(value=1024), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
     elif (model_txt2img_lcm == "latent-consistency/lcm-lora-sdv1-5"):
-        return width_txt2img_lcm.update(value=512), height_txt2img_lcm.update(value=512), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True)
+        return width_txt2img_lcm.update(value=512), height_txt2img_lcm.update(value=512), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
     elif (model_txt2img_lcm == "segmind/Segmind-VegaRT"):
-        return width_txt2img_lcm.update(value=1024), height_txt2img_lcm.update(value=1024), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=False)
+        return width_txt2img_lcm.update(value=1024), height_txt2img_lcm.update(value=1024), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=False), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
     else:
-        return width_txt2img_lcm.update(value=512), height_txt2img_lcm.update(value=512), guidance_scale_txt2img_lcm.update(value=8.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True)
+        return width_txt2img_lcm.update(value=512), height_txt2img_lcm.update(value=512), guidance_scale_txt2img_lcm.update(value=8.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
 
 def change_lora_model_txt2img_lcm(model, lora_model, prompt):
     if lora_model != "":
@@ -357,6 +357,17 @@ def change_lora_model_txt2img_lcm(model, lora_model, prompt):
     else:
         lora_prompt_txt2img_lcm = prompt
     return prompt_txt2img_lcm.update(value=lora_prompt_txt2img_lcm)
+
+def change_txtinv_txt2img_lcm(model, txtinv, prompt):
+    if txtinv != "":
+        txtinv_keyword = txtinv_list(model)[txtinv][1]
+        if txtinv_keyword != "" and txtinv_keyword != "EasyNegative":
+            txtinv_prompt_txt2img_lcm = txtinv_keyword+ ", "+ prompt
+        else:
+            txtinv_prompt_txt2img_lcm = prompt
+    else:
+        txtinv_prompt_txt2img_lcm = prompt
+    return prompt_txt2img_lcm.update(value=txtinv_prompt_txt2img_lcm)
 
 ## Functions specific to Midjourney mini
 def zip_download_file_txt2img_mjm(content):
@@ -2542,6 +2553,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     lora_model_txt2img_lcm = gr.Dropdown(choices=list(lora_model_list(model_txt2img_lcm.value).keys()), value="", label="LoRA model", info="Choose LoRA model to use for inference")
                                 with gr.Column():
                                     lora_weight_txt2img_lcm = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label="LoRA weight", info="Weight of the LoRA model in the final result")
+                        with gr.Accordion("Textual inversion", open=True):
+                            with gr.Row():
+                                with gr.Column():
+                                    txtinv_txt2img_lcm = gr.Dropdown(choices=list(txtinv_list(model_txt2img_lcm.value).keys()), value="", label="Textual inversion", info="Choose textual inversion to use for inference")
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -2555,9 +2570,11 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 guidance_scale_txt2img_lcm, 
                                 num_inference_step_txt2img_lcm,
                                 lora_model_txt2img_lcm,
+                                txtinv_txt2img_lcm,
                             ]
                         )
                         lora_model_txt2img_lcm.change(fn=change_lora_model_txt2img_lcm, inputs=[model_txt2img_lcm, lora_model_txt2img_lcm, prompt_txt2img_lcm], outputs=[prompt_txt2img_lcm])
+                        txtinv_txt2img_lcm.change(fn=change_txtinv_txt2img_lcm, inputs=[model_txt2img_lcm, txtinv_txt2img_lcm, prompt_txt2img_lcm], outputs=[prompt_txt2img_lcm])
                         with gr.Column(scale=2):
                             out_txt2img_lcm = gr.Gallery(
                                 label="Generated images",
@@ -2605,6 +2622,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_txt2img_lcm,
                                 lora_model_txt2img_lcm,
                                 lora_weight_txt2img_lcm,
+                                txtinv_txt2img_lcm,
                             ],
                                 outputs=[out_txt2img_lcm, gs_out_txt2img_lcm],
                                 show_progress="full",

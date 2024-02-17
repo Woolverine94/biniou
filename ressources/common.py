@@ -500,7 +500,7 @@ def lora_model_list(model):
 
 
 def txtinv_list(model):
-    if (("XL" in model.upper()) or (model == "segmind/SSD-1B") or (model == "segmind/Segmind-Vega")  or (model == "dataautogpt3/OpenDalleV1.1")):
+    if (("XL" in model.upper()) or ("SSD-1B" in model.upper()) or ("SEGMIND-VEGA" in model.upper()) or (model == "dataautogpt3/OpenDalleV1.1")):
         model_path_txtinv = "./models/TextualInversion/SD"
         model_list_txtinv_builtin = {
             "SalahZaidi/textual_inversion_cat_sdxl":("learned_embeds-steps-15000.safetensors", ""),

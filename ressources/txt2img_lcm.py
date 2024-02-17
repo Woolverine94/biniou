@@ -78,6 +78,7 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
     tkme_txt2img_lcm,
     lora_model_txt2img_lcm,
     lora_weight_txt2img_lcm,
+    txtinv_txt2img_lcm,
     progress_txt2img_lcm=gr.Progress(track_tqdm=True)
     ):
     
@@ -206,6 +207,32 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
         pipe_txt2img_lcm.fuse_lora(lora_scale=lora_weight_txt2img_lcm)
 #            pipe_txt2img_lcm.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_txt2img_lcm)])
 
+    if txtinv_txt2img_lcm != "":
+        model_list_txtinv_txt2img_lcm = txtinv_list(modelid_txt2img_lcm)
+        weight_txt2img_lcm = model_list_txtinv_txt2img_lcm[txtinv_txt2img_lcm][0]
+        token_txt2img_lcm =  model_list_txtinv_txt2img_lcm[txtinv_txt2img_lcm][1]
+        if modelid_txt2img_lcm[0:9] == "./models/":
+            model_path_txtinv = "./models/TextualInversion"
+            pipe_txt2img_lcm.load_textual_inversion(
+                txtinv_txt2img_lcm,
+                weight_name=weight_txt2img_lcm,
+                use_safetensors=True,
+                token=token_txt2img_lcm,
+            )
+        else:
+            if is_xl_txt2img_lcm:
+                model_path_txtinv = "./models/TextualInversion/SDXL"
+            else: 
+                model_path_txtinv = "./models/TextualInversion/SD"
+            pipe_txt2img_lcm.load_textual_inversion(
+                txtinv_txt2img_lcm,
+                weight_name=weight_txt2img_lcm,
+                cache_dir=model_path_txtinv,
+                use_safetensors=True,
+                token=token_txt2img_lcm,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
 
     if seed_txt2img_lcm == 0:
         random_seed = random.randrange(0, 10000000000, 1)
@@ -283,6 +310,7 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
         f"GFPGAN={use_gfpgan_txt2img_lcm} | "+\
         f"LoRA model={lora_model_txt2img_lcm} | "+\
         f"LoRA weight={lora_weight_txt2img_lcm} | "+\
+        f"Textual inversion={txtinv_txt2img_lcm} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Prompt={prompt_txt2img_lcm} | "+\
         f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
