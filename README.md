@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-02-19** : 🔥 ***New module : AnimateLCM*** 🔥 : Combining AnimateDiff and LCM, this module let you generate quality videos quite fast (compared to other modules) using Stable Diffusion models.
+
   * 🆕 **2024-02-15** : 🔥 ***Adding LoRA model support to LCM*** 🔥 : Adding LoRA models options to LCM module, at the bottom of the settings panel for LCM module. Note that Segmind models are not compatible with this feature.
 
   * 🆕 **2024-02-14** : 🔥 ***Adding textual inversion support to more modules*** 🔥 : Modules img2img, IP-Adapter and ControlNet can now use textual inversion. Therefore, EasyNegative is usable with all modules supporting textual inversion (only for Stable Diffusion 1.5 models).  EasyNegative will avoid using a complex negative prompt and should enhance the quality of your generated contents. 
@@ -23,8 +25,6 @@
   * 🆕 **2024-02-12** : 🔥 ***Experimental textual inversion support*** 🔥 : Adding experimental support for textual inversion in Stable Diffusion and IP-Adapter FaceID modules. You will find textual inversion options at the very bottom of the panel settings of each module. Support of this feature for other modules will be available after further testing.
 
   * 🆕 **2024-02-10** : 🔥 ***Updates and fixes in LCM Module*** 🔥 : Adding [lcm-lora-sdv1-5](https://huggingface.co/latent-consistency/lcm-lora-sdv1-5) and [lcm-lora-sdxl](https://huggingface.co/latent-consistency/lcm-lora-sdxl) to LCM module. These two models are way faster than the models they rely on, but still a bit slower than [sd-turbo](https://huggingface.co/stabilityai/sd-turbo) and [sdxl-turbo](https://huggingface.co/stabilityai/sdxl-turbo). Also fixing a misconfiguration in the settings of model [Segmind-VegaRT](https://huggingface.co/segmind/Segmind-VegaRT), which is now the fastest model in biniou for 1024x1024 generation.
-
-  * 🆕 **2024-02-08** : 🔥 ***Fixing bug breaking CUDA on most images modules*** 🔥 : Fixing an incompatibility between Compel and cpu_offloading. This issue only appears when using CUDA and crashes the modules at the beginning of generation with error `NotImplementedError: Cannot copy out of meta tensor; no data!`. As I don't have access to CUDA hardware to validate everything works again, feedbacks will be really appreciated. Also fixing a recent bug in modelscope that crash export of the final video.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
@@ -88,6 +88,7 @@
 * **Video generation and modification using :**
   - 📼 [Modelscope module](https://github.com/Woolverine94/biniou/wiki/Modelscope-txt2vid) (require 16GB+ RAM)
   - 📼 [Text2Video-Zero module](https://github.com/Woolverine94/biniou/wiki/Text2Video%E2%80%90Zero)
+  - 📼 [AnimateLCM module](https://github.com/Woolverine94/biniou/wiki/AnimateLCM)
   - 📼 [Stable Video Diffusion module](https://github.com/Woolverine94/biniou/wiki/Stable-Video-Diffusion) (require 16GB+ RAM)
   - 🖌️ [Video Instruct-Pix2Pix module](https://github.com/Woolverine94/biniou/wiki/Video-Instruct%E2%80%90pix2pix) (require 16GB+ RAM)
 
@@ -350,6 +351,7 @@ This application uses the following softwares and technologies :
 - [Harmonai](https://www.harmonai.org/) : harmonai
 - [Bark](https://github.com/suno-ai/bark) : text2speech
 - [Modelscope text-to-video-synthesis](https://modelscope.cn/models/damo/text-to-video-synthesis/summary) : txt2vid
+- [AnimateLCM](https://animatelcm.github.io/) : txt2vid
 - [Open AI Shap-E](https://github.com/openai/shap-e) : txt2shape, img2shape
 - [compel](https://github.com/damian0815/compel) : Prompt enhancement for various `StableDiffusionPipeline`-based modules
 - [tomesd](https://github.com/dbolya/tomesd) : Token merging for various `StableDiffusionPipeline`-based modules
