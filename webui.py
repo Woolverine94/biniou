@@ -779,6 +779,21 @@ def change_model_type_txt2vid_ze(model_txt2vid_ze):
     else:
         return sampler_txt2vid_ze.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2vid_ze.update(), height_txt2vid_ze.update(), num_inference_step_txt2vid_ze.update(value=10), guidance_scale_txt2vid_ze.update(value=7.5), negative_prompt_txt2vid_ze.update(interactive=True)
 
+## Functions specific to AnimateLCM
+def read_ini_animatediff_lcm(module) :
+    content = read_ini(module)
+    return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), int(content[9]), bool(int(content[10])), float(content[11])
+
+def change_model_type_animatediff_lcm(model_animatediff_lcm):
+    if (model_animatediff_lcm == "stabilityai/sdxl-turbo"):
+        return sampler_animatediff_lcm.update(value="LCM"), width_animatediff_lcm.update(), height_animatediff_lcm.update(), num_inference_step_animatediff_lcm.update(value=2), guidance_scale_animatediff_lcm.update(value=0.0), negative_prompt_animatediff_lcm.update(interactive=False)
+    elif ("XL" in model_animatediff_lcm.upper()) or (model_animatediff_lcm == "segmind/SSD-1B") or (model_animatediff_lcm == "dataautogpt3/OpenDalleV1.1"):
+        return sampler_animatediff_lcm.update(value="LCM"), width_animatediff_lcm.update(), height_animatediff_lcm.update(), num_inference_step_animatediff_lcm.update(value=10), guidance_scale_animatediff_lcm.update(value=7.5), negative_prompt_animatediff_lcm.update(interactive=True)
+    elif (model_animatediff_lcm == "segmind/Segmind-Vega"):
+        return sampler_animatediff_lcm.update(value="LCM"), width_animatediff_lcm.update(), height_animatediff_lcm.update(), num_inference_step_animatediff_lcm.update(value=10), guidance_scale_animatediff_lcm.update(value=9.0), negative_prompt_animatediff_lcm.update(interactive=True)
+    else:
+        return sampler_animatediff_lcm.update(value="LCM"), width_animatediff_lcm.update(), height_animatediff_lcm.update(), num_inference_step_animatediff_lcm.update(value=10), guidance_scale_animatediff_lcm.update(), negative_prompt_animatediff_lcm.update(interactive=True)
+
 ## Functions specific to Stable Video Diffusion
 def read_ini_img2vid(module) :
     content = read_ini(module)
@@ -1163,7 +1178,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         llamacpp_bark = gr.Button("✍️ >> Bark")                                        
                                         gr.HTML(value='... video module ...')                                               
                                         llamacpp_txt2vid_ms = gr.Button("✍️ >> Modelscope")
-                                        llamacpp_txt2vid_ze = gr.Button("✍️ >> Text2Video-Zero")                                        
+                                        llamacpp_txt2vid_ze = gr.Button("✍️ >> Text2Video-Zero")
+                                        llamacpp_animatediff_lcm = gr.Button("✍️ >> AnimateLCM")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -1405,6 +1421,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... video module ...')
                                         llava_txt2vid_ms = gr.Button("✍️ >> Modelscope")
                                         llava_txt2vid_ze = gr.Button("✍️ >> Text2Video-Zero")
+                                        llava_animatediff_lcm = gr.Button("✍️ >> AnimateLCM")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -1538,7 +1555,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         img2txt_git_audiogen = gr.Button("✍️ >> Audiogen")
                                         gr.HTML(value='... video module ...')                                               
                                         img2txt_git_txt2vid_ms = gr.Button("✍️ >> Modelscope")
-                                        img2txt_git_txt2vid_ze = gr.Button("✍️ >> Text2Video-Zero")                                        
+                                        img2txt_git_txt2vid_ze = gr.Button("✍️ >> Text2Video-Zero")
+                                        img2txt_git_animatediff_lcm = gr.Button("✍️ >> AnimateLCM")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -1684,6 +1702,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... video module ...')
                                         whisper_txt2vid_ms = gr.Button("✍️ >> Modelscope")
                                         whisper_txt2vid_ze = gr.Button("✍️ >> Text2Video-Zero")
+                                        whisper_animatediff_lcm = gr.Button("✍️ >> AnimateLCM")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -1809,6 +1828,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... video module ...')                                               
                                         nllb_txt2vid_ms = gr.Button("✍️ >> Modelscope")
                                         nllb_txt2vid_ze = gr.Button("✍️ >> Text2Video-Zero")                                        
+                                        nllb_animatediff_lcm = gr.Button("✍️ >> AnimateLCM")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -1950,6 +1970,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... video module ...')                                               
                                         txt2prompt_txt2vid_ms = gr.Button("✍️ >> Modelscope")
                                         txt2prompt_txt2vid_ze = gr.Button("✍️ >> Text2Video-Zero")                                        
+                                        txt2prompt_animatediff_lcm = gr.Button("✍️ >> AnimateLCM")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -2206,6 +2227,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... video module ...')                                        
                                         txt2img_sd_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
                                         txt2img_sd_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")                                        
+                                        txt2img_sd_animatediff_lcm_input = gr.Button("✍️ >> AnimateLCM")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
@@ -2428,6 +2450,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... video module ...')                                                                                
                                         txt2img_kd_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
                                         txt2img_kd_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")
+                                        txt2img_kd_animatediff_lcm_input = gr.Button("✍️ >> AnimateLCM")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
@@ -2672,6 +2695,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... video module ...')
                                         txt2img_lcm_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
                                         txt2img_lcm_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")
+                                        txt2img_lcm_animatediff_lcm_input = gr.Button("✍️ >> AnimateLCM")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
@@ -2884,6 +2908,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... video module ...')                                        
                                         txt2img_mjm_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
                                         txt2img_mjm_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")                                        
+                                        txt2img_mjm_animatediff_lcm_input = gr.Button("✍️ >> AnimateLCM")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
@@ -3098,6 +3123,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... video module ...')                                        
                                         txt2img_paa_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
                                         txt2img_paa_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")                                        
+                                        txt2img_paa_animatediff_lcm_input = gr.Button("✍️ >> AnimateLCM")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
@@ -5252,6 +5278,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... video module ...')                                        
                                         controlnet_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
                                         controlnet_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")
+                                        controlnet_animatediff_lcm_input = gr.Button("✍️ >> AnimateLCM")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
@@ -6909,6 +6936,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2vid_ms_txt2img_paa_input = gr.Button("✍️ >> PixArt-Alpha") 
                                         gr.HTML(value='... video module ...')
                                         txt2vid_ms_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")
+                                        txt2vid_ms_animatediff_lcm_input = gr.Button("✍️ >> AnimateLCM")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
@@ -7132,16 +7160,206 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2vid_ze_txt2img_paa_input = gr.Button("✍️ >> PixArt-Alpha") 
                                         gr.HTML(value='... video module ...')
                                         txt2vid_ze_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
+                                        txt2vid_ze_animatediff_lcm_input = gr.Button("✍️ >> AnimateLCM")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
+
+# animatediff_lcm
+                with gr.TabItem("AnimateLCM 📼", id=43) as tab_animatediff_lcm:
+                    with gr.Accordion("About", open=False):
+                        with gr.Box():
+                            gr.HTML(
+                                """
+                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
+                                <b>Module : </b>AnimateLCM</br>
+                                <b>Function : </b>Generate video from a prompt and a negative prompt using <a href='https://animatelcm.github.io/' target='_blank'>AnimateLCM</a> with <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a> Models</br>
+                                <b>Input(s) : </b>Prompt, negative prompt</br>
+                                <b>Output(s) : </b>Video</br>
+                                <b>HF model page : </b>
+                                <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
+                                <a href='https://huggingface.co/digiplay/AbsoluteReality_v1.8.1' target='_blank'>digiplay/AbsoluteReality_v1.8.1</a>, 
+                                <a href='https://huggingface.co/runwayml/stable-diffusion-v1-5' target='_blank'>runwayml/stable-diffusion-v1-5</a>, 
+                                <a href='https://huggingface.co/nitrosocke/Ghibli-Diffusion' target='_blank'>nitrosocke/Ghibli-Diffusion</a></br>
+                                """
+#                                 <a href='https://huggingface.co/ckpt/anything-v4.5-vae-swapped' target='_blank'>ckpt/anything-v4.5-vae-swapped</a>, 
+                            )
+                        with gr.Box():
+                            gr.HTML(
+                                """
+                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                <div style='text-align: justified'>
+                                <b>Usage :</b></br>
+                                - (optional) Modify the settings to use another model, modify the number of frames to generate or change dimensions of the outputs</br>
+                                - Fill the <b>prompt</b> with what you want to see in your output video</br>
+                                - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output video</br>
+                                - Click the <b>Generate</b> button</br>
+                                - After generation, generated video is displayed in the <b>Generated video</b> field.
+                                </br>
+                                <b>Models :</b></br>
+                                - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or  <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors models in the directory /biniou/models/Stable Diffusion. Restart Biniou to see them in the models list.
+                                </div>
+                                """
+                            )
+                    with gr.Accordion("Settings", open=False):
+                        with gr.Row():
+                            with gr.Column():
+                                model_animatediff_lcm = gr.Dropdown(choices=model_list_animatediff_lcm, value=model_list_animatediff_lcm[0], label="Model", info="Choose model to use for inference")
+                            with gr.Column():
+                                num_inference_step_animatediff_lcm = gr.Slider(1, 100, step=1, value=4, label="Steps", info="Number of iterations per video. Results and speed depends of sampler")
+                            with gr.Column():
+                                sampler_animatediff_lcm = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value="LCM", label="Sampler", info="Sampler to use for inference", interactive=False)
+                        with gr.Row():
+                            with gr.Column():
+                                guidance_scale_animatediff_lcm = gr.Slider(0.1, 20.0, step=0.1, value=2.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                            with gr.Column():
+                                seed_animatediff_lcm = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
+                            with gr.Column():
+                                num_frames_animatediff_lcm = gr.Slider(1, 1200, step=1, value=16, label="Video Length (frames)", info="Number of frames in the output video (@8fps)")
+                        with gr.Row():
+                            with gr.Column():
+                                width_animatediff_lcm = gr.Slider(128, 1280, step=64, value=512, label="Video Width", info="Width of outputs")
+                            with gr.Column():
+                                height_animatediff_lcm = gr.Slider(128, 1280, step=64, value=512, label="Video Height", info="Height of outputs")
+                            with gr.Column():
+                                num_videos_per_prompt_animatediff_lcm = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of videos to generate in a single run", interactive=False)
+                            with gr.Column():
+                                num_prompt_animatediff_lcm = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                        with gr.Row():
+                            with gr.Column():
+                                use_gfpgan_animatediff_lcm = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                            with gr.Column():
+                                tkme_animatediff_lcm = gr.Slider(0.0, 1.0, step=0.01, value=0, label="Token Merging ratio", info="0=slow,best quality, 1=fast,worst quality", interactive=False)
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_animatediff_lcm = gr.Button("Save custom defaults settings 💾")
+                            with gr.Column():
+                                module_name_animatediff_lcm = gr.Textbox(value="animatediff_lcm", visible=False, interactive=False)
+                                del_ini_btn_animatediff_lcm = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_animatediff_lcm.value) else False)
+                                save_ini_btn_animatediff_lcm.click(
+                                    fn=write_ini,
+                                    inputs=[
+                                        module_name_animatediff_lcm,
+                                        model_animatediff_lcm,
+                                        num_inference_step_animatediff_lcm,
+                                        sampler_animatediff_lcm,
+                                        guidance_scale_animatediff_lcm,
+                                        seed_animatediff_lcm,
+                                        num_frames_animatediff_lcm,
+                                        width_animatediff_lcm,
+                                        height_animatediff_lcm,
+                                        num_videos_per_prompt_animatediff_lcm,
+                                        num_prompt_animatediff_lcm,
+                                        use_gfpgan_animatediff_lcm,
+                                        tkme_animatediff_lcm,
+                                        ]
+                                    )
+                                save_ini_btn_animatediff_lcm.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_animatediff_lcm.click(fn=lambda: del_ini_btn_animatediff_lcm.update(interactive=True), outputs=del_ini_btn_animatediff_lcm)
+                                del_ini_btn_animatediff_lcm.click(fn=lambda: del_ini(module_name_animatediff_lcm.value))
+                                del_ini_btn_animatediff_lcm.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_animatediff_lcm.click(fn=lambda: del_ini_btn_animatediff_lcm.update(interactive=False), outputs=del_ini_btn_animatediff_lcm)
+                        if test_cfg_exist(module_name_animatediff_lcm.value) :
+                            readcfg_animatediff_lcm = read_ini_animatediff_lcm(module_name_animatediff_lcm.value)
+                            model_animatediff_lcm.value = readcfg_animatediff_lcm[0]
+                            num_inference_step_animatediff_lcm.value = readcfg_animatediff_lcm[1]
+                            sampler_animatediff_lcm.value = readcfg_animatediff_lcm[2]
+                            guidance_scale_animatediff_lcm.value = readcfg_animatediff_lcm[3]
+                            seed_animatediff_lcm.value = readcfg_animatediff_lcm[4]
+                            num_frames_animatediff_lcm.value = readcfg_animatediff_lcm[5]
+                            width_animatediff_lcm.value = readcfg_animatediff_lcm[8]
+                            height_animatediff_lcm.value = readcfg_animatediff_lcm[9]
+                            num_videos_per_prompt_animatediff_lcm.value = readcfg_animatediff_lcm[10]
+                            num_prompt_animatediff_lcm.value = readcfg_animatediff_lcm[11]
+                            use_gfpgan_animatediff_lcm.value = readcfg_animatediff_lcm[16]
+                            tkme_animatediff_lcm.value = readcfg_animatediff_lcm[17]
+                    with gr.Row():
+                        with gr.Column(scale=2):
+                            with gr.Row():
+                                with gr.Column():
+                                    prompt_animatediff_lcm = gr.Textbox(lines=4, max_lines=4, label="Prompt", info="Describe what you want in your video", placeholder="a panda is playing guitar on times square")
+                            with gr.Row():
+                                with gr.Column():
+                                    negative_prompt_animatediff_lcm = gr.Textbox(lines=4, max_lines=4, label="Negative Prompt", info="Describe what you DO NOT want in your video", placeholder="out of frame, ugly")
+                        model_animatediff_lcm.change(
+                            fn=change_model_type_animatediff_lcm,
+                            inputs=[model_animatediff_lcm],
+                            outputs=[
+                                sampler_animatediff_lcm,
+                                width_animatediff_lcm,
+                                height_animatediff_lcm,
+                                num_inference_step_animatediff_lcm,
+                                guidance_scale_animatediff_lcm,
+                                negative_prompt_animatediff_lcm,
+                            ]
+                        )
+                        with gr.Column(scale=1):
+                            out_animatediff_lcm = gr.Video(label="Generated video", height=400, interactive=False)
+                    with gr.Row():
+                        with gr.Column():
+                            btn_animatediff_lcm = gr.Button("Generate 🚀", variant="primary")
+                        with gr.Column():
+                            btn_animatediff_lcm_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_animatediff_lcm_cancel.click(fn=initiate_stop_animatediff_lcm, inputs=None, outputs=None)
+                        with gr.Column():
+                            btn_animatediff_lcm_clear_input = gr.ClearButton(components=[prompt_animatediff_lcm, negative_prompt_animatediff_lcm], value="Clear inputs 🧹")
+                        with gr.Column():
+                            btn_animatediff_lcm_clear_output = gr.ClearButton(components=[out_animatediff_lcm], value="Clear outputs 🧹")
+                            btn_animatediff_lcm.click(
+                                fn=video_animatediff_lcm,
+                                inputs=[
+                                    model_animatediff_lcm,
+                                    num_inference_step_animatediff_lcm,
+                                    sampler_animatediff_lcm,
+                                    guidance_scale_animatediff_lcm,
+                                    seed_animatediff_lcm,
+                                    num_frames_animatediff_lcm,
+                                    height_animatediff_lcm,
+                                    width_animatediff_lcm,
+                                    num_videos_per_prompt_animatediff_lcm,
+                                    num_prompt_animatediff_lcm,
+                                    prompt_animatediff_lcm,
+                                    negative_prompt_animatediff_lcm,
+                                    nsfw_filter,
+                                    use_gfpgan_animatediff_lcm,
+                                    tkme_animatediff_lcm,
+                                ],
+                                outputs=out_animatediff_lcm,
+                                show_progress="full",
+                            )
+                    with gr.Accordion("Send ...", open=False):
+                        with gr.Row():
+                            with gr.Column():
+                                with gr.Box():
+                                    with gr.Group():
+                                        gr.HTML(value='... selected output to ...')
+                                        gr.HTML(value='... video module ...')
+                                        animatediff_lcm_vid2vid_ze = gr.Button("📼 >> Video Instruct-pix2pix")
+                            with gr.Column():
+                                with gr.Box():
+                                    with gr.Group():
+                                        gr.HTML(value='... input prompt(s) to ...')
+                                        gr.HTML(value='... image module ...')
+                                        animatediff_lcm_txt2img_sd_input = gr.Button("✍️ >> Stable Diffusion")
+                                        animatediff_lcm_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")
+                                        animatediff_lcm_txt2img_lcm_input = gr.Button("✍️ >> LCM")
+                                        animatediff_lcm_txt2img_mjm_input = gr.Button("✍️ >> Midjourney-mini") 
+                                        animatediff_lcm_txt2img_paa_input = gr.Button("✍️ >> PixArt-Alpha") 
+                                        gr.HTML(value='... video module ...')
+                                        animatediff_lcm_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
+                                        animatediff_lcm_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")
+                            with gr.Column():
+                                with gr.Box():
+                                    with gr.Group():
+                                        gr.HTML(value='... both to ...')
+
 # img2vid
                 if ram_size() >= 16 :
                     titletab_img2vid = "Stable Video Diffusion 📼"
                 else :
                     titletab_img2vid = "Stable Video Diffusion ⛔"
-                with gr.TabItem(titletab_img2vid, id=43) as tab_img2vid:
+                with gr.TabItem(titletab_img2vid, id=44) as tab_img2vid:
                     with gr.Accordion("About", open=False):
                         with gr.Box():
                             gr.HTML(
@@ -7332,7 +7550,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                 else :
                     titletab_vid2vid_ze = "Video Instruct-Pix2Pix ⛔"
 
-                with gr.TabItem(titletab_vid2vid_ze, id=44) as tab_vid2vid_ze:
+                with gr.TabItem(titletab_vid2vid_ze, id=45) as tab_vid2vid_ze:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
@@ -7484,7 +7702,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     width_vid2vid_ze,
                                     seed_vid2vid_ze,
                                     num_frames_vid2vid_ze,
-                                    num_fps_txt2vid_ze,
+                                    num_fps_vid2vid_ze,
                                     use_gfpgan_vid2vid_ze,
                                     nsfw_filter,
                                     tkme_vid2vid_ze,
@@ -8083,6 +8301,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     tab_bark_num = gr.Number(value=tab_bark.id, precision=0, visible=False) 
     tab_txt2vid_ms_num = gr.Number(value=tab_txt2vid_ms.id, precision=0, visible=False) 
     tab_txt2vid_ze_num = gr.Number(value=tab_txt2vid_ze.id, precision=0, visible=False) 
+    tab_animatediff_lcm_num = gr.Number(value=tab_animatediff_lcm.id, precision=0, visible=False)
     tab_img2vid_num = gr.Number(value=tab_img2vid.id, precision=0, visible=False) 
     tab_vid2vid_ze_num = gr.Number(value=tab_vid2vid_ze.id, precision=0, visible=False) 
     tab_txt2shape_num = gr.Number(value=tab_txt2shape.id, precision=0, visible=False) 
@@ -8106,7 +8325,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     llamacpp_bark.click(fn=import_to_module_audio, inputs=[last_reply_llamacpp, tab_audio_num, tab_bark_num], outputs=[prompt_bark, tabs, tabs_audio])    
     llamacpp_txt2vid_ms.click(fn=import_text_to_module_video, inputs=[last_reply_llamacpp, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, tabs, tabs_video])
     llamacpp_txt2vid_ze.click(fn=import_text_to_module_video, inputs=[last_reply_llamacpp, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, tabs, tabs_video])    
-    
+    llamacpp_animatediff_lcm.click(fn=import_text_to_module_video, inputs=[last_reply_llamacpp, tab_video_num, tab_animatediff_lcm_num], outputs=[prompt_animatediff_lcm, tabs, tabs_video])
+
 # llava outputs   
     llava_nllb.click(fn=send_text_to_module_text, inputs=[last_reply_llava, tab_text_num, tab_nllb_num], outputs=[prompt_nllb, tabs, tabs_text])
     llava_txt2img_sd.click(fn=send_text_to_module_image, inputs=[last_reply_llava, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, tabs, tabs_image])
@@ -8125,7 +8345,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     llava_bark.click(fn=import_to_module_audio, inputs=[last_reply_llava, tab_audio_num, tab_bark_num], outputs=[prompt_bark, tabs, tabs_audio])    
     llava_txt2vid_ms.click(fn=import_text_to_module_video, inputs=[last_reply_llava, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, tabs, tabs_video])
     llava_txt2vid_ze.click(fn=import_text_to_module_video, inputs=[last_reply_llava, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, tabs, tabs_video])    
-    
+    llava_animatediff_lcm.click(fn=import_text_to_module_video, inputs=[last_reply_llava, tab_video_num, tab_animatediff_lcm_num], outputs=[prompt_animatediff_lcm, tabs, tabs_video])
 
 # GIT Captions outputs
     img2txt_git_nllb.click(fn=send_text_to_module_text, inputs=[out_img2txt_git, tab_text_num, tab_nllb_num], outputs=[prompt_nllb, tabs, tabs_text])    
@@ -8144,7 +8364,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     img2txt_git_audiogen.click(fn=import_to_module_audio, inputs=[out_img2txt_git, tab_audio_num, tab_audiogen_num], outputs=[prompt_audiogen, tabs, tabs_audio])
     img2txt_git_txt2vid_ms.click(fn=import_text_to_module_video, inputs=[out_img2txt_git, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, tabs, tabs_video])
     img2txt_git_txt2vid_ze.click(fn=import_text_to_module_video, inputs=[out_img2txt_git, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, tabs, tabs_video])    
-
+    img2txt_git_animatediff_lcm.click(fn=import_text_to_module_video, inputs=[out_img2txt_git, tab_video_num, tab_animatediff_lcm_num], outputs=[prompt_animatediff_lcm, tabs, tabs_video])
 # GIT Captions both
     img2txt_git_img2img_both.click(fn=both_text_to_module_image, inputs=[img_img2txt_git, out_img2txt_git, tab_image_num, tab_img2img_num], outputs=[img_img2img, prompt_img2img, tabs, tabs_image])
     img2txt_git_img2img_ip_both.click(fn=both_text_to_module_image, inputs=[img_img2txt_git, out_img2txt_git, tab_image_num, tab_img2img_ip_num], outputs=[img_img2img_ip, prompt_img2img_ip, tabs, tabs_image])
@@ -8171,6 +8391,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     whisper_bark.click(fn=import_to_module_audio, inputs=[out_whisper, tab_audio_num, tab_bark_num], outputs=[prompt_bark, tabs, tabs_audio])    
     whisper_txt2vid_ms.click(fn=import_text_to_module_video, inputs=[out_whisper, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, tabs, tabs_video])
     whisper_txt2vid_ze.click(fn=import_text_to_module_video, inputs=[out_whisper, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, tabs, tabs_video])       
+    whisper_animatediff_lcm.click(fn=import_text_to_module_video, inputs=[out_whisper, tab_video_num, tab_animatediff_lcm_num], outputs=[prompt_animatediff_lcm, tabs, tabs_video])
 
 # Nllb outputs
     nllb_llamacpp.click(fn=send_text_to_module_text, inputs=[out_nllb, tab_text_num, tab_llamacpp_num], outputs=[prompt_llamacpp, tabs, tabs_text])
@@ -8190,6 +8411,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     nllb_bark.click(fn=import_to_module_audio, inputs=[out_nllb, tab_audio_num, tab_bark_num], outputs=[prompt_bark, tabs, tabs_audio])    
     nllb_txt2vid_ms.click(fn=import_text_to_module_video, inputs=[out_nllb, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, tabs, tabs_video])
     nllb_txt2vid_ze.click(fn=import_text_to_module_video, inputs=[out_nllb, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, tabs, tabs_video])
+    nllb_animatediff_lcm.click(fn=import_text_to_module_video, inputs=[out_nllb, tab_video_num, tab_animatediff_lcm_num], outputs=[prompt_animatediff_lcm, tabs, tabs_video])
 
 # txt2prompt outputs
     txt2prompt_nllb.click(fn=send_text_to_module_text, inputs=[out_txt2prompt, tab_text_num, tab_nllb_num], outputs=[prompt_nllb, tabs, tabs_text])
@@ -8207,7 +8429,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     txt2prompt_faceid_ip.click(fn=send_text_to_module_image, inputs=[out_txt2prompt, tab_image_num, tab_faceid_ip_num], outputs=[prompt_faceid_ip, tabs, tabs_image])
     txt2prompt_txt2vid_ms.click(fn=import_text_to_module_video, inputs=[out_txt2prompt, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, tabs, tabs_video])
     txt2prompt_txt2vid_ze.click(fn=import_text_to_module_video, inputs=[out_txt2prompt, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, tabs, tabs_video])
-
+    txt2prompt_animatediff_lcm.click(fn=import_text_to_module_video, inputs=[out_txt2prompt, tab_video_num, tab_animatediff_lcm_num], outputs=[prompt_animatediff_lcm, tabs, tabs_video])
       
 # txt2img_sd outputs
     txt2img_sd_img2img.click(fn=send_to_module, inputs=[gs_out_txt2img_sd, sel_out_txt2img_sd, tab_image_num, tab_img2img_num], outputs=[img_img2img, tabs, tabs_image])
@@ -8241,7 +8463,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     txt2img_sd_faceid_ip_input.click(fn=import_to_module, inputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tab_image_num, tab_faceid_ip_num], outputs=[prompt_faceid_ip, negative_prompt_faceid_ip, tabs, tabs_image])
     txt2img_sd_txt2vid_ms_input.click(fn=import_to_module_video, inputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms, tabs, tabs_video])
     txt2img_sd_txt2vid_ze_input.click(fn=import_to_module_video, inputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze, tabs, tabs_video])    
-    
+    txt2img_sd_animatediff_lcm_input.click(fn=import_to_module_video, inputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tab_video_num, tab_animatediff_lcm_num], outputs=[prompt_animatediff_lcm, negative_prompt_animatediff_lcm, tabs, tabs_video])
 # txt2img_sd both
     txt2img_sd_img2img_both.click(fn=both_to_module, inputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, gs_out_txt2img_sd, sel_out_txt2img_sd, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, negative_prompt_img2img, img_img2img, tabs, tabs_image])
     txt2img_sd_img2img_ip_both.click(fn=both_to_module, inputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, gs_out_txt2img_sd, sel_out_txt2img_sd, tab_image_num, tab_img2img_ip_num], outputs=[prompt_img2img_ip, negative_prompt_img2img_ip, img_img2img_ip, tabs, tabs_image])
@@ -8282,7 +8504,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     txt2img_kd_faceid_ip_input.click(fn=import_to_module, inputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tab_image_num, tab_faceid_ip_num], outputs=[prompt_faceid_ip, negative_prompt_faceid_ip, tabs, tabs_image])
     txt2img_kd_txt2vid_ms_input.click(fn=import_to_module_video, inputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms, tabs, tabs_video])
     txt2img_kd_txt2vid_ze_input.click(fn=import_to_module_video, inputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze, tabs, tabs_video])        
-    
+    txt2img_kd_animatediff_lcm_input.click(fn=import_to_module_video, inputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tab_video_num, tab_animatediff_lcm_num], outputs=[prompt_animatediff_lcm, negative_prompt_animatediff_lcm, tabs, tabs_video])
 # txt2img_kd both
     txt2img_kd_img2img_both.click(fn=both_to_module, inputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, gs_out_txt2img_kd, sel_out_txt2img_kd, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, negative_prompt_img2img, img_img2img, tabs, tabs_image])
     txt2img_kd_img2img_ip_both.click(fn=both_to_module, inputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, gs_out_txt2img_kd, sel_out_txt2img_kd, tab_image_num, tab_img2img_ip_num], outputs=[prompt_img2img_ip, negative_prompt_img2img_ip, img_img2img_ip, tabs, tabs_image])
@@ -8323,7 +8545,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     txt2img_lcm_faceid_ip_input.click(fn=import_to_module_prompt_only, inputs=[prompt_txt2img_lcm, tab_image_num, tab_faceid_ip_num], outputs=[prompt_faceid_ip, tabs, tabs_image])
     txt2img_lcm_txt2vid_ms_input.click(fn=import_to_module_video_prompt_only, inputs=[prompt_txt2img_lcm, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, tabs, tabs_video]) 
     txt2img_lcm_txt2vid_ze_input.click(fn=import_to_module_video_prompt_only, inputs=[prompt_txt2img_lcm, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, tabs, tabs_video]) 
-    
+    txt2img_lcm_animatediff_lcm_input.click(fn=import_to_module_video_prompt_only, inputs=[prompt_txt2img_lcm, tab_video_num, tab_animatediff_lcm_num], outputs=[prompt_animatediff_lcm, tabs, tabs_video])
+
 # txt2img_lcm both
     txt2img_lcm_img2img_both.click(fn=both_to_module_prompt_only, inputs=[prompt_txt2img_lcm, gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, img_img2img, tabs, tabs_image])
     txt2img_lcm_img2img_ip_both.click(fn=both_to_module_prompt_only, inputs=[prompt_txt2img_lcm, gs_out_txt2img_lcm, sel_out_txt2img_lcm, tab_image_num, tab_img2img_ip_num], outputs=[prompt_img2img_ip, img_img2img_ip, tabs, tabs_image])
@@ -8364,6 +8587,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     txt2img_mjm_faceid_ip_input.click(fn=import_to_module, inputs=[prompt_txt2img_mjm, negative_prompt_txt2img_mjm, tab_image_num, tab_faceid_ip_num], outputs=[prompt_faceid_ip, negative_prompt_faceid_ip, tabs, tabs_image])
     txt2img_mjm_txt2vid_ms_input.click(fn=import_to_module_video, inputs=[prompt_txt2img_mjm, negative_prompt_txt2img_mjm, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms, tabs, tabs_video])
     txt2img_mjm_txt2vid_ze_input.click(fn=import_to_module_video, inputs=[prompt_txt2img_mjm, negative_prompt_txt2img_mjm, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze, tabs, tabs_video])    
+    txt2img_mjm_animatediff_lcm_input.click(fn=import_to_module_video, inputs=[prompt_txt2img_mjm, negative_prompt_txt2img_mjm, tab_video_num, tab_animatediff_lcm_num], outputs=[prompt_animatediff_lcm, negative_prompt_animatediff_lcm, tabs, tabs_video])
 
 # txt2img_mjm both
     txt2img_mjm_img2img_both.click(fn=both_to_module, inputs=[prompt_txt2img_mjm, negative_prompt_txt2img_mjm, gs_out_txt2img_mjm, sel_out_txt2img_mjm, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, negative_prompt_img2img, img_img2img, tabs, tabs_image])
@@ -8405,7 +8629,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     txt2img_paa_faceid_ip_input.click(fn=import_to_module, inputs=[prompt_txt2img_paa, negative_prompt_txt2img_paa, tab_image_num, tab_faceid_ip_num], outputs=[prompt_faceid_ip, negative_prompt_faceid_ip, tabs, tabs_image])
     txt2img_paa_txt2vid_ms_input.click(fn=import_to_module_video, inputs=[prompt_txt2img_paa, negative_prompt_txt2img_paa, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms, tabs, tabs_video])
     txt2img_paa_txt2vid_ze_input.click(fn=import_to_module_video, inputs=[prompt_txt2img_paa, negative_prompt_txt2img_paa, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze, tabs, tabs_video])    
-    
+    txt2img_paa_animatediff_lcm_input.click(fn=import_to_module_video, inputs=[prompt_txt2img_paa, negative_prompt_txt2img_paa, tab_video_num, tab_animatediff_lcm_num], outputs=[prompt_animatediff_lcm, negative_prompt_animatediff_lcm, tabs, tabs_video])
 # txt2img_paa both
     txt2img_paa_img2img_both.click(fn=both_to_module, inputs=[prompt_txt2img_paa, negative_prompt_txt2img_paa, gs_out_txt2img_paa, sel_out_txt2img_paa, tab_image_num, tab_img2img_num], outputs=[prompt_img2img, negative_prompt_img2img, img_img2img, tabs, tabs_image])
     txt2img_paa_img2img_ip_both.click(fn=both_to_module, inputs=[prompt_txt2img_paa, negative_prompt_txt2img_paa, gs_out_txt2img_paa, sel_out_txt2img_paa, tab_image_num, tab_img2img_ip_num], outputs=[prompt_img2img_ip, negative_prompt_img2img_ip, img_img2img_ip, tabs, tabs_image])
@@ -8686,6 +8910,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     controlnet_inpaint_input.click(fn=import_to_module, inputs=[prompt_controlnet, negative_prompt_controlnet, tab_image_num, tab_inpaint_num], outputs=[prompt_inpaint, negative_prompt_inpaint, tabs, tabs_image])
     controlnet_txt2vid_ms_input.click(fn=import_to_module_video, inputs=[prompt_controlnet, negative_prompt_controlnet, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms, tabs, tabs_video])
     controlnet_txt2vid_ze_input.click(fn=import_to_module_video, inputs=[prompt_controlnet, negative_prompt_controlnet, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze, tabs, tabs_video])    
+    controlnet_animatediff_lcm_input.click(fn=import_to_module_video, inputs=[prompt_controlnet, negative_prompt_controlnet, tab_video_num, tab_animatediff_lcm_num], outputs=[prompt_animatediff_lcm, negative_prompt_animatediff_lcm, tabs, tabs_video])
     controlnet_faceid_ip_input.click(fn=import_to_module, inputs=[prompt_controlnet, negative_prompt_controlnet, tab_image_num, tab_faceid_ip_num], outputs=[prompt_faceid_ip, negative_prompt_faceid_ip, tabs, tabs_image])
 
 # ControlNet both
@@ -8830,6 +9055,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
 
 # Modelscope inputs    
     txt2vid_ms_txt2vid_ze_input.click(fn=import_to_module_video, inputs=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms, tab_video_num, tab_txt2vid_ze_num], outputs=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze, tabs, tabs_video])
+    txt2vid_ms_animatediff_lcm_input.click(fn=import_to_module_video, inputs=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms, tab_video_num, tab_animatediff_lcm_num], outputs=[prompt_animatediff_lcm, negative_prompt_animatediff_lcm, tabs, tabs_video])
     txt2vid_ms_txt2img_sd_input.click(fn=import_to_module, inputs=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tabs, tabs_image])
     txt2vid_ms_txt2img_kd_input.click(fn=import_to_module, inputs=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tabs, tabs_image])
     txt2vid_ms_txt2img_lcm_input.click(fn=import_to_module_prompt_only, inputs=[prompt_txt2vid_ms, tab_image_num, tab_txt2img_lcm_num], outputs=[prompt_txt2img_lcm, tabs, tabs_image])
@@ -8846,6 +9072,17 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     txt2vid_ze_txt2img_lcm_input.click(fn=import_to_module_prompt_only, inputs=[prompt_txt2vid_ze, tab_image_num, tab_txt2img_lcm_num], outputs=[prompt_txt2img_lcm, tabs, tabs_image])
     txt2vid_ze_txt2img_mjm_input.click(fn=import_to_module, inputs=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze, tab_image_num, tab_txt2img_mjm_num], outputs=[prompt_txt2img_mjm, negative_prompt_txt2img_mjm, tabs, tabs_image])
     txt2vid_ze_txt2img_paa_input.click(fn=import_to_module, inputs=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze, tab_image_num, tab_txt2img_paa_num], outputs=[prompt_txt2img_paa, negative_prompt_txt2img_paa, tabs, tabs_image])
+
+# AnimateLCM outputs
+    animatediff_lcm_vid2vid_ze.click(fn=send_to_module_video, inputs=[out_animatediff_lcm, tab_video_num, tab_vid2vid_ze_num], outputs=[vid_vid2vid_ze, tabs, tabs_video])
+
+# AnimateLCM inputs
+    animatediff_lcm_txt2vid_ms_input.click(fn=import_to_module_video, inputs=[prompt_animatediff_lcm, negative_prompt_animatediff_lcm, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms, tabs, tabs_video])
+    animatediff_lcm_txt2img_sd_input.click(fn=import_to_module, inputs=[prompt_animatediff_lcm, negative_prompt_animatediff_lcm, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tabs, tabs_image])
+    animatediff_lcm_txt2img_kd_input.click(fn=import_to_module, inputs=[prompt_animatediff_lcm, negative_prompt_animatediff_lcm, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tabs, tabs_image])
+    animatediff_lcm_txt2img_lcm_input.click(fn=import_to_module_prompt_only, inputs=[prompt_animatediff_lcm, tab_image_num, tab_txt2img_lcm_num], outputs=[prompt_txt2img_lcm, tabs, tabs_image])
+    animatediff_lcm_txt2img_mjm_input.click(fn=import_to_module, inputs=[prompt_animatediff_lcm, negative_prompt_animatediff_lcm, tab_image_num, tab_txt2img_mjm_num], outputs=[prompt_txt2img_mjm, negative_prompt_txt2img_mjm, tabs, tabs_image])
+    animatediff_lcm_txt2img_paa_input.click(fn=import_to_module, inputs=[prompt_animatediff_lcm, negative_prompt_animatediff_lcm, tab_image_num, tab_txt2img_paa_num], outputs=[prompt_txt2img_paa, negative_prompt_txt2img_paa, tabs, tabs_image])
 
 # Stable Video Diffusion
     img2vid_vid2vid_ze.click(fn=send_to_module_video, inputs=[out_img2vid, tab_video_num, tab_vid2vid_ze_num], outputs=[vid_vid2vid_ze, tabs, tabs_video])
