@@ -26,6 +26,7 @@ os.makedirs(model_path_animatediff_lcm, exist_ok=True)
 
 
 model_list_animatediff_lcm = [
+    "emilianJR/epiCRealism",
     "SG161222/Realistic_Vision_V3.0_VAE",
 #    "stabilityai/sdxl-turbo",
 #    "dataautogpt3/OpenDalleV1.1",
