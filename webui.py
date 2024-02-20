@@ -7166,8 +7166,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
 
-# animatediff_lcm
-                with gr.TabItem("AnimateLCM 📼", id=43) as tab_animatediff_lcm:
+# animate_lcm
+                if ram_size() >= 16 :
+                    titletab_tab_animatediff_lcm = "AnimateLCM 📼"
+                else :
+                    titletab_tab_animatediff_lcm = "AnimateLCM ⛔"
+                with gr.TabItem(titletab_tab_animatediff_lcm, id=43) as tab_animatediff_lcm:
                     with gr.Accordion("About", open=False):
                         with gr.Box():
                             gr.HTML(
@@ -7178,6 +7182,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Input(s) : </b>Prompt, negative prompt</br>
                                 <b>Output(s) : </b>Video</br>
                                 <b>HF model page : </b>
+                                <a href='https://huggingface.co/emilianJR/epiCRealism' target='_blank'>emilianJR/epiCRealism</a>, 
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
                                 <a href='https://huggingface.co/digiplay/AbsoluteReality_v1.8.1' target='_blank'>digiplay/AbsoluteReality_v1.8.1</a>, 
                                 <a href='https://huggingface.co/runwayml/stable-diffusion-v1-5' target='_blank'>runwayml/stable-diffusion-v1-5</a>, 
@@ -7228,9 +7233,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 num_prompt_animatediff_lcm = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                use_gfpgan_animatediff_lcm = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_animatediff_lcm = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs", visible=False)
                             with gr.Column():
-                                tkme_animatediff_lcm = gr.Slider(0.0, 1.0, step=0.01, value=0, label="Token Merging ratio", info="0=slow,best quality, 1=fast,worst quality", interactive=False)
+                                tkme_animatediff_lcm = gr.Slider(0.0, 1.0, step=0.01, value=0, label="Token Merging ratio", info="0=slow,best quality, 1=fast,worst quality", visible=False)
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_animatediff_lcm = gr.Button("Save custom defaults settings 💾")
@@ -7278,10 +7283,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column(scale=2):
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_animatediff_lcm = gr.Textbox(lines=4, max_lines=4, label="Prompt", info="Describe what you want in your video", placeholder="a panda is playing guitar on times square")
+                                    prompt_animatediff_lcm = gr.Textbox(lines=4, max_lines=4, label="Prompt", info="Describe what you want in your video", placeholder="A space rocket with trails of smoke behind it launching into space from the desert, 4k, high resolution")
                             with gr.Row():
                                 with gr.Column():
-                                    negative_prompt_animatediff_lcm = gr.Textbox(lines=4, max_lines=4, label="Negative Prompt", info="Describe what you DO NOT want in your video", placeholder="out of frame, ugly")
+                                    negative_prompt_animatediff_lcm = gr.Textbox(lines=4, max_lines=4, label="Negative Prompt", info="Describe what you DO NOT want in your video", placeholder="bad quality, worst quality, low resolution")
                         model_animatediff_lcm.change(
                             fn=change_model_type_animatediff_lcm,
                             inputs=[model_animatediff_lcm],
