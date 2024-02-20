@@ -88,7 +88,7 @@
 * **Video generation and modification using :**
   - 📼 [Modelscope module](https://github.com/Woolverine94/biniou/wiki/Modelscope-txt2vid) (require 16GB+ RAM)
   - 📼 [Text2Video-Zero module](https://github.com/Woolverine94/biniou/wiki/Text2Video%E2%80%90Zero)
-  - 📼 [AnimateLCM module](https://github.com/Woolverine94/biniou/wiki/AnimateLCM)
+  - 📼 [AnimateLCM module](https://github.com/Woolverine94/biniou/wiki/AnimateLCM) (require 16GB+ RAM)
   - 📼 [Stable Video Diffusion module](https://github.com/Woolverine94/biniou/wiki/Stable-Video-Diffusion) (require 16GB+ RAM)
   - 🖌️ [Video Instruct-Pix2Pix module](https://github.com/Woolverine94/biniou/wiki/Video-Instruct%E2%80%90pix2pix) (require 16GB+ RAM)
 
