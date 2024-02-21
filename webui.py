@@ -185,6 +185,9 @@ def change_model_type_llamacpp(model_llamacpp):
     else:
         return prompt_template_llamacpp.update(value="{prompt}"), system_template_llamacpp.update(value="")
 
+def change_prompt_template_llamacpp(prompt_template):
+    return prompt_template_llamacpp.update(value=prompt_template_list_llamacpp[prompt_template][0]), system_template_llamacpp.update(value=prompt_template_list_llamacpp[prompt_template][1])
+
 ## Functions specific to llava
 def read_ini_llava(module) :
     content = read_ini(module)
@@ -1003,11 +1006,19 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 top_k_llamacpp = gr.Slider(0, 500, step=1, value=40, label="top_k", info="The top-k value to use for sampling")
                         with gr.Row():
                             with gr.Column():
+                                force_prompt_template_llamacpp = gr.Dropdown(choices=list(prompt_template_list_llamacpp.keys()), value=list(prompt_template_list_llamacpp.keys())[0], label="Force prompt template", info="Choose prompt template to use for inference")
+                            with gr.Column():
+                                gr.Number(visible=False)
+                            with gr.Column():
+                                gr.Number(visible=False)
+                        with gr.Row():
+                            with gr.Column():
                                 prompt_template_llamacpp = gr.Textbox(label="Prompt template", value=model_list_llamacpp[model_llamacpp.value][1], lines=4, max_lines=4, info="Place your custom prompt template here. Keep the {prompt} and {system} tags, they will be replaced by your prompt and system template.")
                         with gr.Row():
                             with gr.Column():
                                 system_template_llamacpp = gr.Textbox(label="System template", value=model_list_llamacpp[model_llamacpp.value][2], lines=4, max_lines=4, info="Place your custom system template here.")
                                 model_llamacpp.change(fn=change_model_type_llamacpp, inputs=model_llamacpp, outputs=[prompt_template_llamacpp, system_template_llamacpp])
+                                force_prompt_template_llamacpp.change(fn=change_prompt_template_llamacpp, inputs=force_prompt_template_llamacpp, outputs=[prompt_template_llamacpp, system_template_llamacpp])
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_llamacpp = gr.Button("Save custom defaults settings 💾")
