@@ -182,6 +182,24 @@ class biniouSDModelsDownloader:
         print(f">>>[SD models downloader 💾 ]: SD model {self.filename} downloaded.")
         return
 
+class biniouGGUFModelsDownloader:
+    def __init__(self, models_dir):
+        self.models_dir = models_dir
+
+    def modelsdownloader(self, url, progress=gr.Progress(track_tqdm=True)):
+        self.url = url
+        self.filename = self.url.split('/')[-1]
+        self.path = self.models_dir+ "/"+ self.filename
+        with req.get(self.url, stream=True) as r:
+            total_size = int(r.headers.get("content-length", 0))
+            with tqdm(total=total_size, unit="B", unit_scale=True) as progress_bar:
+                with open(self.path, 'wb') as f:
+                    for chunk in r.iter_content(8192):
+                        progress_bar.update(len(chunk))
+                        f.write(chunk)
+        print(f">>>[GGUF models downloader 💾 ]: GGUF model {self.filename} downloaded.")
+        return
+
 class biniouUIControl:
     def __init__(self):
         return

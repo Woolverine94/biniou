@@ -8261,7 +8261,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Column():
                                         gr.Number(visible=False)
 # SD Models downloader
-                with gr.TabItem("SD models downloader 💾", id=64) as tab_lora_models_manager:
+                with gr.TabItem("SD models downloader 💾", id=64) as tab_sd_models_downloader:
                     with gr.Row():
                         with gr.Column():
 #                            gr.HTML("""<span style='text-align: left; font-size: 24px; font-weight: bold; line-height:24px;'>SD models</span>""")
@@ -8272,6 +8272,25 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Column():
                                     btn_url_sd_models_downloader = gr.Button("Download SD model 💾", variant="primary")
                                     btn_url_sd_models_downloader.click(biniouSDModelsDownloader("./models/Stable_Diffusion").modelsdownloader, inputs=url_sd_models_downloader, outputs=url_sd_models_downloader)
+                                with gr.Column():
+                                        gr.Number(visible=False)
+                                with gr.Column():
+                                        gr.Number(visible=False)
+                                with gr.Column():
+                                        gr.Number(visible=False)
+
+# GGUF Models downloader
+                with gr.TabItem("GGUF models downloader 💾", id=65) as tab_gguf_models_downloader:
+                    with gr.Row():
+                        with gr.Column():
+#                            gr.HTML("""<span style='text-align: left; font-size: 24px; font-weight: bold; line-height:24px;'>SD models</span>""")
+                            with gr.Row():
+                                with gr.Column():
+                                    url_gguf_models_downloader = gr.Textbox(value="", lines=1, max_lines=2, interactive=True, label="Chatbot Llama-cpp GGUF model URL", info="Paste here the url of the model you want to download. Restart biniou to re-synchronize models list. gguf files only.")
+                            with gr.Row():
+                                with gr.Column():
+                                    btn_url_gguf_models_downloader = gr.Button("Download GGUF model 💾", variant="primary")
+                                    btn_url_gguf_models_downloader.click(biniouSDModelsDownloader("./models/llamacpp").modelsdownloader, inputs=url_gguf_models_downloader, outputs=url_gguf_models_downloader)
                                 with gr.Column():
                                         gr.Number(visible=False)
                                 with gr.Column():
