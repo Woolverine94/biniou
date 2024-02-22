@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-02-22** : 🔥 ***New chatbot features*** 🔥 : You can now easily and efficiently integrate GGUF models to the chatbot module. You only have to download the model using the new **GUUF models downloader** tab in the Globals settings, relaunch biniou and restart the UI, select downloaded model in chatbot module and choose a prompt template from the new **Force prompt template** menu. 
+
   * 🆕 **2024-02-19** : 🔥 ***New module : AnimateLCM*** 🔥 : Combining AnimateDiff and LCM, this module let you generate quality videos quite fast (compared to other modules) using Stable Diffusion models.
 
   * 🆕 **2024-02-15** : 🔥 ***Adding LoRA model support to LCM*** 🔥 : Adding LoRA models options to LCM module, at the bottom of the settings panel for LCM module. Note that Segmind models are not compatible with this feature.
@@ -23,8 +25,6 @@
   * 🆕 **2024-02-14** : 🔥 ***Adding textual inversion support to more modules*** 🔥 : Modules img2img, IP-Adapter and ControlNet can now use textual inversion. Therefore, EasyNegative is usable with all modules supporting textual inversion (only for Stable Diffusion 1.5 models).  EasyNegative will avoid using a complex negative prompt and should enhance the quality of your generated contents. 
 
   * 🆕 **2024-02-12** : 🔥 ***Experimental textual inversion support*** 🔥 : Adding experimental support for textual inversion in Stable Diffusion and IP-Adapter FaceID modules. You will find textual inversion options at the very bottom of the panel settings of each module. Support of this feature for other modules will be available after further testing.
-
-  * 🆕 **2024-02-10** : 🔥 ***Updates and fixes in LCM Module*** 🔥 : Adding [lcm-lora-sdv1-5](https://huggingface.co/latent-consistency/lcm-lora-sdv1-5) and [lcm-lora-sdxl](https://huggingface.co/latent-consistency/lcm-lora-sdxl) to LCM module. These two models are way faster than the models they rely on, but still a bit slower than [sd-turbo](https://huggingface.co/stabilityai/sd-turbo) and [sdxl-turbo](https://huggingface.co/stabilityai/sdxl-turbo). Also fixing a misconfiguration in the settings of model [Segmind-VegaRT](https://huggingface.co/segmind/Segmind-VegaRT), which is now the fastest model in biniou for 1024x1024 generation.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
