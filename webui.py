@@ -868,6 +868,14 @@ def refresh_lora_models_manager_list_sd():
 def refresh_lora_models_manager_list_sdxl():
     return gr.CheckboxGroup(choices=biniouLoraModelsManager("./models/lora/SDXL").modelslister(), value=None, type="value", label="Installed models list", info="Select the LoRA models you want to delete and click \"Delete selected models\" button. Restart biniou to re-synchronize LoRA models list.")
 
+## Functions specific to Textual inversion manager
+def refresh_textinv_manager_list_sd():
+    return gr.CheckboxGroup(choices=biniouTextinvModelsManager("./models/TextualInversion/SD").modelslister(), value=None, type="value", label="Installed textual inversion list", info="Select the textual inversion you want to delete and click \"Delete selected textual inversion\" button. Restart biniou to re-synchronize textual inversion list.")
+
+def refresh_textinv_manager_list_sdxl():
+    return gr.CheckboxGroup(choices=biniouTextinvModelsManager("./models/TextualInversion/SDXL").modelslister(), value=None, type="value", label="Installed textual inversion list", info="Select the textual inversion you want to delete and click \"Delete selected textual inversion\" button. Restart biniou to re-synchronize textual inversion list.")
+
+
 ## Functions specific to console
 def refresh_logfile():
     return logfile_biniou
@@ -8260,8 +8268,55 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     btn_url_lora_models_manager_sdxl.click(biniouLoraModelsManager("./models/lora/SDXL").modelsdownloader, inputs=url_lora_models_manager_sdxl, outputs=url_lora_models_manager_sdxl)
                                 with gr.Column():
                                         gr.Number(visible=False)
+
+# Textual inversion Models manager
+                with gr.TabItem("Textual inversion manager 🛠️", id=64) as tab_textinv_manager:
+                    with gr.Row():
+                        with gr.Column():
+                            gr.HTML("""<span style='text-align: left; font-size: 24px; font-weight: bold; line-height:24px;'>SD textual inversion</span>""")
+                            with gr.Row():
+                                list_textinv_manager_sd = gr.CheckboxGroup(choices=biniouTextinvModelsManager("./models/TextualInversion/SD").modelslister(), type="value", label="Installed textual inversion list", info="Select the textual inversion you want to delete and click \"Delete selected textual inversion\" button. Restart biniou to re-synchronize textual inversion list.")
+                            with gr.Row():
+                                with gr.Column():
+                                    btn_textinv_manager_sd = gr.Button("Delete selected textual inversion 🧹", variant="primary")
+                                    btn_textinv_manager_sd.click(fn=biniouTextinvModelsManager("./models/TextualInversion/SD").modelsdeleter, inputs=[list_textinv_manager_sd])
+                                    btn_textinv_manager_sd.click(fn=refresh_textinv_manager_list_sd, outputs=list_textinv_manager_sd)
+                                with gr.Column():
+                                    btn_textinv_manager_refresh_sd = gr.Button("Refresh textual inversion list ♻️")
+                                    btn_textinv_manager_refresh_sd.click(fn=refresh_textinv_manager_list_sd, outputs=list_textinv_manager_sd)
+                            with gr.Row():
+                                with gr.Column():
+                                    url_textinv_manager_sd = gr.Textbox(value="", lines=1, max_lines=2, interactive=True, label="Textual inversion URL", info="Paste here the url of the textual inversion you want to download. Restart biniou to re-synchronize textual inversion list. Safetensors files only.")
+                            with gr.Row():
+                                with gr.Column():
+                                    btn_url_textinv_manager_sd = gr.Button("Download textual inversion 💾", variant="primary")
+                                    btn_url_textinv_manager_sd.click(biniouTextinvModelsManager("./models/TextualInversion/SD").modelsdownloader, inputs=url_textinv_manager_sd, outputs=url_textinv_manager_sd)
+                                with gr.Column():
+                                        gr.Number(visible=False)
+                        with gr.Column():
+                            gr.HTML("""<span style='text-align: left; font-size: 24px; font-weight: bold; line-height:24px;'>SDXL textual inversion</span>""")
+                            with gr.Row():
+                                list_textinv_manager_sdxl = gr.CheckboxGroup(choices=biniouTextinvModelsManager("./models/TextualInversion/SDXL").modelslister(), type="value", label="Installed textual inversion list", info="Select the textual inversion you want to delete and click \"Delete selected textual inversion\" button. Restart biniou to re-synchronize textual inversion list.")
+                            with gr.Row():
+                                with gr.Column():
+                                    btn_textinv_manager_sdxl = gr.Button("Delete selected textual inversion 🧹", variant="primary")
+                                    btn_textinv_manager_sdxl.click(fn=biniouTextinvModelsManager("./models/TextualInversion/SDXL").modelsdeleter, inputs=[list_textinv_manager_sdxl])
+                                    btn_textinv_manager_sdxl.click(fn=refresh_textinv_manager_list_sdxl, outputs=list_textinv_manager_sdxl)
+                                with gr.Column():
+                                    btn_textinv_manager_refresh_sdxl = gr.Button("Refresh textual inversion list ♻️")
+                                    btn_textinv_manager_refresh_sdxl.click(fn=refresh_textinv_manager_list_sdxl, outputs=list_textinv_manager_sdxl)
+                            with gr.Row():
+                                with gr.Column():
+                                    url_textinv_manager_sdxl = gr.Textbox(value="", lines=1, max_lines=2, interactive=True, label="Textual inversion URL", info="Paste here the url of the Textual inversion you want to download. Restart biniou to re-synchronize textual inversion list. Safetensors files only.")
+                            with gr.Row():
+                                with gr.Column():
+                                    btn_url_textinv_manager_sdxl = gr.Button("Download textual inversion 💾", variant="primary")
+                                    btn_url_textinv_manager_sdxl.click(biniouTextinvModelsManager("./models/TextualInversion/SDXL").modelsdownloader, inputs=url_textinv_manager_sdxl, outputs=url_textinv_manager_sdxl)
+                                with gr.Column():
+                                        gr.Number(visible=False)
+
 # SD Models downloader
-                with gr.TabItem("SD models downloader 💾", id=64) as tab_sd_models_downloader:
+                with gr.TabItem("SD models downloader 💾", id=65) as tab_sd_models_downloader:
                     with gr.Row():
                         with gr.Column():
 #                            gr.HTML("""<span style='text-align: left; font-size: 24px; font-weight: bold; line-height:24px;'>SD models</span>""")
@@ -8280,7 +8335,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.Number(visible=False)
 
 # GGUF Models downloader
-                with gr.TabItem("GGUF models downloader 💾", id=65) as tab_gguf_models_downloader:
+                with gr.TabItem("GGUF models downloader 💾", id=66) as tab_gguf_models_downloader:
                     with gr.Row():
                         with gr.Column():
 #                            gr.HTML("""<span style='text-align: left; font-size: 24px; font-weight: bold; line-height:24px;'>SD models</span>""")
