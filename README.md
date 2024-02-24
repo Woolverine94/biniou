@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-02-24** : 🔥 ***Support for Gemma models in Chatbot module*** 🔥 : Adding models [sayhan/gemma-7b-it-GGUF-quantized](https://huggingface.co/sayhan/gemma-7b-it-GGUF-quantized), [mlabonne/gemma-2b-it-GGUF](https://huggingface.co/mlabonne/gemma-2b-it-GGUF) and the Gemma prompt template. These models are quantized versions of the Google Gemma instruct models and uses the same technologies than Google's Gemini.
+
   * 🆕 **2024-02-23** : 🔥 ***Textual inversion manager*** 🔥 : Adding a tab to the Globals settings that allow management of textual inversions through the webui.
 
   * 🆕 **2024-02-22** : 🔥 ***New chatbot features*** 🔥 : You can now easily and efficiently integrate GGUF models to the chatbot module. You only have to download the model using the new **GUUF models downloader** tab in the Globals settings, relaunch biniou and restart the UI, select downloaded model in chatbot module and choose a prompt template from the new **Force prompt template** menu. 
@@ -23,8 +25,6 @@
   * 🆕 **2024-02-19** : 🔥 ***New module : AnimateLCM*** 🔥 : Combining AnimateDiff and LCM, this module let you generate quality videos quite fast (compared to other modules) using Stable Diffusion models.
 
   * 🆕 **2024-02-15** : 🔥 ***Adding LoRA model support to LCM*** 🔥 : Adding LoRA models options to LCM module, at the bottom of the settings panel for LCM module. Note that Segmind models are not compatible with this feature.
-
-  * 🆕 **2024-02-14** : 🔥 ***Adding textual inversion support to more modules*** 🔥 : Modules img2img, IP-Adapter and ControlNet can now use textual inversion. Therefore, EasyNegative is usable with all modules supporting textual inversion (only for Stable Diffusion 1.5 models).  EasyNegative will avoid using a complex negative prompt and should enhance the quality of your generated contents. 
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
