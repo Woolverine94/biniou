@@ -951,6 +951,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Output(s) : </b>Output text</br>
                                 <b>HF models pages : </b>
                                 <a href='https://huggingface.co/TheBloke/openchat-3.5-1210-GGUF' target='_blank'>TheBloke/openchat-3.5-1210-GGUF</a>, 
+                                <a href='https://huggingface.co/sayhan/gemma-7b-it-GGUF-quantized' target='_blank'>sayhan/gemma-7b-it-GGUF-quantized</a>, 
+                                <a href='https://huggingface.co/mlabonne/gemma-2b-it-GGUF' target='_blank'>mlabonne/gemma-2b-it-GGUF</a>, 
+                                <a href='https://huggingface.co/mlabonne/AlphaMonarch-7B-GGUF' target='_blank'>mlabonne/AlphaMonarch-7B-GGUF</a>, 
                                 <a href='https://huggingface.co/mlabonne/NeuralBeagle14-7B-GGUF' target='_blank'>mlabonne/NeuralBeagle14-7B-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/SOLAR-10.7B-Instruct-v1.0-GGUF' target='_blank'>TheBloke/SOLAR-10.7B-Instruct-v1.0-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF' target='_blank'>TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF</a>, 
