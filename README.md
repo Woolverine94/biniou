@@ -97,16 +97,17 @@
   - 🧊 [Shap-E img2shape module](https://github.com/Woolverine94/biniou/wiki/Shap‐E-img2shape) (require 16GB+ RAM)
 
 * **Other features**
+  - Easy management through a control panel directly inside webui
   - Communication between modules : send an output as an input to another module
   - Powered by [🤗 Huggingface](https://huggingface.co/) and [gradio](https://www.gradio.app/)
   - Cross platform : GNU/Linux, Windows 10/11 and macOS(experimental, via homebrew)
   - Convenient Dockerfile for cloud instances
   - Support for CUDA on almost all modules (see [CUDA support](#cuda-support))
   - Experimental support for ROCm on almost all modules (see [here](https://github.com/Woolverine94/biniou/wiki/Experimental-features#rocm-support-under-gnulinux))
-  - Support for Stable Diffusion SD-1.5, SD-2.1, SD-Turbo, SDXL, SDXL-Turbo,  Segmind SSD-1B and compatible models, through built-in model list or standalone .safetensors files
+  - Support for Stable Diffusion SD-1.5, SD-2.1, SD-Turbo, SDXL, SDXL-Turbo, LCM, VegaRT, Segmind SSD-1B, Segmind Vega  and compatible models, through built-in model list or standalone .safetensors files
   - Support for LoRA models
   - Support for textual inversion
-  - Support for Llama, Mistral, Mixtral and compatible quantized models, through built-in model list or standalone .gguf files.
+  - Support for Llama, Mistral, Mixtral and compatible GGUF quantized models, through built-in model list or standalone .gguf files.
   - Easy copy/paste integration for [TheBloke GGUF quantized models](https://huggingface.co/models?search=TheBloke%20GGUF).
 
 ---
