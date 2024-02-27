@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-02-27** : 🔥 ***Updates on Llava module*** 🔥 : Renaming Llava-1.5 module to Llava, as it now support Llava 1.6 through [cmp-nct/llava-1.6-gguf](https://huggingface.co/cmp-nct/llava-1.6-gguf) model. Thus it is still pretty slow, it gives very interesting results.
+
   * 🆕 **2024-02-24** : 🔥 ***Support for Gemma models in Chatbot module*** 🔥 : Adding models [sayhan/gemma-7b-it-GGUF-quantized](https://huggingface.co/sayhan/gemma-7b-it-GGUF-quantized), [mlabonne/gemma-2b-it-GGUF](https://huggingface.co/mlabonne/gemma-2b-it-GGUF) and the Gemma prompt template. These models are quantized versions of the Google Gemma instruct models and uses the same technologies than Google's Gemini.
 
   * 🆕 **2024-02-23** : 🔥 ***Textual inversion manager*** 🔥 : Adding a tab to the Globals settings that allow management of textual inversions through the webui.
@@ -23,8 +25,6 @@
   * 🆕 **2024-02-22** : 🔥 ***New chatbot features*** 🔥 : You can now easily and efficiently integrate GGUF models to the chatbot module. You only have to download the model using the new **GUUF models downloader** tab in the Globals settings, relaunch biniou and restart the UI, select downloaded model in chatbot module and choose a prompt template from the new **Force prompt template** menu. 
 
   * 🆕 **2024-02-19** : 🔥 ***New module : AnimateLCM*** 🔥 : Combining AnimateDiff and LCM, this module let you generate quality videos quite fast (compared to other modules) using Stable Diffusion models.
-
-  * 🆕 **2024-02-15** : 🔥 ***Adding LoRA model support to LCM*** 🔥 : Adding LoRA models options to LCM module, at the bottom of the settings panel for LCM module. Note that Segmind models are not compatible with this feature.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
@@ -51,7 +51,7 @@
 ## Features
 * **Text generation using  :**
   - ✍️ [llama-cpp based chatbot module](https://github.com/Woolverine94/biniou/wiki/Chatbot-llama%E2%80%90cpp) (uses .gguf models)
-  - 👁️ [Llava 1.5 multimodal chatbot module](https://github.com/Woolverine94/biniou/wiki/Llava-1.5) (uses .gguf models)
+  - 👁️ [Llava multimodal chatbot module](https://github.com/Woolverine94/biniou/wiki/Llava) (uses .gguf models)
   - 👁️ [Microsoft GIT image captioning module](https://github.com/Woolverine94/biniou/wiki/GIT-image-captioning)
   - 👂 [Whisper speech-to-text module](https://github.com/Woolverine94/biniou/wiki/Whisper)
   - 👥 [nllb translation module](https://github.com/Woolverine94/biniou/wiki/nllb-translation) (200 languages)
@@ -271,7 +271,7 @@ biniou:latest
 
 biniou is natively cpu-only, to ensure compatibility with a wide range of hardware, but you can easily activate CUDA support through Nvidia CUDA (if you have a functionnal CUDA 12.1 environment) or AMD ROCm (if you have a functionnal ROCm 5.6 environment) by selecting the type of optimization to activate (CPU, CUDA or ROCm for Linux), in the WebUI control module.
 
-Currently, all modules except Chatbot, Llava 1.5 and faceswap modules, could benefits from CUDA optimization.
+Currently, all modules except Chatbot, Llava and faceswap modules, could benefits from CUDA optimization.
 
 ---
 
@@ -330,7 +330,7 @@ This application uses the following softwares and technologies :
 - [🤗 Huggingface](https://huggingface.co/) : Diffusers and Transformers libraries and almost all the generatives models.
 - [Gradio](https://www.gradio.app/) : webUI
 - [llama-cpp-python](https://github.com/abetlen/llama-cpp-python) : python bindings for llama-cpp
-- [Llava 1.5](https://llava-vl.github.io/)
+- [Llava](https://llava-vl.github.io/)
 - [BakLLava](https://github.com/SkunkworksAI/BakLLaVA)
 - [Microsoft GIT](https://github.com/microsoft/GenerativeImage2Text) : Image2text
 - [Whisper](https://openai.com/research/whisper) : speech2text
