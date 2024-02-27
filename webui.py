@@ -1212,18 +1212,19 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... both to ...')
 
 # llava
-                with gr.TabItem("Llava 1.5 (gguf) 👁️", id=12) as tab_llava:
+                with gr.TabItem("Llava (gguf) 👁️", id=12) as tab_llava:
                     with gr.Accordion("About", open=False):
                         with gr.Box():
                             gr.HTML(
                                 """
                                 <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>Llava 1.5 (gguf)</br>
-                                <b>Function : </b>Interrogate a chatbot about an input image using <a href='https://github.com/abetlen/llama-cpp-python' target='_blank'>llama-cpp-python</a>, <a href='https://llava-vl.github.io/' target='_blank'>Llava 1.5</a> and <a href='https://github.com/SkunkworksAI/BakLLaVA' target='_blank'>BakLLaVA</a></br>
+                                <b>Module : </b>Llava (gguf)</br>
+                                <b>Function : </b>Interrogate a chatbot about an input image using <a href='https://github.com/abetlen/llama-cpp-python' target='_blank'>llama-cpp-python</a>, <a href='https://llava-vl.github.io/' target='_blank'>Llava</a> and <a href='https://github.com/SkunkworksAI/BakLLaVA' target='_blank'>BakLLaVA</a></br>
                                 <b>Input(s) : </b>Input image, Input text</br>
                                 <b>Output(s) : </b>Output text</br>
                                 <b>HF models pages : </b>
                                 <a href='https://huggingface.co/mys/ggml_bakllava-1' target='_blank'>mys/ggml_bakllava-1</a>, 
+                                <a href='https://huggingface.co/cmp-nct/llava-1.6-gguf' target='_blank'>cmp-nct/llava-1.6-gguf</a>, 
                                 <a href='https://huggingface.co/mys/ggml_llava-v1.5-7b' target='_blank'>mys/ggml_llava-v1.5-7b</a>, 
                                 <a href='https://huggingface.co/mys/ggml_llava-v1.5-13b' target='_blank'>mys/ggml_llava-v1.5-13b</a>
                            </br>
@@ -2214,7 +2215,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')                                        
-                                        txt2img_sd_llava = gr.Button("🖼️ >> Llava 1.5")
+                                        txt2img_sd_llava = gr.Button("🖼️ >> Llava")
                                         txt2img_sd_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         txt2img_sd_img2img = gr.Button("🖼️ >> img2img")
@@ -2437,7 +2438,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
-                                        txt2img_kd_llava = gr.Button("🖼️ >> Llava 1.5")
+                                        txt2img_kd_llava = gr.Button("🖼️ >> Llava")
                                         txt2img_kd_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         txt2img_kd_img2img = gr.Button("🖼️ >> img2img")
@@ -2682,7 +2683,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')                                        
-                                        txt2img_lcm_llava = gr.Button("🖼️ >> Llava 1.5")
+                                        txt2img_lcm_llava = gr.Button("🖼️ >> Llava")
                                         txt2img_lcm_img2txt_git = gr.Button("🖼️ >> GIT Captioning")      
                                         gr.HTML(value='... image module ...')
                                         txt2img_lcm_img2img = gr.Button("🖼️ >> img2img")
@@ -2895,7 +2896,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
-                                        txt2img_mjm_llava = gr.Button("🖼️ >> Llava 1.5")
+                                        txt2img_mjm_llava = gr.Button("🖼️ >> Llava")
                                         txt2img_mjm_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         txt2img_mjm_img2img = gr.Button("🖼️ >> img2img")
@@ -3110,7 +3111,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
-                                        txt2img_paa_llava = gr.Button("🖼️ >> Llava 1.5")
+                                        txt2img_paa_llava = gr.Button("🖼️ >> Llava")
                                         txt2img_paa_img2txt_git = gr.Button("🖼️ >> GIT Captioning")      
                                         gr.HTML(value='... image module ...')
                                         txt2img_paa_img2img = gr.Button("🖼️ >> img2img")
@@ -3388,7 +3389,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
-                                        img2img_llava = gr.Button("🖼️ >> Llava 1.5")
+                                        img2img_llava = gr.Button("🖼️ >> Llava")
                                         img2img_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         img2img_img2img = gr.Button("🖼️ >> img2img")
@@ -3652,7 +3653,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
-                                        img2img_ip_llava = gr.Button("🖼️ >> Llava 1.5")
+                                        img2img_ip_llava = gr.Button("🖼️ >> Llava")
                                         img2img_ip_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         img2img_ip_img2img = gr.Button("🖼️ >> img2img")
@@ -3858,7 +3859,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
-                                        img2var_llava = gr.Button("🖼️ >> Llava 1.5")
+                                        img2var_llava = gr.Button("🖼️ >> Llava")
                                         img2var_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         img2var_img2img = gr.Button("🖼️ >> img2img")
@@ -4062,7 +4063,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
-                                        pix2pix_llava = gr.Button("🖼️ >> Llava 1.5")
+                                        pix2pix_llava = gr.Button("🖼️ >> Llava")
                                         pix2pix_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         pix2pix_img2img = gr.Button("🖼️ >> img2img")
@@ -4272,7 +4273,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
-                                        magicmix_llava = gr.Button("🖼️ >> Llava 1.5")
+                                        magicmix_llava = gr.Button("🖼️ >> Llava")
                                         magicmix_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         magicmix_img2img = gr.Button("🖼️ >> img2img")
@@ -4484,7 +4485,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
-                                        inpaint_llava = gr.Button("🖼️ >> Llava 1.5")
+                                        inpaint_llava = gr.Button("🖼️ >> Llava")
                                         inpaint_img2txt_git = gr.Button("🖼️ >> GIT Captioning")      
                                         gr.HTML(value='... image module ...')
                                         inpaint_img2img = gr.Button("🖼️ >> img2img")
@@ -4703,7 +4704,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
-                                        paintbyex_llava = gr.Button("🖼️ >> Llava 1.5")
+                                        paintbyex_llava = gr.Button("🖼️ >> Llava")
                                         paintbyex_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         paintbyex_img2img = gr.Button("🖼️ >> img2img")
@@ -4942,7 +4943,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
-                                        outpaint_llava = gr.Button("🖼️ >> Llava 1.5")
+                                        outpaint_llava = gr.Button("🖼️ >> Llava")
                                         outpaint_img2txt_git = gr.Button("🖼️ >> GIT Captioning")      
                                         gr.HTML(value='... image module ...')
                                         outpaint_img2img = gr.Button("🖼️ >> img2img")
@@ -5270,7 +5271,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')                                        
-                                        controlnet_llava = gr.Button("🖼️ >> Llava 1.5")
+                                        controlnet_llava = gr.Button("🖼️ >> Llava")
                                         controlnet_img2txt_git = gr.Button("🖼️ >> GIT Captioning")         
                                         gr.HTML(value='... image module ...')
                                         controlnet_img2img = gr.Button("🖼️ >> img2img")
@@ -5539,7 +5540,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
-                                        faceid_ip_llava = gr.Button("🖼️ >> Llava 1.5")
+                                        faceid_ip_llava = gr.Button("🖼️ >> Llava")
                                         faceid_ip_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         faceid_ip_img2img = gr.Button("🖼️ >> img2img")
@@ -5711,7 +5712,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')                                        
-                                        faceswap_llava = gr.Button("🖼️ >> Llava 1.5")
+                                        faceswap_llava = gr.Button("🖼️ >> Llava")
                                         faceswap_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         faceswap_img2img = gr.Button("🖼️ >> img2img")
@@ -5852,7 +5853,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
-                                        resrgan_llava = gr.Button("🖼️ >> Llava 1.5")
+                                        resrgan_llava = gr.Button("🖼️ >> Llava")
                                         resrgan_img2txt_git = gr.Button("🖼️ >> GIT Captioning") 
                                         gr.HTML(value='... image module ...')
                                         resrgan_img2img = gr.Button("🖼️ >> img2img")
@@ -5984,7 +5985,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')                                        
-                                        gfpgan_llava = gr.Button("🖼️ >> Llava 1.5")
+                                        gfpgan_llava = gr.Button("🖼️ >> Llava")
                                         gfpgan_img2txt_git = gr.Button("🖼️ >> GIT Captioning")   
                                         gr.HTML(value='... image module ...')
                                         gfpgan_img2img = gr.Button("🖼️ >> img2img")

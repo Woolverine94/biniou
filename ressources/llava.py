@@ -25,6 +25,7 @@ for filename in os.listdir(model_path_llava):
 
 model_list_llava_builtin = [
     "mys/ggml_bakllava-1",
+    "cmp-nct/llava-1.6-gguf",
     "mys/ggml_llava-v1.5-7b",
     "mys/ggml_llava-v1.5-13b",
 ]
@@ -36,7 +37,7 @@ def download_model(modelid_llava):
     if modelid_llava[0:9] != "./models/":
         hf_hub_path_llava = hf_hub_download(
             repo_id=modelid_llava,
-            filename="ggml-model-q5_k.gguf",
+            filename="ggml-mistral-7b-q_5_k.gguf" if modelid_llava[0:3] != "mys" else "ggml-model-q5_k.gguf",
             repo_type="model",
             cache_dir=model_path_llava,
             resume_download=True,
@@ -49,7 +50,7 @@ def download_mmproj(modelid_mmproj):
     if modelid_mmproj[0:9] != "./models/":
         hf_hub_path_llava = hf_hub_download(
             repo_id=modelid_mmproj, 
-            filename="mmproj-model-f16.gguf",
+            filename="mmproj-mistral7b-f16.gguf" if modelid_mmproj[0:3] != "mys" else "mmproj-model-f16.gguf",
             repo_type="model",
             cache_dir=model_path_llava,
             resume_download=True,
