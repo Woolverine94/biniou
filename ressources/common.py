@@ -453,7 +453,7 @@ def schedulerer(pipe, scheduler):
         return get_scheduler(pipe=pipe, scheduler=scheduler)
 
 def lora_model_list(model):
-    if (("XL" in model.upper()) or ("SSD-1B" in model.upper()) or ("SEGMIND-VEGA" in model.upper()) or (model == "dataautogpt3/OpenDalleV1.1")):
+    if (("XL" in model.upper()) or ("SSD-1B" in model.upper()) or ("SEGMIND-VEGA" in model.upper()) or (model == "dataautogpt3/OpenDalleV1.1") or (model == "dataautogpt3/ProteusV0.4")):
         model_path_lora = "./models/lora/SDXL"
         model_list_lora_builtin = {
             "openskyml/dalle-3-xl":("Dall-e_3_0.3-v2.safetensors", ""),
@@ -499,7 +499,7 @@ def lora_model_list(model):
     return model_list_lora
 
 def txtinv_list(model):
-    if (("XL" in model.upper()) or ("SSD-1B" in model.upper()) or ("SEGMIND-VEGA" in model.upper()) or (model == "dataautogpt3/OpenDalleV1.1")):
+    if (("XL" in model.upper()) or ("SSD-1B" in model.upper()) or ("SEGMIND-VEGA" in model.upper()) or (model == "dataautogpt3/OpenDalleV1.1") or (model == "dataautogpt3/ProteusV0.4")):
         model_path_txtinv = "./models/TextualInversion/SDXL"
         model_list_txtinv_builtin = {
             "SalahZaidi/textual_inversion_cat_sdxl":("learned_embeds-steps-15000.safetensors", ""),

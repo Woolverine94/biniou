@@ -31,6 +31,7 @@ model_list_txt2img_sd_builtin = [
     "thibaud/sdxl_dpo_turbo",
     "IDEA-CCNL/Taiyi-Stable-Diffusion-XL-3.5B",
     "dataautogpt3/OpenDalleV1.1",
+    "dataautogpt3/ProteusV0.4",
     "digiplay/AbsoluteReality_v1.8.1",
     "segmind/Segmind-Vega",
     "segmind/SSD-1B",
@@ -91,10 +92,15 @@ def image_txt2img_sd(
     else :
         is_turbo_txt2img_sd: bool = False
 
-    if (("XL" in modelid_txt2img_sd.upper()) or (modelid_txt2img_sd == "segmind/SSD-1B") or (modelid_txt2img_sd == "segmind/Segmind-Vega") or (modelid_txt2img_sd == "dataautogpt3/OpenDalleV1.1")) :
+    if (("XL" in modelid_txt2img_sd.upper()) or (modelid_txt2img_sd == "segmind/SSD-1B") or (modelid_txt2img_sd == "segmind/Segmind-Vega") or (modelid_txt2img_sd == "dataautogpt3/OpenDalleV1.1") or (modelid_txt2img_sd == "dataautogpt3/ProteusV0.4")):
         is_xl_txt2img_sd: bool = True
     else :        
         is_xl_txt2img_sd: bool = False
+
+    if (modelid_txt2img_sd == "dataautogpt3/ProteusV0.4"):
+        is_bin_txt2img_sd: bool = True
+    else :
+        is_bin_txt2img_sd: bool = False
 
     if (is_turbo_txt2img_sd == True) :
         if modelid_txt2img_sd[0:9] == "./models/" :
@@ -102,7 +108,7 @@ def image_txt2img_sd(
                 modelid_txt2img_sd, 
 #                torch_dtype=torch.float32, 
                 torch_dtype=model_arch, 
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_txt2img_sd else False,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex,
@@ -113,7 +119,7 @@ def image_txt2img_sd(
                 cache_dir=model_path_txt2img_sd, 
 #                torch_dtype=torch.float32, 
                 torch_dtype=model_arch, 
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_txt2img_sd else False,
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
                 resume_download=True,
@@ -125,7 +131,7 @@ def image_txt2img_sd(
                 modelid_txt2img_sd, 
 #                torch_dtype=torch.float32, 
                 torch_dtype=model_arch, 
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_txt2img_sd else False,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex,
@@ -136,7 +142,7 @@ def image_txt2img_sd(
                 cache_dir=model_path_txt2img_sd, 
 #                torch_dtype=torch.float32, 
                 torch_dtype=model_arch, 
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_txt2img_sd else False,
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
                 resume_download=True,
@@ -148,7 +154,7 @@ def image_txt2img_sd(
                 modelid_txt2img_sd, 
 #                torch_dtype=torch.float32, 
                 torch_dtype=model_arch,                 
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_txt2img_sd else False,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex,
@@ -159,7 +165,7 @@ def image_txt2img_sd(
                 cache_dir=model_path_txt2img_sd, 
  #               torch_dtype=torch.float32, 
                 torch_dtype=model_arch, 
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_txt2img_sd else False,
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
                 resume_download=True,
