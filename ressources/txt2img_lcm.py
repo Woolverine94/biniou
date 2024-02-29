@@ -122,6 +122,7 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
 #        pipe_txt2img_lcm.scheduler = LCMScheduler.from_config(pipe_txt2img_lcm.scheduler.config)
     elif (modelid_txt2img_lcm == "segmind/Segmind-VegaRT") or (modelid_txt2img_lcm == "latent-consistency/lcm-lora-sdv1-5") or (modelid_txt2img_lcm == "latent-consistency/lcm-lora-sdxl"):
         model_path_SD_txt2img_lcm = "./models/Stable_Diffusion"
+        model_lora_txt2img_lcm = "pytorch_lora_weights.safetensors"
         if (modelid_txt2img_lcm == "segmind/Segmind-VegaRT"):
             modelid_SD_txt2img_lcm = "segmind/Segmind-Vega"
         elif (modelid_txt2img_lcm == "latent-consistency/lcm-lora-sdv1-5"):
@@ -143,6 +144,7 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
 #        pipe_txt2img_lcm.scheduler = LCMScheduler.from_config(pipe_txt2img_lcm.scheduler.config)
         pipe_txt2img_lcm.load_lora_weights(
             modelid_txt2img_lcm,
+            weight_name=model_lora_txt2img_lcm,
             cache_dir=model_path_txt2img_lcm,
             use_safetensors=True,
             resume_download=True,

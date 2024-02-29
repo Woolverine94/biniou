@@ -284,9 +284,15 @@ def safety_checker_sd(model_path, device, nsfw_filter):
 
 def offline_test():
     try:
-        rq.get("https://www.google.com", timeout=5)
-        return False
+#        rq.get("https://www.google.com", timeout=5)
+        test = rq.get("https://huggingface.co/", timeout=5)
+        if (str(test) == "<Response [503]>") or (str(test) == "<Response [501]>"):
+            print(">>>[biniou 🧠]: Using offline mode")
+            return True
+        else:
+            return False
     except rq.ConnectionError:
+        print(">>>[biniou 🧠]: Using offline mode")
         return True
 
 def write_file(*args) :
