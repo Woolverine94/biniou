@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-03-01** : 🔥 ***New SDXL model : dataautogpt3/ProteusV0.4 model*** 🔥 : Adding [dataautogpt3/ProteusV0.4](https://huggingface.co/dataautogpt3/ProteusV0.4) to compatibles modules (img2img, IP-Adapter, ControlNet and Text2Video-Zero).
+
   * 🆕 **2024-02-27** : 🔥 ***Updates on Llava module*** 🔥 : Renaming Llava-1.5 module to Llava, as it now support Llava 1.6 through [cmp-nct/llava-1.6-gguf](https://huggingface.co/cmp-nct/llava-1.6-gguf) model. Thus it is still pretty slow, it gives very interesting results.
 
   * 🆕 **2024-02-24** : 🔥 ***Support for Gemma models in Chatbot module*** 🔥 : Adding models [sayhan/gemma-7b-it-GGUF-quantized](https://huggingface.co/sayhan/gemma-7b-it-GGUF-quantized), [mlabonne/gemma-2b-it-GGUF](https://huggingface.co/mlabonne/gemma-2b-it-GGUF) and the Gemma prompt template. These models are quantized versions of the Google Gemma instruct models and uses the same technologies than Google's Gemini.
@@ -23,8 +25,6 @@
   * 🆕 **2024-02-23** : 🔥 ***Textual inversion manager*** 🔥 : Adding a tab to the Globals settings that allow management of textual inversions through the webui.
 
   * 🆕 **2024-02-22** : 🔥 ***New chatbot features*** 🔥 : You can now easily and efficiently integrate GGUF models to the chatbot module. You only have to download the model using the new **GUUF models downloader** tab in the Globals settings, relaunch biniou and restart the UI, select downloaded model in chatbot module and choose a prompt template from the new **Force prompt template** menu. 
-
-  * 🆕 **2024-02-19** : 🔥 ***New module : AnimateLCM*** 🔥 : Combining AnimateDiff and LCM, this module let you generate quality videos quite fast (compared to other modules) using Stable Diffusion models.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
@@ -303,7 +303,7 @@ You can also access biniou from any device (including smartphones) on the same L
 
 * Most frequent cause of crash is not enough memory on the host. Symptom is biniou program closing and returning to/closing the terminal without specific error message. You can use biniou with 8GB RAM, but 16GB at least is recommended to avoid OOM (out of memory) error. 
 
-* biniou use a lot of differents AI models, which requires a lot of space : if you want to use all the modules in biniou, you will need around 150GB of disk space only for the default model of each module. Models are downloaded on the first run of each module or when you select a new model in a module and generate content. Models are stored in the directory /models of the biniou installation. Unused models could be deleted to save some space. 
+* biniou use a lot of differents AI models, which requires a lot of space : if you want to use all the modules in biniou, you will need around 200GB of disk space only for the default model of each module. Models are downloaded on the first run of each module or when you select a new model in a module and generate content. Models are stored in the directory /models of the biniou installation. Unused models could be deleted to save some space. 
 
 * ... consequently, you will need a fast internet access to download models.
 
