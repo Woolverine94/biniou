@@ -30,6 +30,7 @@ model_list_controlnet_builtin = [
     "stabilityai/sdxl-turbo",
     "thibaud/sdxl_dpo_turbo",
     "dataautogpt3/OpenDalleV1.1",
+    "dataautogpt3/ProteusV0.4",
     "digiplay/AbsoluteReality_v1.8.1",
     "segmind/Segmind-Vega",
     "segmind/SSD-1B",
@@ -125,7 +126,7 @@ def dispatch_controlnet_preview(
     progress_controlnet=gr.Progress(track_tqdm=True)
     ):
 
-    if (("XL" in modelid_controlnet.upper()) or (modelid_controlnet == "segmind/SSD-1B") or (modelid_controlnet == "segmind/Segmind-Vega") or (modelid_controlnet == "dataautogpt3/OpenDalleV1.1")):
+    if (("XL" in modelid_controlnet.upper()) or (modelid_controlnet == "segmind/SSD-1B") or (modelid_controlnet == "segmind/Segmind-Vega") or (modelid_controlnet == "dataautogpt3/OpenDalleV1.1") or (modelid_controlnet == "dataautogpt3/ProteusV0.4")):
         is_xl_controlnet: bool = True
     else :
         is_xl_controlnet: bool = False
@@ -281,10 +282,15 @@ def image_controlnet(
     else :
         is_turbo_controlnet: bool = False
 
-    if (("XL" in modelid_controlnet.upper()) or (modelid_controlnet == "segmind/SSD-1B") or (modelid_controlnet == "segmind/Segmind-Vega") or (modelid_controlnet == "dataautogpt3/OpenDalleV1.1")):
+    if (("XL" in modelid_controlnet.upper()) or (modelid_controlnet == "segmind/SSD-1B") or (modelid_controlnet == "segmind/Segmind-Vega") or (modelid_controlnet == "dataautogpt3/OpenDalleV1.1") or (modelid_controlnet == "dataautogpt3/ProteusV0.4")):
         is_xl_controlnet: bool = True
     else :        
         is_xl_controlnet: bool = False
+
+    if (modelid_controlnet == "dataautogpt3/ProteusV0.4"):
+        is_bin_controlnet: bool = True
+    else :
+        is_bin_controlnet: bool = False
 
     if (is_xl_controlnet == True) :
         if modelid_controlnet[0:9] == "./models/" :
@@ -292,7 +298,7 @@ def image_controlnet(
                 modelid_controlnet,
                 controlnet=controlnet,
                 torch_dtype=model_arch,
-                use_safetensors=True,
+                use_safetensors=True if not is_bin_controlnet else False,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
 #                safety_checker=nsfw_filter_final,
 #                feature_extractor=feat_ex
@@ -303,7 +309,7 @@ def image_controlnet(
                 controlnet=controlnet,
                 cache_dir=model_path_controlnet,
                 torch_dtype=model_arch,
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_controlnet else False,
                 safety_checker=nsfw_filter_final,
                 feature_extractor=feat_ex,
                 resume_download=True,
@@ -315,7 +321,7 @@ def image_controlnet(
                 modelid_controlnet,
                 controlnet=controlnet,
                 torch_dtype=model_arch,
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_controlnet else False,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
 #                safety_checker=nsfw_filter_final,
 #                feature_extractor=feat_ex
@@ -326,7 +332,7 @@ def image_controlnet(
                 controlnet=controlnet,
                 cache_dir=model_path_controlnet,
                 torch_dtype=model_arch,
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_controlnet else False,
                 safety_checker=nsfw_filter_final,
                 feature_extractor=feat_ex,
                 resume_download=True,

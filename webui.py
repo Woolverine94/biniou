@@ -427,7 +427,7 @@ def change_model_type_img2img(model_img2img):
         return sampler_img2img.update(value="UniPC"), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), txtinv_img2img.update(choices=list(txtinv_list(model_img2img).keys()), value=""), negative_prompt_img2img.update(interactive=False)
     elif (model_img2img == "stabilityai/sd-turbo"):
         return sampler_img2img.update(value="Euler a"), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=False), txtinv_img2img.update(choices=list(txtinv_list(model_img2img).keys()), value=""), negative_prompt_img2img.update(interactive=False)
-    elif ("XL" in model_img2img.upper()) or (model_img2img == "dataautogpt3/OpenDalleV1.1"):
+    elif ("XL" in model_img2img.upper()) or (model_img2img == "dataautogpt3/OpenDalleV1.1")  or (model_img2img == "dataautogpt3/ProteusV0.4"):
         return sampler_img2img.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), txtinv_img2img.update(choices=list(txtinv_list(model_img2img).keys()), value=""), negative_prompt_img2img.update(interactive=True)
     elif (model_img2img == "segmind/SSD-1B"):
         return sampler_img2img.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=False), txtinv_img2img.update(choices=list(txtinv_list(model_img2img).keys()), value=""), negative_prompt_img2img.update(interactive=True)
@@ -483,7 +483,7 @@ def change_model_type_img2img_ip(model_img2img_ip):
 #        return sampler_img2img_ip.update(value="UniPC"), width_img2img_ip.update(value=512), height_img2img_ip.update(value=512), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=False)
     elif (model_img2img_ip == "stabilityai/sd-turbo"):
         return sampler_img2img_ip.update(value="Euler a"), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=False), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=False)
-    elif ("XL" in model_img2img_ip.upper()) or (model_img2img_ip == "dataautogpt3/OpenDalleV1.1"):
+    elif ("XL" in model_img2img_ip.upper()) or (model_img2img_ip == "dataautogpt3/OpenDalleV1.1") or (model_img2img_ip == "dataautogpt3/ProteusV0.4"):
         return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True)
     elif (model_img2img_ip == "segmind/SSD-1B"):
         return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=False), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True)
@@ -611,7 +611,7 @@ def change_model_type_controlnet(model_controlnet):
         return sampler_controlnet.update(value="UniPC"), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=2), guidance_scale_controlnet.update(value=0.0), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), txtinv_controlnet.update(choices=list(txtinv_list(model_controlnet).keys()), value=""), negative_prompt_controlnet.update(interactive=False), img_preview_controlnet.update(value=None), gs_img_preview_controlnet.update(value=None)
     elif (model_controlnet == "stabilityai/sd-turbo"):
         return sampler_controlnet.update(value="Euler a"), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=1), guidance_scale_controlnet.update(value=0.0), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=False), txtinv_controlnet.update(choices=list(txtinv_list(model_controlnet).keys()), value=""), negative_prompt_controlnet.update(interactive=False), img_preview_controlnet.update(value=None), gs_img_preview_controlnet.update(value=None)
-    elif ("XL" in model_controlnet.upper()) or (model_controlnet == "dataautogpt3/OpenDalleV1.1"):
+    elif ("XL" in model_controlnet.upper()) or (model_controlnet == "dataautogpt3/OpenDalleV1.1") or (model_controlnet == "dataautogpt3/ProteusV0.4"):
         return sampler_controlnet.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=7.5), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), txtinv_controlnet.update(choices=list(txtinv_list(model_controlnet).keys()), value=""), negative_prompt_controlnet.update(interactive=True), img_preview_controlnet.update(value=None), gs_img_preview_controlnet.update(value=None)
     elif (model_controlnet == "segmind/SSD-1B"):
         return sampler_controlnet.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=7.5), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=False), txtinv_controlnet.update(choices=list(txtinv_list(model_controlnet).keys()), value=""), negative_prompt_controlnet.update(interactive=True), img_preview_controlnet.update(value=None), gs_img_preview_controlnet.update(value=None)
@@ -775,7 +775,7 @@ def read_ini_txt2vid_ze(module) :
 def change_model_type_txt2vid_ze(model_txt2vid_ze):
     if (model_txt2vid_ze == "stabilityai/sdxl-turbo"):
         return sampler_txt2vid_ze.update(value="Euler a"), width_txt2vid_ze.update(), height_txt2vid_ze.update(), num_inference_step_txt2vid_ze.update(value=2), guidance_scale_txt2vid_ze.update(value=0.0), negative_prompt_txt2vid_ze.update(interactive=False)
-    elif ("XL" in model_txt2vid_ze.upper()) or (model_txt2vid_ze == "segmind/SSD-1B") or (model_txt2vid_ze == "dataautogpt3/OpenDalleV1.1"):
+    elif ("XL" in model_txt2vid_ze.upper()) or (model_txt2vid_ze == "segmind/SSD-1B") or (model_txt2vid_ze == "dataautogpt3/OpenDalleV1.1") or (model_txt2vid_ze == "dataautogpt3/ProteusV0.4"):
         return sampler_txt2vid_ze.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2vid_ze.update(), height_txt2vid_ze.update(), num_inference_step_txt2vid_ze.update(value=10), guidance_scale_txt2vid_ze.update(value=7.5), negative_prompt_txt2vid_ze.update(interactive=True)
     elif (model_txt2vid_ze == "segmind/Segmind-Vega"):
         return sampler_txt2vid_ze.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2vid_ze.update(), height_txt2vid_ze.update(), num_inference_step_txt2vid_ze.update(value=10), guidance_scale_txt2vid_ze.update(value=9.0), negative_prompt_txt2vid_ze.update(interactive=True)
@@ -3181,6 +3181,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>, 
                                 <a href='https://huggingface.co/thibaud/sdxl_dpo_turbo' target='_blank'>thibaud/sdxl_dpo_turbo</a>
                                 <a href='https://huggingface.co/dataautogpt3/OpenDalleV1.1' target='_blank'>dataautogpt3/OpenDalleV1.1</a>, 
+                                <a href='https://huggingface.co/dataautogpt3/ProteusV0.4' target='_blank'>dataautogpt3/ProteusV0.4</a>, 
                                 <a href='https://huggingface.co/digiplay/AbsoluteReality_v1.8.1' target='_blank'>digiplay/AbsoluteReality_v1.8.1</a>, 
                                 <a href='https://huggingface.co/segmind/Segmind-Vega' target='_blank'>segmind/Segmind-Vega</a>, 
                                 <a href='https://huggingface.co/segmind/SSD-1B' target='_blank'>segmind/SSD-1B</a>, 
@@ -3449,6 +3450,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
                                 <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>, 
                                 <a href='https://huggingface.co/dataautogpt3/OpenDalleV1.1' target='_blank'>dataautogpt3/OpenDalleV1.1</a>, 
+                                <a href='https://huggingface.co/dataautogpt3/ProteusV0.4' target='_blank'>dataautogpt3/ProteusV0.4</a>, 
                                 <a href='https://huggingface.co/digiplay/AbsoluteReality_v1.8.1' target='_blank'>digiplay/AbsoluteReality_v1.8.1</a>, 
                                 <a href='https://huggingface.co/gsdf/Counterfeit-V2.5' target='_blank'>gsdf/Counterfeit-V2.5</a>, 
                                 <a href='https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0' target='_blank'>stabilityai/stable-diffusion-xl-base-1.0</a>, 
@@ -5006,6 +5008,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>, 
                                 <a href='https://huggingface.co/thibaud/sdxl_dpo_turbo' target='_blank'>thibaud/sdxl_dpo_turbo</a>, 
                                 <a href='https://huggingface.co/dataautogpt3/OpenDalleV1.1' target='_blank'>dataautogpt3/OpenDalleV1.1</a>, 
+                                <a href='https://huggingface.co/dataautogpt3/ProteusV0.4' target='_blank'>dataautogpt3/ProteusV0.4</a>, 
                                 <a href='https://huggingface.co/digiplay/AbsoluteReality_v1.8.1' target='_blank'>digiplay/AbsoluteReality_v1.8.1</a>, 
                                 <a href='https://huggingface.co/segmind/Segmind-Vega' target='_blank'>segmind/Segmind-Vega</a>, 
                                 <a href='https://huggingface.co/segmind/SSD-1B' target='_blank'>segmind/SSD-1B</a>, 
@@ -6989,6 +6992,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
                                 <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>, 
                                 <a href='https://huggingface.co/dataautogpt3/OpenDalleV1.1' target='_blank'>dataautogpt3/OpenDalleV1.1</a>, 
+                                <a href='https://huggingface.co/dataautogpt3/ProteusV0.4' target='_blank'>dataautogpt3/ProteusV0.4</a>, 
                                 <a href='https://huggingface.co/digiplay/AbsoluteReality_v1.8.1' target='_blank'>digiplay/AbsoluteReality_v1.8.1</a>, 
                                 <a href='https://huggingface.co/segmind/Segmind-Vega' target='_blank'>segmind/Segmind-Vega</a>, 
                                 <a href='https://huggingface.co/segmind/segmind/SSD-1B' target='_blank'>segmind/SSD-1B</a>, 

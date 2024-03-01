@@ -31,6 +31,7 @@ model_list_img2img_builtin = [
     "stabilityai/sdxl-turbo",
     "thibaud/sdxl_dpo_turbo",
     "dataautogpt3/OpenDalleV1.1",
+    "dataautogpt3/ProteusV0.4",
     "digiplay/AbsoluteReality_v1.8.1",
     "segmind/Segmind-Vega",
     "segmind/SSD-1B",
@@ -93,17 +94,22 @@ def image_img2img(
     else :
         is_turbo_img2img: bool = False
 
-    if (("XL" in modelid_img2img.upper())  or (modelid_img2img == "segmind/SSD-1B") or (modelid_img2img == "segmind/Segmind-Vega") or (modelid_img2img == "dataautogpt3/OpenDalleV1.1")):
+    if (("XL" in modelid_img2img.upper())  or (modelid_img2img == "segmind/SSD-1B") or (modelid_img2img == "segmind/Segmind-Vega") or (modelid_img2img == "dataautogpt3/OpenDalleV1.1") or (modelid_img2img == "dataautogpt3/ProteusV0.4")):
         is_xl_img2img: bool = True
     else :        
         is_xl_img2img: bool = False        
+
+    if (modelid_img2img == "dataautogpt3/ProteusV0.4"):
+        is_bin_img2img: bool = True
+    else :
+        is_bin_img2img: bool = False
 
     if (is_turbo_img2img == True):
         if modelid_img2img[0:9] == "./models/" :
             pipe_img2img = AutoPipelineForImage2Image.from_single_file(
                 modelid_img2img, 
                 torch_dtype=model_arch,
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_img2img else False,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex,
@@ -113,7 +119,7 @@ def image_img2img(
                 modelid_img2img, 
                 cache_dir=model_path_img2img, 
                 torch_dtype=model_arch,
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_img2img else False,
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
                 resume_download=True,
@@ -124,7 +130,7 @@ def image_img2img(
             pipe_img2img = StableDiffusionXLImg2ImgPipeline.from_single_file(
                 modelid_img2img, 
                 torch_dtype=model_arch,
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_img2img else False,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex,
@@ -134,7 +140,7 @@ def image_img2img(
                 modelid_img2img, 
                 cache_dir=model_path_img2img, 
                 torch_dtype=model_arch,
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_img2img else False,
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
                 resume_download=True,
@@ -145,7 +151,7 @@ def image_img2img(
             pipe_img2img = StableDiffusionImg2ImgPipeline.from_single_file(
                 modelid_img2img, 
                 torch_dtype=model_arch,
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_img2img else False,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex,
@@ -155,7 +161,7 @@ def image_img2img(
                 modelid_img2img, 
                 cache_dir=model_path_img2img, 
                 torch_dtype=model_arch,
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_img2img else False,
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
                 resume_download=True,

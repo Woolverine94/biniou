@@ -21,6 +21,7 @@ model_list_txt2vid_ze = [
     "SG161222/Realistic_Vision_V3.0_VAE",
     "stabilityai/sdxl-turbo",
     "dataautogpt3/OpenDalleV1.1",
+    "dataautogpt3/ProteusV0.4",
     "digiplay/AbsoluteReality_v1.8.1",
     "segmind/Segmind-Vega",
     "segmind/SSD-1B",
@@ -80,17 +81,22 @@ def video_txt2vid_ze(
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2vid_ze, device_txt2vid_ze, nsfw_filter)
 
-    if (("XL" in modelid_txt2vid_ze.upper()) or (modelid_txt2vid_ze == "segmind/SSD-1B") or (modelid_txt2vid_ze == "segmind/Segmind-Vega") or (modelid_txt2vid_ze == "dataautogpt3/OpenDalleV1.1")) :
+    if (("XL" in modelid_txt2vid_ze.upper()) or (modelid_txt2vid_ze == "segmind/SSD-1B") or (modelid_txt2vid_ze == "segmind/Segmind-Vega") or (modelid_txt2vid_ze == "dataautogpt3/OpenDalleV1.1") or (modelid_txt2vid_ze == "dataautogpt3/ProteusV0.4")) :
         is_xl_txt2vid_ze: bool = True
     else :        
         is_xl_txt2vid_ze: bool = False
+
+    if (modelid_txt2vid_ze == "dataautogpt3/ProteusV0.4"):
+        is_bin_txt2vid_ze: bool = True
+    else :
+        is_bin_txt2vid_ze: bool = False
 
     if (is_xl_txt2vid_ze == True):
         pipe_txt2vid_ze = TextToVideoZeroSDXLPipeline.from_pretrained(
             modelid_txt2vid_ze, 
             cache_dir=model_path_txt2vid_ze, 
             torch_dtype=model_arch, 
-            use_safetensors=True, 
+            use_safetensors=True if not is_bin_txt2vid_ze else False,
             safety_checker=nsfw_filter_final, 
             feature_extractor=feat_ex, 
             resume_download=True,
@@ -101,7 +107,7 @@ def video_txt2vid_ze(
             modelid_txt2vid_ze, 
             cache_dir=model_path_txt2vid_ze, 
             torch_dtype=model_arch, 
-            use_safetensors=True, 
+            use_safetensors=True if not is_bin_txt2vid_ze else False,
             safety_checker=nsfw_filter_final, 
             feature_extractor=feat_ex, 
             resume_download=True,

@@ -34,6 +34,7 @@ model_list_img2img_ip_builtin = [
     "stabilityai/sdxl-turbo",
 #    "thibaud/sdxl_dpo_turbo",
     "dataautogpt3/OpenDalleV1.1",
+    "dataautogpt3/ProteusV0.4",
     "digiplay/AbsoluteReality_v1.8.1",
 #    "segmind/Segmind-Vega",
 #    "segmind/SSD-1B",
@@ -97,10 +98,15 @@ def image_img2img_ip(
     else :
         is_turbo_img2img_ip: bool = False
 
-    if (("XL" in modelid_img2img_ip.upper()) or (modelid_img2img_ip == "segmind/SSD-1B") or (modelid_img2img_ip == "segmind/Segmind-Vega") or (modelid_img2img_ip == "dataautogpt3/OpenDalleV1.1")):
+    if (("XL" in modelid_img2img_ip.upper()) or (modelid_img2img_ip == "segmind/SSD-1B") or (modelid_img2img_ip == "segmind/Segmind-Vega") or (modelid_img2img_ip == "dataautogpt3/OpenDalleV1.1") or (modelid_img2img_ip == "dataautogpt3/ProteusV0.4")):
         is_xl_img2img_ip: bool = True
     else :
         is_xl_img2img_ip: bool = False     
+
+    if (modelid_img2img_ip == "dataautogpt3/ProteusV0.4"):
+        is_bin_img2img_ip: bool = True
+    else :
+        is_bin_img2img_ip: bool = False
 
     if which_os() == "win32":
         if (is_xl_img2img_ip == True):
@@ -159,7 +165,7 @@ def image_img2img_ip(
             pipe_img2img_ip = AutoPipelineForImage2Image.from_single_file(
                 modelid_img2img_ip, 
                 torch_dtype=model_arch,
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_img2img_ip else False,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex,
@@ -169,7 +175,7 @@ def image_img2img_ip(
                 modelid_img2img_ip, 
                 cache_dir=model_path_img2img_ip, 
                 torch_dtype=model_arch,
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_img2img_ip else False,
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
                 resume_download=True,
@@ -180,7 +186,7 @@ def image_img2img_ip(
             pipe_img2img_ip = StableDiffusionXLImg2ImgPipeline.from_single_file(
                 modelid_img2img_ip, 
                 torch_dtype=model_arch,
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_img2img_ip else False,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex,
@@ -190,7 +196,7 @@ def image_img2img_ip(
                 modelid_img2img_ip, 
                 cache_dir=model_path_img2img_ip, 
                 torch_dtype=model_arch,
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_img2img_ip else False,
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
                 resume_download=True,
@@ -201,7 +207,7 @@ def image_img2img_ip(
             pipe_img2img_ip = StableDiffusionImg2ImgPipeline.from_single_file(
                 modelid_img2img_ip, 
                 torch_dtype=model_arch,
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_img2img_ip else False,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex,
@@ -211,7 +217,7 @@ def image_img2img_ip(
                 modelid_img2img_ip, 
                 cache_dir=model_path_img2img_ip, 
                 torch_dtype=model_arch,
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_img2img_ip else False,
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
                 resume_download=True,
