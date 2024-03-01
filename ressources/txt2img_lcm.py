@@ -28,8 +28,10 @@ model_list_txt2img_lcm_builtin = [
     "SimianLuo/LCM_Dreamshaper_v7",
     "segmind/Segmind-VegaRT",
     "latent-consistency/lcm-ssd-1b",
+    "latent-consistency/lcm-sdxl",
     "latent-consistency/lcm-lora-sdv1-5",
     "latent-consistency/lcm-lora-sdxl",
+
 
 ]
 
@@ -92,9 +94,12 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
     else :        
         is_xl_txt2img_lcm: bool = False
         
-    if (modelid_txt2img_lcm == "latent-consistency/lcm-ssd-1b"):
+    if (modelid_txt2img_lcm == "latent-consistency/lcm-ssd-1b") or (modelid_txt2img_lcm == "latent-consistency/lcm-sdxl"):
         model_path_SD_txt2img_lcm = "./models/Stable_Diffusion"
-        modelid_SD_txt2img_lcm = "segmind/SSD-1B"
+        if (modelid_txt2img_lcm == "latent-consistency/lcm-ssd-1b"):
+            modelid_SD_txt2img_lcm = "segmind/SSD-1B"
+        elif (modelid_txt2img_lcm == "latent-consistency/lcm-sdxl"):
+            modelid_SD_txt2img_lcm = "stabilityai/stable-diffusion-xl-base-1.0"
         unet_txt2img_lcm = UNet2DConditionModel.from_pretrained(
             modelid_txt2img_lcm, 
             cache_dir=model_path_txt2img_lcm, 

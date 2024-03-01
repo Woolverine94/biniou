@@ -341,6 +341,8 @@ def read_ini_txt2img_lcm(module) :
 def change_model_type_txt2img_lcm(model_txt2img_lcm):
     if (model_txt2img_lcm == "latent-consistency/lcm-ssd-1b"):
         return width_txt2img_lcm.update(value=1024), height_txt2img_lcm.update(value=1024), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=False), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
+    elif (model_txt2img_lcm == "latent-consistency/lcm-sdxl"):
+        return width_txt2img_lcm.update(value=1024), height_txt2img_lcm.update(value=1024), guidance_scale_txt2img_lcm.update(value=8.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=False), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
     elif (model_txt2img_lcm == "latent-consistency/lcm-lora-sdxl"):
         return width_txt2img_lcm.update(value=1024), height_txt2img_lcm.update(value=1024), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
     elif (model_txt2img_lcm == "latent-consistency/lcm-lora-sdv1-5"):
@@ -2505,6 +2507,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <a href='https://huggingface.co/SimianLuo/LCM_Dreamshaper_v7' target='_blank'>SimianLuo/LCM_Dreamshaper_v7</a>, 
                                 <a href='https://huggingface.co/segmind/Segmind-VegaRT' target='_blank'>segmind/Segmind-VegaRT</a>, 
                                 <a href='https://huggingface.co/latent-consistency/lcm-ssd-1b' target='_blank'>latent-consistency/lcm-ssd-1b</a>, 
+                                <a href='https://huggingface.co/latent-consistency/lcm-sdxl' target='_blank'>latent-consistency/lcm-sdxl</a>, 
                                 <a href='https://huggingface.co/latent-consistency/lcm-lora-sdv1-5' target='_blank'>latent-consistency/lcm-lora-sdv1-5</a>, 
                                 <a href='https://huggingface.co/latent-consistency/lcm-lora-sdxl' target='_blank'>latent-consistency/lcm-lora-sdxl</a>, 
                                 </br>
