@@ -16,7 +16,9 @@
 
 ## Updates
 
-  * 🆕 **2024-03-01** : 🔥 ***New SDXL model : dataautogpt3/ProteusV0.4 model*** 🔥 : Adding [dataautogpt3/ProteusV0.4](https://huggingface.co/dataautogpt3/ProteusV0.4) to compatibles modules (img2img, IP-Adapter, ControlNet and Text2Video-Zero).
+  * 🆕 **2024-03-01** : 🔥 ***New images models*** 🔥 : 
+    - Adding [dataautogpt3/ProteusV0.4](https://huggingface.co/dataautogpt3/ProteusV0.4) to compatibles modules (Stable Diffusion, img2img, IP-Adapter, ControlNet and Text2Video-Zero).
+    - Adding [latent-consistency/lcm-sdxl](https://huggingface.co/latent-consistency/lcm-sdxl) to LCM module.
 
   * 🆕 **2024-02-27** : 🔥 ***Updates on Llava module*** 🔥 : Renaming Llava-1.5 module to Llava, as it now support Llava 1.6 through [cmp-nct/llava-1.6-gguf](https://huggingface.co/cmp-nct/llava-1.6-gguf) model. Thus it is still pretty slow, it gives very interesting results.
 
