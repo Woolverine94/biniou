@@ -341,7 +341,39 @@ def write_ini(module, *args) :
     with open(savename, 'w', encoding="utf-8") as savefile:
         savefile.write(content)
     return
-   
+
+def write_settings_ini(
+    module,
+    biniou_global_settings_steps_max,
+    biniou_global_settings_batch_size_max,
+    biniou_global_settings_width_max_img_create,
+    biniou_global_settings_height_max_img_create,
+    biniou_global_settings_width_max_img_modify,
+    biniou_global_settings_height_max_img_modify,
+    biniou_global_settings_sd15_width,
+    biniou_global_settings_sd15_height,
+    biniou_global_settings_sdxl_width,
+    biniou_global_settings_sdxl_height,
+    biniou_global_settings_gfpgan,
+    biniou_global_settings_tkme,
+):
+    savename = f".ini/{module}.cfg"
+    content = f"biniou_global_steps_max = {biniou_global_settings_steps_max}\n\
+biniou_global_batch_size_max = {biniou_global_settings_batch_size_max}\n\
+biniou_global_width_max_img_create = {biniou_global_settings_width_max_img_create}\n\
+biniou_global_height_max_img_create = {biniou_global_settings_height_max_img_create}\n\
+biniou_global_width_max_img_modify = {biniou_global_settings_width_max_img_modify}\n\
+biniou_global_height_max_img_modify = {biniou_global_settings_height_max_img_modify}\n\
+biniou_global_sd15_width = {biniou_global_settings_sd15_width}\n\
+biniou_global_sd15_height = {biniou_global_settings_sd15_height}\n\
+biniou_global_sdxl_width = {biniou_global_settings_sdxl_width}\n\
+biniou_global_sdxl_height = {biniou_global_settings_sdxl_height}\n\
+biniou_global_gfpgan = {biniou_global_settings_gfpgan}\n\
+biniou_global_tkme = {biniou_global_settings_tkme}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
 def read_ini(module) :
     filename = f".ini/{module}.cfg"
     content = []

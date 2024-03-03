@@ -73,6 +73,23 @@ def split_url_params(url_params) :
     else :         
         return "1", url_params, "1"
 
+biniou_global_steps_max = 100
+biniou_global_batch_size_max = 4
+biniou_global_width_max_img_create = 1280
+biniou_global_height_max_img_create = 1280
+biniou_global_width_max_img_modify = 8192
+biniou_global_height_max_img_modify = 8192
+biniou_global_sd15_width = 512
+biniou_global_sd15_height = 512
+biniou_global_sdxl_width = 1024
+biniou_global_sdxl_height = 1024
+biniou_global_gfpgan = True
+biniou_global_tkme = 0.6
+
+if test_cfg_exist("settings") :
+    with open(".ini/settings.cfg", "r", encoding="utf-8") as fichier:
+        exec(fichier.read())
+
 ## Fonctions communes
 def dummy():
     return
@@ -256,19 +273,19 @@ def hide_download_file_txt2img_sd():
 
 def change_model_type_txt2img_sd(model_txt2img_sd):
     if (model_txt2img_sd == "stabilityai/sdxl-turbo"):
-        return sampler_txt2img_sd.update(value="Euler a"), width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=False)
+        return sampler_txt2img_sd.update(value="Euler a"), width_txt2img_sd.update(value=biniou_global_sd15_width), height_txt2img_sd.update(value=biniou_global_sd15_height), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=False)
     elif (model_txt2img_sd == "thibaud/sdxl_dpo_turbo"):
-        return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=2), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=False)
+        return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=biniou_global_sd15_width), height_txt2img_sd.update(value=biniou_global_sd15_height), num_inference_step_txt2img_sd.update(value=2), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=False)
     elif (model_txt2img_sd == "stabilityai/sd-turbo"):
-        return sampler_txt2img_sd.update(value="Euler a"), width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=False), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=False)
+        return sampler_txt2img_sd.update(value="Euler a"), width_txt2img_sd.update(value=biniou_global_sd15_width), height_txt2img_sd.update(value=biniou_global_sd15_height), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=False), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=False)
     elif ("XL" in model_txt2img_sd.upper()) or (model_txt2img_sd == "dataautogpt3/OpenDalleV1.1") or (model_txt2img_sd == "dataautogpt3/ProteusV0.4"):
-        return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=1024), height_txt2img_sd.update(value=1024), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=True)
+        return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=biniou_global_sdxl_width), height_txt2img_sd.update(value=biniou_global_sdxl_height), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=True)
     elif (model_txt2img_sd == "segmind/SSD-1B"):
-        return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=1024), height_txt2img_sd.update(value=1024), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=False), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=True)
+        return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=biniou_global_sdxl_width), height_txt2img_sd.update(value=biniou_global_sdxl_height), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=False), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=True)
     elif (model_txt2img_sd == "segmind/Segmind-Vega"):
-        return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=1024), height_txt2img_sd.update(value=1024), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=9.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=False), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=True)
+        return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=biniou_global_sdxl_width), height_txt2img_sd.update(value=biniou_global_sdxl_height), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=9.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=False), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=True)
     else:
-        return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=512), height_txt2img_sd.update(value=512), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=True)
+        return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=biniou_global_sd15_width), height_txt2img_sd.update(value=biniou_global_sd15_height), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=True)
 
 def change_lora_model_txt2img_sd(model, lora_model, prompt):
     if lora_model != "":
@@ -315,9 +332,9 @@ def hide_download_file_txt2img_kd():
 
 def change_model_type_txt2img_kd(model_txt2img_kd):
     if (model_txt2img_kd == "kandinsky-community/kandinsky-3"):
-        return width_txt2img_kd.update(value=1024), height_txt2img_kd.update(value=1024), num_inference_step_txt2img_kd.update(value=15), sampler_txt2img_kd.update(value=list(SCHEDULER_MAPPING.keys())[1])
+        return width_txt2img_kd.update(value=biniou_global_sdxl_width), height_txt2img_kd.update(value=biniou_global_sdxl_height), num_inference_step_txt2img_kd.update(value=15), sampler_txt2img_kd.update(value=list(SCHEDULER_MAPPING.keys())[1])
     else:
-        return width_txt2img_kd.update(value=512), height_txt2img_kd.update(value=512), num_inference_step_txt2img_kd.update(value=25), sampler_txt2img_kd.update(value=list(SCHEDULER_MAPPING.keys())[5])
+        return width_txt2img_kd.update(value=biniou_global_sd15_width), height_txt2img_kd.update(value=biniou_global_sd15_height), num_inference_step_txt2img_kd.update(value=25), sampler_txt2img_kd.update(value=list(SCHEDULER_MAPPING.keys())[5])
 
 def read_ini_txt2img_kd(module) :
     content = read_ini(module)
@@ -340,17 +357,17 @@ def read_ini_txt2img_lcm(module) :
 
 def change_model_type_txt2img_lcm(model_txt2img_lcm):
     if (model_txt2img_lcm == "latent-consistency/lcm-ssd-1b"):
-        return width_txt2img_lcm.update(value=1024), height_txt2img_lcm.update(value=1024), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=False), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
+        return width_txt2img_lcm.update(value=biniou_global_sdxl_width), height_txt2img_lcm.update(value=biniou_global_sdxl_height), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=False), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
     elif (model_txt2img_lcm == "latent-consistency/lcm-sdxl"):
-        return width_txt2img_lcm.update(value=1024), height_txt2img_lcm.update(value=1024), guidance_scale_txt2img_lcm.update(value=8.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=False), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
+        return width_txt2img_lcm.update(value=biniou_global_sdxl_width), height_txt2img_lcm.update(value=biniou_global_sdxl_height), guidance_scale_txt2img_lcm.update(value=8.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=False), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
     elif (model_txt2img_lcm == "latent-consistency/lcm-lora-sdxl"):
-        return width_txt2img_lcm.update(value=1024), height_txt2img_lcm.update(value=1024), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
+        return width_txt2img_lcm.update(value=biniou_global_sdxl_width), height_txt2img_lcm.update(value=biniou_global_sdxl_height), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
     elif (model_txt2img_lcm == "latent-consistency/lcm-lora-sdv1-5"):
-        return width_txt2img_lcm.update(value=512), height_txt2img_lcm.update(value=512), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
+        return width_txt2img_lcm.update(value=biniou_global_sd15_width), height_txt2img_lcm.update(value=biniou_global_sd15_height), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
     elif (model_txt2img_lcm == "segmind/Segmind-VegaRT"):
-        return width_txt2img_lcm.update(value=1024), height_txt2img_lcm.update(value=1024), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=False), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
+        return width_txt2img_lcm.update(value=biniou_global_sdxl_width), height_txt2img_lcm.update(value=biniou_global_sdxl_height), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=False), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
     else:
-        return width_txt2img_lcm.update(value=512), height_txt2img_lcm.update(value=512), guidance_scale_txt2img_lcm.update(value=8.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
+        return width_txt2img_lcm.update(value=biniou_global_sd15_width), height_txt2img_lcm.update(value=biniou_global_sd15_height), guidance_scale_txt2img_lcm.update(value=8.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
 
 def change_lora_model_txt2img_lcm(model, lora_model, prompt):
     if lora_model != "":
@@ -400,9 +417,9 @@ def read_ini_txt2img_paa(module):
 
 def change_model_type_txt2img_paa(model_txt2img_paa):
     if model_txt2img_paa == "PixArt-alpha/PixArt-XL-2-1024-MS":
-        return width_txt2img_paa.update(value=1024), height_txt2img_paa.update(value=1024)
+        return width_txt2img_paa.update(value=biniou_global_sdxl_width), height_txt2img_paa.update(value=biniou_global_sdxl_height)
     else:
-        return width_txt2img_paa.update(value=512), height_txt2img_paa.update(value=512)
+        return width_txt2img_paa.update(value=biniou_global_sd15_width), height_txt2img_paa.update(value=biniou_global_sd15_height)
 
 ## Functions specific to img2img 
 def zip_download_file_img2img(content):
@@ -482,7 +499,7 @@ def change_model_type_img2img_ip(model_img2img_ip):
     if (model_img2img_ip == "stabilityai/sdxl-turbo"):
         return sampler_img2img_ip.update(value="Euler a"), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=False)
 #    elif (model_img2img_ip == "thibaud/sdxl_dpo_turbo"):
-#        return sampler_img2img_ip.update(value="UniPC"), width_img2img_ip.update(value=512), height_img2img_ip.update(value=512), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=False)
+#        return sampler_img2img_ip.update(value="UniPC"), width_img2img_ip.update(value=biniou_global_sd15_width), height_img2img_ip.update(value=biniou_global_sd15_height), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=False)
     elif (model_img2img_ip == "stabilityai/sd-turbo"):
         return sampler_img2img_ip.update(value="Euler a"), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=False), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=False)
     elif ("XL" in model_img2img_ip.upper()) or (model_img2img_ip == "dataautogpt3/OpenDalleV1.1") or (model_img2img_ip == "dataautogpt3/ProteusV0.4"):
@@ -2062,28 +2079,28 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_txt2img_sd = gr.Dropdown(choices=model_list_txt2img_sd, value=model_list_txt2img_sd[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_step_txt2img_sd = gr.Slider(1, 100, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_txt2img_sd = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
                             with gr.Column():
                                 sampler_txt2img_sd = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
                             with gr.Column():
                                 guidance_scale_txt2img_sd = gr.Slider(0.0, 20.0, step=0.1, value=7.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
-                                num_images_per_prompt_txt2img_sd = gr.Slider(minimum=1, maximum=4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_txt2img_sd = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
                                 num_prompt_txt2img_sd = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                width_txt2img_sd = gr.Slider(128, 1280, step=64, value=512, label="Image Width", info="Width of outputs")
+                                width_txt2img_sd = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs")
                             with gr.Column():
-                                height_txt2img_sd = gr.Slider(128, 1280, step=64, value=512, label="Image Height", info="Height of outputs")
+                                height_txt2img_sd = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs")
                             with gr.Column():
                                 seed_txt2img_sd = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")    
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_txt2img_sd = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_txt2img_sd = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
-                                tkme_txt2img_sd = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                                tkme_txt2img_sd = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_txt2img_sd = gr.Button("Save custom defaults settings 💾")
@@ -2310,26 +2327,26 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_txt2img_kd = gr.Dropdown(choices=model_list_txt2img_kd, value=model_list_txt2img_kd[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_step_txt2img_kd = gr.Slider(1, 100, step=1, value=25, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_txt2img_kd = gr.Slider(1, biniou_global_steps_max, step=1, value=25, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
                             with gr.Column():
                                 sampler_txt2img_kd = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[5], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
                             with gr.Column():
                                 guidance_scale_txt2img_kd = gr.Slider(0.1, 20.0, step=0.1, value=4.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
-                                num_images_per_prompt_txt2img_kd = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_txt2img_kd = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
                                 num_prompt_txt2img_kd = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                width_txt2img_kd = gr.Slider(128, 1280, step=64, value=512, label="Image Width", info="Width of outputs")
+                                width_txt2img_kd = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs")
                             with gr.Column():
-                                height_txt2img_kd = gr.Slider(128, 1280, step=64, value=512, label="Image Height", info="Height of outputs")
+                                height_txt2img_kd = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs")
                             with gr.Column():
                                 seed_txt2img_kd = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_txt2img_kd = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_txt2img_kd = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_txt2img_kd = gr.Button("Save custom defaults settings 💾")
@@ -2533,28 +2550,28 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_txt2img_lcm = gr.Dropdown(choices=model_list_txt2img_lcm, value=model_list_txt2img_lcm[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_step_txt2img_lcm = gr.Slider(1, 100, step=1, value=4, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_txt2img_lcm = gr.Slider(1, biniou_global_steps_max, step=1, value=4, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
                             with gr.Column():
                                 sampler_txt2img_lcm = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[13], label="Sampler", info="Sampler to use for inference", interactive=False)
                         with gr.Row():
                             with gr.Column():
                                 guidance_scale_txt2img_lcm = gr.Slider(0.1, 20.0, step=0.1, value=8.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
-                                lcm_origin_steps_txt2img_lcm = gr.Slider(1, 100, step=1, value=50, label="LCM origin steps", info="LCM origin steps")
+                                lcm_origin_steps_txt2img_lcm = gr.Slider(1, biniou_global_steps_max, step=1, value=50, label="LCM origin steps", info="LCM origin steps")
                             with gr.Column():
-                                num_images_per_prompt_txt2img_lcm = gr.Slider(minimum=1, maximum=4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_txt2img_lcm = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
                                 num_prompt_txt2img_lcm = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                width_txt2img_lcm = gr.Slider(128, 1280, step=64, value=512, label="Image Width", info="Width of outputs")
+                                width_txt2img_lcm = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs")
                             with gr.Column():
-                                height_txt2img_lcm = gr.Slider(128, 1280, step=64, value=512, label="Image Height", info="Height of outputs")
+                                height_txt2img_lcm = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs")
                             with gr.Column():
                                 seed_txt2img_lcm = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility") 
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_txt2img_lcm = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_txt2img_lcm = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
                                 tkme_txt2img_lcm = gr.Slider(0.0, 1.0, step=0.01, value=0.0, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
@@ -2773,26 +2790,26 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_txt2img_mjm = gr.Dropdown(choices=model_list_txt2img_mjm, value=model_list_txt2img_mjm[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_step_txt2img_mjm = gr.Slider(1, 100, step=1, value=15, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_txt2img_mjm = gr.Slider(1, biniou_global_steps_max, step=1, value=15, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
                             with gr.Column():
                                 sampler_txt2img_mjm = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[4], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
                             with gr.Column():
                                 guidance_scale_txt2img_mjm = gr.Slider(0.1, 20.0, step=0.1, value=7.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
-                                num_images_per_prompt_txt2img_mjm = gr.Slider(minimum=1, maximum=4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_txt2img_mjm = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
                                 num_prompt_txt2img_mjm = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                width_txt2img_mjm = gr.Slider(128, 1280, step=64, value=512, label="Image Width", info="Width of outputs")
+                                width_txt2img_mjm = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs")
                             with gr.Column():
-                                height_txt2img_mjm = gr.Slider(128, 1280, step=64, value=512, label="Image Height", info="Height of outputs")
+                                height_txt2img_mjm = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs")
                             with gr.Column():
                                 seed_txt2img_mjm = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")    
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_txt2img_mjm = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_txt2img_mjm = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
                                 tkme_txt2img_mjm = gr.Slider(0.0, 1.0, step=0.01, value=0.0, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
@@ -2987,28 +3004,28 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_txt2img_paa = gr.Dropdown(choices=model_list_txt2img_paa, value=model_list_txt2img_paa[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_step_txt2img_paa = gr.Slider(1, 100, step=1, value=15, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_txt2img_paa = gr.Slider(1, biniou_global_steps_max, step=1, value=15, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
                             with gr.Column():
                                 sampler_txt2img_paa = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
                             with gr.Column():
                                 guidance_scale_txt2img_paa = gr.Slider(0.1, 20.0, step=0.1, value=7.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
-                                num_images_per_prompt_txt2img_paa = gr.Slider(minimum=1, maximum=4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_txt2img_paa = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
                                 num_prompt_txt2img_paa = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                width_txt2img_paa = gr.Slider(128, 1280, step=64, value=512, label="Image Width", info="Width of outputs")
+                                width_txt2img_paa = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs")
                             with gr.Column():
-                                height_txt2img_paa = gr.Slider(128, 1280, step=64, value=512, label="Image Height", info="Height of outputs")
+                                height_txt2img_paa = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs")
                             with gr.Column():
                                 seed_txt2img_paa = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")    
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_txt2img_paa = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_txt2img_paa = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
-                                tkme_txt2img_paa = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality", visible=False, interactive=False)
+                                tkme_txt2img_paa = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality", visible=False, interactive=False)
                         model_txt2img_paa.change(fn=change_model_type_txt2img_paa, inputs=model_txt2img_paa, outputs=[width_txt2img_paa, height_txt2img_paa])
                         with gr.Row():
                             with gr.Column():
@@ -3222,28 +3239,28 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_img2img = gr.Dropdown(choices=model_list_img2img, value=model_list_img2img[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_step_img2img = gr.Slider(2, 100, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_img2img = gr.Slider(2, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
                             with gr.Column():
                                 sampler_img2img = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
                             with gr.Column():
                                 guidance_scale_img2img = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
-                                num_images_per_prompt_img2img = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_img2img = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
                                 num_prompt_img2img = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                width_img2img = gr.Slider(128, 8192, step=64, value=512, label="Image Width", info="Width of outputs", interactive=False)
+                                width_img2img = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs", interactive=False)
                             with gr.Column():
-                                height_img2img = gr.Slider(128, 8192, step=64, value=512, label="Image Height", info="Height of outputs", interactive=False)
+                                height_img2img = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs", interactive=False)
                             with gr.Column():
                                 seed_img2img = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_img2img = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_img2img = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
-                                tkme_img2img = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")    
+                                tkme_img2img = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")    
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_img2img = gr.Button("Save custom defaults settings 💾")
@@ -3488,28 +3505,28 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_img2img_ip = gr.Dropdown(choices=model_list_img2img_ip, value=model_list_img2img_ip[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_step_img2img_ip = gr.Slider(1, 100, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_img2img_ip = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
                             with gr.Column():
                                 sampler_img2img_ip = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
                             with gr.Column():
                                 guidance_scale_img2img_ip = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
-                                num_images_per_prompt_img2img_ip = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_img2img_ip = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
                                 num_prompt_img2img_ip = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                width_img2img_ip = gr.Slider(128, 8192, step=64, value=512, label="Image Width", info="Width of outputs", interactive=False)
+                                width_img2img_ip = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs", interactive=False)
                             with gr.Column():
-                                height_img2img_ip = gr.Slider(128, 8192, step=64, value=512, label="Image Height", info="Height of outputs", interactive=False)
+                                height_img2img_ip = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs", interactive=False)
                             with gr.Column():
                                 seed_img2img_ip = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_img2img_ip = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_img2img_ip = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
-                                tkme_img2img_ip = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")    
+                                tkme_img2img_ip = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")    
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_img2img_ip = gr.Button("Save custom defaults settings 💾")
@@ -3741,28 +3758,28 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_img2var = gr.Dropdown(choices=model_list_img2var, value=model_list_img2var[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_step_img2var = gr.Slider(1, 100, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_img2var = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
                             with gr.Column():
                                 sampler_img2var = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
                             with gr.Column():
                                 guidance_scale_img2var = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
-                                num_images_per_prompt_img2var = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_img2var = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
                                 num_prompt_img2var = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                width_img2var = gr.Slider(128, 8192, step=64, value=512, label="Image Width", info="Width of outputs", interactive=False)
+                                width_img2var = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs", interactive=False)
                             with gr.Column():
-                                height_img2var = gr.Slider(128, 8192, step=64, value=512, label="Image Height", info="Height of outputs", interactive=False)
+                                height_img2var = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs", interactive=False)
                             with gr.Column():
                                 seed_img2var = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_img2var = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_img2var = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
-                                tkme_img2var = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                                tkme_img2var = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_img2var = gr.Button("Save custom defaults settings 💾")
@@ -3931,7 +3948,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_pix2pix = gr.Dropdown(choices=model_list_pix2pix, value=model_list_pix2pix[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_step_pix2pix = gr.Slider(1, 100, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_pix2pix = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
                             with gr.Column():
                                 sampler_pix2pix = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
@@ -3940,21 +3957,21 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 image_guidance_scale_pix2pix = gr.Slider(0.0, 10.0, step=0.1, value=1.5, label="Img CFG Scale", info="Low values : more creativity. High values : more fidelity to the input image")
                             with gr.Column():
-                                num_images_per_prompt_pix2pix = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_pix2pix = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
                                 num_prompt_pix2pix = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                width_pix2pix = gr.Slider(128, 8192, step=64, value=512, label="Image Width", info="Width of outputs", interactive=False)
+                                width_pix2pix = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs", interactive=False)
                             with gr.Column():
-                                height_pix2pix = gr.Slider(128, 8192, step=64, value=512, label="Image Height", info="Height of outputs", interactive=False)
+                                height_pix2pix = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs", interactive=False)
                             with gr.Column():
                                 seed_pix2pix = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_pix2pix = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_pix2pix = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
-                                tkme_pix2pix = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                                tkme_pix2pix = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_pix2pix = gr.Button("Save custom defaults settings 💾")
@@ -4154,7 +4171,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_magicmix = gr.Dropdown(choices=model_list_magicmix, value=model_list_magicmix[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_step_magicmix = gr.Slider(1, 100, step=1, value=15, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_magicmix = gr.Slider(1, biniou_global_steps_max, step=1, value=15, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
                             with gr.Column():
                                 sampler_magicmix = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[1], label="Sampler", info="Sampler to use for inference", interactive=False)
                         with gr.Row():
@@ -4171,9 +4188,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 seed_magicmix = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_magicmix = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_magicmix = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
-                                tkme_magicmix = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                                tkme_magicmix = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_magicmix = gr.Button("Save custom defaults settings 💾")
@@ -4350,28 +4367,28 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_inpaint = gr.Dropdown(choices=model_list_inpaint, value=model_list_inpaint[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_step_inpaint = gr.Slider(1, 100, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_inpaint = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
                             with gr.Column():
                                 sampler_inpaint = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
                             with gr.Column():
                                 guidance_scale_inpaint = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
-                                num_images_per_prompt_inpaint= gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_inpaint= gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
                                 num_prompt_inpaint = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                width_inpaint = gr.Slider(128, 8192, step=64, value=512, label="Image Width", info="Width of outputs", interactive=False)
+                                width_inpaint = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs", interactive=False)
                             with gr.Column():
-                                height_inpaint = gr.Slider(128, 8192, step=64, value=512, label="Image Height", info="Height of outputs", interactive=False)
+                                height_inpaint = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs", interactive=False)
                             with gr.Column():
                                 seed_inpaint = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_inpaint = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_inpaint = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
-                                tkme_inpaint = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                                tkme_inpaint = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_inpaint = gr.Button("Save custom defaults settings 💾")
@@ -4578,28 +4595,28 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_paintbyex = gr.Dropdown(choices=model_list_paintbyex, value=model_list_paintbyex[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_step_paintbyex = gr.Slider(1, 100, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_paintbyex = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
                             with gr.Column():
                                 sampler_paintbyex = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
                             with gr.Column():
                                 guidance_scale_paintbyex = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
-                                num_images_per_prompt_paintbyex= gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_paintbyex= gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
                                 num_prompt_paintbyex = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                width_paintbyex = gr.Slider(128, 8192, step=64, value=512, label="Image Width", info="Width of outputs", interactive=False)
+                                width_paintbyex = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs", interactive=False)
                             with gr.Column():
-                                height_paintbyex = gr.Slider(128, 8192, step=64, value=512, label="Image Height", info="Height of outputs", interactive=False)
+                                height_paintbyex = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs", interactive=False)
                             with gr.Column():
                                 seed_paintbyex = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_paintbyex = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_paintbyex = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
-                                tkme_paintbyex = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                                tkme_paintbyex = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_paintbyex = gr.Button("Save custom defaults settings 💾")
@@ -4786,28 +4803,28 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_outpaint = gr.Dropdown(choices=model_list_outpaint, value=model_list_outpaint[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_step_outpaint = gr.Slider(1, 100, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_outpaint = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
                             with gr.Column():
                                 sampler_outpaint = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
                             with gr.Column():
                                 guidance_scale_outpaint = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
-                                num_images_per_prompt_outpaint= gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_outpaint= gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
                                 num_prompt_outpaint = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                width_outpaint = gr.Slider(128, 8192, step=64, value=512, label="Image Width", info="Width of outputs", interactive=False)
+                                width_outpaint = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs", interactive=False)
                             with gr.Column():
-                                height_outpaint = gr.Slider(128, 8192, step=64, value=512, label="Image Height", info="Height of outputs", interactive=False)
+                                height_outpaint = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs", interactive=False)
                             with gr.Column():
                                 seed_outpaint = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_outpaint = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_outpaint = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
-                                tkme_outpaint = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                                tkme_outpaint = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_outpaint = gr.Button("Save custom defaults settings 💾")
@@ -5062,21 +5079,21 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_controlnet = gr.Dropdown(choices=model_list_controlnet, value=model_list_controlnet[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_step_controlnet = gr.Slider(1, 100, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_controlnet = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
                             with gr.Column():
                                 sampler_controlnet = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
                             with gr.Column():
                                 guidance_scale_controlnet = gr.Slider(0.0, 20.0, step=0.1, value=7.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
-                                num_images_per_prompt_controlnet = gr.Slider(minimum=1, maximum=4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_controlnet = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
                                 num_prompt_controlnet = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                width_controlnet = gr.Slider(128, 1280, step=64, value=512, label="Image Width", info="Width of outputs", interactive=False)
+                                width_controlnet = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs", interactive=False)
                             with gr.Column():
-                                height_controlnet = gr.Slider(128, 1280, step=64, value=512, label="Image Height", info="Height of outputs", interactive=False)
+                                height_controlnet = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs", interactive=False)
                             with gr.Column():
                                 seed_controlnet = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")    
                         with gr.Row():
@@ -5093,9 +5110,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 stop_controlnet = gr.Slider(0.0, 1.0, step=0.01, value=1.0, label="Stop ControlNet", info="Stop ControlNet at % step")
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_controlnet = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_controlnet = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
-                                tkme_controlnet = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                                tkme_controlnet = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_controlnet = gr.Button("Save custom defaults settings 💾")
@@ -5376,7 +5393,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_faceid_ip = gr.Dropdown(choices=model_list_faceid_ip, value=model_list_faceid_ip[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_step_faceid_ip = gr.Slider(2, 100, step=1, value=25, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_faceid_ip = gr.Slider(2, biniou_global_steps_max, step=1, value=25, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
                             with gr.Column():
 #                                sampler_faceid_ip = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                                 sampler_faceid_ip = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value="DDIM", label="Sampler", info="Sampler to use for inference")
@@ -5384,21 +5401,21 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 guidance_scale_faceid_ip = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
-                                num_images_per_prompt_faceid_ip = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_faceid_ip = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
                             with gr.Column():
                                 num_prompt_faceid_ip = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                width_faceid_ip = gr.Slider(128, 8192, step=64, value=512, label="Image Width", info="Width of outputs")
+                                width_faceid_ip = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs")
                             with gr.Column():
-                                height_faceid_ip = gr.Slider(128, 8192, step=64, value=512, label="Image Height", info="Height of outputs")
+                                height_faceid_ip = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs")
                             with gr.Column():
                                 seed_faceid_ip = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_faceid_ip = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_faceid_ip = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
-                                tkme_faceid_ip = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")    
+                                tkme_faceid_ip = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")    
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_faceid_ip = gr.Button("Save custom defaults settings 💾")
@@ -5625,12 +5642,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_faceswap = gr.Dropdown(choices=list(model_list_faceswap.keys()), value=list(model_list_faceswap.keys())[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                width_faceswap = gr.Slider(128, 8192, step=64, value=512, label="Image Width", info="Width of outputs", interactive=False)
+                                width_faceswap = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs", interactive=False)
                             with gr.Column():
-                                height_faceswap = gr.Slider(128, 8192, step=64, value=512, label="Image Height", info="Height of outputs", interactive=False)
+                                height_faceswap = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs", interactive=False)
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_faceswap = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")    
+                                use_gfpgan_faceswap = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")    
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_faceswap = gr.Button("Save custom defaults settings 💾")
@@ -5785,12 +5802,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 scale_resrgan.change(scale_resrgan_change, inputs=scale_resrgan, outputs=model_resrgan)                                
                         with gr.Row():
                             with gr.Column():
-                                width_resrgan = gr.Slider(128, 8192, step=64, value=512, label="Image Width", info="Width of input", interactive=False)
+                                width_resrgan = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of input", interactive=False)
                             with gr.Column():
-                                height_resrgan = gr.Slider(128, 8192, step=64, value=512, label="Image Height", info="Height of input", interactive=False)
+                                height_resrgan = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of input", interactive=False)
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_resrgan = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")     
+                                use_gfpgan_resrgan = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")     
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_resrgan = gr.Button("Save custom defaults settings 💾")
@@ -5923,9 +5940,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 variant_gfpgan = gr.Dropdown(choices=variant_list_gfpgan, value=variant_list_gfpgan[4], label="Variant", info="Variant of GPFGAN to use")
                         with gr.Row():
                             with gr.Column():
-                                width_gfpgan = gr.Slider(128, 8192, step=64, value=512, label="Image Width", info="Width of outputs", interactive=False)
+                                width_gfpgan = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs", interactive=False)
                             with gr.Column():
-                                height_gfpgan = gr.Slider(128, 8192, step=64, value=512, label="Image Height", info="Height of outputs", interactive=False)
+                                height_gfpgan = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs", interactive=False)
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_gfpgan = gr.Button("Save custom defaults settings 💾")
@@ -6354,7 +6371,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 seed_musicldm = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")    
                         with gr.Row():
                             with gr.Column():
-                                num_audio_per_prompt_musicldm = gr.Slider(minimum=1, maximum=4, step=1, value=1, label="Batch size", info ="Number of audios to generate in a single run")
+                                num_audio_per_prompt_musicldm = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of audios to generate in a single run")
                             with gr.Column():
                                 num_prompt_musicldm = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
@@ -6625,14 +6642,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_harmonai = gr.Dropdown(choices=model_list_harmonai, value=model_list_harmonai[4], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                steps_harmonai = gr.Slider(1, 100, step=1, value=50, label="Steps", info="Number of iterations per audio. Results and speed depends of sampler")
+                                steps_harmonai = gr.Slider(1, biniou_global_steps_max, step=1, value=50, label="Steps", info="Number of iterations per audio. Results and speed depends of sampler")
                             with gr.Column():
                                 seed_harmonai = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
                         with gr.Row():
                             with gr.Column():
                                 length_harmonai = gr.Slider(1, 1200, value=5, step=1, label="Audio length (sec)")
                             with gr.Column():
-                                batch_size_harmonai = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of audios to generate in a single run")
+                                batch_size_harmonai = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of audios to generate in a single run")
                             with gr.Column():
                                 batch_repeat_harmonai = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
@@ -6857,7 +6874,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_txt2vid_ms = gr.Dropdown(choices=model_list_txt2vid_ms, value=model_list_txt2vid_ms[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_step_txt2vid_ms = gr.Slider(1, 100, step=1, value=10, label="Steps", info="Number of iterations per video. Results and speed depends of sampler")
+                                num_inference_step_txt2vid_ms = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per video. Results and speed depends of sampler")
                             with gr.Column():
                                 sampler_txt2vid_ms = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
@@ -6869,14 +6886,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 num_prompt_txt2vid_ms = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                width_txt2vid_ms = gr.Slider(128, 1280, step=64, value=576, label="Video Width", info="Width of outputs")
+                                width_txt2vid_ms = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=576, label="Video Width", info="Width of outputs")
                             with gr.Column():
-                                height_txt2vid_ms = gr.Slider(128, 1280, step=64, value=320, label="Video Height", info="Height of outputs")
+                                height_txt2vid_ms = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=320, label="Video Height", info="Height of outputs")
                             with gr.Column():
                                 seed_txt2vid_ms = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_txt2vid_ms = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_txt2vid_ms = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_txt2vid_ms = gr.Button("Save custom defaults settings 💾")
@@ -7026,7 +7043,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_txt2vid_ze = gr.Dropdown(choices=model_list_txt2vid_ze, value=model_list_txt2vid_ze[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_step_txt2vid_ze = gr.Slider(1, 100, step=1, value=10, label="Steps", info="Number of iterations per video. Results and speed depends of sampler")
+                                num_inference_step_txt2vid_ze = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per video. Results and speed depends of sampler")
                             with gr.Column():
                                 sampler_txt2vid_ze = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                             with gr.Column():
@@ -7042,11 +7059,11 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 num_chunks_txt2vid_ze = gr.Slider(1, 32, step=1, value=1, label="Chunk size", info="Number of frames processed in a chunk. 1 = no chunks.")
                         with gr.Row():
                             with gr.Column():
-                                width_txt2vid_ze = gr.Slider(128, 1280, step=64, value=576, label="Video Width", info="Width of outputs")
+                                width_txt2vid_ze = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=576, label="Video Width", info="Width of outputs")
                             with gr.Column():
-                                height_txt2vid_ze = gr.Slider(128, 1280, step=64, value=320, label="Video Height", info="Height of outputs")
+                                height_txt2vid_ze = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=320, label="Video Height", info="Height of outputs")
                             with gr.Column():
-                                num_videos_per_prompt_txt2vid_ze = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of videos to generate in a single run", interactive=False)
+                                num_videos_per_prompt_txt2vid_ze = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of videos to generate in a single run", interactive=False)
                             with gr.Column():
                                 num_prompt_txt2vid_ze = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")                            
                         with gr.Accordion("Advanced Settings", open=False):
@@ -7056,15 +7073,15 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Column():
                                     motion_field_strength_y_txt2vid_ze = gr.Slider(0, 50, step=1, value=12, label="Motion field strength y", info="Vertical motion strength")
                                 with gr.Column():
-                                    timestep_t0_txt2vid_ze = gr.Slider(0, 100, step=1, value=7, label="Timestep t0", interactive=False)
+                                    timestep_t0_txt2vid_ze = gr.Slider(0, biniou_global_steps_max, step=1, value=7, label="Timestep t0", interactive=False)
                                 with gr.Column():
-                                    timestep_t1_txt2vid_ze = gr.Slider(1, 100, step=1, value=8, label="Timestep t1", interactive=False)
+                                    timestep_t1_txt2vid_ze = gr.Slider(1, biniou_global_steps_max, step=1, value=8, label="Timestep t1", interactive=False)
                                     num_inference_step_txt2vid_ze.change(set_timestep_vid_ze, inputs=[num_inference_step_txt2vid_ze, model_txt2vid_ze], outputs=[timestep_t0_txt2vid_ze, timestep_t1_txt2vid_ze])
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_txt2vid_ze = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_txt2vid_ze = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():    
-                                tkme_txt2vid_ze = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token Merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                                tkme_txt2vid_ze = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token Merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_txt2vid_ze = gr.Button("Save custom defaults settings 💾")
@@ -7252,7 +7269,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_animatediff_lcm = gr.Dropdown(choices=model_list_animatediff_lcm, value=model_list_animatediff_lcm[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_step_animatediff_lcm = gr.Slider(1, 100, step=1, value=4, label="Steps", info="Number of iterations per video. Results and speed depends of sampler")
+                                num_inference_step_animatediff_lcm = gr.Slider(1, biniou_global_steps_max, step=1, value=4, label="Steps", info="Number of iterations per video. Results and speed depends of sampler")
                             with gr.Column():
                                 sampler_animatediff_lcm = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value="LCM", label="Sampler", info="Sampler to use for inference", interactive=False)
                         with gr.Row():
@@ -7264,16 +7281,16 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 num_frames_animatediff_lcm = gr.Slider(1, 1200, step=1, value=16, label="Video Length (frames)", info="Number of frames in the output video (@8fps)")
                         with gr.Row():
                             with gr.Column():
-                                width_animatediff_lcm = gr.Slider(128, 1280, step=64, value=512, label="Video Width", info="Width of outputs")
+                                width_animatediff_lcm = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sd15_width, label="Video Width", info="Width of outputs")
                             with gr.Column():
-                                height_animatediff_lcm = gr.Slider(128, 1280, step=64, value=512, label="Video Height", info="Height of outputs")
+                                height_animatediff_lcm = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=biniou_global_sd15_height, label="Video Height", info="Height of outputs")
                             with gr.Column():
-                                num_videos_per_prompt_animatediff_lcm = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of videos to generate in a single run", interactive=False)
+                                num_videos_per_prompt_animatediff_lcm = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of videos to generate in a single run", interactive=False)
                             with gr.Column():
                                 num_prompt_animatediff_lcm = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                use_gfpgan_animatediff_lcm = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs", visible=False)
+                                use_gfpgan_animatediff_lcm = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs", visible=False)
                             with gr.Column():
                                 tkme_animatediff_lcm = gr.Slider(0.0, 1.0, step=0.01, value=0, label="Token Merging ratio", info="0=slow,best quality, 1=fast,worst quality", visible=False)
                         with gr.Row():
@@ -7437,7 +7454,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_img2vid = gr.Dropdown(choices=model_list_img2vid, value=model_list_img2vid[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_steps_img2vid = gr.Slider(1, 100, step=1, value=15, label="Steps", info="Number of iterations per video. Results and speed depends of sampler")
+                                num_inference_steps_img2vid = gr.Slider(1, biniou_global_steps_max, step=1, value=15, label="Steps", info="Number of iterations per video. Results and speed depends of sampler")
                             with gr.Column():
                                 sampler_img2vid = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[5], label="Sampler", info="Sampler to use for inference", interactive=False)
                         with gr.Row():
@@ -7456,11 +7473,11 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 decode_chunk_size_img2vid = gr.Slider(1, 32, step=1, value=7, label="Chunk size", info="Number of frames processed in a chunk")
                         with gr.Row():
                             with gr.Column():
-                                width_img2vid = gr.Slider(128, 1280, step=64, value=1024, label="Video Width", info="Width of outputs")
+                                width_img2vid = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sdxl_width, label="Video Width", info="Width of outputs")
                             with gr.Column():
-                                height_img2vid = gr.Slider(128, 1280, step=64, value=576, label="Video Height", info="Height of outputs")
+                                height_img2vid = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=576, label="Video Height", info="Height of outputs")
                             with gr.Column():
-                                num_videos_per_prompt_img2vid = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of videos to generate in a single run", interactive=False)
+                                num_videos_per_prompt_img2vid = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of videos to generate in a single run", interactive=False)
                             with gr.Column():
                                 num_prompt_img2vid = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
 #                       with gr.Accordion("Advanced Settings", open=False):
@@ -7471,9 +7488,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 noise_aug_strength_img2vid = gr.Slider(0.01, 1.0, step=0.01, value=0.02, label="Noise strength", info="Higher value = more motion")
                         with gr.Row():
                             with gr.Column():
-                                use_gfpgan_img2vid = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs", visible=False)
+                                use_gfpgan_img2vid = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs", visible=False)
                             with gr.Column():
-                                tkme_img2vid = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token Merging ratio", info="0=slow,best quality, 1=fast,worst quality", visible=False)
+                                tkme_img2vid = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token Merging ratio", info="0=slow,best quality, 1=fast,worst quality", visible=False)
                         model_img2vid.change(fn=change_model_type_img2vid, inputs=model_img2vid, outputs=num_frames_img2vid)
                         with gr.Row():
                             with gr.Column():
@@ -7630,7 +7647,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_vid2vid_ze = gr.Dropdown(choices=model_list_vid2vid_ze, value=model_list_vid2vid_ze[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_step_vid2vid_ze = gr.Slider(1, 100, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_vid2vid_ze = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
                             with gr.Column():
                                 sampler_vid2vid_ze = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                         with gr.Row():
@@ -7639,14 +7656,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 image_guidance_scale_vid2vid_ze = gr.Slider(0.0, 10.0, step=0.1, value=1.5, label="Img CFG Scale", info="Low values : more creativity. High values : more fidelity to the input video")
                             with gr.Column():
-                                num_images_per_prompt_vid2vid_ze = gr.Slider(1, 4, step=1, value=1, label="Batch size", info ="Number of videos to generate in a single run", interactive=False)
+                                num_images_per_prompt_vid2vid_ze = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of videos to generate in a single run", interactive=False)
                             with gr.Column():
                                 num_prompt_vid2vid_ze = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                width_vid2vid_ze = gr.Slider(128, 8192, step=64, value=512, label="Image Width", info="Width of outputs", interactive=False)
+                                width_vid2vid_ze = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs", interactive=False)
                             with gr.Column():
-                                height_vid2vid_ze = gr.Slider(128, 8192, step=64, value=512, label="Image Height", info="Height of outputs", interactive=False)
+                                height_vid2vid_ze = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs", interactive=False)
                             with gr.Column():
                                 seed_vid2vid_ze = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
                         with gr.Row():
@@ -7656,9 +7673,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 num_fps_vid2vid_ze = gr.Slider(1, 120, step=1, value=4, label="Frames per second", info="Number of frames per second")
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_vid2vid_ze = gr.Checkbox(value=True, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_vid2vid_ze = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
-                                tkme_vid2vid_ze = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                                tkme_vid2vid_ze = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_vid2vid_ze = gr.Button("Save custom defaults settings 💾")
@@ -7809,19 +7826,19 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_txt2shape = gr.Dropdown(choices=model_list_txt2shape, value=model_list_txt2shape[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_step_txt2shape = gr.Slider(1, 100, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_txt2shape = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
                             with gr.Column():
                                 sampler_txt2shape = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[11], label="Sampler", info="Sampler to use for inference", interactive=False)
                         with gr.Row():
                             with gr.Column():
                                 guidance_scale_txt2shape = gr.Slider(0.1, 50.0, step=0.1, value=15.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
-                                num_images_per_prompt_txt2shape = gr.Slider(minimum=1, maximum=4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run", interactive=False)
+                                num_images_per_prompt_txt2shape = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run", interactive=False)
                             with gr.Column():
                                 num_prompt_txt2shape = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                frame_size_txt2shape = gr.Slider(0, 1280, step=8, value=64, label="Frame size", info="Size of the outputs")
+                                frame_size_txt2shape = gr.Slider(0, biniou_global_width_max_img_create, step=8, value=64, label="Frame size", info="Size of the outputs")
                             with gr.Column():
                                 seed_txt2shape = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility", interactive=False) 
                         with gr.Row():
@@ -8019,19 +8036,19 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_img2shape = gr.Dropdown(choices=model_list_img2shape, value=model_list_img2shape[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_step_img2shape = gr.Slider(1, 100, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_img2shape = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
                             with gr.Column():
                                 sampler_img2shape = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[11], label="Sampler", info="Sampler to use for inference", interactive=False)
                         with gr.Row():
                             with gr.Column():
                                 guidance_scale_img2shape = gr.Slider(0.1, 50.0, step=0.1, value=3.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
-                                num_images_per_prompt_img2shape = gr.Slider(minimum=1, maximum=4, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run", interactive=False)
+                                num_images_per_prompt_img2shape = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run", interactive=False)
                             with gr.Column():
                                 num_prompt_img2shape = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():
-                                frame_size_img2shape = gr.Slider(0, 1280, step=8, value=64, label="Frame size", info="Size of the outputs")
+                                frame_size_img2shape = gr.Slider(0, biniou_global_width_max_img_create, step=8, value=64, label="Frame size", info="Size of the outputs")
                             with gr.Column():
                                 seed_img2shape = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility", interactive=False) 
                         with gr.Row():
@@ -8223,11 +8240,71 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                  with gr.Column():
                                      gr.Number(visible=False)
                     with gr.Row():
+                        with gr.Accordion("Common settings", open=True):
+                            with gr.Row():
+                                with gr.Column():
+                                    biniou_global_settings_steps_max = gr.Slider(0, 512, step=1, value=biniou_global_steps_max, label="Maximum steps", info="Maximum number of possible iterations in a generation (default=100)", interactive=True)
+                                with gr.Column():
+                                    biniou_global_settings_batch_size_max = gr.Slider(1, 512, step=1, value=biniou_global_batch_size_max, label="Maximum batch size", info ="Maximum value for a batch size (default=4)", interactive=True)
+                            with gr.Row():
+                                with gr.Column():
+                                    biniou_global_settings_width_max_img_create = gr.Slider(128, 16384, step=64, value=biniou_global_width_max_img_create, label="Maximum image width (create)", info="Maximum width of outputs when using modules that create contents (default = 1280)", interactive=True)
+                                with gr.Column():
+                                    biniou_global_settings_height_max_img_create = gr.Slider(128, 16384, step=64, value=biniou_global_height_max_img_create, label="Maximum image height (create)", info="Maximum height of outputs when using modules that create contents (default = 1280)", interactive=True)
+                                with gr.Column():
+                                    biniou_global_settings_width_max_img_modify = gr.Slider(128, 16384, step=64, value=biniou_global_width_max_img_modify, label="Maximum image width (modify)", info="Maximum width of outputs when using modules that modify contents (default = 8192)", interactive=True)
+                                with gr.Column():
+                                    biniou_global_settings_height_max_img_modify = gr.Slider(128, 16384, step=64, value=biniou_global_height_max_img_modify, label="Maximum image height (modify)", info="Maximum height of outputs when using modules that modify contents (default = 8192)", interactive=True)
+                            with gr.Row():
+                                with gr.Column():
+                                    biniou_global_settings_sd15_width = gr.Slider(128, 16384, step=64, value=biniou_global_sd15_width, label="Default image width (SD 1.5 models)", info="Width of outputs when using SD 1.5 models (default = 512)", interactive=True)
+                                with gr.Column():
+                                    biniou_global_settings_sd15_height = gr.Slider(128, 16384, step=64, value=biniou_global_sd15_height, label="Default image height (SD 1.5 models)", info="Height of outputs when using SD 1.5 models (default = 512)", interactive=True)
+                                with gr.Column():
+                                    biniou_global_settings_sdxl_width = gr.Slider(128, 16384, step=64, value=biniou_global_sdxl_width, label="Default image width (SDXL models)", info="Width of outputs when using modules that modify contents (default = 8192)", interactive=True)
+                                with gr.Column():
+                                    biniou_global_settings_sdxl_height = gr.Slider(128, 16384, step=64, value=biniou_global_sdxl_height, label="Default image height (SDXL models)", info="Height of outputs when using modules that modify contents (default = 8192)", interactive=True)
+                            with gr.Row():
+                                with gr.Column():
+                                    biniou_global_settings_gfpgan = gr.Checkbox(value=biniou_global_gfpgan, label="Default use of GFPGAN to restore faces", info="Activate/desactivate gfpgan enhancement for all modules using it (default = True)", interactive=True)
+                                with gr.Column():
+                                    biniou_global_settings_tkme = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Default token merging ratio", info="Set token merging ratio for all modules using it (default = 0.6)", interactive=True)
+                            with gr.Row():
+                                with gr.Column():
+                                    save_ini_btn_settings = gr.Button("Save custom defaults settings 💾")
+                                with gr.Column():
+                                    module_name_settings = gr.Textbox(value="settings", visible=False, interactive=False)
+                                    del_ini_btn_settings = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_settings.value) else False)
+                                    save_ini_btn_settings.click(fn=write_settings_ini, 
+                                        inputs=[
+                                            module_name_settings,
+                                            biniou_global_settings_steps_max,
+                                            biniou_global_settings_batch_size_max,
+                                            biniou_global_settings_width_max_img_create,
+                                            biniou_global_settings_height_max_img_create,
+                                            biniou_global_settings_width_max_img_modify,
+                                            biniou_global_settings_height_max_img_modify,
+                                            biniou_global_settings_sd15_width,
+                                            biniou_global_settings_sd15_height,
+                                            biniou_global_settings_sdxl_width,
+                                            biniou_global_settings_sdxl_height,
+                                            biniou_global_settings_gfpgan,
+                                            biniou_global_settings_tkme,
+                                        ], 
+                                        outputs=None
+                                    )
+                                    save_ini_btn_settings.click(fn=lambda: gr.Info('Common settings saved'))
+                                    save_ini_btn_settings.click(fn=lambda: del_ini_btn_settings.update(interactive=True), outputs=del_ini_btn_settings)
+                                    del_ini_btn_settings.click(fn=lambda: del_ini(module_name_settings.value))
+                                    del_ini_btn_settings.click(fn=lambda: gr.Info('Common settings deleted'))
+                                    del_ini_btn_settings.click(fn=lambda: del_ini_btn_settings.update(interactive=False), outputs=del_ini_btn_settings)
+                    with gr.Row():
                         with gr.Accordion("NSFW filter", open=False):
                             with gr.Row():
                                 with gr.Column():
                                     safety_checker_ui_settings = gr.Checkbox(bool(int(nsfw_filter.value)), label="Use safety checker", info="⚠️ Warning : Unchecking this box will temporarily disable the safety checker which avoid generation of nsfw and disturbing media contents. This option is ONLY provided for debugging purposes and you should NEVER uncheck it in other use cases. ⚠️", interactive=True)
                                     safety_checker_ui_settings.change(fn=lambda x:int(x), inputs=safety_checker_ui_settings, outputs=nsfw_filter)
+
 # Models cleaner
                 with gr.TabItem("Models cleaner 🧹", id=62) as tab_models_cleaner:
                     with gr.Row():
