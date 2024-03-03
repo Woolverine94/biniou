@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-03-03** : 🔥 ***New common settings panel*** 🔥 : Adding a Common settings panel to the WebUI control subtab (Global settings tab). You can define defaults values for settings shared by sereral modules (like the use of gfpgan or token merging ratio) and push the limits of some others features (maximum batch size or maximum steps). Please not that these settings only apply at startup, so you'll have to restart biniou after saving them. 
+
   * 🆕 **2024-03-01** : 🔥 ***New images models*** 🔥 : 
     - Adding [dataautogpt3/ProteusV0.4](https://huggingface.co/dataautogpt3/ProteusV0.4) to compatibles modules (Stable Diffusion, img2img, IP-Adapter, ControlNet and Text2Video-Zero).
     - Adding [latent-consistency/lcm-sdxl](https://huggingface.co/latent-consistency/lcm-sdxl) to LCM module.
@@ -25,8 +27,6 @@
   * 🆕 **2024-02-24** : 🔥 ***Support for Gemma models in Chatbot module*** 🔥 : Adding models [sayhan/gemma-7b-it-GGUF-quantized](https://huggingface.co/sayhan/gemma-7b-it-GGUF-quantized), [mlabonne/gemma-2b-it-GGUF](https://huggingface.co/mlabonne/gemma-2b-it-GGUF) and the Gemma prompt template. These models are quantized versions of the Google Gemma instruct models and uses the same technologies than Google's Gemini.
 
   * 🆕 **2024-02-23** : 🔥 ***Textual inversion manager*** 🔥 : Adding a tab to the Globals settings that allow management of textual inversions through the webui.
-
-  * 🆕 **2024-02-22** : 🔥 ***New chatbot features*** 🔥 : You can now easily and efficiently integrate GGUF models to the chatbot module. You only have to download the model using the new **GUUF models downloader** tab in the Globals settings, relaunch biniou and restart the UI, select downloaded model in chatbot module and choose a prompt template from the new **Force prompt template** menu. 
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
