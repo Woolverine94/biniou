@@ -16,13 +16,13 @@
 
 ## Updates
 
-  * 🆕 **2024-03-03** : 🔥 ***New common settings panel*** 🔥 : Adding a Common settings panel to the WebUI control subtab (Global settings tab). You can define defaults values for settings shared by sereral modules (like the use of gfpgan or token merging ratio) and push the limits of some others features (maximum batch size or maximum steps). Please not that these settings only apply at startup, so you'll have to restart biniou after saving them. 
+  * 🆕 **2024-03-03** : 🔥 ***New common settings panel*** 🔥 : Adding a Common settings panel to the WebUI control subtab (Global settings tab). You can define defaults values for settings shared by several modules (like the use of gfpgan or token merging ratio) and push the limits of some others features (maximum batch size or maximum steps). Note that these settings only apply at startup, so you'll have to restart biniou after saving them. Please also note that these settings will be superseded by individual modules settings and manual modifications.
 
   * 🆕 **2024-03-01** : 🔥 ***New images models*** 🔥 : 
     - Adding [dataautogpt3/ProteusV0.4](https://huggingface.co/dataautogpt3/ProteusV0.4) to compatibles modules (Stable Diffusion, img2img, IP-Adapter, ControlNet and Text2Video-Zero).
     - Adding [latent-consistency/lcm-sdxl](https://huggingface.co/latent-consistency/lcm-sdxl) to LCM module.
 
-  * 🆕 **2024-02-27** : 🔥 ***Updates on Llava module*** 🔥 : Renaming Llava-1.5 module to Llava, as it now support Llava 1.6 through [cmp-nct/llava-1.6-gguf](https://huggingface.co/cmp-nct/llava-1.6-gguf) model. Thus it is still pretty slow, it gives very interesting results.
+  * 🆕 **2024-02-27** : 🔥 ***Updates on Llava module*** 🔥 : Renaming Llava-1.5 module to Llava, as it now support Llava 1.6 through [cmp-nct/llava-1.6-gguf](https://huggingface.co/cmp-nct/llava-1.6-gguf) model. Although it is still pretty slow, it gives very interesting results.
 
   * 🆕 **2024-02-24** : 🔥 ***Support for Gemma models in Chatbot module*** 🔥 : Adding models [sayhan/gemma-7b-it-GGUF-quantized](https://huggingface.co/sayhan/gemma-7b-it-GGUF-quantized), [mlabonne/gemma-2b-it-GGUF](https://huggingface.co/mlabonne/gemma-2b-it-GGUF) and the Gemma prompt template. These models are quantized versions of the Google Gemma instruct models and uses the same technologies than Google's Gemini.
 
