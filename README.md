@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-03-04** : 🔥 ***New options in common settings panel*** 🔥 : For answering security concerns, you can now restrict access to only localhost and  define your own server port, also automatically open webui in your browser when biniou start.
+
   * 🆕 **2024-03-03** : 🔥 ***New common settings panel*** 🔥 : Adding a Common settings panel to the WebUI control subtab (Global settings tab). You can define defaults values for settings shared by several modules (like the use of gfpgan or token merging ratio) and push the limits of some others features (maximum batch size or maximum steps). Note that these settings only apply at startup, so you'll have to restart biniou after saving them. Please also note that these settings will be superseded by individual modules settings and manual modifications.
 
   * 🆕 **2024-03-01** : 🔥 ***New images models*** 🔥 : 
