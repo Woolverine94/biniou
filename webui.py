@@ -73,6 +73,9 @@ def split_url_params(url_params) :
     else :         
         return "1", url_params, "1"
 
+biniou_global_server_name=True
+biniou_global_server_port=7860
+biniou_global_inbrowser=False
 biniou_global_steps_max = 100
 biniou_global_batch_size_max = 4
 biniou_global_width_max_img_create = 1280
@@ -8243,6 +8246,13 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Accordion("Common settings", open=True):
                             with gr.Row():
                                 with gr.Column():
+                                    biniou_global_settings_server_name = gr.Checkbox(value=biniou_global_server_name, label="LAN accessibility", info="Uncheck to limit access of biniou to localhost only (default = True)", interactive=True)
+                                with gr.Column():
+                                    biniou_global_settings_server_port = gr.Slider(0, 65535, step=1, precision=0, value=biniou_global_server_port, label="Server port", info="Define server port (default = 7860)")
+                                with gr.Column():
+                                    biniou_global_settings_inbrowser = gr.Checkbox(value=biniou_global_inbrowser, label="Load in browser at start", info="Open webui in browser when starting biniou (default = False)", interactive=True)
+                            with gr.Row():
+                                with gr.Column():
                                     biniou_global_settings_steps_max = gr.Slider(0, 512, step=1, value=biniou_global_steps_max, label="Maximum steps", info="Maximum number of possible iterations in a generation (default=100)", interactive=True)
                                 with gr.Column():
                                     biniou_global_settings_batch_size_max = gr.Slider(1, 512, step=1, value=biniou_global_batch_size_max, label="Maximum batch size", info ="Maximum value for a batch size (default=4)", interactive=True)
@@ -8251,6 +8261,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     biniou_global_settings_width_max_img_create = gr.Slider(128, 16384, step=64, value=biniou_global_width_max_img_create, label="Maximum image width (create)", info="Maximum width of outputs when using modules that create contents (default = 1280)", interactive=True)
                                 with gr.Column():
                                     biniou_global_settings_height_max_img_create = gr.Slider(128, 16384, step=64, value=biniou_global_height_max_img_create, label="Maximum image height (create)", info="Maximum height of outputs when using modules that create contents (default = 1280)", interactive=True)
+                            with gr.Row():
                                 with gr.Column():
                                     biniou_global_settings_width_max_img_modify = gr.Slider(128, 16384, step=64, value=biniou_global_width_max_img_modify, label="Maximum image width (modify)", info="Maximum width of outputs when using modules that modify contents (default = 8192)", interactive=True)
                                 with gr.Column():
@@ -8260,6 +8271,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     biniou_global_settings_sd15_width = gr.Slider(128, 16384, step=64, value=biniou_global_sd15_width, label="Default image width (SD 1.5 models)", info="Width of outputs when using SD 1.5 models (default = 512)", interactive=True)
                                 with gr.Column():
                                     biniou_global_settings_sd15_height = gr.Slider(128, 16384, step=64, value=biniou_global_sd15_height, label="Default image height (SD 1.5 models)", info="Height of outputs when using SD 1.5 models (default = 512)", interactive=True)
+                            with gr.Row():
                                 with gr.Column():
                                     biniou_global_settings_sdxl_width = gr.Slider(128, 16384, step=64, value=biniou_global_sdxl_width, label="Default image width (SDXL models)", info="Width of outputs when using modules that modify contents (default = 8192)", interactive=True)
                                 with gr.Column():
@@ -8278,6 +8290,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     save_ini_btn_settings.click(fn=write_settings_ini, 
                                         inputs=[
                                             module_name_settings,
+                                            biniou_global_settings_server_name,
+                                            biniou_global_settings_server_port,
+                                            biniou_global_settings_inbrowser,
                                             biniou_global_settings_steps_max,
                                             biniou_global_settings_batch_size_max,
                                             biniou_global_settings_width_max_img_create,
@@ -8290,7 +8305,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                             biniou_global_settings_sdxl_height,
                                             biniou_global_settings_gfpgan,
                                             biniou_global_settings_tkme,
-                                        ], 
+                                        ],
                                         outputs=None
                                     )
                                     save_ini_btn_settings.click(fn=lambda: gr.Info('Common settings saved'))
@@ -9298,16 +9313,19 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     demo.load(split_url_params, nsfw_filter, [nsfw_filter, url_params_current, safety_checker_ui_settings], _js=get_window_url_params)
     demo.load(read_logs, None, biniou_console_output, every=1)
 #    demo.load(fn=lambda: gr.Info('Biniou loading completed. Ready to work !'))
-    print(f">>>[biniou 🧠]: Up and running at https://{local_ip()}:7860/?__theme=dark")
+    if biniou_global_server_name:
+        print(f">>>[biniou 🧠]: Up and running at https://{local_ip()}:{biniou_global_server_port}/?__theme=dark")
+    else:
+        print(f">>>[biniou 🧠]: Up and running at https://127.0.0.1:{biniou_global_server_port}/?__theme=dark")
 
 if __name__ == "__main__":
     demo.queue(concurrency_count=8).launch(
-        server_name="0.0.0.0",
-        server_port=7860,
+        server_name="0.0.0.0" if biniou_global_server_name else "127.0.0.1",
+        server_port=biniou_global_server_port,
         ssl_certfile="./ssl/cert.pem",
         favicon_path="./images/biniou_64.ico",
         ssl_keyfile="./ssl/key.pem",
         ssl_verify=False,
-        inbrowser=True if len(sys.argv)>1 and sys.argv[1]=="--inbrowser" else False,
+        inbrowser=True if len(sys.argv)>1 and sys.argv[1]=="--inbrowser" else biniou_global_inbrowser,
     )
 # Fin du fichier

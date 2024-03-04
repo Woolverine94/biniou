@@ -344,6 +344,9 @@ def write_ini(module, *args) :
 
 def write_settings_ini(
     module,
+    biniou_global_settings_server_name,
+    biniou_global_settings_server_port,
+    biniou_global_settings_inbrowser,
     biniou_global_settings_steps_max,
     biniou_global_settings_batch_size_max,
     biniou_global_settings_width_max_img_create,
@@ -358,7 +361,10 @@ def write_settings_ini(
     biniou_global_settings_tkme,
 ):
     savename = f".ini/{module}.cfg"
-    content = f"biniou_global_steps_max = {biniou_global_settings_steps_max}\n\
+    content = f"biniou_global_server_name = {biniou_global_settings_server_name}\n\
+biniou_global_server_port = {biniou_global_settings_server_port}\n\
+biniou_global_inbrowser = {biniou_global_settings_inbrowser}\n\
+biniou_global_steps_max = {biniou_global_settings_steps_max}\n\
 biniou_global_batch_size_max = {biniou_global_settings_batch_size_max}\n\
 biniou_global_width_max_img_create = {biniou_global_settings_width_max_img_create}\n\
 biniou_global_height_max_img_create = {biniou_global_settings_height_max_img_create}\n\
