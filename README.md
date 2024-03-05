@@ -16,6 +16,10 @@
 
 ## Updates
 
+  * 🆕 **2024-03-05** : 
+    - 🔥 ***New models for Images modules*** 🔥 : Adding SDXL models [etri-vilab/koala-700m](https://huggingface.co/etri-vilab/koala-700m) and [etri-vilab/koala-1b](https://huggingface.co/etri-vilab/koala-1b) to Stable Diffusion, img2img and Text2Video-Zero modules.
+    - ***Bugfix for IP-Adapter FaceID module*** : Addressing an issue that completely broke this module (difference between version of pipeline and installed Diffusers version).
+
   * 🆕 **2024-03-04** : 🔥 ***New options in common settings panel*** 🔥 : For answering security concerns, you can now restrict access to only localhost and  define your own server port, also automatically open webui in your browser when biniou start.
 
   * 🆕 **2024-03-03** : 🔥 ***New common settings panel*** 🔥 : Adding a Common settings panel to the WebUI control subtab (Global settings tab). You can define defaults values for settings shared by several modules (like the use of gfpgan or token merging ratio) and push the limits of some others features (maximum batch size or maximum steps). Note that these settings only apply at startup, so you'll have to restart biniou after saving them. Please also note that these settings will be superseded by individual modules settings and manual modifications.
@@ -25,10 +29,6 @@
     - Adding [latent-consistency/lcm-sdxl](https://huggingface.co/latent-consistency/lcm-sdxl) to LCM module.
 
   * 🆕 **2024-02-27** : 🔥 ***Updates on Llava module*** 🔥 : Renaming Llava-1.5 module to Llava, as it now support Llava 1.6 through [cmp-nct/llava-1.6-gguf](https://huggingface.co/cmp-nct/llava-1.6-gguf) model. Although it is still pretty slow, it gives very interesting results.
-
-  * 🆕 **2024-02-24** : 🔥 ***Support for Gemma models in Chatbot module*** 🔥 : Adding models [sayhan/gemma-7b-it-GGUF-quantized](https://huggingface.co/sayhan/gemma-7b-it-GGUF-quantized), [mlabonne/gemma-2b-it-GGUF](https://huggingface.co/mlabonne/gemma-2b-it-GGUF) and the Gemma prompt template. These models are quantized versions of the Google Gemma instruct models and uses the same technologies than Google's Gemini.
-
-  * 🆕 **2024-02-23** : 🔥 ***Textual inversion manager*** 🔥 : Adding a tab to the Globals settings that allow management of textual inversions through the webui.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
