@@ -32,6 +32,8 @@ model_list_img2img_builtin = [
     "thibaud/sdxl_dpo_turbo",
     "dataautogpt3/OpenDalleV1.1",
     "dataautogpt3/ProteusV0.4",
+    "etri-vilab/koala-1b",
+    "etri-vilab/koala-700m",
     "digiplay/AbsoluteReality_v1.8.1",
     "segmind/Segmind-Vega",
     "segmind/SSD-1B",
@@ -94,7 +96,7 @@ def image_img2img(
     else :
         is_turbo_img2img: bool = False
 
-    if (("XL" in modelid_img2img.upper())  or (modelid_img2img == "segmind/SSD-1B") or (modelid_img2img == "segmind/Segmind-Vega") or (modelid_img2img == "dataautogpt3/OpenDalleV1.1") or (modelid_img2img == "dataautogpt3/ProteusV0.4")):
+    if (("XL" in modelid_img2img.upper()) or ("ETRI-VILAB/KOALA-" in modelid_img2img.upper()) or (modelid_img2img == "segmind/SSD-1B") or (modelid_img2img == "segmind/Segmind-Vega") or (modelid_img2img == "dataautogpt3/OpenDalleV1.1") or (modelid_img2img == "dataautogpt3/ProteusV0.4")):
         is_xl_img2img: bool = True
     else :        
         is_xl_img2img: bool = False        
