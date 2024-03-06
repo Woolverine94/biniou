@@ -33,8 +33,6 @@ filename_community_faceid_ip = model_path_community_faceid_ip+ "/ip_adapter_face
 with open(filename_community_faceid_ip, "wb") as f:
     f.write(response_community_faceid_ip.content)
 
-print(filename_community_faceid_ip)
-
 model_list_faceid_ip = []
 
 # .from_single_file NOT compatible with FaceID community pipeline
