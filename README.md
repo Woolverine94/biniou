@@ -16,6 +16,10 @@
 
 ## Updates
 
+  * 🆕 **2024-03-06** : 
+    - 🔥 ***New LoRA models*** 🔥 : Adding 6 new LoRA models (5 SDXL and one SD1.5).
+    -  ***Bugfix for IP-Adapter FaceID and LoRA*** : Following previous bugfix, LoRA models where unusable. This bugfix permits usage of LoRA models and IP-Adapter FaceID module
+
   * 🆕 **2024-03-05** : 
     - 🔥 ***New models for Images modules*** 🔥 : Adding SDXL models [etri-vilab/koala-700m](https://huggingface.co/etri-vilab/koala-700m) and [etri-vilab/koala-1b](https://huggingface.co/etri-vilab/koala-1b) to Stable Diffusion, img2img and Text2Video-Zero modules.
     - ***Bugfix for IP-Adapter FaceID module*** : Addressing an issue that completely broke this module (difference between version of pipeline and installed Diffusers version).
@@ -27,8 +31,6 @@
   * 🆕 **2024-03-01** : 🔥 ***New images models*** 🔥 : 
     - Adding [dataautogpt3/ProteusV0.4](https://huggingface.co/dataautogpt3/ProteusV0.4) to compatibles modules (Stable Diffusion, img2img, IP-Adapter, ControlNet and Text2Video-Zero).
     - Adding [latent-consistency/lcm-sdxl](https://huggingface.co/latent-consistency/lcm-sdxl) to LCM module.
-
-  * 🆕 **2024-02-27** : 🔥 ***Updates on Llava module*** 🔥 : Renaming Llava-1.5 module to Llava, as it now support Llava 1.6 through [cmp-nct/llava-1.6-gguf](https://huggingface.co/cmp-nct/llava-1.6-gguf) model. Although it is still pretty slow, it gives very interesting results.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
