@@ -501,6 +501,11 @@ def lora_model_list(model):
         model_path_lora = "./models/lora/SDXL"
         model_list_lora_builtin = {
             "openskyml/dalle-3-xl":("Dall-e_3_0.3-v2.safetensors", ""),
+            "artificialguybr/ps1redmond-ps1-game-graphics-lora-for-sdxl":("PS1Redmond-PS1Game-Playstation1Graphics.safetensors", "Playstation 1 Graphics, PS1 Game"),
+            "ProomptEngineer/pe-old-school-cartoon-style":("PE_OldCartoonStyle.safetensors", "old school cartoon style"),
+            "goofyai/3d_render_style_xl":("3d_render_style_xl.safetensors", "3d style, 3d render"),
+            "artificialguybr/StickersRedmond":("StickersRedmond.safetensors", "Stickers, Sticker"),
+            "TheLastBen/William_Eggleston_Style_SDXL":("wegg.safetensors", "by william eggleston"),
             "Pclanglais/Mickey-1928":("pytorch_lora_weights.safetensors", "Mickey|Minnie|Pete"),
             "Norod78/SDXL-YarnArtStyle-LoRA":("SDXL_Yarn_Art_Style.safetensors", "Yarn art style"),
             "KappaNeuro/1987-action-figure-playset-packaging":("1987 Action Figure Playset Packaging.safetensors", "1987 Action Figure Playset Packaging - "),
@@ -524,6 +529,7 @@ def lora_model_list(model):
     else :        
         model_path_lora = "./models/lora/SD"
         model_list_lora_builtin = {
+            "Kvikontent/midjourney-v6":("mj6-10.safetensors", ""),
             "Norod78/SD15-IllusionDiffusionPattern-LoRA":("SD15-IllusionDiffusionPattern-LoRA.safetensors","IllusionDiffusionPattern"),
 
         }

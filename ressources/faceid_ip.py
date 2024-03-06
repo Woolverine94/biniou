@@ -13,6 +13,7 @@ import random
 from ressources.common import *
 from ressources.gfpgan import *
 import tomesd
+import requests
 
 device_label_faceid_ip, model_arch = detect_device()
 device_faceid_ip = torch.device(device_label_faceid_ip)
@@ -22,6 +23,17 @@ model_path_faceid_ip = "./models/Stable_Diffusion/"
 model_path_ipa_faceid_ip = "./models/Ip-Adapters"
 os.makedirs(model_path_faceid_ip, exist_ok=True)
 os.makedirs(model_path_ipa_faceid_ip, exist_ok=True)
+model_path_community_faceid_ip = "./.community"
+os.makedirs(model_path_community_faceid_ip, exist_ok=True)
+
+# if offline_test() == True:
+url_community_faceid_ip = "https://raw.githubusercontent.com/huggingface/diffusers/c0f5346a207bdbf1f7be0b3a539fefae89287ca4/examples/community/ip_adapter_face_id.py"
+response_community_faceid_ip = requests.get(url_community_faceid_ip)
+filename_community_faceid_ip = model_path_community_faceid_ip+ "/ip_adapter_face_id.py"
+with open(filename_community_faceid_ip, "wb") as f:
+    f.write(response_community_faceid_ip.content)
+
+print(filename_community_faceid_ip)
 
 model_list_faceid_ip = []
 
@@ -123,8 +135,8 @@ def image_faceid_ip(
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex,
-                custom_pipeline="ip_adapter_face_id",
-                custom_revision="main",
+                custom_pipeline=filename_community_faceid_ip,
+#                custom_revision=filename_community_faceid_ip,
             )
         else :        
             pipe_faceid_ip = AutoPipelineForText2Image.from_pretrained(
@@ -134,8 +146,8 @@ def image_faceid_ip(
                 use_safetensors=True, 
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
-                custom_pipeline="ip_adapter_face_id",
-                custom_revision="main",
+                custom_pipeline=filename_community_faceid_ip,
+#                custom_revision=filename_community_faceid_ip,
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
@@ -148,8 +160,8 @@ def image_faceid_ip(
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex,
-                custom_pipeline="ip_adapter_face_id",
-                custom_revision="main",
+                custom_pipeline=filename_community_faceid_ip,
+#                custom_revision=filename_community_faceid_ip,
             )
         else :        
             pipe_faceid_ip = StableDiffusionXLPipeline.from_pretrained(
@@ -159,8 +171,8 @@ def image_faceid_ip(
                 use_safetensors=True, 
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
-                custom_pipeline="ip_adapter_face_id",
-                custom_revision="main",
+                custom_pipeline=filename_community_faceid_ip,
+#                custom_revision=filename_community_faceid_ip,
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
@@ -173,8 +185,8 @@ def image_faceid_ip(
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex,
-                custom_pipeline="ip_adapter_face_id",
-                custom_revision="main",
+                custom_pipeline=filename_community_faceid_ip,
+#                custom_revision=filename_community_faceid_ip,
             )
         else :        
             pipe_faceid_ip = StableDiffusionPipeline.from_pretrained(
@@ -184,8 +196,8 @@ def image_faceid_ip(
                 use_safetensors=True, 
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
-                custom_pipeline="ip_adapter_face_id",
-                custom_revision="main",
+                custom_pipeline=filename_community_faceid_ip,
+#                custom_revision=filename_community_faceid_ip,
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
