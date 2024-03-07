@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-03-07** : 🔥 ***One-click installer for Debian-based distributions*** 🔥 : You can now install biniou on Debian 12, Ubuntu 22.04.3 and Linux Mint 21.2+ by simply copy/pasting a shell command in a terminal. See [here](#debian-12--ubuntu-22043--linux-mint-212) for more informations.
+
   * 🆕 **2024-03-06** : 
     - 🔥 ***New LoRA models*** 🔥 : Adding 6 new LoRA models (5 SDXL and one SD1.5).
     -  ***Bugfix for IP-Adapter FaceID and LoRA*** : Following previous bugfix, LoRA models where unusable. This bugfix permits usage of LoRA models and IP-Adapter FaceID module
@@ -27,10 +29,6 @@
   * 🆕 **2024-03-04** : 🔥 ***New options in common settings panel*** 🔥 : For answering security concerns, you can now restrict access to only localhost and  define your own server port, also automatically open webui in your browser when biniou start.
 
   * 🆕 **2024-03-03** : 🔥 ***New common settings panel*** 🔥 : Adding a Common settings panel to the WebUI control subtab (Global settings tab). You can define defaults values for settings shared by several modules (like the use of gfpgan or token merging ratio) and push the limits of some others features (maximum batch size or maximum steps). Note that these settings only apply at startup, so you'll have to restart biniou after saving them. Please also note that these settings will be superseded by individual modules settings and manual modifications.
-
-  * 🆕 **2024-03-01** : 🔥 ***New images models*** 🔥 : 
-    - Adding [dataautogpt3/ProteusV0.4](https://huggingface.co/dataautogpt3/ProteusV0.4) to compatibles modules (Stable Diffusion, img2img, IP-Adapter, ControlNet and Text2Video-Zero).
-    - Adding [latent-consistency/lcm-sdxl](https://huggingface.co/latent-consistency/lcm-sdxl) to LCM module.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
@@ -154,19 +152,31 @@
 
 ## Installation 
 
-### Debian 12 / Ubuntu 22.04.3 / Linux Mint 21.2
+### Debian 12 / Ubuntu 22.04.3 / Linux Mint 21.2+
+
+#### One-click installer : 
+
+  1. **Copy/paste and execute** the following command in a terminal : 
+```bash
+sh <(curl https://raw.githubusercontent.com/Woolverine94/biniou/main/oci-debian.sh || wget -O - https://raw.githubusercontent.com/Woolverine94/biniou/main/oci-debian.sh)
+```
+
+#### Manual installation :
 
   1. **Install** the pre-requisites as root :
+
 ```bash
 apt install git pip python3 python3-venv gcc perl make ffmpeg openssl
 ```
 
   2. **Clone** this repository as user : 
+
 ```bash
 git clone https://github.com/Woolverine94/biniou.git
 ```
 
   3. **Launch** the installer :
+
 ```bash
 cd ./biniou
 ./install.sh
