@@ -9332,6 +9332,7 @@ if __name__ == "__main__":
         favicon_path="./images/biniou_64.ico",
         ssl_keyfile="./ssl/key.pem",
         ssl_verify=False,
-        inbrowser=True if len(sys.argv)>1 and sys.argv[1]=="--inbrowser" else biniou_global_inbrowser,
+        inbrowser=biniou_global_inbrowser,
+#        inbrowser=True if len(sys.argv)>1 and sys.argv[1]=="--inbrowser" else biniou_global_inbrowser,
     )
 # Fin du fichier
