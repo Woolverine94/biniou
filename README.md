@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-03-08** : ***Disabling browser autolaunch for Windows users***  : For improving harmonization beetween Windows and others OS, Webui is not opened anymore in browser at biniou's start. If you were using this feature, you can re-enable it by checking the Common Settings's "Load in browser at start" option (don't forget to save !).
+
   * 🆕 **2024-03-07** : 🔥 ***One-click installer for Debian-based distributions*** 🔥 : You can now install biniou on Debian 12, Ubuntu 22.04.3 and Linux Mint 21.2+ by simply copy/pasting a shell command in a terminal. See [here](#debian-12--ubuntu-22043--linux-mint-212) for more informations.
 
   * 🆕 **2024-03-06** : 
@@ -27,8 +29,6 @@
     - ***Bugfix for IP-Adapter FaceID module*** : Addressing an issue that completely broke this module (difference between version of pipeline and installed Diffusers version).
 
   * 🆕 **2024-03-04** : 🔥 ***New options in common settings panel*** 🔥 : For answering security concerns, you can now restrict access to only localhost and  define your own server port, also automatically open webui in your browser when biniou start.
-
-  * 🆕 **2024-03-03** : 🔥 ***New common settings panel*** 🔥 : Adding a Common settings panel to the WebUI control subtab (Global settings tab). You can define defaults values for settings shared by several modules (like the use of gfpgan or token merging ratio) and push the limits of some others features (maximum batch size or maximum steps). Note that these settings only apply at startup, so you'll have to restart biniou after saving them. Please also note that these settings will be superseded by individual modules settings and manual modifications.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
