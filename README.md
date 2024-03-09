@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-03-09** : 🔥 ***Adding basic authentication*** 🔥 : Thanks to the possibilities offered by Gradio, biniou can now use a simple authentication system. You can enable it by checking the "Activate authentication option" in the Common settings panel. Default user/pass couple is biniou/biniou and you can edit ./.ini/auth.cfg to modify/add credentials (respect the "user:pass" syntax and only one account per line).
+
   * 🆕 **2024-03-08** : ***Disabling browser autolaunch for Windows users***  : For improving harmonization beetween Windows and others OS, Webui is not opened anymore in browser at biniou's start. If you were using this feature, you can re-enable it by checking the Common Settings's "Load in browser at start" option (don't forget to save !).
 
   * 🆕 **2024-03-07** : 🔥 ***One-click installer for Debian-based distributions*** 🔥 : You can now install biniou on Debian 12, Ubuntu 22.04.3 and Linux Mint 21.2+ by simply copy/pasting a shell command in a terminal. See [here](#debian-12--ubuntu-22043--linux-mint-212) for more informations.
@@ -27,8 +29,6 @@
   * 🆕 **2024-03-05** : 
     - 🔥 ***New models for Images modules*** 🔥 : Adding SDXL models [etri-vilab/koala-700m](https://huggingface.co/etri-vilab/koala-700m) and [etri-vilab/koala-1b](https://huggingface.co/etri-vilab/koala-1b) to Stable Diffusion, img2img and Text2Video-Zero modules.
     - ***Bugfix for IP-Adapter FaceID module*** : Addressing an issue that completely broke this module (difference between version of pipeline and installed Diffusers version).
-
-  * 🆕 **2024-03-04** : 🔥 ***New options in common settings panel*** 🔥 : For answering security concerns, you can now restrict access to only localhost and  define your own server port, also automatically open webui in your browser when biniou start.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
