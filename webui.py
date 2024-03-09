@@ -76,6 +76,8 @@ def split_url_params(url_params) :
 biniou_global_server_name=True
 biniou_global_server_port=7860
 biniou_global_inbrowser=False
+biniou_global_auth=False
+biniou_global_auth_message="Welcome to biniou !"
 biniou_global_steps_max = 100
 biniou_global_batch_size_max = 4
 biniou_global_width_max_img_create = 1280
@@ -92,6 +94,12 @@ biniou_global_tkme = 0.6
 if test_cfg_exist("settings") :
     with open(".ini/settings.cfg", "r", encoding="utf-8") as fichier:
         exec(fichier.read())
+
+if not os.path.isfile(".ini/auth.cfg"):
+    write_auth("biniou:biniou")
+
+if biniou_global_auth == True:
+    biniou_auth_values = read_auth()
 
 ## Fonctions communes
 def dummy():
@@ -8250,43 +8258,50 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                      gr.Number(visible=False)
                     with gr.Row():
                         with gr.Accordion("Common settings", open=True):
-                            with gr.Row():
-                                with gr.Column():
-                                    biniou_global_settings_server_name = gr.Checkbox(value=biniou_global_server_name, label="LAN accessibility", info="Uncheck to limit access of biniou to localhost only (default = True)", interactive=True)
-                                with gr.Column():
-                                    biniou_global_settings_server_port = gr.Slider(0, 65535, step=1, precision=0, value=biniou_global_server_port, label="Server port", info="Define server port (default = 7860)")
-                                with gr.Column():
-                                    biniou_global_settings_inbrowser = gr.Checkbox(value=biniou_global_inbrowser, label="Load in browser at start", info="Open webui in browser when starting biniou (default = False)", interactive=True)
-                            with gr.Row():
-                                with gr.Column():
-                                    biniou_global_settings_steps_max = gr.Slider(0, 512, step=1, value=biniou_global_steps_max, label="Maximum steps", info="Maximum number of possible iterations in a generation (default=100)", interactive=True)
-                                with gr.Column():
-                                    biniou_global_settings_batch_size_max = gr.Slider(1, 512, step=1, value=biniou_global_batch_size_max, label="Maximum batch size", info ="Maximum value for a batch size (default=4)", interactive=True)
-                            with gr.Row():
-                                with gr.Column():
-                                    biniou_global_settings_width_max_img_create = gr.Slider(128, 16384, step=64, value=biniou_global_width_max_img_create, label="Maximum image width (create)", info="Maximum width of outputs when using modules that create contents (default = 1280)", interactive=True)
-                                with gr.Column():
-                                    biniou_global_settings_height_max_img_create = gr.Slider(128, 16384, step=64, value=biniou_global_height_max_img_create, label="Maximum image height (create)", info="Maximum height of outputs when using modules that create contents (default = 1280)", interactive=True)
-                            with gr.Row():
-                                with gr.Column():
-                                    biniou_global_settings_width_max_img_modify = gr.Slider(128, 16384, step=64, value=biniou_global_width_max_img_modify, label="Maximum image width (modify)", info="Maximum width of outputs when using modules that modify contents (default = 8192)", interactive=True)
-                                with gr.Column():
-                                    biniou_global_settings_height_max_img_modify = gr.Slider(128, 16384, step=64, value=biniou_global_height_max_img_modify, label="Maximum image height (modify)", info="Maximum height of outputs when using modules that modify contents (default = 8192)", interactive=True)
-                            with gr.Row():
-                                with gr.Column():
-                                    biniou_global_settings_sd15_width = gr.Slider(128, 16384, step=64, value=biniou_global_sd15_width, label="Default image width (SD 1.5 models)", info="Width of outputs when using SD 1.5 models (default = 512)", interactive=True)
-                                with gr.Column():
-                                    biniou_global_settings_sd15_height = gr.Slider(128, 16384, step=64, value=biniou_global_sd15_height, label="Default image height (SD 1.5 models)", info="Height of outputs when using SD 1.5 models (default = 512)", interactive=True)
-                            with gr.Row():
-                                with gr.Column():
-                                    biniou_global_settings_sdxl_width = gr.Slider(128, 16384, step=64, value=biniou_global_sdxl_width, label="Default image width (SDXL models)", info="Width of outputs when using modules that modify contents (default = 8192)", interactive=True)
-                                with gr.Column():
-                                    biniou_global_settings_sdxl_height = gr.Slider(128, 16384, step=64, value=biniou_global_sdxl_height, label="Default image height (SDXL models)", info="Height of outputs when using modules that modify contents (default = 8192)", interactive=True)
-                            with gr.Row():
-                                with gr.Column():
-                                    biniou_global_settings_gfpgan = gr.Checkbox(value=biniou_global_gfpgan, label="Default use of GFPGAN to restore faces", info="Activate/desactivate gfpgan enhancement for all modules using it (default = True)", interactive=True)
-                                with gr.Column():
-                                    biniou_global_settings_tkme = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Default token merging ratio", info="Set token merging ratio for all modules using it (default = 0.6)", interactive=True)
+                            with gr.Accordion("Backend settings", open=True):
+                                with gr.Row():
+                                    with gr.Column():
+                                        biniou_global_settings_server_name = gr.Checkbox(value=biniou_global_server_name, label="LAN accessibility", info="Uncheck to limit access of biniou to localhost only (default = True)", interactive=True)
+                                    with gr.Column():
+                                        biniou_global_settings_server_port = gr.Slider(0, 65535, step=1, precision=0, value=biniou_global_server_port, label="Server port", info="Define server port (default = 7860)")
+                                    with gr.Column():
+                                        biniou_global_settings_inbrowser = gr.Checkbox(value=biniou_global_inbrowser, label="Load in browser at start", info="Open webui in browser when starting biniou (default = False)", interactive=True)
+                                with gr.Row():
+                                    with gr.Column():
+                                        biniou_global_settings_auth = gr.Checkbox(value=biniou_global_auth, label="Activate authentication", info="A simple user/pass authentication (default = biniou/biniou). Credentials are stored in ./ini/auth.cfg (default = False)", interactive=True)
+                                    with gr.Column():
+                                        biniou_global_settings_auth_message = gr.Textbox(value=biniou_global_auth_message, lines=1, max_lines=3, label="Login message", info="Login screen welcome message", interactive=True)
+                            with gr.Accordion("Images  settings", open=True):
+                                with gr.Row():
+                                    with gr.Column():
+                                        biniou_global_settings_steps_max = gr.Slider(0, 512, step=1, value=biniou_global_steps_max, label="Maximum steps", info="Maximum number of possible iterations in a generation (default=100)", interactive=True)
+                                    with gr.Column():
+                                        biniou_global_settings_batch_size_max = gr.Slider(1, 512, step=1, value=biniou_global_batch_size_max, label="Maximum batch size", info ="Maximum value for a batch size (default=4)", interactive=True)
+                                with gr.Row():
+                                    with gr.Column():
+                                        biniou_global_settings_width_max_img_create = gr.Slider(128, 16384, step=64, value=biniou_global_width_max_img_create, label="Maximum image width (create)", info="Maximum width of outputs when using modules that create contents (default = 1280)", interactive=True)
+                                    with gr.Column():
+                                        biniou_global_settings_height_max_img_create = gr.Slider(128, 16384, step=64, value=biniou_global_height_max_img_create, label="Maximum image height (create)", info="Maximum height of outputs when using modules that create contents (default = 1280)", interactive=True)
+                                with gr.Row():
+                                    with gr.Column():
+                                        biniou_global_settings_width_max_img_modify = gr.Slider(128, 16384, step=64, value=biniou_global_width_max_img_modify, label="Maximum image width (modify)", info="Maximum width of outputs when using modules that modify contents (default = 8192)", interactive=True)
+                                    with gr.Column():
+                                        biniou_global_settings_height_max_img_modify = gr.Slider(128, 16384, step=64, value=biniou_global_height_max_img_modify, label="Maximum image height (modify)", info="Maximum height of outputs when using modules that modify contents (default = 8192)", interactive=True)
+                                with gr.Row():
+                                    with gr.Column():
+                                        biniou_global_settings_sd15_width = gr.Slider(128, 16384, step=64, value=biniou_global_sd15_width, label="Default image width (SD 1.5 models)", info="Width of outputs when using SD 1.5 models (default = 512)", interactive=True)
+                                    with gr.Column():
+                                        biniou_global_settings_sd15_height = gr.Slider(128, 16384, step=64, value=biniou_global_sd15_height, label="Default image height (SD 1.5 models)", info="Height of outputs when using SD 1.5 models (default = 512)", interactive=True)
+                                with gr.Row():
+                                    with gr.Column():
+                                        biniou_global_settings_sdxl_width = gr.Slider(128, 16384, step=64, value=biniou_global_sdxl_width, label="Default image width (SDXL models)", info="Width of outputs when using modules that modify contents (default = 8192)", interactive=True)
+                                    with gr.Column():
+                                        biniou_global_settings_sdxl_height = gr.Slider(128, 16384, step=64, value=biniou_global_sdxl_height, label="Default image height (SDXL models)", info="Height of outputs when using modules that modify contents (default = 8192)", interactive=True)
+                                with gr.Row():
+                                    with gr.Column():
+                                        biniou_global_settings_gfpgan = gr.Checkbox(value=biniou_global_gfpgan, label="Default use of GFPGAN to restore faces", info="Activate/desactivate gfpgan enhancement for all modules using it (default = True)", interactive=True)
+                                    with gr.Column():
+                                        biniou_global_settings_tkme = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Default token merging ratio", info="Set token merging ratio for all modules using it (default = 0.6)", interactive=True)
                             with gr.Row():
                                 with gr.Column():
                                     save_ini_btn_settings = gr.Button("Save custom defaults settings 💾")
@@ -8299,6 +8314,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                             biniou_global_settings_server_name,
                                             biniou_global_settings_server_port,
                                             biniou_global_settings_inbrowser,
+                                            biniou_global_settings_auth,
+                                            biniou_global_settings_auth_message,
                                             biniou_global_settings_steps_max,
                                             biniou_global_settings_batch_size_max,
                                             biniou_global_settings_width_max_img_create,
@@ -9332,6 +9349,8 @@ if __name__ == "__main__":
         favicon_path="./images/biniou_64.ico",
         ssl_keyfile="./ssl/key.pem",
         ssl_verify=False,
+        auth=biniou_auth_values if biniou_global_auth else None,
+        auth_message=biniou_global_auth_message if biniou_global_auth else None,
         inbrowser=biniou_global_inbrowser,
 #        inbrowser=True if len(sys.argv)>1 and sys.argv[1]=="--inbrowser" else biniou_global_inbrowser,
     )

@@ -342,11 +342,22 @@ def write_ini(module, *args) :
         savefile.write(content)
     return
 
+def write_auth(*args):
+    savename = f".ini/auth.cfg"
+    content = ""
+    for idx, data in enumerate(args):
+        content += f"{data} \n"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return 
+
 def write_settings_ini(
     module,
     biniou_global_settings_server_name,
     biniou_global_settings_server_port,
     biniou_global_settings_inbrowser,
+    biniou_global_settings_auth,
+    biniou_global_settings_auth_message,
     biniou_global_settings_steps_max,
     biniou_global_settings_batch_size_max,
     biniou_global_settings_width_max_img_create,
@@ -364,6 +375,8 @@ def write_settings_ini(
     content = f"biniou_global_server_name = {biniou_global_settings_server_name}\n\
 biniou_global_server_port = {biniou_global_settings_server_port}\n\
 biniou_global_inbrowser = {biniou_global_settings_inbrowser}\n\
+biniou_global_auth = {biniou_global_settings_auth}\n\
+biniou_global_auth_message = \"{biniou_global_settings_auth_message}\"\n\
 biniou_global_steps_max = {biniou_global_settings_steps_max}\n\
 biniou_global_batch_size_max = {biniou_global_settings_batch_size_max}\n\
 biniou_global_width_max_img_create = {biniou_global_settings_width_max_img_create}\n\
@@ -389,6 +402,16 @@ def read_ini(module) :
             ligne = ligne.replace("\\n", "\n")
             ligne = ligne.strip(' \n')
             content.append(ligne)
+    return content
+
+def read_auth() :
+    filename = f".ini/auth.cfg"
+    content = []
+    with open(filename, "r", encoding="utf-8") as fichier :
+        lignes = fichier.readlines()
+        for ligne in lignes : 
+            ligne = ligne.strip(' \n')
+            content.append(tuple(ligne.split(':')))
     return content
 
 def test_cfg_exist(module) :
