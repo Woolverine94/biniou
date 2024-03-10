@@ -73,12 +73,12 @@ def split_url_params(url_params) :
     else :         
         return "1", url_params, "1"
 
-biniou_global_server_name=True
-biniou_global_server_port=7860
-biniou_global_inbrowser=False
-biniou_global_auth=False
-biniou_global_auth_message="Welcome to biniou !"
-biniou_global_share=False
+biniou_global_server_name = True
+biniou_global_server_port = 7860
+biniou_global_inbrowser = False
+biniou_global_auth = False
+biniou_global_auth_message = "Welcome to biniou !"
+biniou_global_share = False
 biniou_global_steps_max = 100
 biniou_global_batch_size_max = 4
 biniou_global_width_max_img_create = 1280
@@ -101,6 +101,9 @@ if not os.path.isfile(".ini/auth.cfg"):
 
 if biniou_global_auth == True:
     biniou_auth_values = read_auth()
+
+if biniou_global_auth == False:
+    biniou_global_share = False
 
 ## Fonctions communes
 def dummy():
@@ -906,6 +909,12 @@ def refresh_textinv_manager_list_sd():
 def refresh_textinv_manager_list_sdxl():
     return gr.CheckboxGroup(choices=biniouTextinvModelsManager("./models/TextualInversion/SDXL").modelslister(), value=None, type="value", label="Installed textual inversion list", info="Select the textual inversion you want to delete and click \"Delete selected textual inversion\" button. Restart biniou to re-synchronize textual inversion list.")
 
+## Functions specific to Common settings
+def biniou_global_settings_auth_switch(auth_value):
+	if auth_value:
+		return biniou_global_settings_auth_message.update(interactive=True), biniou_global_settings_share.update(interactive=True)
+	else:
+		return biniou_global_settings_auth_message.update(interactive=False), biniou_global_settings_share.update(value=False, interactive=False)
 
 ## Functions specific to console
 def refresh_logfile():
@@ -8271,9 +8280,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Column():
                                         biniou_global_settings_auth = gr.Checkbox(value=biniou_global_auth, label="Activate authentication", info="A simple user/pass authentication (default = biniou/biniou). Credentials are stored in ./ini/auth.cfg (default = False)", interactive=True)
                                     with gr.Column():
-                                        biniou_global_settings_auth_message = gr.Textbox(value=biniou_global_auth_message, lines=1, max_lines=3, label="Login message", info="Login screen welcome message", interactive=True)
+                                        biniou_global_settings_auth_message = gr.Textbox(value=biniou_global_auth_message, lines=1, max_lines=3, label="Login message", info="Login screen welcome message. Authentication is required.", interactive=True if biniou_global_auth else False)
                                     with gr.Column():
-                                        biniou_global_settings_share = gr.Checkbox(value=biniou_global_share, label="Share online", info="⚠️ Allow online access by a public link to this biniou instance (default = False)⚠️", interactive=True)
+                                        biniou_global_settings_share = gr.Checkbox(value=biniou_global_share, label="Share online", info="⚠️ Allow online access by a public link to this biniou instance. Authentication is required. (default = False)⚠️", interactive=True if biniou_global_auth else False)
+                                        biniou_global_settings_auth.change(biniou_global_settings_auth_switch, biniou_global_settings_auth, [biniou_global_settings_auth_message, biniou_global_settings_share])
                             with gr.Accordion("Images settings", open=True):
                                 with gr.Row():
                                     with gr.Column():
