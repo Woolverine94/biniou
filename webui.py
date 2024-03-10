@@ -78,6 +78,7 @@ biniou_global_server_port=7860
 biniou_global_inbrowser=False
 biniou_global_auth=False
 biniou_global_auth_message="Welcome to biniou !"
+biniou_global_share=False
 biniou_global_steps_max = 100
 biniou_global_batch_size_max = 4
 biniou_global_width_max_img_create = 1280
@@ -8271,7 +8272,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         biniou_global_settings_auth = gr.Checkbox(value=biniou_global_auth, label="Activate authentication", info="A simple user/pass authentication (default = biniou/biniou). Credentials are stored in ./ini/auth.cfg (default = False)", interactive=True)
                                     with gr.Column():
                                         biniou_global_settings_auth_message = gr.Textbox(value=biniou_global_auth_message, lines=1, max_lines=3, label="Login message", info="Login screen welcome message", interactive=True)
-                            with gr.Accordion("Images  settings", open=True):
+                                    with gr.Column():
+                                        biniou_global_settings_share = gr.Checkbox(value=biniou_global_share, label="Share online", info="⚠️ Allow online access by a public link to this biniou instance (default = False)⚠️", interactive=True)
+                            with gr.Accordion("Images settings", open=True):
                                 with gr.Row():
                                     with gr.Column():
                                         biniou_global_settings_steps_max = gr.Slider(0, 512, step=1, value=biniou_global_steps_max, label="Maximum steps", info="Maximum number of possible iterations in a generation (default=100)", interactive=True)
@@ -8316,6 +8319,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                             biniou_global_settings_inbrowser,
                                             biniou_global_settings_auth,
                                             biniou_global_settings_auth_message,
+                                            biniou_global_settings_share,
                                             biniou_global_settings_steps_max,
                                             biniou_global_settings_batch_size_max,
                                             biniou_global_settings_width_max_img_create,
@@ -9345,12 +9349,13 @@ if __name__ == "__main__":
     demo.queue(concurrency_count=8).launch(
         server_name="0.0.0.0" if biniou_global_server_name else "127.0.0.1",
         server_port=biniou_global_server_port,
-        ssl_certfile="./ssl/cert.pem",
+        ssl_certfile="./ssl/cert.pem" if not biniou_global_share else None,
         favicon_path="./images/biniou_64.ico",
-        ssl_keyfile="./ssl/key.pem",
+        ssl_keyfile="./ssl/key.pem" if not biniou_global_share else None,
         ssl_verify=False,
         auth=biniou_auth_values if biniou_global_auth else None,
         auth_message=biniou_global_auth_message if biniou_global_auth else None,
+        share=biniou_global_share,
         inbrowser=biniou_global_inbrowser,
 #        inbrowser=True if len(sys.argv)>1 and sys.argv[1]=="--inbrowser" else biniou_global_inbrowser,
     )
