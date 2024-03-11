@@ -12,7 +12,7 @@ git clone https://github.com/Woolverine94/biniou.git --branch main
 echo ">>>[biniou oci 🧠 ]: Installing Virtual environment"
 cd ./biniou
 ./install.sh
-echo ">>>[biniou oci 🧠 ]: Installation finished. Use ./webui.sh to launch biniou. Press enter to exit"
+echo ">>>[biniou oci 🧠 ]: Installation finished. Use cd biniou && ./webui.sh to launch biniou. Press enter to exit"
 read dummy
 exit 0
 
