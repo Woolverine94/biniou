@@ -9,12 +9,14 @@
 <p align="justify">biniou is a self-hosted webui for several kinds of GenAI (generative artificial intelligence). You can generate multimedia contents with AI and use a chatbot on your own computer, even without dedicated GPU and starting from 8GB RAM. Can work offline (once deployed and required models downloaded).</p>
 
 <p style="text-align: center;">
-<a href="#debian-12--ubuntu-22043--linux-mint-212">GNU/Linux</a> • <a href="#windows-10--windows-11">Windows</a> • <a href="#macos-homebrew-install">macOS (experimental)</a> • <a href="#dockerfile">Docker</a> | <a href="https://github.com/Woolverine94/biniou/wiki">Documentation</a> | <a href="https://github.com/Woolverine94/biniou/wiki/Showroom">Showroom</a>
+<a href="#GNULinux">GNU/Linux</a> [ <a href="#Rocky-93--Alma-93--CentOS-Stream-9">RHEL base</a> | <a href="#debian-12--ubuntu-22043--linux-mint-212">Debian base</a> ] • <a href="#windows-10--windows-11">Windows</a> • <a href="#macos-homebrew-install">macOS (experimental)</a> • <a href="#dockerfile">Docker</a> | <a href="https://github.com/Woolverine94/biniou/wiki">Documentation</a> | <a href="https://github.com/Woolverine94/biniou/wiki/Showroom">Showroom</a>
 </p>
 
 ---
 
 ## Updates
+
+  * 🆕 **2024-03-11** : 🔥 ***Experimental one-click installer for Red Hat-based distributions*** 🔥 : You can now install biniou on Rocky 9.3, Alma 9.3 and CentOS Stream 9 by simply copy/pasting a shell command in a terminal. See [here](#Rocky-93--Alma-93--CentOS-Stream-9) for more informations.
 
   * 🆕 **2024-03-10** : 🔥 ***Adding gradio share feature*** 🔥 : Checking the "Share online" option of the Common settings panel, saving and restarting biniou will make your biniou instance accessible online without further configuration ! A public gradio.live url will be displayed in the terminal at launch time, and should be accessible for 72 hours. Please note that when this option is activated, only the public url should be used to access biniou, as https had to be disabled for local access. Use of authentication is mandatory for obvious security reasons.
 
@@ -37,7 +39,9 @@
   • <a href="#features">Features</a><br/>
   • <a href="#prerequisites">Prerequisites</a><br/>
   • <a href="#installation">Installation</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#debian-12--ubuntu-22043--linux-mint-212">Debian 12 / Ubuntu 22.04.3 / Linux Mint 21.2</a><br/>  
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#GNULinux">GNU/Linux</a><br/>  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Rocky-93--Alma-93--CentOS-Stream-9">Rocky 9.3 / Alma 9.3 / CentOS Stream 9</a><br/>  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#debian-12--ubuntu-22043--linux-mint-212">Debian 12 / Ubuntu 22.04.3 / Linux Mint 21.2</a><br/>  
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#windows-10--windows-11">Windows 10 / Windows 11</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#macos-homebrew-install">macOS Homebrew install</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#dockerfile">Dockerfile</a><br/>
@@ -150,16 +154,27 @@
 
 ## Installation 
 
-### Debian 12 / Ubuntu 22.04.3 / Linux Mint 21.2+
+### GNU/Linux
 
-#### One-click installer : 
+#### Rocky 9.3 / Alma 9.3 / CentOS Stream 9
+
+##### One-click installer : 
+
+  1. **Copy/paste and execute** the following command in a terminal : 
+```bash
+sh <(curl https://raw.githubusercontent.com/Woolverine94/biniou/main/oci-rhel.sh || wget -O - https://raw.githubusercontent.com/Woolverine94/biniou/main/oci-rhel.sh)
+```
+
+#### Debian 12 / Ubuntu 22.04.3 / Linux Mint 21.2+
+
+##### One-click installer : 
 
   1. **Copy/paste and execute** the following command in a terminal : 
 ```bash
 sh <(curl https://raw.githubusercontent.com/Woolverine94/biniou/main/oci-debian.sh || wget -O - https://raw.githubusercontent.com/Woolverine94/biniou/main/oci-debian.sh)
 ```
 
-#### Manual installation :
+##### Manual installation :
 
   1. **Install** the pre-requisites as root :
 
