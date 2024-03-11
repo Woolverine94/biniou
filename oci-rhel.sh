@@ -5,9 +5,9 @@ echo ">>>[biniou oci 🧠 ]: Installing prerequisites"
 
 if [ "$(groups|grep 'wheel')" == "" ]
   then
-    su root -c "dnf -y install dnf-plugins-core epel-release; dnf config-manager --add-repo=https://negativo17.org/repos/epel-multimedia.repo; dnf config-manager --set-enabled crb; dnf -y install git python3.11 python3.11-pip python3-virtualenv python3.11-devel gcc perl make ffmpeg openssl google-perftools; echo \">>>[biniou oci 🧠 ]: Modifying default python version\"; rm /usr/bin/python3; ln -s /usr/bin/python3.11 /usr/bin/python3"
+    su root -c "dnf -y install dnf-plugins-core epel-release; dnf config-manager --add-repo=https://negativo17.org/repos/epel-multimedia.repo; dnf config-manager --set-enabled crb; dnf -y install git python3.11 python3.11-pip python3-virtualenv python3.11-devel gcc perl make ffmpeg openssl gperftools-libs; echo \">>>[biniou oci 🧠 ]: Modifying default python version\"; rm /usr/bin/python3; ln -s /usr/bin/python3.11 /usr/bin/python3"
   else
-    sudo sh -c "dnf -y install dnf-plugins-core epel-release; dnf config-manager --add-repo=https://negativo17.org/repos/epel-multimedia.repo; dnf config-manager --set-enabled crb; dnf -y install git python3.11 python3.11-pip python3-virtualenv python3.11-devel gcc perl make ffmpeg openssl google-perftools; echo \">>>[biniou oci 🧠 ]: Modifying default python version\"; rm /usr/bin/python3; ln -s /usr/bin/python3.11 /usr/bin/python3"
+    sudo sh -c "dnf -y install dnf-plugins-core epel-release; dnf config-manager --add-repo=https://negativo17.org/repos/epel-multimedia.repo; dnf config-manager --set-enabled crb; dnf -y install git python3.11 python3.11-pip python3-virtualenv python3.11-devel gcc perl make ffmpeg openssl gperftools-libs; echo \">>>[biniou oci 🧠 ]: Modifying default python version\"; rm /usr/bin/python3; ln -s /usr/bin/python3.11 /usr/bin/python3"
 fi
 
 echo ">>>[biniou oci 🧠 ]: Cloning repository"
