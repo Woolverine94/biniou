@@ -1,6 +1,6 @@
 #!/bin/bash
 ## Detection of TCMalloc
-RELEASE="$(cat /etc/os-release|grep ^ID_LIKE)"
+RELEASE="$(cat /etc/os-release|grep ^ID)"
 
 if [ "$(echo $RELEASE|grep 'debian')" !=  "" ]
   then
