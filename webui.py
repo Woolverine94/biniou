@@ -432,9 +432,11 @@ def read_ini_txt2img_paa(module):
 
 def change_model_type_txt2img_paa(model_txt2img_paa):
     if model_txt2img_paa == "PixArt-alpha/PixArt-XL-2-1024-MS":
-        return width_txt2img_paa.update(value=biniou_global_sdxl_width), height_txt2img_paa.update(value=biniou_global_sdxl_height)
+        return sampler_txt2img_paa.update(value="UniPC", interactive=True), width_txt2img_paa.update(value=biniou_global_sdxl_width), height_txt2img_paa.update(value=biniou_global_sdxl_height), guidance_scale_txt2img_paa.update(value=7.0), num_inference_step_txt2img_paa.update(value=15)
+    elif model_txt2img_paa == "PixArt-alpha/PixArt-LCM-XL-2-1024-MS":
+        return sampler_txt2img_paa.update(value="LCM", interactive=False), width_txt2img_paa.update(value=biniou_global_sdxl_width), height_txt2img_paa.update(value=biniou_global_sdxl_height), guidance_scale_txt2img_paa.update(value=0.0), num_inference_step_txt2img_paa.update(value=4)
     else:
-        return width_txt2img_paa.update(value=biniou_global_sd15_width), height_txt2img_paa.update(value=biniou_global_sd15_height)
+        return sampler_txt2img_paa.update(value="UniPC", interactive=True), width_txt2img_paa.update(value=biniou_global_sd15_width), height_txt2img_paa.update(value=biniou_global_sd15_height), guidance_scale_txt2img_paa.update(value=7.0), num_inference_step_txt2img_paa.update(value=15)
 
 ## Functions specific to img2img 
 def zip_download_file_img2img(content):
@@ -3003,8 +3005,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Input(s) : </b>Prompt, negative prompt</br>
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF model page : </b>
-                                <a href='https://huggingface.co/PixArt-alpha/PixArt-XL-2-512x512' target='_blank'>PixArt-alpha/PixArt-XL-2-512x512</a>,
-                                <a href='https://huggingface.co/PixArt-alpha/PixArt-XL-2-1024-MS' target='_blank'>PixArt-alpha/PixArt-XL-2-1024-MS</a>,
+                                <a href='https://huggingface.co/PixArt-alpha/PixArt-XL-2-512x512' target='_blank'>PixArt-alpha/PixArt-XL-2-512x512</a>, 
+                                <a href='https://huggingface.co/PixArt-alpha/PixArt-XL-2-1024-MS' target='_blank'>PixArt-alpha/PixArt-XL-2-1024-MS</a>, 
+                                <a href='https://huggingface.co/PixArt-alpha/PixArt-LCM-XL-2-1024-MS' target='_blank'>PixArt-alpha/PixArt-LCM-XL-2-1024-MS</a>
                                 </br>
                                 """
                             )
@@ -3049,7 +3052,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_txt2img_paa = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
                             with gr.Column():
                                 tkme_txt2img_paa = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality", visible=False, interactive=False)
-                        model_txt2img_paa.change(fn=change_model_type_txt2img_paa, inputs=model_txt2img_paa, outputs=[width_txt2img_paa, height_txt2img_paa])
+                        model_txt2img_paa.change(fn=change_model_type_txt2img_paa, inputs=model_txt2img_paa, outputs=[sampler_txt2img_paa, width_txt2img_paa, height_txt2img_paa, guidance_scale_txt2img_paa, num_inference_step_txt2img_paa])
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_txt2img_paa = gr.Button("Save custom defaults settings 💾")

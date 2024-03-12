@@ -25,6 +25,7 @@ for filename in os.listdir(model_path_txt2img_paa):
 model_list_txt2img_paa_builtin = [
     "PixArt-alpha/PixArt-XL-2-512x512",
     "PixArt-alpha/PixArt-XL-2-1024-MS",
+    "PixArt-alpha/PixArt-LCM-XL-2-1024-MS",
 ]
 
 for k in range(len(model_list_txt2img_paa_builtin)):
