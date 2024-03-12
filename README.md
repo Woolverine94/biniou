@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-03-12** : 🔥 ***Adding TCMalloc support for RHEL-based distributions*** 🔥 : Fixing the one-click installer to add support for TCMalloc under GNU/Linux, both for Debian and RHEL based distributions.
+
   * 🆕 **2024-03-11** : 🔥 ***Experimental one-click installer for Red Hat-based distributions*** 🔥 : You can now install biniou on Rocky 9.3, Alma 9.3 and CentOS Stream 9 by simply copy/pasting a shell command in a terminal. See [here](#Rocky-93--Alma-93--CentOS-Stream-9) for more informations.
 
   * 🆕 **2024-03-10** : 🔥 ***Adding gradio share feature*** 🔥 : Checking the "Share online" option of the Common settings panel, saving and restarting biniou will make your biniou instance accessible online without further configuration ! A public gradio.live url will be displayed in the terminal at launch time, and should be accessible for 72 hours. Please note that when this option is activated, only the public url should be used to access biniou, as https had to be disabled for local access. Use of authentication is mandatory for obvious security reasons.
@@ -23,12 +25,6 @@
   * 🆕 **2024-03-09** : 🔥 ***Adding basic authentication*** 🔥 : Thanks to the possibilities offered by Gradio, biniou can now use a simple authentication system. You can enable it by checking the "Activate authentication option" in the Common settings panel. Default user/pass couple is biniou/biniou and you can edit ./.ini/auth.cfg to modify/add credentials (respect the "user:pass" syntax and only one account per line). Don't forget to save ! 
 
   * 🆕 **2024-03-08** : ***Disabling browser autolaunch for Windows users***  : For improving harmonization beetween Windows and others OS, Webui is not opened anymore in browser at biniou's start. If you were using this feature, you can re-enable it by checking the Common Settings's "Load in browser at start" option (don't forget to save !).
-
-  * 🆕 **2024-03-07** : 🔥 ***One-click installer for Debian-based distributions*** 🔥 : You can now install biniou on Debian 12, Ubuntu 22.04.3 and Linux Mint 21.2+ by simply copy/pasting a shell command in a terminal. See [here](#debian-12--ubuntu-22043--linux-mint-212) for more informations.
-
-  * 🆕 **2024-03-06** : 
-    - 🔥 ***New LoRA models*** 🔥 : Adding 6 new LoRA models (5 SDXL and one SD1.5).
-    -  ***Bugfix for IP-Adapter FaceID and LoRA*** : Following previous bugfix, LoRA models where unusable. This bugfix permits usage of LoRA models and IP-Adapter FaceID module
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
