@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-03-13** : 🔥 ***Adding LCM model to PixArt-alpha module*** 🔥 : Adding a new PixArt-Alpha model : [PixArt-alpha/PixArt-LCM-XL-2-1024-MS](https://huggingface.co/PixArt-alpha/PixArt-LCM-XL-2-1024-MS). Like all LCM models, this one is much faster than PixArt-alpha native ones, and can generate quality contents in only 4 steps.
+
   * 🆕 **2024-03-12** : 🔥 ***Adding TCMalloc support for RHEL-based distributions*** 🔥 : Fixing the one-click installer to add support for TCMalloc under GNU/Linux, both for Debian and RHEL based distributions.
 
   * 🆕 **2024-03-11** : 🔥 ***Experimental one-click installer for Red Hat-based distributions*** 🔥 : You can now install biniou on Rocky 9.3, Alma 9.3 and CentOS Stream 9 by simply copy/pasting a shell command in a terminal. See [here](#Rocky-93--Alma-93--CentOS-Stream-9) for more informations.
