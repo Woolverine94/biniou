@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-03-14** : 🔥 ***Adding Photomaker to Photobooth module*** 🔥 : Renaming **IP-Adapter FaceID** module to **Photobooth**, as it now can handle [Photomaker](https://huggingface.co/TencentARC/PhotoMaker) too, which also allow use of SDXL models for generation.
+
   * 🆕 **2024-03-13** : 🔥 ***Adding LCM model to PixArt-alpha module*** 🔥 : Adding a new PixArt-Alpha model : [PixArt-alpha/PixArt-LCM-XL-2-1024-MS](https://huggingface.co/PixArt-alpha/PixArt-LCM-XL-2-1024-MS). Like all LCM models, this one is much faster than PixArt-alpha native ones, and can generate quality contents in only 4 steps.
 
   * 🆕 **2024-03-12** : 🔥 ***Adding TCMalloc support for RHEL-based distributions*** 🔥 : Fixing the one-click installer to add support for TCMalloc under GNU/Linux, both for Debian and RHEL based distributions.
@@ -23,10 +25,6 @@
   * 🆕 **2024-03-11** : 🔥 ***Experimental one-click installer for Red Hat-based distributions*** 🔥 : You can now install biniou on Rocky 9.3, Alma 9.3 and CentOS Stream 9 by simply copy/pasting a shell command in a terminal. See [here](#Rocky-93--Alma-93--CentOS-Stream-9) for more informations.
 
   * 🆕 **2024-03-10** : 🔥 ***Adding gradio share feature*** 🔥 : Checking the "Share online" option of the Common settings panel, saving and restarting biniou will make your biniou instance accessible online without further configuration ! A public gradio.live url will be displayed in the terminal at launch time, and should be accessible for 72 hours. Please note that when this option is activated, only the public url should be used to access biniou, as https had to be disabled for local access. Use of authentication is mandatory for obvious security reasons.
-
-  * 🆕 **2024-03-09** : 🔥 ***Adding basic authentication*** 🔥 : Thanks to the possibilities offered by Gradio, biniou can now use a simple authentication system. You can enable it by checking the "Activate authentication option" in the Common settings panel. Default user/pass couple is biniou/biniou and you can edit ./.ini/auth.cfg to modify/add credentials (respect the "user:pass" syntax and only one account per line). Don't forget to save ! 
-
-  * 🆕 **2024-03-08** : ***Disabling browser autolaunch for Windows users***  : For improving harmonization beetween Windows and others OS, Webui is not opened anymore in browser at biniou's start. If you were using this feature, you can re-enable it by checking the Common Settings's "Load in browser at start" option (don't forget to save !).
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
@@ -76,7 +74,7 @@
   - 🖌️ [Fantasy Studio Paint by Example module](https://github.com/Woolverine94/biniou/wiki/Paint-by-Example) (require 16GB+ RAM)
   - 🖌️ [Stable Diffusion Outpaint module](https://github.com/Woolverine94/biniou/wiki/outpaint) (require 16GB+ RAM)
   - 🖼️ [Stable Diffusion ControlNet module](https://github.com/Woolverine94/biniou/wiki/ControlNet)
-  - 🖼️ [IP-Adapter FaceID module](https://github.com/Woolverine94/biniou/wiki/IP%E2%80%90Adapter-FaceID)
+  - 🖼️ [Photobooth module](https://github.com/Woolverine94/biniou/wiki/Photobooth)
   - 🎭 [Insight Face faceswapping module](https://github.com/Woolverine94/biniou/wiki/Insight-Face-faceswapping)
   - 🔎 [Real ESRGAN upscaler module](https://github.com/Woolverine94/biniou/wiki/Real-ESRGAN-upscaler)
   - 🔎[GFPGAN face restoration module](https://github.com/Woolverine94/biniou/wiki/GFPGAN-face-restoration)
@@ -101,6 +99,8 @@
   - 🧊 [Shap-E img2shape module](https://github.com/Woolverine94/biniou/wiki/Shap‐E-img2shape) (require 16GB+ RAM)
 
 * **Other features**
+
+  - Zeroconf installation through one-click installers or Windows exe.
   - Easy management through a control panel directly inside webui : update, restart, shutdown, activate authentication, control network access or share your instance online with a single click.
   - Communication between modules : send an output as an input to another module
   - Powered by [🤗 Huggingface](https://huggingface.co/) and [gradio](https://www.gradio.app/)
@@ -371,6 +371,8 @@ This application uses the following softwares and technologies :
 - [MagicMix](https://magicmix.github.io/) : MagicMix
 - [Fantasy Studio Paint by Example](https://github.com/Fantasy-Studio/Paint-by-Example) : paintbyex
 - [Controlnet Auxiliary models](https://github.com/patrickvonplaten/controlnet_aux) : preview models for ControlNet module
+- [IP-Adapter FaceID](https://huggingface.co/h94/IP-Adapter-FaceID) : Adapter model for Photobooth module
+- [Photomaker](https://huggingface.co/TencentARC/PhotoMaker) Adapter model for Photobooth module 
 - [Insight Face](https://insightface.ai/) : faceswapping
 - [Real ESRGAN](https://github.com/xinntao/Real-ESRGAN) : upscaler
 - [GFPGAN](https://github.com/TencentARC/GFPGAN) : face restoration
