@@ -21,3 +21,4 @@ tomesd
 ffmpeg-python
 trimesh
 peft
+git+https://github.com/TencentARC/PhotoMaker.git

@@ -696,21 +696,22 @@ def read_ini_faceid_ip(module) :
     content = read_ini(module)
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), bool(int(content[9])), float(content[10])
 
-def change_model_type_faceid_ip(model_faceid_ip):
+def change_model_type_faceid_ip(model_faceid_ip, prompt):
     if (model_faceid_ip == "stabilityai/sdxl-turbo"):
-        return sampler_faceid_ip.update(value="Euler a"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=False)
+        return sampler_faceid_ip.update(value="Euler a"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=False), prompt_faceid_ip.update()
 #    elif (model_faceid_ip == "thibaud/sdxl_dpo_turbo"):
-#        return sampler_faceid_ip.update(value="UniPC"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=False)
+#        return sampler_faceid_ip.update(value="UniPC"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=False), prompt_faceid_ip.update()
     elif (model_faceid_ip == "stabilityai/sd-turbo"):
-        return sampler_faceid_ip.update(value="Euler a"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=False), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=False)
-    elif ("XL" in model_faceid_ip.upper()) or (model_faceid_ip == "dataautogpt3/OpenDalleV1.1"):
-        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True)
+        return sampler_faceid_ip.update(value="Euler a"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=False), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=False), prompt_faceid_ip.update()
+    elif ("XL" in model_faceid_ip.upper()) or (model_faceid_ip == "dataautogpt3/OpenDalleV1.1") or (model_faceid_ip == "dataautogpt3/ProteusV0.4"):
+        photomaker_prompt_faceid_ip = "img "+ prompt
+        return sampler_faceid_ip.update(value="UniPC"), width_faceid_ip.update(value=biniou_global_sdxl_width), height_faceid_ip.update(value=biniou_global_sdxl_height), num_inference_step_faceid_ip.update(value=15), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True), prompt_faceid_ip.update(value=photomaker_prompt_faceid_ip)
     elif (model_faceid_ip == "segmind/SSD-1B"):
-        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=False), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True)
+        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=False), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True), prompt_faceid_ip.update()
     elif (model_faceid_ip == "segmind/Segmind-Vega"):
-        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=9.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=False), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True)
+        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=9.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=False), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True), prompt_faceid_ip.update()
     else:
-        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True)
+        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(value=biniou_global_sd15_width), height_faceid_ip.update(value=biniou_global_sd15_height), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True), prompt_faceid_ip.update()
 
 def change_lora_model_faceid_ip(model, lora_model, prompt):
     if lora_model != "":
@@ -1235,7 +1236,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         llamacpp_pix2pix = gr.Button("✍️ >> Instruct pix2pix")
                                         llamacpp_inpaint = gr.Button("✍️ >> inpaint")
                                         llamacpp_controlnet = gr.Button("✍️ >> ControlNet")
-                                        llamacpp_faceid_ip = gr.Button("✍️ >> IP-Adapter FaceID")
+                                        llamacpp_faceid_ip = gr.Button("✍️ >> Photobooth")
                                         gr.HTML(value='... audio module ...')
                                         llamacpp_musicgen = gr.Button("✍️ >> Musicgen")                                        
                                         llamacpp_audiogen = gr.Button("✍️ >> Audiogen")
@@ -1478,7 +1479,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         llava_pix2pix = gr.Button("✍️ >> Instruct pix2pix")
                                         llava_inpaint = gr.Button("✍️ >> inpaint")
                                         llava_controlnet = gr.Button("✍️ >> ControlNet")
-                                        llava_faceid_ip = gr.Button("✍️ >> IP-Adapter FaceID")
+                                        llava_faceid_ip = gr.Button("✍️ >> Photobooth")
                                         gr.HTML(value='... audio module ...')
                                         llava_musicgen = gr.Button("✍️ >> Musicgen")
                                         llava_audiogen = gr.Button("✍️ >> Audiogen")
@@ -1614,7 +1615,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         img2txt_git_pix2pix = gr.Button("✍️ >> Instruct pix2pix")
                                         img2txt_git_inpaint = gr.Button("✍️ >> inpaint")
                                         img2txt_git_controlnet = gr.Button("✍️ >> ControlNet")                                        
-                                        img2txt_git_faceid_ip = gr.Button("✍️ >> IP-Adapter FaceID")
+                                        img2txt_git_faceid_ip = gr.Button("✍️ >> Photobooth")
                                         gr.HTML(value='... audio module ...')
                                         img2txt_git_musicgen = gr.Button("✍️ >> Musicgen")                                        
                                         img2txt_git_audiogen = gr.Button("✍️ >> Audiogen")
@@ -1635,7 +1636,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         img2txt_git_pix2pix_both = gr.Button("🖼️+✍️ >> Instruct pix2pix")
                                         img2txt_git_inpaint_both = gr.Button("🖼️+✍️ >> inpaint")
                                         img2txt_git_controlnet_both = gr.Button("🖼️+✍️ >> ControlNet")
-                                        img2txt_git_faceid_ip_both = gr.Button("🖼️+✍️ >> IP-Adapter FaceID")
+                                        img2txt_git_faceid_ip_both = gr.Button("🖼️+✍️ >> Photobooth")
 
 # Whisper 
                 with gr.TabItem("Whisper 👂", id=14) as tab_whisper:
@@ -1759,7 +1760,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         whisper_pix2pix = gr.Button("✍️ >> Instruct pix2pix")
                                         whisper_inpaint = gr.Button("✍️ >> inpaint")
                                         whisper_controlnet = gr.Button("✍️ >> ControlNet")
-                                        whisper_faceid_ip = gr.Button("✍️ >> IP-Adapter FaceID")
+                                        whisper_faceid_ip = gr.Button("✍️ >> Photobooth")
                                         gr.HTML(value='... audio module ...')
                                         whisper_musicgen = gr.Button("✍️ >> Musicgen")
                                         whisper_audiogen = gr.Button("✍️ >> Audiogen")
@@ -1885,7 +1886,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         nllb_pix2pix = gr.Button("✍️ >> Instruct pix2pix")
                                         nllb_inpaint = gr.Button("✍️ >> inpaint")
                                         nllb_controlnet = gr.Button("✍️ >> ControlNet")                                        
-                                        nllb_faceid_ip = gr.Button("✍️ >> IP-Adapter FaceID")
+                                        nllb_faceid_ip = gr.Button("✍️ >> Photobooth")
                                         gr.HTML(value='... audio module ...')
                                         nllb_musicgen = gr.Button("✍️ >> Musicgen")                                        
                                         nllb_audiogen = gr.Button("✍️ >> Audiogen")
@@ -2031,7 +2032,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2prompt_pix2pix = gr.Button("✍️ >> Instruct pix2pix")
                                         txt2prompt_inpaint = gr.Button("✍️ >> inpaint")
                                         txt2prompt_controlnet = gr.Button("✍️ >> ControlNet")                                        
-                                        txt2prompt_faceid_ip = gr.Button("✍️ >> IP-Adapter FaceID")
+                                        txt2prompt_faceid_ip = gr.Button("✍️ >> Photobooth")
                                         gr.HTML(value='... video module ...')                                               
                                         txt2prompt_txt2vid_ms = gr.Button("✍️ >> Modelscope")
                                         txt2prompt_txt2vid_ze = gr.Button("✍️ >> Text2Video-Zero")                                        
@@ -2272,7 +2273,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_sd_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         txt2img_sd_outpaint = gr.Button("🖼️ >> outpaint")
                                         txt2img_sd_controlnet = gr.Button("🖼️ >> ControlNet")
-                                        txt2img_sd_faceid_ip = gr.Button("🖼️ >> IP-Adapter FaceID")
+                                        txt2img_sd_faceid_ip = gr.Button("🖼️ >> Photobooth")
                                         txt2img_sd_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         txt2img_sd_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         txt2img_sd_gfpgan = gr.Button("🖼️ >> GFPGAN")
@@ -2294,7 +2295,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_sd_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         txt2img_sd_inpaint_input = gr.Button("✍️ >> inpaint")
                                         txt2img_sd_controlnet_input = gr.Button("✍️ >> ControlNet")
-                                        txt2img_sd_faceid_ip_input = gr.Button("✍️ >> IP-Adapter FaceID")
+                                        txt2img_sd_faceid_ip_input = gr.Button("✍️ >> Photobooth")
                                         gr.HTML(value='... video module ...')                                        
                                         txt2img_sd_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
                                         txt2img_sd_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")                                        
@@ -2309,7 +2310,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_sd_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
                                         txt2img_sd_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
                                         txt2img_sd_controlnet_both = gr.Button("🖼️ + ✍️️ >> ControlNet")
-                                        txt2img_sd_faceid_ip_both = gr.Button("🖼️ + ✍️️ >> IP-Adapter FaceID")
+                                        txt2img_sd_faceid_ip_both = gr.Button("🖼️ + ✍️️ >> Photobooth")
 
 # Kandinsky
                 if ram_size() >= 16 :
@@ -2495,7 +2496,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_kd_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         txt2img_kd_outpaint = gr.Button("🖼️ >> outpaint")
                                         txt2img_kd_controlnet = gr.Button("🖼️ >> ControlNet")
-                                        txt2img_kd_faceid_ip = gr.Button("🖼️ >> IP-Adapter FaceID")
+                                        txt2img_kd_faceid_ip = gr.Button("🖼️ >> Photobooth")
                                         txt2img_kd_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         txt2img_kd_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         txt2img_kd_gfpgan = gr.Button("🖼️ >> GFPGAN")
@@ -2517,7 +2518,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_kd_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         txt2img_kd_inpaint_input = gr.Button("✍️ >> inpaint")
                                         txt2img_kd_controlnet_input = gr.Button("✍️ >> ControlNet")                                        
-                                        txt2img_kd_faceid_ip_input = gr.Button("✍️ >> IP-Adapter FaceID")
+                                        txt2img_kd_faceid_ip_input = gr.Button("✍️ >> Photobooth")
                                         gr.HTML(value='... video module ...')                                                                                
                                         txt2img_kd_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
                                         txt2img_kd_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")
@@ -2532,7 +2533,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_kd_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
                                         txt2img_kd_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
                                         txt2img_kd_controlnet_both = gr.Button("🖼️ + ✍️ >> ControlNet")
-                                        txt2img_kd_faceid_ip_both = gr.Button("🖼️ + ✍️ >> IP-Adapter FaceID")
+                                        txt2img_kd_faceid_ip_both = gr.Button("🖼️ + ✍️ >> Photobooth")
 
 # LCM
                 with gr.TabItem("LCM 🖼️", id=23) as tab_txt2img_lcm:
@@ -2741,7 +2742,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_lcm_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         txt2img_lcm_outpaint = gr.Button("🖼️ >> outpaint")
                                         txt2img_lcm_controlnet = gr.Button("🖼️ >> ControlNet")
-                                        txt2img_lcm_faceid_ip = gr.Button("🖼️ >> IP-Adapter FaceID")
+                                        txt2img_lcm_faceid_ip = gr.Button("🖼️ >> Photobooth")
                                         txt2img_lcm_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         txt2img_lcm_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         txt2img_lcm_gfpgan = gr.Button("🖼️ >> GFPGAN")
@@ -2763,7 +2764,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_lcm_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         txt2img_lcm_inpaint_input = gr.Button("✍️ >> inpaint")
                                         txt2img_lcm_controlnet_input = gr.Button("✍️ >> ControlNet")
-                                        txt2img_lcm_faceid_ip_input = gr.Button("✍️ >> IP-Adapter FaceID")
+                                        txt2img_lcm_faceid_ip_input = gr.Button("✍️ >> Photobooth")
                                         gr.HTML(value='... video module ...')
                                         txt2img_lcm_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
                                         txt2img_lcm_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")
@@ -2778,7 +2779,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_lcm_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
                                         txt2img_lcm_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
                                         txt2img_lcm_controlnet_both = gr.Button("🖼️ + ✍️️ >> ControlNet")
-                                        txt2img_lcm_faceid_ip_both = gr.Button("🖼️ + ✍️️ >> IP-Adapter FaceID")
+                                        txt2img_lcm_faceid_ip_both = gr.Button("🖼️ + ✍️️ >> Photobooth")
 
 # txt2img_mjm
                 with gr.TabItem("Midjourney-mini 🖼️", id=24) as tab_txt2img_mjm:
@@ -2954,7 +2955,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_mjm_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         txt2img_mjm_outpaint = gr.Button("🖼️ >> outpaint")
                                         txt2img_mjm_controlnet = gr.Button("🖼️ >> ControlNet")
-                                        txt2img_mjm_faceid_ip = gr.Button("🖼️ >> IP-Adapter FaceID")
+                                        txt2img_mjm_faceid_ip = gr.Button("🖼️ >> Photobooth")
                                         txt2img_mjm_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         txt2img_mjm_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         txt2img_mjm_gfpgan = gr.Button("🖼️ >> GFPGAN")
@@ -2976,7 +2977,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_mjm_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         txt2img_mjm_inpaint_input = gr.Button("✍️ >> inpaint")
                                         txt2img_mjm_controlnet_input = gr.Button("✍️ >> ControlNet")
-                                        txt2img_mjm_faceid_ip_input = gr.Button("✍️ >> IP-Adapter FaceID")
+                                        txt2img_mjm_faceid_ip_input = gr.Button("✍️ >> Photobooth")
                                         gr.HTML(value='... video module ...')                                        
                                         txt2img_mjm_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
                                         txt2img_mjm_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")                                        
@@ -2991,7 +2992,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_mjm_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
                                         txt2img_mjm_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
                                         txt2img_mjm_controlnet_both = gr.Button("🖼️ + ✍️️ >> ControlNet") 
-                                        txt2img_mjm_faceid_ip_both = gr.Button("🖼️ + ✍️️ >> IP-Adapter FaceID") 
+                                        txt2img_mjm_faceid_ip_both = gr.Button("🖼️ + ✍️️ >> Photobooth") 
 
 # txt2img_paa
                 with gr.TabItem("PixArt-Alpha 🖼️", id=25) as tab_txt2img_paa:
@@ -3170,7 +3171,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_paa_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         txt2img_paa_outpaint = gr.Button("🖼️ >> outpaint")
                                         txt2img_paa_controlnet = gr.Button("🖼️ >> ControlNet")
-                                        txt2img_paa_faceid_ip = gr.Button("🖼️ >> IP-Adapter FaceID")
+                                        txt2img_paa_faceid_ip = gr.Button("🖼️ >> Photobooth")
                                         txt2img_paa_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         txt2img_paa_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         txt2img_paa_gfpgan = gr.Button("🖼️ >> GFPGAN")
@@ -3192,7 +3193,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_paa_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         txt2img_paa_inpaint_input = gr.Button("✍️ >> inpaint")
                                         txt2img_paa_controlnet_input = gr.Button("✍️ >> ControlNet")
-                                        txt2img_paa_faceid_ip_input = gr.Button("✍️ >> IP-Adapter FaceID")
+                                        txt2img_paa_faceid_ip_input = gr.Button("✍️ >> Photobooth")
                                         gr.HTML(value='... video module ...')                                        
                                         txt2img_paa_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
                                         txt2img_paa_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")                                        
@@ -3206,7 +3207,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_paa_img2img_ip_both = gr.Button("🖼️ + ✍️ >> IP-Adapter")
                                         txt2img_paa_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
                                         txt2img_paa_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
-                                        txt2img_paa_controlnet_both = gr.Button("🖼️ + ✍️️ >> IP-Adapter FaceID") 
+                                        txt2img_paa_controlnet_both = gr.Button("🖼️ + ✍️️ >> Photobooth") 
                                         txt2img_paa_faceid_ip_both = gr.Button("🖼️ + ✍️️ >> ControlNet") 
                                         
 # img2img    
@@ -3451,7 +3452,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         img2img_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         img2img_outpaint = gr.Button("🖼️ >> outpaint")
                                         img2img_controlnet = gr.Button("🖼️ >> ControlNet")
-                                        img2img_faceid_ip = gr.Button("🖼️ >> IP-Adapter FaceID")
+                                        img2img_faceid_ip = gr.Button("🖼️ >> Photobooth")
                                         img2img_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         img2img_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         img2img_gfpgan = gr.Button("🖼️ >> GFPGAN")
@@ -3472,7 +3473,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         img2img_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         img2img_inpaint_input = gr.Button("✍️ >> inpaint")
                                         img2img_controlnet_input = gr.Button("✍️ >> ControlNet")
-                                        img2img_faceid_ip_input = gr.Button("✍️ >> IP-Adapter FaceID")
+                                        img2img_faceid_ip_input = gr.Button("✍️ >> Photobooth")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
@@ -3481,7 +3482,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         img2img_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
                                         img2img_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
                                         img2img_controlnet_both = gr.Button("🖼️ + ✍️ >> ControlNet")
-                                        img2img_faceid_ip_both = gr.Button("🖼️ + ✍️ >> IP-Adapter FaceID")
+                                        img2img_faceid_ip_both = gr.Button("🖼️ + ✍️ >> Photobooth")
 
 # img2img_ip    
                 with gr.TabItem("IP-Adapter 🖌️", id=27) as tab_img2img_ip:
@@ -3716,7 +3717,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         img2img_ip_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         img2img_ip_outpaint = gr.Button("🖼️ >> outpaint")
                                         img2img_ip_controlnet = gr.Button("🖼️ >> ControlNet")
-                                        img2img_ip_faceid_ip = gr.Button("🖼️ >> IP-Adapter FaceID")
+                                        img2img_ip_faceid_ip = gr.Button("🖼️ >> Photobooth")
                                         img2img_ip_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         img2img_ip_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         img2img_ip_gfpgan = gr.Button("🖼️ >> GFPGAN")
@@ -3737,7 +3738,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         img2img_ip_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         img2img_ip_inpaint_input = gr.Button("✍️ >> inpaint")
                                         img2img_ip_controlnet_input = gr.Button("✍️ >> ControlNet")
-                                        img2img_ip_faceid_ip_input = gr.Button("✍️ >> IP-Adapter FaceID")
+                                        img2img_ip_faceid_ip_input = gr.Button("✍️ >> Photobooth")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
@@ -3746,7 +3747,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         img2img_ip_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
                                         img2img_ip_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
                                         img2img_ip_controlnet_both = gr.Button("🖼️ + ✍️ >> ControlNet")
-                                        img2img_ip_faceid_ip_both = gr.Button("🖼️ + ✍️ >> IP-Adapter FaceID")
+                                        img2img_ip_faceid_ip_both = gr.Button("🖼️ + ✍️ >> Photobooth")
 
 # img2var    
                 if ram_size() >= 16 :
@@ -3922,7 +3923,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         img2var_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         img2var_outpaint = gr.Button("🖼️ >> outpaint")
                                         img2var_controlnet = gr.Button("🖼️ >> ControlNet")
-                                        img2var_faceid_ip = gr.Button("🖼️ >> IP-Adapter FaceID")
+                                        img2var_faceid_ip = gr.Button("🖼️ >> Photobooth")
                                         img2var_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         img2var_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         img2var_gfpgan = gr.Button("🖼️ >> GFPGAN")
@@ -4126,7 +4127,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         pix2pix_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         pix2pix_outpaint = gr.Button("🖼️ >> outpaint")
                                         pix2pix_controlnet = gr.Button("🖼️ >> ControlNet")
-                                        pix2pix_faceid_ip = gr.Button("🖼️ >> IP-Adapter FaceID")
+                                        pix2pix_faceid_ip = gr.Button("🖼️ >> Photobooth")
                                         pix2pix_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         pix2pix_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         pix2pix_gfpgan = gr.Button("🖼️ >> GFPGAN")
@@ -4148,7 +4149,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         pix2pix_img2img_ip_input = gr.Button("✍️ >> IP-Adapter")
                                         pix2pix_inpaint_input = gr.Button("✍️ >> inpaint")
                                         pix2pix_controlnet_input = gr.Button("✍️ >> ControlNet")
-                                        pix2pix_faceid_ip_input = gr.Button("✍️ >> IP-Adapter FaceID")
+                                        pix2pix_faceid_ip_input = gr.Button("✍️ >> Photobooth")
                                         gr.HTML(value='... video module ...')                                        
                                         pix2pix_vid2vid_ze_input = gr.Button("✍️ >> Video Instruct-pix2pix")
                             with gr.Column():
@@ -4160,7 +4161,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         pix2pix_img2img_ip_both = gr.Button("🖼️ + ✍️ >> IP-Adapter")
                                         pix2pix_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
                                         pix2pix_controlnet_both = gr.Button("🖼️ + ✍️ >> ControlNet")
-                                        pix2pix_faceid_ip_both = gr.Button("🖼️ + ✍️ >> IP-Adapter FaceID")
+                                        pix2pix_faceid_ip_both = gr.Button("🖼️ + ✍️ >> Photobooth")
 # magicmix    
                 with gr.TabItem("MagicMix 🖌️", id=291) as tab_magicmix:
                     with gr.Accordion("About", open=False):                
@@ -4336,7 +4337,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         magicmix_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         magicmix_outpaint = gr.Button("🖼️ >> outpaint")
                                         magicmix_controlnet = gr.Button("🖼️ >> ControlNet")
-                                        magicmix_faceid_ip = gr.Button("🖼️ >> IP-Adapter FaceID")
+                                        magicmix_faceid_ip = gr.Button("🖼️ >> Photobooth")
                                         magicmix_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         magicmix_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         magicmix_gfpgan = gr.Button("🖼️ >> GFPGAN")
@@ -4548,7 +4549,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         inpaint_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         inpaint_outpaint = gr.Button("🖼️ >> outpaint")
                                         inpaint_controlnet = gr.Button("🖼️ >> ControlNet")
-                                        inpaint_faceid_ip = gr.Button("🖼️ >> IP-Adapter FaceID")
+                                        inpaint_faceid_ip = gr.Button("🖼️ >> Photobooth")
                                         inpaint_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         inpaint_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         inpaint_gfpgan = gr.Button("🖼️ >> GFPGAN")
@@ -4570,7 +4571,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         inpaint_img2img_ip_input = gr.Button("✍️ >> IP-Adapter")
                                         inpaint_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         inpaint_controlnet_input = gr.Button("✍️ >> ControlNet")
-                                        inpaint_faceid_ip_input = gr.Button("✍️ >> IP-Adapter FaceID")
+                                        inpaint_faceid_ip_input = gr.Button("✍️ >> Photobooth")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
@@ -4580,7 +4581,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         inpaint_img2img_ip_both = gr.Button("🖼️ + ✍️ >> IP-Adapter")
                                         inpaint_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
                                         inpaint_controlnet_both = gr.Button("🖼️ + ✍️ >> ControlNet")
-                                        inpaint_faceid_ip_both = gr.Button("🖼️ + ✍️ >> IP-Adapter FaceID")
+                                        inpaint_faceid_ip_both = gr.Button("🖼️ + ✍️ >> Photobooth")
 
 # paintbyex    
                 if ram_size() >= 16 :
@@ -4767,7 +4768,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         paintbyex_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         paintbyex_outpaint = gr.Button("🖼️ >> outpaint")
                                         paintbyex_controlnet = gr.Button("🖼️ >> ControlNet")
-                                        paintbyex_faceid_ip = gr.Button("🖼️ >> IP-Adapter FaceID")
+                                        paintbyex_faceid_ip = gr.Button("🖼️ >> Photobooth")
                                         paintbyex_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         paintbyex_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         paintbyex_gfpgan = gr.Button("🖼️ >> GFPGAN")
@@ -5006,7 +5007,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         outpaint_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         outpaint_outpaint = gr.Button("🖼️ >> outpaint")
                                         outpaint_controlnet = gr.Button("🖼️ >> ControlNet")
-                                        outpaint_faceid_ip = gr.Button("🖼️ >> IP-Adapter FaceID")
+                                        outpaint_faceid_ip = gr.Button("🖼️ >> Photobooth")
                                         outpaint_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         outpaint_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         outpaint_gfpgan = gr.Button("🖼️ >> GFPGAN")
@@ -5028,7 +5029,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         outpaint_img2img_ip_input = gr.Button("✍️ >> IP-Adapter")
                                         outpaint_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         outpaint_controlnet_input = gr.Button("✍️ >> ControlNet")
-                                        outpaint_faceid_ip_input = gr.Button("✍️ >> IP-Adapter FaceID")
+                                        outpaint_faceid_ip_input = gr.Button("✍️ >> Photobooth")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
@@ -5038,7 +5039,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         outpaint_img2img_ip_both = gr.Button("🖼️ + ✍️ >> IP-Adapter")
                                         outpaint_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
                                         outpaint_controlnet_both = gr.Button("🖼️ + ✍️ >> ControlNet")
-                                        outpaint_faceid_ip_both = gr.Button("🖼️ + ✍️ >> IP-Adapter FaceID")
+                                        outpaint_faceid_ip_both = gr.Button("🖼️ + ✍️ >> Photobooth")
 # ControlNet
                 with gr.TabItem("ControlNet 🖼️", id=295) as tab_controlnet:
                     with gr.Accordion("About", open=False):                
@@ -5335,7 +5336,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         controlnet_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         controlnet_outpaint = gr.Button("🖼️ >> outpaint")
                                         controlnet_controlnet = gr.Button("🖼️ >> ControlNet")
-                                        controlnet_faceid_ip = gr.Button("🖼️ >> IP-Adapter FaceID")
+                                        controlnet_faceid_ip = gr.Button("🖼️ >> Photobooth")
                                         controlnet_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         controlnet_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         controlnet_gfpgan = gr.Button("🖼️ >> GFPGAN")
@@ -5357,7 +5358,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         controlnet_img2img_ip_input = gr.Button("✍️ >> IP-Adapter")
                                         controlnet_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         controlnet_inpaint_input = gr.Button("✍️ >> inpaint")
-                                        controlnet_faceid_ip_input = gr.Button("✍️ >> IP-Adapter FaceID")
+                                        controlnet_faceid_ip_input = gr.Button("✍️ >> Photobooth")
                                         gr.HTML(value='... video module ...')                                        
                                         controlnet_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
                                         controlnet_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")
@@ -5371,18 +5372,18 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         controlnet_img2img_ip_both = gr.Button("🖼️ + ✍️ >> IP-Adapter")
                                         controlnet_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
                                         controlnet_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
-                                        controlnet_faceid_ip_both = gr.Button("🖼️ + ✍️ >> IP-Adapter FaceID")
+                                        controlnet_faceid_ip_both = gr.Button("🖼️ + ✍️ >> Photobooth")
 
 
 # faceid_ip
-                with gr.TabItem("IP-Adapter FaceID 🖼️", id=296) as tab_faceid_ip:
+                with gr.TabItem("Photobooth 🖼️", id=296) as tab_faceid_ip:
                     with gr.Accordion("About", open=False):                
                         with gr.Box():                       
                             gr.HTML(
                                 """
                                 <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>IP-Adapter Faceid</br>
-                                <b>Function : </b>Generate portraits using the face taken from the input image, a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a>, <a href='https://huggingface.co/h94/IP-Adapter-FaceID' target='_blank'>IP-Adapter FaceID</a> and <a href='https://github.com/deepinsight/insightface' target='_blank'>Insight face</a>.</br>
+                                <b>Module : </b>Photobooth</br>
+                                <b>Function : </b>Generate portraits using the face taken from the input image, a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a>, <a href='https://huggingface.co/h94/IP-Adapter-FaceID' target='_blank'>Photobooth</a> and <a href='https://github.com/deepinsight/insightface' target='_blank'>Insight face</a>.</br>
                                 <b>Input(s) : </b>Input image, prompt, negative prompt</br>
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF model page : </b>
@@ -5513,7 +5514,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     negative_prompt_faceid_ip = gr.Textbox(lines=5, max_lines=5, label="Negative Prompt", info="Describe what you DO NOT want in your image", placeholder="out of frame, bad quality, medium quality, blurry, ugly, duplicate, text, characters, logo")
                         model_faceid_ip.change(
                             fn=change_model_type_faceid_ip, 
-                            inputs=[model_faceid_ip],
+                            inputs=[model_faceid_ip, prompt_faceid_ip],
                             outputs=[
                                 sampler_faceid_ip,
                                 width_faceid_ip,
@@ -5523,6 +5524,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 lora_model_faceid_ip,
                                 txtinv_faceid_ip,
                                 negative_prompt_faceid_ip,
+                                prompt_faceid_ip,
                             ]
                         )
                         lora_model_faceid_ip.change(fn=change_lora_model_faceid_ip, inputs=[model_faceid_ip, lora_model_faceid_ip, prompt_faceid_ip], outputs=[prompt_faceid_ip])
@@ -5604,7 +5606,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         faceid_ip_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         faceid_ip_outpaint = gr.Button("🖼️ >> outpaint")
                                         faceid_ip_controlnet = gr.Button("🖼️ >> ControlNet")
-                                        faceid_ip_faceid_ip = gr.Button("🖼️ >> IP-Adapter FaceID")
+                                        faceid_ip_faceid_ip = gr.Button("🖼️ >> Photobooth")
                                         faceid_ip_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         faceid_ip_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         faceid_ip_gfpgan = gr.Button("🖼️ >> GFPGAN")
@@ -5776,7 +5778,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         faceswap_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         faceswap_outpaint = gr.Button("🖼️ >> outpaint")
                                         faceswap_controlnet = gr.Button("🖼️ >> ControlNet")
-                                        faceswap_faceid_ip = gr.Button("🖼️ >> IP-Adapter FaceID")
+                                        faceswap_faceid_ip = gr.Button("🖼️ >> Photobooth")
                                         faceswap_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         faceswap_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         faceswap_gfpgan = gr.Button("🖼️ >> GFPGAN")
@@ -5917,7 +5919,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         resrgan_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         resrgan_outpaint = gr.Button("🖼️ >> outpaint")
                                         resrgan_controlnet = gr.Button("🖼️ >> ControlNet")
-                                        resrgan_faceid_ip = gr.Button("🖼️ >> IP-Adapter FaceID")
+                                        resrgan_faceid_ip = gr.Button("🖼️ >> Photobooth")
                                         resrgan_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         resrgan_gfpgan = gr.Button("🖼️ >> GFPGAN")
                                         gr.HTML(value='... Video module ...')
@@ -6049,7 +6051,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gfpgan_paintbyex = gr.Button("🖼️ >> Paint by example") 
                                         gfpgan_outpaint = gr.Button("🖼️ >> outpaint")
                                         gfpgan_controlnet = gr.Button("🖼️ >> ControlNet")
-                                        gfpgan_faceid_ip = gr.Button("🖼️ >> Ip-Adapter FaceID")
+                                        gfpgan_faceid_ip = gr.Button("🖼️ >> Photobooth")
                                         gfpgan_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         gfpgan_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         gr.HTML(value='... Video module ...')

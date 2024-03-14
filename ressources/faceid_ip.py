@@ -7,6 +7,7 @@ import cv2
 from insightface.app import FaceAnalysis
 import torch
 from diffusers import StableDiffusionPipeline, StableDiffusionXLPipeline, AutoPipelineForText2Image
+from photomaker import PhotoMakerStableDiffusionXLPipeline
 from huggingface_hub import snapshot_download, hf_hub_download
 from compel import Compel, ReturnedEmbeddingsType
 import random
@@ -43,15 +44,17 @@ model_list_faceid_ip = []
 
 model_list_faceid_ip_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
+    "SG161222/RealVisXL_V3.0",
 #    "stabilityai/sd-turbo",
 #    "stabilityai/sdxl-turbo",
 #    "dataautogpt3/OpenDalleV1.1",
+#    "dataautogpt3/ProteusV0.4",
     "digiplay/AbsoluteReality_v1.8.1",
 #    "segmind/Segmind-Vega",
 #    "segmind/SSD-1B",
     "gsdf/Counterfeit-V2.5",
 #    "ckpt/anything-v4.5-vae-swapped",
-#    "stabilityai/stable-diffusion-xl-base-1.0",
+    "stabilityai/stable-diffusion-xl-base-1.0",
 #    "stabilityai/stable-diffusion-xl-refiner-1.0",
     "runwayml/stable-diffusion-v1-5",
     "nitrosocke/Ghibli-Diffusion",
@@ -119,10 +122,15 @@ def image_faceid_ip(
     else :
         is_turbo_faceid_ip: bool = False
 
-    if (("XL" in modelid_faceid_ip.upper()) or (modelid_faceid_ip == "segmind/SSD-1B") or (modelid_faceid_ip == "segmind/Segmind-Vega") or (modelid_faceid_ip == "dataautogpt3/OpenDalleV1.1")):
+    if (("XL" in modelid_faceid_ip.upper()) or (modelid_faceid_ip == "segmind/SSD-1B") or (modelid_faceid_ip == "segmind/Segmind-Vega") or (modelid_faceid_ip == "dataautogpt3/OpenDalleV1.1") or (modelid_faceid_ip == "dataautogpt3/ProteusV0.4")):
         is_xl_faceid_ip: bool = True
     else :
-        is_xl_faceid_ip: bool = False     
+        is_xl_faceid_ip: bool = False
+
+    if (modelid_faceid_ip == "dataautogpt3/ProteusV0.4"):
+        is_bin_faceid_ip: bool = True
+    else :
+        is_bin_faceid_ip: bool = False
 
     if (is_turbo_faceid_ip == True) :
         if modelid_faceid_ip[0:9] == "./models/" :
@@ -131,10 +139,6 @@ def image_faceid_ip(
                 torch_dtype=model_arch,
                 use_safetensors=True, 
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
-#                safety_checker=nsfw_filter_final, 
-#                feature_extractor=feat_ex,
-                custom_pipeline=filename_community_faceid_ip,
-#                custom_revision=filename_community_faceid_ip,
             )
         else :        
             pipe_faceid_ip = AutoPipelineForText2Image.from_pretrained(
@@ -144,36 +148,54 @@ def image_faceid_ip(
                 use_safetensors=True, 
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
-                custom_pipeline=filename_community_faceid_ip,
-#                custom_revision=filename_community_faceid_ip,
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
+        pipe_faceid_ip = schedulerer(pipe_faceid_ip, sampler_faceid_ip)
+        pipe_faceid_ip.load_photomaker_adapter(
+            "TencentARC/PhotoMaker",
+            subfolder="",
+            weight_name="photomaker-v1.bin",
+            cache_dir=model_path_ipa_faceid_ip,
+            trigger_word="img",
+            use_safetensors=True,
+            resume_download=True,
+            local_files_only=True if offline_test() else None
+        )
+        pipe_faceid_ip.id_encoder.to(device_faceid_ip)
+        pipe_faceid_ip.fuse_lora()
     elif (is_xl_faceid_ip == True) and (is_turbo_faceid_ip == False) :
         if modelid_faceid_ip[0:9] == "./models/" :
-            pipe_faceid_ip = StableDiffusionXLPipeline.from_single_file(
+            pipe_faceid_ip = PhotoMakerStableDiffusionXLPipeline.from_single_file(
                 modelid_faceid_ip, 
                 torch_dtype=model_arch,
                 use_safetensors=True, 
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
-#                safety_checker=nsfw_filter_final, 
-#                feature_extractor=feat_ex,
-                custom_pipeline=filename_community_faceid_ip,
-#                custom_revision=filename_community_faceid_ip,
             )
         else :        
-            pipe_faceid_ip = StableDiffusionXLPipeline.from_pretrained(
+            pipe_faceid_ip = PhotoMakerStableDiffusionXLPipeline.from_pretrained(
                 modelid_faceid_ip, 
                 cache_dir=model_path_faceid_ip, 
                 torch_dtype=model_arch,
                 use_safetensors=True, 
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
-                custom_pipeline=filename_community_faceid_ip,
-#                custom_revision=filename_community_faceid_ip,
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
+        pipe_faceid_ip = schedulerer(pipe_faceid_ip, sampler_faceid_ip)
+        pipe_faceid_ip.load_photomaker_adapter(
+            "TencentARC/PhotoMaker",
+            subfolder="",
+            weight_name="photomaker-v1.bin",
+            cache_dir=model_path_ipa_faceid_ip,
+            trigger_word="img",
+            use_safetensors=True,
+            resume_download=True,
+            local_files_only=True if offline_test() else None
+        )
+        pipe_faceid_ip.id_encoder.to(device_faceid_ip)
+        pipe_faceid_ip.fuse_lora()
     else :
         if modelid_faceid_ip[0:9] == "./models/" :
             pipe_faceid_ip = StableDiffusionPipeline.from_single_file(
@@ -199,15 +221,17 @@ def image_faceid_ip(
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
+        pipe_faceid_ip = schedulerer(pipe_faceid_ip, sampler_faceid_ip)
 
     if (is_xl_faceid_ip == True):
-        pipe_faceid_ip.load_ip_adapter_face_id(
-            "h94/IP-Adapter-FaceID",
-            cache_dir=model_path_ipa_faceid_ip,
-            weight_name="ip-adapter-faceid_sdxl.bin",
-            resume_download=True,
-            local_files_only=True if offline_test() else None
-        )
+#        pipe_faceid_ip.load_ip_adapter_face_id(
+#            "h94/IP-Adapter-FaceID",
+#            cache_dir=model_path_ipa_faceid_ip,
+#            weight_name="ip-adapter-faceid_sdxl.bin",
+#            resume_download=True,
+#            local_files_only=True if offline_test() else None
+#        )
+        pass
     else:
         pipe_faceid_ip.load_ip_adapter_face_id(
             "h94/IP-Adapter-FaceID",
@@ -218,8 +242,8 @@ def image_faceid_ip(
         )
 
     pipe_faceid_ip.set_ip_adapter_scale(denoising_strength_faceid_ip)
-    pipe_faceid_ip = schedulerer(pipe_faceid_ip, sampler_faceid_ip)
-#    pipe_faceid_ip.enable_attention_slicing("max")  
+#    pipe_faceid_ip = schedulerer(pipe_faceid_ip, sampler_faceid_ip)
+#    pipe_faceid_ip.enable_attention_slicing("max")
     tomesd.apply_patch(pipe_faceid_ip, ratio=tkme_faceid_ip)
     if device_label_faceid_ip == "cuda" :
         pipe_faceid_ip.enable_sequential_cpu_offload()
@@ -296,30 +320,35 @@ def image_faceid_ip(
         negative_prompt_faceid_ip = ""
 
     if (is_xl_faceid_ip == True) :
-        compel = Compel(
-            tokenizer=pipe_faceid_ip.tokenizer_2, 
-            text_encoder=pipe_faceid_ip.text_encoder_2, 
-            returned_embeddings_type=ReturnedEmbeddingsType.PENULTIMATE_HIDDEN_STATES_NON_NORMALIZED, 
-            requires_pooled=[False, True], 
-            device=device_faceid_ip,
-        )
-        conditioning, pooled = compel(prompt_faceid_ip)
-        neg_conditioning, neg_pooled = compel(negative_prompt_faceid_ip)
-        [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
+#        compel = Compel(
+#            tokenizer=pipe_faceid_ip.tokenizer_2, 
+#            text_encoder=pipe_faceid_ip.text_encoder_2, 
+#            returned_embeddings_type=ReturnedEmbeddingsType.PENULTIMATE_HIDDEN_STATES_NON_NORMALIZED, 
+#            requires_pooled=[False, True], 
+#            device=device_faceid_ip,
+#        )
+#        conditioning, pooled = compel(prompt_faceid_ip)
+#        neg_conditioning, neg_pooled = compel(negative_prompt_faceid_ip)
+#        [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
+        pass
     else :
         compel = Compel(tokenizer=pipe_faceid_ip.tokenizer, text_encoder=pipe_faceid_ip.text_encoder, truncate_long_prompts=False, device=device_faceid_ip)
         conditioning = compel.build_conditioning_tensor(prompt_faceid_ip)
         neg_conditioning = compel.build_conditioning_tensor(negative_prompt_faceid_ip)
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
 
-    faceid_embeds_faceid_ip = face_extractor(img_faceid_ip)
+    if (is_xl_faceid_ip == False):
+        faceid_embeds_faceid_ip = face_extractor(img_faceid_ip)
+    else:
+        input_id_images_faceid_ip = []
+        input_id_images_faceid_ip.append(PIL.Image.open(img_faceid_ip))
 
     final_image = []
     final_seed = []
     for i in range (num_prompt_faceid_ip):
         if (is_turbo_faceid_ip == True) :
             image = pipe_faceid_ip(
-                image_embeds=faceid_embeds_faceid_ip,
+                input_id_images=input_id_images_faceid_ip,
                 prompt=prompt_faceid_ip,
                 num_images_per_prompt=num_images_per_prompt_faceid_ip,
                 guidance_scale=guidance_scale_faceid_ip,
@@ -333,7 +362,7 @@ def image_faceid_ip(
             ).images
         elif (is_xl_faceid_ip == True) :
             image = pipe_faceid_ip(
-                image_embeds=faceid_embeds_faceid_ip,
+                input_id_images=input_id_images_faceid_ip,
                 prompt=prompt_faceid_ip,
                 negative_prompt=negative_prompt_faceid_ip,
 #                prompt_embeds=conditioning,
@@ -342,7 +371,7 @@ def image_faceid_ip(
 #                negative_pooled_prompt_embeds=neg_pooled,
                 num_images_per_prompt=num_images_per_prompt_faceid_ip,
                 guidance_scale=guidance_scale_faceid_ip,
-                strength=denoising_strength_faceid_ip,
+#                strength=denoising_strength_faceid_ip,
                 num_inference_steps=num_inference_step_faceid_ip,
                 height=height_faceid_ip,
                 width=width_faceid_ip,
@@ -397,7 +426,8 @@ def image_faceid_ip(
 
     exif_writer_png(reporting_faceid_ip, final_image)
 
-    del nsfw_filter_final, feat_ex, pipe_faceid_ip, generator, faceid_embeds_faceid_ip, compel, conditioning, neg_conditioning, image
+#    del nsfw_filter_final, feat_ex, pipe_faceid_ip, generator, faceid_embeds_faceid_ip, compel, conditioning, neg_conditioning, image
+    del nsfw_filter_final, feat_ex, pipe_faceid_ip, generator, image
     clean_ram()
 
     print(f">>>[IP-Adapter FaceID 🖌️ ]: leaving module")
