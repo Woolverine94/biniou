@@ -311,7 +311,11 @@ def change_lora_model_txt2img_sd(model, lora_model, prompt):
             lora_prompt_txt2img_sd = prompt
     else:
         lora_prompt_txt2img_sd = prompt
-    return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd)
+
+    if (lora_model == "ByteDance/SDXL-Lightning"):
+        return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(value=4), guidance_scale_txt2img_sd.update(value=0.0)
+    else:
+        return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(), guidance_scale_txt2img_sd.update()
 
 # def update_preview_txt2img_sd(preview):
 #     return out_txt2img_sd.update(preview)
@@ -2200,7 +2204,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 negative_prompt_txt2img_sd
                             ]
                         )
-                        lora_model_txt2img_sd.change(fn=change_lora_model_txt2img_sd, inputs=[model_txt2img_sd, lora_model_txt2img_sd, prompt_txt2img_sd], outputs=[prompt_txt2img_sd])
+                        lora_model_txt2img_sd.change(fn=change_lora_model_txt2img_sd, inputs=[model_txt2img_sd, lora_model_txt2img_sd, prompt_txt2img_sd], outputs=[prompt_txt2img_sd, num_inference_step_txt2img_sd, guidance_scale_txt2img_sd])
                         txtinv_txt2img_sd.change(fn=change_txtinv_txt2img_sd, inputs=[model_txt2img_sd, txtinv_txt2img_sd, prompt_txt2img_sd, negative_prompt_txt2img_sd], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd])
                         with gr.Column(scale=2):
                             out_txt2img_sd = gr.Gallery(

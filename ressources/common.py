@@ -526,6 +526,7 @@ def lora_model_list(model):
         model_path_lora = "./models/lora/SDXL"
         model_list_lora_builtin = {
             "openskyml/dalle-3-xl":("Dall-e_3_0.3-v2.safetensors", ""),
+            "ByteDance/SDXL-Lightning":("sdxl_lightning_4step_lora.safetensors", ""),
             "artificialguybr/ps1redmond-ps1-game-graphics-lora-for-sdxl":("PS1Redmond-PS1Game-Playstation1Graphics.safetensors", "Playstation 1 Graphics, PS1 Game"),
             "ProomptEngineer/pe-old-school-cartoon-style":("PE_OldCartoonStyle.safetensors", "old school cartoon style"),
             "goofyai/3d_render_style_xl":("3d_render_style_xl.safetensors", "3d style, 3d render"),
