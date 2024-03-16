@@ -397,7 +397,11 @@ def change_lora_model_txt2img_lcm(model, lora_model, prompt):
             lora_prompt_txt2img_lcm = prompt
     else:
         lora_prompt_txt2img_lcm = prompt
-    return prompt_txt2img_lcm.update(value=lora_prompt_txt2img_lcm)
+
+    if (lora_model == "ByteDance/SDXL-Lightning"):
+        return prompt_txt2img_lcm.update(value=lora_prompt_txt2img_lcm), num_inference_step_txt2img_lcm.update(value=4), guidance_scale_txt2img_lcm.update(value=0.0)
+    else:
+        return prompt_txt2img_lcm.update(value=lora_prompt_txt2img_lcm), num_inference_step_txt2img_lcm.update(), guidance_scale_txt2img_lcm.update()
 
 def change_txtinv_txt2img_lcm(model, txtinv, prompt):
     if txtinv != "":
@@ -485,7 +489,11 @@ def change_lora_model_img2img(model, lora_model, prompt):
             lora_prompt_img2img = prompt
     else:
         lora_prompt_img2img = prompt
-    return prompt_img2img.update(value=lora_prompt_img2img)
+
+    if (lora_model == "ByteDance/SDXL-Lightning"):
+        return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=4), guidance_scale_img2img.update(value=0.0)
+    else:
+        return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(), guidance_scale_img2img.update()
 
 def change_txtinv_img2img(model, txtinv, prompt, negative_prompt):
     if txtinv != "":
@@ -541,7 +549,11 @@ def change_lora_model_img2img_ip(model, lora_model, prompt):
             lora_prompt_img2img_ip = prompt
     else:
         lora_prompt_img2img_ip = prompt
-    return prompt_img2img_ip.update(value=lora_prompt_img2img_ip)
+
+    if (lora_model == "ByteDance/SDXL-Lightning"):
+        return prompt_img2img_ip.update(value=lora_prompt_img2img_ip), num_inference_step_img2img_ip.update(value=4), guidance_scale_img2img_ip.update(value=0.0)
+    else:
+        return prompt_img2img_ip.update(value=lora_prompt_img2img_ip), num_inference_step_img2img_ip.update(), guidance_scale_img2img_ip.update()
 
 def change_txtinv_img2img_ip(model, txtinv, prompt, negative_prompt):
     if txtinv != "":
@@ -669,7 +681,11 @@ def change_lora_model_controlnet(model, lora_model, prompt):
             lora_prompt_controlnet = prompt
     else:
         lora_prompt_controlnet = prompt
-    return prompt_controlnet.update(value=lora_prompt_controlnet)
+
+    if (lora_model == "ByteDance/SDXL-Lightning"):
+        return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=4), guidance_scale_controlnet.update(value=0.0)
+    else:
+        return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(), guidance_scale_controlnet.update()
 
 def change_txtinv_controlnet(model, txtinv, prompt, negative_prompt):
     if txtinv != "":
@@ -726,7 +742,11 @@ def change_lora_model_faceid_ip(model, lora_model, prompt):
             lora_prompt_faceid_ip = prompt
     else:
         lora_prompt_faceid_ip = prompt
-    return prompt_faceid_ip.update(value=lora_prompt_faceid_ip)
+
+    if (lora_model == "ByteDance/SDXL-Lightning"):
+        return prompt_faceid_ip.update(value=lora_prompt_faceid_ip), num_inference_step_faceid_ip.update(value=4), guidance_scale_faceid_ip.update(value=1.0)
+    else:
+        return prompt_faceid_ip.update(value=lora_prompt_faceid_ip), num_inference_step_faceid_ip.update(), guidance_scale_faceid_ip.update()
 
 def change_txtinv_faceid_ip(model, txtinv, prompt, negative_prompt):
     if txtinv != "":
@@ -2673,7 +2693,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 txtinv_txt2img_lcm,
                             ]
                         )
-                        lora_model_txt2img_lcm.change(fn=change_lora_model_txt2img_lcm, inputs=[model_txt2img_lcm, lora_model_txt2img_lcm, prompt_txt2img_lcm], outputs=[prompt_txt2img_lcm])
+                        lora_model_txt2img_lcm.change(fn=change_lora_model_txt2img_lcm, inputs=[model_txt2img_lcm, lora_model_txt2img_lcm, prompt_txt2img_lcm], outputs=[prompt_txt2img_lcm, num_inference_step_txt2img_lcm, guidance_scale_txt2img_lcm])
                         txtinv_txt2img_lcm.change(fn=change_txtinv_txt2img_lcm, inputs=[model_txt2img_lcm, txtinv_txt2img_lcm, prompt_txt2img_lcm], outputs=[prompt_txt2img_lcm])
                         with gr.Column(scale=2):
                             out_txt2img_lcm = gr.Gallery(
@@ -3376,7 +3396,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 negative_prompt_img2img,
                             ]
                         )
-                        lora_model_img2img.change(fn=change_lora_model_img2img, inputs=[model_img2img, lora_model_img2img, prompt_img2img], outputs=[prompt_img2img])
+                        lora_model_img2img.change(fn=change_lora_model_img2img, inputs=[model_img2img, lora_model_img2img, prompt_img2img], outputs=[prompt_img2img, num_inference_step_img2img, guidance_scale_img2img])
                         txtinv_img2img.change(fn=change_txtinv_img2img, inputs=[model_img2img, txtinv_img2img, prompt_img2img, negative_prompt_img2img], outputs=[prompt_img2img, negative_prompt_img2img])
                         denoising_strength_img2img.change(check_steps_strength, [num_inference_step_img2img, denoising_strength_img2img, model_img2img], [num_inference_step_img2img])
                         with gr.Column():
@@ -3642,7 +3662,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 negative_prompt_img2img_ip,
                             ]
                         )
-                        lora_model_img2img_ip.change(fn=change_lora_model_img2img_ip, inputs=[model_img2img_ip, lora_model_img2img_ip, prompt_img2img_ip], outputs=[prompt_img2img_ip])
+                        lora_model_img2img_ip.change(fn=change_lora_model_img2img_ip, inputs=[model_img2img_ip, lora_model_img2img_ip, prompt_img2img_ip], outputs=[prompt_img2img_ip, num_inference_step_img2img_ip, guidance_scale_img2img_ip])
                         txtinv_img2img_ip.change(fn=change_txtinv_img2img_ip, inputs=[model_img2img_ip, txtinv_img2img_ip, prompt_img2img_ip, negative_prompt_img2img_ip], outputs=[prompt_img2img_ip, negative_prompt_img2img_ip])
                         with gr.Column():
                             with gr.Row():
@@ -5259,7 +5279,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     gs_img_preview_controlnet,
                                 ]
                             )
-                            lora_model_controlnet.change(fn=change_lora_model_controlnet, inputs=[model_controlnet, lora_model_controlnet, prompt_controlnet], outputs=[prompt_controlnet])
+                            lora_model_controlnet.change(fn=change_lora_model_controlnet, inputs=[model_controlnet, lora_model_controlnet, prompt_controlnet], outputs=[prompt_controlnet, num_inference_step_controlnet, guidance_scale_controlnet])
                             txtinv_controlnet.change(fn=change_txtinv_controlnet, inputs=[model_controlnet, txtinv_controlnet, prompt_controlnet, negative_prompt_controlnet], outputs=[prompt_controlnet, negative_prompt_controlnet])
                         with gr.Column():
                             out_controlnet = gr.Gallery(
@@ -5531,7 +5551,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 prompt_faceid_ip,
                             ]
                         )
-                        lora_model_faceid_ip.change(fn=change_lora_model_faceid_ip, inputs=[model_faceid_ip, lora_model_faceid_ip, prompt_faceid_ip], outputs=[prompt_faceid_ip])
+                        lora_model_faceid_ip.change(fn=change_lora_model_faceid_ip, inputs=[model_faceid_ip, lora_model_faceid_ip, prompt_faceid_ip], outputs=[prompt_faceid_ip, num_inference_step_faceid_ip, guidance_scale_faceid_ip])
                         txtinv_faceid_ip.change(fn=change_txtinv_faceid_ip, inputs=[model_faceid_ip, txtinv_faceid_ip, prompt_faceid_ip, negative_prompt_faceid_ip], outputs=[prompt_faceid_ip, negative_prompt_faceid_ip])
 #                        denoising_strength_faceid_ip.change(check_steps_strength, [num_inference_step_faceid_ip, denoising_strength_faceid_ip, model_faceid_ip], [num_inference_step_faceid_ip])
                         with gr.Column():
