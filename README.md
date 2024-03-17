@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-03-17** : 🔥 ***SDXL-lightning support*** 🔥 : Adding the 4 steps SDXL-lightning LoRA to all supported modules. Selecting this LoRA model for generation will reduce of 60% the time required to create an SDXL image. Also improving management of LoRA models in the UI, with smarter trigger words handling.
+
   * 🆕 **2024-03-14** : 🔥 ***Adding Photomaker to Photobooth module*** 🔥 : Renaming **IP-Adapter FaceID** module to **Photobooth**, as it now can handle [Photomaker](https://huggingface.co/TencentARC/PhotoMaker) too, which also allow use of SDXL models for generation.
 
   * 🆕 **2024-03-13** : 🔥 ***Adding LCM model to PixArt-alpha module*** 🔥 : Adding a new PixArt-Alpha model : [PixArt-alpha/PixArt-LCM-XL-2-1024-MS](https://huggingface.co/PixArt-alpha/PixArt-LCM-XL-2-1024-MS). Like all LCM models, this one is much faster than PixArt-alpha native ones, and can generate quality contents in only 4 steps.
@@ -23,8 +25,6 @@
   * 🆕 **2024-03-12** : 🔥 ***Adding TCMalloc support for RHEL-based distributions*** 🔥 : Fixing the one-click installer to add support for TCMalloc under GNU/Linux, both for Debian and RHEL based distributions.
 
   * 🆕 **2024-03-11** : 🔥 ***Experimental one-click installer for Red Hat-based distributions*** 🔥 : You can now install biniou on Rocky 9.3, Alma 9.3 and CentOS Stream 9 by simply copy/pasting a shell command in a terminal. See [here](#Rocky-93--Alma-93--CentOS-Stream-9) for more informations.
-
-  * 🆕 **2024-03-10** : 🔥 ***Adding gradio share feature*** 🔥 : Checking the "Share online" option of the Common settings panel, saving and restarting biniou will make your biniou instance accessible online without further configuration ! A public gradio.live url will be displayed in the terminal at launch time, and should be accessible for 72 hours. Please note that when this option is activated, only the public url should be used to access biniou, as https had to be disabled for local access. Use of authentication is mandatory for obvious security reasons.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
