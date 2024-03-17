@@ -302,20 +302,45 @@ def change_model_type_txt2img_sd(model_txt2img_sd):
     else:
         return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=biniou_global_sd15_width), height_txt2img_sd.update(value=biniou_global_sd15_height), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=True)
 
-def change_lora_model_txt2img_sd(model, lora_model, prompt):
+biniou_internal_previous_steps_txt2img_sd = ""
+biniou_internal_previous_cfg_txt2img_sd = ""
+biniou_internal_previous_trigger_txt2img_sd = ""
+def change_lora_model_txt2img_sd(model, lora_model, prompt, steps, cfg_scale):
+    global biniou_internal_previous_steps_txt2img_sd
+    global biniou_internal_previous_cfg_txt2img_sd
+    global biniou_internal_previous_trigger_txt2img_sd
+    lora_keyword = lora_model_list(model)[lora_model][1]
+
     if lora_model != "":
-        lora_keyword = lora_model_list(model)[lora_model][1]
-        if lora_keyword != "":		
+        if lora_keyword != "":
             lora_prompt_txt2img_sd = lora_keyword+ ", "+ prompt
         else:
             lora_prompt_txt2img_sd = prompt
     else:
         lora_prompt_txt2img_sd = prompt
 
+    if (biniou_internal_previous_trigger_txt2img_sd == ""):
+        biniou_internal_previous_trigger_txt2img_sd = lora_keyword
+    else:
+        lora_trigger = biniou_internal_previous_trigger_txt2img_sd+ ", "
+        lora_prompt_txt2img_sd = lora_prompt_txt2img_sd.replace(lora_trigger, "")
+        biniou_internal_previous_trigger_txt2img_sd = lora_keyword
+
     if (lora_model == "ByteDance/SDXL-Lightning"):
+        biniou_internal_previous_steps_txt2img_sd = steps
+        biniou_internal_previous_cfg_txt2img_sd = cfg_scale
         return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(value=4), guidance_scale_txt2img_sd.update(value=0.0)
     else:
-        return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(), guidance_scale_txt2img_sd.update()
+        if ((biniou_internal_previous_steps_txt2img_sd == "") and (biniou_internal_previous_cfg_txt2img_sd == "")) or (lora_model == ""):
+            biniou_internal_previous_steps_txt2img_sd = ""
+            biniou_internal_previous_cfg_txt2img_sd = ""
+            return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(), guidance_scale_txt2img_sd.update()
+        else:
+            var_steps = int(biniou_internal_previous_steps_txt2img_sd)
+            var_cfg_scale = float(biniou_internal_previous_cfg_txt2img_sd)
+            biniou_internal_previous_steps_txt2img_sd = ""
+            biniou_internal_previous_cfg_txt2img_sd = ""
+            return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(var_steps), guidance_scale_txt2img_sd.update(var_cfg_scale)
 
 # def update_preview_txt2img_sd(preview):
 #     return out_txt2img_sd.update(preview)
@@ -388,20 +413,45 @@ def change_model_type_txt2img_lcm(model_txt2img_lcm):
     else:
         return width_txt2img_lcm.update(value=biniou_global_sd15_width), height_txt2img_lcm.update(value=biniou_global_sd15_height), guidance_scale_txt2img_lcm.update(value=8.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
 
-def change_lora_model_txt2img_lcm(model, lora_model, prompt):
+biniou_internal_previous_steps_txt2img_lcm = ""
+biniou_internal_previous_cfg_txt2img_lcm = ""
+biniou_internal_previous_trigger_txt2img_lcm = ""
+def change_lora_model_txt2img_lcm(model, lora_model, prompt, steps, cfg_scale):
+    global biniou_internal_previous_steps_txt2img_lcm
+    global biniou_internal_previous_cfg_txt2img_lcm
+    global biniou_internal_previous_trigger_txt2img_lcm
+    lora_keyword = lora_model_list(model)[lora_model][1]
+
     if lora_model != "":
-        lora_keyword = lora_model_list(model)[lora_model][1]
-        if lora_keyword != "":		
+        if lora_keyword != "":
             lora_prompt_txt2img_lcm = lora_keyword+ ", "+ prompt
         else:
             lora_prompt_txt2img_lcm = prompt
     else:
         lora_prompt_txt2img_lcm = prompt
 
+    if (biniou_internal_previous_trigger_txt2img_lcm == ""):
+        biniou_internal_previous_trigger_txt2img_lcm = lora_keyword
+    else:
+        lora_trigger = biniou_internal_previous_trigger_txt2img_lcm+ ", "
+        lora_prompt_txt2img_lcm = lora_prompt_txt2img_lcm.replace(lora_trigger, "")
+        biniou_internal_previous_trigger_txt2img_lcm = lora_keyword
+
     if (lora_model == "ByteDance/SDXL-Lightning"):
+        biniou_internal_previous_steps_txt2img_lcm = steps
+        biniou_internal_previous_cfg_txt2img_lcm = cfg_scale
         return prompt_txt2img_lcm.update(value=lora_prompt_txt2img_lcm), num_inference_step_txt2img_lcm.update(value=4), guidance_scale_txt2img_lcm.update(value=0.0)
     else:
-        return prompt_txt2img_lcm.update(value=lora_prompt_txt2img_lcm), num_inference_step_txt2img_lcm.update(), guidance_scale_txt2img_lcm.update()
+        if ((biniou_internal_previous_steps_txt2img_lcm == "") and (biniou_internal_previous_cfg_txt2img_lcm == "")) or (lora_model == ""):
+            biniou_internal_previous_steps_txt2img_lcm = ""
+            biniou_internal_previous_cfg_txt2img_lcm = ""
+            return prompt_txt2img_lcm.update(value=lora_prompt_txt2img_lcm), num_inference_step_txt2img_lcm.update(), guidance_scale_txt2img_lcm.update()
+        else:
+            var_steps = int(biniou_internal_previous_steps_txt2img_lcm)
+            var_cfg_scale = float(biniou_internal_previous_cfg_txt2img_lcm)
+            biniou_internal_previous_steps_txt2img_lcm = ""
+            biniou_internal_previous_cfg_txt2img_lcm = ""
+            return prompt_txt2img_lcm.update(value=lora_prompt_txt2img_lcm), num_inference_step_txt2img_lcm.update(var_steps), guidance_scale_txt2img_lcm.update(var_cfg_scale)
 
 def change_txtinv_txt2img_lcm(model, txtinv, prompt):
     if txtinv != "":
@@ -480,9 +530,16 @@ def change_model_type_img2img(model_img2img):
     else:
         return sampler_img2img.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), txtinv_img2img.update(choices=list(txtinv_list(model_img2img).keys()), value=""), negative_prompt_img2img.update(interactive=True)
 
-def change_lora_model_img2img(model, lora_model, prompt):
+biniou_internal_previous_steps_img2img = ""
+biniou_internal_previous_cfg_img2img = ""
+biniou_internal_previous_trigger_img2img = ""
+def change_lora_model_img2img(model, lora_model, prompt, steps, cfg_scale):
+    global biniou_internal_previous_steps_img2img
+    global biniou_internal_previous_cfg_img2img
+    global biniou_internal_previous_trigger_img2img
+    lora_keyword = lora_model_list(model)[lora_model][1]
+
     if lora_model != "":
-        lora_keyword = lora_model_list(model)[lora_model][1]
         if lora_keyword != "":
             lora_prompt_img2img = lora_keyword+ ", "+ prompt
         else:
@@ -490,10 +547,28 @@ def change_lora_model_img2img(model, lora_model, prompt):
     else:
         lora_prompt_img2img = prompt
 
+    if (biniou_internal_previous_trigger_img2img == ""):
+        biniou_internal_previous_trigger_img2img = lora_keyword
+    else:
+        lora_trigger = biniou_internal_previous_trigger_img2img+ ", "
+        lora_prompt_img2img = lora_prompt_img2img.replace(lora_trigger, "")
+        biniou_internal_previous_trigger_img2img = lora_keyword
+
     if (lora_model == "ByteDance/SDXL-Lightning"):
+        biniou_internal_previous_steps_img2img = steps
+        biniou_internal_previous_cfg_img2img = cfg_scale
         return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=4), guidance_scale_img2img.update(value=0.0)
     else:
-        return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(), guidance_scale_img2img.update()
+        if ((biniou_internal_previous_steps_img2img == "") and (biniou_internal_previous_cfg_img2img == "")) or (lora_model == ""):
+            biniou_internal_previous_steps_img2img = ""
+            biniou_internal_previous_cfg_img2img = ""
+            return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(), guidance_scale_img2img.update()
+        else:
+            var_steps = int(biniou_internal_previous_steps_img2img)
+            var_cfg_scale = float(biniou_internal_previous_cfg_img2img)
+            biniou_internal_previous_steps_img2img = ""
+            biniou_internal_previous_cfg_img2img = ""
+            return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(var_steps), guidance_scale_img2img.update(var_cfg_scale)
 
 def change_txtinv_img2img(model, txtinv, prompt, negative_prompt):
     if txtinv != "":
@@ -540,9 +615,16 @@ def change_model_type_img2img_ip(model_img2img_ip):
     else:
         return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True)
 
-def change_lora_model_img2img_ip(model, lora_model, prompt):
+biniou_internal_previous_steps_img2img_ip = ""
+biniou_internal_previous_cfg_img2img_ip = ""
+biniou_internal_previous_trigger_img2img_ip = ""
+def change_lora_model_img2img_ip(model, lora_model, prompt, steps, cfg_scale):
+    global biniou_internal_previous_steps_img2img_ip
+    global biniou_internal_previous_cfg_img2img_ip
+    global biniou_internal_previous_trigger_img2img_ip
+    lora_keyword = lora_model_list(model)[lora_model][1]
+
     if lora_model != "":
-        lora_keyword = lora_model_list(model)[lora_model][1]
         if lora_keyword != "":
             lora_prompt_img2img_ip = lora_keyword+ ", "+ prompt
         else:
@@ -550,10 +632,28 @@ def change_lora_model_img2img_ip(model, lora_model, prompt):
     else:
         lora_prompt_img2img_ip = prompt
 
+    if (biniou_internal_previous_trigger_img2img_ip == ""):
+        biniou_internal_previous_trigger_img2img_ip = lora_keyword
+    else:
+        lora_trigger = biniou_internal_previous_trigger_img2img_ip+ ", "
+        lora_prompt_img2img_ip = lora_prompt_img2img_ip.replace(lora_trigger, "")
+        biniou_internal_previous_trigger_img2img_ip = lora_keyword
+
     if (lora_model == "ByteDance/SDXL-Lightning"):
+        biniou_internal_previous_steps_img2img_ip = steps
+        biniou_internal_previous_cfg_img2img_ip = cfg_scale
         return prompt_img2img_ip.update(value=lora_prompt_img2img_ip), num_inference_step_img2img_ip.update(value=4), guidance_scale_img2img_ip.update(value=0.0)
     else:
-        return prompt_img2img_ip.update(value=lora_prompt_img2img_ip), num_inference_step_img2img_ip.update(), guidance_scale_img2img_ip.update()
+        if ((biniou_internal_previous_steps_img2img_ip == "") and (biniou_internal_previous_cfg_img2img_ip == "")) or (lora_model == ""):
+            biniou_internal_previous_steps_img2img_ip = ""
+            biniou_internal_previous_cfg_img2img_ip = ""
+            return prompt_img2img_ip.update(value=lora_prompt_img2img_ip), num_inference_step_img2img_ip.update(), guidance_scale_img2img_ip.update()
+        else:
+            var_steps = int(biniou_internal_previous_steps_img2img_ip)
+            var_cfg_scale = float(biniou_internal_previous_cfg_img2img_ip)
+            biniou_internal_previous_steps_img2img_ip = ""
+            biniou_internal_previous_cfg_img2img_ip = ""
+            return prompt_img2img_ip.update(value=lora_prompt_img2img_ip), num_inference_step_img2img_ip.update(var_steps), guidance_scale_img2img_ip.update(var_cfg_scale)
 
 def change_txtinv_img2img_ip(model, txtinv, prompt, negative_prompt):
     if txtinv != "":
@@ -672,9 +772,16 @@ def change_model_type_controlnet(model_controlnet):
     else:
         return sampler_controlnet.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=7.5), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), txtinv_controlnet.update(choices=list(txtinv_list(model_controlnet).keys()), value=""), negative_prompt_controlnet.update(interactive=True), img_preview_controlnet.update(value=None), gs_img_preview_controlnet.update(value=None)
 
-def change_lora_model_controlnet(model, lora_model, prompt):
+biniou_internal_previous_steps_controlnet = ""
+biniou_internal_previous_cfg_controlnet = ""
+biniou_internal_previous_trigger_controlnet = ""
+def change_lora_model_controlnet(model, lora_model, prompt, steps, cfg_scale):
+    global biniou_internal_previous_steps_controlnet
+    global biniou_internal_previous_cfg_controlnet
+    global biniou_internal_previous_trigger_controlnet
+    lora_keyword = lora_model_list(model)[lora_model][1]
+
     if lora_model != "":
-        lora_keyword = lora_model_list(model)[lora_model][1]
         if lora_keyword != "":
             lora_prompt_controlnet = lora_keyword+ ", "+ prompt
         else:
@@ -682,10 +789,28 @@ def change_lora_model_controlnet(model, lora_model, prompt):
     else:
         lora_prompt_controlnet = prompt
 
+    if (biniou_internal_previous_trigger_controlnet == ""):
+        biniou_internal_previous_trigger_controlnet = lora_keyword
+    else:
+        lora_trigger = biniou_internal_previous_trigger_controlnet+ ", "
+        lora_prompt_controlnet = lora_prompt_controlnet.replace(lora_trigger, "")
+        biniou_internal_previous_trigger_controlnet = lora_keyword
+
     if (lora_model == "ByteDance/SDXL-Lightning"):
+        biniou_internal_previous_steps_controlnet = steps
+        biniou_internal_previous_cfg_controlnet = cfg_scale
         return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=4), guidance_scale_controlnet.update(value=0.0)
     else:
-        return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(), guidance_scale_controlnet.update()
+        if ((biniou_internal_previous_steps_controlnet == "") and (biniou_internal_previous_cfg_controlnet == "")) or (lora_model == ""):
+            biniou_internal_previous_steps_controlnet = ""
+            biniou_internal_previous_cfg_controlnet = ""
+            return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(), guidance_scale_controlnet.update()
+        else:
+            var_steps = int(biniou_internal_previous_steps_controlnet)
+            var_cfg_scale = float(biniou_internal_previous_cfg_controlnet)
+            biniou_internal_previous_steps_controlnet = ""
+            biniou_internal_previous_cfg_controlnet = ""
+            return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(var_steps), guidance_scale_controlnet.update(var_cfg_scale)
 
 def change_txtinv_controlnet(model, txtinv, prompt, negative_prompt):
     if txtinv != "":
@@ -733,9 +858,16 @@ def change_model_type_faceid_ip(model_faceid_ip, prompt):
     else:
         return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(value=biniou_global_sd15_width), height_faceid_ip.update(value=biniou_global_sd15_height), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True), prompt_faceid_ip.update()
 
-def change_lora_model_faceid_ip(model, lora_model, prompt):
+biniou_internal_previous_steps_faceid_ip = ""
+biniou_internal_previous_cfg_faceid_ip = ""
+biniou_internal_previous_trigger_faceid_ip = ""
+def change_lora_model_faceid_ip(model, lora_model, prompt, steps, cfg_scale):
+    global biniou_internal_previous_steps_faceid_ip
+    global biniou_internal_previous_cfg_faceid_ip
+    global biniou_internal_previous_trigger_faceid_ip
+    lora_keyword = lora_model_list(model)[lora_model][1]
+
     if lora_model != "":
-        lora_keyword = lora_model_list(model)[lora_model][1]
         if lora_keyword != "":
             lora_prompt_faceid_ip = lora_keyword+ ", "+ prompt
         else:
@@ -743,10 +875,28 @@ def change_lora_model_faceid_ip(model, lora_model, prompt):
     else:
         lora_prompt_faceid_ip = prompt
 
-    if (lora_model == "ByteDance/SDXL-Lightning"):
-        return prompt_faceid_ip.update(value=lora_prompt_faceid_ip), num_inference_step_faceid_ip.update(value=4), guidance_scale_faceid_ip.update(value=1.0)
+    if (biniou_internal_previous_trigger_faceid_ip == ""):
+        biniou_internal_previous_trigger_faceid_ip = lora_keyword
     else:
-        return prompt_faceid_ip.update(value=lora_prompt_faceid_ip), num_inference_step_faceid_ip.update(), guidance_scale_faceid_ip.update()
+        lora_trigger = biniou_internal_previous_trigger_faceid_ip+ ", "
+        lora_prompt_faceid_ip = lora_prompt_faceid_ip.replace(lora_trigger, "")
+        biniou_internal_previous_trigger_faceid_ip = lora_keyword
+
+    if (lora_model == "ByteDance/SDXL-Lightning"):
+        biniou_internal_previous_steps_faceid_ip = steps
+        biniou_internal_previous_cfg_faceid_ip = cfg_scale
+        return prompt_faceid_ip.update(value=lora_prompt_faceid_ip), num_inference_step_faceid_ip.update(value=4), guidance_scale_faceid_ip.update(value=0.0)
+    else:
+        if ((biniou_internal_previous_steps_faceid_ip == "") and (biniou_internal_previous_cfg_faceid_ip == "")) or (lora_model == ""):
+            biniou_internal_previous_steps_faceid_ip = ""
+            biniou_internal_previous_cfg_faceid_ip = ""
+            return prompt_faceid_ip.update(value=lora_prompt_faceid_ip), num_inference_step_faceid_ip.update(), guidance_scale_faceid_ip.update()
+        else:
+            var_steps = int(biniou_internal_previous_steps_faceid_ip)
+            var_cfg_scale = float(biniou_internal_previous_cfg_faceid_ip)
+            biniou_internal_previous_steps_faceid_ip = ""
+            biniou_internal_previous_cfg_faceid_ip = ""
+            return prompt_faceid_ip.update(value=lora_prompt_faceid_ip), num_inference_step_faceid_ip.update(var_steps), guidance_scale_faceid_ip.update(var_cfg_scale)
 
 def change_txtinv_faceid_ip(model, txtinv, prompt, negative_prompt):
     if txtinv != "":
@@ -2224,7 +2374,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 negative_prompt_txt2img_sd
                             ]
                         )
-                        lora_model_txt2img_sd.change(fn=change_lora_model_txt2img_sd, inputs=[model_txt2img_sd, lora_model_txt2img_sd, prompt_txt2img_sd], outputs=[prompt_txt2img_sd, num_inference_step_txt2img_sd, guidance_scale_txt2img_sd])
+                        lora_model_txt2img_sd.change(fn=change_lora_model_txt2img_sd, inputs=[model_txt2img_sd, lora_model_txt2img_sd, prompt_txt2img_sd, num_inference_step_txt2img_sd, guidance_scale_txt2img_sd], outputs=[prompt_txt2img_sd, num_inference_step_txt2img_sd, guidance_scale_txt2img_sd])
                         txtinv_txt2img_sd.change(fn=change_txtinv_txt2img_sd, inputs=[model_txt2img_sd, txtinv_txt2img_sd, prompt_txt2img_sd, negative_prompt_txt2img_sd], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd])
                         with gr.Column(scale=2):
                             out_txt2img_sd = gr.Gallery(
@@ -2693,7 +2843,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 txtinv_txt2img_lcm,
                             ]
                         )
-                        lora_model_txt2img_lcm.change(fn=change_lora_model_txt2img_lcm, inputs=[model_txt2img_lcm, lora_model_txt2img_lcm, prompt_txt2img_lcm], outputs=[prompt_txt2img_lcm, num_inference_step_txt2img_lcm, guidance_scale_txt2img_lcm])
+                        lora_model_txt2img_lcm.change(fn=change_lora_model_txt2img_lcm, inputs=[model_txt2img_lcm, lora_model_txt2img_lcm, prompt_txt2img_lcm, num_inference_step_txt2img_lcm, guidance_scale_txt2img_lcm], outputs=[prompt_txt2img_lcm, num_inference_step_txt2img_lcm, guidance_scale_txt2img_lcm])
                         txtinv_txt2img_lcm.change(fn=change_txtinv_txt2img_lcm, inputs=[model_txt2img_lcm, txtinv_txt2img_lcm, prompt_txt2img_lcm], outputs=[prompt_txt2img_lcm])
                         with gr.Column(scale=2):
                             out_txt2img_lcm = gr.Gallery(
@@ -3396,7 +3546,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 negative_prompt_img2img,
                             ]
                         )
-                        lora_model_img2img.change(fn=change_lora_model_img2img, inputs=[model_img2img, lora_model_img2img, prompt_img2img], outputs=[prompt_img2img, num_inference_step_img2img, guidance_scale_img2img])
+                        lora_model_img2img.change(fn=change_lora_model_img2img, inputs=[model_img2img, lora_model_img2img, prompt_img2img, num_inference_step_img2img, guidance_scale_img2img], outputs=[prompt_img2img, num_inference_step_img2img, guidance_scale_img2img])
                         txtinv_img2img.change(fn=change_txtinv_img2img, inputs=[model_img2img, txtinv_img2img, prompt_img2img, negative_prompt_img2img], outputs=[prompt_img2img, negative_prompt_img2img])
                         denoising_strength_img2img.change(check_steps_strength, [num_inference_step_img2img, denoising_strength_img2img, model_img2img], [num_inference_step_img2img])
                         with gr.Column():
@@ -3662,7 +3812,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 negative_prompt_img2img_ip,
                             ]
                         )
-                        lora_model_img2img_ip.change(fn=change_lora_model_img2img_ip, inputs=[model_img2img_ip, lora_model_img2img_ip, prompt_img2img_ip], outputs=[prompt_img2img_ip, num_inference_step_img2img_ip, guidance_scale_img2img_ip])
+                        lora_model_img2img_ip.change(fn=change_lora_model_img2img_ip, inputs=[model_img2img_ip, lora_model_img2img_ip, prompt_img2img_ip, num_inference_step_img2img_ip, guidance_scale_img2img_ip], outputs=[prompt_img2img_ip, num_inference_step_img2img_ip, guidance_scale_img2img_ip])
                         txtinv_img2img_ip.change(fn=change_txtinv_img2img_ip, inputs=[model_img2img_ip, txtinv_img2img_ip, prompt_img2img_ip, negative_prompt_img2img_ip], outputs=[prompt_img2img_ip, negative_prompt_img2img_ip])
                         with gr.Column():
                             with gr.Row():
@@ -5279,7 +5429,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     gs_img_preview_controlnet,
                                 ]
                             )
-                            lora_model_controlnet.change(fn=change_lora_model_controlnet, inputs=[model_controlnet, lora_model_controlnet, prompt_controlnet], outputs=[prompt_controlnet, num_inference_step_controlnet, guidance_scale_controlnet])
+                            lora_model_controlnet.change(fn=change_lora_model_controlnet, inputs=[model_controlnet, lora_model_controlnet, prompt_controlnet, num_inference_step_controlnet, guidance_scale_controlnet], outputs=[prompt_controlnet, num_inference_step_controlnet, guidance_scale_controlnet])
                             txtinv_controlnet.change(fn=change_txtinv_controlnet, inputs=[model_controlnet, txtinv_controlnet, prompt_controlnet, negative_prompt_controlnet], outputs=[prompt_controlnet, negative_prompt_controlnet])
                         with gr.Column():
                             out_controlnet = gr.Gallery(
@@ -5551,7 +5701,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 prompt_faceid_ip,
                             ]
                         )
-                        lora_model_faceid_ip.change(fn=change_lora_model_faceid_ip, inputs=[model_faceid_ip, lora_model_faceid_ip, prompt_faceid_ip], outputs=[prompt_faceid_ip, num_inference_step_faceid_ip, guidance_scale_faceid_ip])
+                        lora_model_faceid_ip.change(fn=change_lora_model_faceid_ip, inputs=[model_faceid_ip, lora_model_faceid_ip, prompt_faceid_ip, num_inference_step_faceid_ip, guidance_scale_faceid_ip], outputs=[prompt_faceid_ip, num_inference_step_faceid_ip, guidance_scale_faceid_ip])
                         txtinv_faceid_ip.change(fn=change_txtinv_faceid_ip, inputs=[model_faceid_ip, txtinv_faceid_ip, prompt_faceid_ip, negative_prompt_faceid_ip], outputs=[prompt_faceid_ip, negative_prompt_faceid_ip])
 #                        denoising_strength_faceid_ip.change(check_steps_strength, [num_inference_step_faceid_ip, denoising_strength_faceid_ip, model_faceid_ip], [num_inference_step_faceid_ip])
                         with gr.Column():
