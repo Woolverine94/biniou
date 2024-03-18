@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-03-18** : 🔥 ***New models for Chatbot module*** 🔥 : Adding models [NousResearch/Hermes-2-Pro-Mistral-7B-GGUF](https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B-GGUF) and [dranger003/MambaHermes-3B-GGUF](https://huggingface.co/dranger003/MambaHermes-3B-GGUF) to Chatbot module.
+
   * 🆕 **2024-03-17** : 🔥 ***SDXL-lightning support*** 🔥 : Adding the 4 steps SDXL-lightning LoRA to all supported modules. Selecting this LoRA model for generation will reduce of 60% the time required to create an SDXL image. Also improving management of LoRA models in the UI, with smarter trigger words handling.
 
   * 🆕 **2024-03-14** : 🔥 ***Adding Photomaker to Photobooth module*** 🔥 : Renaming **IP-Adapter FaceID** module to **Photobooth**, as it now can handle [Photomaker](https://huggingface.co/TencentARC/PhotoMaker) too, which also allow use of SDXL models for generation.
