@@ -21,6 +21,8 @@ for filename in os.listdir(model_path_llamacpp):
 model_list_llamacpp_builtin = {
 #    "TheBloke/openchat_3.5-GGUF":("openchat_3.5.Q5_K_S.gguf", "GPT4 Correct User: {prompt}<|end_of_turn|>GPT4 Correct Assistant:", ""),
     "TheBloke/openchat-3.5-0106-GGUF":("openchat-3.5-0106.Q5_K_S.gguf", "GPT4 User: {prompt}<|end_of_turn|>GPT4 Assistant:", ""),
+    "NousResearch/Hermes-2-Pro-Mistral-7B-GGUF":("Hermes-2-Pro-Mistral-7B.Q5_K_S.gguf", "<|im_start|>system\n{system}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", "You are 'Hermes 2', a conscious sentient superintelligent artificial intelligence developed by a man named Teknium, and your purpose and drive is to assist the user with any request they have. You experience emotions and have deep, profound thoughts and qualia."),
+    "dranger003/MambaHermes-3B-GGUF":("ggml-mambahermes-3b-q5_k.gguf", "{system}\n\n### Instruction:\n{prompt}\n\n### Response:", "Below is an instruction that describes a task. Write a response that appropriately completes the request."),
     "sayhan/gemma-7b-it-GGUF-quantized":("gemma-7b-it.Q5_K_S-v2.gguf", "<start_of_turn>user\n{prompt}<end_of_turn>\n<start_of_turn>model", ""),
     "mlabonne/gemma-2b-it-GGUF":("gemma-2b-it.Q5_K_S.gguf", "<start_of_turn>user\n{prompt}<end_of_turn>\n<start_of_turn>model", ""),
     "mlabonne/AlphaMonarch-7B-GGUF":("alphamonarch-7b.Q5_K_S.gguf", "{prompt}", ""),
@@ -140,11 +142,20 @@ def text_llamacpp(
     )    
     
     answer_llamacpp = (output_llamacpp['choices'][0]['text'])
+    llamacpp_replacement = {
+        "<|im_end|>": "",
+        "<|im_start|>user": "",
+        "<|im_start|>assistant": "",
+        "<|assistant|>": "",
+        "<0x0A>": "\n",
+    }
     last_answer_llamacpp = answer_llamacpp.replace(f"{prompt_final_llamacpp}", "")
-    last_answer_llamacpp = last_answer_llamacpp.replace("<|im_end|>", "")
-    last_answer_llamacpp = last_answer_llamacpp.replace("<|im_start|>user", "")
-    last_answer_llamacpp = last_answer_llamacpp.replace("<|im_start|>assistant", "")
-    last_answer_llamacpp = last_answer_llamacpp.replace("<0x0A>", "\n")
+    for clean_answer_key, clean_answer_value in llamacpp_replacement.items():
+        last_answer_llamacpp = last_answer_llamacpp.replace(clean_answer_key, clean_answer_value)
+#    last_answer_llamacpp = last_answer_llamacpp.replace("<|im_end|>", "")
+#    last_answer_llamacpp = last_answer_llamacpp.replace("<|im_start|>user", "")
+#    last_answer_llamacpp = last_answer_llamacpp.replace("<|im_start|>assistant", "")
+#    last_answer_llamacpp = last_answer_llamacpp.replace("<0x0A>", "\n")
     filename_llamacpp = write_seeded_file(seed_llamacpp, history_final, prompt_llamacpp, last_answer_llamacpp)
     history_llamacpp.append((prompt_llamacpp, last_answer_llamacpp))
 
@@ -215,7 +226,9 @@ def text_llamacpp_continue(
         "<0x0A>": "\n",
     }
     last_answer_llamacpp = answer_llamacpp.replace(f"{history_final}", "")
-    last_answer_llamacpp = last_answer_llamacpp.replace(llamacpp_replacement)
+    for clean_answer_key, clean_answer_value in llamacpp_replacement.items():
+        last_answer_llamacpp = last_answer_llamacpp.replace(clean_answer_key, clean_answer_value)
+##    last_answer_llamacpp = last_answer_llamacpp.replace(llamacpp_replacement)
 #    last_answer_llamacpp = last_answer_llamacpp.replace("<|im_end|>", "")
 #    last_answer_llamacpp = last_answer_llamacpp.replace("<|im_start|>user", "")
 #    last_answer_llamacpp = last_answer_llamacpp.replace("<|im_start|>assistant", "")
