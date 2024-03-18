@@ -849,7 +849,10 @@ def change_model_type_faceid_ip(model_faceid_ip, prompt):
     elif (model_faceid_ip == "stabilityai/sd-turbo"):
         return sampler_faceid_ip.update(value="Euler a"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=False), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=False), prompt_faceid_ip.update()
     elif ("XL" in model_faceid_ip.upper()) or (model_faceid_ip == "dataautogpt3/OpenDalleV1.1") or (model_faceid_ip == "dataautogpt3/ProteusV0.4"):
-        photomaker_prompt_faceid_ip = "img "+ prompt
+        if not (" img " in prompt or " img," in prompt):
+            photomaker_prompt_faceid_ip = " img "+ prompt
+        else:
+            photomaker_prompt_faceid_ip = prompt
         return sampler_faceid_ip.update(value="UniPC"), width_faceid_ip.update(value=biniou_global_sdxl_width), height_faceid_ip.update(value=biniou_global_sdxl_height), num_inference_step_faceid_ip.update(value=15), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True), prompt_faceid_ip.update(value=photomaker_prompt_faceid_ip)
     elif (model_faceid_ip == "segmind/SSD-1B"):
         return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=False), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True), prompt_faceid_ip.update()
@@ -1167,7 +1170,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Input(s) : </b>Input text</br>
                                 <b>Output(s) : </b>Output text</br>
                                 <b>HF models pages : </b>
-                                <a href='https://huggingface.co/TheBloke/openchat-3.5-1210-GGUF' target='_blank'>TheBloke/openchat-3.5-1210-GGUF</a>, 
+                                <a href='https://huggingface.co/TheBloke/openchat-3.5-0106-GGUF' target='_blank'>TheBloke/openchat-3.5-0106-GGUF</a>, 
+                                <a href='https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B-GGUF' target='_blank'>NousResearch/Hermes-2-Pro-Mistral-7B-GGUF</a>, 
+                                <a href='https://huggingface.co/dranger003/MambaHermes-3B-GGUF' target='_blank'>dranger003/MambaHermes-3B-GGUF</a>, 
                                 <a href='https://huggingface.co/sayhan/gemma-7b-it-GGUF-quantized' target='_blank'>sayhan/gemma-7b-it-GGUF-quantized</a>, 
                                 <a href='https://huggingface.co/mlabonne/gemma-2b-it-GGUF' target='_blank'>mlabonne/gemma-2b-it-GGUF</a>, 
                                 <a href='https://huggingface.co/mlabonne/AlphaMonarch-7B-GGUF' target='_blank'>mlabonne/AlphaMonarch-7B-GGUF</a>, 
@@ -5557,11 +5562,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 """
                                 <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
                                 <b>Module : </b>Photobooth</br>
-                                <b>Function : </b>Generate portraits using the face taken from the input image, a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a>, <a href='https://huggingface.co/h94/IP-Adapter-FaceID' target='_blank'>Photobooth</a> and <a href='https://github.com/deepinsight/insightface' target='_blank'>Insight face</a>.</br>
+                                <b>Function : </b>Generate portraits using the face taken from the input image, a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a>, <a href='https://huggingface.co/h94/IP-Adapter-FaceID' target='_blank'>IP-Adapter FaceID</a>, <a href='https://github.com/deepinsight/insightface' target='_blank'>Insight face</a> and <a href='https://photo-maker.github.io/' target='_blank'>Photomaker</a>.</br>
                                 <b>Input(s) : </b>Input image, prompt, negative prompt</br>
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF model page : </b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
+                                <a href='https://huggingface.co/SG161222/RealVisXL_V3.0' target='_blank'>SG161222/RealVisXL_V3.0</a>, 
                                 <a href='https://huggingface.co/digiplay/AbsoluteReality_v1.8.1' target='_blank'>digiplay/AbsoluteReality_v1.8.1</a>, 
                                 <a href='https://huggingface.co/gsdf/Counterfeit-V2.5' target='_blank'>gsdf/Counterfeit-V2.5</a>, 
                                 <a href='https://huggingface.co/runwayml/stable-diffusion-v1-5' target='_blank'>runwayml/stable-diffusion-v1-5</a>, 
