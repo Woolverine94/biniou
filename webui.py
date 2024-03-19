@@ -849,7 +849,7 @@ def change_model_type_faceid_ip(model_faceid_ip, prompt):
     elif (model_faceid_ip == "stabilityai/sd-turbo"):
         return sampler_faceid_ip.update(value="Euler a"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=False), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=False), prompt_faceid_ip.update()
     elif ("XL" in model_faceid_ip.upper()) or (model_faceid_ip == "dataautogpt3/OpenDalleV1.1") or (model_faceid_ip == "dataautogpt3/ProteusV0.4"):
-        if not (" img " in prompt or " img," in prompt):
+        if not ((" img " in prompt) or (" img," in prompt) or (" img:" in prompt)):
             photomaker_prompt_faceid_ip = " img "+ prompt
         else:
             photomaker_prompt_faceid_ip = prompt
