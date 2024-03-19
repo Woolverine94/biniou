@@ -73,7 +73,7 @@ def initiate_stop_faceid_ip() :
 def check_faceid_ip(pipe, step_index, timestep, callback_kwargs): 
     global stop_faceid_ip
     if stop_faceid_ip == True:
-        print(">>>[Photobooth 🖌️ ]: generation canceled by user")
+        print(">>>[Photobooth 🖼️ ]: generation canceled by user")
         stop_faceid_ip = False
         pipe._interrupt = True
     return callback_kwargs
@@ -113,7 +113,7 @@ def image_faceid_ip(
     progress_faceid_ip=gr.Progress(track_tqdm=True)
     ):
 
-    print(">>>[Photobooth 🖌️ ]: starting module")
+    print(">>>[Photobooth 🖼️ ]: starting module")
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_faceid_ip, device_faceid_ip, nsfw_filter)
 
@@ -342,6 +342,7 @@ def image_faceid_ip(
     else:
         input_id_images_faceid_ip = []
         input_id_images_faceid_ip.append(PIL.Image.open(img_faceid_ip))
+        start_merge_step_faceid_ip = round(num_inference_step_faceid_ip - (num_inference_step_faceid_ip*denoising_strength_faceid_ip))
 
     final_image = []
     final_seed = []
@@ -371,7 +372,7 @@ def image_faceid_ip(
 #                negative_pooled_prompt_embeds=neg_pooled,
                 num_images_per_prompt=num_images_per_prompt_faceid_ip,
                 guidance_scale=guidance_scale_faceid_ip,
-#                strength=denoising_strength_faceid_ip,
+                start_merge_step=start_merge_step_faceid_ip,
                 num_inference_steps=num_inference_step_faceid_ip,
                 height=height_faceid_ip,
                 width=width_faceid_ip,
@@ -404,8 +405,8 @@ def image_faceid_ip(
             final_image.append(savename)
             final_seed.append(seed_id)
 
-    print(f">>>[Photobooth 🖌️ ]: generated {num_prompt_faceid_ip} batch(es) of {num_images_per_prompt_faceid_ip}")
-    reporting_faceid_ip = f">>>[Photobooth 🖌️ ]: "+\
+    print(f">>>[Photobooth 🖼️ ]: generated {num_prompt_faceid_ip} batch(es) of {num_images_per_prompt_faceid_ip}")
+    reporting_faceid_ip = f">>>[Photobooth 🖼️ ]: "+\
         f"Settings : Model={modelid_faceid_ip} | "+\
         f"XL model={is_xl_faceid_ip} | "+\
         f"Sampler={sampler_faceid_ip} | "+\
@@ -430,5 +431,5 @@ def image_faceid_ip(
     del nsfw_filter_final, feat_ex, pipe_faceid_ip, generator, image
     clean_ram()
 
-    print(f">>>[Photobooth 🖌️ ]: leaving module")
+    print(f">>>[Photobooth 🖼️ ]: leaving module")
     return final_image, final_image 
