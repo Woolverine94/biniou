@@ -1309,6 +1309,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Row():
                             prompt_llamacpp = gr.Textbox(label="Input", lines=1, max_lines=3, placeholder="Type your request here ...", autofocus=True)
                             hidden_prompt_llamacpp = gr.Textbox(value="", visible=False)
+                            history_llamacpp.change(fn=lambda x:x, inputs=hidden_prompt_llamacpp, outputs=prompt_llamacpp)
                     with gr.Row():
                         with gr.Column():
                             btn_llamacpp = gr.Button("Generate 🚀", variant="primary")
@@ -1394,8 +1395,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             show_progress="full",
                         )                        
                         btn_llamacpp_continue.click(fn=hide_download_llamacpp, outputs=[btn_download_file_llamacpp, download_file_llamacpp])
-                        btn_llamacpp.click(fn=lambda x:x, inputs=hidden_prompt_llamacpp, outputs=prompt_llamacpp)
-                        prompt_llamacpp.submit(fn=lambda x:x, inputs=hidden_prompt_llamacpp, outputs=prompt_llamacpp)
+#                        btn_llamacpp.click(fn=lambda x:x, inputs=hidden_prompt_llamacpp, outputs=prompt_llamacpp)
+#                        prompt_llamacpp.submit(fn=lambda x:x, inputs=hidden_prompt_llamacpp, outputs=prompt_llamacpp)
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():
