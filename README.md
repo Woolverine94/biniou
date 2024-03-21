@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-03-21** : 🔥 ***New IP-Adapter : ip-composition-adapter*** 🔥 : Adding [ostris/ip-composition-adapter](https://huggingface.co/ostris/ip-composition-adapter) to IP-Adapter module. You can select it by using the IP-Adapter type switch. It is a very nice alternative to controlnet, as it reproduce in the output image the composition of the IP-Adapter image, but in a smoother way. SDXL is implemented, but doesn't seems to be operational yet.
+
   * 🆕 **2024-03-18** : 🔥 ***New models for Chatbot module*** 🔥 : Adding models [NousResearch/Hermes-2-Pro-Mistral-7B-GGUF](https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B-GGUF) and [dranger003/MambaHermes-3B-GGUF](https://huggingface.co/dranger003/MambaHermes-3B-GGUF) to Chatbot module.
 
   * 🆕 **2024-03-17** : 🔥 ***SDXL-lightning support*** 🔥 : Adding the 4 steps SDXL-lightning LoRA to all supported modules. Selecting this LoRA model for generation will reduce of 60% the time required to create an SDXL image. Also improving management of LoRA models in the UI, with smarter trigger words handling.
@@ -23,10 +25,6 @@
   * 🆕 **2024-03-14** : 🔥 ***Adding Photomaker to Photobooth module*** 🔥 : Renaming **IP-Adapter FaceID** module to **Photobooth**, as it now can handle [Photomaker](https://huggingface.co/TencentARC/PhotoMaker) too, which also allow use of SDXL models for generation.
 
   * 🆕 **2024-03-13** : 🔥 ***Adding LCM model to PixArt-alpha module*** 🔥 : Adding a new PixArt-Alpha model : [PixArt-alpha/PixArt-LCM-XL-2-1024-MS](https://huggingface.co/PixArt-alpha/PixArt-LCM-XL-2-1024-MS). Like all LCM models, this one is much faster than PixArt-alpha native ones, and can generate quality contents in only 4 steps.
-
-  * 🆕 **2024-03-12** : 🔥 ***Adding TCMalloc support for RHEL-based distributions*** 🔥 : Fixing the one-click installer to add support for TCMalloc under GNU/Linux, both for Debian and RHEL based distributions.
-
-  * 🆕 **2024-03-11** : 🔥 ***Experimental one-click installer for Red Hat-based distributions*** 🔥 : You can now install biniou on Rocky 9.3, Alma 9.3 and CentOS Stream 9 by simply copy/pasting a shell command in a terminal. See [here](#Rocky-93--Alma-93--CentOS-Stream-9) for more informations.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
