@@ -3678,7 +3678,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 """
                                 <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
                                 <b>Module : </b>IP-Adapter</br>
-                                <b>Function : </b>Transform an input image, with a conditional IP-Adapter image, a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a> and  <a href='https://ip-adapter.github.io/' target='_blank'>IP-Adapter</a></br>
+                                <b>Function : </b>Transform an input image, with a conditional IP-Adapter image, a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a>, <a href='https://ip-adapter.github.io/' target='_blank'>IP-Adapter</a> and <a href='https://huggingface.co/ostris/ip-composition-adapter' target='_blank'>ostris/ip-composition-adapter</a></br>
                                 <b>Input(s) : </b>Input image, conditional IP-Adapter image, prompt, negative prompt</br>
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF model page : </b>
@@ -3703,7 +3703,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Usage :</b></br>
                                 - (optional) Modify the settings to use another model or generate several images in a single run</br>
                                 - (optional) Select a LoRA model and set its weight</br>
-                                - Upload or import an image as an <b>Input image</b></br>
+                                - Select the IP-Adapter type to use : standard (image to image + prompt) or composition (import composition into the output image)</br>
+                                - Upload or import an image as an <b>Input image</b> (if using standard IP-Adapter)</br>
                                 - Upload an image as an <b>IP-Adapter image</b></br>
                                 - Set the balance between the input image and the prompts (Ip-Adapter image, prompts, negative prompt) by choosing a <b>denoising strength</b> value between 0.01 and 1 : 0.01 will mostly ignore the prompts, 1 will completely ignore the input image</br>
                                 - Fill the <b>prompt</b> with what you want to see in your output image</br>
