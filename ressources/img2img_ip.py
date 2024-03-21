@@ -4,7 +4,7 @@ import gradio as gr
 import os
 import PIL
 import torch
-from diffusers import AutoPipelineForImage2Image, StableDiffusionXLImg2ImgPipeline, StableDiffusionImg2ImgPipeline
+from diffusers import AutoPipelineForImage2Image, StableDiffusionXLImg2ImgPipeline, StableDiffusionImg2ImgPipeline, StableDiffusionPipeline, StableDiffusionXLPipeline, AutoPipelineForText2Image
 from huggingface_hub import snapshot_download, hf_hub_download
 from compel import Compel, ReturnedEmbeddingsType
 import random
@@ -30,6 +30,7 @@ for filename in os.listdir(model_path_img2img_ip):
 
 model_list_img2img_ip_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
+#    "SG161222/RealVisXL_V3.0",
 #    "stabilityai/sd-turbo",
     "stabilityai/sdxl-turbo",
 #    "thibaud/sdxl_dpo_turbo",
@@ -69,6 +70,7 @@ def image_img2img_ip(
     modelid_img2img_ip, 
     sampler_img2img_ip, 
     img_img2img_ip, 
+    source_type_img2img_ip,
     img_ipa_img2img_ip,
     prompt_img2img_ip, 
     negative_prompt_img2img_ip, 
@@ -108,10 +110,10 @@ def image_img2img_ip(
     else :
         is_bin_img2img_ip: bool = False
 
-    if which_os() == "win32":
+    if which_os() == "win32" or source_type_img2img_ip == "composition":
         if (is_xl_img2img_ip == True):
             hf_hub_download(
-                repo_id="h94/IP-Adapter", 
+                repo_id="h94/IP-Adapter",
                 filename="sdxl_models/image_encoder/config.json",
                 repo_type="model",
                 local_dir=model_path_ipa_img2img_ip,
@@ -119,24 +121,35 @@ def image_img2img_ip(
                 local_files_only=True if offline_test() else None
             )
             hf_hub_download(
-                repo_id="h94/IP-Adapter", 
-                filename="sdxl_models/ip-adapter_sdxl.safetensors",
-                repo_type="model",
-                local_dir=model_path_ipa_img2img_ip,
-                resume_download=True,
-                local_files_only=True if offline_test() else None
-            )
-            hf_hub_download(
-                repo_id="h94/IP-Adapter", 
+                repo_id="h94/IP-Adapter",
                 filename="sdxl_models/image_encoder/model.safetensors",
                 repo_type="model",
                 local_dir=model_path_ipa_img2img_ip,
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
+            if (source_type_img2img_ip == "standard"):
+                hf_hub_download(
+                    repo_id="h94/IP-Adapter",
+                    filename="sdxl_models/ip-adapter_sdxl.safetensors",
+                    repo_type="model",
+                    local_dir=model_path_ipa_img2img_ip,
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None
+                )
+            elif (source_type_img2img_ip == "composition"):
+                hf_hub_download(
+                    repo_id="ostris/ip-composition-adapter",
+                    filename="ip_plus_composition_sdxl.safetensors",
+                    repo_type="model",
+                    local_dir=model_path_ipa_img2img_ip+ "/sdxl_models",
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None
+                )
+
         else:
             hf_hub_download(
-                repo_id="h94/IP-Adapter", 
+                repo_id="h94/IP-Adapter",
                 filename="models/image_encoder/config.json",
                 repo_type="model",
                 local_dir=model_path_ipa_img2img_ip,
@@ -144,132 +157,251 @@ def image_img2img_ip(
                 local_files_only=True if offline_test() else None
             )
             hf_hub_download(
-                repo_id="h94/IP-Adapter", 
-                filename="models/ip-adapter_sd15.safetensors",
-                repo_type="model",
-                local_dir=model_path_ipa_img2img_ip,
-                resume_download=True,
-                local_files_only=True if offline_test() else None
-            )
-            hf_hub_download(
-                repo_id="h94/IP-Adapter", 
+                repo_id="h94/IP-Adapter",
                 filename="models/image_encoder/model.safetensors",
                 repo_type="model",
                 local_dir=model_path_ipa_img2img_ip,
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
+            if (source_type_img2img_ip == "standard"):
+                hf_hub_download(
+                    repo_id="h94/IP-Adapter",
+                    filename="models/ip-adapter_sd15.safetensors",
+                    repo_type="model",
+                    local_dir=model_path_ipa_img2img_ip,
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None
+                )
+            elif (source_type_img2img_ip == "composition"):
+                hf_hub_download(
+                    repo_id="ostris/ip-composition-adapter",
+                    filename="ip_plus_composition_sd15.safetensors",
+                    repo_type="model",
+                    local_dir=model_path_ipa_img2img_ip+ "/models",
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None
+                )
 
     if (is_turbo_img2img_ip == True) :
-        if modelid_img2img_ip[0:9] == "./models/" :
-            pipe_img2img_ip = AutoPipelineForImage2Image.from_single_file(
-                modelid_img2img_ip, 
-                torch_dtype=model_arch,
-                use_safetensors=True if not is_bin_img2img_ip else False,
-                load_safety_checker=False if (nsfw_filter_final == None) else True,
-#                safety_checker=nsfw_filter_final, 
-#                feature_extractor=feat_ex,
-            )
-        else :        
-            pipe_img2img_ip = AutoPipelineForImage2Image.from_pretrained(
-                modelid_img2img_ip, 
-                cache_dir=model_path_img2img_ip, 
-                torch_dtype=model_arch,
-                use_safetensors=True if not is_bin_img2img_ip else False,
-                safety_checker=nsfw_filter_final, 
-                feature_extractor=feat_ex,
-                resume_download=True,
-                local_files_only=True if offline_test() else None
-            )
+        if (source_type_img2img_ip == "standard"):
+            if modelid_img2img_ip[0:9] == "./models/" :
+                pipe_img2img_ip = AutoPipelineForImage2Image.from_single_file(
+                    modelid_img2img_ip,
+                    torch_dtype=model_arch,
+                    use_safetensors=True if not is_bin_img2img_ip else False,
+                    load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                    safety_checker=nsfw_filter_final, 
+#                    feature_extractor=feat_ex,
+                )
+            else :
+                pipe_img2img_ip = AutoPipelineForImage2Image.from_pretrained(
+                    modelid_img2img_ip,
+                    cache_dir=model_path_img2img_ip,
+                    torch_dtype=model_arch,
+                    use_safetensors=True if not is_bin_img2img_ip else False,
+                    safety_checker=nsfw_filter_final,
+                    feature_extractor=feat_ex,
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None
+                )
+        elif (source_type_img2img_ip == "composition"):
+            if modelid_img2img_ip[0:9] == "./models/" :
+                pipe_img2img_ip = AutoPipelineForText2Image.from_single_file(
+                    modelid_img2img_ip,
+                    torch_dtype=model_arch,
+                    use_safetensors=True if not is_bin_img2img_ip else False,
+                    load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                    safety_checker=nsfw_filter_final, 
+#                    feature_extractor=feat_ex,
+                )
+            else :
+                pipe_img2img_ip = AutoPipelineForText2Image.from_pretrained(
+                    modelid_img2img_ip,
+                    cache_dir=model_path_img2img_ip,
+                    torch_dtype=model_arch,
+                    use_safetensors=True if not is_bin_img2img_ip else False,
+                    safety_checker=nsfw_filter_final,
+                    feature_extractor=feat_ex,
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None
+                )
     elif (is_xl_img2img_ip == True) and (is_turbo_img2img_ip == False) :
-        if modelid_img2img_ip[0:9] == "./models/" :
-            pipe_img2img_ip = StableDiffusionXLImg2ImgPipeline.from_single_file(
-                modelid_img2img_ip, 
-                torch_dtype=model_arch,
-                use_safetensors=True if not is_bin_img2img_ip else False,
-                load_safety_checker=False if (nsfw_filter_final == None) else True,
-#                safety_checker=nsfw_filter_final, 
-#                feature_extractor=feat_ex,
-            )
-        else :        
-            pipe_img2img_ip = StableDiffusionXLImg2ImgPipeline.from_pretrained(
-                modelid_img2img_ip, 
-                cache_dir=model_path_img2img_ip, 
-                torch_dtype=model_arch,
-                use_safetensors=True if not is_bin_img2img_ip else False,
-                safety_checker=nsfw_filter_final, 
-                feature_extractor=feat_ex,
-                resume_download=True,
-                local_files_only=True if offline_test() else None
-            )
-    else :
-        if modelid_img2img_ip[0:9] == "./models/" :
-            pipe_img2img_ip = StableDiffusionImg2ImgPipeline.from_single_file(
-                modelid_img2img_ip, 
-                torch_dtype=model_arch,
-                use_safetensors=True if not is_bin_img2img_ip else False,
-                load_safety_checker=False if (nsfw_filter_final == None) else True,
-#                safety_checker=nsfw_filter_final, 
-#                feature_extractor=feat_ex,
-            )
-        else :        
-            pipe_img2img_ip = StableDiffusionImg2ImgPipeline.from_pretrained(
-                modelid_img2img_ip, 
-                cache_dir=model_path_img2img_ip, 
-                torch_dtype=model_arch,
-                use_safetensors=True if not is_bin_img2img_ip else False,
-                safety_checker=nsfw_filter_final, 
-                feature_extractor=feat_ex,
-                resume_download=True,
-                local_files_only=True if offline_test() else None
-            )
+        if (source_type_img2img_ip == "standard"):
+            if modelid_img2img_ip[0:9] == "./models/" :
+                pipe_img2img_ip = StableDiffusionXLImg2ImgPipeline.from_single_file(
+                    modelid_img2img_ip,
+                    torch_dtype=model_arch,
+                    use_safetensors=True if not is_bin_img2img_ip else False,
+                    load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                    safety_checker=nsfw_filter_final, 
+#                    feature_extractor=feat_ex,
+                )
+            else :
+                pipe_img2img_ip = StableDiffusionXLImg2ImgPipeline.from_pretrained(
+                    modelid_img2img_ip,
+                    cache_dir=model_path_img2img_ip,
+                    torch_dtype=model_arch,
+                    use_safetensors=True if not is_bin_img2img_ip else False,
+                    safety_checker=nsfw_filter_final,
+                    feature_extractor=feat_ex,
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None
+                )
+        elif (source_type_img2img_ip == "composition"):
+            if modelid_img2img_ip[0:9] == "./models/" :
+                pipe_img2img_ip = StableDiffusionXLPipeline.from_single_file(
+                    modelid_img2img_ip,
+                    torch_dtype=model_arch,
+                    use_safetensors=True if not is_bin_img2img_ip else False,
+                    load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                    safety_checker=nsfw_filter_final, 
+#                    feature_extractor=feat_ex,
+                )
+            else :
+                pipe_img2img_ip = StableDiffusionXLPipeline.from_pretrained(
+                    modelid_img2img_ip,
+                    cache_dir=model_path_img2img_ip,
+                    torch_dtype=model_arch,
+                    use_safetensors=True if not is_bin_img2img_ip else False,
+                    safety_checker=nsfw_filter_final,
+                    feature_extractor=feat_ex,
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None
+                )
+    else:
+        if (source_type_img2img_ip == "standard"):
+            if modelid_img2img_ip[0:9] == "./models/" :
+                pipe_img2img_ip = StableDiffusionImg2ImgPipeline.from_single_file(
+                    modelid_img2img_ip,
+                    torch_dtype=model_arch,
+                    use_safetensors=True if not is_bin_img2img_ip else False,
+                    load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                    safety_checker=nsfw_filter_final, 
+#                    feature_extractor=feat_ex,
+                )
+            else :
+                pipe_img2img_ip = StableDiffusionImg2ImgPipeline.from_pretrained(
+                    modelid_img2img_ip,
+                    cache_dir=model_path_img2img_ip,
+                    torch_dtype=model_arch,
+                    use_safetensors=True if not is_bin_img2img_ip else False,
+                    safety_checker=nsfw_filter_final,
+                    feature_extractor=feat_ex,
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None
+                )
+        elif (source_type_img2img_ip == "composition"):
+            if modelid_img2img_ip[0:9] == "./models/" :
+                pipe_img2img_ip = StableDiffusionPipeline.from_single_file(
+                    modelid_img2img_ip,
+                    torch_dtype=model_arch,
+                    use_safetensors=True if not is_bin_img2img_ip else False,
+                    load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                    safety_checker=nsfw_filter_final, 
+#                    feature_extractor=feat_ex,
+                )
+            else :
+                pipe_img2img_ip = StableDiffusionPipeline.from_pretrained(
+                    modelid_img2img_ip,
+                    cache_dir=model_path_img2img_ip,
+                    torch_dtype=model_arch,
+                    use_safetensors=True if not is_bin_img2img_ip else False,
+                    safety_checker=nsfw_filter_final,
+                    feature_extractor=feat_ex,
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None
+                )
 
 #    if (is_xl_img2img_ip == True) or (is_turbo_img2img_ip == True):
     if (which_os() == "win32"):
         if (is_xl_img2img_ip == True):
-            pipe_img2img_ip.load_ip_adapter(
-                model_path_ipa_img2img_ip,
-                subfolder="sdxl_models",
-                weight_name="ip-adapter_sdxl.safetensors",
-                torch_dtype=model_arch,
-                use_safetensors=True,
-                resume_download=True,
-                local_files_only=True if offline_test() else None
-            )
+            if (source_type_img2img_ip == "standard"):
+                pipe_img2img_ip.load_ip_adapter(
+                    model_path_ipa_img2img_ip,
+                    subfolder="sdxl_models",
+                    weight_name="ip-adapter_sdxl.safetensors",
+                    torch_dtype=model_arch,
+                    use_safetensors=True,
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None
+                )
+            elif (source_type_img2img_ip == "composition"):
+                pipe_img2img_ip.load_ip_adapter(
+                    model_path_ipa_img2img_ip,
+                    subfolder="sdxl_models",
+                    weight_name="ip_plus_composition_sdxl.safetensors",
+                    torch_dtype=model_arch,
+                    use_safetensors=True, 
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None
+                )
         else:
-            pipe_img2img_ip.load_ip_adapter(
-                model_path_ipa_img2img_ip,
-                subfolder="models",
-                weight_name="ip-adapter_sd15.safetensors",
-                torch_dtype=model_arch,
-                use_safetensors=True, 
-                resume_download=True,
-                local_files_only=True if offline_test() else None
-            )
+            if (source_type_img2img_ip == "standard"):
+                pipe_img2img_ip.load_ip_adapter(
+                    model_path_ipa_img2img_ip,
+                    subfolder="models",
+                    weight_name="ip-adapter_sd15.safetensors",
+                    torch_dtype=model_arch,
+                    use_safetensors=True, 
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None
+                )
+            elif (source_type_img2img_ip == "composition"):
+                pipe_img2img_ip.load_ip_adapter(
+                    model_path_ipa_img2img_ip,
+                    subfolder="models",
+                    weight_name="ip_plus_composition_sd15.safetensors",
+                    torch_dtype=model_arch,
+                    use_safetensors=True, 
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None
+                )
     else:
         if (is_xl_img2img_ip == True):
-            pipe_img2img_ip.load_ip_adapter(
-                "h94/IP-Adapter", 
-                cache_dir=model_path_ipa_img2img_ip,
-                subfolder="sdxl_models",
-                weight_name="ip-adapter_sdxl.safetensors",
-                torch_dtype=model_arch,
-                use_safetensors=True,
-                resume_download=True,
-                local_files_only=True if offline_test() else None
-            )
+            if (source_type_img2img_ip == "standard"):
+                pipe_img2img_ip.load_ip_adapter(
+                    "h94/IP-Adapter", 
+                    cache_dir=model_path_ipa_img2img_ip,
+                    subfolder="sdxl_models",
+                    weight_name="ip-adapter_sdxl.safetensors",
+                    torch_dtype=model_arch,
+                    use_safetensors=True,
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None
+                )
+            elif (source_type_img2img_ip == "composition"):
+                pipe_img2img_ip.load_ip_adapter(
+                    model_path_ipa_img2img_ip,
+                    subfolder="sdxl_models",
+                    weight_name="ip_plus_composition_sdxl.safetensors",
+                    torch_dtype=model_arch,
+                    use_safetensors=True, 
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None
+                )
         else:
-            pipe_img2img_ip.load_ip_adapter(
-                "h94/IP-Adapter",
-                cache_dir=model_path_ipa_img2img_ip,
-                subfolder="models",
-                weight_name="ip-adapter_sd15.safetensors",
-                torch_dtype=model_arch,
-                use_safetensors=True, 
-                resume_download=True,
-                local_files_only=True if offline_test() else None
-            )
-
+            if (source_type_img2img_ip == "standard"):
+                pipe_img2img_ip.load_ip_adapter(
+                    "h94/IP-Adapter",
+                    cache_dir=model_path_ipa_img2img_ip,
+                    subfolder="models",
+                    weight_name="ip-adapter_sd15.safetensors",
+                    torch_dtype=model_arch,
+                    use_safetensors=True, 
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None
+                )
+            elif (source_type_img2img_ip == "composition"):
+                pipe_img2img_ip.load_ip_adapter(
+                    model_path_ipa_img2img_ip,
+                    subfolder="models",
+                    weight_name="ip_plus_composition_sd15.safetensors",
+                    torch_dtype=model_arch,
+                    use_safetensors=True, 
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None
+                )
 
 #    pipe_img2img_ip.set_ip_adapter_scale(denoising_strength_img2img_ip)    
     pipe_img2img_ip = schedulerer(pipe_img2img_ip, sampler_img2img_ip)
@@ -277,7 +409,7 @@ def image_img2img_ip(
     tomesd.apply_patch(pipe_img2img_ip, ratio=tkme_img2img_ip)
     if device_label_img2img_ip == "cuda" :
         pipe_img2img_ip.enable_sequential_cpu_offload()
-    else : 
+    else :
         pipe_img2img_ip = pipe_img2img_ip.to(device_img2img_ip)
 
     if lora_model_img2img_ip != "":
@@ -389,50 +521,96 @@ def image_img2img_ip(
 
     for i in range (num_prompt_img2img_ip):
         if (is_turbo_img2img_ip == True) :
-            image = pipe_img2img_ip(        
-                image=image_input,
-                ip_adapter_image=image_input_ipa,
-                prompt=prompt_img2img_ip,
-                num_images_per_prompt=num_images_per_prompt_img2img_ip,
-                guidance_scale=guidance_scale_img2img_ip,
-                strength=denoising_strength_img2img_ip,
-                num_inference_steps=num_inference_step_img2img_ip,
-                generator = generator,
-                callback_on_step_end=check_img2img_ip, 
-                callback_on_step_end_tensor_inputs=['latents'], 
-            ).images
+            if (source_type_img2img_ip == "standard"):
+                image = pipe_img2img_ip(        
+                    image=image_input,
+                    ip_adapter_image=image_input_ipa,
+                    prompt=prompt_img2img_ip,
+                    num_images_per_prompt=num_images_per_prompt_img2img_ip,
+                    guidance_scale=guidance_scale_img2img_ip,
+                    strength=denoising_strength_img2img_ip,
+                    num_inference_steps=num_inference_step_img2img_ip,
+                    generator = generator,
+                    callback_on_step_end=check_img2img_ip, 
+                    callback_on_step_end_tensor_inputs=['latents'], 
+                ).images
+            elif (source_type_img2img_ip == "composition"):
+                image = pipe_img2img_ip(        
+#                    image=image_input,
+                    ip_adapter_image=image_input_ipa,
+                    prompt=prompt_img2img_ip,
+                    num_images_per_prompt=num_images_per_prompt_img2img_ip,
+                    guidance_scale=guidance_scale_img2img_ip,
+                    strength=denoising_strength_img2img_ip,
+                    num_inference_steps=num_inference_step_img2img_ip,
+                    generator = generator,
+                    callback_on_step_end=check_img2img_ip, 
+                    callback_on_step_end_tensor_inputs=['latents'], 
+                ).images
         elif (is_xl_img2img_ip == True) :
-            image = pipe_img2img_ip(        
-                image=image_input,
-                ip_adapter_image=image_input_ipa,
-                prompt=prompt_img2img_ip,
-                negative_prompt=negative_prompt_img2img_ip,
-#                prompt_embeds=conditioning,
-#                pooled_prompt_embeds=pooled,
-#                negative_prompt_embeds=neg_conditioning,
-#                negative_pooled_prompt_embeds=neg_pooled,
-                num_images_per_prompt=num_images_per_prompt_img2img_ip,
-                guidance_scale=guidance_scale_img2img_ip,
-                strength=denoising_strength_img2img_ip,
-                num_inference_steps=num_inference_step_img2img_ip,
-                generator = generator,
-                callback_on_step_end=check_img2img_ip, 
-                callback_on_step_end_tensor_inputs=['latents'], 
-            ).images            
+            if (source_type_img2img_ip == "standard"):
+                image = pipe_img2img_ip(        
+                    image=image_input,
+                    ip_adapter_image=image_input_ipa,
+                    prompt=prompt_img2img_ip,
+                    negative_prompt=negative_prompt_img2img_ip,
+#                    prompt_embeds=conditioning,
+#                    pooled_prompt_embeds=pooled,
+#                    negative_prompt_embeds=neg_conditioning,
+#                    negative_pooled_prompt_embeds=neg_pooled,
+                    num_images_per_prompt=num_images_per_prompt_img2img_ip,
+                    guidance_scale=guidance_scale_img2img_ip,
+                    strength=denoising_strength_img2img_ip,
+                    num_inference_steps=num_inference_step_img2img_ip,
+                    generator = generator,
+                    callback_on_step_end=check_img2img_ip, 
+                    callback_on_step_end_tensor_inputs=['latents'], 
+                ).images            
+            if (source_type_img2img_ip == "composition"):
+                image = pipe_img2img_ip(        
+                    ip_adapter_image=image_input_ipa,
+                    prompt=prompt_img2img_ip,
+                    negative_prompt=negative_prompt_img2img_ip,
+#                    prompt_embeds=conditioning,
+#                    pooled_prompt_embeds=pooled,
+#                    negative_prompt_embeds=neg_conditioning,
+#                    negative_pooled_prompt_embeds=neg_pooled,
+                    num_images_per_prompt=num_images_per_prompt_img2img_ip,
+                    guidance_scale=guidance_scale_img2img_ip,
+                    strength=denoising_strength_img2img_ip,
+                    num_inference_steps=num_inference_step_img2img_ip,
+                    generator = generator,
+                    callback_on_step_end=check_img2img_ip, 
+                    callback_on_step_end_tensor_inputs=['latents'], 
+                ).images   
         else : 
-            image = pipe_img2img_ip(        
-                image=image_input,
-                ip_adapter_image=image_input_ipa,
-                prompt_embeds=conditioning,
-                negative_prompt_embeds=neg_conditioning,
-                num_images_per_prompt=num_images_per_prompt_img2img_ip,
-                guidance_scale=guidance_scale_img2img_ip,
-                strength=denoising_strength_img2img_ip,
-                num_inference_steps=num_inference_step_img2img_ip,
-                generator = generator,
-                callback_on_step_end=check_img2img_ip, 
-                callback_on_step_end_tensor_inputs=['latents'], 
-            ).images        
+            if (source_type_img2img_ip == "standard"):
+                image = pipe_img2img_ip(        
+                    image=image_input,
+                    ip_adapter_image=image_input_ipa,
+                    prompt_embeds=conditioning,
+                    negative_prompt_embeds=neg_conditioning,
+                    num_images_per_prompt=num_images_per_prompt_img2img_ip,
+                    guidance_scale=guidance_scale_img2img_ip,
+                    strength=denoising_strength_img2img_ip,
+                    num_inference_steps=num_inference_step_img2img_ip,
+                    generator = generator,
+                    callback_on_step_end=check_img2img_ip, 
+                    callback_on_step_end_tensor_inputs=['latents'], 
+                ).images        
+            elif (source_type_img2img_ip == "composition"):
+                image = pipe_img2img_ip(        
+                    ip_adapter_image=image_input_ipa,
+                    prompt_embeds=conditioning,
+                    negative_prompt_embeds=neg_conditioning,
+                    num_images_per_prompt=num_images_per_prompt_img2img_ip,
+                    guidance_scale=guidance_scale_img2img_ip,
+                    strength=denoising_strength_img2img_ip,
+                    num_inference_steps=num_inference_step_img2img_ip,
+                    generator = generator,
+                    callback_on_step_end=check_img2img_ip, 
+                    callback_on_step_end_tensor_inputs=['latents'], 
+                ).images        
 
         for j in range(len(image)):
             savename = f"outputs/{timestamper()}.png"

@@ -601,19 +601,19 @@ def read_ini_img2img_ip(module) :
 
 def change_model_type_img2img_ip(model_img2img_ip):
     if (model_img2img_ip == "stabilityai/sdxl-turbo"):
-        return sampler_img2img_ip.update(value="Euler a"), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=False)
+        return sampler_img2img_ip.update(value="Euler a"), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=False), source_type_img2img_ip.update(interactive=False, value="standard")
 #    elif (model_img2img_ip == "thibaud/sdxl_dpo_turbo"):
 #        return sampler_img2img_ip.update(value="UniPC"), width_img2img_ip.update(value=biniou_global_sd15_width), height_img2img_ip.update(value=biniou_global_sd15_height), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=False)
     elif (model_img2img_ip == "stabilityai/sd-turbo"):
-        return sampler_img2img_ip.update(value="Euler a"), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=False), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=False)
+        return sampler_img2img_ip.update(value="Euler a"), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=False), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=False), source_type_img2img_ip.update(interactive=False, value="standard")
     elif ("XL" in model_img2img_ip.upper()) or ("ETRI-VILAB/KOALA-" in model_img2img_ip.upper()) or (model_img2img_ip == "dataautogpt3/OpenDalleV1.1") or (model_img2img_ip == "dataautogpt3/ProteusV0.4"):
-        return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True)
+        return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True), source_type_img2img_ip.update(interactive=False, value="standard")
     elif (model_img2img_ip == "segmind/SSD-1B"):
-        return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=False), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True)
+        return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=False), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True), source_type_img2img_ip.update(interactive=False, value="standard")
     elif (model_img2img_ip == "segmind/Segmind-Vega"):
-        return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=9.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=False), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True)
+        return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=9.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=False), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True), source_type_img2img_ip.update(interactive=False, value="standard")
     else:
-        return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True)
+        return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True), source_type_img2img_ip.update(interactive=True)
 
 biniou_internal_previous_steps_img2img_ip = ""
 biniou_internal_previous_cfg_img2img_ip = ""
@@ -671,6 +671,12 @@ def change_txtinv_img2img_ip(model, txtinv, prompt, negative_prompt):
         txtinv_prompt_img2img_ip = prompt
         txtinv_negative_prompt_img2img_ip = negative_prompt
     return prompt_img2img_ip.update(value=txtinv_prompt_img2img_ip), negative_prompt_img2img_ip.update(value=txtinv_negative_prompt_img2img_ip)
+
+def change_source_type_img2img_ip(source_type):
+    if (source_type == "standard"):
+        return img_img2img_ip.update(visible=True, interactive=True), denoising_strength_img2img_ip.update(value=0.6, interactive=True)
+    elif (source_type == "composition"):
+        return img_img2img_ip.update(value=None, visible=False, interactive=False), denoising_strength_img2img_ip.update(value=1, interactive=False)
 
 ## Functions specific to img2var 
 def zip_download_file_img2var(content):
@@ -3791,12 +3797,13 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             img_img2img_ip = gr.Image(label="Input image", height=400, type="filepath")
                             img_img2img_ip.change(image_upload_event, inputs=img_img2img_ip, outputs=[width_img2img_ip, height_img2img_ip])
+                            source_type_img2img_ip = gr.Radio(choices=["standard", "composition"], value="standard", label="IP-Adapter type", info="Choose IP-Adapter type")
                         with gr.Column():
                             img_ipa_img2img_ip = gr.Image(label="IP-Adapter image", height=400, type="filepath")
                         with gr.Column():
                             with gr.Row(): 
                                 with gr.Column():
-                                    denoising_strength_img2img_ip = gr.Slider(0.01, 1.0, step=0.01, value=0.6, label="Denoising strength", info="Balance between input image (0) and prompts (1)")  
+                                    denoising_strength_img2img_ip = gr.Slider(0.01, 1.0, step=0.01, value=0.6, label="Denoising strength", info="Balance between input image (0) and prompts (1)", interactive=True)
                             with gr.Row():
                                 with gr.Column():
                                     prompt_img2img_ip = gr.Textbox(lines=1, max_lines=1, label="Prompt", info="Describe what you want in your image", placeholder="wearing sunglasses, high quality")
@@ -3816,10 +3823,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 lora_model_img2img_ip,
                                 txtinv_img2img_ip,
                                 negative_prompt_img2img_ip,
+                                source_type_img2img_ip
                             ]
                         )
                         lora_model_img2img_ip.change(fn=change_lora_model_img2img_ip, inputs=[model_img2img_ip, lora_model_img2img_ip, prompt_img2img_ip, num_inference_step_img2img_ip, guidance_scale_img2img_ip], outputs=[prompt_img2img_ip, num_inference_step_img2img_ip, guidance_scale_img2img_ip])
                         txtinv_img2img_ip.change(fn=change_txtinv_img2img_ip, inputs=[model_img2img_ip, txtinv_img2img_ip, prompt_img2img_ip, negative_prompt_img2img_ip], outputs=[prompt_img2img_ip, negative_prompt_img2img_ip])
+                        source_type_img2img_ip.change(change_source_type_img2img_ip, source_type_img2img_ip, [img_img2img_ip, denoising_strength_img2img_ip])
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():                            
@@ -3857,6 +3866,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     model_img2img_ip,
                                     sampler_img2img_ip,
                                     img_img2img_ip,
+                                    source_type_img2img_ip,
                                     img_ipa_img2img_ip,
                                     prompt_img2img_ip,
                                     negative_prompt_img2img_ip,
