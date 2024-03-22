@@ -105,6 +105,14 @@ if biniou_global_auth == True:
 if biniou_global_auth == False:
     biniou_global_share = False
 
+with open("./version", "r", encoding="utf-8") as fichier:
+    biniou_global_version = fichier.read()
+
+biniou_global_version = biniou_global_version.replace("\n", "")
+
+if biniou_global_version == "main":
+    biniou_global_version = "dev"
+
 ## Fonctions communes
 def dummy():
     return
@@ -1125,11 +1133,11 @@ def url_params_theme(url) :
     if url.get('__theme') != None and url['__theme'] == "dark" :
         del url['__theme']
         url_final = dict_to_url(url)
-        return f"<a href='https://github.com/Woolverine94/biniou' target='_blank' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='32' height='32'/></p><span style='text-align: left; font-size: 32px; font-weight: bold; line-height:32px;'>biniou</span></a><span style='vertical-align: top; line-height: 32px;'><button onclick=\"window.location.href='{url_final}';\" title='Switch to light mode and reload page'>☀️</button></span>", banner_biniou.update(visible=True)
+        return f"<a href='https://github.com/Woolverine94/biniou' target='_blank' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='32' height='32'/></p><span style='text-align: left; font-size: 32px; font-weight: bold; line-height:32px;'>biniou</span></a><span style='vertical-align: bottom; line-height: 32px; font-size: 10px;'> ({biniou_global_version}) </span><span style='vertical-align: top; line-height: 32px;'><button onclick=\"window.location.href='{url_final}';\" title='Switch to light mode and reload page'>☀️</button></span>", banner_biniou.update(visible=True)
     elif url.get('__theme') == None :
         url['__theme'] = "dark"
         url_final = dict_to_url(url)
-        return f"<a href='https://github.com/Woolverine94/biniou' target='_blank' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='32' height='32'/></p><span style='text-align: left; font-size: 32px; font-weight: bold; line-height:32px;'>biniou</span></a><span style='vertical-align: top; line-height: 32px;'><button onclick=\"window.location.href='{url_final}';\" title='Switch to dark mode and reload page'>🌘</button></span>", banner_biniou.update(visible=True)
+        return f"<a href='https://github.com/Woolverine94/biniou' target='_blank' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='32' height='32'/></p><span style='text-align: left; font-size: 32px; font-weight: bold; line-height:32px;'>biniou</span></a><span style='vertical-align: bottom; line-height: 32px; font-size: 10px;'> ({biniou_global_version}) </span><span style='vertical-align: top; line-height: 32px;'><button onclick=\"window.location.href='{url_final}';\" title='Switch to dark mode and reload page'>🌘</button></span>", banner_biniou.update(visible=True)
 
 color_label = "#7B43EE"
 color_label_button = "#4361ee"
