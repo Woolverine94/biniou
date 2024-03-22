@@ -8,7 +8,7 @@ if [ "$(lsb_release -si|grep Debian)" != "" ]
     sudo apt -y install git pip python3 python3-venv gcc perl make ffmpeg openssl google-perftools
 fi
 echo ">>>[biniou oci 🧠 ]: Cloning repository"
-git clone https://github.com/Woolverine94/biniou.git --branch main
+git clone --branch main https://github.com/Woolverine94/biniou.git
 echo ">>>[biniou oci 🧠 ]: Installing Virtual environment"
 cd ./biniou
 ./install.sh

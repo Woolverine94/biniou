@@ -11,7 +11,7 @@ if [ "$(groups|grep 'wheel')" == "" ]
 fi
 
 echo ">>>[biniou oci 🧠 ]: Cloning repository"
-git clone https://github.com/Woolverine94/biniou.git --branch main
+git clone --branch main https://github.com/Woolverine94/biniou.git
 echo ">>>[biniou oci 🧠 ]: Installing Virtual environment"
 cd ./biniou
 ./install.sh

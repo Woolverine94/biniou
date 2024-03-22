@@ -30,7 +30,7 @@ REM *** CLONING REPOSITORY : ***
 REM ****************************
 cd "%userprofile%"
 set path=%path%;%ProgramW6432%\Git\cmd;
-git clone https://github.com/Woolverine94/biniou.git
+git clone --branch main https://github.com/Woolverine94/biniou.git
 git config --global --add safe.directory "%HOMEDRIVE%/Users/%username%/biniou"
 cd "%userprofile%\biniou"
 

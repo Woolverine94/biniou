@@ -8,7 +8,7 @@ RUN adduser --disabled-password --gecos '' biniou
 USER biniou
 
 # Pull repo
-RUN cd /home/biniou && git clone https://github.com/Woolverine94/biniou.git
+RUN cd /home/biniou && git clone --branch main https://github.com/Woolverine94/biniou.git
 WORKDIR /home/biniou/biniou
 
 # Install biniou
