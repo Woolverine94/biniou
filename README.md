@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-03-24** : 🔥 ***New Stable Diffusion SDXL anime model*** 🔥 : Adding model [cagliostrolab/animagine-xl-3.1](https://huggingface.co/cagliostrolab/animagine-xl-3.1) to modules Stable Diffusion, img2img, IP-Adapter, ControlNet, Photobooth and Text2Video-Zero. This SDXL model generates awesome anime style contents.
+
   * 🆕 **2024-03-23** : ***Update of RHEL installer*** : Adressing a possible python version mismatch for the target OS if the installer fails.
 
   * 🆕 **2024-03-21** : 🔥 ***New IP-Adapter : ip-composition-adapter*** 🔥 : Adding [ostris/ip-composition-adapter](https://huggingface.co/ostris/ip-composition-adapter) to IP-Adapter module. You can select it by using the IP-Adapter type switch. It is a very nice alternative to controlnet, as it reproduce in the output image the composition of the IP-Adapter image, but in a smoother way. SDXL is implemented, but doesn't seems to be operational yet.
