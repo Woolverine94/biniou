@@ -29,6 +29,7 @@ model_list_txt2img_sd_builtin = [
     "stabilityai/sd-turbo", 
     "stabilityai/sdxl-turbo", 
     "thibaud/sdxl_dpo_turbo",
+    "cagliostrolab/animagine-xl-3.1",
     "IDEA-CCNL/Taiyi-Stable-Diffusion-XL-3.5B",
     "dataautogpt3/OpenDalleV1.1",
     "dataautogpt3/ProteusV0.4",

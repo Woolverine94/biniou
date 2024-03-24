@@ -29,6 +29,7 @@ model_list_controlnet_builtin = [
 #    "stabilityai/sd-turbo",
     "stabilityai/sdxl-turbo",
     "thibaud/sdxl_dpo_turbo",
+    "cagliostrolab/animagine-xl-3.1",
     "dataautogpt3/OpenDalleV1.1",
     "dataautogpt3/ProteusV0.4",
     "digiplay/AbsoluteReality_v1.8.1",
