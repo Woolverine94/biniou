@@ -301,6 +301,8 @@ def change_model_type_txt2img_sd(model_txt2img_sd):
         return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=biniou_global_sd15_width), height_txt2img_sd.update(value=biniou_global_sd15_height), num_inference_step_txt2img_sd.update(value=2), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=False)
     elif (model_txt2img_sd == "stabilityai/sd-turbo"):
         return sampler_txt2img_sd.update(value="Euler a"), width_txt2img_sd.update(value=biniou_global_sd15_width), height_txt2img_sd.update(value=biniou_global_sd15_height), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=False), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=False)
+    elif (model_txt2img_sd == "SG161222/RealVisXL_V4.0_Lightning"):
+        return sampler_txt2img_sd.update(value="DPM++ SDE Karras"), width_txt2img_sd.update(value=biniou_global_sdxl_width), height_txt2img_sd.update(value=biniou_global_sdxl_height), num_inference_step_txt2img_sd.update(value=4), guidance_scale_txt2img_sd.update(value=1.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=True)
     elif ("XL" in model_txt2img_sd.upper()) or ("ETRI-VILAB/KOALA-" in model_txt2img_sd.upper()) or (model_txt2img_sd == "dataautogpt3/OpenDalleV1.1") or (model_txt2img_sd == "dataautogpt3/ProteusV0.4"):
         return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=biniou_global_sdxl_width), height_txt2img_sd.update(value=biniou_global_sdxl_height), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=True)
     elif (model_txt2img_sd == "segmind/SSD-1B"):
@@ -2267,6 +2269,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <a href='https://huggingface.co/stabilityai/sd-turbo' target='_blank'>stabilityai/sd-turbo</a>, 
                                 <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>, 
                                 <a href='https://huggingface.co/thibaud/sdxl_dpo_turbo' target='_blank'>thibaud/sdxl_dpo_turbo</a>, 
+                                <a href='https://huggingface.co/SG161222/RealVisXL_V4.0_Lightning' target='_blank'>SG161222/RealVisXL_V4.0_Lightning</a>, 
                                 <a href='https://huggingface.co/cagliostrolab/animagine-xl-3.1' target='_blank'>cagliostrolab/animagine-xl-3.1</a>, 
                                 <a href='https://huggingface.co/IDEA-CCNL/Taiyi-Stable-Diffusion-XL-3.5B' target='_blank'>IDEA-CCNL/Taiyi-Stable-Diffusion-XL-3.5B</a>, 
                                 <a href='https://huggingface.co/dataautogpt3/OpenDalleV1.1' target='_blank'>dataautogpt3/OpenDalleV1.1</a>, 
@@ -8518,7 +8521,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         biniou_global_settings_inbrowser = gr.Checkbox(value=biniou_global_inbrowser, label="Load in browser at start", info="Open webui in browser when starting biniou (default = False)", interactive=True)
                                 with gr.Row():
                                     with gr.Column():
-                                        biniou_global_settings_auth = gr.Checkbox(value=biniou_global_auth, label="Activate authentication", info="A simple user/pass authentication (default = biniou/biniou). Credentials are stored in ./ini/auth.cfg (default = False)", interactive=True)
+                                        biniou_global_settings_auth = gr.Checkbox(value=biniou_global_auth, label="Activate authentication", info="A simple user/pass authentication (default = biniou/biniou). Credentials are stored in ./.ini/auth.cfg (default = False)", interactive=True)
                                     with gr.Column():
                                         biniou_global_settings_auth_message = gr.Textbox(value=biniou_global_auth_message, lines=1, max_lines=3, label="Login message", info="Login screen welcome message. Authentication is required.", interactive=True if biniou_global_auth else False)
                                     with gr.Column():

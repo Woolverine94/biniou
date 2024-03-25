@@ -525,7 +525,7 @@ def lora_model_list(model):
     if (("XL" in model.upper()) or ("ETRI-VILAB/KOALA-" in model.upper()) or ("SSD-1B" in model.upper()) or ("SEGMIND-VEGA" in model.upper()) or (model == "dataautogpt3/OpenDalleV1.1") or (model == "dataautogpt3/ProteusV0.4")):
         model_path_lora = "./models/lora/SDXL"
         model_list_lora_builtin = {
-            "openskyml/dalle-3-xl":("Dall-e_3_0.3-v2.safetensors", ""),
+            "ehristoforu/dalle-3-xl-v2":("dalle-3-xl-lora-v2.safetensors", ""),
             "ByteDance/SDXL-Lightning":("sdxl_lightning_4step_lora.safetensors", ""),
             "artificialguybr/ps1redmond-ps1-game-graphics-lora-for-sdxl":("PS1Redmond-PS1Game-Playstation1Graphics.safetensors", "Playstation 1 Graphics, PS1 Game"),
             "ProomptEngineer/pe-old-school-cartoon-style":("PE_OldCartoonStyle.safetensors", "old school cartoon style"),
