@@ -45,6 +45,7 @@ model_list_faceid_ip = []
 model_list_faceid_ip_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
     "SG161222/RealVisXL_V3.0",
+    "SG161222/RealVisXL_V4.0_Lightning",
     "cagliostrolab/animagine-xl-3.1",
 #    "stabilityai/sd-turbo",
 #    "stabilityai/sdxl-turbo",

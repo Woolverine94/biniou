@@ -872,6 +872,12 @@ def change_model_type_faceid_ip(model_faceid_ip, prompt):
 #        return sampler_faceid_ip.update(value="UniPC"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=False), prompt_faceid_ip.update()
     elif (model_faceid_ip == "stabilityai/sd-turbo"):
         return sampler_faceid_ip.update(value="Euler a"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=False), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=False), prompt_faceid_ip.update()
+    elif (model_faceid_ip == "SG161222/RealVisXL_V4.0_Lightning"):
+        if not ((" img " in prompt) or (" img," in prompt) or (" img:" in prompt)):
+            photomaker_prompt_faceid_ip = " img "+ prompt
+        else:
+            photomaker_prompt_faceid_ip = prompt
+        return sampler_faceid_ip.update(value="DPM++ SDE Karras"), width_faceid_ip.update(value=biniou_global_sdxl_width), height_faceid_ip.update(value=biniou_global_sdxl_height), num_inference_step_faceid_ip.update(value=6), guidance_scale_faceid_ip.update(value=1.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True), prompt_faceid_ip.update(value=photomaker_prompt_faceid_ip)
     elif ("XL" in model_faceid_ip.upper()) or (model_faceid_ip == "dataautogpt3/OpenDalleV1.1") or (model_faceid_ip == "dataautogpt3/ProteusV0.4"):
         if not ((" img " in prompt) or (" img," in prompt) or (" img:" in prompt)):
             photomaker_prompt_faceid_ip = " img "+ prompt
@@ -5624,6 +5630,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>HF model page : </b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
                                 <a href='https://huggingface.co/SG161222/RealVisXL_V3.0' target='_blank'>SG161222/RealVisXL_V3.0</a>, 
+                                <a href='https://huggingface.co/SG161222/RealVisXL_V4.0_Lightning' target='_blank'>SG161222/RealVisXL_V4.0_Lightning</a>, 
                                 <a href='https://huggingface.co/cagliostrolab/animagine-xl-3.1' target='_blank'>cagliostrolab/animagine-xl-3.1</a>, 
                                 <a href='https://huggingface.co/digiplay/AbsoluteReality_v1.8.1' target='_blank'>digiplay/AbsoluteReality_v1.8.1</a>, 
                                 <a href='https://huggingface.co/gsdf/Counterfeit-V2.5' target='_blank'>gsdf/Counterfeit-V2.5</a>, 
