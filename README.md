@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-03-26** : 🔥 ***New Stable Diffusion SDXL model*** 🔥 : Adding model [SG161222/RealVisXL_V4.0_Lightning](https://huggingface.co/SG161222/RealVisXL_V4.0_Lightning) to modules Stable Diffusion, img2img, IP-Adapter, ControlNet and Photobooth. This flavor of Realistic Vision can produces qualitatives outputs in only 4 steps, which halves the average the generation time for a SDXL model.
+
   * 🆕 **2024-03-24** : 🔥 ***New Stable Diffusion SDXL anime model*** 🔥 : Adding model [cagliostrolab/animagine-xl-3.1](https://huggingface.co/cagliostrolab/animagine-xl-3.1) to modules Stable Diffusion, img2img, IP-Adapter, ControlNet, Photobooth and Text2Video-Zero. This SDXL model generates awesome anime style contents.
 
   * 🆕 **2024-03-23** : ***Update of RHEL installer*** : Adressing a possible python version mismatch for the target OS if the installer fails.
@@ -23,10 +25,6 @@
   * 🆕 **2024-03-21** : 🔥 ***New IP-Adapter : ip-composition-adapter*** 🔥 : Adding [ostris/ip-composition-adapter](https://huggingface.co/ostris/ip-composition-adapter) to IP-Adapter module. You can select it by using the IP-Adapter type switch. It is a very nice alternative to controlnet, as it reproduce in the output image the composition of the IP-Adapter image, but in a smoother way. SDXL is implemented, but doesn't seems to be operational yet.
 
   * 🆕 **2024-03-18** : 🔥 ***New models for Chatbot module*** 🔥 : Adding models [NousResearch/Hermes-2-Pro-Mistral-7B-GGUF](https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B-GGUF) and [dranger003/MambaHermes-3B-GGUF](https://huggingface.co/dranger003/MambaHermes-3B-GGUF) to Chatbot module.
-
-  * 🆕 **2024-03-17** : 🔥 ***SDXL-lightning support*** 🔥 : Adding the 4 steps SDXL-lightning LoRA to all supported modules. Selecting this LoRA model for generation will reduce of 60% the time required to create an SDXL image. Also improving management of LoRA models in the UI, with smarter trigger words handling.
-
-  * 🆕 **2024-03-14** : 🔥 ***Adding Photomaker to Photobooth module*** 🔥 : Renaming **IP-Adapter FaceID** module to **Photobooth**, as it now can handle [Photomaker](https://huggingface.co/TencentARC/PhotoMaker) too, which also allow use of SDXL models for generation.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
