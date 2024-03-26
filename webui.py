@@ -610,22 +610,47 @@ def read_ini_img2img_ip(module) :
     return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), bool(int(content[9])), float(content[10])
 
 def change_model_type_img2img_ip(model_img2img_ip, source_type):
+
+    if  (not "TURBO" in model_img2img_ip.upper()) and (("XL" in model_img2img_ip.upper()) or ("ETRI-VILAB/KOALA-" in model_img2img_ip.upper()) or (model_img2img_ip == "dataautogpt3/OpenDalleV1.1") or (model_img2img_ip == "dataautogpt3/ProteusV0.4") or (model_img2img_ip == "segmind/SSD-1B") or (model_img2img_ip == "segmind/Segmind-Vega")):
+        is_xl_size: bool = True
+    else : 
+        is_xl_size: bool = False
+
+    if (source_type == "composition") and not is_xl_size:
+        width_value = biniou_global_sd15_width
+        height_value = biniou_global_sd15_height
+        interaction = True
+    elif (source_type == "composition") and is_xl_size:
+        width_value = biniou_global_sdxl_width
+        height_value = biniou_global_sdxl_height
+        interaction = True
+    elif (source_type == "standard") and not is_xl_size:
+        width_value = None
+        height_value = None
+        interaction = False
+    elif (source_type == "standard") and is_xl_size:
+        width_value = None
+        height_value = None
+        interaction = False
+
     if (model_img2img_ip == "stabilityai/sdxl-turbo"):
-        return sampler_img2img_ip.update(value="Euler a"), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=False), source_type_img2img_ip.update(interactive=False, value="standard")
+        return sampler_img2img_ip.update(value="Euler a"), width_img2img_ip.update(width_value, interactive=interaction), height_img2img_ip.update(height_value, interactive=interaction), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=False), source_type_img2img_ip.update(interactive=False, value="standard")
 #    elif (model_img2img_ip == "thibaud/sdxl_dpo_turbo"):
 #        return sampler_img2img_ip.update(value="UniPC"), width_img2img_ip.update(value=biniou_global_sd15_width), height_img2img_ip.update(value=biniou_global_sd15_height), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=False)
     elif (model_img2img_ip == "stabilityai/sd-turbo"):
-        return sampler_img2img_ip.update(value="Euler a"), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=False), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=False), source_type_img2img_ip.update(interactive=False, value="standard")
+        return sampler_img2img_ip.update(value="Euler a"), width_img2img_ip.update(width_value, interactive=interaction), height_img2img_ip.update(height_value, interactive=interaction), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=False), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=False), source_type_img2img_ip.update(interactive=False, value="standard")
+    elif (model_img2img_ip == "SG161222/RealVisXL_V4.0_Lightning"):
+        return sampler_img2img_ip.update("DPM++ SDE Karras"), width_img2img_ip.update(width_value, interactive=interaction), height_img2img_ip.update(height_value, interactive=interaction), num_inference_step_img2img_ip.update(value=4), guidance_scale_img2img_ip.update(value=1.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True), source_type_img2img_ip.update(interactive=False, value="standard")
     elif ("XL" in model_img2img_ip.upper()) or ("ETRI-VILAB/KOALA-" in model_img2img_ip.upper()) or (model_img2img_ip == "dataautogpt3/OpenDalleV1.1") or (model_img2img_ip == "dataautogpt3/ProteusV0.4"):
-        return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True), source_type_img2img_ip.update(interactive=False, value="standard")
+        return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(width_value, interactive=interaction), height_img2img_ip.update(height_value, interactive=interaction), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=3 if source_type == "composition" else 7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True), source_type_img2img_ip.update(interactive=False, value="standard")
     elif (model_img2img_ip == "segmind/SSD-1B"):
-        return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=False), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True), source_type_img2img_ip.update(interactive=False, value="standard")
+        return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(width_value, interactive=interaction), height_img2img_ip.update(height_value, interactive=interaction), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=3 if source_type == "composition" else 7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=False), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True), source_type_img2img_ip.update(interactive=False, value="standard")
     elif (model_img2img_ip == "segmind/Segmind-Vega"):
-        return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(), height_img2img_ip.update(), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=9.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=False), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True), source_type_img2img_ip.update(interactive=False, value="standard")
+        return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(width_value, interactive=interaction), height_img2img_ip.update(height_value, interactive=interaction), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=3 if source_type == "composition" else 9.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=False), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True), source_type_img2img_ip.update(interactive=False, value="standard")
     else:
         return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), \
-            width_img2img_ip.update(), \
-            height_img2img_ip.update(), \
+            width_img2img_ip.update(width_value, interactive=interaction), \
+            height_img2img_ip.update(height_value, interactive=interaction), \
             num_inference_step_img2img_ip.update(value=10), \
             guidance_scale_img2img_ip.update(value=3 if source_type == "composition" else 7.5), \
             lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), \
@@ -3711,6 +3736,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>HF model page : </b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
                                 <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>, 
+                                <a href='https://huggingface.co/SG161222/RealVisXL_V4.0_Lightning' target='_blank'>SG161222/RealVisXL_V4.0_Lightning</a>, 
                                 <a href='https://huggingface.co/cagliostrolab/animagine-xl-3.1' target='_blank'>cagliostrolab/animagine-xl-3.1</a>, 
                                 <a href='https://huggingface.co/dataautogpt3/OpenDalleV1.1' target='_blank'>dataautogpt3/OpenDalleV1.1</a>, 
                                 <a href='https://huggingface.co/dataautogpt3/ProteusV0.4' target='_blank'>dataautogpt3/ProteusV0.4</a>, 
@@ -3858,6 +3884,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 source_type_img2img_ip
                             ]
                         )
+                        model_img2img_ip.change(image_upload_event, inputs=img_img2img_ip, outputs=[width_img2img_ip, height_img2img_ip])
                         lora_model_img2img_ip.change(fn=change_lora_model_img2img_ip, inputs=[model_img2img_ip, lora_model_img2img_ip, prompt_img2img_ip, num_inference_step_img2img_ip, guidance_scale_img2img_ip], outputs=[prompt_img2img_ip, num_inference_step_img2img_ip, guidance_scale_img2img_ip])
                         txtinv_img2img_ip.change(fn=change_txtinv_img2img_ip, inputs=[model_img2img_ip, txtinv_img2img_ip, prompt_img2img_ip, negative_prompt_img2img_ip], outputs=[prompt_img2img_ip, negative_prompt_img2img_ip])
                         source_type_img2img_ip.change(change_source_type_img2img_ip, source_type_img2img_ip, [img_img2img_ip, denoising_strength_img2img_ip])
