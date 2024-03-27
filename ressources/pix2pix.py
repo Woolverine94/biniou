@@ -28,6 +28,8 @@ for filename in os.listdir(model_path_pix2pix):
 
 model_list_pix2pix_builtin = [
     "timbrooks/instruct-pix2pix",
+    "instruction-tuning-sd/low-level-img-proc",
+    "instruction-tuning-sd/cartoonizer",
 ]
 
 for k in range(len(model_list_pix2pix_builtin)):
@@ -82,7 +84,7 @@ def image_pix2pix(
         modelid_pix2pix, 
         cache_dir=model_path_pix2pix, 
         torch_dtype=model_arch,
-        use_safetensors=True, 
+        use_safetensors=True if (modelid_pix2pix == "timbrooks/instruct-pix2pix") else False,
         safety_checker=nsfw_filter_final, 
         feature_extractor=feat_ex,
         resume_download=True,

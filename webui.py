@@ -4227,7 +4227,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Input(s) : </b>Input image, prompt, negative prompt</br>
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF model page : </b>
-                                <a href='https://huggingface.co/timbrooks/instruct-pix2pix' target='_blank'>timbrooks/instruct-pix2pix</a></br>
+                                <a href='https://huggingface.co/timbrooks/instruct-pix2pix' target='_blank'>timbrooks/instruct-pix2pix</a>, 
+                                <a href='https://huggingface.co/instruction-tuning-sd/low-level-img-proc' target='_blank'>instruction-tuning-sd/low-level-img-proc</a>, 
+                                <a href='https://huggingface.co/instruction-tuning-sd/cartoonizer' target='_blank'>instruction-tuning-sd/cartoonizer</a></br>
                                 """
                             )
                         with gr.Box():

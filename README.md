@@ -16,15 +16,17 @@
 
 ## Updates
 
-  * 🆕 **2024-03-26** : 🔥 ***New Stable Diffusion SDXL model*** 🔥 : Adding model [SG161222/RealVisXL_V4.0_Lightning](https://huggingface.co/SG161222/RealVisXL_V4.0_Lightning) to modules Stable Diffusion, img2img, IP-Adapter, ControlNet and Photobooth. This flavor of Realistic Vision can produces qualitatives outputs in only 4 steps, which halves the average the generation time for a SDXL model.
+  * 🆕 **2024-03-27** : 
+    - 🔥 ***Updates for Text2Video-Zero module*** 🔥 : Adding model [SG161222/RealVisXL_V4.0_Lightning](https://huggingface.co/SG161222/RealVisXL_V4.0_Lightning) and modifying settings to apply defaults SD1.5 and SDXL sizes.
+    - 🔥 ***Updates for Instruct pix2pix module*** 🔥 : Adding models [instruction-tuning-sd/low-level-img-proc](https://huggingface.co/instruction-tuning-sd/low-level-img-proc) and [instruction-tuning-sd/cartoonizer](https://huggingface.co/instruction-tuning-sd/cartoonizer). The first one can be used to derain, denoise, deblur or enhance low-light image. The second one can cartoonize an image. See [here](https://huggingface.co/blog/instruction-tuning-sd) for more informations.
+
+  * 🆕 **2024-03-26** : 🔥 ***New Stable Diffusion SDXL model*** 🔥 : Adding model [SG161222/RealVisXL_V4.0_Lightning](https://huggingface.co/SG161222/RealVisXL_V4.0_Lightning) to modules Stable Diffusion, img2img, IP-Adapter, ControlNet and Photobooth. This flavor of Realistic Vision can produces qualitatives outputs in only 4 steps, which halves the average generation time for a SDXL model.
 
   * 🆕 **2024-03-24** : 🔥 ***New Stable Diffusion SDXL anime model*** 🔥 : Adding model [cagliostrolab/animagine-xl-3.1](https://huggingface.co/cagliostrolab/animagine-xl-3.1) to modules Stable Diffusion, img2img, IP-Adapter, ControlNet, Photobooth and Text2Video-Zero. This SDXL model generates awesome anime style contents.
 
   * 🆕 **2024-03-23** : ***Update of RHEL installer*** : Adressing a possible python version mismatch for the target OS if the installer fails.
 
   * 🆕 **2024-03-21** : 🔥 ***New IP-Adapter : ip-composition-adapter*** 🔥 : Adding [ostris/ip-composition-adapter](https://huggingface.co/ostris/ip-composition-adapter) to IP-Adapter module. You can select it by using the IP-Adapter type switch. It is a very nice alternative to controlnet, as it reproduce in the output image the composition of the IP-Adapter image, but in a smoother way. SDXL is implemented, but doesn't seems to be operational yet.
-
-  * 🆕 **2024-03-18** : 🔥 ***New models for Chatbot module*** 🔥 : Adding models [NousResearch/Hermes-2-Pro-Mistral-7B-GGUF](https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B-GGUF) and [dranger003/MambaHermes-3B-GGUF](https://huggingface.co/dranger003/MambaHermes-3B-GGUF) to Chatbot module.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
