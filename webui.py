@@ -1047,13 +1047,15 @@ def read_ini_txt2vid_ze(module) :
 
 def change_model_type_txt2vid_ze(model_txt2vid_ze):
     if (model_txt2vid_ze == "stabilityai/sdxl-turbo"):
-        return sampler_txt2vid_ze.update(value="Euler a"), width_txt2vid_ze.update(), height_txt2vid_ze.update(), num_inference_step_txt2vid_ze.update(value=2), guidance_scale_txt2vid_ze.update(value=0.0), negative_prompt_txt2vid_ze.update(interactive=False)
+        return sampler_txt2vid_ze.update(value="Euler a"), width_txt2vid_ze.update(value=biniou_global_sd15_width), height_txt2vid_ze.update(value=biniou_global_sd15_height), num_inference_step_txt2vid_ze.update(value=2), guidance_scale_txt2vid_ze.update(value=0.0), negative_prompt_txt2vid_ze.update(interactive=False)
+    elif (model_txt2vid_ze == "SG161222/RealVisXL_V4.0_Lightning"):
+        return sampler_txt2vid_ze.update(value="DPM++ SDE Karras"), width_txt2vid_ze.update(value=biniou_global_sdxl_width), height_txt2vid_ze.update(value=biniou_global_sdxl_height), num_inference_step_txt2vid_ze.update(value=4), guidance_scale_txt2vid_ze.update(value=1.0), negative_prompt_txt2vid_ze.update(interactive=True)
     elif ("XL" in model_txt2vid_ze.upper()) or ("ETRI-VILAB/KOALA-" in model_txt2vid_ze.upper()) or (model_txt2vid_ze == "segmind/SSD-1B") or (model_txt2vid_ze == "dataautogpt3/OpenDalleV1.1") or (model_txt2vid_ze == "dataautogpt3/ProteusV0.4"):
-        return sampler_txt2vid_ze.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2vid_ze.update(), height_txt2vid_ze.update(), num_inference_step_txt2vid_ze.update(value=10), guidance_scale_txt2vid_ze.update(value=7.5), negative_prompt_txt2vid_ze.update(interactive=True)
+        return sampler_txt2vid_ze.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2vid_ze.update(value=biniou_global_sdxl_width), height_txt2vid_ze.update(value=biniou_global_sdxl_height), num_inference_step_txt2vid_ze.update(value=10), guidance_scale_txt2vid_ze.update(value=7.5), negative_prompt_txt2vid_ze.update(interactive=True)
     elif (model_txt2vid_ze == "segmind/Segmind-Vega"):
-        return sampler_txt2vid_ze.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2vid_ze.update(), height_txt2vid_ze.update(), num_inference_step_txt2vid_ze.update(value=10), guidance_scale_txt2vid_ze.update(value=9.0), negative_prompt_txt2vid_ze.update(interactive=True)
+        return sampler_txt2vid_ze.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2vid_ze.update(value=biniou_global_sdxl_width), height_txt2vid_ze.update(value=biniou_global_sdxl_height), num_inference_step_txt2vid_ze.update(value=10), guidance_scale_txt2vid_ze.update(value=9.0), negative_prompt_txt2vid_ze.update(interactive=True)
     else:
-        return sampler_txt2vid_ze.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2vid_ze.update(), height_txt2vid_ze.update(), num_inference_step_txt2vid_ze.update(value=10), guidance_scale_txt2vid_ze.update(value=7.5), negative_prompt_txt2vid_ze.update(interactive=True)
+        return sampler_txt2vid_ze.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2vid_ze.update(value=biniou_global_sd15_width), height_txt2vid_ze.update(value=biniou_global_sd15_height), num_inference_step_txt2vid_ze.update(value=10), guidance_scale_txt2vid_ze.update(value=7.5), negative_prompt_txt2vid_ze.update(interactive=True)
 
 ## Functions specific to AnimateLCM
 def read_ini_animatediff_lcm(module) :
@@ -7318,6 +7320,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>HF model page : </b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
                                 <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>, 
+                                <a href='https://huggingface.co/SG161222/RealVisXL_V4.0_Lightning' target='_blank'>SG161222/RealVisXL_V4.0_Lightning</a>, 
                                 <a href='https://huggingface.co/cagliostrolab/animagine-xl-3.1' target='_blank'>cagliostrolab/animagine-xl-3.1</a>, 
                                 <a href='https://huggingface.co/dataautogpt3/OpenDalleV1.1' target='_blank'>dataautogpt3/OpenDalleV1.1</a>, 
                                 <a href='https://huggingface.co/dataautogpt3/ProteusV0.4' target='_blank'>dataautogpt3/ProteusV0.4</a>, 
@@ -7369,9 +7372,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 num_chunks_txt2vid_ze = gr.Slider(1, 32, step=1, value=1, label="Chunk size", info="Number of frames processed in a chunk. 1 = no chunks.")
                         with gr.Row():
                             with gr.Column():
-                                width_txt2vid_ze = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=576, label="Video Width", info="Width of outputs")
+                                width_txt2vid_ze = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=512, label="Video Width", info="Width of outputs")
                             with gr.Column():
-                                height_txt2vid_ze = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=320, label="Video Height", info="Height of outputs")
+                                height_txt2vid_ze = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=512, label="Video Height", info="Height of outputs")
                             with gr.Column():
                                 num_videos_per_prompt_txt2vid_ze = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of videos to generate in a single run", interactive=False)
                             with gr.Column():

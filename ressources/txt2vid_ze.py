@@ -20,6 +20,7 @@ os.makedirs(model_path_txt2vid_ze, exist_ok=True)
 model_list_txt2vid_ze = [
     "SG161222/Realistic_Vision_V3.0_VAE",
     "stabilityai/sdxl-turbo",
+    "SG161222/RealVisXL_V4.0_Lightning",
     "cagliostrolab/animagine-xl-3.1",
     "dataautogpt3/OpenDalleV1.1",
     "dataautogpt3/ProteusV0.4",
