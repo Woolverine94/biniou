@@ -5,6 +5,7 @@ import os
 import PIL
 import torch
 from diffusers import AutoPipelineForImage2Image, StableDiffusionXLImg2ImgPipeline, StableDiffusionImg2ImgPipeline, StableDiffusionPipeline, StableDiffusionXLPipeline, AutoPipelineForText2Image
+from transformers import CLIPVisionModelWithProjection
 from huggingface_hub import snapshot_download, hf_hub_download
 from compel import Compel, ReturnedEmbeddingsType
 import random
@@ -149,6 +150,16 @@ def image_img2img_ip(
                     local_files_only=True if offline_test() else None
                 )
 
+                image_encoder = CLIPVisionModelWithProjection.from_pretrained(
+                    "h94/IP-Adapter",
+                    subfolder="models/image_encoder",
+                    cache_dir=model_path_ipa_img2img_ip,
+                    torch_dtype=model_arch,
+                    use_safetensors=True,
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None
+                )
+
         else:
             hf_hub_download(
                 repo_id="h94/IP-Adapter",
@@ -185,50 +196,7 @@ def image_img2img_ip(
                     local_files_only=True if offline_test() else None
                 )
 
-    if (is_turbo_img2img_ip == True) :
-        if (source_type_img2img_ip == "standard"):
-            if modelid_img2img_ip[0:9] == "./models/" :
-                pipe_img2img_ip = AutoPipelineForImage2Image.from_single_file(
-                    modelid_img2img_ip,
-                    torch_dtype=model_arch,
-                    use_safetensors=True if not is_bin_img2img_ip else False,
-                    load_safety_checker=False if (nsfw_filter_final == None) else True,
-#                    safety_checker=nsfw_filter_final, 
-#                    feature_extractor=feat_ex,
-                )
-            else :
-                pipe_img2img_ip = AutoPipelineForImage2Image.from_pretrained(
-                    modelid_img2img_ip,
-                    cache_dir=model_path_img2img_ip,
-                    torch_dtype=model_arch,
-                    use_safetensors=True if not is_bin_img2img_ip else False,
-                    safety_checker=nsfw_filter_final,
-                    feature_extractor=feat_ex,
-                    resume_download=True,
-                    local_files_only=True if offline_test() else None
-                )
-        elif (source_type_img2img_ip == "composition"):
-            if modelid_img2img_ip[0:9] == "./models/" :
-                pipe_img2img_ip = AutoPipelineForText2Image.from_single_file(
-                    modelid_img2img_ip,
-                    torch_dtype=model_arch,
-                    use_safetensors=True if not is_bin_img2img_ip else False,
-                    load_safety_checker=False if (nsfw_filter_final == None) else True,
-#                    safety_checker=nsfw_filter_final, 
-#                    feature_extractor=feat_ex,
-                )
-            else :
-                pipe_img2img_ip = AutoPipelineForText2Image.from_pretrained(
-                    modelid_img2img_ip,
-                    cache_dir=model_path_img2img_ip,
-                    torch_dtype=model_arch,
-                    use_safetensors=True if not is_bin_img2img_ip else False,
-                    safety_checker=nsfw_filter_final,
-                    feature_extractor=feat_ex,
-                    resume_download=True,
-                    local_files_only=True if offline_test() else None
-                )
-    elif (is_xl_img2img_ip == True) and (is_turbo_img2img_ip == False) :
+    if (is_xl_img2img_ip == True):
         if (source_type_img2img_ip == "standard"):
             if modelid_img2img_ip[0:9] == "./models/" :
                 pipe_img2img_ip = StableDiffusionXLImg2ImgPipeline.from_single_file(
@@ -266,6 +234,7 @@ def image_img2img_ip(
                     cache_dir=model_path_img2img_ip,
                     torch_dtype=model_arch,
                     use_safetensors=True if not is_bin_img2img_ip else False,
+                    image_encoder=image_encoder,
                     safety_checker=nsfw_filter_final,
                     feature_extractor=feat_ex,
                     resume_download=True,
@@ -635,6 +604,7 @@ def image_img2img_ip(
         f"LoRA weight={lora_weight_img2img_ip} | "+\
         f"Textual inversion={txtinv_img2img_ip} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
+        f"Ip-Adapter type={source_type_img2img_ip} | "+\
         f"Denoising strength={denoising_strength_img2img_ip} | "+\
         f"Prompt={prompt_img2img_ip} | "+\
         f"Negative prompt={negative_prompt_img2img_ip}"
