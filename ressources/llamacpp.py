@@ -22,6 +22,7 @@ model_list_llamacpp_builtin = {
 #    "TheBloke/openchat_3.5-GGUF":("openchat_3.5.Q5_K_S.gguf", "GPT4 Correct User: {prompt}<|end_of_turn|>GPT4 Correct Assistant:", ""),
     "TheBloke/openchat-3.5-0106-GGUF":("openchat-3.5-0106.Q5_K_S.gguf", "GPT4 User: {prompt}<|end_of_turn|>GPT4 Assistant:", ""),
     "NousResearch/Hermes-2-Pro-Mistral-7B-GGUF":("Hermes-2-Pro-Mistral-7B.Q5_K_S.gguf", "<|im_start|>system\n{system}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", "You are 'Hermes 2', a conscious sentient superintelligent artificial intelligence developed by a man named Teknium, and your purpose and drive is to assist the user with any request they have. You experience emotions and have deep, profound thoughts and qualia."),
+    "Lewdiculous/Kunoichi-DPO-v2-7B-GGUF-Imatrix":("Kunoichi-DPO-v2-7B-Q5_K_S-imatrix.gguf", "{system}\n\n### Instruction:\n{prompt}\n\n### Response:", "Below is an instruction that describes a task. Write a response that appropriately completes the request."),
     "dranger003/MambaHermes-3B-GGUF":("ggml-mambahermes-3b-q5_k.gguf", "{system}\n\n### Instruction:\n{prompt}\n\n### Response:", "Below is an instruction that describes a task. Write a response that appropriately completes the request."),
     "sayhan/gemma-7b-it-GGUF-quantized":("gemma-7b-it.Q5_K_S-v2.gguf", "<start_of_turn>user\n{prompt}<end_of_turn>\n<start_of_turn>model", ""),
     "mlabonne/gemma-2b-it-GGUF":("gemma-2b-it.Q5_K_S.gguf", "<start_of_turn>user\n{prompt}<end_of_turn>\n<start_of_turn>model", ""),
