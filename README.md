@@ -16,7 +16,7 @@
 
 ## Updates
 
-  * 🆕 **2024-03-29** : 🔥 ***New Chatbot model*** 🔥 : Adding model [Lewdiculous/Kunoichi-DPO-v2-7B-GGUF-Imatrix](https://huggingface.co/Lewdiculous/Kunoichi-DPO-v2-7B-GGUF-Imatrix) to Chatbot module. This model has been quantized using a GGUF-Imatrix quantizations, which seems to make a real difference in terms of speed and accuracy. Also, the base model is pretty good at roleplaying and story creation. Really worth trying.
+  * 🆕 **2024-03-29** : 🔥 ***New Chatbot model*** 🔥 : Adding model [Lewdiculous/Kunoichi-DPO-v2-7B-GGUF-Imatrix](https://huggingface.co/Lewdiculous/Kunoichi-DPO-v2-7B-GGUF-Imatrix) to Chatbot module. This model has been quantized using a GGUF-Imatrix quantizations, which seems to make a real difference in terms of speed and accuracy. Also, the base model is pretty good, especially at roleplaying. Really worth trying.
 
   * 🆕 **2024-03-28** : 🔥 ***SDXL models support for ip-composition-adapter*** 🔥 : SDXL models are now usables with ip-composition-adapter in the IP-Adapter module. 
 
