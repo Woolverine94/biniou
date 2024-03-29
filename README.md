@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-03-29** : 🔥 ***New Chatbot model*** 🔥 : Adding model [Lewdiculous/Kunoichi-DPO-v2-7B-GGUF-Imatrix](https://huggingface.co/Lewdiculous/Kunoichi-DPO-v2-7B-GGUF-Imatrix) to Chatbot module. This model has been quantized using a GGUF-Imatrix quantizations, which seems to make a real difference in terms of speed and accuracy. Also, the base model is pretty good at roleplaying and story creation. Really worth trying.
+
   * 🆕 **2024-03-28** : 🔥 ***SDXL models support for ip-composition-adapter*** 🔥 : SDXL models are now usables with ip-composition-adapter in the IP-Adapter module. 
 
   * 🆕 **2024-03-27** : 
@@ -25,8 +27,6 @@
   * 🆕 **2024-03-26** : 🔥 ***New Stable Diffusion SDXL model*** 🔥 : Adding model [SG161222/RealVisXL_V4.0_Lightning](https://huggingface.co/SG161222/RealVisXL_V4.0_Lightning) to modules Stable Diffusion, img2img, IP-Adapter, ControlNet and Photobooth. This flavor of Realistic Vision can produces qualitatives outputs in only 4 steps, which halves the average generation time for a SDXL model.
 
   * 🆕 **2024-03-24** : 🔥 ***New Stable Diffusion SDXL anime model*** 🔥 : Adding model [cagliostrolab/animagine-xl-3.1](https://huggingface.co/cagliostrolab/animagine-xl-3.1) to modules Stable Diffusion, img2img, IP-Adapter, ControlNet, Photobooth and Text2Video-Zero. This SDXL model generates awesome anime style contents.
-
-  * 🆕 **2024-03-23** : ***Update of RHEL installer*** : Adressing a possible python version mismatch for the target OS if the installer fails.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
