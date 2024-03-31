@@ -27,6 +27,7 @@ for filename in os.listdir(model_path_img2img):
 
 model_list_img2img_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
+    "IDKiro/sdxs-512-0.9",
     "stabilityai/sd-turbo",
     "stabilityai/sdxl-turbo",
     "thibaud/sdxl_dpo_turbo",

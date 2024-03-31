@@ -485,10 +485,21 @@ def convert_seconds_to_timestamp(seconds):
     return total
 
 def check_steps_strength (steps, strength, model):
-    if (model == "stabilityai/sdxl-turbo") or (model == "stabilityai/sd-turbo"):
-        if strength == 0:
-            strength = 0.01
+    if strength == 0:
+        strength = 0.01
+
+    if (model == "stabilityai/sdxl-turbo") or (model == "stabilityai/sd-turbo") or (model == "IDKiro/sdxs-512-0.9"):
         steps = ceil(1/strength)
+    elif (model == "SG161222/RealVisXL_V4.0_Lightning"):
+        steps = ceil(2/strength)
+    elif (model == "thibaud/sdxl_dpo_turbo"):
+        steps = ceil(4/strength)
+    else:
+        if strength < 0.1:
+            steps = ceil(1/strength)
+        else:
+            steps = 10
+
     return int(steps)
 
 def which_os():
