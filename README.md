@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-03-31** : 🔥 ***New Stable Diffusion and img2img model*** 🔥 : Adding model [IDKiro/sdxs-512-0.9](https://huggingface.co/IDKiro/sdxs-512-0.9) to Stable Diffusion and img2img module. This is an insanely fast 1 step model that can generate simple content in 15 seconds using CPU inference. Definitely the fastest model for image generation in biniou.
+
   * 🆕 **2024-03-29** : 🔥 ***New Chatbot model*** 🔥 : Adding model [Lewdiculous/Kunoichi-DPO-v2-7B-GGUF-Imatrix](https://huggingface.co/Lewdiculous/Kunoichi-DPO-v2-7B-GGUF-Imatrix) to Chatbot module. This model has been quantized using a GGUF-Imatrix quantizations, which seems to make a real difference in terms of speed and accuracy. Also, the base model is pretty good, especially at roleplaying. Really worth trying.
 
   * 🆕 **2024-03-28** : 🔥 ***SDXL models support for ip-composition-adapter*** 🔥 : SDXL models are now usables with ip-composition-adapter in the IP-Adapter module. 
@@ -25,8 +27,6 @@
     - 🔥 ***Updates for Instruct pix2pix module*** 🔥 : Adding models [instruction-tuning-sd/low-level-img-proc](https://huggingface.co/instruction-tuning-sd/low-level-img-proc) and [instruction-tuning-sd/cartoonizer](https://huggingface.co/instruction-tuning-sd/cartoonizer). The first one can be used to derain, denoise, deblur or enhance low-light image. The second one can cartoonize an image. See [here](https://huggingface.co/blog/instruction-tuning-sd) for more informations.
 
   * 🆕 **2024-03-26** : 🔥 ***New Stable Diffusion SDXL model*** 🔥 : Adding model [SG161222/RealVisXL_V4.0_Lightning](https://huggingface.co/SG161222/RealVisXL_V4.0_Lightning) to modules Stable Diffusion, img2img, IP-Adapter, ControlNet and Photobooth. This flavor of Realistic Vision can produces qualitatives outputs in only 4 steps, which halves the average generation time for a SDXL model.
-
-  * 🆕 **2024-03-24** : 🔥 ***New Stable Diffusion SDXL anime model*** 🔥 : Adding model [cagliostrolab/animagine-xl-3.1](https://huggingface.co/cagliostrolab/animagine-xl-3.1) to modules Stable Diffusion, img2img, IP-Adapter, ControlNet, Photobooth and Text2Video-Zero. This SDXL model generates awesome anime style contents.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
