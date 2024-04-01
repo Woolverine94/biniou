@@ -538,6 +538,7 @@ def lora_model_list(model):
         model_list_lora_builtin = {
             "ehristoforu/dalle-3-xl-v2":("dalle-3-xl-lora-v2.safetensors", ""),
             "ByteDance/SDXL-Lightning":("sdxl_lightning_4step_lora.safetensors", ""),
+            "ostris/face-helper-sdxl-lora":("face_xl_v0_1.safetensors", ""),
             "artificialguybr/ps1redmond-ps1-game-graphics-lora-for-sdxl":("PS1Redmond-PS1Game-Playstation1Graphics.safetensors", "Playstation 1 Graphics, PS1 Game"),
             "ProomptEngineer/pe-old-school-cartoon-style":("PE_OldCartoonStyle.safetensors", "old school cartoon style"),
             "goofyai/3d_render_style_xl":("3d_render_style_xl.safetensors", "3d style, 3d render"),

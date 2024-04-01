@@ -2308,6 +2308,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF model page : </b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
+                                <a href='https://huggingface.co/IDKiro/sdxs-512-0.9' target='_blank'>IDKiro/sdxs-512-0.9</a>, 
                                 <a href='https://huggingface.co/stabilityai/sd-turbo' target='_blank'>stabilityai/sd-turbo</a>, 
                                 <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>, 
                                 <a href='https://huggingface.co/thibaud/sdxl_dpo_turbo' target='_blank'>thibaud/sdxl_dpo_turbo</a>, 
@@ -3472,6 +3473,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF model page : </b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
+                                <a href='https://huggingface.co/IDKiro/sdxs-512-0.9' target='_blank'>IDKiro/sdxs-512-0.9</a>, 
                                 <a href='https://huggingface.co/stabilityai/sd-turbo' target='_blank'>stabilityai/sd-turbo</a>, 
                                 <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>, 
                                 <a href='https://huggingface.co/thibaud/sdxl_dpo_turbo' target='_blank'>thibaud/sdxl_dpo_turbo</a>, 
