@@ -2,7 +2,7 @@
 # txt2img_paa.py
 import gradio as gr
 import os
-from diffusers import PixArtAlphaPipeline
+from diffusers import PixArtAlphaPipeline, Transformer2DModel, LCMScheduler
 import torch
 import random
 from ressources.gfpgan import *
@@ -26,6 +26,8 @@ model_list_txt2img_paa_builtin = [
     "PixArt-alpha/PixArt-XL-2-512x512",
     "PixArt-alpha/PixArt-XL-2-1024-MS",
     "PixArt-alpha/PixArt-LCM-XL-2-1024-MS",
+    "Luo-Yihong/yoso_pixart512",
+    "Luo-Yihong/yoso_pixart1024", 
 ]
 
 for k in range(len(model_list_txt2img_paa_builtin)):
@@ -76,28 +78,70 @@ def image_txt2img_paa(
 #    global pipe_txt2img_paa
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2img_paa_safetychecker, device_txt2img_paa, nsfw_filter)
 
-    if modelid_txt2img_paa[0:9] == "./models/" :
-        pipe_txt2img_paa = PixArtAlphaPipeline.from_single_file(
-            modelid_txt2img_paa, 
+    if ("YOSO" in modelid_txt2img_paa.upper()):
+        if (modelid_txt2img_paa == "Luo-Yihong/yoso_pixart512"):
+            transformerid_txt2img_paa = modelid_txt2img_paa
+            modelid_txt2img_paa = "PixArt-alpha/PixArt-XL-2-512x512"
+        elif (modelid_txt2img_paa == "Luo-Yihong/yoso_pixart1024"):
+            transformerid_txt2img_paa = modelid_txt2img_paa
+            modelid_txt2img_paa = "PixArt-alpha/PixArt-XL-2-1024-MS"
+
+        transformer_txt2img_paa = Transformer2DModel.from_pretrained(
+            transformerid_txt2img_paa,
+            cache_dir=model_path_txt2img_paa,
             torch_dtype=model_arch,
-            use_safetensors=True, 
-            load_safety_checker=False if (nsfw_filter_final == None) else True,
-#            safety_checker=nsfw_filter_final, 
-#            feature_extractor=feat_ex,
-        )
-    else :        
-        pipe_txt2img_paa = PixArtAlphaPipeline.from_pretrained(
-            modelid_txt2img_paa, 
-            cache_dir=model_path_txt2img_paa, 
-            torch_dtype=model_arch,
-            use_safetensors=True, 
-            safety_checker=nsfw_filter_final, 
-            feature_extractor=feat_ex,
+            use_safetensors=True,
             resume_download=True,
             local_files_only=True if offline_test() else None
         )
-    
-    pipe_txt2img_paa = schedulerer(pipe_txt2img_paa, sampler_txt2img_paa)
+
+        if modelid_txt2img_paa[0:9] == "./models/" :
+            pipe_txt2img_paa = PixArtAlphaPipeline.from_single_file(
+                modelid_txt2img_paa, 
+                transformer=transformer_txt2img_paa,
+                torch_dtype=model_arch,
+                use_safetensors=True, 
+                load_safety_checker=False if (nsfw_filter_final == None) else True,
+    #            safety_checker=nsfw_filter_final, 
+    #            feature_extractor=feat_ex,
+            )
+        else :        
+            pipe_txt2img_paa = PixArtAlphaPipeline.from_pretrained(
+                modelid_txt2img_paa, 
+                transformer=transformer_txt2img_paa,
+                cache_dir=model_path_txt2img_paa, 
+                torch_dtype=model_arch,
+                use_safetensors=True, 
+                safety_checker=nsfw_filter_final, 
+                feature_extractor=feat_ex,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+        pipe_txt2img_paa.scheduler = LCMScheduler.from_config(pipe_txt2img_paa.scheduler.config)
+        pipe_txt2img_paa.scheduler.config.prediction_type = "v_prediction"
+    else:
+        if modelid_txt2img_paa[0:9] == "./models/" :
+            pipe_txt2img_paa = PixArtAlphaPipeline.from_single_file(
+                modelid_txt2img_paa, 
+                torch_dtype=model_arch,
+                use_safetensors=True, 
+                load_safety_checker=False if (nsfw_filter_final == None) else True,
+    #            safety_checker=nsfw_filter_final, 
+    #            feature_extractor=feat_ex,
+            )
+        else :        
+            pipe_txt2img_paa = PixArtAlphaPipeline.from_pretrained(
+                modelid_txt2img_paa, 
+                cache_dir=model_path_txt2img_paa, 
+                torch_dtype=model_arch,
+                use_safetensors=True, 
+                safety_checker=nsfw_filter_final, 
+                feature_extractor=feat_ex,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+        pipe_txt2img_paa = schedulerer(pipe_txt2img_paa, sampler_txt2img_paa)
+
     pipe_txt2img_paa.enable_attention_slicing("max")
 #    tomesd.apply_patch(pipe_txt2img_paa, ratio=tkme_txt2img_paa)
     if device_label_txt2img_paa == "cuda" :

@@ -503,6 +503,10 @@ def read_ini_txt2img_paa(module):
 def change_model_type_txt2img_paa(model_txt2img_paa):
     if model_txt2img_paa == "PixArt-alpha/PixArt-XL-2-1024-MS":
         return sampler_txt2img_paa.update(value="UniPC", interactive=True), width_txt2img_paa.update(value=biniou_global_sdxl_width), height_txt2img_paa.update(value=biniou_global_sdxl_height), guidance_scale_txt2img_paa.update(value=7.0), num_inference_step_txt2img_paa.update(value=15)
+    elif model_txt2img_paa == "Luo-Yihong/yoso_pixart512":
+        return sampler_txt2img_paa.update(value="LCM", interactive=False), width_txt2img_paa.update(value=biniou_global_sd15_width), height_txt2img_paa.update(value=biniou_global_sd15_width), guidance_scale_txt2img_paa.update(value=1.0), num_inference_step_txt2img_paa.update(value=1)
+    elif model_txt2img_paa == "Luo-Yihong/yoso_pixart1024":
+        return sampler_txt2img_paa.update(value="LCM", interactive=False), width_txt2img_paa.update(value=biniou_global_sdxl_width), height_txt2img_paa.update(value=biniou_global_sdxl_height), guidance_scale_txt2img_paa.update(value=1.0), num_inference_step_txt2img_paa.update(value=1)
     elif model_txt2img_paa == "PixArt-alpha/PixArt-LCM-XL-2-1024-MS":
         return sampler_txt2img_paa.update(value="LCM", interactive=False), width_txt2img_paa.update(value=biniou_global_sdxl_width), height_txt2img_paa.update(value=biniou_global_sdxl_height), guidance_scale_txt2img_paa.update(value=0.0), num_inference_step_txt2img_paa.update(value=4)
     else:
@@ -3258,7 +3262,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>HF model page : </b>
                                 <a href='https://huggingface.co/PixArt-alpha/PixArt-XL-2-512x512' target='_blank'>PixArt-alpha/PixArt-XL-2-512x512</a>, 
                                 <a href='https://huggingface.co/PixArt-alpha/PixArt-XL-2-1024-MS' target='_blank'>PixArt-alpha/PixArt-XL-2-1024-MS</a>, 
-                                <a href='https://huggingface.co/PixArt-alpha/PixArt-LCM-XL-2-1024-MS' target='_blank'>PixArt-alpha/PixArt-LCM-XL-2-1024-MS</a>
+                                <a href='https://huggingface.co/PixArt-alpha/PixArt-LCM-XL-2-1024-MS' target='_blank'>PixArt-alpha/PixArt-LCM-XL-2-1024-MS</a>, 
+                                <a href='https://huggingface.co/Luo-Yihong/yoso_pixart512' target='_blank'>Luo-Yihong/yoso_pixart512</a>, 
+                                <a href='https://huggingface.co/Luo-Yihong/yoso_pixart1024' target='_blank'>Luo-Yihong/yoso_pixart1024</a>, 
                                 </br>
                                 """
                             )
