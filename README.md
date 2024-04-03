@@ -16,17 +16,15 @@
 
 ## Updates
 
+  * 🆕 **2024-04-03** : 🔥 ***New PixArt-Alpha models*** 🔥 : Adding models [Luo-Yihong/yoso_pixart512](https://huggingface.co/Luo-Yihong/yoso_pixart512) and [Luo-Yihong/yoso_pixart1024](https://huggingface.co/Luo-Yihong/yoso_pixart1024) to PixArt-Alpha module. These "You Only Sample Once" (YOSO) models, allow 1 step content generation using PixArt-Alpha. 
+
   * 🆕 **2024-04-02** : 🔥 ***New Chatbot model*** 🔥 : Adding model [LoneStriker/Starling-LM-7B-beta-GGUF](https://huggingface.co/LoneStriker/Starling-LM-7B-beta-GGUF) to Chatbot module. 
 
   * 🆕 **2024-03-31** : 🔥 ***New Stable Diffusion and img2img model*** 🔥 : Adding model [IDKiro/sdxs-512-0.9](https://huggingface.co/IDKiro/sdxs-512-0.9) to Stable Diffusion and img2img module. This is an insanely fast 1 step model that can generate simple content in 15 seconds using CPU inference. Definitely the fastest model for image generation in biniou.
 
   * 🆕 **2024-03-29** : 🔥 ***New Chatbot model*** 🔥 : Adding model [Lewdiculous/Kunoichi-DPO-v2-7B-GGUF-Imatrix](https://huggingface.co/Lewdiculous/Kunoichi-DPO-v2-7B-GGUF-Imatrix) to Chatbot module. This model has been quantized using a GGUF-Imatrix quantizations, which seems to make a real difference in terms of speed and accuracy. Also, the base model is pretty good, especially at roleplaying. Really worth trying.
 
-  * 🆕 **2024-03-28** : 🔥 ***SDXL models support for ip-composition-adapter*** 🔥 : SDXL models are now usables with ip-composition-adapter in the IP-Adapter module. 
-
-  * 🆕 **2024-03-27** : 
-    - 🔥 ***Updates for Text2Video-Zero module*** 🔥 : Adding model [SG161222/RealVisXL_V4.0_Lightning](https://huggingface.co/SG161222/RealVisXL_V4.0_Lightning) and modifying settings to apply defaults SD1.5 and SDXL sizes.
-    - 🔥 ***Updates for Instruct pix2pix module*** 🔥 : Adding models [instruction-tuning-sd/low-level-img-proc](https://huggingface.co/instruction-tuning-sd/low-level-img-proc) and [instruction-tuning-sd/cartoonizer](https://huggingface.co/instruction-tuning-sd/cartoonizer). The first one can be used to derain, denoise, deblur or enhance low-light image. The second one can cartoonize an image. See [here](https://huggingface.co/blog/instruction-tuning-sd) for more informations.
+  * 🆕 **2024-03-28** : 🔥 ***SDXL models support for ip-composition-adapter*** 🔥 : SDXL models are now usables with ip-composition-adapter in the IP-Adapter module.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
