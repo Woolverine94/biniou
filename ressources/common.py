@@ -521,7 +521,7 @@ def schedulerer(pipe, scheduler):
     sde = False
     if ('Karras') in scheduler:
         karras = True
-    if ('DPM++ 2M SDE ' or 'DPM++ 2M SDE Karras') in scheduler:
+    if ('DPM++ 2M SDE' or 'DPM++ 2M SDE Karras') in scheduler:
         sde = True
     if karras and not sde:
         return get_scheduler(pipe=pipe, scheduler=scheduler, use_karras_sigmas=True)
