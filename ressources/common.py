@@ -305,12 +305,20 @@ def write_file(*args) :
     return savename
 
 def write_seeded_file(seed, *args) :
-    savename = f"outputs/{seed}_{timestamper()}.txt"
+    savename = f"outputs/{timestamper()}_{seed}.txt"
     content = ""
     for idx, data in enumerate(args):
         content += f"{data} \n"
     with open(savename, 'w', encoding="utf-8") as savefile:
         savefile.write(content)
+    return savename
+
+def name_seeded_image(seed) :
+    savename = f"outputs/{timestamper()}_{seed}.png"
+    return savename
+
+def name_image() :
+    savename = f"outputs/{timestamper()}.png"
     return savename
 
 def set_timestep_vid_ze(numstep, model) :

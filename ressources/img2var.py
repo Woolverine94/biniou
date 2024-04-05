@@ -113,7 +113,7 @@ def image_img2var(
 
         for j in range(len(image)):
             seed_id = random_seed + i*num_images_per_prompt_img2var + j if (seed_img2var == 0) else seed_img2var + i*num_images_per_prompt_img2var + j
-            savename = f"outputs/{seed_id}_{timestamper()}.png"
+            savename = name_seeded_image(seed_id)
             if use_gfpgan_img2var == True :
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)

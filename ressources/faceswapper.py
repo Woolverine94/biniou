@@ -90,7 +90,7 @@ def image_faceswap(
         temp_frame = face_swapper.get(temp_frame, target_face, source_face, paste_back=True)
     
     temp_frame = Image.fromarray(cv2.cvtColor(temp_frame, cv2.COLOR_BGR2RGB))
-    savename = f"outputs/{timestamper()}.png"
+    savename = name_image()
     
     if use_gfpgan_faceswap == True :
         temp_frame = image_gfpgan_mini(temp_frame)

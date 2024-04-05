@@ -139,7 +139,7 @@ def image_pix2pix(
         ).images
 
         for j in range(len(image)):
-            savename = f"outputs/{timestamper()}.png"
+            savename = name_image()
             if use_gfpgan_pix2pix == True :
                 image[j] = image_gfpgan_mini(image[j])             
             image[j].save(savename)

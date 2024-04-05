@@ -183,7 +183,7 @@ def image_txt2img_paa(
 
         for j in range(len(image)):
             seed_id = random_seed + i*num_images_per_prompt_txt2img_paa + j if (seed_txt2img_paa == 0) else seed_txt2img_paa + i*num_images_per_prompt_txt2img_paa + j
-            savename = f"outputs/{seed_id}_{timestamper()}.png"
+            savename = name_seeded_image(seed_id)
             if use_gfpgan_txt2img_paa == True :
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)

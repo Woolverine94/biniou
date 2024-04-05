@@ -400,7 +400,7 @@ def image_faceid_ip(
 
         for j in range(len(image)):
             seed_id = random_seed + i*num_images_per_prompt_faceid_ip + j if (seed_faceid_ip == 0) else seed_faceid_ip + i*num_images_per_prompt_faceid_ip + j
-            savename = f"outputs/{seed_id}_{timestamper()}.png"
+            savename = name_seeded_image(seed_id)
             if use_gfpgan_faceid_ip == True:
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)

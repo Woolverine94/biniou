@@ -256,7 +256,7 @@ def image_outpaint(
 
         for j in range(len(image)):
             seed_id = random_seed + i*num_images_per_prompt_outpaint + j if (seed_outpaint == 0) else seed_outpaint + i*num_images_per_prompt_outpaint + j
-            savename = f"outputs/{seed_id}_{timestamper()}.png"
+            savename = name_seeded_image(seed_id)
             if use_gfpgan_outpaint == True :
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)

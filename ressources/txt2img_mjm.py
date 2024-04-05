@@ -144,7 +144,7 @@ def image_txt2img_mjm(
 
         for j in range(len(image)):
             seed_id = random_seed + i*num_images_per_prompt_txt2img_mjm + j if (seed_txt2img_mjm == 0) else seed_txt2img_mjm + i*num_images_per_prompt_txt2img_mjm + j
-            savename = f"outputs/{seed_id}_{timestamper()}.png"
+            savename = name_seeded_image(seed_id)
             if use_gfpgan_txt2img_mjm == True :
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)

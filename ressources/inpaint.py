@@ -217,7 +217,7 @@ def image_inpaint(
 
         for j in range(len(image)):
             seed_id = random_seed + i*num_images_per_prompt_inpaint + j if (seed_inpaint == 0) else seed_inpaint + i*num_images_per_prompt_inpaint + j
-            savename = f"outputs/{seed_id}_{timestamper()}.png"
+            savename = name_seeded_image(seed_id)
             if use_gfpgan_inpaint == True :
                 image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)

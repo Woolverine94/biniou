@@ -141,7 +141,7 @@ def image_magicmix(
             guidance_scale=guidance_scale_magicmix,
         )
         seed_id = random_seed + i if (seed_magicmix == 0) else seed_magicmix + i
-        savename = f"outputs/{seed_id}_{timestamper()}.png"
+        savename = name_seeded_image(seed_id)
         if use_gfpgan_magicmix == True :
             image = image_gfpgan_mini(image)
         image.save(savename)

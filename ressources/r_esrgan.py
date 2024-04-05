@@ -40,7 +40,7 @@ def image_resrgan(
     image = Image.open(img_resrgan).convert('RGB')
     sr_image = model_resrgan.predict(image)
     final_image = [] 
-    savename = f"outputs/{timestamper()}.png"
+    savename = name_image()
     if use_gfpgan_resrgan == True :
         sr_image = image_gfpgan_mini(sr_image)    
     sr_image.save(savename)

@@ -63,7 +63,7 @@ def image_gfpgan(modelid_gfpgan, variantid_gfpgan, img_gfpgan, progress_gfpgan=g
     )
     
     final_image = []
-    savename = f"outputs/{timestamper()}.png"
+    savename = name_image()
     image_gfpgan = cv2.cvtColor(image_gfpgan, cv2.COLOR_BGR2RGB)
     image_gfpgan_save = Image.fromarray(image_gfpgan)
     image_gfpgan_save.save(savename)

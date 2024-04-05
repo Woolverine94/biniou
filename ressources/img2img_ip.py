@@ -584,7 +584,7 @@ def image_img2img_ip(
                 ).images        
 
         for j in range(len(image)):
-            savename = f"outputs/{timestamper()}.png"
+            savename = name_image()
             if use_gfpgan_img2img_ip == True :
                 image[j] = image_gfpgan_mini(image[j])             
             image[j].save(savename)
