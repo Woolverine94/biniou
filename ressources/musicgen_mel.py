@@ -80,8 +80,7 @@ def music_musicgen_mel(
             progress=True,
         )
         for idx, one_wav in enumerate(wav):
-            savename = f"outputs/{timestamper()}_{idx}"
-            savename_final = savename+ ".wav" 
+            savename, savename_final = name_idx_audio(idx)
             audio_write(
                 savename, 
                 one_wav.cpu(), 

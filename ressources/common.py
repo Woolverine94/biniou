@@ -313,12 +313,25 @@ def write_seeded_file(seed, *args) :
         savefile.write(content)
     return savename
 
-def name_seeded_image(seed) :
+def name_seeded_image(seed):
     savename = f"outputs/{timestamper()}_{seed}.png"
     return savename
 
-def name_image() :
+def name_image():
     savename = f"outputs/{timestamper()}.png"
+    return savename
+
+def name_idx_audio(idx):
+    savename = f"outputs/{timestamper()}_{idx}"
+    savename_final = savename+ ".wav" 
+    return savename, savename_final
+
+def name_seeded_audio(seed):
+    savename = f"outputs/{timestamper()}_{seed}.wav"
+    return savename
+
+def name_audio():
+    savename = f"outputs/{timestamper()}.wav"
     return savename
 
 def set_timestep_vid_ze(numstep, model) :

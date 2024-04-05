@@ -105,7 +105,7 @@ def music_musicldm(
         
         for j in range(len(audio)):
             seed_id = random_seed + i*num_audio_per_prompt_musicldm + j if (seed_musicldm == 0) else seed_musicldm + i*num_audio_per_prompt_musicldm + j
-            savename = f"outputs/{seed_id}_{timestamper()}.wav"
+            savename = name_seeded_audio(seed_id)
             scipy.io.wavfile.write(savename, rate=16000, data=audio[j])
             final_audio.append(savename) 
             final_seed.append(seed_id)

@@ -81,7 +81,7 @@ def music_bark(
     audio_array = pipe_bark.generate(**inputs, do_sample=True)
     audio_array = audio_array.cpu().numpy().squeeze()
     sample_rate = pipe_bark.generation_config.sample_rate
-    savename = f"outputs/{timestamper()}.wav"
+    savename = name_audio()
     write_wav(savename, sample_rate, audio_array)
 
     print(f">>>[Bark 🗣️ ]: generated 1 audio file")

@@ -74,8 +74,7 @@ def music_musicgen(
     for i in range (num_batch_musicgen):
         wav = pipe_musicgen.generate(prompt_musicgen_final, progress=True)
         for idx, one_wav in enumerate(wav):
-            savename = f"outputs/{timestamper()}_{idx}"
-            savename_final = savename+ ".wav" 
+            savename, savename_final = name_idx_audio(idx)
             audio_write(savename, one_wav.cpu(), pipe_musicgen.sample_rate, strategy="loudness", loudness_compressor=True)
 
     print(f">>>[MusicGen 🎶 ]: generated {num_batch_musicgen} batch(es) of 1")

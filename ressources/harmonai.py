@@ -82,7 +82,7 @@ def music_harmonai(
 
         for j, audio in enumerate(audios):
             seed_id = random_seed + i*batch_size_harmonai + j if (seed_harmonai == 0) else seed_harmonai + i*batch_size_harmonai + j
-            savename = f"outputs/{seed_id}_{timestamper()}.wav"
+            savename = name_seeded_audio(seed_id)
             scipy.io.wavfile.write(savename, pipe_harmonai.unet.config.sample_rate, audio.transpose())
             final_seed.append(seed_id)
 
