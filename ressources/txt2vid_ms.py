@@ -116,7 +116,7 @@ def video_txt2vid_ms(
 
         video_path = export_to_video(video_frames)
         seed_id = random_seed + i if (seed_txt2vid_ms == 0) else seed_txt2vid_ms + i
-        savename = f"outputs/{seed_id}_{timestamper()}.mp4"
+        savename = name_seeded_video(seed_id)
         shutil.move(video_path, savename)
         final_seed.append(seed_id)
                     

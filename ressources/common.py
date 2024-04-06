@@ -334,6 +334,14 @@ def name_audio():
     savename = f"outputs/{timestamper()}.wav"
     return savename
 
+def name_seeded_video(seed):
+    savename = f"outputs/{timestamper()}_{seed}.mp4"
+    return savename
+
+def name_seeded_shape(seed, ext):
+    savename = f"outputs/{timestamper()}_{seed}.{ext}"
+    return savename
+
 def set_timestep_vid_ze(numstep, model) :
     if "turbo" not in model:
         factor = round(numstep/10)

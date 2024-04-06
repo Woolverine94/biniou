@@ -147,7 +147,7 @@ def image_vid2vid_ze(
             final_image.append(image[j])
 
         seed_id = random_seed + i if (seed_vid2vid_ze == 0) else seed_vid2vid_ze + i
-        savename = f"outputs/{seed_id}_{timestamper()}.mp4"
+        savename = name_seeded_video(seed_id)
         final_seed.append(seed_id)
         final_video = imageio.mimsave(savename, final_image, fps=num_fps_vid2vid_ze)            
 

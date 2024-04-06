@@ -200,7 +200,7 @@ def video_txt2vid_ze(
                 a += 1
             elif (a == num_frames_txt2vid_ze):
                 seed_id = random_seed + j*num_videos_per_prompt_txt2vid_ze + b if (seed_txt2vid_ze == 0) else seed_txt2vid_ze + j*num_videos_per_prompt_txt2vid_ze + b
-                savename = f"outputs/{seed_id}_{timestamper()}.mp4"
+                savename = name_seeded_video(seed_id)
                 imageio.mimsave(savename, result, fps=num_fps_txt2vid_ze)
                 final_seed.append(seed_id)
                 a = 1

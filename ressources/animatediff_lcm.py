@@ -101,7 +101,7 @@ def video_animatediff_lcm(
 
     pipe_animatediff_lcm.load_lora_weights(
         "wangfuyun/AnimateLCM",
-        weight_name="sd15_lora_beta.safetensors",
+        weight_name="AnimateLCM_sd15_t2v_lora.safetensors",
         cache_dir=lora_path_animatediff_lcm,
         use_safetensors=True,
         adapter_name="adapter1",
@@ -168,7 +168,7 @@ def video_animatediff_lcm(
 
         timestamp = time.time()
         seed_id = random_seed + i*num_videos_per_prompt_animatediff_lcm if (seed_animatediff_lcm == 0) else seed_animatediff_lcm + i*num_videos_per_prompt_animatediff_lcm
-        savename = f"outputs/{seed_id}_{timestamper()}.mp4"
+        savename = name_seeded_video(seed_id)
         export_to_video(result, savename, fps=8)
         final_seed.append(seed_id)
 

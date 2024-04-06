@@ -129,15 +129,14 @@ def image_img2shape(
         seed_id = random_seed + i*num_images_per_prompt_img2shape if (seed_img2shape == 0) else seed_img2shape + i*num_images_per_prompt_img2shape            
            
         if output_type_img2shape=="gif" :
-            savename = f"outputs/{seed_id}_{timestamper()}.gif"
+            savename = name_seeded_shape(seed_id, "gif")
             export_to_gif(image[0], savename)
             savename_final.append(savename)
             final_seed.append(seed_id)
         
         else : 
-            timestamp = timestamper()
-            savename = f".tmp/{seed_id}_{timestamp}.ply"
-            savename_glb = f"outputs/{seed_id}_{timestamp}.glb"
+            savename = f".tmp/{timestamper()}_{seed_id}.ply"
+            savename_glb = name_seeded_shape(seed_id, "glb")
             savename_final = f".tmp/{seed_id}_output.glb" 
             ply_file = export_to_ply(image[0], savename) 
             mesh = trimesh.load(savename)

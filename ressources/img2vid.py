@@ -129,7 +129,7 @@ def video_img2vid(
 
         timestamp = time.time()
         seed_id = random_seed + i*num_videos_per_prompt_img2vid if (seed_img2vid == 0) else seed_img2vid + i*num_videos_per_prompt_img2vid
-        savename = f"outputs/{seed_id}_{timestamper()}.mp4"
+        savename = name_seeded_video(seed_id)
         export_to_video(result, savename, fps=num_fps_img2vid)
         final_seed.append(seed_id)
 
