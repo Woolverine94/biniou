@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-04-07** : 🔥 ***Support for JPEG outputs*** 🔥 : Adding an option to Global Settings that let you choose between PNG (default) and JPEG format for output images. Note that you have to restart biniou and reload UI to apply this setting. 
+
   * 🆕 **2024-04-06** : ***Bugfix and updates*** :
     - Fixing a bug following models renaming in the repository that completely broke AnimateLCM module.
     - Modifying and harmonizing outputs naming system. Syntax of names of outputs is now : timestamp_timestamp_seed.extension or timestamp_timestamp[_idx].extension, depending on modules. This naming convention is more logical and ease the browsing of outputs with a lot of softwares.
@@ -25,8 +27,6 @@
   * 🆕 **2024-04-02** : 🔥 ***New Chatbot model*** 🔥 : Adding model [LoneStriker/Starling-LM-7B-beta-GGUF](https://huggingface.co/LoneStriker/Starling-LM-7B-beta-GGUF) to Chatbot module. 
 
   * 🆕 **2024-03-31** : 🔥 ***New Stable Diffusion and img2img model*** 🔥 : Adding model [IDKiro/sdxs-512-0.9](https://huggingface.co/IDKiro/sdxs-512-0.9) to Stable Diffusion and img2img module. This is an insanely fast 1 step model that can generate simple content in 15 seconds using CPU inference. Definitely the fastest model for image generation in biniou.
-
-  * 🆕 **2024-03-29** : 🔥 ***New Chatbot model*** 🔥 : Adding model [Lewdiculous/Kunoichi-DPO-v2-7B-GGUF-Imatrix](https://huggingface.co/Lewdiculous/Kunoichi-DPO-v2-7B-GGUF-Imatrix) to Chatbot module. This model has been quantized using a GGUF-Imatrix quantizations, which seems to make a real difference in terms of speed and accuracy. Also, the base model is pretty good, especially at roleplaying. Really worth trying.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
