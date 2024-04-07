@@ -91,6 +91,7 @@ biniou_global_sdxl_width = 1024
 biniou_global_sdxl_height = 1024
 biniou_global_gfpgan = True
 biniou_global_tkme = 0.6
+biniou_global_img_fmt = "png"
 
 if test_cfg_exist("settings") :
     with open(".ini/settings.cfg", "r", encoding="utf-8") as fichier:
@@ -8617,6 +8618,11 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         biniou_global_settings_gfpgan = gr.Checkbox(value=biniou_global_gfpgan, label="Default use of GFPGAN to restore faces", info="Activate/desactivate gfpgan enhancement for all modules using it (default = True)", interactive=True)
                                     with gr.Column():
                                         biniou_global_settings_tkme = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Default token merging ratio", info="Set token merging ratio for all modules using it (default = 0.6)", interactive=True)
+                                with gr.Row():
+                                    with gr.Column():
+                                        biniou_global_settings_img_fmt = gr.Dropdown(choices=img_fmt_list(), value=biniou_global_img_fmt, label="Default format for output images", info="Select a default image format for outputs (default = png)", interactive=True)
+                                    with gr.Column():
+                                        gr.Number(visible=False)
                             with gr.Row():
                                 with gr.Column():
                                     save_ini_btn_settings = gr.Button("Save custom defaults settings 💾")
@@ -8644,6 +8650,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                             biniou_global_settings_sdxl_height,
                                             biniou_global_settings_gfpgan,
                                             biniou_global_settings_tkme,
+                                            biniou_global_settings_img_fmt,
                                         ],
                                         outputs=None
                                     )
