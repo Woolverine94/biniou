@@ -329,6 +329,16 @@ def check_image_fmt():
         extension = "png"
     return extension
 
+def check_image_exif():
+    if test_cfg_exist("settings"):
+        with open(".ini/settings.cfg", "r", encoding="utf-8") as fichier:
+            exec(fichier.read())
+    if ("biniou_global_img_exif" in locals() and locals()['biniou_global_img_exif'] != ""):
+        exif = locals()['biniou_global_img_exif']
+    else:
+        exif = True
+    return exif
+
 def name_seeded_image(seed):
     savename = f"outputs/{timestamper()}_{seed}.{check_image_fmt()}"
     return savename
@@ -417,6 +427,7 @@ def write_settings_ini(
     biniou_global_settings_gfpgan,
     biniou_global_settings_tkme,
     biniou_global_settings_img_fmt,
+    biniou_global_settings_img_exif,
 ):
     savename = f".ini/{module}.cfg"
     content = f"biniou_global_server_name = {biniou_global_settings_server_name}\n\
@@ -437,7 +448,8 @@ biniou_global_sdxl_width = {biniou_global_settings_sdxl_width}\n\
 biniou_global_sdxl_height = {biniou_global_settings_sdxl_height}\n\
 biniou_global_gfpgan = {biniou_global_settings_gfpgan}\n\
 biniou_global_tkme = {biniou_global_settings_tkme}\n\
-biniou_global_img_fmt = \"{biniou_global_settings_img_fmt}\""
+biniou_global_img_fmt = \"{biniou_global_settings_img_fmt}\"\n\
+biniou_global_img_exif = {biniou_global_settings_img_exif}"
     with open(savename, 'w', encoding="utf-8") as savefile:
         savefile.write(content)
     return
@@ -559,19 +571,22 @@ def img_fmt_list():
     return IMAGES_FORMAT_LIST
 
 def exif_writer_png(exif_datas, filename):
-    if (check_image_fmt() == "png"):
-        datas = PngInfo()
-        datas.add_text("UserComment", f"biniou settings: {exif_datas}")
-        for j in range(len(filename)):
-            with Image.open(filename[j]) as image:
-                image.save(filename[j], pnginfo=datas, encoding="utf-8")
-    elif (check_image_fmt() == "jpg"):
-        for j in range(len(filename)):
-            image = exiv2.ImageFactory.open(filename[j])
-            image.readMetadata()
-            metadata = image.exifData()
-            metadata['Exif.Image.ImageDescription'] = f"biniou settings: {exif_datas}"
-            image.writeMetadata()
+    if check_image_exif() == True:
+        if (check_image_fmt() == "png"):
+            datas = PngInfo()
+            datas.add_text("UserComment", f"biniou settings: {exif_datas}")
+            for j in range(len(filename)):
+                with Image.open(filename[j]) as image:
+                    image.save(filename[j], pnginfo=datas, encoding="utf-8")
+        elif (check_image_fmt() == "jpg"):
+            for j in range(len(filename)):
+                image = exiv2.ImageFactory.open(filename[j])
+                image.readMetadata()
+                metadata = image.exifData()
+                metadata['Exif.Image.ImageDescription'] = f"biniou settings: {exif_datas}"
+                image.writeMetadata()
+    else:
+        pass
     return
 
 def schedulerer(pipe, scheduler):
