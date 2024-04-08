@@ -16,7 +16,9 @@
 
 ## Updates
 
-  * 🆕 **2024-04-07** : 🔥 ***Support for JPEG outputs*** 🔥 : Adding an option to Global Settings that let you choose between PNG (default) and JPEG format for output images. Note that you have to restart biniou and reload UI to apply this setting. 
+  * 🆕 **2024-04-08** : 🔥 ***Exif option in Global settings*** 🔥 : Adding an opt-out option for inclusion of generation settings in exif metadatas of the generated images. 
+
+  * 🆕 **2024-04-07** : 🔥 ***Support for JPEG outputs*** 🔥 : Adding an option to Global Settings that let you choose between PNG (default) and JPEG format for output images.
 
   * 🆕 **2024-04-06** : ***Bugfix and updates*** :
     - Fixing a bug following models renaming in the repository that completely broke AnimateLCM module.
@@ -25,8 +27,6 @@
   * 🆕 **2024-04-03** : 🔥 ***New PixArt-Alpha models*** 🔥 : Adding models [Luo-Yihong/yoso_pixart512](https://huggingface.co/Luo-Yihong/yoso_pixart512) and [Luo-Yihong/yoso_pixart1024](https://huggingface.co/Luo-Yihong/yoso_pixart1024) to PixArt-Alpha module. These "You Only Sample Once" (YOSO) models, allow 1 step content generation using PixArt-Alpha. 
 
   * 🆕 **2024-04-02** : 🔥 ***New Chatbot model*** 🔥 : Adding model [LoneStriker/Starling-LM-7B-beta-GGUF](https://huggingface.co/LoneStriker/Starling-LM-7B-beta-GGUF) to Chatbot module. 
-
-  * 🆕 **2024-03-31** : 🔥 ***New Stable Diffusion and img2img model*** 🔥 : Adding model [IDKiro/sdxs-512-0.9](https://huggingface.co/IDKiro/sdxs-512-0.9) to Stable Diffusion and img2img module. This is an insanely fast 1 step model that can generate simple content in 15 seconds using CPU inference. Definitely the fastest model for image generation in biniou.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
