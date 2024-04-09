@@ -35,6 +35,7 @@ model_list_txt2img_sd_builtin = [
     "IDEA-CCNL/Taiyi-Stable-Diffusion-XL-3.5B",
     "dataautogpt3/OpenDalleV1.1",
     "dataautogpt3/ProteusV0.4",
+    "dataautogpt3/ProteusV0.4-Lightning",
     "etri-vilab/koala-1b",
     "etri-vilab/koala-700m",
     "digiplay/AbsoluteReality_v1.8.1",
@@ -97,12 +98,12 @@ def image_txt2img_sd(
     else :
         is_turbo_txt2img_sd: bool = False
 
-    if (("XL" in modelid_txt2img_sd.upper()) or ("ETRI-VILAB/KOALA-" in modelid_txt2img_sd.upper()) or (modelid_txt2img_sd == "segmind/SSD-1B") or (modelid_txt2img_sd == "segmind/Segmind-Vega") or (modelid_txt2img_sd == "dataautogpt3/OpenDalleV1.1") or (modelid_txt2img_sd == "dataautogpt3/ProteusV0.4")):
+    if (("XL" in modelid_txt2img_sd.upper()) or ("LIGHTNING" in modelid_txt2img_sd.upper()) or  ("ETRI-VILAB/KOALA-" in modelid_txt2img_sd.upper()) or (modelid_txt2img_sd == "segmind/SSD-1B") or (modelid_txt2img_sd == "segmind/Segmind-Vega") or (modelid_txt2img_sd == "dataautogpt3/OpenDalleV1.1") or (modelid_txt2img_sd == "dataautogpt3/ProteusV0.4")):
         is_xl_txt2img_sd: bool = True
     else :        
         is_xl_txt2img_sd: bool = False
 
-    if (modelid_txt2img_sd == "dataautogpt3/ProteusV0.4"):
+    if ("dataautogpt3/ProteusV0.4" in modelid_txt2img_sd):
         is_bin_txt2img_sd: bool = True
     else :
         is_bin_txt2img_sd: bool = False

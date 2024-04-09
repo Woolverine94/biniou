@@ -33,6 +33,7 @@ model_list_controlnet_builtin = [
     "cagliostrolab/animagine-xl-3.1",
     "dataautogpt3/OpenDalleV1.1",
     "dataautogpt3/ProteusV0.4",
+#    "dataautogpt3/ProteusV0.4-Lightning",
     "digiplay/AbsoluteReality_v1.8.1",
     "segmind/Segmind-Vega",
     "segmind/SSD-1B",
@@ -128,7 +129,7 @@ def dispatch_controlnet_preview(
     progress_controlnet=gr.Progress(track_tqdm=True)
     ):
 
-    if (("XL" in modelid_controlnet.upper()) or (modelid_controlnet == "segmind/SSD-1B") or (modelid_controlnet == "segmind/Segmind-Vega") or (modelid_controlnet == "dataautogpt3/OpenDalleV1.1") or (modelid_controlnet == "dataautogpt3/ProteusV0.4")):
+    if (("XL" in modelid_controlnet.upper()) or ("LIGHTNING" in modelid_controlnet.upper()) or (modelid_controlnet == "segmind/SSD-1B") or (modelid_controlnet == "segmind/Segmind-Vega") or (modelid_controlnet == "dataautogpt3/OpenDalleV1.1") or (modelid_controlnet == "dataautogpt3/ProteusV0.4")):
         is_xl_controlnet: bool = True
     else :
         is_xl_controlnet: bool = False
@@ -284,12 +285,12 @@ def image_controlnet(
     else :
         is_turbo_controlnet: bool = False
 
-    if (("XL" in modelid_controlnet.upper()) or (modelid_controlnet == "segmind/SSD-1B") or (modelid_controlnet == "segmind/Segmind-Vega") or (modelid_controlnet == "dataautogpt3/OpenDalleV1.1") or (modelid_controlnet == "dataautogpt3/ProteusV0.4")):
+    if (("XL" in modelid_controlnet.upper()) or ("LIGHTNING" in modelid_controlnet.upper()) or (modelid_controlnet == "segmind/SSD-1B") or (modelid_controlnet == "segmind/Segmind-Vega") or (modelid_controlnet == "dataautogpt3/OpenDalleV1.1") or (modelid_controlnet == "dataautogpt3/ProteusV0.4")):
         is_xl_controlnet: bool = True
     else :        
         is_xl_controlnet: bool = False
 
-    if (modelid_controlnet == "dataautogpt3/ProteusV0.4"):
+    if ("dataautogpt3/ProteusV0.4" in modelid_controlnet):
         is_bin_controlnet: bool = True
     else :
         is_bin_controlnet: bool = False

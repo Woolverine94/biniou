@@ -51,6 +51,7 @@ model_list_faceid_ip_builtin = [
 #    "stabilityai/sdxl-turbo",
 #    "dataautogpt3/OpenDalleV1.1",
 #    "dataautogpt3/ProteusV0.4",
+    "dataautogpt3/ProteusV0.4-Lightning",
     "digiplay/AbsoluteReality_v1.8.1",
 #    "segmind/Segmind-Vega",
 #    "segmind/SSD-1B",
@@ -124,12 +125,12 @@ def image_faceid_ip(
     else :
         is_turbo_faceid_ip: bool = False
 
-    if (("XL" in modelid_faceid_ip.upper()) or (modelid_faceid_ip == "segmind/SSD-1B") or (modelid_faceid_ip == "segmind/Segmind-Vega") or (modelid_faceid_ip == "dataautogpt3/OpenDalleV1.1") or (modelid_faceid_ip == "dataautogpt3/ProteusV0.4")):
+    if (("XL" in modelid_faceid_ip.upper()) or ("LIGHTNING" in modelid_faceid_ip.upper()) or (modelid_faceid_ip == "segmind/SSD-1B") or (modelid_faceid_ip == "segmind/Segmind-Vega") or (modelid_faceid_ip == "dataautogpt3/OpenDalleV1.1") or (modelid_faceid_ip == "dataautogpt3/ProteusV0.4")):
         is_xl_faceid_ip: bool = True
     else :
         is_xl_faceid_ip: bool = False
 
-    if (modelid_faceid_ip == "dataautogpt3/ProteusV0.4"):
+    if ("dataautogpt3/ProteusV0.4" in modelid_faceid_ip):
         is_bin_faceid_ip: bool = True
     else :
         is_bin_faceid_ip: bool = False
@@ -139,7 +140,7 @@ def image_faceid_ip(
             pipe_faceid_ip = AutoPipelineForText2Image.from_single_file(
                 modelid_faceid_ip, 
                 torch_dtype=model_arch,
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_faceid_ip else False,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
             )
         else :        
@@ -147,7 +148,7 @@ def image_faceid_ip(
                 modelid_faceid_ip, 
                 cache_dir=model_path_faceid_ip, 
                 torch_dtype=model_arch,
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_faceid_ip else False,
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
                 resume_download=True,
@@ -171,7 +172,7 @@ def image_faceid_ip(
             pipe_faceid_ip = PhotoMakerStableDiffusionXLPipeline.from_single_file(
                 modelid_faceid_ip, 
                 torch_dtype=model_arch,
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_faceid_ip else False,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
             )
         else :        
@@ -179,7 +180,7 @@ def image_faceid_ip(
                 modelid_faceid_ip, 
                 cache_dir=model_path_faceid_ip, 
                 torch_dtype=model_arch,
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_faceid_ip else False,
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
                 resume_download=True,
@@ -203,7 +204,7 @@ def image_faceid_ip(
             pipe_faceid_ip = StableDiffusionPipeline.from_single_file(
                 modelid_faceid_ip, 
                 torch_dtype=model_arch,
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_faceid_ip else False,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex,
@@ -215,7 +216,7 @@ def image_faceid_ip(
                 modelid_faceid_ip, 
                 cache_dir=model_path_faceid_ip, 
                 torch_dtype=model_arch,
-                use_safetensors=True, 
+                use_safetensors=True if not is_bin_faceid_ip else False,
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
                 custom_pipeline=filename_community_faceid_ip,
