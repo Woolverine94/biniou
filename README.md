@@ -16,6 +16,10 @@
 
 ## Updates
 
+  * 🆕 **2024-04-10** : 🔥 ***Adding support for Llama-cpp-python backends*** 🔥 : Using the compilation features of Llama-cpp-python, the Global settings panel offers now an option to select a backend which will accelerate inferences on Chatbot and Llava modules. The selected backend must be already installed.
+
+  * 🆕 **2024-04-09** : 🔥 ***New image model*** 🔥 : Adding [dataautogpt3/ProteusV0.4-Lightning](https://huggingface.co/dataautogpt3/ProteusV0.4-Lightning) to modules Stable Diffusion, img2img, IP-Adapter, Photobooth and Text2Video-Zero.
+
   * 🆕 **2024-04-08** : 🔥 ***Exif option in Global settings*** 🔥 : Adding an opt-out option for inclusion of generation settings in exif metadatas of the generated images. 
 
   * 🆕 **2024-04-07** : 🔥 ***Support for JPEG outputs*** 🔥 : Adding an option to Global Settings that let you choose between PNG (default) and JPEG format for output images.
@@ -23,10 +27,6 @@
   * 🆕 **2024-04-06** : ***Bugfix and updates*** :
     - Fixing a bug following models renaming in the repository that completely broke AnimateLCM module.
     - Modifying and harmonizing outputs naming system. Syntax of names of outputs is now : timestamp_timestamp_seed.extension or timestamp_timestamp[_idx].extension, depending on modules. This naming convention is more logical and ease the browsing of outputs with a lot of softwares.
-
-  * 🆕 **2024-04-03** : 🔥 ***New PixArt-Alpha models*** 🔥 : Adding models [Luo-Yihong/yoso_pixart512](https://huggingface.co/Luo-Yihong/yoso_pixart512) and [Luo-Yihong/yoso_pixart1024](https://huggingface.co/Luo-Yihong/yoso_pixart1024) to PixArt-Alpha module. These "You Only Sample Once" (YOSO) models, allow 1 step content generation using PixArt-Alpha. 
-
-  * 🆕 **2024-04-02** : 🔥 ***New Chatbot model*** 🔥 : Adding model [LoneStriker/Starling-LM-7B-beta-GGUF](https://huggingface.co/LoneStriker/Starling-LM-7B-beta-GGUF) to Chatbot module. 
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
