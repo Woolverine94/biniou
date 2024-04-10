@@ -8571,6 +8571,21 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                  with gr.Column():
                                      gr.Number(visible=False)
                     with gr.Row():
+                         with gr.Accordion("Llama-cpp-python backend", open=True):
+                             with gr.Row():
+                                 with gr.Column():
+                                     llama_backend_ui = gr.Radio(choices=["none", "openblas", "cuda", "metal", "opencl/clblast", "rocm/hipblas", "vulkan", "kompute"], value=biniouUIControl.detect_llama_backend(), label="Llama-cpp-python backend", info="Choose for which backend llama-cpp-python should be compiled. Backend must be already available and working. (default = none)")
+                             with gr.Row():
+                                 with gr.Column():
+                                     btn_llama_backend_ui = gr.Button("Update llama-cpp-python backend ⤵️", variant="primary")
+                                     btn_llama_backend_ui.click(fn=biniouUIControl.biniou_llama_backend, inputs=llama_backend_ui, outputs=llama_backend_ui)
+                                 with gr.Column():
+                                     gr.Number(visible=False)
+                                 with gr.Column():
+                                     gr.Number(visible=False)
+                                 with gr.Column():
+                                     gr.Number(visible=False)
+                    with gr.Row():
                         with gr.Accordion("Common settings", open=True):
                             with gr.Accordion("Backend settings", open=True):
                                 with gr.Row():

@@ -2,6 +2,12 @@ REM ****************************
 REM *** BINIOU UPDATE SCRIPT ***
 REM ****************************
 
+set filename=".ini/llamacpp_backend.cfg"
+if exist %filename% (
+  set FORCE_CMAKE=1
+  set /p CMAKE_ARGS=<%filename%
+)
+
 echo "Biniou update ..."
 git pull
 

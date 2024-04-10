@@ -296,6 +296,31 @@ class biniouUIControl:
                 optimizer = "cuda"
         return optimizer
 
+    def detect_llama_backend():
+        filename = ".ini/llamacpp_backend.cfg"
+        if os.path.isfile(filename):
+            with open(filename, "r", encoding="utf-8") as fichier:
+                compilation_args = fichier.read()
+            if compilation_args == "":
+                optimizer = "none"
+            elif compilation_args == "-DLLAMA_BLAS=ON -DLLAMA_BLAS_VENDOR=OpenBLAS":
+                optimizer = "openblas"
+            elif compilation_args == "-DLLAMA_CUDA=on":
+                optimizer = "cuda"
+            elif compilation_args == "-DLLAMA_METAL=on":
+                optimizer = "metal"
+            elif compilation_args == "-DLLAMA_CLBLAST=on":
+                optimizer = "opencl/clblast"
+            elif compilation_args == "-DLLAMA_HIPBLAS=on":
+                optimizer = "rocm/hipblas"
+            elif compilation_args == "-DLLAMA_VULKAN=on":
+                optimizer = "vulkan"
+            elif compilation_args == "-DLLAMA_KOMPUTE=on":
+                optimizer = "kompute"
+        else:
+            optimizer = "none"
+        return optimizer
+
     def biniou_update(optimizer):
         current = biniouUIControl.detect_optimizer()
         untorch = "pip uninstall -y torch torchvision torchaudio"
@@ -322,4 +347,29 @@ class biniouUIControl:
                     os.system(untorch)
                 os.system("./update_rocm.sh")
         print(f">>>[WebUI control 🧠 ]: update for {optimizer} finished.")
+        return optimizer
+
+    def biniou_llama_backend(optimizer):
+        if optimizer == "none":
+            compilation_args = ""
+        elif optimizer == "openblas":
+            compilation_args = "-DLLAMA_BLAS=ON -DLLAMA_BLAS_VENDOR=OpenBLAS"
+        elif optimizer == "cuda":
+            compilation_args = "-DLLAMA_CUDA=on"
+        elif optimizer == "metal":
+            compilation_args = "-DLLAMA_METAL=on"
+        elif optimizer == "opencl/clblast":
+            compilation_args = "-DLLAMA_CLBLAST=on"
+        elif optimizer == "rocm/hipblas":
+            compilation_args = "-DLLAMA_HIPBLAS=on"
+        elif optimizer == "vulkan":
+            compilation_args = "-DLLAMA_VULKAN=on"
+        elif optimizer == "kompute":
+            compilation_args = "-DLLAMA_KOMPUTE=on"
+        command_line = f"FORCE_CMAKE=1 CMAKE_ARGS=\"{compilation_args}\" pip install --no-cache-dir --force-reinstall llama-cpp-python"
+        os.system(command_line)
+        savename = ".ini/llamacpp_backend.cfg"
+        with open(savename, 'w', encoding="utf-8") as savefile:
+            savefile.write(compilation_args)
+        print(f">>>[WebUI control 🧠 ]: update of llama-cpp-python backend {optimizer} finished.")
         return optimizer
