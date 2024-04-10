@@ -2,14 +2,14 @@ REM ****************************
 REM *** BINIOU UPDATE SCRIPT ***
 REM ****************************
 
+echo "Biniou update ..."
+git pull
+
 set filename=".ini/llamacpp_backend.cfg"
 if exist %filename% (
   set FORCE_CMAKE=1
   set /p CMAKE_ARGS=<%filename%
 )
-
-echo "Biniou update ..."
-git pull
 
 echo "Biniou env update"
 call venv.cmd

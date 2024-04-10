@@ -333,7 +333,7 @@ class biniouUIControl:
                 if current != "cuda":
                     os.system(untorch)
                 os.system(".\\update_win_cuda.cmd")
-        elif sys.platform == "linux":
+        elif sys.platform == "linux" or sys.platform == "darwin":
             if optimizer == "cpu":
                 if current != "cpu":
                     os.system(untorch)
@@ -366,9 +366,14 @@ class biniouUIControl:
             compilation_args = "-DLLAMA_VULKAN=on"
         elif optimizer == "kompute":
             compilation_args = "-DLLAMA_KOMPUTE=on"
-        command_line = f"FORCE_CMAKE=1 CMAKE_ARGS=\"{compilation_args}\" pip install --no-cache-dir --force-reinstall llama-cpp-python"
-        os.system(command_line)
+
+        if sys.platform == "linux" or sys.platform == "darwin":
+            command_line = f"FORCE_CMAKE=1 CMAKE_ARGS=\"{compilation_args}\" pip install --no-cache-dir --force-reinstall llama-cpp-python"
+            os.system(command_line)
+        elif sys.platform == "win32": 
+            os.system(f"set FORCE_CMAKE=1 & set CMAKE_ARGS={compilation_args} & pip install --no-cache-dir --force-reinstall llama-cpp-python")
         savename = ".ini/llamacpp_backend.cfg"
+
         with open(savename, 'w', encoding="utf-8") as savefile:
             savefile.write(compilation_args)
         print(f">>>[WebUI control 🧠 ]: update of llama-cpp-python backend {optimizer} finished.")
