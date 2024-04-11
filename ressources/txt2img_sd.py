@@ -27,6 +27,8 @@ for filename in os.listdir(model_path_txt2img_sd):
 model_list_txt2img_sd_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
     "IDKiro/sdxs-512-0.9",
+    "playgroundai/playground-v2-512px-base",
+    "playgroundai/playground-v2-1024px-aesthetic",
     "stabilityai/sd-turbo", 
     "stabilityai/sdxl-turbo", 
     "thibaud/sdxl_dpo_turbo",
@@ -98,7 +100,7 @@ def image_txt2img_sd(
     else :
         is_turbo_txt2img_sd: bool = False
 
-    if (("XL" in modelid_txt2img_sd.upper()) or ("LIGHTNING" in modelid_txt2img_sd.upper()) or  ("ETRI-VILAB/KOALA-" in modelid_txt2img_sd.upper()) or (modelid_txt2img_sd == "segmind/SSD-1B") or (modelid_txt2img_sd == "segmind/Segmind-Vega") or (modelid_txt2img_sd == "dataautogpt3/OpenDalleV1.1") or (modelid_txt2img_sd == "dataautogpt3/ProteusV0.4")):
+    if (("XL" in modelid_txt2img_sd.upper()) or ("LIGHTNING" in modelid_txt2img_sd.upper()) or  ("ETRI-VILAB/KOALA-" in modelid_txt2img_sd.upper()) or ("PLAYGROUNDAI/PLAYGROUND-V2-" in modelid_txt2img_sd.upper()) or (modelid_txt2img_sd == "segmind/SSD-1B") or (modelid_txt2img_sd == "segmind/Segmind-Vega") or (modelid_txt2img_sd == "dataautogpt3/OpenDalleV1.1") or (modelid_txt2img_sd == "dataautogpt3/ProteusV0.4")):
         is_xl_txt2img_sd: bool = True
     else :        
         is_xl_txt2img_sd: bool = False
