@@ -26,6 +26,8 @@ for filename in os.listdir(model_path_controlnet):
 
 model_list_controlnet_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
+    "playgroundai/playground-v2-512px-base",
+    "playgroundai/playground-v2-1024px-aesthetic",
 #    "stabilityai/sd-turbo",
     "stabilityai/sdxl-turbo",
     "thibaud/sdxl_dpo_turbo",
@@ -129,7 +131,7 @@ def dispatch_controlnet_preview(
     progress_controlnet=gr.Progress(track_tqdm=True)
     ):
 
-    if (("XL" in modelid_controlnet.upper()) or ("LIGHTNING" in modelid_controlnet.upper()) or (modelid_controlnet == "segmind/SSD-1B") or (modelid_controlnet == "segmind/Segmind-Vega") or (modelid_controlnet == "dataautogpt3/OpenDalleV1.1") or (modelid_controlnet == "dataautogpt3/ProteusV0.4")):
+    if (("XL" in modelid_controlnet.upper()) or ("LIGHTNING" in modelid_controlnet.upper()) or ("PLAYGROUNDAI/PLAYGROUND-V2-" in modelid_controlnet.upper()) or (modelid_controlnet == "segmind/SSD-1B") or (modelid_controlnet == "segmind/Segmind-Vega") or (modelid_controlnet == "dataautogpt3/OpenDalleV1.1") or (modelid_controlnet == "dataautogpt3/ProteusV0.4")):
         is_xl_controlnet: bool = True
     else :
         is_xl_controlnet: bool = False
@@ -285,7 +287,7 @@ def image_controlnet(
     else :
         is_turbo_controlnet: bool = False
 
-    if (("XL" in modelid_controlnet.upper()) or ("LIGHTNING" in modelid_controlnet.upper()) or (modelid_controlnet == "segmind/SSD-1B") or (modelid_controlnet == "segmind/Segmind-Vega") or (modelid_controlnet == "dataautogpt3/OpenDalleV1.1") or (modelid_controlnet == "dataautogpt3/ProteusV0.4")):
+    if (("XL" in modelid_controlnet.upper()) or ("LIGHTNING" in modelid_controlnet.upper()) or ("PLAYGROUNDAI/PLAYGROUND-V2-" in modelid_controlnet.upper()) or (modelid_controlnet == "segmind/SSD-1B") or (modelid_controlnet == "segmind/Segmind-Vega") or (modelid_controlnet == "dataautogpt3/OpenDalleV1.1") or (modelid_controlnet == "dataautogpt3/ProteusV0.4")):
         is_xl_controlnet: bool = True
     else :        
         is_xl_controlnet: bool = False

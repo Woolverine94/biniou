@@ -28,6 +28,8 @@ for filename in os.listdir(model_path_img2img):
 model_list_img2img_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
     "IDKiro/sdxs-512-0.9",
+    "playgroundai/playground-v2-512px-base",
+    "playgroundai/playground-v2-1024px-aesthetic",
     "stabilityai/sd-turbo",
     "stabilityai/sdxl-turbo",
     "thibaud/sdxl_dpo_turbo",
@@ -100,7 +102,7 @@ def image_img2img(
     else :
         is_turbo_img2img: bool = False
 
-    if (("XL" in modelid_img2img.upper()) or ("LIGHTNING" in modelid_img2img.upper()) or ("ETRI-VILAB/KOALA-" in modelid_img2img.upper()) or (modelid_img2img == "segmind/SSD-1B") or (modelid_img2img == "segmind/Segmind-Vega") or (modelid_img2img == "dataautogpt3/OpenDalleV1.1") or (modelid_img2img == "dataautogpt3/ProteusV0.4")):
+    if (("XL" in modelid_img2img.upper()) or ("LIGHTNING" in modelid_img2img.upper()) or ("ETRI-VILAB/KOALA-" in modelid_img2img.upper()) or ("PLAYGROUNDAI/PLAYGROUND-V2-" in modelid_img2img.upper()) or (modelid_img2img == "segmind/SSD-1B") or (modelid_img2img == "segmind/Segmind-Vega") or (modelid_img2img == "dataautogpt3/OpenDalleV1.1") or (modelid_img2img == "dataautogpt3/ProteusV0.4")):
         is_xl_img2img: bool = True
     else :        
         is_xl_img2img: bool = False        
