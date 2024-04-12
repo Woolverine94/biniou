@@ -1092,6 +1092,10 @@ def change_model_type_txt2vid_ze(model_txt2vid_ze):
         return sampler_txt2vid_ze.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2vid_ze.update(value=biniou_global_sdxl_width), height_txt2vid_ze.update(value=biniou_global_sdxl_height), num_inference_step_txt2vid_ze.update(value=10), guidance_scale_txt2vid_ze.update(value=7.5), negative_prompt_txt2vid_ze.update(interactive=True)
     elif (model_txt2vid_ze == "segmind/Segmind-Vega"):
         return sampler_txt2vid_ze.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2vid_ze.update(value=biniou_global_sdxl_width), height_txt2vid_ze.update(value=biniou_global_sdxl_height), num_inference_step_txt2vid_ze.update(value=10), guidance_scale_txt2vid_ze.update(value=9.0), negative_prompt_txt2vid_ze.update(interactive=True)
+    elif (model_txt2vid_ze == "playgroundai/playground-v2-1024px-aesthetic"):
+        return sampler_txt2vid_ze.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2vid_ze.update(value=biniou_global_sdxl_width), height_txt2vid_ze.update(value=biniou_global_sdxl_height), num_inference_step_txt2vid_ze.update(value=10), guidance_scale_txt2vid_ze.update(value=3.0), negative_prompt_txt2vid_ze.update(interactive=True)
+    elif (model_txt2vid_ze == "playgroundai/playground-v2-512px-base"):
+        return sampler_txt2vid_ze.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2vid_ze.update(value=biniou_global_sd15_width), height_txt2vid_ze.update(value=biniou_global_sd15_height), num_inference_step_txt2vid_ze.update(value=10), guidance_scale_txt2vid_ze.update(value=3.0), negative_prompt_txt2vid_ze.update(interactive=True)
     else:
         return sampler_txt2vid_ze.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2vid_ze.update(value=biniou_global_sd15_width), height_txt2vid_ze.update(value=biniou_global_sd15_height), num_inference_step_txt2vid_ze.update(value=10), guidance_scale_txt2vid_ze.update(value=7.5), negative_prompt_txt2vid_ze.update(interactive=True)
 
