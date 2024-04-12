@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-04-12** : 🔥 ***Support for playground-v2 models*** 🔥 : Adding [playgroundai/playground-v2-512px-base](https://huggingface.co/playgroundai/playground-v2-512px-base) and [playgroundai/playground-v2-1024px-aesthetic](https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic) to the models list for modules Stable Diffusion, img2img, IP-Adapter, Controlnet and Photobooth.
+
   * 🆕 **2024-04-10** : 🔥 ***Adding support for Llama-cpp-python backends*** 🔥 : Using the compilation features of Llama-cpp-python, the Global settings panel offers now an option to select a backend which will accelerate inferences on Chatbot and Llava modules. The selected backend must be already installed.
 
   * 🆕 **2024-04-09** : 🔥 ***New image model*** 🔥 : Adding [dataautogpt3/ProteusV0.4-Lightning](https://huggingface.co/dataautogpt3/ProteusV0.4-Lightning) to modules Stable Diffusion, img2img, IP-Adapter, Photobooth and Text2Video-Zero.
@@ -23,10 +25,6 @@
   * 🆕 **2024-04-08** : 🔥 ***Exif option in Global settings*** 🔥 : Adding an opt-out option for inclusion of generation settings in exif metadatas of the generated images. 
 
   * 🆕 **2024-04-07** : 🔥 ***Support for JPEG outputs*** 🔥 : Adding an option to Global Settings that let you choose between PNG (default) and JPEG format for output images.
-
-  * 🆕 **2024-04-06** : ***Bugfix and updates*** :
-    - Fixing a bug following models renaming in the repository that completely broke AnimateLCM module.
-    - Modifying and harmonizing outputs naming system. Syntax of names of outputs is now : timestamp_timestamp_seed.extension or timestamp_timestamp[_idx].extension, depending on modules. This naming convention is more logical and ease the browsing of outputs with a lot of softwares.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
