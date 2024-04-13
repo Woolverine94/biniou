@@ -2348,6 +2348,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>HF model page : </b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
                                 <a href='https://huggingface.co/IDKiro/sdxs-512-0.9' target='_blank'>IDKiro/sdxs-512-0.9</a>, 
+                                <a href='https://huggingface.co/playgroundai/playground-v2-512px-base' target='_blank'>playgroundai/playground-v2-512px-base</a>, 
+                                <a href='https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic' target='_blank'>playgroundai/playground-v2-1024px-aesthetic</a>, 
                                 <a href='https://huggingface.co/stabilityai/sd-turbo' target='_blank'>stabilityai/sd-turbo</a>, 
                                 <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>, 
                                 <a href='https://huggingface.co/thibaud/sdxl_dpo_turbo' target='_blank'>thibaud/sdxl_dpo_turbo</a>, 
@@ -2356,6 +2358,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <a href='https://huggingface.co/IDEA-CCNL/Taiyi-Stable-Diffusion-XL-3.5B' target='_blank'>IDEA-CCNL/Taiyi-Stable-Diffusion-XL-3.5B</a>, 
                                 <a href='https://huggingface.co/dataautogpt3/OpenDalleV1.1' target='_blank'>dataautogpt3/OpenDalleV1.1</a>, 
                                 <a href='https://huggingface.co/dataautogpt3/ProteusV0.4' target='_blank'>dataautogpt3/ProteusV0.4</a>, 
+                                <a href='https://huggingface.co/dataautogpt3/ProteusV0.4-Lightning' target='_blank'>dataautogpt3/ProteusV0.4-Lightning</a>, 
                                 <a href='https://huggingface.co/etri-vilab/koala-1b' target='_blank'>etri-vilab/koala-1b</a>, 
                                 <a href='https://huggingface.co/etri-vilab/koala-700m' target='_blank'>etri-vilab/koala-700m</a>, 
                                 <a href='https://huggingface.co/digiplay/AbsoluteReality_v1.8.1' target='_blank'>digiplay/AbsoluteReality_v1.8.1</a>, 
@@ -3515,6 +3518,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>HF model page : </b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
                                 <a href='https://huggingface.co/IDKiro/sdxs-512-0.9' target='_blank'>IDKiro/sdxs-512-0.9</a>, 
+                                <a href='https://huggingface.co/playgroundai/playground-v2-512px-base' target='_blank'>playgroundai/playground-v2-512px-base</a>, 
+                                <a href='https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic' target='_blank'>playgroundai/playground-v2-1024px-aesthetic</a>, 
                                 <a href='https://huggingface.co/stabilityai/sd-turbo' target='_blank'>stabilityai/sd-turbo</a>, 
                                 <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>, 
                                 <a href='https://huggingface.co/thibaud/sdxl_dpo_turbo' target='_blank'>thibaud/sdxl_dpo_turbo</a>, 
@@ -3522,6 +3527,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <a href='https://huggingface.co/cagliostrolab/animagine-xl-3.1' target='_blank'>cagliostrolab/animagine-xl-3.1</a>, 
                                 <a href='https://huggingface.co/dataautogpt3/OpenDalleV1.1' target='_blank'>dataautogpt3/OpenDalleV1.1</a>, 
                                 <a href='https://huggingface.co/dataautogpt3/ProteusV0.4' target='_blank'>dataautogpt3/ProteusV0.4</a>, 
+                                <a href='https://huggingface.co/dataautogpt3/ProteusV0.4-Lightning' target='_blank'>dataautogpt3/ProteusV0.4-Lightning</a>, 
                                 <a href='https://huggingface.co/etri-vilab/koala-1b' target='_blank'>etri-vilab/koala-1b</a>, 
                                 <a href='https://huggingface.co/etri-vilab/koala-700m' target='_blank'>etri-vilab/koala-700m</a>, 
                                 <a href='https://huggingface.co/digiplay/AbsoluteReality_v1.8.1' target='_blank'>digiplay/AbsoluteReality_v1.8.1</a>, 
@@ -3790,11 +3796,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF model page : </b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
+                                <a href='https://huggingface.co/playgroundai/playground-v2-512px-base' target='_blank'>playgroundai/playground-v2-512px-base</a>, 
+                                <a href='https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic' target='_blank'>playgroundai/playground-v2-1024px-aesthetic</a>, 
                                 <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>, 
                                 <a href='https://huggingface.co/SG161222/RealVisXL_V4.0_Lightning' target='_blank'>SG161222/RealVisXL_V4.0_Lightning</a>, 
                                 <a href='https://huggingface.co/cagliostrolab/animagine-xl-3.1' target='_blank'>cagliostrolab/animagine-xl-3.1</a>, 
                                 <a href='https://huggingface.co/dataautogpt3/OpenDalleV1.1' target='_blank'>dataautogpt3/OpenDalleV1.1</a>, 
                                 <a href='https://huggingface.co/dataautogpt3/ProteusV0.4' target='_blank'>dataautogpt3/ProteusV0.4</a>, 
+                                <a href='https://huggingface.co/dataautogpt3/ProteusV0.4-Lightning' target='_blank'>dataautogpt3/ProteusV0.4-Lightning</a>, 
                                 <a href='https://huggingface.co/digiplay/AbsoluteReality_v1.8.1' target='_blank'>digiplay/AbsoluteReality_v1.8.1</a>, 
                                 <a href='https://huggingface.co/gsdf/Counterfeit-V2.5' target='_blank'>gsdf/Counterfeit-V2.5</a>, 
                                 <a href='https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0' target='_blank'>stabilityai/stable-diffusion-xl-base-1.0</a>, 
@@ -5377,6 +5386,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF Stable Diffusion models pages : </b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
+                                <a href='https://huggingface.co/playgroundai/playground-v2-512px-base' target='_blank'>playgroundai/playground-v2-512px-base</a>, 
+                                <a href='https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic' target='_blank'>playgroundai/playground-v2-1024px-aesthetic</a>, 
                                 <a href='https://huggingface.co/stabilityai/sd-turbo' target='_blank'>stabilityai/sd-turbo</a>, 
                                 <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>, 
                                 <a href='https://huggingface.co/thibaud/sdxl_dpo_turbo' target='_blank'>thibaud/sdxl_dpo_turbo</a>, 
@@ -5714,10 +5725,13 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Output(s) : </b>Image(s)</br>
                                 <b>HF model page : </b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
+                                <a href='https://huggingface.co/playgroundai/playground-v2-512px-base' target='_blank'>playgroundai/playground-v2-512px-base</a>, 
+                                <a href='https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic' target='_blank'>playgroundai/playground-v2-1024px-aesthetic</a>, 
                                 <a href='https://huggingface.co/SG161222/RealVisXL_V3.0' target='_blank'>SG161222/RealVisXL_V3.0</a>, 
                                 <a href='https://huggingface.co/SG161222/RealVisXL_V4.0_Lightning' target='_blank'>SG161222/RealVisXL_V4.0_Lightning</a>, 
                                 <a href='https://huggingface.co/cagliostrolab/animagine-xl-3.1' target='_blank'>cagliostrolab/animagine-xl-3.1</a>, 
                                 <a href='https://huggingface.co/digiplay/AbsoluteReality_v1.8.1' target='_blank'>digiplay/AbsoluteReality_v1.8.1</a>, 
+                                <a href='https://huggingface.co/dataautogpt3/ProteusV0.4-Lightning' target='_blank'>dataautogpt3/ProteusV0.4-Lightning</a>, 
                                 <a href='https://huggingface.co/gsdf/Counterfeit-V2.5' target='_blank'>gsdf/Counterfeit-V2.5</a>, 
                                 <a href='https://huggingface.co/runwayml/stable-diffusion-v1-5' target='_blank'>runwayml/stable-diffusion-v1-5</a>, 
                                 <a href='https://huggingface.co/nitrosocke/Ghibli-Diffusion' target='_blank'>nitrosocke/Ghibli-Diffusion</a>
@@ -7369,11 +7383,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Output(s) : </b>Video</br>
                                 <b>HF model page : </b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
+                                <a href='https://huggingface.co/playgroundai/playground-v2-512px-base' target='_blank'>playgroundai/playground-v2-512px-base</a>, 
+                                <a href='https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic' target='_blank'>playgroundai/playground-v2-1024px-aesthetic</a>, 
                                 <a href='https://huggingface.co/stabilityai/sdxl-turbo' target='_blank'>stabilityai/sdxl-turbo</a>, 
                                 <a href='https://huggingface.co/SG161222/RealVisXL_V4.0_Lightning' target='_blank'>SG161222/RealVisXL_V4.0_Lightning</a>, 
                                 <a href='https://huggingface.co/cagliostrolab/animagine-xl-3.1' target='_blank'>cagliostrolab/animagine-xl-3.1</a>, 
                                 <a href='https://huggingface.co/dataautogpt3/OpenDalleV1.1' target='_blank'>dataautogpt3/OpenDalleV1.1</a>, 
                                 <a href='https://huggingface.co/dataautogpt3/ProteusV0.4' target='_blank'>dataautogpt3/ProteusV0.4</a>, 
+                                <a href='https://huggingface.co/dataautogpt3/ProteusV0.4-Lightning' target='_blank'>dataautogpt3/ProteusV0.4-Lightning</a>, 
                                 <a href='https://huggingface.co/etri-vilab/koala-1b' target='_blank'>etri-vilab/koala-1b</a>, 
                                 <a href='https://huggingface.co/etri-vilab/koala-700m' target='_blank'>etri-vilab/koala-700m</a>, 
                                 <a href='https://huggingface.co/digiplay/AbsoluteReality_v1.8.1' target='_blank'>digiplay/AbsoluteReality_v1.8.1</a>, 
