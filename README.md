@@ -16,6 +16,8 @@
 
 ## Updates
 
+  * 🆕 **2024-04-14** : ***Bugfixes and models updates*** : Various WebUI bugfixes. Updating the chatbot Gemma 7B and 2B models to version 1.1.
+
   * 🆕 **2024-04-12** : 🔥 ***Support for playground-v2 models*** 🔥 : Adding [playgroundai/playground-v2-512px-base](https://huggingface.co/playgroundai/playground-v2-512px-base) and [playgroundai/playground-v2-1024px-aesthetic](https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic) to the models list for modules Stable Diffusion, img2img, IP-Adapter, Controlnet and Photobooth.
 
   * 🆕 **2024-04-10** : 🔥 ***Adding support for Llama-cpp-python backends*** 🔥 : Using the compilation features of Llama-cpp-python, the Global settings panel offers now an option to select a backend which will accelerate inferences on Chatbot and Llava modules. The selected backend must be already installed.
@@ -23,8 +25,6 @@
   * 🆕 **2024-04-09** : 🔥 ***New image model*** 🔥 : Adding [dataautogpt3/ProteusV0.4-Lightning](https://huggingface.co/dataautogpt3/ProteusV0.4-Lightning) to modules Stable Diffusion, img2img, IP-Adapter, Photobooth and Text2Video-Zero.
 
   * 🆕 **2024-04-08** : 🔥 ***Exif option in Global settings*** 🔥 : Adding an opt-out option for inclusion of generation settings in exif metadatas of the generated images. 
-
-  * 🆕 **2024-04-07** : 🔥 ***Support for JPEG outputs*** 🔥 : Adding an option to Global Settings that let you choose between PNG (default) and JPEG format for output images.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
@@ -102,15 +102,17 @@
 
   - Zeroconf installation through one-click installers or Windows exe.
   - Easy management through a control panel directly inside webui : update, restart, shutdown, activate authentication, control network access or share your instance online with a single click.
+  - Common panel settings, "overlayed" by indiviual modules settings
   - Communication between modules : send an output as an input to another module
   - Powered by [🤗 Huggingface](https://huggingface.co/) and [gradio](https://www.gradio.app/)
   - Cross platform : GNU/Linux, Windows 10/11 and macOS(experimental, via homebrew)
   - Convenient Dockerfile for cloud instances
-  - Support for CUDA on almost all modules (see [CUDA support](#cuda-support))
-  - Experimental support for ROCm on almost all modules (see [here](https://github.com/Woolverine94/biniou/wiki/Experimental-features#rocm-support-under-gnulinux))
-  - Support for Stable Diffusion SD-1.5, SD-2.1, SD-Turbo, SDXL, SDXL-Turbo, LCM, VegaRT, Segmind SSD-1B, Segmind Vega  and compatible models, through built-in model list or standalone .safetensors files
+  - Support for CUDA (see [CUDA support](#cuda-support))
+  - Experimental support for ROCm (see [here](https://github.com/Woolverine94/biniou/wiki/Experimental-features#rocm-support-under-gnulinux))
+  - Support for Stable Diffusion SD-1.5, SD-2.1, SD-Turbo, SDXL, SDXL-Turbo, SDXL-Lightning, LCM, VegaRT, Segmind, Playground-v2, Koala, Pixart-Alpha, Kandinsky and compatible models, through built-in model list or standalone .safetensors files
   - Support for LoRA models
   - Support for textual inversion
+  - Support llama-cpp-python optimizations CUDA, OpenBLAS, OpenCL BLAS, ROCm and  Vulkan through a simple setting
   - Support for Llama, Mistral, Mixtral and compatible GGUF quantized models, through built-in model list or standalone .gguf files.
   - Easy copy/paste integration for [TheBloke GGUF quantized models](https://huggingface.co/models?search=TheBloke%20GGUF).
 
@@ -142,6 +144,9 @@
     - Debian 12 
     - Ubuntu 22.04.3 
     - Linux Mint 21.2
+    - Rocky 9.3
+    - Alma 9.3
+    - CentOS Stream 9
     - Windows 10 22H2
     - Windows 11 22H2
     - macOS ???
