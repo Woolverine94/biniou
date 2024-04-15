@@ -368,10 +368,10 @@ class biniouUIControl:
             compilation_args = "-DLLAMA_KOMPUTE=on"
 
         if sys.platform == "linux" or sys.platform == "darwin":
-            command_line = f"FORCE_CMAKE=1 CMAKE_ARGS=\"{compilation_args}\" pip install --no-cache-dir --force-reinstall llama-cpp-python"
+            command_line = f"FORCE_CMAKE=1 CMAKE_ARGS=\"{compilation_args}\" pip install --no-cache-dir --force-reinstall llama-cpp-python numpy==1.25.2"
             os.system(command_line)
         elif sys.platform == "win32": 
-            os.system(f"set FORCE_CMAKE=1 & set CMAKE_ARGS={compilation_args} & pip install --no-cache-dir --force-reinstall llama-cpp-python")
+            os.system(f"set FORCE_CMAKE=1 & set CMAKE_ARGS={compilation_args} & pip install --no-cache-dir --force-reinstall llama-cpp-python numpy==1.25.2")
         savename = ".ini/llamacpp_backend.cfg"
 
         with open(savename, 'w', encoding="utf-8") as savefile:
