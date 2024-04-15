@@ -8,6 +8,9 @@ if [ "$(echo $RELEASE|grep 'debian')" !=  "" ]
   elif [ "$(echo $RELEASE|grep 'rhel')" !=  "" ]
     then
       TCMALLOC_PATH="/lib64"
+  elif [ "$(echo $RELEASE|grep 'opensuse')" !=  "" ]
+    then
+      TCMALLOC_PATH="/usr/lib64"
 fi
 
 TCMALLOC_NAME="$(ls -l $TCMALLOC_PATH/libtcmalloc.so* 2>/dev/null|sed -ne 's/^.*\/\(.*\) ->.*/\1/p')"
