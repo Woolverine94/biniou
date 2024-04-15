@@ -9,12 +9,15 @@
 <p align="justify">biniou is a self-hosted webui for several kinds of GenAI (generative artificial intelligence). You can generate multimedia contents with AI and use a chatbot on your own computer, even without dedicated GPU and starting from 8GB RAM. Can work offline (once deployed and required models downloaded).</p>
 
 <p style="text-align: center;">
-<a href="#GNULinux">GNU/Linux</a> [ <a href="#Rocky-93--Alma-93--CentOS-Stream-9">RHEL base</a> | <a href="#debian-12--ubuntu-22043--linux-mint-212">Debian base</a> ] • <a href="#windows-10--windows-11">Windows</a> • <a href="#macos-homebrew-install">macOS (experimental)</a> • <a href="#dockerfile">Docker</a> | <a href="https://github.com/Woolverine94/biniou/wiki">Documentation</a> | <a href="https://github.com/Woolverine94/biniou/wiki/Showroom">Showroom</a>
+<a href="#GNULinux">GNU/Linux</a> [ <a href="#OpenSUSE-Leap-155--OpenSUSE-Tumbleweed">OpenSUSE base</a> | <a href="#Rocky-93--Alma-93--CentOS-Stream-9">RHEL base</a> | <a href="#debian-12--ubuntu-22043--linux-mint-212">Debian base</a> ] • <a href="#windows-10--windows-11">Windows</a> • <a href="#macos-homebrew-install">macOS (experimental)</a> • <a href="#dockerfile">Docker</a></br>
+<a href="https://github.com/Woolverine94/biniou/wiki">❓ Documentation</a> | <a href="https://github.com/Woolverine94/biniou/wiki/Showroom">🖼️ Showroom</a>
 </p>
 
 ---
 
 ## Updates
+
+  * 🆕 **2024-04-15** : 🔥 ***Adding support for OpenSUSE*** 🔥 : You can now use the One-click installer to deploy biniou on OpenSUSE-based systems (Leap 15.5 and Tumbleweed supported).
 
   * 🆕 **2024-04-14** : ***Bugfixes and models updates*** : Various WebUI bugfixes. Updating the chatbot Gemma 7B and 2B models to version 1.1.
 
@@ -23,8 +26,6 @@
   * 🆕 **2024-04-10** : 🔥 ***Adding support for Llama-cpp-python backends*** 🔥 : Using the compilation features of Llama-cpp-python, the Global settings panel offers now an option to select a backend which will accelerate inferences on Chatbot and Llava modules. The selected backend must be already installed.
 
   * 🆕 **2024-04-09** : 🔥 ***New image model*** 🔥 : Adding [dataautogpt3/ProteusV0.4-Lightning](https://huggingface.co/dataautogpt3/ProteusV0.4-Lightning) to modules Stable Diffusion, img2img, IP-Adapter, Photobooth and Text2Video-Zero.
-
-  * 🆕 **2024-04-08** : 🔥 ***Exif option in Global settings*** 🔥 : Adding an opt-out option for inclusion of generation settings in exif metadatas of the generated images. 
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
@@ -35,7 +36,8 @@
   • <a href="#features">Features</a><br/>
   • <a href="#prerequisites">Prerequisites</a><br/>
   • <a href="#installation">Installation</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#GNULinux">GNU/Linux</a><br/>  
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#GNULinux">GNU/Linux</a><br/> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#OpenSUSE-Leap-155--OpenSUSE-Tumbleweed">OpenSUSE Leap 15.5 / OpenSUSE Tumbleweed</a><br/>  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Rocky-93--Alma-93--CentOS-Stream-9">Rocky 9.3 / Alma 9.3 / CentOS Stream 9</a><br/>  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#debian-12--ubuntu-22043--linux-mint-212">Debian 12 / Ubuntu 22.04.3 / Linux Mint 21.2</a><br/>  
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#windows-10--windows-11">Windows 10 / Windows 11</a><br/>
@@ -147,6 +149,8 @@
     - Rocky 9.3
     - Alma 9.3
     - CentOS Stream 9
+    - OpenSUSE Leap 15.5
+    - OpenSUSE Tumbleweed
     - Windows 10 22H2
     - Windows 11 22H2
     - macOS ???
@@ -158,6 +162,16 @@
 ## Installation 
 
 ### GNU/Linux
+
+#### OpenSUSE Leap 15.5 / OpenSUSE Tumbleweed
+
+##### One-click installer : 
+
+  1. **Copy/paste and execute** the following command in a terminal : 
+```bash
+sh <(curl https://raw.githubusercontent.com/Woolverine94/biniou/main/oci-opensuse.sh || wget -O - https://raw.githubusercontent.com/Woolverine94/biniou/main/oci-opensuse.sh)
+```
+
 
 #### Rocky 9.3 / Alma 9.3 / CentOS Stream 9
 
