@@ -16,6 +16,7 @@ os.makedirs(model_path_musicldm, exist_ok=True)
 
 model_list_musicldm = [
     "ucsd-reach/musicldm",
+    "sanchit-gandhi/musicldm-full",
 ]
 
 # Bouton Cancel
@@ -59,7 +60,7 @@ def music_musicldm(
         modelid_musicldm, 
         cache_dir=model_path_musicldm, 
         torch_dtype=model_arch,
-        use_safetensors=True, 
+        use_safetensors=True if modelid_musicldm != "sanchit-gandhi/musicldm-full" else False, 
         resume_download=True,
         local_files_only=True if offline_test() else None
     )
@@ -67,10 +68,13 @@ def music_musicldm(
     pipe_musicldm = schedulerer(pipe_musicldm, sampler_musicldm)
     pipe_musicldm.enable_attention_slicing("max")
 
-    if device_label_musicldm == "cuda" :
-        pipe_musicldm.enable_sequential_cpu_offload()
-    else : 
-        pipe_musicldm = pipe_musicldm.to(device_musicldm)
+    pipe_musicldm = pipe_musicldm.to(device_musicldm)
+# OR : 
+#     if device_label_musicldm == "cuda" :
+#         pipe_musicldm.enable_sequential_cpu_offload()
+# #        pipe_musicldm.enable_model_cpu_offload()
+#     else : 
+#         pipe_musicldm = pipe_musicldm.to(device_musicldm)
     pipe_musicldm.enable_vae_slicing()
     
     if seed_musicldm == 0:

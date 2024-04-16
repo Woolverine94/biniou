@@ -6719,6 +6719,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Output(s) : </b>Generated music</br>
                                 <b>HF model page : </b>
                                 <a href='https://huggingface.co/ucsd-reach/musicldm' target='_blank'>ucsd-reach/musicldm</a>, 
+                                <a href='https://huggingface.co/sanchit-gandhi/musicldm-full' target='_blank'>sanchit-gandhi/musicldm-full</a>
                                 """
                             )
                         with gr.Box():
