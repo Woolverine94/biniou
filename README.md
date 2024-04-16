@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-04-16** : 🔥 ***Bufix and update for module MusicLDM*** 🔥 : Fixing a bug that completely broke MusicLDM when used with CUDA. Also adding support for model [sanchit-gandhi/musicldm-full](https://huggingface.co/sanchit-gandhi/musicldm-full).
+
   * 🆕 **2024-04-15** : 🔥 ***Adding support for OpenSUSE*** 🔥 : You can now use the One-click installer to deploy biniou on OpenSUSE-based systems (Leap 15.5 and Tumbleweed supported).
 
   * 🆕 **2024-04-14** : ***Bugfixes and models updates*** : Various WebUI bugfixes. Updating the chatbot Gemma 7B and 2B models to version 1.1.
@@ -24,8 +26,6 @@
   * 🆕 **2024-04-12** : 🔥 ***Support for playground-v2 models*** 🔥 : Adding [playgroundai/playground-v2-512px-base](https://huggingface.co/playgroundai/playground-v2-512px-base) and [playgroundai/playground-v2-1024px-aesthetic](https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic) to the models list for modules Stable Diffusion, img2img, IP-Adapter, Controlnet and Photobooth.
 
   * 🆕 **2024-04-10** : 🔥 ***Adding support for Llama-cpp-python backends*** 🔥 : Using the compilation features of Llama-cpp-python, the Global settings panel offers now an option to select a backend which will accelerate inferences on Chatbot and Llava modules. The selected backend must be already installed.
-
-  * 🆕 **2024-04-09** : 🔥 ***New image model*** 🔥 : Adding [dataautogpt3/ProteusV0.4-Lightning](https://huggingface.co/dataautogpt3/ProteusV0.4-Lightning) to modules Stable Diffusion, img2img, IP-Adapter, Photobooth and Text2Video-Zero.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
