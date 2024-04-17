@@ -27,6 +27,7 @@ for filename in os.listdir(model_path_img2img):
 
 model_list_img2img_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
+    "IDKiro/sdxs-512-dreamshaper",
     "IDKiro/sdxs-512-0.9",
     "playgroundai/playground-v2-512px-base",
     "playgroundai/playground-v2-1024px-aesthetic",

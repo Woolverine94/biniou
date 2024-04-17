@@ -547,7 +547,7 @@ def check_steps_strength (steps, strength, model):
     if strength == 0:
         strength = 0.01
 
-    if (model == "stabilityai/sdxl-turbo") or (model == "stabilityai/sd-turbo") or (model == "IDKiro/sdxs-512-0.9"):
+    if (model == "stabilityai/sdxl-turbo") or (model == "stabilityai/sd-turbo") or ("IDKIRO/SDXS-512" in model.upper()):
         steps = ceil(1/strength)
     elif (model == "SG161222/RealVisXL_V4.0_Lightning"):
         steps = ceil(2/strength)
