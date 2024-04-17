@@ -1,7 +1,7 @@
 FROM debian:latest
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get -y upgrade
-RUN apt-get install -y bash sudo apt-utils git pip python3 python3-venv gcc perl make ffmpeg openssl
+RUN apt-get install -y bash sudo apt-utils git pip python3 python3-venv gcc perl make ffmpeg openssl libtcmalloc-minimal4
 
 # Setup user biniou and use it to install
 RUN adduser --disabled-password --gecos '' biniou

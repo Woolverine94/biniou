@@ -6,16 +6,16 @@ if [ "$(groups|grep 'wheel')" == "" ]
   then
     if [ "$(cat /etc/os-release|grep "Tumbleweed")" != "" ]
       then
-        su root -c "zypper --non-interactive install git-core python311 python3-virtualenv python3-pip python311-devel perl make cmake ffmpeg openssl libtcmalloc4 libgthread-2_0-0; zypper --non-interactive install -t pattern devel_basis"
+        su root -c "zypper --non-interactive install git-core python311 python3-virtualenv python3-pip python311-devel perl make cmake ffmpeg openssl libtcmalloc_minimal4 libgthread-2_0-0; zypper --non-interactive install -t pattern devel_basis"
     else
-        su root -c "zypper --non-interactive install git-core python311 python3-virtualenv python3-pip python311-devel gcc11 perl make cmake ffmpeg openssl libtcmalloc4 libgthread-2_0-0; zypper --non-interactive install -t pattern devel_basis"
+        su root -c "zypper --non-interactive install git-core python311 python3-virtualenv python3-pip python311-devel gcc11 perl make cmake ffmpeg openssl libtcmalloc_minimal4 libgthread-2_0-0; zypper --non-interactive install -t pattern devel_basis"
     fi
   else
     if [ "$(cat /etc/os-release|grep "Tumbleweed")" != "" ]
       then
-        sudo sh -c "zypper --non-interactive install git-core python311 python3-virtualenv python3-pip python311-devel perl make cmake ffmpeg openssl libtcmalloc4 libgthread-2_0-0; zypper --non-interactive install -t pattern devel_basis"
+        sudo sh -c "zypper --non-interactive install git-core python311 python3-virtualenv python3-pip python311-devel perl make cmake ffmpeg openssl libtcmalloc_minimal4 libgthread-2_0-0; zypper --non-interactive install -t pattern devel_basis"
     else
-        sudo sh -c "zypper --non-interactive install git-core python311 python3-virtualenv python3-pip python311-devel gcc11 perl make cmake ffmpeg openssl libtcmalloc4 libgthread-2_0-0; zypper --non-interactive install -t pattern devel_basis"
+        sudo sh -c "zypper --non-interactive install git-core python311 python3-virtualenv python3-pip python311-devel gcc11 perl make cmake ffmpeg openssl libtcmalloc_minimal4 libgthread-2_0-0; zypper --non-interactive install -t pattern devel_basis"
     fi
 fi
 

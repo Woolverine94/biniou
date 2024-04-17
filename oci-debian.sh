@@ -3,9 +3,9 @@ echo ">>>[biniou oci 🧠 ]: biniou one-click installer for Debian based-distrib
 echo ">>>[biniou oci 🧠 ]: Installing prerequisites"
 if [ "$(lsb_release -si|grep Debian)" != "" ]
   then
-    su root -c "apt -y install git pip python3 python3-venv gcc perl make ffmpeg openssl google-perftools"
+    su root -c "apt -y install git pip python3 python3-venv gcc perl make ffmpeg openssl libtcmalloc-minimal4"
   else
-    sudo apt -y install git pip python3 python3-venv gcc perl make ffmpeg openssl google-perftools
+    sudo apt -y install git pip python3 python3-venv gcc perl make ffmpeg openssl libtcmalloc-minimal4
 fi
 echo ">>>[biniou oci 🧠 ]: Cloning repository"
 git clone --branch main https://github.com/Woolverine94/biniou.git

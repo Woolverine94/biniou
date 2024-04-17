@@ -13,7 +13,14 @@ if [ "$(echo $RELEASE|grep 'debian')" !=  "" ]
       TCMALLOC_PATH="/usr/lib64"
 fi
 
-TCMALLOC_NAME="$(ls -l $TCMALLOC_PATH/libtcmalloc.so* 2>/dev/null|sed -ne 's/^.*\/\(.*\) ->.*/\1/p')"
+
+if [ "$(ls -l $TCMALLOC_PATH/libtcmalloc.so* 2>/dev/null)" != "" ]
+  then
+    TCMALLOC_NAME="$(ls -l $TCMALLOC_PATH/libtcmalloc.so* 2>/dev/null|sed -ne 's/^.*\/\(.*\) ->.*/\1/p')"
+elif [ "$(ls -l $TCMALLOC_PATH/libtcmalloc_minimal.so* 2>/dev/null)" != "" ]
+  then
+    TCMALLOC_NAME="$(ls -l $TCMALLOC_PATH/libtcmalloc_minimal.so* 2>/dev/null|sed -ne 's/^.*\/\(.*\) ->.*/\1/p')"
+fi
 
 ## Activate python venv
 source ./env/bin/activate
@@ -21,7 +28,14 @@ source ./env/bin/activate
 ## Launch Biniou
 if [ "$TCMALLOC_NAME" != "" ]
   then
-    echo ">>>[biniou 🧠]: Detected TCMalloc installation : using it."
+
+    if [ "$(echo $TCMALLOC_NAME|grep 'minimal')" != "" ]
+      then
+        echo ">>>[biniou 🧠]: Detected TCMalloc_minimal installation : using it."
+    else
+        echo ">>>[biniou 🧠]: Detected TCMalloc installation : using it."
+    fi
+
     export LD_PRELOAD=$TCMALLOC_PATH/$TCMALLOC_NAME:$LD_PRELOAD
 fi
 
