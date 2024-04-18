@@ -1,7 +1,7 @@
 # https://github.com/Woolverine94/biniou
 # Webui.py
-import diffusers
-diffusers.utils.USE_PEFT_BACKEND = False
+# import diffusers
+# diffusers.utils.USE_PEFT_BACKEND = False
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 import warnings
@@ -948,9 +948,9 @@ def change_model_type_faceid_ip(model_faceid_ip, prompt):
             photomaker_prompt_faceid_ip = prompt
         return sampler_faceid_ip.update(value="UniPC"), width_faceid_ip.update(value=biniou_global_sdxl_width), height_faceid_ip.update(value=biniou_global_sdxl_height), num_inference_step_faceid_ip.update(value=15), guidance_scale_faceid_ip.update(value=5.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True), prompt_faceid_ip.update(value=photomaker_prompt_faceid_ip)
     elif (model_faceid_ip == "segmind/SSD-1B"):
-        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=False), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True), prompt_faceid_ip.update()
+        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=35), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=False), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True), prompt_faceid_ip.update()
     elif (model_faceid_ip == "segmind/Segmind-Vega"):
-        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=9.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=False), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True), prompt_faceid_ip.update()
+        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=35), guidance_scale_faceid_ip.update(value=9.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=False), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True), prompt_faceid_ip.update()
     elif (model_faceid_ip == "playgroundai/playground-v2-1024px-aesthetic"):
         if not ((" img " in prompt) or (" img," in prompt) or (" img:" in prompt)):
             photomaker_prompt_faceid_ip = " img "+ prompt
@@ -964,7 +964,7 @@ def change_model_type_faceid_ip(model_faceid_ip, prompt):
             photomaker_prompt_faceid_ip = prompt
         return sampler_faceid_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_faceid_ip.update(value=biniou_global_sd15_width), height_faceid_ip.update(value=biniou_global_sd15_height), num_inference_step_faceid_ip.update(value=15), guidance_scale_faceid_ip.update(value=3.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=False), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True), prompt_faceid_ip.update(value=photomaker_prompt_faceid_ip)
     else:
-        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(value=biniou_global_sd15_width), height_faceid_ip.update(value=biniou_global_sd15_height), num_inference_step_faceid_ip.update(value=25), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True), prompt_faceid_ip.update()
+        return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(value=biniou_global_sd15_width), height_faceid_ip.update(value=biniou_global_sd15_height), num_inference_step_faceid_ip.update(value=35), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True), prompt_faceid_ip.update()
 
 biniou_internal_previous_steps_faceid_ip = ""
 biniou_internal_previous_cfg_faceid_ip = ""
@@ -5775,7 +5775,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_faceid_ip = gr.Dropdown(choices=model_list_faceid_ip, value=model_list_faceid_ip[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
-                                num_inference_step_faceid_ip = gr.Slider(2, biniou_global_steps_max, step=1, value=25, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_faceid_ip = gr.Slider(2, biniou_global_steps_max, step=1, value=35, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
                             with gr.Column():
 #                                sampler_faceid_ip = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
                                 sampler_faceid_ip = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value="DDIM", label="Sampler", info="Sampler to use for inference")

@@ -4,7 +4,7 @@ import gradio as gr
 import os
 import PIL
 import cv2
-from insightface.app import FaceAnalysis
+# from insightface.app import FaceAnalysis
 import torch
 from diffusers import StableDiffusionPipeline, StableDiffusionXLPipeline, AutoPipelineForText2Image
 from photomaker import PhotoMakerStableDiffusionXLPipeline
@@ -83,16 +83,16 @@ def check_faceid_ip(pipe, step_index, timestep, callback_kwargs):
         pipe._interrupt = True
     return callback_kwargs
 
-def face_extractor(image_src):
-    app = FaceAnalysis(name="buffalo_l", providers=['CUDAExecutionProvider', 'CPUExecutionProvider'])
-#    app.prepare(ctx_id=0, det_size=(640, 640))
-    app.prepare(ctx_id=0, det_size=(320, 320))
-    
-    image = cv2.imread(image_src)
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    faces = app.get(image)
-    faceid_embeds = torch.from_numpy(faces[0].normed_embedding).unsqueeze(0)
-    return faceid_embeds
+# def face_extractor(image_src):
+#     app = FaceAnalysis(name="buffalo_l", providers=['CUDAExecutionProvider', 'CPUExecutionProvider'])
+# #    app.prepare(ctx_id=0, det_size=(640, 640))
+#     app.prepare(ctx_id=0, det_size=(320, 320))
+#     
+#     image = cv2.imread(image_src)
+#     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+#     faces = app.get(image)
+#     faceid_embeds = torch.from_numpy(faces[0].normed_embedding).unsqueeze(0)
+#     return faceid_embeds
 
 @metrics_decoration
 def image_faceid_ip(
@@ -210,7 +210,7 @@ def image_faceid_ip(
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex,
-                custom_pipeline=filename_community_faceid_ip,
+#                custom_pipeline=filename_community_faceid_ip,
 #                custom_revision=filename_community_faceid_ip,
             )
         else :        
@@ -221,7 +221,7 @@ def image_faceid_ip(
                 use_safetensors=True if not is_bin_faceid_ip else False,
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
-                custom_pipeline=filename_community_faceid_ip,
+#                custom_pipeline=filename_community_faceid_ip,
 #                custom_revision=filename_community_faceid_ip,
                 resume_download=True,
                 local_files_only=True if offline_test() else None
@@ -238,10 +238,13 @@ def image_faceid_ip(
 #        )
         pass
     else:
-        pipe_faceid_ip.load_ip_adapter_face_id(
-            "h94/IP-Adapter-FaceID",
+#        pipe_faceid_ip.load_ip_adapter_face_id(
+        pipe_faceid_ip.load_ip_adapter(
+            "h94/IP-Adapter",
             cache_dir=model_path_ipa_faceid_ip,
-            weight_name="ip-adapter-faceid_sd15.bin",
+            subfolder="models",
+            weight_name="ip-adapter-plus-face_sd15.safetensors",
+            use_safetensors=True,
             resume_download=True,
             local_files_only=True if offline_test() else None
         )
@@ -249,6 +252,7 @@ def image_faceid_ip(
     pipe_faceid_ip.set_ip_adapter_scale(denoising_strength_faceid_ip)
 #    pipe_faceid_ip = schedulerer(pipe_faceid_ip, sampler_faceid_ip)
 #    pipe_faceid_ip.enable_attention_slicing("max")
+
     tomesd.apply_patch(pipe_faceid_ip, ratio=tkme_faceid_ip)
     if device_label_faceid_ip == "cuda" :
         pipe_faceid_ip.enable_sequential_cpu_offload()
@@ -343,7 +347,9 @@ def image_faceid_ip(
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
 
     if (is_xl_faceid_ip == False):
-        faceid_embeds_faceid_ip = face_extractor(img_faceid_ip)
+#        faceid_embeds_faceid_ip = face_extractor(img_faceid_ip)
+        image_input = PIL.Image.open(img_faceid_ip)
+        image_input = image_input.convert("RGB")
     else:
         input_id_images_faceid_ip = []
         input_id_images_faceid_ip.append(PIL.Image.open(img_faceid_ip))
@@ -387,9 +393,10 @@ def image_faceid_ip(
             ).images            
         else : 
             image = pipe_faceid_ip(
-                image_embeds=faceid_embeds_faceid_ip,
+#                image_embeds=faceid_embeds_faceid_ip,
                 prompt_embeds=conditioning,
                 negative_prompt_embeds=neg_conditioning,
+                ip_adapter_image=image_input,
                 num_images_per_prompt=num_images_per_prompt_faceid_ip,
                 guidance_scale=guidance_scale_faceid_ip,
                 strength=denoising_strength_faceid_ip,
