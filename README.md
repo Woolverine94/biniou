@@ -10,12 +10,14 @@
 
 <p align="center">
 <a href="#GNULinux">GNU/Linux</a> [ <a href="#OpenSUSE-Leap-155--OpenSUSE-Tumbleweed">OpenSUSE base</a> | <a href="#Rocky-93--Alma-93--CentOS-Stream-9">RHEL base</a> | <a href="#debian-12--ubuntu-22043--linux-mint-212">Debian base</a> ] • <a href="#windows-10--windows-11">Windows</a> • <a href="#macos-homebrew-install">macOS (experimental)</a> • <a href="#dockerfile">Docker</a></br>
-<a href="https://github.com/Woolverine94/biniou/wiki">❓ Documentation</a> | <a href="https://github.com/Woolverine94/biniou/wiki/Showroom">🖼️ Showroom</a>
+<a href="https://github.com/Woolverine94/biniou/wiki">Documentation ❓</a> | <a href="https://github.com/Woolverine94/biniou/wiki/Showroom">Showroom 🖼️</a>
 </p>
 
 ---
 
 ## Updates
+
+  * 🆕 **2024-04-18** : 🔥 ***Adding support for model IDKiro/sdxs-512-dreamshaper*** 🔥 : This insanely fast model is now usable with Stable Diffusion and img2img module. It generates contents in less than 10 seconds using cpu-only inference, which makes it the fastest image model for biniou.
 
   * 🆕 **2024-04-16** : 🔥 ***Bufix and update for module MusicLDM*** 🔥 : Fixing a bug that completely broke MusicLDM when used with CUDA. Also adding support for model [sanchit-gandhi/musicldm-full](https://huggingface.co/sanchit-gandhi/musicldm-full).
 
@@ -24,8 +26,6 @@
   * 🆕 **2024-04-14** : ***Bugfixes and models updates*** : Various WebUI bugfixes. Updating the chatbot Gemma 7B and 2B models to version 1.1.
 
   * 🆕 **2024-04-12** : 🔥 ***Support for playground-v2 models*** 🔥 : Adding [playgroundai/playground-v2-512px-base](https://huggingface.co/playgroundai/playground-v2-512px-base) and [playgroundai/playground-v2-1024px-aesthetic](https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic) to the models list for modules Stable Diffusion, img2img, IP-Adapter, Controlnet and Photobooth.
-
-  * 🆕 **2024-04-10** : 🔥 ***Adding support for Llama-cpp-python backends*** 🔥 : Using the compilation features of Llama-cpp-python, the Global settings panel offers now an option to select a backend which will accelerate inferences on Chatbot and Llava modules. The selected backend must be already installed.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
