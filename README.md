@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-04-19** : 🔥 ***Modifying photobooth module*** 🔥 : Replacing  IP-Adapter FaceID community pipeline with IP-Adapter Plus Face. This replacement allow upgrade to diffusers 0.27.2, re-enabling of PEFT backend and open the way to more evolutions of biniou, at the cost of a small loss of quality when using photobooth with SD 1.5 models.
+
   * 🆕 **2024-04-18** : 🔥 ***Adding support for model IDKiro/sdxs-512-dreamshaper*** 🔥 : This insanely fast model is now usable with Stable Diffusion and img2img module. It generates contents in less than 10 seconds using cpu-only inference, which makes it the fastest image model for biniou.
 
   * 🆕 **2024-04-16** : 🔥 ***Bufix and update for module MusicLDM*** 🔥 : Fixing a bug that completely broke MusicLDM when used with CUDA. Also adding support for model [sanchit-gandhi/musicldm-full](https://huggingface.co/sanchit-gandhi/musicldm-full).
@@ -24,8 +26,6 @@
   * 🆕 **2024-04-15** : 🔥 ***Adding support for OpenSUSE*** 🔥 : You can now use the One-click installer to deploy biniou on OpenSUSE-based systems (Leap 15.5 and Tumbleweed supported).
 
   * 🆕 **2024-04-14** : ***Bugfixes and models updates*** : Various WebUI bugfixes. Updating the chatbot Gemma 7B and 2B models to version 1.1.
-
-  * 🆕 **2024-04-12** : 🔥 ***Support for playground-v2 models*** 🔥 : Adding [playgroundai/playground-v2-512px-base](https://huggingface.co/playgroundai/playground-v2-512px-base) and [playgroundai/playground-v2-1024px-aesthetic](https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic) to the models list for modules Stable Diffusion, img2img, IP-Adapter, Controlnet and Photobooth.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
