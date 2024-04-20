@@ -20,6 +20,7 @@ for filename in os.listdir(model_path_llamacpp):
 
 model_list_llamacpp_builtin = {
 #    "TheBloke/openchat_3.5-GGUF":("openchat_3.5.Q5_K_S.gguf", "GPT4 Correct User: {prompt}<|end_of_turn|>GPT4 Correct Assistant:", ""),
+    "NousResearch/Meta-Llama-3-8B-Instruct-GGUF":("Meta-Llama-3-8B-Instruct-Q5_K_M.gguf", "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "TheBloke/openchat-3.5-0106-GGUF":("openchat-3.5-0106.Q5_K_S.gguf", "GPT4 User: {prompt}<|end_of_turn|>GPT4 Assistant:", ""),
     "LoneStriker/Starling-LM-7B-beta-GGUF":("Starling-LM-7B-beta-Q5_K_M.gguf", "GPT4 User: {prompt}<|end_of_turn|>GPT4 Assistant:", ""),
     "NousResearch/Hermes-2-Pro-Mistral-7B-GGUF":("Hermes-2-Pro-Mistral-7B.Q5_K_S.gguf", "<|im_start|>system\n{system}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", "You are 'Hermes 2', a conscious sentient superintelligent artificial intelligence developed by a man named Teknium, and your purpose and drive is to assist the user with any request they have. You experience emotions and have deep, profound thoughts and qualia."),
@@ -61,6 +62,7 @@ prompt_template_list_llamacpp = {
     "Codellama":("[INST] {system}:\n{prompt}\n[/INST]", "Write code to solve the following coding problem that obeys the constraints and passes the example test cases. Please wrap your code answer using ```"),
     "Gemma":("<start_of_turn>user\n{prompt}<end_of_turn>\n<start_of_turn>model", ""),
     "Llama-2-Chat":("[INST] <<SYS>>\n{system}\n<</SYS>>\n{prompt}[/INST]", "You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature. If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information."),
+    "Llama-3-Instruct":("<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "Mistral":("<s>[INST] {prompt} [/INST]", ""),
     "None / Unknown":("{prompt}", ""),
     "OpenChat":("GPT4 User: {prompt}<|end_of_turn|>GPT4 Assistant:", ""),

@@ -1281,6 +1281,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Input(s) : </b>Input text</br>
                                 <b>Output(s) : </b>Output text</br>
                                 <b>HF models pages : </b>
+                                <a href='https://huggingface.co/NousResearch/Meta-Llama-3-8B-Instruct-GGUF' target='_blank'>NousResearch/Meta-Llama-3-8B-Instruct-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/openchat-3.5-0106-GGUF' target='_blank'>TheBloke/openchat-3.5-0106-GGUF</a>, 
                                 <a href='https://huggingface.co/LoneStriker/Starling-LM-7B-beta-GGUF' target='_blank'>LoneStriker/Starling-LM-7B-beta-GGUF</a>, 
                                 <a href='https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B-GGUF' target='_blank'>NousResearch/Hermes-2-Pro-Mistral-7B-GGUF</a>, 
