@@ -14,7 +14,9 @@ from diffusers import (
     DPMSolverMultistepScheduler,
     HeunDiscreteScheduler,
     LMSDiscreteScheduler,
-    LCMScheduler
+    LCMScheduler,
+    EDMDPMSolverMultistepScheduler,
+    EDMEulerScheduler,
 )
 
 SCHEDULER_MAPPING = {
@@ -39,6 +41,8 @@ SCHEDULER_MAPPING = {
     "DPM2 Karras": KDPM2DiscreteScheduler,
     "DPM2 a Karras": KDPM2AncestralDiscreteScheduler,
     "LMS Karras": LMSDiscreteScheduler,
+    "EDM DPM++ 2M": EDMDPMSolverMultistepScheduler,
+    "EDM Euler": EDMEulerScheduler,
 }
 
 SCHEDULER_MAPPING_MUSICLDM = {
