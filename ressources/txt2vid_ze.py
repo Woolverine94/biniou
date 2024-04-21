@@ -21,6 +21,7 @@ model_list_txt2vid_ze = [
     "SG161222/Realistic_Vision_V3.0_VAE",
     "playgroundai/playground-v2-512px-base",
     "playgroundai/playground-v2-1024px-aesthetic",
+    "playgroundai/playground-v2.5-1024px-aesthetic",
     "stabilityai/sdxl-turbo",
     "SG161222/RealVisXL_V4.0_Lightning",
     "cagliostrolab/animagine-xl-3.1",
@@ -88,7 +89,7 @@ def video_txt2vid_ze(
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2vid_ze, device_txt2vid_ze, nsfw_filter)
 
-    if (("XL" in modelid_txt2vid_ze.upper()) or ("LIGHTNING" in modelid_txt2vid_ze.upper()) or ("ETRI-VILAB/KOALA-" in modelid_txt2vid_ze.upper()) or ("PLAYGROUNDAI/PLAYGROUND-V2-" in modelid_txt2vid_ze.upper()) or (modelid_txt2vid_ze == "segmind/SSD-1B") or (modelid_txt2vid_ze == "segmind/Segmind-Vega") or (modelid_txt2vid_ze == "dataautogpt3/OpenDalleV1.1") or (modelid_txt2vid_ze == "dataautogpt3/ProteusV0.4")) :
+    if (("XL" in modelid_txt2vid_ze.upper()) or ("LIGHTNING" in modelid_txt2vid_ze.upper()) or ("ETRI-VILAB/KOALA-" in modelid_txt2vid_ze.upper()) or ("PLAYGROUNDAI/PLAYGROUND-V2" in modelid_txt2vid_ze.upper()) or (modelid_txt2vid_ze == "segmind/SSD-1B") or (modelid_txt2vid_ze == "segmind/Segmind-Vega") or (modelid_txt2vid_ze == "dataautogpt3/OpenDalleV1.1") or (modelid_txt2vid_ze == "dataautogpt3/ProteusV0.4")) :
         is_xl_txt2vid_ze: bool = True
     else :        
         is_xl_txt2vid_ze: bool = False

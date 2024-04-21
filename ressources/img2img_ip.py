@@ -33,6 +33,7 @@ model_list_img2img_ip_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
     "playgroundai/playground-v2-512px-base",
     "playgroundai/playground-v2-1024px-aesthetic",
+    "playgroundai/playground-v2.5-1024px-aesthetic",
 #    "SG161222/RealVisXL_V3.0",
 #    "stabilityai/sd-turbo",
     "stabilityai/sdxl-turbo",
@@ -106,7 +107,7 @@ def image_img2img_ip(
     else :
         is_turbo_img2img_ip: bool = False
 
-    if (("XL" in modelid_img2img_ip.upper()) or ("LIGHTNING" in modelid_img2img_ip.upper())  or ("PLAYGROUNDAI/PLAYGROUND-V2-" in modelid_img2img_ip.upper()) or (modelid_img2img_ip == "segmind/SSD-1B") or (modelid_img2img_ip == "segmind/Segmind-Vega") or (modelid_img2img_ip == "dataautogpt3/OpenDalleV1.1") or (modelid_img2img_ip == "dataautogpt3/ProteusV0.4")):
+    if (("XL" in modelid_img2img_ip.upper()) or ("LIGHTNING" in modelid_img2img_ip.upper())  or ("PLAYGROUNDAI/PLAYGROUND-V2" in modelid_img2img_ip.upper()) or (modelid_img2img_ip == "segmind/SSD-1B") or (modelid_img2img_ip == "segmind/Segmind-Vega") or (modelid_img2img_ip == "dataautogpt3/OpenDalleV1.1") or (modelid_img2img_ip == "dataautogpt3/ProteusV0.4")):
         is_xl_img2img_ip: bool = True
     else :
         is_xl_img2img_ip: bool = False     

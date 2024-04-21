@@ -556,6 +556,8 @@ def check_steps_strength (steps, strength, model):
     else:
         if strength < 0.1:
             steps = ceil(1/strength)
+        elif (model == "playgroundai/playground-v2.5-1024px-aesthetic"):
+            steps = 15
         else:
             steps = 10
 
