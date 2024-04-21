@@ -21,7 +21,7 @@ model_list_txt2vid_ze = [
     "SG161222/Realistic_Vision_V3.0_VAE",
     "playgroundai/playground-v2-512px-base",
     "playgroundai/playground-v2-1024px-aesthetic",
-    "playgroundai/playground-v2.5-1024px-aesthetic",
+#    "playgroundai/playground-v2.5-1024px-aesthetic",
     "stabilityai/sdxl-turbo",
     "SG161222/RealVisXL_V4.0_Lightning",
     "cagliostrolab/animagine-xl-3.1",
