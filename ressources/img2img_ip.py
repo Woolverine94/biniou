@@ -145,14 +145,15 @@ def image_img2img_ip(
                     local_files_only=True if offline_test() else None
                 )
             elif (source_type_img2img_ip == "composition"):
-                hf_hub_download(
-                    repo_id="ostris/ip-composition-adapter",
-                    filename="ip_plus_composition_sdxl.safetensors",
-                    repo_type="model",
-                    local_dir=model_path_ipa_img2img_ip+ "/sdxl_models",
-                    resume_download=True,
-                    local_files_only=True if offline_test() else None
-                )
+                if not os.path.isfile(f"{model_path_ipa_img2img_ip}/sdxl_models/ip_plus_composition_sdxl.safetensors"):
+                    hf_hub_download(
+                        repo_id="ostris/ip-composition-adapter",
+                        filename="ip_plus_composition_sdxl.safetensors",
+                        repo_type="model",
+                        local_dir=model_path_ipa_img2img_ip+ "/sdxl_models",
+                        resume_download=True,
+                        local_files_only=True if offline_test() else None
+                    )
 
                 image_encoder = CLIPVisionModelWithProjection.from_pretrained(
                     "h94/IP-Adapter",
@@ -191,14 +192,15 @@ def image_img2img_ip(
                     local_files_only=True if offline_test() else None
                 )
             elif (source_type_img2img_ip == "composition"):
-                hf_hub_download(
-                    repo_id="ostris/ip-composition-adapter",
-                    filename="ip_plus_composition_sd15.safetensors",
-                    repo_type="model",
-                    local_dir=model_path_ipa_img2img_ip+ "/models",
-                    resume_download=True,
-                    local_files_only=True if offline_test() else None
-                )
+                if not os.path.isfile(f"{model_path_ipa_img2img_ip}/models/ip_plus_composition_sd15.safetensors"):
+                    hf_hub_download(
+                        repo_id="ostris/ip-composition-adapter",
+                        filename="ip_plus_composition_sd15.safetensors",
+                        repo_type="model",
+                        local_dir=model_path_ipa_img2img_ip+ "/models",
+                        resume_download=True,
+                        local_files_only=True if offline_test() else None
+                    )
 
     if (is_xl_img2img_ip == True):
         if (source_type_img2img_ip == "standard"):

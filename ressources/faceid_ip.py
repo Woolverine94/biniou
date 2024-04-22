@@ -28,11 +28,11 @@ model_path_community_faceid_ip = "./.community"
 os.makedirs(model_path_community_faceid_ip, exist_ok=True)
 
 # if offline_test() == True:
-url_community_faceid_ip = "https://raw.githubusercontent.com/huggingface/diffusers/c0f5346a207bdbf1f7be0b3a539fefae89287ca4/examples/community/ip_adapter_face_id.py"
-response_community_faceid_ip = requests.get(url_community_faceid_ip)
-filename_community_faceid_ip = model_path_community_faceid_ip+ "/ip_adapter_face_id.py"
-with open(filename_community_faceid_ip, "wb") as f:
-    f.write(response_community_faceid_ip.content)
+# url_community_faceid_ip = "https://raw.githubusercontent.com/huggingface/diffusers/c0f5346a207bdbf1f7be0b3a539fefae89287ca4/examples/community/ip_adapter_face_id.py"
+# response_community_faceid_ip = requests.get(url_community_faceid_ip)
+# filename_community_faceid_ip = model_path_community_faceid_ip+ "/ip_adapter_face_id.py"
+# with open(filename_community_faceid_ip, "wb") as f:
+#     f.write(response_community_faceid_ip.content)
 
 model_list_faceid_ip = []
 

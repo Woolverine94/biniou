@@ -96,16 +96,17 @@ def video_animatediff_lcm(
             local_files_only=True if offline_test() else None
         )
     elif (modelid_adapters_animatediff_lcm == "ByteDance/AnimateDiff-Lightning"):
-        adapter_animatediff_lcm_loader = hf_hub_download(
-            repo_id="ByteDance/AnimateDiff-Lightning",
-            filename=model_list_adapters_animatediff_lcm[modelid_adapters_animatediff_lcm][0],
-            repo_type="model",
-            local_dir=lora_path_animatediff_lcm,
-            resume_download=True,
-            local_files_only=True if offline_test() else None
-        )
+        if not os.path.isfile(f"{adapter_path_animatediff_lcm}/{model_list_adapters_animatediff_lcm[modelid_adapters_animatediff_lcm][0]}"):
+            hf_hub_download(
+                repo_id=modelid_adapters_animatediff_lcm,
+                filename=model_list_adapters_animatediff_lcm[modelid_adapters_animatediff_lcm][0],
+                repo_type="model",
+                local_dir=adapter_path_animatediff_lcm,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
         adapter_animatediff_lcm = MotionAdapter()
-        adapter_animatediff_lcm.load_state_dict(load_file(adapter_animatediff_lcm_loader))
+        adapter_animatediff_lcm.load_state_dict(load_file(f"{adapter_path_animatediff_lcm}/{model_list_adapters_animatediff_lcm[modelid_adapters_animatediff_lcm][0]}"))
 
     pipe_animatediff_lcm = AnimateDiffPipeline.from_pretrained(
         modelid_animatediff_lcm,
