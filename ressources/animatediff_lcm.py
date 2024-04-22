@@ -10,6 +10,8 @@ import torch
 import random
 from ressources.common import *
 from ressources.gfpgan import *
+from huggingface_hub import snapshot_download, hf_hub_download
+from safetensors.torch import load_file
 import tomesd
 
 device_label_animatediff_lcm, model_arch = detect_device()
@@ -39,6 +41,11 @@ model_list_animatediff_lcm = [
     "nitrosocke/Ghibli-Diffusion",
 ]
 
+model_list_adapters_animatediff_lcm = {
+    "wangfuyun/AnimateLCM":("AnimateLCM_sd15_t2v_lora.safetensors", 0.8),
+    "ByteDance/AnimateDiff-Lightning":("animatediff_lightning_4step_diffusers.safetensors", 1.0),
+}
+
 # Bouton Cancel
 stop_animatediff_lcm = False
 
@@ -57,6 +64,7 @@ def check_animatediff_lcm(pipe, step_index, timestep, callback_kwargs) :
 @metrics_decoration
 def video_animatediff_lcm(
     modelid_animatediff_lcm,
+    modelid_adapters_animatediff_lcm,
     num_inference_step_animatediff_lcm,
     sampler_animatediff_lcm,
     guidance_scale_animatediff_lcm,
@@ -73,19 +81,31 @@ def video_animatediff_lcm(
     tkme_animatediff_lcm,
     progress_animatediff_lcm=gr.Progress(track_tqdm=True)
     ):
-    
+
     print(">>>[AnimateLCM 📼 ]: starting module")
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_animatediff_lcm, device_animatediff_lcm, nsfw_filter)
 
-    adapter_animatediff_lcm = MotionAdapter.from_pretrained(
-        "wangfuyun/AnimateLCM",
-        cache_dir=adapter_path_animatediff_lcm,
-        torch_dtype=model_arch,
-        use_safetensors=True,
-        resume_download=True,
-        local_files_only=True if offline_test() else None
-    )
+    if (modelid_adapters_animatediff_lcm == "wangfuyun/AnimateLCM"):
+        adapter_animatediff_lcm = MotionAdapter.from_pretrained(
+            modelid_adapters_animatediff_lcm,
+            cache_dir=adapter_path_animatediff_lcm,
+            torch_dtype=model_arch,
+            use_safetensors=True,
+            resume_download=True,
+            local_files_only=True if offline_test() else None
+        )
+    elif (modelid_adapters_animatediff_lcm == "ByteDance/AnimateDiff-Lightning"):
+        adapter_animatediff_lcm_loader = hf_hub_download(
+            repo_id="ByteDance/AnimateDiff-Lightning",
+            filename=model_list_adapters_animatediff_lcm[modelid_adapters_animatediff_lcm][0],
+            repo_type="model",
+            local_dir=lora_path_animatediff_lcm,
+            resume_download=True,
+            local_files_only=True if offline_test() else None
+        )
+        adapter_animatediff_lcm = MotionAdapter()
+        adapter_animatediff_lcm.load_state_dict(load_file(adapter_animatediff_lcm_loader))
 
     pipe_animatediff_lcm = AnimateDiffPipeline.from_pretrained(
         modelid_animatediff_lcm,
@@ -99,20 +119,23 @@ def video_animatediff_lcm(
         local_files_only=True if offline_test() else None
     )
 
-    pipe_animatediff_lcm.load_lora_weights(
-        "wangfuyun/AnimateLCM",
-        weight_name="AnimateLCM_sd15_t2v_lora.safetensors",
-        cache_dir=lora_path_animatediff_lcm,
-        use_safetensors=True,
-        adapter_name="adapter1",
-        resume_download=True,
-        local_files_only=True if offline_test() else None
-    )
-    pipe_animatediff_lcm.fuse_lora(lora_scale=0.8)
-#    pipe_animatediff_lcm.fuse_lora(lora_scale=lora_weight_animatediff_lcm)
-#    pipe_animatediff_lcm.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_animatediff_lcm)])
+    if (modelid_adapters_animatediff_lcm == "wangfuyun/AnimateLCM"):
+        pipe_animatediff_lcm.load_lora_weights(
+            modelid_adapters_animatediff_lcm,
+            weight_name=model_list_adapters_animatediff_lcm[modelid_adapters_animatediff_lcm][0],
+            cache_dir=lora_path_animatediff_lcm,
+            use_safetensors=True,
+            adapter_name="adapter1",
+            resume_download=True,
+            local_files_only=True if offline_test() else None
+        )
+        pipe_animatediff_lcm.fuse_lora(lora_scale=model_list_adapters_animatediff_lcm[modelid_adapters_animatediff_lcm][1])
+    #    pipe_animatediff_lcm.fuse_lora(lora_scale=lora_weight_animatediff_lcm)
+    #    pipe_animatediff_lcm.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_animatediff_lcm)])
+        pipe_animatediff_lcm.scheduler = LCMScheduler.from_config(pipe_animatediff_lcm.scheduler.config, beta_schedule="linear")
+    elif (modelid_adapters_animatediff_lcm == "ByteDance/AnimateDiff-Lightning"):
+        pipe_animatediff_lcm.scheduler = EulerDiscreteScheduler.from_config(pipe_animatediff_lcm.scheduler.config, timestep_spacing="trailing", beta_schedule="linear")
 
-    pipe_animatediff_lcm.scheduler = LCMScheduler.from_config(pipe_animatediff_lcm.scheduler.config, beta_schedule="linear")
 #    pipe_animatediff_lcm = schedulerer(pipe_animatediff_lcm, sampler_animatediff_lcm)
 #    tomesd.apply_patch(pipe_animatediff_lcm, ratio=tkme_animatediff_lcm)
     if device_label_animatediff_lcm == "cuda" :
@@ -175,6 +198,7 @@ def video_animatediff_lcm(
     print(f">>>[AnimateLCM 📼 ]: generated {num_prompt_animatediff_lcm} batch(es) of {num_videos_per_prompt_animatediff_lcm}")
     reporting_animatediff_lcm = f">>>[AnimateLCM 📼 ]: "+\
         f"Settings : Model={modelid_animatediff_lcm} | "+\
+        f"Adapter={modelid_adapters_animatediff_lcm} | "+\
         f"Sampler={sampler_animatediff_lcm} | "+\
         f"Steps={num_inference_step_animatediff_lcm} | "+\
         f"CFG scale={guidance_scale_animatediff_lcm} | "+\

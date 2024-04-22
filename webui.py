@@ -1126,17 +1126,26 @@ def change_model_type_txt2vid_ze(model_txt2vid_ze):
 ## Functions specific to AnimateLCM
 def read_ini_animatediff_lcm(module) :
     content = read_ini(module)
-    return str(content[0]), int(content[1]), str(content[2]), float(content[3]), int(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), int(content[9]), bool(int(content[10])), float(content[11])
+    return str(content[0]), str(content[1]), int(content[2]), str(content[3]), float(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), int(content[9]), int(content[10]), bool(int(content[11])), float(content[12])
 
-def change_model_type_animatediff_lcm(model_animatediff_lcm):
+def change_model_type_animatediff_lcm(model_animatediff_lcm, model_adapters_animatediff_lcm):
+    if (model_adapters_animatediff_lcm == "wangfuyun/AnimateLCM"):
+        scheduler = "LCM"
+        cfg_scale = 2.0
+        steps = 4
+    elif (model_adapters_animatediff_lcm == "ByteDance/AnimateDiff-Lightning"):
+        scheduler = "Euler"
+        cfg_scale = 1.0
+        steps = 4
+
     if (model_animatediff_lcm == "stabilityai/sdxl-turbo"):
-        return sampler_animatediff_lcm.update(value="LCM"), width_animatediff_lcm.update(), height_animatediff_lcm.update(), num_inference_step_animatediff_lcm.update(value=2), guidance_scale_animatediff_lcm.update(value=0.0), negative_prompt_animatediff_lcm.update(interactive=False)
+        return sampler_animatediff_lcm.update(value=scheduler), width_animatediff_lcm.update(), height_animatediff_lcm.update(), num_inference_step_animatediff_lcm.update(value=2), guidance_scale_animatediff_lcm.update(value=0.0), negative_prompt_animatediff_lcm.update(interactive=False)
     elif ("XL" in model_animatediff_lcm.upper()) or ("ETRI-VILAB/KOALA-" in model_animatediff_lcm.upper()) or (model_animatediff_lcm == "segmind/SSD-1B") or (model_animatediff_lcm == "dataautogpt3/OpenDalleV1.1") or (model_animatediff_lcm == "dataautogpt3/ProteusV0.4"):
-        return sampler_animatediff_lcm.update(value="LCM"), width_animatediff_lcm.update(), height_animatediff_lcm.update(), num_inference_step_animatediff_lcm.update(value=10), guidance_scale_animatediff_lcm.update(value=7.5), negative_prompt_animatediff_lcm.update(interactive=True)
+        return sampler_animatediff_lcm.update(value=scheduler), width_animatediff_lcm.update(), height_animatediff_lcm.update(), num_inference_step_animatediff_lcm.update(value=steps), guidance_scale_animatediff_lcm.update(value=7.5), negative_prompt_animatediff_lcm.update(interactive=True)
     elif (model_animatediff_lcm == "segmind/Segmind-Vega"):
-        return sampler_animatediff_lcm.update(value="LCM"), width_animatediff_lcm.update(), height_animatediff_lcm.update(), num_inference_step_animatediff_lcm.update(value=10), guidance_scale_animatediff_lcm.update(value=9.0), negative_prompt_animatediff_lcm.update(interactive=True)
+        return sampler_animatediff_lcm.update(value=scheduler), width_animatediff_lcm.update(), height_animatediff_lcm.update(), num_inference_step_animatediff_lcm.update(value=steps), guidance_scale_animatediff_lcm.update(value=9.0), negative_prompt_animatediff_lcm.update(interactive=True)
     else:
-        return sampler_animatediff_lcm.update(value="LCM"), width_animatediff_lcm.update(), height_animatediff_lcm.update(), num_inference_step_animatediff_lcm.update(value=10), guidance_scale_animatediff_lcm.update(), negative_prompt_animatediff_lcm.update(interactive=True)
+        return sampler_animatediff_lcm.update(value=scheduler), width_animatediff_lcm.update(), height_animatediff_lcm.update(), num_inference_step_animatediff_lcm.update(value=steps), guidance_scale_animatediff_lcm.update(value=cfg_scale), negative_prompt_animatediff_lcm.update(interactive=True)
 
 ## Functions specific to Stable Video Diffusion
 def read_ini_img2vid(module) :
@@ -7643,7 +7652,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 """
                                 <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
                                 <b>Module : </b>AnimateLCM</br>
-                                <b>Function : </b>Generate video from a prompt and a negative prompt using <a href='https://animatelcm.github.io/' target='_blank'>AnimateLCM</a> with <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a> Models</br>
+                                <b>Function : </b>Generate video from a prompt and a negative prompt using <a href='https://animatelcm.github.io/' target='_blank'>AnimateLCM</a> or <a href='https://huggingface.co/ByteDance/AnimateDiff-Lightning' target='_blank'>ByteDance/AnimateDiff-Lightning</a> with <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a> Models</br>
                                 <b>Input(s) : </b>Prompt, negative prompt</br>
                                 <b>Output(s) : </b>Video</br>
                                 <b>HF model page : </b>
@@ -7677,9 +7686,11 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_animatediff_lcm = gr.Dropdown(choices=model_list_animatediff_lcm, value=model_list_animatediff_lcm[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
+                                model_adapters_animatediff_lcm = gr.Dropdown(choices=list(model_list_adapters_animatediff_lcm.keys()), value=list(model_list_adapters_animatediff_lcm.keys())[0], label="Adapter", info="Choose adapter to use for inference")
+                            with gr.Column():
                                 num_inference_step_animatediff_lcm = gr.Slider(1, biniou_global_steps_max, step=1, value=4, label="Steps", info="Number of iterations per video. Results and speed depends of sampler")
                             with gr.Column():
-                                sampler_animatediff_lcm = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value="LCM", label="Sampler", info="Sampler to use for inference", interactive=False)
+                                sampler_animatediff_lcm = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value="LCM", label="Sampler", info="Sampler to use for inference", interactive=True)
                         with gr.Row():
                             with gr.Column():
                                 guidance_scale_animatediff_lcm = gr.Slider(0.1, 20.0, step=0.1, value=2.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
@@ -7712,6 +7723,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     inputs=[
                                         module_name_animatediff_lcm,
                                         model_animatediff_lcm,
+                                        model_adapters_animatediff_lcm,
                                         num_inference_step_animatediff_lcm,
                                         sampler_animatediff_lcm,
                                         guidance_scale_animatediff_lcm,
@@ -7733,17 +7745,18 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         if test_cfg_exist(module_name_animatediff_lcm.value) :
                             readcfg_animatediff_lcm = read_ini_animatediff_lcm(module_name_animatediff_lcm.value)
                             model_animatediff_lcm.value = readcfg_animatediff_lcm[0]
-                            num_inference_step_animatediff_lcm.value = readcfg_animatediff_lcm[1]
-                            sampler_animatediff_lcm.value = readcfg_animatediff_lcm[2]
-                            guidance_scale_animatediff_lcm.value = readcfg_animatediff_lcm[3]
-                            seed_animatediff_lcm.value = readcfg_animatediff_lcm[4]
-                            num_frames_animatediff_lcm.value = readcfg_animatediff_lcm[5]
-                            width_animatediff_lcm.value = readcfg_animatediff_lcm[8]
-                            height_animatediff_lcm.value = readcfg_animatediff_lcm[9]
-                            num_videos_per_prompt_animatediff_lcm.value = readcfg_animatediff_lcm[10]
-                            num_prompt_animatediff_lcm.value = readcfg_animatediff_lcm[11]
-                            use_gfpgan_animatediff_lcm.value = readcfg_animatediff_lcm[16]
-                            tkme_animatediff_lcm.value = readcfg_animatediff_lcm[17]
+                            model_adapters_animatediff_lcm = readcfg_animatediff_lcm[1]
+                            num_inference_step_animatediff_lcm.value = readcfg_animatediff_lcm[2]
+                            sampler_animatediff_lcm.value = readcfg_animatediff_lcm[3]
+                            guidance_scale_animatediff_lcm.value = readcfg_animatediff_lcm[4]
+                            seed_animatediff_lcm.value = readcfg_animatediff_lcm[5]
+                            num_frames_animatediff_lcm.value = readcfg_animatediff_lcm[6]
+                            width_animatediff_lcm.value = readcfg_animatediff_lcm[7]
+                            height_animatediff_lcm.value = readcfg_animatediff_lcm[8]
+                            num_videos_per_prompt_animatediff_lcm.value = readcfg_animatediff_lcm[9]
+                            num_prompt_animatediff_lcm.value = readcfg_animatediff_lcm[10]
+                            use_gfpgan_animatediff_lcm.value = readcfg_animatediff_lcm[11]
+                            tkme_animatediff_lcm.value = readcfg_animatediff_lcm[12]
                     with gr.Row():
                         with gr.Column(scale=2):
                             with gr.Row():
@@ -7754,7 +7767,25 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     negative_prompt_animatediff_lcm = gr.Textbox(lines=4, max_lines=4, label="Negative Prompt", info="Describe what you DO NOT want in your video", placeholder="bad quality, worst quality, low resolution")
                         model_animatediff_lcm.change(
                             fn=change_model_type_animatediff_lcm,
-                            inputs=[model_animatediff_lcm],
+                            inputs=[
+                                model_animatediff_lcm, 
+                                model_adapters_animatediff_lcm,
+                            ],
+                            outputs=[
+                                sampler_animatediff_lcm,
+                                width_animatediff_lcm,
+                                height_animatediff_lcm,
+                                num_inference_step_animatediff_lcm,
+                                guidance_scale_animatediff_lcm,
+                                negative_prompt_animatediff_lcm,
+                            ]
+                        )
+                        model_adapters_animatediff_lcm.change(
+                            fn=change_model_type_animatediff_lcm,
+                            inputs=[
+                                model_animatediff_lcm, 
+                                model_adapters_animatediff_lcm,
+                            ],
                             outputs=[
                                 sampler_animatediff_lcm,
                                 width_animatediff_lcm,
@@ -7780,6 +7811,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 fn=video_animatediff_lcm,
                                 inputs=[
                                     model_animatediff_lcm,
+                                    model_adapters_animatediff_lcm,
                                     num_inference_step_animatediff_lcm,
                                     sampler_animatediff_lcm,
                                     guidance_scale_animatediff_lcm,
