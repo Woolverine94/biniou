@@ -80,8 +80,10 @@ def download_model(modelid_llamacpp):
         test_model = model_list_llamacpp[modelid_llamacpp]
     except KeyError as ke:
         test_model = None
-    if (test_model == None):
+    if (test_model == None) and ("TheBloke" in modelid_llamacpp):
         model_filename = f"{modelid_llamacpp.split('/')[1].replace('-GGUF', '').lower()}.Q5_K_S.gguf"
+    elif (test_model == None):
+        model_filename = f"{modelid_llamacpp.split('/')[1].replace('-GGUF', '')}.Q5_K_S.gguf"
     else:
         model_filename = model_list_llamacpp[modelid_llamacpp][0]
     if (modelid_llamacpp[0:9] != "./models/"):
