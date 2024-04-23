@@ -1124,10 +1124,6 @@ def change_model_type_txt2vid_ze(model_txt2vid_ze):
         return sampler_txt2vid_ze.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2vid_ze.update(value=biniou_global_sd15_width), height_txt2vid_ze.update(value=biniou_global_sd15_height), num_inference_step_txt2vid_ze.update(value=10), guidance_scale_txt2vid_ze.update(value=7.5), negative_prompt_txt2vid_ze.update(interactive=True)
 
 ## Functions specific to AnimateLCM
-def read_ini_animatediff_lcm(module) :
-    content = read_ini(module)
-    return str(content[0]), str(content[1]), int(content[2]), str(content[3]), float(content[4]), int(content[5]), int(content[6]), int(content[7]), int(content[8]), int(content[9]), int(content[10]), bool(int(content[11])), float(content[12])
-
 def change_model_type_animatediff_lcm(model_animatediff_lcm, model_adapters_animatediff_lcm):
     if (model_adapters_animatediff_lcm == "wangfuyun/AnimateLCM"):
         scheduler = "LCM"
@@ -1137,7 +1133,6 @@ def change_model_type_animatediff_lcm(model_animatediff_lcm, model_adapters_anim
         scheduler = "Euler"
         cfg_scale = 1.0
         steps = 4
-
     if (model_animatediff_lcm == "stabilityai/sdxl-turbo"):
         return sampler_animatediff_lcm.update(value=scheduler), width_animatediff_lcm.update(), height_animatediff_lcm.update(), num_inference_step_animatediff_lcm.update(value=2), guidance_scale_animatediff_lcm.update(value=0.0), negative_prompt_animatediff_lcm.update(interactive=False)
     elif ("XL" in model_animatediff_lcm.upper()) or ("ETRI-VILAB/KOALA-" in model_animatediff_lcm.upper()) or (model_animatediff_lcm == "segmind/SSD-1B") or (model_animatediff_lcm == "dataautogpt3/OpenDalleV1.1") or (model_animatediff_lcm == "dataautogpt3/ProteusV0.4"):
@@ -1416,7 +1411,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_llamacpp.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_llamacpp.click(fn=lambda: del_ini_btn_llamacpp.update(interactive=True), outputs=del_ini_btn_llamacpp)
-                                del_ini_btn_llamacpp.click(fn=lambda: del_ini(module_name_llamacpp.value))
+                                del_ini_btn_llamacpp.click(fn=lambda: del_cfg(module_name_llamacpp.value))
                                 del_ini_btn_llamacpp.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_llamacpp.click(fn=lambda: del_ini_btn_llamacpp.update(interactive=False), outputs=del_ini_btn_llamacpp)
                         if test_cfg_exist(module_name_llamacpp.value) :
@@ -1658,7 +1653,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_llava.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_llava.click(fn=lambda: del_ini_btn_llava.update(interactive=True), outputs=del_ini_btn_llava)
-                                del_ini_btn_llava.click(fn=lambda: del_ini(module_name_llava.value))
+                                del_ini_btn_llava.click(fn=lambda: del_cfg(module_name_llava.value))
                                 del_ini_btn_llava.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_llava.click(fn=lambda: del_ini_btn_llava.update(interactive=False), outputs=del_ini_btn_llava)
                         if test_cfg_exist(module_name_llava.value) :
@@ -1878,7 +1873,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_img2txt_git.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_img2txt_git.click(fn=lambda: del_ini_btn_img2txt_git.update(interactive=True), outputs=del_ini_btn_img2txt_git)
-                                del_ini_btn_img2txt_git.click(fn=lambda: del_ini(module_name_img2txt_git.value))
+                                del_ini_btn_img2txt_git.click(fn=lambda: del_cfg(module_name_img2txt_git.value))
                                 del_ini_btn_img2txt_git.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_img2txt_git.click(fn=lambda: del_ini_btn_img2txt_git.update(interactive=False), outputs=del_ini_btn_img2txt_git)
                         if test_cfg_exist(module_name_img2txt_git.value) :
@@ -2014,7 +2009,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_whisper.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_whisper.click(fn=lambda: del_ini_btn_whisper.update(interactive=True), outputs=del_ini_btn_whisper)
-                                del_ini_btn_whisper.click(fn=lambda: del_ini(module_name_whisper.value))
+                                del_ini_btn_whisper.click(fn=lambda: del_cfg(module_name_whisper.value))
                                 del_ini_btn_whisper.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_whisper.click(fn=lambda: del_ini_btn_whisper.update(interactive=False), outputs=del_ini_btn_whisper)
                         if test_cfg_exist(module_name_whisper.value) :
@@ -2150,7 +2145,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_nllb.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_nllb.click(fn=lambda: del_ini_btn_nllb.update(interactive=True), outputs=del_ini_btn_nllb)
-                                del_ini_btn_nllb.click(fn=lambda: del_ini(module_name_nllb.value))
+                                del_ini_btn_nllb.click(fn=lambda: del_cfg(module_name_nllb.value))
                                 del_ini_btn_nllb.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_nllb.click(fn=lambda: del_ini_btn_nllb.update(interactive=False), outputs=del_ini_btn_nllb)
                         if test_cfg_exist(module_name_nllb.value) :
@@ -2290,7 +2285,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_txt2prompt.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_txt2prompt.click(fn=lambda: del_ini_btn_txt2prompt.update(interactive=True), outputs=del_ini_btn_txt2prompt)
-                                del_ini_btn_txt2prompt.click(fn=lambda: del_ini(module_name_txt2prompt.value))
+                                del_ini_btn_txt2prompt.click(fn=lambda: del_cfg(module_name_txt2prompt.value))
                                 del_ini_btn_txt2prompt.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_txt2prompt.click(fn=lambda: del_ini_btn_txt2prompt.update(interactive=False), outputs=del_ini_btn_txt2prompt)
                         if test_cfg_exist(module_name_txt2prompt.value) :
@@ -2478,7 +2473,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_txt2img_sd.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_txt2img_sd.click(fn=lambda: del_ini_btn_txt2img_sd.update(interactive=True), outputs=del_ini_btn_txt2img_sd)
-                                del_ini_btn_txt2img_sd.click(fn=lambda: del_ini(module_name_txt2img_sd.value))
+                                del_ini_btn_txt2img_sd.click(fn=lambda: del_cfg(module_name_txt2img_sd.value))
                                 del_ini_btn_txt2img_sd.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_txt2img_sd.click(fn=lambda: del_ini_btn_txt2img_sd.update(interactive=False), outputs=del_ini_btn_txt2img_sd)
                         if test_cfg_exist(module_name_txt2img_sd.value) :
@@ -2723,7 +2718,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_txt2img_kd.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_txt2img_kd.click(fn=lambda: del_ini_btn_txt2img_kd.update(interactive=True), outputs=del_ini_btn_txt2img_kd)
-                                del_ini_btn_txt2img_kd.click(fn=lambda: del_ini(module_name_txt2img_kd.value))
+                                del_ini_btn_txt2img_kd.click(fn=lambda: del_cfg(module_name_txt2img_kd.value))
                                 del_ini_btn_txt2img_kd.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_txt2img_kd.click(fn=lambda: del_ini_btn_txt2img_kd.update(interactive=False), outputs=del_ini_btn_txt2img_kd)
                         if test_cfg_exist(module_name_txt2img_kd.value) :
@@ -2952,7 +2947,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_txt2img_lcm.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_txt2img_lcm.click(fn=lambda: del_ini_btn_txt2img_lcm.update(interactive=True), outputs=del_ini_btn_txt2img_lcm)
-                                del_ini_btn_txt2img_lcm.click(fn=lambda: del_ini(module_name_txt2img_lcm.value))
+                                del_ini_btn_txt2img_lcm.click(fn=lambda: del_cfg(module_name_txt2img_lcm.value))
                                 del_ini_btn_txt2img_lcm.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_txt2img_lcm.click(fn=lambda: del_ini_btn_txt2img_lcm.update(interactive=False), outputs=del_ini_btn_txt2img_lcm)
                         if test_cfg_exist(module_name_txt2img_lcm.value) :
@@ -3189,7 +3184,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_txt2img_mjm.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_txt2img_mjm.click(fn=lambda: del_ini_btn_txt2img_mjm.update(interactive=True), outputs=del_ini_btn_txt2img_mjm)
-                                del_ini_btn_txt2img_mjm.click(fn=lambda: del_ini(module_name_txt2img_mjm.value))
+                                del_ini_btn_txt2img_mjm.click(fn=lambda: del_cfg(module_name_txt2img_mjm.value))
                                 del_ini_btn_txt2img_mjm.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_txt2img_mjm.click(fn=lambda: del_ini_btn_txt2img_mjm.update(interactive=False), outputs=del_ini_btn_txt2img_mjm)
                         if test_cfg_exist(module_name_txt2img_mjm.value) :
@@ -3407,7 +3402,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_txt2img_paa.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_txt2img_paa.click(fn=lambda: del_ini_btn_txt2img_paa.update(interactive=True), outputs=del_ini_btn_txt2img_paa)
-                                del_ini_btn_txt2img_paa.click(fn=lambda: del_ini(module_name_txt2img_paa.value))
+                                del_ini_btn_txt2img_paa.click(fn=lambda: del_cfg(module_name_txt2img_paa.value))
                                 del_ini_btn_txt2img_paa.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_txt2img_paa.click(fn=lambda: del_ini_btn_txt2img_paa.update(interactive=False), outputs=del_ini_btn_txt2img_paa)
                         if test_cfg_exist(module_name_txt2img_paa.value) :
@@ -3650,7 +3645,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_img2img.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_img2img.click(fn=lambda: del_ini_btn_img2img.update(interactive=True), outputs=del_ini_btn_img2img)
-                                del_ini_btn_img2img.click(fn=lambda: del_ini(module_name_img2img.value))
+                                del_ini_btn_img2img.click(fn=lambda: del_cfg(module_name_img2img.value))
                                 del_ini_btn_img2img.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_img2img.click(fn=lambda: del_ini_btn_img2img.update(interactive=False), outputs=del_ini_btn_img2img)
                         if test_cfg_exist(module_name_img2img.value) :
@@ -3922,7 +3917,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_img2img_ip.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_img2img_ip.click(fn=lambda: del_ini_btn_img2img_ip.update(interactive=True), outputs=del_ini_btn_img2img_ip)
-                                del_ini_btn_img2img_ip.click(fn=lambda: del_ini(module_name_img2img_ip.value))
+                                del_ini_btn_img2img_ip.click(fn=lambda: del_cfg(module_name_img2img_ip.value))
                                 del_ini_btn_img2img_ip.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_img2img_ip.click(fn=lambda: del_ini_btn_img2img_ip.update(interactive=False), outputs=del_ini_btn_img2img_ip)
                         if test_cfg_exist(module_name_img2img_ip.value) :
@@ -4201,7 +4196,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_img2var.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_img2var.click(fn=lambda: del_ini_btn_img2var.update(interactive=True), outputs=del_ini_btn_img2var)
-                                del_ini_btn_img2var.click(fn=lambda: del_ini(module_name_img2var.value))
+                                del_ini_btn_img2var.click(fn=lambda: del_cfg(module_name_img2var.value))
                                 del_ini_btn_img2var.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_img2var.click(fn=lambda: del_ini_btn_img2var.update(interactive=False), outputs=del_ini_btn_img2var)
                         if test_cfg_exist(module_name_img2var.value) :
@@ -4396,7 +4391,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_pix2pix.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_pix2pix.click(fn=lambda: del_ini_btn_pix2pix.update(interactive=True), outputs=del_ini_btn_pix2pix)
-                                del_ini_btn_pix2pix.click(fn=lambda: del_ini(module_name_pix2pix.value))
+                                del_ini_btn_pix2pix.click(fn=lambda: del_cfg(module_name_pix2pix.value))
                                 del_ini_btn_pix2pix.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_pix2pix.click(fn=lambda: del_ini_btn_pix2pix.update(interactive=False), outputs=del_ini_btn_pix2pix)
                         if test_cfg_exist(module_name_pix2pix.value) :
@@ -4613,7 +4608,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_magicmix.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_magicmix.click(fn=lambda: del_ini_btn_magicmix.update(interactive=True), outputs=del_ini_btn_magicmix)
-                                del_ini_btn_magicmix.click(fn=lambda: del_ini(module_name_magicmix.value))
+                                del_ini_btn_magicmix.click(fn=lambda: del_cfg(module_name_magicmix.value))
                                 del_ini_btn_magicmix.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_magicmix.click(fn=lambda: del_ini_btn_magicmix.update(interactive=False), outputs=del_ini_btn_magicmix)
                         if test_cfg_exist(module_name_magicmix.value) :
@@ -4812,7 +4807,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_inpaint.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_inpaint.click(fn=lambda: del_ini_btn_inpaint.update(interactive=True), outputs=del_ini_btn_inpaint)
-                                del_ini_btn_inpaint.click(fn=lambda: del_ini(module_name_inpaint.value))
+                                del_ini_btn_inpaint.click(fn=lambda: del_cfg(module_name_inpaint.value))
                                 del_ini_btn_inpaint.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_inpaint.click(fn=lambda: del_ini_btn_inpaint.update(interactive=False), outputs=del_ini_btn_inpaint)
                         if test_cfg_exist(module_name_inpaint.value) :
@@ -5040,7 +5035,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_paintbyex.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_paintbyex.click(fn=lambda: del_ini_btn_paintbyex.update(interactive=True), outputs=del_ini_btn_paintbyex)
-                                del_ini_btn_paintbyex.click(fn=lambda: del_ini(module_name_paintbyex.value))
+                                del_ini_btn_paintbyex.click(fn=lambda: del_cfg(module_name_paintbyex.value))
                                 del_ini_btn_paintbyex.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_paintbyex.click(fn=lambda: del_ini_btn_paintbyex.update(interactive=False), outputs=del_ini_btn_paintbyex)
                         if test_cfg_exist(module_name_paintbyex.value) :
@@ -5248,7 +5243,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_outpaint.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_outpaint.click(fn=lambda: del_ini_btn_outpaint.update(interactive=True), outputs=del_ini_btn_outpaint)
-                                del_ini_btn_outpaint.click(fn=lambda: del_ini(module_name_outpaint.value))
+                                del_ini_btn_outpaint.click(fn=lambda: del_cfg(module_name_outpaint.value))
                                 del_ini_btn_outpaint.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_outpaint.click(fn=lambda: del_ini_btn_outpaint.update(interactive=False), outputs=del_ini_btn_outpaint)
                         if test_cfg_exist(module_name_outpaint.value) :
@@ -5545,7 +5540,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_controlnet.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_controlnet.click(fn=lambda: del_ini_btn_controlnet.update(interactive=True), outputs=del_ini_btn_controlnet)
-                                del_ini_btn_controlnet.click(fn=lambda: del_ini(module_name_controlnet.value))
+                                del_ini_btn_controlnet.click(fn=lambda: del_cfg(module_name_controlnet.value))
                                 del_ini_btn_controlnet.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_controlnet.click(fn=lambda: del_ini_btn_controlnet.update(interactive=False), outputs=del_ini_btn_controlnet)
                         if test_cfg_exist(module_name_controlnet.value) :
@@ -5849,7 +5844,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_faceid_ip.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_faceid_ip.click(fn=lambda: del_ini_btn_faceid_ip.update(interactive=True), outputs=del_ini_btn_faceid_ip)
-                                del_ini_btn_faceid_ip.click(fn=lambda: del_ini(module_name_faceid_ip.value))
+                                del_ini_btn_faceid_ip.click(fn=lambda: del_cfg(module_name_faceid_ip.value))
                                 del_ini_btn_faceid_ip.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_faceid_ip.click(fn=lambda: del_ini_btn_faceid_ip.update(interactive=False), outputs=del_ini_btn_faceid_ip)
                         if test_cfg_exist(module_name_faceid_ip.value) :
@@ -6075,7 +6070,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_faceswap.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_faceswap.click(fn=lambda: del_ini_btn_faceswap.update(interactive=True), outputs=del_ini_btn_faceswap)
-                                del_ini_btn_faceswap.click(fn=lambda: del_ini(module_name_faceswap.value))
+                                del_ini_btn_faceswap.click(fn=lambda: del_cfg(module_name_faceswap.value))
                                 del_ini_btn_faceswap.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_faceswap.click(fn=lambda: del_ini_btn_faceswap.update(interactive=False), outputs=del_ini_btn_faceswap)
                         if test_cfg_exist(module_name_faceswap.value) :
@@ -6236,7 +6231,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_resrgan.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_resrgan.click(fn=lambda: del_ini_btn_resrgan.update(interactive=True), outputs=del_ini_btn_resrgan)
-                                del_ini_btn_resrgan.click(fn=lambda: del_ini(module_name_resrgan.value))
+                                del_ini_btn_resrgan.click(fn=lambda: del_cfg(module_name_resrgan.value))
                                 del_ini_btn_resrgan.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_resrgan.click(fn=lambda: del_ini_btn_resrgan.update(interactive=False), outputs=del_ini_btn_resrgan)
                         if test_cfg_exist(module_name_resrgan.value) :
@@ -6370,7 +6365,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_gfpgan.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_gfpgan.click(fn=lambda: del_ini_btn_gfpgan.update(interactive=True), outputs=del_ini_btn_gfpgan)
-                                del_ini_btn_gfpgan.click(fn=lambda: del_ini(module_name_gfpgan.value))
+                                del_ini_btn_gfpgan.click(fn=lambda: del_cfg(module_name_gfpgan.value))
                                 del_ini_btn_gfpgan.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_gfpgan.click(fn=lambda: del_ini_btn_gfpgan.update(interactive=False), outputs=del_ini_btn_gfpgan)
                         if test_cfg_exist(module_name_gfpgan.value) :
@@ -6519,7 +6514,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_musicgen.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_musicgen.click(fn=lambda: del_ini_btn_musicgen.update(interactive=True), outputs=del_ini_btn_musicgen)
-                                del_ini_btn_musicgen.click(fn=lambda: del_ini(module_name_musicgen.value))
+                                del_ini_btn_musicgen.click(fn=lambda: del_cfg(module_name_musicgen.value))
                                 del_ini_btn_musicgen.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_musicgen.click(fn=lambda: del_ini_btn_musicgen.update(interactive=False), outputs=del_ini_btn_musicgen)
                         if test_cfg_exist(module_name_musicgen.value) :
@@ -6660,7 +6655,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_musicgen_mel.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_musicgen_mel.click(fn=lambda: del_ini_btn_musicgen_mel.update(interactive=True), outputs=del_ini_btn_musicgen_mel)
-                                del_ini_btn_musicgen_mel.click(fn=lambda: del_ini(module_name_musicgen_mel.value))
+                                del_ini_btn_musicgen_mel.click(fn=lambda: del_cfg(module_name_musicgen_mel.value))
                                 del_ini_btn_musicgen_mel.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_musicgen_mel.click(fn=lambda: del_ini_btn_musicgen_mel.update(interactive=False), outputs=del_ini_btn_musicgen_mel)
                         if test_cfg_exist(module_name_musicgen_mel.value) :
@@ -6806,7 +6801,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_musicldm.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_musicldm.click(fn=lambda: del_ini_btn_musicldm.update(interactive=True), outputs=del_ini_btn_musicldm)
-                                del_ini_btn_musicldm.click(fn=lambda: del_ini(module_name_musicldm.value))
+                                del_ini_btn_musicldm.click(fn=lambda: del_cfg(module_name_musicldm.value))
                                 del_ini_btn_musicldm.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_musicldm.click(fn=lambda: del_ini_btn_musicldm.update(interactive=False), outputs=del_ini_btn_musicldm)
                         if test_cfg_exist(module_name_musicldm.value) :
@@ -6950,7 +6945,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_audiogen.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_audiogen.click(fn=lambda: del_ini_btn_audiogen.update(interactive=True), outputs=del_ini_btn_audiogen)
-                                del_ini_btn_audiogen.click(fn=lambda: del_ini(module_name_audiogen.value))
+                                del_ini_btn_audiogen.click(fn=lambda: del_cfg(module_name_audiogen.value))
                                 del_ini_btn_audiogen.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_audiogen.click(fn=lambda: del_ini_btn_audiogen.update(interactive=False), outputs=del_ini_btn_audiogen)
                         if test_cfg_exist(module_name_audiogen.value) :
@@ -7082,7 +7077,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_harmonai.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_harmonai.click(fn=lambda: del_ini_btn_harmonai.update(interactive=True), outputs=del_ini_btn_harmonai)
-                                del_ini_btn_harmonai.click(fn=lambda: del_ini(module_name_harmonai.value))
+                                del_ini_btn_harmonai.click(fn=lambda: del_cfg(module_name_harmonai.value))
                                 del_ini_btn_harmonai.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_harmonai.click(fn=lambda: del_ini_btn_harmonai.update(interactive=False), outputs=del_ini_btn_harmonai)
                         if test_cfg_exist(module_name_harmonai.value) :
@@ -7191,7 +7186,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_bark.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_bark.click(fn=lambda: del_ini_btn_bark.update(interactive=True), outputs=del_ini_btn_bark)
-                                del_ini_btn_bark.click(fn=lambda: del_ini(module_name_bark.value))
+                                del_ini_btn_bark.click(fn=lambda: del_cfg(module_name_bark.value))
                                 del_ini_btn_bark.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_bark.click(fn=lambda: del_ini_btn_bark.update(interactive=False), outputs=del_ini_btn_bark)
                         if test_cfg_exist(module_name_bark.value):
@@ -7328,7 +7323,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_txt2vid_ms.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_txt2vid_ms.click(fn=lambda: del_ini_btn_txt2vid_ms.update(interactive=True), outputs=del_ini_btn_txt2vid_ms)
-                                del_ini_btn_txt2vid_ms.click(fn=lambda: del_ini(module_name_txt2vid_ms.value))
+                                del_ini_btn_txt2vid_ms.click(fn=lambda: del_cfg(module_name_txt2vid_ms.value))
                                 del_ini_btn_txt2vid_ms.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_txt2vid_ms.click(fn=lambda: del_ini_btn_txt2vid_ms.update(interactive=False), outputs=del_ini_btn_txt2vid_ms)
                         if test_cfg_exist(module_name_txt2vid_ms.value) :
@@ -7531,7 +7526,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_txt2vid_ze.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_txt2vid_ze.click(fn=lambda: del_ini_btn_txt2vid_ze.update(interactive=True), outputs=del_ini_btn_txt2vid_ze)
-                                del_ini_btn_txt2vid_ze.click(fn=lambda: del_ini(module_name_txt2vid_ze.value))
+                                del_ini_btn_txt2vid_ze.click(fn=lambda: del_cfg(module_name_txt2vid_ze.value))
                                 del_ini_btn_txt2vid_ze.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_txt2vid_ze.click(fn=lambda: del_ini_btn_txt2vid_ze.update(interactive=False), outputs=del_ini_btn_txt2vid_ze)
                         if test_cfg_exist(module_name_txt2vid_ze.value) :
@@ -7717,9 +7712,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 save_ini_btn_animatediff_lcm = gr.Button("Save custom defaults settings 💾")
                             with gr.Column():
                                 module_name_animatediff_lcm = gr.Textbox(value="animatediff_lcm", visible=False, interactive=False)
-                                del_ini_btn_animatediff_lcm = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_animatediff_lcm.value) else False)
+                                del_ini_btn_animatediff_lcm = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_animatediff_lcm.value) else False)
                                 save_ini_btn_animatediff_lcm.click(
-                                    fn=write_ini,
+                                    fn=write_ini_animatediff_lcm,
                                     inputs=[
                                         module_name_animatediff_lcm,
                                         model_animatediff_lcm,
@@ -7742,21 +7737,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 del_ini_btn_animatediff_lcm.click(fn=lambda: del_ini(module_name_animatediff_lcm.value))
                                 del_ini_btn_animatediff_lcm.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_animatediff_lcm.click(fn=lambda: del_ini_btn_animatediff_lcm.update(interactive=False), outputs=del_ini_btn_animatediff_lcm)
-                        if test_cfg_exist(module_name_animatediff_lcm.value) :
-                            readcfg_animatediff_lcm = read_ini_animatediff_lcm(module_name_animatediff_lcm.value)
-                            model_animatediff_lcm.value = readcfg_animatediff_lcm[0]
-                            model_adapters_animatediff_lcm = readcfg_animatediff_lcm[1]
-                            num_inference_step_animatediff_lcm.value = readcfg_animatediff_lcm[2]
-                            sampler_animatediff_lcm.value = readcfg_animatediff_lcm[3]
-                            guidance_scale_animatediff_lcm.value = readcfg_animatediff_lcm[4]
-                            seed_animatediff_lcm.value = readcfg_animatediff_lcm[5]
-                            num_frames_animatediff_lcm.value = readcfg_animatediff_lcm[6]
-                            width_animatediff_lcm.value = readcfg_animatediff_lcm[7]
-                            height_animatediff_lcm.value = readcfg_animatediff_lcm[8]
-                            num_videos_per_prompt_animatediff_lcm.value = readcfg_animatediff_lcm[9]
-                            num_prompt_animatediff_lcm.value = readcfg_animatediff_lcm[10]
-                            use_gfpgan_animatediff_lcm.value = readcfg_animatediff_lcm[11]
-                            tkme_animatediff_lcm.value = readcfg_animatediff_lcm[12]
+                        if test_ini_exist(module_name_animatediff_lcm.value) :
+                            with open(f".ini/{module_name_animatediff_lcm.value}.ini", "r", encoding="utf-8") as fichier:
+                                exec(fichier.read())
                     with gr.Row():
                         with gr.Column(scale=2):
                             with gr.Row():
@@ -7963,7 +7946,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_img2vid.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_img2vid.click(fn=lambda: del_ini_btn_img2vid.update(interactive=True), outputs=del_ini_btn_img2vid)
-                                del_ini_btn_img2vid.click(fn=lambda: del_ini(module_name_img2vid.value))
+                                del_ini_btn_img2vid.click(fn=lambda: del_cfg(module_name_img2vid.value))
                                 del_ini_btn_img2vid.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_img2vid.click(fn=lambda: del_ini_btn_img2vid.update(interactive=False), outputs=del_ini_btn_img2vid)
                         if test_cfg_exist(module_name_img2vid.value) :
@@ -8144,7 +8127,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_vid2vid_ze.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_vid2vid_ze.click(fn=lambda: del_ini_btn_vid2vid_ze.update(interactive=True), outputs=del_ini_btn_vid2vid_ze)
-                                del_ini_btn_vid2vid_ze.click(fn=lambda: del_ini(module_name_vid2vid_ze.value))
+                                del_ini_btn_vid2vid_ze.click(fn=lambda: del_cfg(module_name_vid2vid_ze.value))
                                 del_ini_btn_vid2vid_ze.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_vid2vid_ze.click(fn=lambda: del_ini_btn_vid2vid_ze.update(interactive=False), outputs=del_ini_btn_vid2vid_ze)
                         if test_cfg_exist(module_name_vid2vid_ze.value) :
@@ -8303,7 +8286,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_txt2shape.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_txt2shape.click(fn=lambda: del_ini_btn_txt2shape.update(interactive=True), outputs=del_ini_btn_txt2shape)
-                                del_ini_btn_txt2shape.click(fn=lambda: del_ini(module_name_txt2shape.value))
+                                del_ini_btn_txt2shape.click(fn=lambda: del_cfg(module_name_txt2shape.value))
                                 del_ini_btn_txt2shape.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_txt2shape.click(fn=lambda: del_ini_btn_txt2shape.update(interactive=False), outputs=del_ini_btn_txt2shape)
                         if test_cfg_exist(module_name_txt2shape.value) :
@@ -8513,7 +8496,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                 save_ini_btn_img2shape.click(fn=lambda: gr.Info('Settings saved'))
                                 save_ini_btn_img2shape.click(fn=lambda: del_ini_btn_img2shape.update(interactive=True), outputs=del_ini_btn_img2shape)
-                                del_ini_btn_img2shape.click(fn=lambda: del_ini(module_name_img2shape.value))
+                                del_ini_btn_img2shape.click(fn=lambda: del_cfg(module_name_img2shape.value))
                                 del_ini_btn_img2shape.click(fn=lambda: gr.Info('Settings deleted'))
                                 del_ini_btn_img2shape.click(fn=lambda: del_ini_btn_img2shape.update(interactive=False), outputs=del_ini_btn_img2shape)
                         if test_cfg_exist(module_name_img2shape.value) :
@@ -8782,7 +8765,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     )
                                     save_ini_btn_settings.click(fn=lambda: gr.Info('Common settings saved'))
                                     save_ini_btn_settings.click(fn=lambda: del_ini_btn_settings.update(interactive=True), outputs=del_ini_btn_settings)
-                                    del_ini_btn_settings.click(fn=lambda: del_ini(module_name_settings.value))
+                                    del_ini_btn_settings.click(fn=lambda: del_cfg(module_name_settings.value))
                                     del_ini_btn_settings.click(fn=lambda: gr.Info('Common settings deleted'))
                                     del_ini_btn_settings.click(fn=lambda: del_ini_btn_settings.update(interactive=False), outputs=del_ini_btn_settings)
                     with gr.Row():

@@ -481,8 +481,18 @@ def test_cfg_exist(module) :
     else :
         return False   
 
-def del_ini(module) :
+def test_ini_exist(module) :
+    if os.path.isfile(f".ini/{module}.ini") :
+        return True
+    else :
+        return False
+
+def del_cfg(module) :
     os.remove(f".ini/{module}.cfg")
+    return 
+
+def del_ini(module) :
+    os.remove(f".ini/{module}.ini")
     return 
 
 def detect_device():
@@ -606,6 +616,40 @@ def schedulerer(pipe, scheduler):
         return get_scheduler(pipe=pipe, scheduler=scheduler, use_karras_sigmas=True, algorithm_type="sde-dpmsolver++")
     elif not karras and not sde:
         return get_scheduler(pipe=pipe, scheduler=scheduler)
+
+def write_ini_animatediff_lcm(
+    module,
+    model_animatediff_lcm,
+    model_adapters_animatediff_lcm,
+    num_inference_step_animatediff_lcm,
+    sampler_animatediff_lcm,
+    guidance_scale_animatediff_lcm,
+    seed_animatediff_lcm,
+    num_frames_animatediff_lcm,
+    width_animatediff_lcm,
+    height_animatediff_lcm,
+    num_videos_per_prompt_animatediff_lcm,
+    num_prompt_animatediff_lcm,
+    use_gfpgan_animatediff_lcm,
+    tkme_animatediff_lcm,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_animatediff_lcm.value = \"{model_animatediff_lcm}\"\n\
+model_adapters_animatediff_lcm.value = \"{model_adapters_animatediff_lcm}\"\n\
+num_inference_step_animatediff_lcm.value = {num_inference_step_animatediff_lcm}\n\
+sampler_animatediff_lcm.value = \"{sampler_animatediff_lcm}\"\n\
+guidance_scale_animatediff_lcm.value = {guidance_scale_animatediff_lcm}\n\
+seed_animatediff_lcm.value = {seed_animatediff_lcm}\n\
+num_frames_animatediff_lcm.value = {num_frames_animatediff_lcm}\n\
+width_animatediff_lcm.value = {width_animatediff_lcm}\n\
+height_animatediff_lcm.value = {height_animatediff_lcm}\n\
+num_videos_per_prompt_animatediff_lcm.value = {num_videos_per_prompt_animatediff_lcm}\n\
+num_prompt_animatediff_lcm.value = {num_prompt_animatediff_lcm}\n\
+use_gfpgan_animatediff_lcm.value = {use_gfpgan_animatediff_lcm}\n\
+tkme_animatediff_lcm.value = {tkme_animatediff_lcm}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
 
 def lora_model_list(model):
     if (("XL" in model.upper()) or ("LIGHTNING" in model.upper()) or ("ETRI-VILAB/KOALA-" in model.upper()) or ("PLAYGROUNDAI/PLAYGROUND-V2" in model.upper()) or ("SSD-1B" in model.upper()) or ("SEGMIND-VEGA" in model.upper()) or (model == "dataautogpt3/OpenDalleV1.1") or (model == "dataautogpt3/ProteusV0.4")):
