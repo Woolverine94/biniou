@@ -192,8 +192,10 @@ def video_animatediff_lcm(
 
         timestamp = time.time()
         seed_id = random_seed + i*num_videos_per_prompt_animatediff_lcm if (seed_animatediff_lcm == 0) else seed_animatediff_lcm + i*num_videos_per_prompt_animatediff_lcm
-        savename = name_seeded_video(seed_id)
+        savename = "outputs/tmp_animatelcm_out.mp4"
+        savename_final = name_seeded_video(seed_id)
         export_to_video(result, savename, fps=8)
+        os.rename(savename, savename_final)
         final_seed.append(seed_id)
 
     print(f">>>[AnimateLCM 📼 ]: generated {num_prompt_animatediff_lcm} batch(es) of {num_videos_per_prompt_animatediff_lcm}")
@@ -216,5 +218,5 @@ def video_animatediff_lcm(
     del nsfw_filter_final, feat_ex, pipe_animatediff_lcm, generator, result
     clean_ram()
 
-    print(f">>>[Text2Video-Zero 📼 ]: leaving module")
-    return savename
+    print(f">>>[AnimateLCM 📼 ]: leaving module")
+    return savename_final
