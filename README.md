@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-04-25** : ⚠️ ***Migration to new module settings management*** ⚠️ : Starting from commit 4866a00, old configuration files for individuals modules settings will not be loaded anymore at startup. The old settings files stays available (./.ini/<module_name>.cfg), so you can recover manually your settings. I'm really sorry and apologize for this minor inconvenience, but this migration had to be done as the old system holds back a lot of possible evolutions for biniou. Paradoxically, one of the main goal of this new system is to prevent a similar situation in the future ... It has zero impact on fresh installations.
+
   * 🆕 **2024-04-22** : 🔥 ***New adapter for AnimateLCM module*** 🔥 : Adding an "Adapter" sub-menu and support for [ByteDance/AnimateDiff-Lightning](https://huggingface.co/ByteDance/AnimateDiff-Lightning) to AnimateLCM module. This adapter behave as expected for a "lightning" model : fast and qualitative.
 
   * 🆕 **2024-04-21** : 🔥 ***New image model*** 🔥 : Adding support for model  [playgroundai/playground-v2.5-1024px-aesthetic](https://huggingface.co/playgroundai/playground-v2.5-1024px-aesthetic) to Stable Diffusion, img2img, IP-Adapter, ControlNet and Photobooth modules.
@@ -24,8 +26,6 @@
   * 🆕 **2024-04-20** : 🔥 ***New default model for Chatbot*** 🔥 : Introducing support for model [NousResearch/Meta-Llama-3-8B-Instruct-GGUF](https://huggingface.co/NousResearch/Meta-Llama-3-8B-Instruct-GGUF) and using it as default model. This brand-new llama3-based model give awesome results and seems slightly faster than similar ones.
 
   * 🆕 **2024-04-19** : 🔥 ***Modifying photobooth module*** 🔥 : Replacing  IP-Adapter FaceID community pipeline with IP-Adapter Plus Face. This replacement allow upgrade to diffusers 0.27.2, re-enabling of PEFT backend and open the way to more evolutions of biniou, at the cost of a small loss of quality when using photobooth with SD 1.5 models.
-
-  * 🆕 **2024-04-18** : 🔥 ***Adding support for model IDKiro/sdxs-512-dreamshaper*** 🔥 : This insanely fast model is now usable with Stable Diffusion and img2img module. It generates contents in less than 10 seconds using cpu-only inference, which makes it the fastest image model for biniou.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
