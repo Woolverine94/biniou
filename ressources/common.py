@@ -617,6 +617,883 @@ def schedulerer(pipe, scheduler):
     elif not karras and not sde:
         return get_scheduler(pipe=pipe, scheduler=scheduler)
 
+def nparse(string):
+    return string.replace("\n", "\\n")
+
+def write_ini_llamacpp(
+    module,
+    model_llamacpp,
+    max_tokens_llamacpp,
+    seed_llamacpp,
+    stream_llamacpp,
+    n_ctx_llamacpp,
+    repeat_penalty_llamacpp,
+    temperature_llamacpp,
+    top_p_llamacpp,
+    top_k_llamacpp,
+    force_prompt_template_llamacpp,
+    prompt_template_llamacpp,
+    system_template_llamacpp,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_llamacpp.value = \"{model_llamacpp}\"\n\
+max_tokens_llamacpp.value = {max_tokens_llamacpp}\n\
+seed_llamacpp.value = {seed_llamacpp}\n\
+stream_llamacpp.value = {stream_llamacpp}\n\
+n_ctx_llamacpp.value = {n_ctx_llamacpp}\n\
+repeat_penalty_llamacpp.value = {repeat_penalty_llamacpp}\n\
+temperature_llamacpp.value = {temperature_llamacpp}\n\
+top_p_llamacpp.value = {top_p_llamacpp}\n\
+top_k_llamacpp.value = {top_k_llamacpp}\n\
+force_prompt_template_llamacpp.value = \"{force_prompt_template_llamacpp}\"\n\
+prompt_template_llamacpp.value = \"{nparse(prompt_template_llamacpp)}\"\n\
+system_template_llamacpp.value = \"{nparse(system_template_llamacpp)}\""
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+## Text modules default settings
+
+def write_ini_llamacpp(
+    module,
+    model_llamacpp,
+    max_tokens_llamacpp,
+    seed_llamacpp,
+    stream_llamacpp,
+    n_ctx_llamacpp,
+    repeat_penalty_llamacpp,
+    temperature_llamacpp,
+    top_p_llamacpp,
+    top_k_llamacpp,
+    force_prompt_template_llamacpp,
+    prompt_template_llamacpp,
+    system_template_llamacpp,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_llamacpp.value = \"{model_llamacpp}\"\n\
+max_tokens_llamacpp.value = {max_tokens_llamacpp}\n\
+seed_llamacpp.value = {seed_llamacpp}\n\
+stream_llamacpp.value = {stream_llamacpp}\n\
+n_ctx_llamacpp.value = {n_ctx_llamacpp}\n\
+repeat_penalty_llamacpp.value = {repeat_penalty_llamacpp}\n\
+temperature_llamacpp.value = {temperature_llamacpp}\n\
+top_p_llamacpp.value = {top_p_llamacpp}\n\
+top_k_llamacpp.value = {top_k_llamacpp}\n\
+force_prompt_template_llamacpp.value = \"{force_prompt_template_llamacpp}\"\n\
+prompt_template_llamacpp.value = \"{nparse(prompt_template_llamacpp)}\"\n\
+system_template_llamacpp.value = \"{nparse(system_template_llamacpp)}\""
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_llava(
+    module,
+    model_llava,
+    max_tokens_llava,
+    seed_llava,
+    stream_llava,
+    n_ctx_llava,
+    repeat_penalty_llava,
+    temperature_llava,
+    top_p_llava,
+    top_k_llava,
+    prompt_template_llava,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_llava.value = \"{model_llava}\"\n\
+max_tokens_llava.value = {max_tokens_llava}\n\
+seed_llava.value = {seed_llava}\n\
+stream_llava.value = {stream_llava}\n\
+n_ctx_llava.value = {n_ctx_llava}\n\
+repeat_penalty_llava.value = {repeat_penalty_llava}\n\
+temperature_llava.value = {temperature_llava}\n\
+top_p_llava.value = {top_p_llava}\n\
+top_k_llava.value = {top_k_llava}\n\
+prompt_template_llava.value = \"{nparse(prompt_template_llava)}\""
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_img2txt_git(
+    module,
+    model_img2txt_git,
+    min_tokens_img2txt_git,
+    max_tokens_img2txt_git,
+    num_beams_img2txt_git,
+    num_beam_groups_img2txt_git,
+    diversity_penalty_img2txt_git,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_img2txt_git.value = \"{model_img2txt_git}\"\n\
+min_tokens_img2txt_git.value = {min_tokens_img2txt_git}\n\
+max_tokens_img2txt_git.value = {max_tokens_img2txt_git}\n\
+num_beams_img2txt_git.value = {num_beams_img2txt_git}\n\
+num_beam_groups_img2txt_git.value = {num_beam_groups_img2txt_git}\n\
+diversity_penalty_img2txt_git.value = {diversity_penalty_img2txt_git}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_whisper(
+    module,
+    model_whisper,
+    srt_output_whisper,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_whisper.value = \"{model_whisper}\"\n\
+srt_output_whisper.value = {srt_output_whisper}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_nllb(
+    module,
+    model_nllb,
+    max_tokens_nllb,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_nllb.value = \"{model_nllb}\"\n\
+max_tokens_nllb.value = {max_tokens_nllb}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_txt2prompt(
+    module,
+    model_txt2prompt,
+    max_tokens_txt2prompt,
+    repetition_penalty_txt2prompt,
+    seed_txt2prompt,
+    num_prompt_txt2prompt,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_txt2prompt.value = \"{model_txt2prompt}\"\n\
+max_tokens_txt2prompt.value = {max_tokens_txt2prompt}\n\
+repetition_penalty_txt2prompt.value = {repetition_penalty_txt2prompt}\n\
+seed_txt2prompt.value = {seed_txt2prompt}\n\
+num_prompt_txt2prompt.value = {num_prompt_txt2prompt}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+## Image modules default settings
+
+def write_ini_txt2img_sd(
+    module,
+    model_txt2img_sd,
+    num_inference_step_txt2img_sd,
+    sampler_txt2img_sd,
+    guidance_scale_txt2img_sd,
+    num_images_per_prompt_txt2img_sd,
+    num_prompt_txt2img_sd,
+    width_txt2img_sd,
+    height_txt2img_sd,
+    seed_txt2img_sd,
+    use_gfpgan_txt2img_sd,
+    tkme_txt2img_sd,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_txt2img_sd.value = \"{model_txt2img_sd}\"\n\
+num_inference_step_txt2img_sd.value = {num_inference_step_txt2img_sd}\n\
+sampler_txt2img_sd.value = \"{sampler_txt2img_sd}\"\n\
+guidance_scale_txt2img_sd.value = {guidance_scale_txt2img_sd}\n\
+num_images_per_prompt_txt2img_sd.value = {num_images_per_prompt_txt2img_sd}\n\
+num_prompt_txt2img_sd.value = {num_prompt_txt2img_sd}\n\
+width_txt2img_sd.value = {width_txt2img_sd}\n\
+height_txt2img_sd.value = {height_txt2img_sd}\n\
+seed_txt2img_sd.value = {seed_txt2img_sd}\n\
+use_gfpgan_txt2img_sd.value = {use_gfpgan_txt2img_sd}\n\
+tkme_txt2img_sd.value = {tkme_txt2img_sd}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_txt2img_kd(
+    module,
+    model_txt2img_kd,
+    num_inference_step_txt2img_kd,
+    sampler_txt2img_kd,
+    guidance_scale_txt2img_kd,
+    num_images_per_prompt_txt2img_kd,
+    num_prompt_txt2img_kd,
+    width_txt2img_kd,
+    height_txt2img_kd,
+    seed_txt2img_kd,
+    use_gfpgan_txt2img_kd,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_txt2img_kd.value = \"{model_txt2img_kd}\"\n\
+num_inference_step_txt2img_kd.value = {num_inference_step_txt2img_kd}\n\
+sampler_txt2img_kd.value = \"{sampler_txt2img_kd}\"\n\
+guidance_scale_txt2img_kd.value = {guidance_scale_txt2img_kd}\n\
+num_images_per_prompt_txt2img_kd.value = {num_images_per_prompt_txt2img_kd}\n\
+num_prompt_txt2img_kd.value = {num_prompt_txt2img_kd}\n\
+width_txt2img_kd.value = {width_txt2img_kd}\n\
+height_txt2img_kd.value = {height_txt2img_kd}\n\
+seed_txt2img_kd.value = {seed_txt2img_kd}\n\
+use_gfpgan_txt2img_kd.value = {use_gfpgan_txt2img_kd}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_txt2img_lcm(
+    module,
+    model_txt2img_lcm,
+    num_inference_step_txt2img_lcm,
+    sampler_txt2img_lcm,
+    guidance_scale_txt2img_lcm,
+    lcm_origin_steps_txt2img_lcm,
+    num_images_per_prompt_txt2img_lcm,
+    num_prompt_txt2img_lcm,
+    width_txt2img_lcm,
+    height_txt2img_lcm,
+    seed_txt2img_lcm,
+    use_gfpgan_txt2img_lcm,
+    tkme_txt2img_lcm,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_txt2img_lcm.value = \"{model_txt2img_lcm}\"\n\
+num_inference_step_txt2img_lcm.value = {num_inference_step_txt2img_lcm}\n\
+sampler_txt2img_lcm.value = \"{sampler_txt2img_lcm}\"\n\
+guidance_scale_txt2img_lcm.value = {guidance_scale_txt2img_lcm}\n\
+lcm_origin_steps_txt2img_lcm.value = {lcm_origin_steps_txt2img_lcm}\n\
+num_images_per_prompt_txt2img_lcm.value = {num_images_per_prompt_txt2img_lcm}\n\
+num_prompt_txt2img_lcm.value = {num_prompt_txt2img_lcm}\n\
+width_txt2img_lcm.value = {width_txt2img_lcm}\n\
+height_txt2img_lcm.value = {height_txt2img_lcm}\n\
+seed_txt2img_lcm.value = {seed_txt2img_lcm}\n\
+use_gfpgan_txt2img_lcm.value = {use_gfpgan_txt2img_lcm}\n\
+tkme_txt2img_lcm.value = {tkme_txt2img_lcm}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_txt2img_mjm(
+    module,
+    model_txt2img_mjm,
+    num_inference_step_txt2img_mjm,
+    sampler_txt2img_mjm,
+    guidance_scale_txt2img_mjm,
+    num_images_per_prompt_txt2img_mjm,
+    num_prompt_txt2img_mjm,
+    width_txt2img_mjm,
+    height_txt2img_mjm,
+    seed_txt2img_mjm,
+    use_gfpgan_txt2img_mjm,
+    tkme_txt2img_mjm,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_txt2img_mjm.value = \"{model_txt2img_mjm}\"\n\
+num_inference_step_txt2img_mjm.value = {num_inference_step_txt2img_mjm}\n\
+sampler_txt2img_mjm.value = \"{sampler_txt2img_mjm}\"\n\
+guidance_scale_txt2img_mjm.value = {guidance_scale_txt2img_mjm}\n\
+num_images_per_prompt_txt2img_mjm.value = {num_images_per_prompt_txt2img_mjm}\n\
+num_prompt_txt2img_mjm.value = {num_prompt_txt2img_mjm}\n\
+width_txt2img_mjm.value = {width_txt2img_mjm}\n\
+height_txt2img_mjm.value = {height_txt2img_mjm}\n\
+seed_txt2img_mjm.value = {seed_txt2img_mjm}\n\
+use_gfpgan_txt2img_mjm.value = {use_gfpgan_txt2img_mjm}\n\
+tkme_txt2img_mjm.value = {tkme_txt2img_mjm}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_txt2img_paa(
+    module,
+    model_txt2img_paa,
+    num_inference_step_txt2img_paa,
+    sampler_txt2img_paa,
+    guidance_scale_txt2img_paa,
+    num_images_per_prompt_txt2img_paa,
+    num_prompt_txt2img_paa,
+    width_txt2img_paa,
+    height_txt2img_paa,
+    seed_txt2img_paa,
+    use_gfpgan_txt2img_paa,
+    tkme_txt2img_paa,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_txt2img_paa.value = \"{model_txt2img_paa}\"\n\
+num_inference_step_txt2img_paa.value = {num_inference_step_txt2img_paa}\n\
+sampler_txt2img_paa.value = \"{sampler_txt2img_paa}\"\n\
+guidance_scale_txt2img_paa.value = {guidance_scale_txt2img_paa}\n\
+num_images_per_prompt_txt2img_paa.value = {num_images_per_prompt_txt2img_paa}\n\
+num_prompt_txt2img_paa.value = {num_prompt_txt2img_paa}\n\
+width_txt2img_paa.value = {width_txt2img_paa}\n\
+height_txt2img_paa.value = {height_txt2img_paa}\n\
+seed_txt2img_paa.value = {seed_txt2img_paa}\n\
+use_gfpgan_txt2img_paa.value = {use_gfpgan_txt2img_paa}\n\
+tkme_txt2img_paa.value = {tkme_txt2img_paa}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_img2img(
+    module,
+    model_img2img,
+    num_inference_step_img2img,
+    sampler_img2img,
+    guidance_scale_img2img,
+    num_images_per_prompt_img2img,
+    num_prompt_img2img,
+    width_img2img,
+    height_img2img,
+    seed_img2img,
+    use_gfpgan_img2img,
+    tkme_img2img,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_img2img.value = \"{model_img2img}\"\n\
+num_inference_step_img2img.value = {num_inference_step_img2img}\n\
+sampler_img2img.value = \"{sampler_img2img}\"\n\
+guidance_scale_img2img.value = {guidance_scale_img2img}\n\
+num_images_per_prompt_img2img.value = {num_images_per_prompt_img2img}\n\
+num_prompt_img2img.value = {num_prompt_img2img}\n\
+width_img2img.value = {width_img2img}\n\
+height_img2img.value = {height_img2img}\n\
+seed_img2img.value = {seed_img2img}\n\
+use_gfpgan_img2img.value = {use_gfpgan_img2img}\n\
+tkme_img2img.value = {tkme_img2img}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_img2img_ip(
+    module,
+    model_img2img_ip,
+    num_inference_step_img2img_ip,
+    sampler_img2img_ip,
+    guidance_scale_img2img_ip,
+    num_images_per_prompt_img2img_ip,
+    num_prompt_img2img_ip,
+    width_img2img_ip,
+    height_img2img_ip,
+    seed_img2img_ip,
+    use_gfpgan_img2img_ip,
+    tkme_img2img_ip,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_img2img_ip.value = \"{model_img2img_ip}\"\n\
+num_inference_step_img2img_ip.value = {num_inference_step_img2img_ip}\n\
+sampler_img2img_ip.value = \"{sampler_img2img_ip}\"\n\
+guidance_scale_img2img_ip.value = {guidance_scale_img2img_ip}\n\
+num_images_per_prompt_img2img_ip.value = {num_images_per_prompt_img2img_ip}\n\
+num_prompt_img2img_ip.value = {num_prompt_img2img_ip}\n\
+width_img2img_ip.value = {width_img2img_ip}\n\
+height_img2img_ip.value = {height_img2img_ip}\n\
+seed_img2img_ip.value = {seed_img2img_ip}\n\
+use_gfpgan_img2img_ip.value = {use_gfpgan_img2img_ip}\n\
+tkme_img2img_ip.value = {tkme_img2img_ip}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_img2var(
+    module,
+    model_img2var,
+    num_inference_step_img2var,
+    sampler_img2var,
+    guidance_scale_img2var,
+    num_images_per_prompt_img2var,
+    num_prompt_img2var,
+    width_img2var,
+    height_img2var,
+    seed_img2var,
+    use_gfpgan_img2var,
+    tkme_img2var,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_img2var.value = \"{model_img2var}\"\n\
+num_inference_step_img2var.value = {num_inference_step_img2var}\n\
+sampler_img2var.value = \"{sampler_img2var}\"\n\
+guidance_scale_img2var.value = {guidance_scale_img2var}\n\
+num_images_per_prompt_img2var.value = {num_images_per_prompt_img2var}\n\
+num_prompt_img2var.value = {num_prompt_img2var}\n\
+width_img2var.value = {width_img2var}\n\
+height_img2var.value = {height_img2var}\n\
+seed_img2var.value = {seed_img2var}\n\
+use_gfpgan_img2var.value = {use_gfpgan_img2var}\n\
+tkme_img2var.value = {tkme_img2var}"
+
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_pix2pix(
+    module,
+    model_pix2pix,
+    num_inference_step_pix2pix,
+    sampler_pix2pix,
+    guidance_scale_pix2pix,
+    image_guidance_scale_pix2pix,
+    num_images_per_prompt_pix2pix,
+    num_prompt_pix2pix,
+    width_pix2pix,
+    height_pix2pix,
+    seed_pix2pix,
+    use_gfpgan_pix2pix,
+    tkme_pix2pix,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_pix2pix.value = \"{model_pix2pix}\"\n\
+num_inference_step_pix2pix.value = {num_inference_step_pix2pix}\n\
+sampler_pix2pix.value = \"{sampler_pix2pix}\"\n\
+guidance_scale_pix2pix.value = {guidance_scale_pix2pix}\n\
+image_guidance_scale_pix2pix.value = {image_guidance_scale_pix2pix}\n\
+num_images_per_prompt_pix2pix.value = {num_images_per_prompt_pix2pix}\n\
+num_prompt_pix2pix.value = {num_prompt_pix2pix}\n\
+width_pix2pix.value = {width_pix2pix}\n\
+height_pix2pix.value = {height_pix2pix}\n\
+seed_pix2pix.value = {seed_pix2pix}\n\
+use_gfpgan_pix2pix.value = {use_gfpgan_pix2pix}\n\
+tkme_pix2pix.value = {tkme_pix2pix}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_magicmix(
+    module,
+    model_magicmix,
+    num_inference_step_magicmix,
+    sampler_magicmix,
+    guidance_scale_magicmix,
+    kmin_magicmix,
+    kmax_magicmix,
+    num_prompt_magicmix,
+    seed_magicmix,
+    use_gfpgan_magicmix,
+    tkme_magicmix,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_magicmix.value = \"{model_magicmix}\"\n\
+num_inference_step_magicmix.value = {num_inference_step_magicmix}\n\
+sampler_magicmix.value = \"{sampler_magicmix}\"\n\
+guidance_scale_magicmix.value = {guidance_scale_magicmix}\n\
+kmin_magicmix.value = {kmin_magicmix}\n\
+kmax_magicmix.value = {kmax_magicmix}\n\
+num_prompt_magicmix.value = {num_prompt_magicmix}\n\
+seed_magicmix.value = {seed_magicmix}\n\
+use_gfpgan_magicmix.value = {use_gfpgan_magicmix}\n\
+tkme_magicmix.value = {tkme_magicmix}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_inpaint(
+    module,
+    model_inpaint,
+    num_inference_step_inpaint,
+    sampler_inpaint,
+    guidance_scale_inpaint,
+    num_images_per_prompt_inpaint,
+    num_prompt_inpaint,
+    width_inpaint,
+    height_inpaint,
+    seed_inpaint,
+    use_gfpgan_inpaint,
+    tkme_inpaint,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_inpaint.value = \"{model_inpaint}\"\n\
+num_inference_step_inpaint.value = {num_inference_step_inpaint}\n\
+sampler_inpaint.value = \"{sampler_inpaint}\"\n\
+guidance_scale_inpaint.value = {guidance_scale_inpaint}\n\
+num_images_per_prompt_inpaint.value = {num_images_per_prompt_inpaint}\n\
+num_prompt_inpaint.value = {num_prompt_inpaint}\n\
+width_inpaint.value = {width_inpaint}\n\
+height_inpaint.value = {height_inpaint}\n\
+seed_inpaint.value = {seed_inpaint}\n\
+use_gfpgan_inpaint.value = {use_gfpgan_inpaint}\n\
+tkme_inpaint.value = {tkme_inpaint}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_paintbyex(
+    module,
+    model_paintbyex,
+    num_inference_step_paintbyex,
+    sampler_paintbyex,
+    guidance_scale_paintbyex,
+    num_images_per_prompt_paintbyex,
+    num_prompt_paintbyex,
+    width_paintbyex,
+    height_paintbyex,
+    seed_paintbyex,
+    use_gfpgan_paintbyex,
+    tkme_paintbyex,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_paintbyex.value = \"{model_paintbyex}\"\n\
+num_inference_step_paintbyex.value = {num_inference_step_paintbyex}\n\
+sampler_paintbyex.value = \"{sampler_paintbyex}\"\n\
+guidance_scale_paintbyex.value = {guidance_scale_paintbyex}\n\
+num_images_per_prompt_paintbyex.value = {num_images_per_prompt_paintbyex}\n\
+num_prompt_paintbyex.value = {num_prompt_paintbyex}\n\
+width_paintbyex.value = {width_paintbyex}\n\
+height_paintbyex.value = {height_paintbyex}\n\
+seed_paintbyex.value = {seed_paintbyex}\n\
+use_gfpgan_paintbyex.value = {use_gfpgan_paintbyex}\n\
+tkme_paintbyex.value = {tkme_paintbyex}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_outpaint(
+    module,
+    model_outpaint,
+    num_inference_step_outpaint,
+    sampler_outpaint,
+    guidance_scale_outpaint,
+    num_images_per_prompt_outpaint,
+    num_prompt_outpaint,
+    width_outpaint,
+    height_outpaint,
+    seed_outpaint,
+    use_gfpgan_outpaint,
+    tkme_outpaint,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_outpaint.value = \"{model_outpaint}\"\n\
+num_inference_step_outpaint.value = {num_inference_step_outpaint}\n\
+sampler_outpaint.value = \"{sampler_outpaint}\"\n\
+guidance_scale_outpaint.value = {guidance_scale_outpaint}\n\
+num_images_per_prompt_outpaint.value = {num_images_per_prompt_outpaint}\n\
+num_prompt_outpaint.value = {num_prompt_outpaint}\n\
+width_outpaint.value = {width_outpaint}\n\
+height_outpaint.value = {height_outpaint}\n\
+seed_outpaint.value = {seed_outpaint}\n\
+use_gfpgan_outpaint.value = {use_gfpgan_outpaint}\n\
+tkme_outpaint.value = {tkme_outpaint}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_controlnet(
+    module,
+    model_controlnet,
+    num_inference_step_controlnet,
+    sampler_controlnet,
+    guidance_scale_controlnet,
+    num_images_per_prompt_controlnet,
+    num_prompt_controlnet,
+    width_controlnet,
+    height_controlnet,
+    seed_controlnet,
+    low_threshold_controlnet,
+    high_threshold_controlnet,
+    strength_controlnet,
+    start_controlnet,
+    stop_controlnet,
+    use_gfpgan_controlnet,
+    tkme_controlnet,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_controlnet.value = \"{model_controlnet}\"\n\
+num_inference_step_controlnet.value = {num_inference_step_controlnet}\n\
+sampler_controlnet.value = \"{sampler_controlnet}\"\n\
+guidance_scale_controlnet.value = {guidance_scale_controlnet}\n\
+num_images_per_prompt_controlnet.value = {num_images_per_prompt_controlnet}\n\
+num_prompt_controlnet.value = {num_prompt_controlnet}\n\
+width_controlnet.value = {width_controlnet}\n\
+height_controlnet.value = {height_controlnet}\n\
+seed_controlnet.value = {seed_controlnet}\n\
+low_threshold_controlnet.value = {low_threshold_controlnet}\n\
+high_threshold_controlnet.value = {high_threshold_controlnet}\n\
+strength_controlnet.value = {strength_controlnet}\n\
+start_controlnet.value = {start_controlnet}\n\
+stop_controlnet.value = {stop_controlnet}\n\
+use_gfpgan_controlnet.value = {use_gfpgan_controlnet}\n\
+tkme_controlnet.value = {tkme_controlnet}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_faceid_ip(
+    module,
+    model_faceid_ip,
+    num_inference_step_faceid_ip,
+    sampler_faceid_ip,
+    guidance_scale_faceid_ip,
+    num_images_per_prompt_faceid_ip,
+    num_prompt_faceid_ip,
+    width_faceid_ip,
+    height_faceid_ip,
+    seed_faceid_ip,
+    use_gfpgan_faceid_ip,
+    tkme_faceid_ip,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_faceid_ip.value = \"{model_faceid_ip}\"\n\
+num_inference_step_faceid_ip.value = {num_inference_step_faceid_ip}\n\
+sampler_faceid_ip.value = \"{sampler_faceid_ip}\"\n\
+guidance_scale_faceid_ip.value = {guidance_scale_faceid_ip}\n\
+num_images_per_prompt_faceid_ip.value = {num_images_per_prompt_faceid_ip}\n\
+num_prompt_faceid_ip.value = {num_prompt_faceid_ip}\n\
+width_faceid_ip.value = {width_faceid_ip}\n\
+height_faceid_ip.value = {height_faceid_ip}\n\
+seed_faceid_ip.value = {seed_faceid_ip}\n\
+use_gfpgan_faceid_ip.value = {use_gfpgan_faceid_ip}\n\
+tkme_faceid_ip.value = {tkme_faceid_ip}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_faceswap(
+    module,
+    model_faceswap,
+    width_faceswap,
+    height_faceswap,
+    use_gfpgan_faceswap,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_faceswap.value = \"{model_faceswap}\"\n\
+width_faceswap.value = {width_faceswap}\n\
+height_faceswap.value = {height_faceswap}\n\
+use_gfpgan_faceswap.value = {use_gfpgan_faceswap}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_resrgan(
+    module,
+    model_resrgan,
+    scale_resrgan,
+    width_resrgan,
+    height_resrgan,
+    use_gfpgan_resrgan,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_resrgan.value = \"{model_resrgan}\"\n\
+scale_resrgan.value = \"{scale_resrgan}\"\n\
+width_resrgan.value = {width_resrgan}\n\
+height_resrgan.value = {height_resrgan}\n\
+use_gfpgan_resrgan.value = {use_gfpgan_resrgan}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_gfpgan(
+    module,
+    model_gfpgan,
+    variant_gfpgan,
+    width_gfpgan,
+    height_gfpgan,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_gfpgan.value = \"{model_gfpgan}\"\n\
+variant_gfpgan.value = \"{variant_gfpgan}\"\n\
+width_gfpgan.value = {width_gfpgan}\n\
+height_gfpgan.value = {height_gfpgan}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+## Audio modules default settings
+
+def write_ini_musicgen(
+    module,
+    model_musicgen,
+    duration_musicgen,
+    cfg_coef_musicgen,
+    num_batch_musicgen,
+    use_sampling_musicgen,
+    temperature_musicgen,
+    top_k_musicgen,
+    top_p_musicgen,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_musicgen.value = \"{model_musicgen}\"\n\
+duration_musicgen.value = {duration_musicgen}\n\
+cfg_coef_musicgen.value = {cfg_coef_musicgen}\n\
+num_batch_musicgen.value = {num_batch_musicgen}\n\
+use_sampling_musicgen.value = {use_sampling_musicgen}\n\
+temperature_musicgen.value = {temperature_musicgen}\n\
+top_k_musicgen.value = {top_k_musicgen}\n\
+top_p_musicgen.value = {top_p_musicgen}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_musicgen_mel(
+    module,
+    model_musicgen_mel,
+    duration_musicgen_mel,
+    cfg_coef_musicgen_mel,
+    num_batch_musicgen_mel,
+    use_sampling_musicgen_mel,
+    temperature_musicgen_mel,
+    top_k_musicgen_mel,
+    top_p_musicgen_mel,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_musicgen_mel.value = \"{model_musicgen_mel}\"\n\
+duration_musicgen_mel.value = {duration_musicgen_mel}\n\
+cfg_coef_musicgen_mel.value = {cfg_coef_musicgen_mel}\n\
+num_batch_musicgen_mel.value = {num_batch_musicgen_mel}\n\
+use_sampling_musicgen_mel.value = {use_sampling_musicgen_mel}\n\
+temperature_musicgen_mel.value = {temperature_musicgen_mel}\n\
+top_k_musicgen_mel.value = {top_k_musicgen_mel}\n\
+top_p_musicgen_mel.value = {top_p_musicgen_mel}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_musicldm(
+    module,
+    model_musicldm,
+    num_inference_step_musicldm,
+    sampler_musicldm,
+    guidance_scale_musicldm,
+    audio_length_musicldm,
+    seed_musicldm,
+    num_audio_per_prompt_musicldm,
+    num_prompt_musicldm,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_musicldm.value = \"{model_musicldm}\"\n\
+num_inference_step_musicldm.value = {num_inference_step_musicldm}\n\
+sampler_musicldm.value = \"{sampler_musicldm}\"\n\
+guidance_scale_musicldm.value = {guidance_scale_musicldm}\n\
+audio_length_musicldm.value = {audio_length_musicldm}\n\
+seed_musicldm.value = {seed_musicldm}\n\
+num_audio_per_prompt_musicldm.value = {num_audio_per_prompt_musicldm}\n\
+num_prompt_musicldm.value = {num_prompt_musicldm}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_audiogen(
+    module,
+    model_audiogen,
+    duration_audiogen,
+    cfg_coef_audiogen,
+    num_batch_audiogen,
+    use_sampling_audiogen,
+    temperature_audiogen,
+    top_k_audiogen,
+    top_p_audiogen,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_audiogen.value = \"{model_audiogen}\"\n\
+duration_audiogen.value = {duration_audiogen}\n\
+cfg_coef_audiogen.value = {cfg_coef_audiogen}\n\
+num_batch_audiogen.value = {num_batch_audiogen}\n\
+use_sampling_audiogen.value = {use_sampling_audiogen}\n\
+temperature_audiogen.value = {temperature_audiogen}\n\
+top_k_audiogen.value = {top_k_audiogen}\n\
+top_p_audiogen.value = {top_p_audiogen}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_harmonai(
+    module,
+    model_harmonai,
+    steps_harmonai,
+    seed_harmonai,
+    length_harmonai,
+    batch_size_harmonai,
+    batch_repeat_harmonai,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_harmonai.value = \"{model_harmonai}\"\n\
+steps_harmonai.value = {steps_harmonai}\n\
+seed_harmonai.value = {seed_harmonai}\n\
+length_harmonai.value = {length_harmonai}\n\
+batch_size_harmonai.value = {batch_size_harmonai}\n\
+batch_repeat_harmonai.value = {batch_repeat_harmonai}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_bark(
+    module,
+    model_bark,
+    voice_preset_bark,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_bark.value = \"{model_bark}\"\n\
+voice_preset_bark.value = \"{voice_preset_bark}\""
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+## Video modules default settings
+
+def write_ini_txt2vid_ms(
+    module,
+    model_txt2vid_ms,
+    num_inference_step_txt2vid_ms,
+    sampler_txt2vid_ms,
+    guidance_scale_txt2vid_ms,
+    num_frames_txt2vid_ms,
+    num_prompt_txt2vid_ms,
+    width_txt2vid_ms,
+    height_txt2vid_ms,
+    seed_txt2vid_ms,
+    use_gfpgan_txt2vid_ms,
+
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_txt2vid_ms.value = \"{model_txt2vid_ms}\"\n\
+num_inference_step_txt2vid_ms.value = {num_inference_step_txt2vid_ms}\n\
+sampler_txt2vid_ms.value = \"{sampler_txt2vid_ms}\"\n\
+guidance_scale_txt2vid_ms.value = {guidance_scale_txt2vid_ms}\n\
+num_frames_txt2vid_ms.value = {num_frames_txt2vid_ms}\n\
+num_prompt_txt2vid_ms.value = {num_prompt_txt2vid_ms}\n\
+width_txt2vid_ms.value = {width_txt2vid_ms}\n\
+height_txt2vid_ms.value = {height_txt2vid_ms}\n\
+seed_txt2vid_ms.value = {seed_txt2vid_ms}\n\
+use_gfpgan_txt2vid_ms.value = {use_gfpgan_txt2vid_ms}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_txt2vid_ze(
+    module,
+    model_txt2vid_ze,
+    num_inference_step_txt2vid_ze,
+    sampler_txt2vid_ze,
+    guidance_scale_txt2vid_ze,
+    seed_txt2vid_ze,
+    num_frames_txt2vid_ze,
+    num_fps_txt2vid_ze,
+    num_chunks_txt2vid_ze,
+    width_txt2vid_ze,
+    height_txt2vid_ze,
+    num_videos_per_prompt_txt2vid_ze,
+    num_prompt_txt2vid_ze,
+    motion_field_strength_x_txt2vid_ze,
+    motion_field_strength_y_txt2vid_ze,
+    timestep_t0_txt2vid_ze,
+    timestep_t1_txt2vid_ze,
+    use_gfpgan_txt2vid_ze,
+    tkme_txt2vid_ze,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_txt2vid_ze.value = \"{model_txt2vid_ze}\"\n\
+num_inference_step_txt2vid_ze.value = {num_inference_step_txt2vid_ze}\n\
+sampler_txt2vid_ze.value = \"{sampler_txt2vid_ze}\"\n\
+guidance_scale_txt2vid_ze.value = {guidance_scale_txt2vid_ze}\n\
+seed_txt2vid_ze.value = {seed_txt2vid_ze}\n\
+num_frames_txt2vid_ze.value = {num_frames_txt2vid_ze}\n\
+num_fps_txt2vid_ze.value = {num_fps_txt2vid_ze}\n\
+num_chunks_txt2vid_ze.value = {num_chunks_txt2vid_ze}\n\
+width_txt2vid_ze.value = {width_txt2vid_ze}\n\
+height_txt2vid_ze.value = {height_txt2vid_ze}\n\
+num_videos_per_prompt_txt2vid_ze.value = {num_videos_per_prompt_txt2vid_ze}\n\
+num_prompt_txt2vid_ze.value = {num_prompt_txt2vid_ze}\n\
+motion_field_strength_x_txt2vid_ze.value = {motion_field_strength_x_txt2vid_ze}\n\
+motion_field_strength_y_txt2vid_ze.value = {motion_field_strength_y_txt2vid_ze}\n\
+timestep_t0_txt2vid_ze.value = {timestep_t0_txt2vid_ze}\n\
+timestep_t1_txt2vid_ze.value = {timestep_t1_txt2vid_ze}\n\
+use_gfpgan_txt2vid_ze.value = {use_gfpgan_txt2vid_ze}\n\
+tkme_txt2vid_ze.value = {tkme_txt2vid_ze}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
 def write_ini_animatediff_lcm(
     module,
     model_animatediff_lcm,
@@ -650,6 +1527,135 @@ tkme_animatediff_lcm.value = {tkme_animatediff_lcm}"
     with open(savename, 'w', encoding="utf-8") as savefile:
         savefile.write(content)
     return
+
+def write_ini_img2vid(
+    module,
+    model_img2vid,
+    num_inference_steps_img2vid,
+    sampler_img2vid,
+    min_guidance_scale_img2vid,
+    max_guidance_scale_img2vid,
+    seed_img2vid,
+    num_frames_img2vid,
+    num_fps_img2vid,
+    decode_chunk_size_img2vid,
+    width_img2vid,
+    height_img2vid,
+    num_prompt_img2vid,
+    num_videos_per_prompt_img2vid,
+    motion_bucket_id_img2vid,
+    noise_aug_strength_img2vid,
+    use_gfpgan_img2vid,
+    tkme_img2vid,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_img2vid.value = \"{model_img2vid}\"\n\
+num_inference_steps_img2vid.value = {num_inference_steps_img2vid}\n\
+sampler_img2vid.value = \"{sampler_img2vid}\"\n\
+min_guidance_scale_img2vid.value = {min_guidance_scale_img2vid}\n\
+max_guidance_scale_img2vid.value = {max_guidance_scale_img2vid}\n\
+seed_img2vid.value = {seed_img2vid}\n\
+num_frames_img2vid.value = {num_frames_img2vid}\n\
+num_fps_img2vid.value = {num_fps_img2vid}\n\
+decode_chunk_size_img2vid.value = {decode_chunk_size_img2vid}\n\
+width_img2vid.value = {width_img2vid}\n\
+height_img2vid.value = {height_img2vid}\n\
+num_prompt_img2vid.value = {num_prompt_img2vid}\n\
+num_videos_per_prompt_img2vid.value = {num_videos_per_prompt_img2vid}\n\
+motion_bucket_id_img2vid.value = {motion_bucket_id_img2vid}\n\
+noise_aug_strength_img2vid.value = {noise_aug_strength_img2vid}\n\
+use_gfpgan_img2vid.value = {use_gfpgan_img2vid}\n\
+tkme_img2vid.value = {tkme_img2vid}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_vid2vid_ze(
+    module,
+    model_vid2vid_ze,
+    num_inference_step_vid2vid_ze,
+    sampler_vid2vid_ze,
+    guidance_scale_vid2vid_ze,
+    image_guidance_scale_vid2vid_ze,
+    num_images_per_prompt_vid2vid_ze,
+    num_prompt_vid2vid_ze,
+    width_vid2vid_ze,
+    height_vid2vid_ze,
+    seed_vid2vid_ze,
+    num_frames_vid2vid_ze,
+    num_fps_vid2vid_ze,
+    use_gfpgan_vid2vid_ze,
+    tkme_vid2vid_ze,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_vid2vid_ze.value = \"{model_vid2vid_ze}\"\n\
+num_inference_step_vid2vid_ze.value = {num_inference_step_vid2vid_ze}\n\
+sampler_vid2vid_ze.value = \"{sampler_vid2vid_ze}\"\n\
+guidance_scale_vid2vid_ze.value = {guidance_scale_vid2vid_ze}\n\
+image_guidance_scale_vid2vid_ze.value = {image_guidance_scale_vid2vid_ze}\n\
+num_images_per_prompt_vid2vid_ze.value = {num_images_per_prompt_vid2vid_ze}\n\
+num_prompt_vid2vid_ze.value = {num_prompt_vid2vid_ze}\n\
+width_vid2vid_ze.value = {width_vid2vid_ze}\n\
+height_vid2vid_ze.value = {height_vid2vid_ze}\n\
+seed_vid2vid_ze.value = {seed_vid2vid_ze}\n\
+num_frames_vid2vid_ze.value = {num_frames_vid2vid_ze}\n\
+num_fps_vid2vid_ze.value = {num_fps_vid2vid_ze}\n\
+use_gfpgan_vid2vid_ze.value = {use_gfpgan_vid2vid_ze}\n\
+tkme_vid2vid_ze.value = {tkme_vid2vid_ze}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+## 3D modules default settings
+
+def write_ini_txt2shape(
+    module,
+    model_txt2shape,
+    num_inference_step_txt2shape,
+    sampler_txt2shape,
+    guidance_scale_txt2shape,
+    num_images_per_prompt_txt2shape,
+    num_prompt_txt2shape,
+    frame_size_txt2shape,
+    seed_txt2shape,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_txt2shape.value = \"{model_txt2shape}\"\n\
+num_inference_step_txt2shape.value = {num_inference_step_txt2shape}\n\
+sampler_txt2shape.value = \"{sampler_txt2shape}\"\n\
+guidance_scale_txt2shape.value = {guidance_scale_txt2shape}\n\
+num_images_per_prompt_txt2shape.value = {num_images_per_prompt_txt2shape}\n\
+num_prompt_txt2shape.value = {num_prompt_txt2shape}\n\
+frame_size_txt2shape.value = {frame_size_txt2shape}\n\
+seed_txt2shape.value = {seed_txt2shape}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
+def write_ini_img2shape(
+    module,
+    model_img2shape,
+    num_inference_step_img2shape,
+    sampler_img2shape,
+    guidance_scale_img2shape,
+    num_images_per_prompt_img2shape,
+    num_prompt_img2shape,
+    frame_size_img2shape,
+    seed_img2shape,
+):
+    savename = f".ini/{module}.ini"
+    content = f"model_img2shape.value = \"{model_img2shape}\"\n\
+num_inference_step_img2shape.value = {num_inference_step_img2shape}\n\
+sampler_img2shape.value = \"{sampler_img2shape}\"\n\
+guidance_scale_img2shape.value = {guidance_scale_img2shape}\n\
+num_images_per_prompt_img2shape.value = {num_images_per_prompt_img2shape}\n\
+num_prompt_img2shape.value = {num_prompt_img2shape}\n\
+frame_size_img2shape.value = {frame_size_img2shape}\n\
+seed_img2shape.value = {seed_img2shape}"
+    with open(savename, 'w', encoding="utf-8") as savefile:
+        savefile.write(content)
+    return
+
 
 def lora_model_list(model):
     if (("XL" in model.upper()) or ("LIGHTNING" in model.upper()) or ("ETRI-VILAB/KOALA-" in model.upper()) or ("PLAYGROUNDAI/PLAYGROUND-V2" in model.upper()) or ("SSD-1B" in model.upper()) or ("SEGMIND-VEGA" in model.upper()) or (model == "dataautogpt3/OpenDalleV1.1") or (model == "dataautogpt3/ProteusV0.4")):
