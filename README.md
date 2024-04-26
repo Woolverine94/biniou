@@ -19,7 +19,7 @@
 
   * 🆕 **2024-04-25** : ⚠️ ***Migration to new module settings management*** ⚠️ : Starting from commit [4866a00](https://github.com/Woolverine94/biniou/commit/4866a00e5a686836a541985d3475d0ec6095d353), old configuration files for individual modules settings will not be loaded anymore at startup. The old settings files stays available (./.ini/<module_name>.cfg), so you can recover manually your settings. I'm really sorry and apologize for this minor inconvenience, but this migration had to be done as the old system holds back a lot of possible evolutions for biniou. Paradoxically, one of the main goal of this new system is to prevent a similar situation in the future ... It has zero impact on fresh installations.
 
-  * 🆕 **2024-04-22** : 🔥 ***New adapter for AnimateLCM module*** 🔥 : Adding an "Adapter" sub-menu and support for [ByteDance/AnimateDiff-Lightning](https://huggingface.co/ByteDance/AnimateDiff-Lightning) to AnimateLCM module. This adapter behave as expected for a "lightning" model : fast and qualitative.
+  * 🆕 **2024-04-22** : 🔥 ***New adapter for AnimateDiff module*** 🔥 : Adding an "Adapter" sub-menu and support for [ByteDance/AnimateDiff-Lightning](https://huggingface.co/ByteDance/AnimateDiff-Lightning) to AnimateDiff module. This adapter behave as expected for a "lightning" model : fast and qualitative.
 
   * 🆕 **2024-04-21** : 🔥 ***New image model*** 🔥 : Adding support for model  [playgroundai/playground-v2.5-1024px-aesthetic](https://huggingface.co/playgroundai/playground-v2.5-1024px-aesthetic) to Stable Diffusion, img2img, IP-Adapter, ControlNet and Photobooth modules.
 
@@ -92,7 +92,7 @@
 * **Video generation and modification using :**
   - 📼 [Modelscope module](https://github.com/Woolverine94/biniou/wiki/Modelscope-txt2vid) (require 16GB+ RAM)
   - 📼 [Text2Video-Zero module](https://github.com/Woolverine94/biniou/wiki/Text2Video%E2%80%90Zero)
-  - 📼 [AnimateLCM module](https://github.com/Woolverine94/biniou/wiki/AnimateLCM) (require 16GB+ RAM)
+  - 📼 [AnimateDiff module](https://github.com/Woolverine94/biniou/wiki/AnimateDiff) (require 16GB+ RAM)
   - 📼 [Stable Video Diffusion module](https://github.com/Woolverine94/biniou/wiki/Stable-Video-Diffusion) (require 16GB+ RAM)
   - 🖌️ [Video Instruct-Pix2Pix module](https://github.com/Woolverine94/biniou/wiki/Video-Instruct%E2%80%90pix2pix) (require 16GB+ RAM)
 

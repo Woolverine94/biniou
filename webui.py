@@ -1003,7 +1003,7 @@ def change_model_type_txt2vid_ze(model_txt2vid_ze):
     else:
         return sampler_txt2vid_ze.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2vid_ze.update(value=biniou_global_sd15_width), height_txt2vid_ze.update(value=biniou_global_sd15_height), num_inference_step_txt2vid_ze.update(value=10), guidance_scale_txt2vid_ze.update(value=7.5), negative_prompt_txt2vid_ze.update(interactive=True)
 
-## Functions specific to AnimateLCM
+## Functions specific to AnimateDiff
 def change_model_type_animatediff_lcm(model_animatediff_lcm, model_adapters_animatediff_lcm):
     if (model_adapters_animatediff_lcm == "wangfuyun/AnimateLCM"):
         scheduler = "LCM"
@@ -1413,7 +1413,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... video module ...')                                               
                                         llamacpp_txt2vid_ms = gr.Button("✍️ >> Modelscope")
                                         llamacpp_txt2vid_ze = gr.Button("✍️ >> Text2Video-Zero")
-                                        llamacpp_animatediff_lcm = gr.Button("✍️ >> AnimateLCM")
+                                        llamacpp_animatediff_lcm = gr.Button("✍️ >> AnimateDiff")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -1648,7 +1648,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... video module ...')
                                         llava_txt2vid_ms = gr.Button("✍️ >> Modelscope")
                                         llava_txt2vid_ze = gr.Button("✍️ >> Text2Video-Zero")
-                                        llava_animatediff_lcm = gr.Button("✍️ >> AnimateLCM")
+                                        llava_animatediff_lcm = gr.Button("✍️ >> AnimateDiff")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -1778,7 +1778,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... video module ...')                                               
                                         img2txt_git_txt2vid_ms = gr.Button("✍️ >> Modelscope")
                                         img2txt_git_txt2vid_ze = gr.Button("✍️ >> Text2Video-Zero")
-                                        img2txt_git_animatediff_lcm = gr.Button("✍️ >> AnimateLCM")
+                                        img2txt_git_animatediff_lcm = gr.Button("✍️ >> AnimateDiff")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -1923,7 +1923,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... video module ...')
                                         whisper_txt2vid_ms = gr.Button("✍️ >> Modelscope")
                                         whisper_txt2vid_ze = gr.Button("✍️ >> Text2Video-Zero")
-                                        whisper_animatediff_lcm = gr.Button("✍️ >> AnimateLCM")
+                                        whisper_animatediff_lcm = gr.Button("✍️ >> AnimateDiff")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -2048,7 +2048,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... video module ...')                                               
                                         nllb_txt2vid_ms = gr.Button("✍️ >> Modelscope")
                                         nllb_txt2vid_ze = gr.Button("✍️ >> Text2Video-Zero")                                        
-                                        nllb_animatediff_lcm = gr.Button("✍️ >> AnimateLCM")
+                                        nllb_animatediff_lcm = gr.Button("✍️ >> AnimateDiff")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -2186,7 +2186,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... video module ...')                                               
                                         txt2prompt_txt2vid_ms = gr.Button("✍️ >> Modelscope")
                                         txt2prompt_txt2vid_ze = gr.Button("✍️ >> Text2Video-Zero")                                        
-                                        txt2prompt_animatediff_lcm = gr.Button("✍️ >> AnimateLCM")
+                                        txt2prompt_animatediff_lcm = gr.Button("✍️ >> AnimateDiff")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -2446,7 +2446,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... video module ...')                                        
                                         txt2img_sd_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
                                         txt2img_sd_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")                                        
-                                        txt2img_sd_animatediff_lcm_input = gr.Button("✍️ >> AnimateLCM")
+                                        txt2img_sd_animatediff_lcm_input = gr.Button("✍️ >> AnimateDiff")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
@@ -2660,7 +2660,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... video module ...')                                                                                
                                         txt2img_kd_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
                                         txt2img_kd_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")
-                                        txt2img_kd_animatediff_lcm_input = gr.Button("✍️ >> AnimateLCM")
+                                        txt2img_kd_animatediff_lcm_input = gr.Button("✍️ >> AnimateDiff")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
@@ -2895,7 +2895,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... video module ...')
                                         txt2img_lcm_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
                                         txt2img_lcm_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")
-                                        txt2img_lcm_animatediff_lcm_input = gr.Button("✍️ >> AnimateLCM")
+                                        txt2img_lcm_animatediff_lcm_input = gr.Button("✍️ >> AnimateDiff")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
@@ -3099,7 +3099,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... video module ...')                                        
                                         txt2img_mjm_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
                                         txt2img_mjm_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")                                        
-                                        txt2img_mjm_animatediff_lcm_input = gr.Button("✍️ >> AnimateLCM")
+                                        txt2img_mjm_animatediff_lcm_input = gr.Button("✍️ >> AnimateDiff")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
@@ -3307,7 +3307,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... video module ...')                                        
                                         txt2img_paa_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
                                         txt2img_paa_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")                                        
-                                        txt2img_paa_animatediff_lcm_input = gr.Button("✍️ >> AnimateLCM")
+                                        txt2img_paa_animatediff_lcm_input = gr.Button("✍️ >> AnimateDiff")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
@@ -5422,7 +5422,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... video module ...')                                        
                                         controlnet_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
                                         controlnet_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")
-                                        controlnet_animatediff_lcm_input = gr.Button("✍️ >> AnimateLCM")
+                                        controlnet_animatediff_lcm_input = gr.Button("✍️ >> AnimateDiff")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
@@ -7028,7 +7028,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2vid_ms_txt2img_paa_input = gr.Button("✍️ >> PixArt-Alpha") 
                                         gr.HTML(value='... video module ...')
                                         txt2vid_ms_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")
-                                        txt2vid_ms_animatediff_lcm_input = gr.Button("✍️ >> AnimateLCM")
+                                        txt2vid_ms_animatediff_lcm_input = gr.Button("✍️ >> AnimateDiff")
                             with gr.Column():
                                 with gr.Box():                                
                                     with gr.Group():
@@ -7243,7 +7243,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2vid_ze_txt2img_paa_input = gr.Button("✍️ >> PixArt-Alpha") 
                                         gr.HTML(value='... video module ...')
                                         txt2vid_ze_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
-                                        txt2vid_ze_animatediff_lcm_input = gr.Button("✍️ >> AnimateLCM")
+                                        txt2vid_ze_animatediff_lcm_input = gr.Button("✍️ >> AnimateDiff")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -7251,16 +7251,16 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
 
 # animate_lcm
                 if ram_size() >= 16 :
-                    titletab_tab_animatediff_lcm = "AnimateLCM 📼"
+                    titletab_tab_animatediff_lcm = "AnimateDiff 📼"
                 else :
-                    titletab_tab_animatediff_lcm = "AnimateLCM ⛔"
+                    titletab_tab_animatediff_lcm = "AnimateDiff ⛔"
                 with gr.TabItem(titletab_tab_animatediff_lcm, id=43) as tab_animatediff_lcm:
                     with gr.Accordion("About", open=False):
                         with gr.Box():
                             gr.HTML(
                                 """
                                 <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>AnimateLCM</br>
+                                <b>Module : </b>AnimateDiff</br>
                                 <b>Function : </b>Generate video from a prompt and a negative prompt using <a href='https://animatelcm.github.io/' target='_blank'>AnimateLCM</a> or <a href='https://huggingface.co/ByteDance/AnimateDiff-Lightning' target='_blank'>ByteDance/AnimateDiff-Lightning</a> with <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a> Models</br>
                                 <b>Input(s) : </b>Prompt, negative prompt</br>
                                 <b>Output(s) : </b>Video</br>
@@ -9303,10 +9303,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     txt2vid_ze_txt2img_mjm_input.click(fn=import_to_module, inputs=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze, tab_image_num, tab_txt2img_mjm_num], outputs=[prompt_txt2img_mjm, negative_prompt_txt2img_mjm, tabs, tabs_image])
     txt2vid_ze_txt2img_paa_input.click(fn=import_to_module, inputs=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze, tab_image_num, tab_txt2img_paa_num], outputs=[prompt_txt2img_paa, negative_prompt_txt2img_paa, tabs, tabs_image])
 
-# AnimateLCM outputs
+# AnimateDiff outputs
     animatediff_lcm_vid2vid_ze.click(fn=send_to_module_video, inputs=[out_animatediff_lcm, tab_video_num, tab_vid2vid_ze_num], outputs=[vid_vid2vid_ze, tabs, tabs_video])
 
-# AnimateLCM inputs
+# AnimateDiff inputs
     animatediff_lcm_txt2vid_ms_input.click(fn=import_to_module_video, inputs=[prompt_animatediff_lcm, negative_prompt_animatediff_lcm, tab_video_num, tab_txt2vid_ms_num], outputs=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms, tabs, tabs_video])
     animatediff_lcm_txt2img_sd_input.click(fn=import_to_module, inputs=[prompt_animatediff_lcm, negative_prompt_animatediff_lcm, tab_image_num, tab_txt2img_sd_num], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd, tabs, tabs_image])
     animatediff_lcm_txt2img_kd_input.click(fn=import_to_module, inputs=[prompt_animatediff_lcm, negative_prompt_animatediff_lcm, tab_image_num, tab_txt2img_kd_num], outputs=[prompt_txt2img_kd, negative_prompt_txt2img_kd, tabs, tabs_image])
