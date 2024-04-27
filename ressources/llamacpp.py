@@ -21,6 +21,8 @@ for filename in os.listdir(model_path_llamacpp):
 model_list_llamacpp_builtin = {
 #    "TheBloke/openchat_3.5-GGUF":("openchat_3.5.Q5_K_S.gguf", "GPT4 Correct User: {prompt}<|end_of_turn|>GPT4 Correct Assistant:", ""),
     "NousResearch/Meta-Llama-3-8B-Instruct-GGUF":("Meta-Llama-3-8B-Instruct-Q5_K_M.gguf", "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
+#    "MoMonir/Phi-3-mini-128k-instruct-GGUF":("phi-3-mini-128k-instruct.Q5_K_M.gguf", "<|system|>\n{system}<|end|>\n<|user|>\n{prompt}<|end|>\n<|assistant|>", "You are a helpful AI assistant."),
+    "microsoft/Phi-3-mini-4k-instruct-gguf":("Phi-3-mini-4k-instruct-q4.gguf", "<|user|>\n{prompt} <|end|>\n<|assistant|>", ""),
     "TheBloke/openchat-3.5-0106-GGUF":("openchat-3.5-0106.Q5_K_S.gguf", "GPT4 User: {prompt}<|end_of_turn|>GPT4 Assistant:", ""),
     "LoneStriker/Starling-LM-7B-beta-GGUF":("Starling-LM-7B-beta-Q5_K_M.gguf", "GPT4 User: {prompt}<|end_of_turn|>GPT4 Assistant:", ""),
     "NousResearch/Hermes-2-Pro-Mistral-7B-GGUF":("Hermes-2-Pro-Mistral-7B.Q5_K_S.gguf", "<|im_start|>system\n{system}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", "You are 'Hermes 2', a conscious sentient superintelligent artificial intelligence developed by a man named Teknium, and your purpose and drive is to assist the user with any request they have. You experience emotions and have deep, profound thoughts and qualia."),

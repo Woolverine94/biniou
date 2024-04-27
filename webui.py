@@ -1220,7 +1220,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_llamacpp = gr.Dropdown(choices=list(model_list_llamacpp.keys()), value=list(model_list_llamacpp.keys())[0], label="Model", allow_custom_value=True, info="Choose model to use for inference or copy/paste a HF repo id (TheBloke GGUF models only). Manually set prompt and system templates according to model page.")
                             with gr.Column():
-                                max_tokens_llamacpp = gr.Slider(0, 131072, step=16, value=1024, label="Max tokens", info="Maximum number of tokens to generate")
+                                max_tokens_llamacpp = gr.Slider(0, 524288, step=16, value=1024, label="Max tokens", info="Maximum number of tokens to generate")
                             with gr.Column():
                                 seed_llamacpp = gr.Slider(0, 10000000000, step=1, value=1337, label="Seed(0 for random)", info="Seed to use for generation.")    
                         with gr.Row():
