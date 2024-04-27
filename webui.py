@@ -301,10 +301,12 @@ def change_model_type_txt2img_sd(model_txt2img_sd):
 biniou_internal_previous_steps_txt2img_sd = ""
 biniou_internal_previous_cfg_txt2img_sd = ""
 biniou_internal_previous_trigger_txt2img_sd = ""
-def change_lora_model_txt2img_sd(model, lora_model, prompt, steps, cfg_scale):
+biniou_internal_previous_sampler_txt2img_sd = ""
+def change_lora_model_txt2img_sd(model, lora_model, prompt, steps, cfg_scale, sampler):
     global biniou_internal_previous_steps_txt2img_sd
     global biniou_internal_previous_cfg_txt2img_sd
     global biniou_internal_previous_trigger_txt2img_sd
+    global biniou_internal_previous_sampler_txt2img_sd
     lora_keyword = lora_model_list(model)[lora_model][1]
 
     if lora_model != "":
@@ -322,21 +324,27 @@ def change_lora_model_txt2img_sd(model, lora_model, prompt, steps, cfg_scale):
         lora_prompt_txt2img_sd = lora_prompt_txt2img_sd.replace(lora_trigger, "")
         biniou_internal_previous_trigger_txt2img_sd = lora_keyword
 
-    if (lora_model == "ByteDance/SDXL-Lightning"):
+    if (lora_model == "ByteDance/SDXL-Lightning") or (lora_model == "ByteDance/Hyper-SD"):
         biniou_internal_previous_steps_txt2img_sd = steps
         biniou_internal_previous_cfg_txt2img_sd = cfg_scale
-        return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(value=4), guidance_scale_txt2img_sd.update(value=0.0)
+        biniou_internal_previous_sampler_txt2img_sd = sampler
+        if (lora_model == "ByteDance/SDXL-Lightning"):
+            return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(value=4), guidance_scale_txt2img_sd.update(value=0.0), sampler_txt2img_sd.update(value="LCM")
+        elif (lora_model == "ByteDance/Hyper-SD"):
+            return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(value=2), guidance_scale_txt2img_sd.update(value=0.0), sampler_txt2img_sd.update(value="TCD")
     else:
         if ((biniou_internal_previous_steps_txt2img_sd == "") and (biniou_internal_previous_cfg_txt2img_sd == "")) or (lora_model == ""):
             biniou_internal_previous_steps_txt2img_sd = ""
             biniou_internal_previous_cfg_txt2img_sd = ""
-            return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(), guidance_scale_txt2img_sd.update()
+            biniou_internal_previous_sampler_txt2img_sd = ""
+            return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(), guidance_scale_txt2img_sd.update(), sampler_txt2img_sd.update()
         else:
             var_steps = int(biniou_internal_previous_steps_txt2img_sd)
             var_cfg_scale = float(biniou_internal_previous_cfg_txt2img_sd)
             biniou_internal_previous_steps_txt2img_sd = ""
             biniou_internal_previous_cfg_txt2img_sd = ""
-            return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(var_steps), guidance_scale_txt2img_sd.update(var_cfg_scale)
+            biniou_internal_previous_sampler_txt2img_sd = ""
+            return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(var_steps), guidance_scale_txt2img_sd.update(var_cfg_scale), sampler_txt2img_sd.update()
 
 # def update_preview_txt2img_sd(preview):
 #     return out_txt2img_sd.update(preview)
@@ -2347,7 +2355,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 negative_prompt_txt2img_sd
                             ]
                         )
-                        lora_model_txt2img_sd.change(fn=change_lora_model_txt2img_sd, inputs=[model_txt2img_sd, lora_model_txt2img_sd, prompt_txt2img_sd, num_inference_step_txt2img_sd, guidance_scale_txt2img_sd], outputs=[prompt_txt2img_sd, num_inference_step_txt2img_sd, guidance_scale_txt2img_sd])
+                        lora_model_txt2img_sd.change(fn=change_lora_model_txt2img_sd, inputs=[model_txt2img_sd, lora_model_txt2img_sd, prompt_txt2img_sd, num_inference_step_txt2img_sd, guidance_scale_txt2img_sd, sampler_txt2img_sd], outputs=[prompt_txt2img_sd, num_inference_step_txt2img_sd, guidance_scale_txt2img_sd, sampler_txt2img_sd])
                         txtinv_txt2img_sd.change(fn=change_txtinv_txt2img_sd, inputs=[model_txt2img_sd, txtinv_txt2img_sd, prompt_txt2img_sd, negative_prompt_txt2img_sd], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd])
                         with gr.Column(scale=2):
                             out_txt2img_sd = gr.Gallery(

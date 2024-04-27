@@ -1662,6 +1662,7 @@ def lora_model_list(model):
         model_path_lora = "./models/lora/SDXL"
         model_list_lora_builtin = {
             "ehristoforu/dalle-3-xl-v2":("dalle-3-xl-lora-v2.safetensors", ""),
+            "ByteDance/Hyper-SD":("Hyper-SDXL-1step-lora.safetensors", ""),
             "ByteDance/SDXL-Lightning":("sdxl_lightning_4step_lora.safetensors", ""),
             "ostris/face-helper-sdxl-lora":("face_xl_v0_1.safetensors", ""),
             "artificialguybr/ps1redmond-ps1-game-graphics-lora-for-sdxl":("PS1Redmond-PS1Game-Playstation1Graphics.safetensors", "Playstation 1 Graphics, PS1 Game"),
@@ -1692,6 +1693,7 @@ def lora_model_list(model):
     else :        
         model_path_lora = "./models/lora/SD"
         model_list_lora_builtin = {
+            "ByteDance/Hyper-SD":("Hyper-SD15-1step-lora.safetensors", ""),
             "Kvikontent/midjourney-v6":("mj6-10.safetensors", ""),
             "Norod78/SD15-IllusionDiffusionPattern-LoRA":("SD15-IllusionDiffusionPattern-LoRA.safetensors","IllusionDiffusionPattern"),
 

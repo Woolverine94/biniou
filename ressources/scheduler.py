@@ -17,6 +17,7 @@ from diffusers import (
     LCMScheduler,
     EDMDPMSolverMultistepScheduler,
     EDMEulerScheduler,
+    TCDScheduler,
 )
 
 SCHEDULER_MAPPING = {
@@ -43,6 +44,7 @@ SCHEDULER_MAPPING = {
     "LMS Karras": LMSDiscreteScheduler,
     "EDM DPM++ 2M": EDMDPMSolverMultistepScheduler,
     "EDM Euler": EDMEulerScheduler,
+    "TCD": TCDScheduler,
 }
 
 SCHEDULER_MAPPING_MUSICLDM = {
