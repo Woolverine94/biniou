@@ -101,6 +101,7 @@ def video_animatediff_lcm(
                 repo_id=modelid_adapters_animatediff_lcm,
                 filename=model_list_adapters_animatediff_lcm[modelid_adapters_animatediff_lcm][0],
                 repo_type="model",
+                cache_dir=adapter_path_animatediff_lcm,
                 local_dir=adapter_path_animatediff_lcm,
                 resume_download=True,
                 local_files_only=True if offline_test() else None
