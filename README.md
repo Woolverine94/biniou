@@ -17,15 +17,15 @@
 
 ## Updates
 
+  * 🆕 **2024-04-27** : 🔥 ***Support for LoRA model Hyper-SD*** 🔥 : All modules compatible with LoRA models can now takes benefits of [ByteDance/Hyper-SD](https://huggingface.co/ByteDance/Hyper-SD). Hyper-SD LoRA model will allow fast generation in 1,2,4 or 8 steps (2 by default) for both SD1.5 and SDXL models. Quality of results depends on model used, but it's always fast !
+
   * 🆕 **2024-04-27** : 🔥 ***Chatbot module updates*** 🔥 : Adding support for model  [microsoft/Phi-3-mini-4k-instruct-gguf](https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf) to Chatbot module. Also increasing maximum context size to 512k.
 
-  * 🆕 **2024-04-25** : ⚠️ ***Migration to new module settings management*** ⚠️ : Starting from commit [4866a00](https://github.com/Woolverine94/biniou/commit/4866a00e5a686836a541985d3475d0ec6095d353), old configuration files for individual modules settings will not be loaded anymore at startup. The old settings files stays available (./.ini/<module_name>.cfg), so you can recover manually your settings. I'm really sorry and apologize for this minor inconvenience, but this migration had to be done as the old system holds back a lot of possible evolutions for biniou. Paradoxically, one of the main goal of this new system is to prevent a similar situation in the future ... It has zero impact on fresh installations.
+  * 🆕 **2024-04-25** : ⚠️ ***Migration to new module settings management*** ⚠️ : Starting from commit [4866a00](https://github.com/Woolverine94/biniou/commit/4866a00e5a686836a541985d3475d0ec6095d353), old configuration files for individual modules settings will not be loaded anymore at startup. The old settings files stays available (./.ini/<module_name>.cfg), so you can recover manually your settings. I'm really sorry and apologize for this minor inconvenience, but this migration had to be done as the old system holds back a lot of possible evolutions for biniou. Paradoxically, one of the main goal of this new system is to prevent a similar situation in the future ... It has zero impact on fresh installations or people not using this feature.
 
   * 🆕 **2024-04-22** : 🔥 ***New adapter for AnimateDiff module*** 🔥 : Adding an "Adapter" sub-menu and support for [ByteDance/AnimateDiff-Lightning](https://huggingface.co/ByteDance/AnimateDiff-Lightning) to AnimateDiff module. This adapter behave as expected for a "lightning" model : fast and qualitative.
 
   * 🆕 **2024-04-21** : 🔥 ***New image model*** 🔥 : Adding support for model  [playgroundai/playground-v2.5-1024px-aesthetic](https://huggingface.co/playgroundai/playground-v2.5-1024px-aesthetic) to Stable Diffusion, img2img, IP-Adapter, ControlNet and Photobooth modules.
-
-  * 🆕 **2024-04-20** : 🔥 ***New default model for Chatbot*** 🔥 : Introducing support for model [NousResearch/Meta-Llama-3-8B-Instruct-GGUF](https://huggingface.co/NousResearch/Meta-Llama-3-8B-Instruct-GGUF) and using it as default model. This brand-new llama3-based model give awesome results and seems slightly faster than similar ones.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
