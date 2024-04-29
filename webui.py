@@ -233,6 +233,17 @@ def hide_download_llava() :
 # def change_model_type_llava(model_llava):
 #     return prompt_template_llava.update(value=model_list_llava[model_llava][1])
 
+def change_model_type_llava(model_llava):
+    try:
+        test_model = model_list_llava[model_llava]
+    except KeyError as ke:
+        test_model = None
+    if (test_model != None):
+        return prompt_template_llava.update(value=model_list_llava[model_llava][2]), system_template_llava.update(value=model_list_llava[model_llava][3])
+    else:
+        return prompt_template_llava.update(value="{prompt}"), system_template_llava.update(value="")
+
+
 
         
 ## Functions specific to img2txt_git
@@ -1501,7 +1512,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Accordion("Settings", open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_llava = gr.Dropdown(choices=model_list_llava, value=model_list_llava[0], label="Model", info="Choose model to use for inference")
+                                model_llava = gr.Dropdown(choices=list(model_list_llava.keys()), value=list(model_list_llava.keys())[0], label="Model", info="Choose model to use for inference")
                             with gr.Column():
                                 max_tokens_llava = gr.Slider(0, 131072, step=16, value=512, label="Max tokens", info="Maximum number of tokens to generate")
                             with gr.Column():
@@ -1522,7 +1533,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 top_k_llava = gr.Slider(0, 500, step=1, value=40, label="top_k", info="The top-k value to use for sampling")
                         with gr.Row():
                             with gr.Column():
-                                prompt_template_llava = gr.Textbox(label="Prompt template", value="{prompt}", lines=4, max_lines=4, info="Place your custom prompt template here. Keep the {prompt} tag, that will be replaced by your prompt.")
+                                prompt_template_llava = gr.Textbox(label="Prompt template", value=model_list_llava[model_llava.value][2], lines=4, max_lines=4, info="Place your custom prompt template here. Keep the {prompt} tag, that will be replaced by your prompt.")
+                        with gr.Row():
+                            with gr.Column():
+                                system_template_llava = gr.Textbox(label="System template", value=model_list_llava[model_llava.value][3], lines=4, max_lines=4, info="Place your custom system template here.", interactive=True)
+                                model_llava.change(fn=change_model_type_llava, inputs=model_llava, outputs=[prompt_template_llava, system_template_llava])
+#                                force_prompt_template_llava.change(fn=change_prompt_template_llava, inputs=force_prompt_template_llava, outputs=[prompt_tmplate_llava, system_template_llava])
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_llava = gr.Button("Save custom defaults settings 💾")
@@ -1553,7 +1569,6 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         if test_ini_exist(module_name_llava.value) :
                             with open(f".ini/{module_name_llava.value}.ini", "r", encoding="utf-8") as fichier:
                                 exec(fichier.read())
-
                     with gr.Row():
                         with gr.Column(scale=1):
                             img_llava = gr.Image(label="Input image", type="filepath", height=400)
@@ -1571,6 +1586,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Row():
                             prompt_llava = gr.Textbox(label="Input", lines=1, max_lines=3, placeholder="Type your request here ...", autofocus=True)
                             hidden_prompt_llava = gr.Textbox(value="", visible=False)
+                            last_reply_llava.change(fn=lambda x:x, inputs=hidden_prompt_llava, outputs=prompt_llava)
                     with gr.Row():
                         with gr.Column():
                             btn_llava = gr.Button("Generate 🚀", variant="primary")
@@ -1601,6 +1617,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 prompt_llava,
                                 history_llava,
                                 prompt_template_llava,
+                                system_template_llava,
                             ],
                             outputs=[
                                 history_llava,
@@ -1626,6 +1643,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 prompt_llava,
                                 history_llava,
                                 prompt_template_llava,
+                                system_template_llava,
                             ],
                             outputs=[
                                 history_llava,
@@ -1658,8 +1676,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             show_progress="full",
                         )
                         btn_llava_continue.click(fn=hide_download_llava, outputs=[btn_download_file_llava, download_file_llava])
-                        btn_llava.click(fn=lambda x:x, inputs=hidden_prompt_llava, outputs=prompt_llava)
-                        prompt_llava.submit(fn=lambda x:x, inputs=hidden_prompt_llava, outputs=prompt_llava)
+#                        btn_llava.click(fn=lambda x:x, inputs=hidden_prompt_llava, outputs=prompt_llava)
+#                        prompt_llava.submit(fn=lambda x:x, inputs=hidden_prompt_llava, outputs=prompt_llava)
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():

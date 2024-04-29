@@ -16,28 +16,30 @@ model_path_llava = "./models/llava/"
 os.makedirs(model_path_llava, exist_ok=True)
 
 
-model_list_llava = []
+model_list_llava = {}
 
-for filename in os.listdir(model_path_llava):
-    f = os.path.join(model_path_llava, filename)
-    if os.path.isfile(f) and (filename.endswith('.gguf')):
-        model_list_llava.append(f)
+# for filename in os.listdir(model_path_llava):
+#     f = os.path.join(model_path_llava, filename)
+#     if os.path.isfile(f) and filename.endswith('.gguf') :
+#         final_f = {f:(f, "")}
+#         model_list_llava.update(final_f)
 
-model_list_llava_builtin = [
-    "mys/ggml_bakllava-1",
-    "cmp-nct/llava-1.6-gguf",
-    "mys/ggml_llava-v1.5-7b",
-    "mys/ggml_llava-v1.5-13b",
-]
+model_list_llava_builtin = {
+    "xtuner/llava-llama-3-8b-v1_1-gguf":("llava-llama-3-8b-v1_1-int4.gguf", "llava-llama-3-8b-v1_1-mmproj-f16.gguf", "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
+    "xtuner/llava-phi-3-mini-gguf":("llava-phi-3-mini-int4.gguf", "llava-phi-3-mini-mmproj-f16.gguf", "{prompt}",""),
+    "mys/ggml_bakllava-1":("ggml-model-q5_k.gguf", "mmproj-model-f16.gguf", "{prompt}", ""),
+    "cmp-nct/llava-1.6-gguf":("ggml-mistral-7b-q_5_k.gguf", "mmproj-mistral7b-f16.gguf", "{prompt}", ""),
+    "mys/ggml_llava-v1.5-7b":("ggml-model-q5_k.gguf", "mmproj-model-f16.gguf", "{prompt}", ""),
+    "mys/ggml_llava-v1.5-13b":("ggml-model-q5_k.gguf", "mmproj-model-f16.gguf", "{prompt}", ""),
+}
 
-for k in range(len(model_list_llava_builtin)):
-    model_list_llava.append(model_list_llava_builtin[k])
+model_list_llava.update(model_list_llava_builtin)
 
 def download_model(modelid_llava):
     if modelid_llava[0:9] != "./models/":
         hf_hub_path_llava = hf_hub_download(
             repo_id=modelid_llava,
-            filename="ggml-mistral-7b-q_5_k.gguf" if modelid_llava[0:3] != "mys" else "ggml-model-q5_k.gguf",
+            filename=model_list_llava[modelid_llava][0],
             repo_type="model",
             cache_dir=model_path_llava,
             resume_download=True,
@@ -50,7 +52,7 @@ def download_mmproj(modelid_mmproj):
     if modelid_mmproj[0:9] != "./models/":
         hf_hub_path_llava = hf_hub_download(
             repo_id=modelid_mmproj, 
-            filename="mmproj-mistral7b-f16.gguf" if modelid_mmproj[0:3] != "mys" else "mmproj-model-f16.gguf",
+            filename=model_list_llava[modelid_mmproj][1],
             repo_type="model",
             cache_dir=model_path_llava,
             resume_download=True,
@@ -74,10 +76,11 @@ def text_llava(
     prompt_llava,
     history_llava,
     prompt_template_llava,
+    system_template_llava,
     progress_txt2vid_ze=gr.Progress(track_tqdm=True)
     ):
 
-    print(">>>[Llava 1.5 👁️ ]: starting answer generation")
+    print(">>>[Llava 👁️ ]: starting answer generation")
 
     modelid_llava_origin = modelid_llava
     modelid_llava = download_model(modelid_llava_origin)
@@ -88,7 +91,8 @@ def text_llava(
 	    prompt_template_llava = "{prompt}"
 
     prompt_full_llava = prompt_template_llava.replace("{prompt}", prompt_llava)
-
+    prompt_full_llava = prompt_full_llava.replace("{system}", system_template_llava)
+    prompt_full_llava = prompt_full_llava.replace("{system_message}", system_template_llava)
     if history_llava != "[]" :
         history_final = ""
         for i in range(len(history_llava)):
@@ -108,8 +112,12 @@ def text_llava(
               logits_all=True,
     )
 
+    if system_template_llava == "":
+        system_template_llava = "You are an assistant who perfectly describes images."
+
+#        {"role": "system", "content": "You are an assistant who perfectly describes images."},
     messages_llava = [
-        {"role": "system", "content": "You are an assistant who perfectly describes images."},
+        {"role": "system", "content": system_template_llava},
         {
             "role": "user",
             "content": [
@@ -135,8 +143,8 @@ def text_llava(
     filename_llava = write_seeded_file(seed_llava, history_final, prompt_llava, last_answer_llava)
     history_llava.append((prompt_llava, last_answer_llava))
 
-    print(f">>>[Llava 1.5 👁️ ]: generated 1 answer")
-    reporting_llava = f">>>[Llava 1.5 👁️ ]: "+\
+    print(f">>>[Llava 👁️ ]: generated 1 answer")
+    reporting_llava = f">>>[Llava 👁️ ]: "+\
         f"Settings : Model={modelid_llava_origin} | "+\
         f"Max tokens={max_tokens_llava} | "+\
         f"Stream results={stream_llava} | "+\
@@ -153,7 +161,7 @@ def text_llava(
     del chat_handler_llava, llm, output_llava
     clean_ram()
 
-    print(f">>>[Llava 1.5 👁️ ]: leaving module")
+    print(f">>>[Llava 👁️ ]: leaving module")
     return history_llava, history_llava[-1][1], filename_llava
 
 @metrics_decoration    
@@ -171,7 +179,7 @@ def text_llava_continue(
     history_llava, 
     ):
 
-    print(">>>[Llava 1.5 👁️ ]: continuing answer generation")
+    print(">>>[Llava 👁️ ]: continuing answer generation")
     modelid_llava_origin = modelid_llava
     modelid_llava = download_model(modelid_llava)
 
@@ -203,8 +211,8 @@ def text_llava_continue(
     history_llava[-1][1] += last_answer_llava
 #    history_llava.append((prompt_llava, last_answer_llava))
 
-    print(f">>>[Llava 1.5 👁️ ]: continued 1 answer")
-    reporting_llava = f">>>[Llava 1.5 👁️ ]: "+\
+    print(f">>>[Llava 👁️ ]: continued 1 answer")
+    reporting_llava = f">>>[Llava 👁️ ]: "+\
         f"Settings : Model={modelid_llava_origin} | "+\
         f"Max tokens={max_tokens_llava} | "+\
         f"Stream results={stream_llava} | "+\
@@ -219,5 +227,5 @@ def text_llava_continue(
     del llm, output_llava
     clean_ram()
     
-    print(f">>>[Llava 1.5 👁️ ]: leaving module")
+    print(f">>>[Llava 👁️ ]: leaving module")
     return history_llava, history_llava[-1][1], filename_llava

@@ -70,6 +70,8 @@ prompt_template_list_llamacpp = {
     "OpenChat":("GPT4 User: {prompt}<|end_of_turn|>GPT4 Assistant:", ""),
     "OpenChat-Correct":("GPT4 Correct User: {prompt}<|end_of_turn|>GPT4 Correct Assistant:", ""),
     "Phi":("Instruct: {prompt}\nOutput:", ""),
+    "Phi-3 Chat":("<|user|>\n{prompt} <|end|>\n<|assistant|>",""),
+    "Phi-3 Instruct":("<|system|>\n{system} <|end|>\n<|user|>\n{prompt} <|end|>\n<|assistant|>","You are a helpful AI assistant."),
     "System-User-Assistant":("### System:\n{system}\n\n### User:\n{prompt}\n\n### Assistant:", "You are a friendly chatbot assistant. Please answer all questions to the best of your ability."),
     "User-Assistant ":("USER: {prompt}\nASSISTANT:", ""),
     "User-Assistant-Newlines":("### User:\n{prompt}\n\n### Assistant:", ""),
