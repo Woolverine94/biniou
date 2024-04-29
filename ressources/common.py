@@ -698,6 +698,7 @@ def write_ini_llava(
     top_p_llava,
     top_k_llava,
     prompt_template_llava,
+    system_template_llava,
 ):
     savename = f".ini/{module}.ini"
     content = f"model_llava.value = \"{model_llava}\"\n\
@@ -709,7 +710,8 @@ repeat_penalty_llava.value = {repeat_penalty_llava}\n\
 temperature_llava.value = {temperature_llava}\n\
 top_p_llava.value = {top_p_llava}\n\
 top_k_llava.value = {top_k_llava}\n\
-prompt_template_llava.value = \"{nparse(prompt_template_llava)}\""
+prompt_template_llava.value = \"{nparse(prompt_template_llava)}\"\n\
+system_template_llava.value = \"{nparse(system_template_llava)}\""
     with open(savename, 'w', encoding="utf-8") as savefile:
         savefile.write(content)
     return

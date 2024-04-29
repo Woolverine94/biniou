@@ -1559,6 +1559,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         top_p_llava,
                                         top_k_llava,
                                         prompt_template_llava,
+                                        system_template_llava,
                                         ]
                                     )
                                 save_ini_btn_llava.click(fn=lambda: gr.Info('Settings saved'))
