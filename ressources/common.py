@@ -1660,9 +1660,25 @@ seed_img2shape.value = {seed_img2shape}"
         savefile.write(content)
     return
 
+def is_sdxl(model):
+    if (\
+("XL" in model.upper()) or \
+("LIGHTNING" in model.upper()) or \
+("ETRI-VILAB/KOALA-" in model.upper()) or \
+("PLAYGROUNDAI/PLAYGROUND-V2" in model.upper()) or \
+("SSD-1B" in model.upper()) or \
+("SEGMIND-VEGA" in model.upper()) or \
+(model == "aipicasso/emi-2") or \
+(model == "dataautogpt3/OpenDalleV1.1") or \
+(model == "dataautogpt3/ProteusV0.4")\
+):
+        is_sdxl_value = True
+    else:
+        is_sdxl_value = False
+    return is_sdxl_value
 
 def lora_model_list(model):
-    if (("XL" in model.upper()) or ("LIGHTNING" in model.upper()) or ("ETRI-VILAB/KOALA-" in model.upper()) or ("PLAYGROUNDAI/PLAYGROUND-V2" in model.upper()) or ("SSD-1B" in model.upper()) or ("SEGMIND-VEGA" in model.upper()) or (model == "dataautogpt3/OpenDalleV1.1") or (model == "dataautogpt3/ProteusV0.4")):
+    if is_sdxl(model):
         model_path_lora = "./models/lora/SDXL"
         model_list_lora_builtin = {
             "ehristoforu/dalle-3-xl-v2":("dalle-3-xl-lora-v2.safetensors", ""),
@@ -1718,7 +1734,7 @@ def lora_model_list(model):
     return model_list_lora
 
 def txtinv_list(model):
-    if (("XL" in model.upper()) or ("LIGHTNING" in model.upper()) or ("ETRI-VILAB/KOALA-" in model.upper()) or ("PLAYGROUNDAI/PLAYGROUND-V2" in model.upper()) or ("SSD-1B" in model.upper()) or ("SEGMIND-VEGA" in model.upper()) or (model == "dataautogpt3/OpenDalleV1.1") or (model == "dataautogpt3/ProteusV0.4")):
+    if is_sdxl(model):
         model_path_txtinv = "./models/TextualInversion/SDXL"
         model_list_txtinv_builtin = {
             "SalahZaidi/textual_inversion_cat_sdxl":("learned_embeds-steps-15000.safetensors", ""),
@@ -1743,3 +1759,4 @@ def txtinv_list(model):
 
     model_list_txtinv.update(model_list_txtinv_builtin)
     return model_list_txtinv
+

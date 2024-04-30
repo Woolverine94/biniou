@@ -36,6 +36,7 @@ model_list_txt2img_sd_builtin = [
     "thibaud/sdxl_dpo_turbo",
     "SG161222/RealVisXL_V4.0_Lightning",
     "cagliostrolab/animagine-xl-3.1",
+    "aipicasso/emi-2",
     "IDEA-CCNL/Taiyi-Stable-Diffusion-XL-3.5B",
     "dataautogpt3/OpenDalleV1.1",
     "dataautogpt3/ProteusV0.4",
@@ -102,7 +103,7 @@ def image_txt2img_sd(
     else :
         is_turbo_txt2img_sd: bool = False
 
-    if (("XL" in modelid_txt2img_sd.upper()) or ("LIGHTNING" in modelid_txt2img_sd.upper()) or  ("ETRI-VILAB/KOALA-" in modelid_txt2img_sd.upper()) or ("PLAYGROUNDAI/PLAYGROUND-V2" in modelid_txt2img_sd.upper()) or (modelid_txt2img_sd == "segmind/SSD-1B") or (modelid_txt2img_sd == "segmind/Segmind-Vega") or (modelid_txt2img_sd == "dataautogpt3/OpenDalleV1.1") or (modelid_txt2img_sd == "dataautogpt3/ProteusV0.4")):
+    if is_sdxl(modelid_txt2img_sd):
         is_xl_txt2img_sd: bool = True
     else :        
         is_xl_txt2img_sd: bool = False
