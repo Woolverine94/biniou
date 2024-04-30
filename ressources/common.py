@@ -1505,6 +1505,7 @@ def write_ini_animatediff_lcm(
     guidance_scale_animatediff_lcm,
     seed_animatediff_lcm,
     num_frames_animatediff_lcm,
+    num_fps_animatediff_lcm,
     width_animatediff_lcm,
     height_animatediff_lcm,
     num_videos_per_prompt_animatediff_lcm,
@@ -1520,6 +1521,7 @@ sampler_animatediff_lcm.value = \"{sampler_animatediff_lcm}\"\n\
 guidance_scale_animatediff_lcm.value = {guidance_scale_animatediff_lcm}\n\
 seed_animatediff_lcm.value = {seed_animatediff_lcm}\n\
 num_frames_animatediff_lcm.value = {num_frames_animatediff_lcm}\n\
+num_fps_animatediff_lcm.value = {num_fps_animatediff_lcm}\n\
 width_animatediff_lcm.value = {width_animatediff_lcm}\n\
 height_animatediff_lcm.value = {height_animatediff_lcm}\n\
 num_videos_per_prompt_animatediff_lcm.value = {num_videos_per_prompt_animatediff_lcm}\n\

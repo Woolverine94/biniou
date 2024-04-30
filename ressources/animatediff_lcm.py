@@ -70,6 +70,7 @@ def video_animatediff_lcm(
     guidance_scale_animatediff_lcm,
     seed_animatediff_lcm,
     num_frames_animatediff_lcm,
+    num_fps_animatediff_lcm,
     height_animatediff_lcm,
     width_animatediff_lcm,
     num_videos_per_prompt_animatediff_lcm,
@@ -195,7 +196,7 @@ def video_animatediff_lcm(
         seed_id = random_seed + i*num_videos_per_prompt_animatediff_lcm if (seed_animatediff_lcm == 0) else seed_animatediff_lcm + i*num_videos_per_prompt_animatediff_lcm
         savename = "outputs/tmp_animatelcm_out.mp4"
         savename_final = name_seeded_video(seed_id)
-        export_to_video(result, savename, fps=8)
+        export_to_video(result, savename, fps=num_fps_animatediff_lcm)
         os.rename(savename, savename_final)
         final_seed.append(seed_id)
 
@@ -207,6 +208,7 @@ def video_animatediff_lcm(
         f"Steps={num_inference_step_animatediff_lcm} | "+\
         f"CFG scale={guidance_scale_animatediff_lcm} | "+\
         f"Video length={num_frames_animatediff_lcm} frames | "+\
+        f"FPS={num_fps_animatediff_lcm} frames | "+\
         f"Size={width_animatediff_lcm}x{height_animatediff_lcm} | "+\
         f"GFPGAN={use_gfpgan_animatediff_lcm} | "+\
         f"Token merging={tkme_animatediff_lcm} | "+\

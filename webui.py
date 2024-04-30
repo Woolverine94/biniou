@@ -1166,11 +1166,11 @@ def url_params_theme(url) :
     if url.get('__theme') != None and url['__theme'] == "dark" :
         del url['__theme']
         url_final = dict_to_url(url)
-        return f"<a href='https://github.com/Woolverine94/biniou' target='_blank' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='32' height='32'/></p><span style='text-align: left; font-size: 32px; font-weight: bold; line-height:32px;'>biniou</span></a><span style='vertical-align: bottom; line-height: 32px; font-size: 10px;'> ({biniou_global_version}) </span><span style='vertical-align: top; line-height: 32px;'><button onclick=\"window.location.href='{url_final}';\" title='Switch to light mode and reload page'>☀️</button></span>", banner_biniou.update(visible=True)
+        return f"<a href='https://github.com/Woolverine94/biniou' target='_blank' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='48' height='48'/></p><span style='text-align: left; font-size: 32px; font-weight: bold; line-height:48px;'>biniou</span></a><span style='vertical-align: bottom; line-height:48px; font-size: 10px;'> ({biniou_global_version}) </span><span style='vertical-align: top; line-height:48px;'><button onclick=\"window.location.href='{url_final}';\" title='Switch to light mode and reload page'>☀️</button></span>", banner_biniou.update(visible=True)
     elif url.get('__theme') == None :
         url['__theme'] = "dark"
         url_final = dict_to_url(url)
-        return f"<a href='https://github.com/Woolverine94/biniou' target='_blank' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='32' height='32'/></p><span style='text-align: left; font-size: 32px; font-weight: bold; line-height:32px;'>biniou</span></a><span style='vertical-align: bottom; line-height: 32px; font-size: 10px;'> ({biniou_global_version}) </span><span style='vertical-align: top; line-height: 32px;'><button onclick=\"window.location.href='{url_final}';\" title='Switch to dark mode and reload page'>🌘</button></span>", banner_biniou.update(visible=True)
+        return f"<a href='https://github.com/Woolverine94/biniou' target='_blank' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='48' height='48'/></p><span style='text-align: left; font-size: 32px; font-weight: bold; line-height:48px;'>biniou</span></a><span style='vertical-align: bottom; line-height:48px; font-size: 10px;'> ({biniou_global_version}) </span><span style='vertical-align: top; line-height:48px;'><button onclick=\"window.location.href='{url_final}';\" title='Switch to dark mode and reload page'>🌘</button></span>", banner_biniou.update(visible=True)
 
 color_label = "#7B43EE"
 color_label_button = "#4361ee"
@@ -7307,7 +7307,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
 
-# animate_lcm
+# animatediff
                 if ram_size() >= 16 :
                     titletab_tab_animatediff_lcm = "AnimateDiff 📼"
                 else :
@@ -7364,7 +7364,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 seed_animatediff_lcm = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
                             with gr.Column():
-                                num_frames_animatediff_lcm = gr.Slider(1, 1200, step=1, value=16, label="Video Length (frames)", info="Number of frames in the output video (@8fps)")
+                                num_frames_animatediff_lcm = gr.Slider(1, 32, step=1, value=16, label="Video Length (frames)", info="Number of frames in the output video (@8fps)")
+                            with gr.Column():
+                                num_fps_animatediff_lcm = gr.Slider(1, 120, step=1, value=8, label="Frames per second", info="Number of frames per second")
                         with gr.Row():
                             with gr.Column():
                                 width_animatediff_lcm = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sd15_width, label="Video Width", info="Width of outputs")
@@ -7396,6 +7398,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         guidance_scale_animatediff_lcm,
                                         seed_animatediff_lcm,
                                         num_frames_animatediff_lcm,
+                                        num_fps_animatediff_lcm,
                                         width_animatediff_lcm,
                                         height_animatediff_lcm,
                                         num_videos_per_prompt_animatediff_lcm,
@@ -7472,6 +7475,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     guidance_scale_animatediff_lcm,
                                     seed_animatediff_lcm,
                                     num_frames_animatediff_lcm,
+                                    num_fps_animatediff_lcm,
                                     height_animatediff_lcm,
                                     width_animatediff_lcm,
                                     num_videos_per_prompt_animatediff_lcm,
