@@ -7364,7 +7364,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 seed_animatediff_lcm = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
                             with gr.Column():
-                                num_frames_animatediff_lcm = gr.Slider(1, 32, step=1, value=16, label="Video Length (frames)", info="Number of frames in the output video (@8fps)")
+                                num_frames_animatediff_lcm = gr.Slider(1, 32, step=1, value=16, label="Video Length (frames)", info="Number of frames in the output video")
                             with gr.Column():
                                 num_fps_animatediff_lcm = gr.Slider(1, 120, step=1, value=8, label="Frames per second", info="Number of frames per second")
                         with gr.Row():
