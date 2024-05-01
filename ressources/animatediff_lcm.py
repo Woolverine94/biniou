@@ -6,6 +6,7 @@ import imageio
 from diffusers import AnimateDiffPipeline, MotionAdapter
 from diffusers.utils import export_to_video
 import numpy as np
+from compel import Compel, ReturnedEmbeddingsType
 import torch
 import random
 from ressources.common import *
@@ -156,11 +157,25 @@ def video_animatediff_lcm(
     for k in range(num_prompt_animatediff_lcm):
         generator.append(torch.Generator(device_animatediff_lcm).manual_seed(final_seed + k))
 
+    prompt_animatediff_lcm = str(prompt_animatediff_lcm)
+    negative_prompt_animatediff_lcm = str(negative_prompt_animatediff_lcm)
+    if prompt_animatediff_lcm == "None":
+        prompt_animatediff_lcm = ""
+    if negative_prompt_animatediff_lcm == "None":
+        negative_prompt_animatediff_lcm = ""
+
+    compel = Compel(tokenizer=pipe_animatediff_lcm.tokenizer, text_encoder=pipe_animatediff_lcm.text_encoder, truncate_long_prompts=False, device=device_animatediff_lcm)
+    conditioning = compel.build_conditioning_tensor(prompt_animatediff_lcm)
+    neg_conditioning = compel.build_conditioning_tensor(negative_prompt_animatediff_lcm)
+    [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
+
     final_seed = []
     for i in range (num_prompt_animatediff_lcm):
         result = pipe_animatediff_lcm(
-            prompt=prompt_animatediff_lcm,
-            negative_prompt=negative_prompt_animatediff_lcm,
+            prompt_embeds=conditioning,
+            negative_prompt_embeds=neg_conditioning,
+#            prompt=prompt_animatediff_lcm,
+#            negative_prompt=negative_prompt_animatediff_lcm,
             num_frames=num_frames_animatediff_lcm,
             height=height_animatediff_lcm,
             width=width_animatediff_lcm,
