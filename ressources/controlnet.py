@@ -34,6 +34,7 @@ model_list_controlnet_builtin = [
     "thibaud/sdxl_dpo_turbo",
     "SG161222/RealVisXL_V4.0_Lightning",
     "cagliostrolab/animagine-xl-3.1",
+    "aipicasso/emi-2",
     "dataautogpt3/OpenDalleV1.1",
     "dataautogpt3/ProteusV0.4",
 #    "dataautogpt3/ProteusV0.4-Lightning",
@@ -132,7 +133,7 @@ def dispatch_controlnet_preview(
     progress_controlnet=gr.Progress(track_tqdm=True)
     ):
 
-    if (("XL" in modelid_controlnet.upper()) or ("LIGHTNING" in modelid_controlnet.upper()) or ("PLAYGROUNDAI/PLAYGROUND-V2" in modelid_controlnet.upper()) or (modelid_controlnet == "segmind/SSD-1B") or (modelid_controlnet == "segmind/Segmind-Vega") or (modelid_controlnet == "dataautogpt3/OpenDalleV1.1") or (modelid_controlnet == "dataautogpt3/ProteusV0.4")):
+    if is_sdxl(modelid_controlnet):
         is_xl_controlnet: bool = True
     else :
         is_xl_controlnet: bool = False
@@ -288,7 +289,7 @@ def image_controlnet(
     else :
         is_turbo_controlnet: bool = False
 
-    if (("XL" in modelid_controlnet.upper()) or ("LIGHTNING" in modelid_controlnet.upper()) or ("PLAYGROUNDAI/PLAYGROUND-V2" in modelid_controlnet.upper()) or (modelid_controlnet == "segmind/SSD-1B") or (modelid_controlnet == "segmind/Segmind-Vega") or (modelid_controlnet == "dataautogpt3/OpenDalleV1.1") or (modelid_controlnet == "dataautogpt3/ProteusV0.4")):
+    if is_sdxl(modelid_controlnet):
         is_xl_controlnet: bool = True
     else :        
         is_xl_controlnet: bool = False

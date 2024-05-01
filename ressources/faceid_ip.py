@@ -50,6 +50,7 @@ model_list_faceid_ip_builtin = [
     "SG161222/RealVisXL_V3.0",
     "SG161222/RealVisXL_V4.0_Lightning",
     "cagliostrolab/animagine-xl-3.1",
+    "aipicasso/emi-2",
 #    "stabilityai/sd-turbo",
 #    "stabilityai/sdxl-turbo",
 #    "dataautogpt3/OpenDalleV1.1",
@@ -128,7 +129,7 @@ def image_faceid_ip(
     else :
         is_turbo_faceid_ip: bool = False
 
-    if (("XL" in modelid_faceid_ip.upper()) or ("LIGHTNING" in modelid_faceid_ip.upper()) or ("PLAYGROUNDAI/PLAYGROUND-V2" in modelid_faceid_ip.upper()) or (modelid_faceid_ip == "segmind/SSD-1B") or (modelid_faceid_ip == "segmind/Segmind-Vega") or (modelid_faceid_ip == "dataautogpt3/OpenDalleV1.1") or (modelid_faceid_ip == "dataautogpt3/ProteusV0.4")):
+    if is_sdxl(modelid_faceid_ip):
         is_xl_faceid_ip: bool = True
     else :
         is_xl_faceid_ip: bool = False

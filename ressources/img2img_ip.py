@@ -40,6 +40,7 @@ model_list_img2img_ip_builtin = [
 #    "thibaud/sdxl_dpo_turbo",
     "SG161222/RealVisXL_V4.0_Lightning",
     "cagliostrolab/animagine-xl-3.1",
+    "aipicasso/emi-2",
     "dataautogpt3/OpenDalleV1.1",
     "dataautogpt3/ProteusV0.4",
     "dataautogpt3/ProteusV0.4-Lightning",
@@ -107,7 +108,7 @@ def image_img2img_ip(
     else :
         is_turbo_img2img_ip: bool = False
 
-    if (("XL" in modelid_img2img_ip.upper()) or ("LIGHTNING" in modelid_img2img_ip.upper())  or ("PLAYGROUNDAI/PLAYGROUND-V2" in modelid_img2img_ip.upper()) or (modelid_img2img_ip == "segmind/SSD-1B") or (modelid_img2img_ip == "segmind/Segmind-Vega") or (modelid_img2img_ip == "dataautogpt3/OpenDalleV1.1") or (modelid_img2img_ip == "dataautogpt3/ProteusV0.4")):
+    if is_sdxl(modelid_img2img_ip):
         is_xl_img2img_ip: bool = True
     else :
         is_xl_img2img_ip: bool = False     

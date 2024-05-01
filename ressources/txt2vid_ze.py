@@ -25,6 +25,7 @@ model_list_txt2vid_ze = [
     "stabilityai/sdxl-turbo",
     "SG161222/RealVisXL_V4.0_Lightning",
     "cagliostrolab/animagine-xl-3.1",
+    "aipicasso/emi-2",
     "dataautogpt3/OpenDalleV1.1",
     "dataautogpt3/ProteusV0.4",
     "dataautogpt3/ProteusV0.4-Lightning",
@@ -89,7 +90,7 @@ def video_txt2vid_ze(
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2vid_ze, device_txt2vid_ze, nsfw_filter)
 
-    if (("XL" in modelid_txt2vid_ze.upper()) or ("LIGHTNING" in modelid_txt2vid_ze.upper()) or ("ETRI-VILAB/KOALA-" in modelid_txt2vid_ze.upper()) or ("PLAYGROUNDAI/PLAYGROUND-V2" in modelid_txt2vid_ze.upper()) or (modelid_txt2vid_ze == "segmind/SSD-1B") or (modelid_txt2vid_ze == "segmind/Segmind-Vega") or (modelid_txt2vid_ze == "dataautogpt3/OpenDalleV1.1") or (modelid_txt2vid_ze == "dataautogpt3/ProteusV0.4")) :
+    if is_sdxl(modelid_txt2vid_ze):
         is_xl_txt2vid_ze: bool = True
     else :        
         is_xl_txt2vid_ze: bool = False

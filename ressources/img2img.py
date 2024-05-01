@@ -37,6 +37,7 @@ model_list_img2img_builtin = [
     "thibaud/sdxl_dpo_turbo",
     "SG161222/RealVisXL_V4.0_Lightning",
     "cagliostrolab/animagine-xl-3.1",
+    "aipicasso/emi-2",
     "dataautogpt3/OpenDalleV1.1",
     "dataautogpt3/ProteusV0.4",
     "dataautogpt3/ProteusV0.4-Lightning",
@@ -104,7 +105,7 @@ def image_img2img(
     else :
         is_turbo_img2img: bool = False
 
-    if (("XL" in modelid_img2img.upper()) or ("LIGHTNING" in modelid_img2img.upper()) or ("ETRI-VILAB/KOALA-" in modelid_img2img.upper()) or ("PLAYGROUNDAI/PLAYGROUND-V2" in modelid_img2img.upper()) or (modelid_img2img == "segmind/SSD-1B") or (modelid_img2img == "segmind/Segmind-Vega") or (modelid_img2img == "dataautogpt3/OpenDalleV1.1") or (modelid_img2img == "dataautogpt3/ProteusV0.4")):
+    if is_sdxl(modelid_img2img):
         is_xl_img2img: bool = True
     else :        
         is_xl_img2img: bool = False        
