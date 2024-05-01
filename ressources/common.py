@@ -605,6 +605,15 @@ def exif_writer_png(exif_datas, filename):
         pass
     return
 
+def metadata_writer_gif(metadata, filename, fps):
+    frametime = int((1000/fps))
+    for j in range(len(filename)):
+        os.rename(filename[j], ".tmp/tmp.gif")
+        with Image.open(".tmp/tmp.gif") as image:
+            image.save(filename[j], save_all=True, duration=frametime, comment=metadata)
+        os.remove(".tmp/tmp.gif")
+    return
+
 def schedulerer(pipe, scheduler):
     karras = False
     sde = False

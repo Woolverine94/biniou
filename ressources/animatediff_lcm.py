@@ -211,13 +211,13 @@ def video_animatediff_lcm(
         timestamp = time.time()
         seed_id = random_seed + i*num_videos_per_prompt_animatediff_lcm if (seed_animatediff_lcm == 0) else seed_animatediff_lcm + i*num_videos_per_prompt_animatediff_lcm
         if output_type_animatediff_lcm == "mp4" :
-            savename = "outputs/tmp_animatelcm_out.mp4"
+            savename = ".tmp/tmp_animatelcm_out.mp4"
             savename_final = name_seeded_video(seed_id)
             export_to_video(result, savename, fps=num_fps_animatediff_lcm)
             os.rename(savename, savename_final)
         elif output_type_animatediff_lcm == "gif" :
             savename_final = []
-            savename = "outputs/tmp_animatelcm_out.gif"
+            savename = ".tmp/tmp_animatelcm_out.gif"
             savename_rename = name_seeded_gif(seed_id)
             export_to_gif(result, savename, fps=num_fps_animatediff_lcm)
             os.rename(savename, savename_rename)
@@ -241,6 +241,9 @@ def video_animatediff_lcm(
         f"Negative prompt={negative_prompt_animatediff_lcm} | "+\
         f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_animatediff_lcm) 
+
+    if output_type_animatediff_lcm == "gif":
+        metadata_writer_gif(reporting_animatediff_lcm, savename_final, num_fps_animatediff_lcm)
 
     del nsfw_filter_final, feat_ex, pipe_animatediff_lcm, generator, result
     clean_ram()
