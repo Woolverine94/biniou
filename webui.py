@@ -1072,6 +1072,12 @@ def change_model_type_animatediff_lcm(model_animatediff_lcm, model_adapters_anim
     else:
         return sampler_animatediff_lcm.update(value=scheduler), width_animatediff_lcm.update(), height_animatediff_lcm.update(), num_inference_step_animatediff_lcm.update(value=steps), guidance_scale_animatediff_lcm.update(value=cfg_scale), negative_prompt_animatediff_lcm.update(interactive=True)
 
+def change_output_type_animatediff_lcm(output_type_animatediff_lcm):
+    if output_type_animatediff_lcm == "mp4" :
+        return out_animatediff_lcm.update(visible=True), gif_out_animatediff_lcm.update(visible=False), btn_animatediff_lcm.update(visible=True), btn_animatediff_lcm_gif.update(visible=False)
+    elif output_type_animatediff_lcm == "gif" :
+        return out_animatediff_lcm.update(visible=False), gif_out_animatediff_lcm.update(visible=True), btn_animatediff_lcm.update(visible=False), btn_animatediff_lcm_gif.update(visible=True)
+
 ## Functions specific to Stable Video Diffusion
 
 def change_model_type_img2vid(model_img2vid):
@@ -7419,14 +7425,19 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column(scale=2):
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_animatediff_lcm = gr.Textbox(lines=4, max_lines=4, label="Prompt", info="Describe what you want in your video", placeholder="A space rocket with trails of smoke behind it launching into space from the desert, 4k, high resolution")
+                                    prompt_animatediff_lcm = gr.Textbox(lines=3, max_lines=3, label="Prompt", info="Describe what you want in your video", placeholder="A space rocket with trails of smoke behind it launching into space from the desert, 4k, high resolution")
                             with gr.Row():
                                 with gr.Column():
-                                    negative_prompt_animatediff_lcm = gr.Textbox(lines=4, max_lines=4, label="Negative Prompt", info="Describe what you DO NOT want in your video", placeholder="bad quality, worst quality, low resolution")
+                                    negative_prompt_animatediff_lcm = gr.Textbox(lines=3, max_lines=3, label="Negative Prompt", info="Describe what you DO NOT want in your video", placeholder="bad quality, worst quality, low resolution")
+                            with gr.Row():
+                                with gr.Column():
+                                    output_type_animatediff_lcm = gr.Radio(choices=["mp4", "gif"], value="mp4", label="Output type", info="Choose output type")
+                                with gr.Column():
+                                    gr.Number(visible=False)
                         model_animatediff_lcm.change(
                             fn=change_model_type_animatediff_lcm,
                             inputs=[
-                                model_animatediff_lcm, 
+                                model_animatediff_lcm,
                                 model_adapters_animatediff_lcm,
                             ],
                             outputs=[
@@ -7441,7 +7452,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         model_adapters_animatediff_lcm.change(
                             fn=change_model_type_animatediff_lcm,
                             inputs=[
-                                model_animatediff_lcm, 
+                                model_animatediff_lcm,
                                 model_adapters_animatediff_lcm,
                             ],
                             outputs=[
@@ -7454,17 +7465,26 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             ]
                         )
                         with gr.Column(scale=1):
-                            out_animatediff_lcm = gr.Video(label="Generated video", height=400, interactive=False)
+                            out_animatediff_lcm = gr.Video(label="Generated video", height=400, visible=True, interactive=False)
+                            gif_out_animatediff_lcm = gr.Gallery(
+                                label="Generated gif",
+                                show_label=True,
+                                elem_id="gallery",
+                                columns=3,
+                                height=400,
+                                visible=False
+                            )
                     with gr.Row():
                         with gr.Column():
-                            btn_animatediff_lcm = gr.Button("Generate 🚀", variant="primary")
+                            btn_animatediff_lcm = gr.Button("Generate 🚀", variant="primary", visible=True)
+                            btn_animatediff_lcm_gif = gr.Button("Generate 🚀", variant="primary", visible=False)
                         with gr.Column():
                             btn_animatediff_lcm_cancel = gr.Button("Cancel 🛑", variant="stop")
                             btn_animatediff_lcm_cancel.click(fn=initiate_stop_animatediff_lcm, inputs=None, outputs=None)
                         with gr.Column():
                             btn_animatediff_lcm_clear_input = gr.ClearButton(components=[prompt_animatediff_lcm, negative_prompt_animatediff_lcm], value="Clear inputs 🧹")
                         with gr.Column():
-                            btn_animatediff_lcm_clear_output = gr.ClearButton(components=[out_animatediff_lcm], value="Clear outputs 🧹")
+                            btn_animatediff_lcm_clear_output = gr.ClearButton(components=[out_animatediff_lcm, gif_out_animatediff_lcm], value="Clear outputs 🧹")
                             btn_animatediff_lcm.click(
                                 fn=video_animatediff_lcm,
                                 inputs=[
@@ -7482,12 +7502,50 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     num_prompt_animatediff_lcm,
                                     prompt_animatediff_lcm,
                                     negative_prompt_animatediff_lcm,
+                                    output_type_animatediff_lcm,
                                     nsfw_filter,
                                     use_gfpgan_animatediff_lcm,
                                     tkme_animatediff_lcm,
                                 ],
                                 outputs=out_animatediff_lcm,
                                 show_progress="full",
+                            )
+                            btn_animatediff_lcm_gif.click(
+                                fn=video_animatediff_lcm,
+                                inputs=[
+                                    model_animatediff_lcm,
+                                    model_adapters_animatediff_lcm,
+                                    num_inference_step_animatediff_lcm,
+                                    sampler_animatediff_lcm,
+                                    guidance_scale_animatediff_lcm,
+                                    seed_animatediff_lcm,
+                                    num_frames_animatediff_lcm,
+                                    num_fps_animatediff_lcm,
+                                    height_animatediff_lcm,
+                                    width_animatediff_lcm,
+                                    num_videos_per_prompt_animatediff_lcm,
+                                    num_prompt_animatediff_lcm,
+                                    prompt_animatediff_lcm,
+                                    negative_prompt_animatediff_lcm,
+                                    output_type_animatediff_lcm,
+                                    nsfw_filter,
+                                    use_gfpgan_animatediff_lcm,
+                                    tkme_animatediff_lcm,
+                                ],
+                                outputs=gif_out_animatediff_lcm,
+                                show_progress="full",
+                            )
+                            output_type_animatediff_lcm.change(
+                                fn=change_output_type_animatediff_lcm,
+                                inputs=[
+                                    output_type_animatediff_lcm,
+                                ],
+                                outputs=[
+                                    out_animatediff_lcm,
+                                    gif_out_animatediff_lcm,
+                                    btn_animatediff_lcm,
+                                    btn_animatediff_lcm_gif,
+                                    ]
                             )
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
