@@ -170,6 +170,8 @@ def video_animatediff_lcm(
     neg_conditioning = compel.build_conditioning_tensor(negative_prompt_animatediff_lcm)
     [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
 
+    if output_type_animatediff_lcm == "gif" :
+        savename_final = []
     final_seed = []
     for i in range (num_prompt_animatediff_lcm):
         result = pipe_animatediff_lcm(
@@ -216,7 +218,6 @@ def video_animatediff_lcm(
             export_to_video(result, savename, fps=num_fps_animatediff_lcm)
             os.rename(savename, savename_final)
         elif output_type_animatediff_lcm == "gif" :
-            savename_final = []
             savename = ".tmp/tmp_animatelcm_out.gif"
             savename_rename = name_seeded_gif(seed_id)
             export_to_gif(result, savename, fps=num_fps_animatediff_lcm)
