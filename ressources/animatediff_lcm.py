@@ -242,7 +242,9 @@ def video_animatediff_lcm(
         f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_animatediff_lcm) 
 
-    if output_type_animatediff_lcm == "gif":
+    if output_type_animatediff_lcm == "mp4":
+        metadata_writer_mp4(reporting_animatediff_lcm, savename_final)
+    elif output_type_animatediff_lcm == "gif":
         metadata_writer_gif(reporting_animatediff_lcm, savename_final, num_fps_animatediff_lcm)
 
     del nsfw_filter_final, feat_ex, pipe_animatediff_lcm, generator, result
