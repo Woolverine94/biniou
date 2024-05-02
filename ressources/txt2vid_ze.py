@@ -79,6 +79,7 @@ def video_txt2vid_ze(
     timestep_t1_txt2vid_ze :int, 
     prompt_txt2vid_ze, 
     negative_prompt_txt2vid_ze, 
+    output_type_txt2vid_ze,
     nsfw_filter, 
     num_chunks_txt2vid_ze :int, 
     use_gfpgan_txt2vid_ze,
@@ -140,6 +141,8 @@ def video_txt2vid_ze(
     for k in range(num_prompt_txt2vid_ze):
         generator.append(torch.Generator(device_txt2vid_ze).manual_seed(final_seed + k))
 
+    if output_type_txt2vid_ze == "gif" :
+        savename = []
     final_seed = []
     for j in range (num_prompt_txt2vid_ze):
         if num_chunks_txt2vid_ze != 1 :
@@ -205,8 +208,13 @@ def video_txt2vid_ze(
                 a += 1
             elif (a == num_frames_txt2vid_ze):
                 seed_id = random_seed + j*num_videos_per_prompt_txt2vid_ze + b if (seed_txt2vid_ze == 0) else seed_txt2vid_ze + j*num_videos_per_prompt_txt2vid_ze + b
-                savename = name_seeded_video(seed_id)
-                imageio.mimsave(savename, result, fps=num_fps_txt2vid_ze)
+                if output_type_txt2vid_ze == "mp4" :
+                    savename = name_seeded_video(seed_id)
+                    imageio.mimsave(savename, result, fps=num_fps_txt2vid_ze)
+                elif output_type_txt2vid_ze == "gif" :
+                    savename_gif = name_seeded_gif(seed_id)
+                    imageio.mimsave(savename_gif, result, format='GIF', fps=num_fps_txt2vid_ze)
+                    savename.append(savename_gif)
                 final_seed.append(seed_id)
                 a = 1
                 b += 1
@@ -232,6 +240,11 @@ def video_txt2vid_ze(
         f"Negative prompt={negative_prompt_txt2vid_ze} | "+\
         f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_txt2vid_ze) 
+
+    if output_type_txt2vid_ze == "mp4":
+        metadata_writer_mp4(reporting_txt2vid_ze, savename)
+    elif output_type_txt2vid_ze == "gif":
+        metadata_writer_gif(reporting_txt2vid_ze, savename, num_fps_txt2vid_ze)
 
     del nsfw_filter_final, feat_ex, pipe_txt2vid_ze, generator, result
     clean_ram()
