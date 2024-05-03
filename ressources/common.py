@@ -1456,6 +1456,7 @@ def write_ini_txt2vid_ms(
     sampler_txt2vid_ms,
     guidance_scale_txt2vid_ms,
     num_frames_txt2vid_ms,
+    num_fps_txt2vid_ms,
     num_prompt_txt2vid_ms,
     width_txt2vid_ms,
     height_txt2vid_ms,
@@ -1469,6 +1470,7 @@ num_inference_step_txt2vid_ms.value = {num_inference_step_txt2vid_ms}\n\
 sampler_txt2vid_ms.value = \"{sampler_txt2vid_ms}\"\n\
 guidance_scale_txt2vid_ms.value = {guidance_scale_txt2vid_ms}\n\
 num_frames_txt2vid_ms.value = {num_frames_txt2vid_ms}\n\
+num_fps_txt2vid_ms.value = {num_fps_txt2vid_ms}\n\
 num_prompt_txt2vid_ms.value = {num_prompt_txt2vid_ms}\n\
 width_txt2vid_ms.value = {width_txt2vid_ms}\n\
 height_txt2vid_ms.value = {height_txt2vid_ms}\n\

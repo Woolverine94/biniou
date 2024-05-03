@@ -3,7 +3,7 @@
 import gradio as gr
 import os
 from diffusers import DiffusionPipeline
-from diffusers.utils import export_to_video
+from diffusers.utils import export_to_video, export_to_gif
 from compel import Compel
 import torch
 import random
@@ -50,7 +50,9 @@ def video_txt2vid_ms(
     sampler_txt2vid_ms, 
     prompt_txt2vid_ms, 
     negative_prompt_txt2vid_ms, 
+    output_type_txt2vid_ms,
     num_frames_txt2vid_ms, 
+    num_fps_txt2vid_ms,
     num_prompt_txt2vid_ms, 
     guidance_scale_txt2vid_ms, 
     num_inference_step_txt2vid_ms, 
@@ -100,6 +102,8 @@ def video_txt2vid_ms(
     neg_conditioning = compel.build_conditioning_tensor(negative_prompt_txt2vid_ms)
     [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])    
 
+    if output_type_txt2vid_ms == "gif":
+        savename = []
     final_seed = []
     for i in range (num_prompt_txt2vid_ms):
         video_frames = pipe_txt2vid_ms(
@@ -112,14 +116,21 @@ def video_txt2vid_ms(
             num_frames=num_frames_txt2vid_ms,
             generator = generator[i],
             callback=check_txt2vid_ms, 
-        ).frames[i]
+        ).frames[0]
 
-        video_path = export_to_video(video_frames)
         seed_id = random_seed + i if (seed_txt2vid_ms == 0) else seed_txt2vid_ms + i
-        savename = name_seeded_video(seed_id)
-        shutil.move(video_path, savename)
+        if output_type_txt2vid_ms == "mp4" :
+            savename = name_seeded_video(seed_id)
+            export_to_video(video_frames, savename, fps=num_fps_txt2vid_ms)
+        elif output_type_txt2vid_ms == "gif" :
+            frames = []
+            for j in range(len(video_frames)):
+                frames.append(Image.fromarray((video_frames[j] * 255).astype('uint8'), 'RGB'))
+            savename_gif = name_seeded_gif(seed_id)
+            export_to_gif(frames, savename_gif, fps=num_fps_txt2vid_ms)
+            savename.append(savename_gif)
         final_seed.append(seed_id)
-                    
+
     print(f">>>[Modelscope 📼 ]: generated {num_prompt_txt2vid_ms} batch(es) of 1")
     reporting_txt2vid_ms = f">>>[Modelscope 📼 ]: "+\
         f"Settings : Model={modelid_txt2vid_ms} | "+\
@@ -127,12 +138,18 @@ def video_txt2vid_ms(
         f"Steps={num_inference_step_txt2vid_ms} | "+\
         f"CFG scale={guidance_scale_txt2vid_ms} | "+\
         f"Video length={num_frames_txt2vid_ms} frames | "+\
+        f"FPS={num_fps_txt2vid_ms} frames | "+\
         f"Size={width_txt2vid_ms}x{height_txt2vid_ms} | "+\
         f"GFPGAN={use_gfpgan_txt2vid_ms} | "+\
         f"Prompt={prompt_txt2vid_ms} | "+\
-        f"Negative prompt={negative_prompt_txt2vid_ms} |"+\
+        f"Negative prompt={negative_prompt_txt2vid_ms} | "+\
         f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_txt2vid_ms) 
+
+    if output_type_txt2vid_ms == "mp4":
+        metadata_writer_mp4(reporting_txt2vid_ms, savename)
+    elif output_type_txt2vid_ms == "gif":
+        metadata_writer_gif(reporting_txt2vid_ms, savename, num_fps_txt2vid_ms)
 
     del pipe_txt2vid_ms, generator, video_frames
     clean_ram()        

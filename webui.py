@@ -309,11 +309,13 @@ def change_model_type_txt2img_sd(model_txt2img_sd):
     else:
         return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=biniou_global_sd15_width), height_txt2img_sd.update(value=biniou_global_sd15_height), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value=""), negative_prompt_txt2img_sd.update(interactive=True)
 
+biniou_internal_previous_model_txt2img_sd = ""
 biniou_internal_previous_steps_txt2img_sd = ""
 biniou_internal_previous_cfg_txt2img_sd = ""
 biniou_internal_previous_trigger_txt2img_sd = ""
 biniou_internal_previous_sampler_txt2img_sd = ""
 def change_lora_model_txt2img_sd(model, lora_model, prompt, steps, cfg_scale, sampler):
+    global biniou_internal_previous_model_txt2img_sd
     global biniou_internal_previous_steps_txt2img_sd
     global biniou_internal_previous_cfg_txt2img_sd
     global biniou_internal_previous_trigger_txt2img_sd
@@ -336,6 +338,7 @@ def change_lora_model_txt2img_sd(model, lora_model, prompt, steps, cfg_scale, sa
         biniou_internal_previous_trigger_txt2img_sd = lora_keyword
 
     if (lora_model == "ByteDance/SDXL-Lightning") or (lora_model == "ByteDance/Hyper-SD"):
+        biniou_internal_previous_model_txt2img_sd = model
         biniou_internal_previous_steps_txt2img_sd = steps
         biniou_internal_previous_cfg_txt2img_sd = cfg_scale
         biniou_internal_previous_sampler_txt2img_sd = sampler
@@ -344,12 +347,19 @@ def change_lora_model_txt2img_sd(model, lora_model, prompt, steps, cfg_scale, sa
         elif (lora_model == "ByteDance/Hyper-SD"):
             return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(value=2), guidance_scale_txt2img_sd.update(value=0.0), sampler_txt2img_sd.update(value="TCD")
     else:
-        if ((biniou_internal_previous_steps_txt2img_sd == "") and (biniou_internal_previous_cfg_txt2img_sd == "") and (biniou_internal_previous_sampler_txt2img_sd == "")):
+        if ((biniou_internal_previous_model_txt2img_sd == "") and (biniou_internal_previous_steps_txt2img_sd == "") and (biniou_internal_previous_cfg_txt2img_sd == "") and (biniou_internal_previous_sampler_txt2img_sd == "")):
             return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(), guidance_scale_txt2img_sd.update(), sampler_txt2img_sd.update()
+        elif (biniou_internal_previous_model_txt2img_sd != model):
+            biniou_internal_previous_model_txt2img_sd = ""
+            biniou_internal_previous_steps_txt2img_sd = ""
+            biniou_internal_previous_cfg_txt2img_sd = ""
+            biniou_internal_previous_sampler_txt2img_sd = ""
+            return prompt_txt2img_sd.update(value=""), num_inference_step_txt2img_sd.update(), guidance_scale_txt2img_sd.update(), sampler_txt2img_sd.update()
         else:
             var_steps = int(biniou_internal_previous_steps_txt2img_sd)
             var_cfg_scale = float(biniou_internal_previous_cfg_txt2img_sd)
             var_sampler = str(biniou_internal_previous_sampler_txt2img_sd)
+            biniou_internal_previous_model_txt2img_sd = ""
             biniou_internal_previous_steps_txt2img_sd = ""
             biniou_internal_previous_cfg_txt2img_sd = ""
             biniou_internal_previous_sampler_txt2img_sd = ""
@@ -414,11 +424,13 @@ def change_model_type_txt2img_lcm(model_txt2img_lcm):
     else:
         return width_txt2img_lcm.update(value=biniou_global_sd15_width), height_txt2img_lcm.update(value=biniou_global_sd15_height), guidance_scale_txt2img_lcm.update(value=8.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
 
+biniou_internal_previous_model_txt2img_lcm = ""
 biniou_internal_previous_steps_txt2img_lcm = ""
 biniou_internal_previous_cfg_txt2img_lcm = ""
 biniou_internal_previous_trigger_txt2img_lcm = ""
 biniou_internal_previous_sampler_txt2img_lcm = ""
 def change_lora_model_txt2img_lcm(model, lora_model, prompt, steps, cfg_scale, sampler):
+    global biniou_internal_previous_model_txt2img_lcm
     global biniou_internal_previous_steps_txt2img_lcm
     global biniou_internal_previous_cfg_txt2img_lcm
     global biniou_internal_previous_trigger_txt2img_lcm
@@ -441,6 +453,7 @@ def change_lora_model_txt2img_lcm(model, lora_model, prompt, steps, cfg_scale, s
         biniou_internal_previous_trigger_txt2img_lcm = lora_keyword
 
     if (lora_model == "ByteDance/SDXL-Lightning") or (lora_model == "ByteDance/Hyper-SD"):
+        biniou_internal_previous_model_txt2img_lcm = model
         biniou_internal_previous_steps_txt2img_lcm = steps
         biniou_internal_previous_cfg_txt2img_lcm = cfg_scale
         biniou_internal_previous_sampler_txt2img_lcm = sampler
@@ -450,12 +463,19 @@ def change_lora_model_txt2img_lcm(model, lora_model, prompt, steps, cfg_scale, s
             return prompt_txt2img_lcm.update(value=lora_prompt_txt2img_lcm), num_inference_step_txt2img_lcm.update(value=2), guidance_scale_txt2img_lcm.update(value=0.0), sampler_txt2img_lcm.update(value="TCD")
     else:
 
-        if ((biniou_internal_previous_steps_txt2img_lcm == "") and (biniou_internal_previous_cfg_txt2img_lcm == "") and (biniou_internal_previous_sampler_txt2img_lcm == "")):
+        if ((biniou_internal_previous_model_txt2img_lcm == "") and (biniou_internal_previous_steps_txt2img_lcm == "") and (biniou_internal_previous_cfg_txt2img_lcm == "") and (biniou_internal_previous_sampler_txt2img_lcm == "")):
             return prompt_txt2img_lcm.update(value=lora_prompt_txt2img_lcm), num_inference_step_txt2img_lcm.update(), guidance_scale_txt2img_lcm.update(), sampler_txt2img_lcm.update()
+        elif (biniou_internal_previous_model_txt2img_lcm != model):
+            biniou_internal_previous_model_txt2img_lcm = ""
+            biniou_internal_previous_steps_txt2img_lcm = ""
+            biniou_internal_previous_cfg_txt2img_lcm = ""
+            biniou_internal_previous_sampler_txt2img_lcm = ""
+            return prompt_txt2img_lcm.update(value=""), num_inference_step_txt2img_lcm.update(), guidance_scale_txt2img_lcm.update(), sampler_txt2img_lcm.update()
         else:
             var_steps = int(biniou_internal_previous_steps_txt2img_lcm)
             var_cfg_scale = float(biniou_internal_previous_cfg_txt2img_lcm)
             var_sampler = str(biniou_internal_previous_sampler_txt2img_lcm)
+            biniou_internal_previous_model_txt2img_lcm = ""
             biniou_internal_previous_steps_txt2img_lcm = ""
             biniou_internal_previous_cfg_txt2img_lcm = ""
             biniou_internal_previous_sampler_txt2img_lcm = ""
@@ -542,11 +562,13 @@ def change_model_type_img2img(model_img2img):
     else:
         return sampler_img2img.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), txtinv_img2img.update(choices=list(txtinv_list(model_img2img).keys()), value=""), negative_prompt_img2img.update(interactive=True)
 
+biniou_internal_previous_model_img2img = ""
 biniou_internal_previous_steps_img2img = ""
 biniou_internal_previous_cfg_img2img = ""
 biniou_internal_previous_trigger_img2img = ""
 biniou_internal_previous_sampler_img2img = ""
 def change_lora_model_img2img(model, lora_model, prompt, steps, cfg_scale, sampler):
+    global biniou_internal_previous_model_img2img
     global biniou_internal_previous_steps_img2img
     global biniou_internal_previous_cfg_img2img
     global biniou_internal_previous_trigger_img2img
@@ -569,6 +591,7 @@ def change_lora_model_img2img(model, lora_model, prompt, steps, cfg_scale, sampl
         biniou_internal_previous_trigger_img2img = lora_keyword
 
     if (lora_model == "ByteDance/SDXL-Lightning") or (lora_model == "ByteDance/Hyper-SD"):
+        biniou_internal_previous_model_img2img = model
         biniou_internal_previous_steps_img2img = steps
         biniou_internal_previous_cfg_img2img = cfg_scale
         biniou_internal_previous_sampler_img2img = sampler
@@ -577,13 +600,19 @@ def change_lora_model_img2img(model, lora_model, prompt, steps, cfg_scale, sampl
         elif (lora_model == "ByteDance/Hyper-SD"):
             return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), sampler_img2img.update(value="TCD")
     else:
-
-        if ((biniou_internal_previous_steps_img2img == "") and (biniou_internal_previous_cfg_img2img == "") and (biniou_internal_previous_sampler_img2img == "")):
+        if ((biniou_internal_previous_model_img2img == "") and (biniou_internal_previous_steps_img2img == "") and (biniou_internal_previous_cfg_img2img == "") and (biniou_internal_previous_sampler_img2img == "")):
             return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(), guidance_scale_img2img.update(), sampler_img2img.update()
+        elif (biniou_internal_previous_model_img2img != model):
+            biniou_internal_previous_model_img2img = ""
+            biniou_internal_previous_steps_img2img = ""
+            biniou_internal_previous_cfg_img2img = ""
+            biniou_internal_previous_sampler_img2img = ""
+            return prompt_img2img.update(value=""), num_inference_step_img2img.update(), guidance_scale_img2img.update(), sampler_img2img.update()
         else:
             var_steps = int(biniou_internal_previous_steps_img2img)
             var_cfg_scale = float(biniou_internal_previous_cfg_img2img)
             var_sampler = str(biniou_internal_previous_sampler_img2img)
+            biniou_internal_previous_model_img2img = ""
             biniou_internal_previous_steps_img2img = ""
             biniou_internal_previous_cfg_img2img = ""
             biniou_internal_previous_sampler_img2img = ""
@@ -671,11 +700,13 @@ def change_model_type_img2img_ip(model_img2img_ip, source_type):
             negative_prompt_img2img_ip.update(interactive=True), \
             source_type_img2img_ip.update(interactive=True)
 
+biniou_internal_previous_model_img2img_ip = ""
 biniou_internal_previous_steps_img2img_ip = ""
 biniou_internal_previous_cfg_img2img_ip = ""
 biniou_internal_previous_trigger_img2img_ip = ""
 biniou_internal_previous_sampler_img2img_ip = ""
 def change_lora_model_img2img_ip(model, lora_model, prompt, steps, cfg_scale, sampler):
+    global biniou_internal_previous_model_img2img_ip
     global biniou_internal_previous_steps_img2img_ip
     global biniou_internal_previous_cfg_img2img_ip
     global biniou_internal_previous_trigger_img2img_ip
@@ -698,6 +729,7 @@ def change_lora_model_img2img_ip(model, lora_model, prompt, steps, cfg_scale, sa
         biniou_internal_previous_trigger_img2img_ip = lora_keyword
 
     if (lora_model == "ByteDance/SDXL-Lightning") or (lora_model == "ByteDance/Hyper-SD"):
+        biniou_internal_previous_model_img2img_ip = model
         biniou_internal_previous_steps_img2img_ip = steps
         biniou_internal_previous_cfg_img2img_ip = cfg_scale
         biniou_internal_previous_sampler_img2img_ip = sampler
@@ -706,12 +738,19 @@ def change_lora_model_img2img_ip(model, lora_model, prompt, steps, cfg_scale, sa
         elif (lora_model == "ByteDance/Hyper-SD"):
             return prompt_img2img_ip.update(value=lora_prompt_img2img_ip), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), sampler_img2img_ip.update(value="TCD")
     else:
-        if ((biniou_internal_previous_steps_img2img_ip == "") and (biniou_internal_previous_cfg_img2img_ip == "") and (biniou_internal_previous_sampler_img2img_ip == "")):
+        if ((biniou_internal_previous_model_img2img_ip == "") and (biniou_internal_previous_steps_img2img_ip == "") and (biniou_internal_previous_cfg_img2img_ip == "") and (biniou_internal_previous_sampler_img2img_ip == "")):
             return prompt_img2img_ip.update(value=lora_prompt_img2img_ip), num_inference_step_img2img_ip.update(), guidance_scale_img2img_ip.update(), sampler_img2img_ip.update()
+        elif (biniou_internal_previous_model_img2img_ip != model):
+            biniou_internal_previous_model_img2img_ip = ""
+            biniou_internal_previous_steps_img2img_ip = ""
+            biniou_internal_previous_cfg_img2img_ip = ""
+            biniou_internal_previous_sampler_img2img_ip = ""
+            return prompt_img2img_ip.update(value=""), num_inference_step_img2img_ip.update(), guidance_scale_img2img_ip.update(), sampler_img2img_ip.update()
         else:
             var_steps = int(biniou_internal_previous_steps_img2img_ip)
             var_cfg_scale = float(biniou_internal_previous_cfg_img2img_ip)
             var_sampler = str(biniou_internal_previous_sampler_img2img_ip)
+            biniou_internal_previous_model_img2img_ip = ""
             biniou_internal_previous_steps_img2img_ip = ""
             biniou_internal_previous_cfg_img2img_ip = ""
             biniou_internal_previous_sampler_img2img_ip = ""
@@ -822,11 +861,13 @@ def change_model_type_controlnet(model_controlnet):
     else:
         return sampler_controlnet.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=7.5), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), txtinv_controlnet.update(choices=list(txtinv_list(model_controlnet).keys()), value=""), negative_prompt_controlnet.update(interactive=True), img_preview_controlnet.update(value=None), gs_img_preview_controlnet.update(value=None)
 
+biniou_internal_previous_model_controlnet = ""
 biniou_internal_previous_steps_controlnet = ""
 biniou_internal_previous_cfg_controlnet = ""
 biniou_internal_previous_trigger_controlnet = ""
 biniou_internal_previous_sampler_controlnet = ""
 def change_lora_model_controlnet(model, lora_model, prompt, steps, cfg_scale, sampler):
+    global biniou_internal_previous_model_controlnet
     global biniou_internal_previous_steps_controlnet
     global biniou_internal_previous_cfg_controlnet
     global biniou_internal_previous_trigger_controlnet
@@ -849,6 +890,7 @@ def change_lora_model_controlnet(model, lora_model, prompt, steps, cfg_scale, sa
         biniou_internal_previous_trigger_controlnet = lora_keyword
 
     if (lora_model == "ByteDance/SDXL-Lightning") or (lora_model == "ByteDance/Hyper-SD"):
+        biniou_internal_previous_model_controlnet = model
         biniou_internal_previous_steps_controlnet = steps
         biniou_internal_previous_cfg_controlnet = cfg_scale
         biniou_internal_previous_sampler_controlnet = sampler
@@ -858,12 +900,19 @@ def change_lora_model_controlnet(model, lora_model, prompt, steps, cfg_scale, sa
             return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=2), guidance_scale_controlnet.update(value=0.0), sampler_controlnet.update(value="TCD")
 
     else:
-        if ((biniou_internal_previous_steps_controlnet == "") and (biniou_internal_previous_cfg_controlnet == "") and (biniou_internal_previous_sampler_controlnet == "")):
+        if ((biniou_internal_previous_model_controlnet == "") and (biniou_internal_previous_steps_controlnet == "") and (biniou_internal_previous_cfg_controlnet == "") and (biniou_internal_previous_sampler_controlnet == "")):
             return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(), guidance_scale_controlnet.update(), sampler_controlnet.update()
+        elif (biniou_internal_previous_model_controlnet != model):
+            biniou_internal_previous_model_controlnet = ""
+            biniou_internal_previous_steps_controlnet = ""
+            biniou_internal_previous_cfg_controlnet = ""
+            biniou_internal_previous_sampler_controlnet = ""
+            return prompt_controlnet.update(value=""), num_inference_step_controlnet.update(), guidance_scale_controlnet.update(), sampler_controlnet.update()
         else:
             var_steps = int(biniou_internal_previous_steps_controlnet)
             var_cfg_scale = float(biniou_internal_previous_cfg_controlnet)
             var_sampler = str(biniou_internal_previous_sampler_controlnet)
+            biniou_internal_previous_model_controlnet = ""
             biniou_internal_previous_steps_controlnet = ""
             biniou_internal_previous_cfg_controlnet = ""
             biniou_internal_previous_sampler_controlnet = ""
@@ -938,11 +987,13 @@ def change_model_type_faceid_ip(model_faceid_ip, prompt):
     else:
         return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(value=biniou_global_sd15_width), height_faceid_ip.update(value=biniou_global_sd15_height), num_inference_step_faceid_ip.update(value=35), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True), prompt_faceid_ip.update()
 
+biniou_internal_previous_model_faceid_ip = ""
 biniou_internal_previous_steps_faceid_ip = ""
 biniou_internal_previous_cfg_faceid_ip = ""
 biniou_internal_previous_trigger_faceid_ip = ""
 biniou_internal_previous_sampler_faceid_ip = ""
 def change_lora_model_faceid_ip(model, lora_model, prompt, steps, cfg_scale, sampler):
+    global biniou_internal_previous_model_faceid_ip
     global biniou_internal_previous_steps_faceid_ip
     global biniou_internal_previous_cfg_faceid_ip
     global biniou_internal_previous_trigger_faceid_ip
@@ -965,6 +1016,7 @@ def change_lora_model_faceid_ip(model, lora_model, prompt, steps, cfg_scale, sam
         biniou_internal_previous_trigger_faceid_ip = lora_keyword
 
     if (lora_model == "ByteDance/SDXL-Lightning") or (lora_model == "ByteDance/Hyper-SD"):
+        biniou_internal_previous_model_faceid_ip = model
         biniou_internal_previous_steps_faceid_ip = steps
         biniou_internal_previous_cfg_faceid_ip = cfg_scale
         biniou_internal_previous_sampler_faceid_ip = sampler
@@ -973,12 +1025,19 @@ def change_lora_model_faceid_ip(model, lora_model, prompt, steps, cfg_scale, sam
         elif (lora_model == "ByteDance/Hyper-SD"):
             return prompt_faceid_ip.update(value=lora_prompt_faceid_ip), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), sampler_faceid_ip.update(value="TCD")
     else:
-        if ((biniou_internal_previous_steps_faceid_ip == "") and (biniou_internal_previous_cfg_faceid_ip == "") and (biniou_internal_previous_sampler_faceid_ip == "")):
+        if ((biniou_internal_previous_model_faceid_ip == "") and (biniou_internal_previous_steps_faceid_ip == "") and (biniou_internal_previous_cfg_faceid_ip == "") and (biniou_internal_previous_sampler_faceid_ip == "")):
             return prompt_faceid_ip.update(value=lora_prompt_faceid_ip), num_inference_step_faceid_ip.update(), guidance_scale_faceid_ip.update(), sampler_faceid_ip.update()
+        elif (biniou_internal_previous_model_faceid_ip != model):
+            biniou_internal_previous_model_faceid_ip = ""
+            biniou_internal_previous_steps_faceid_ip = ""
+            biniou_internal_previous_cfg_faceid_ip = ""
+            biniou_internal_previous_sampler_faceid_ip = ""
+            return prompt_faceid_ip.update(value=""), num_inference_step_faceid_ip.update(), guidance_scale_faceid_ip.update(), sampler_faceid_ip.update()
         else:
             var_steps = int(biniou_internal_previous_steps_faceid_ip)
             var_cfg_scale = float(biniou_internal_previous_cfg_faceid_ip)
             var_sampler = str(biniou_internal_previous_sampler_faceid_ip)
+            biniou_internal_previous_model_faceid_ip = ""
             biniou_internal_previous_steps_faceid_ip = ""
             biniou_internal_previous_cfg_faceid_ip = ""
             biniou_internal_previous_sampler_faceid_ip = ""
@@ -1032,6 +1091,12 @@ def change_source_type_musicgen_mel(source_type_musicgen_mel):
 ## Functions specific to Bark
 
 ## Functions specific to Modelscope
+
+def change_output_type_txt2vid_ms(output_type_txt2vid_ms):
+    if output_type_txt2vid_ms == "mp4" :
+        return out_txt2vid_ms.update(visible=True), gif_out_txt2vid_ms.update(visible=False), btn_txt2vid_ms.update(visible=True), btn_txt2vid_ms_gif.update(visible=False)
+    elif output_type_txt2vid_ms == "gif" :
+        return out_txt2vid_ms.update(visible=False), gif_out_txt2vid_ms.update(visible=True), btn_txt2vid_ms.update(visible=False), btn_txt2vid_ms_gif.update(visible=True)
 
 ## Functions specific to Text2Video-Zero
 
@@ -6997,16 +7062,18 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 guidance_scale_txt2vid_ms = gr.Slider(0.1, 20.0, step=0.1, value=4.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
                             with gr.Column():
+                                seed_txt2vid_ms = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
+                            with gr.Column():
                                 num_frames_txt2vid_ms = gr.Slider(1, 1200, step=1, value=8, label="Video Length (frames)", info="Number of frames in the output video")
                             with gr.Column():
-                                num_prompt_txt2vid_ms = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                num_fps_txt2vid_ms = gr.Slider(1, 120, step=1, value=8, label="Frames per second", info="Number of frames per second")
                         with gr.Row():
                             with gr.Column():
                                 width_txt2vid_ms = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=576, label="Video Width", info="Width of outputs")
                             with gr.Column():
                                 height_txt2vid_ms = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=320, label="Video Height", info="Height of outputs")
                             with gr.Column():
-                                seed_txt2vid_ms = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
+                                num_prompt_txt2vid_ms = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
                         with gr.Row():
                             with gr.Column():    
                                 use_gfpgan_txt2vid_ms = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
@@ -7024,11 +7091,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         num_inference_step_txt2vid_ms,
                                         sampler_txt2vid_ms,
                                         guidance_scale_txt2vid_ms,
+                                        seed_txt2vid_ms,
                                         num_frames_txt2vid_ms,
-                                        num_prompt_txt2vid_ms,
+                                        num_fps_txt2vid_ms,
                                         width_txt2vid_ms,
                                         height_txt2vid_ms,
-                                        seed_txt2vid_ms,
+                                        num_prompt_txt2vid_ms,
                                         use_gfpgan_txt2vid_ms,
                                         ]
                                     )
@@ -7044,22 +7112,36 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_txt2vid_ms = gr.Textbox(lines=4, max_lines=4, label="Prompt", info="Describe what you want in your video", placeholder="Darth vader is surfing on waves, photo realistic, best quality")
+                                    prompt_txt2vid_ms = gr.Textbox(lines=3, max_lines=3, label="Prompt", info="Describe what you want in your video", placeholder="Darth vader is surfing on waves, photo realistic, best quality")
                             with gr.Row():
                                 with gr.Column():
-                                    negative_prompt_txt2vid_ms = gr.Textbox(lines=4, max_lines=4, label="Negative Prompt", info="Describe what you DO NOT want in your video", placeholder="out of frame, ugly")
+                                    negative_prompt_txt2vid_ms = gr.Textbox(lines=3, max_lines=3, label="Negative Prompt", info="Describe what you DO NOT want in your video", placeholder="out of frame, ugly")
+                            with gr.Row():
+                                with gr.Column():
+                                   output_type_txt2vid_ms = gr.Radio(choices=["mp4", "gif"], value="mp4", label="Output type", info="Choose output type")
+                                with gr.Column():
+                                    gr.Number(visible=False)
                         with gr.Column():
-                            out_txt2vid_ms = gr.Video(label="Generated video", height=400, interactive=False)
+                            out_txt2vid_ms = gr.Video(label="Generated video", height=400, visible=True, interactive=False)
+                            gif_out_txt2vid_ms = gr.Gallery(
+                                label="Generated gif",
+                                show_label=True,
+                                elem_id="gallery",
+                                columns=3,
+                                height=400,
+                                visible=False
+                            )
                     with gr.Row():
                         with gr.Column():
-                            btn_txt2vid_ms = gr.Button("Generate 🚀", variant="primary")
+                            btn_txt2vid_ms = gr.Button("Generate 🚀", variant="primary", visible=True)
+                            btn_txt2vid_ms_gif = gr.Button("Generate 🚀", variant="primary", visible=False)
                         with gr.Column():                            
                             btn_txt2vid_ms_cancel = gr.Button("Cancel 🛑", variant="stop")
                             btn_txt2vid_ms_cancel.click(fn=initiate_stop_txt2vid_ms, inputs=None, outputs=None)                              
                         with gr.Column():
                             btn_txt2vid_ms_clear_input = gr.ClearButton(components=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms], value="Clear inputs 🧹")
                         with gr.Column():                            
-                            btn_txt2vid_ms_clear_output = gr.ClearButton(components=[out_txt2vid_ms], value="Clear outputs 🧹")                                                   
+                            btn_txt2vid_ms_clear_output = gr.ClearButton(components=[out_txt2vid_ms, gif_out_txt2vid_ms], value="Clear outputs 🧹")
                             btn_txt2vid_ms.click(
                                 fn=video_txt2vid_ms,
                                 inputs=[
@@ -7067,7 +7149,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     sampler_txt2vid_ms,
                                     prompt_txt2vid_ms,
                                     negative_prompt_txt2vid_ms,
+                                    output_type_txt2vid_ms,
                                     num_frames_txt2vid_ms,
+                                    num_fps_txt2vid_ms,
                                     num_prompt_txt2vid_ms,
                                     guidance_scale_txt2vid_ms,
                                     num_inference_step_txt2vid_ms,
@@ -7078,6 +7162,39 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 ],
                                 outputs=out_txt2vid_ms,
                                 show_progress="full",
+                            )
+                            btn_txt2vid_ms_gif.click(
+                                fn=video_txt2vid_ms,
+                                inputs=[
+                                    model_txt2vid_ms,
+                                    sampler_txt2vid_ms,
+                                    prompt_txt2vid_ms,
+                                    negative_prompt_txt2vid_ms,
+                                    output_type_txt2vid_ms,
+                                    num_frames_txt2vid_ms,
+                                    num_fps_txt2vid_ms,
+                                    num_prompt_txt2vid_ms,
+                                    guidance_scale_txt2vid_ms,
+                                    num_inference_step_txt2vid_ms,
+                                    height_txt2vid_ms,
+                                    width_txt2vid_ms,
+                                    seed_txt2vid_ms,
+                                    use_gfpgan_txt2vid_ms,
+                                ],
+                                outputs=gif_out_txt2vid_ms,
+                                show_progress="full",
+                            )
+                            output_type_txt2vid_ms.change(
+                                fn=change_output_type_txt2vid_ms,
+                                inputs=[
+                                    output_type_txt2vid_ms,
+                                ],
+                                outputs=[
+                                    out_txt2vid_ms,
+                                    gif_out_txt2vid_ms,
+                                    btn_txt2vid_ms,
+                                    btn_txt2vid_ms_gif,
+                                    ]
                             )
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
@@ -7485,7 +7602,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with open(f".ini/{module_name_animatediff_lcm.value}.ini", "r", encoding="utf-8") as fichier:
                                 exec(fichier.read())
                     with gr.Row():
-                        with gr.Column(scale=2):
+                        with gr.Column():
                             with gr.Row():
                                 with gr.Column():
                                     prompt_animatediff_lcm = gr.Textbox(lines=3, max_lines=3, label="Prompt", info="Describe what you want in your video", placeholder="A space rocket with trails of smoke behind it launching into space from the desert, 4k, high resolution")
