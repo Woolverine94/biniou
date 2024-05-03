@@ -62,6 +62,7 @@ def image_vid2vid_ze(
     vid_vid2vid_ze,
     prompt_vid2vid_ze,
     negative_prompt_vid2vid_ze,
+    output_type_vid2vid_ze,
     num_images_per_prompt_vid2vid_ze,
     num_prompt_vid2vid_ze,
     guidance_scale_vid2vid_ze,
@@ -125,6 +126,8 @@ def image_vid2vid_ze(
     if negative_prompt_vid2vid_ze == "None":
         negative_prompt_vid2vid_ze = ""
 
+    if output_type_vid2vid_ze == "gif" :
+        savename = []
     final_seed = []
     for i in range (num_prompt_vid2vid_ze):
         final_image = []
@@ -143,13 +146,18 @@ def image_vid2vid_ze(
 
         for j in range(len(image)):
             if use_gfpgan_vid2vid_ze == True :
-                image[j] = image_gfpgan_mini(image[j])             
+                image[j] = image_gfpgan_mini(image[j])
             final_image.append(image[j])
 
         seed_id = random_seed + i if (seed_vid2vid_ze == 0) else seed_vid2vid_ze + i
-        savename = name_seeded_video(seed_id)
-        final_seed.append(seed_id)
-        final_video = imageio.mimsave(savename, final_image, fps=num_fps_vid2vid_ze)            
+        if output_type_vid2vid_ze == "mp4" :
+            savename = name_seeded_video(seed_id)
+            final_seed.append(seed_id)
+            imageio.mimsave(savename, final_image, fps=num_fps_vid2vid_ze)
+        elif output_type_vid2vid_ze == "gif" :
+            savename_gif = name_seeded_gif(seed_id)
+            imageio.mimsave(savename_gif, final_image, format='GIF', loop=0, fps=num_fps_vid2vid_ze)
+            savename.append(savename_gif)
 
     print(f">>>[Video Instruct-Pix2Pix 🖌️ ]: generated {num_prompt_vid2vid_ze} batch(es) of {num_images_per_prompt_vid2vid_ze}")
     reporting_vid2vid_ze = f">>>[Video Instruct-Pix2Pix 🖌️ ]: "+\
@@ -168,6 +176,11 @@ def image_vid2vid_ze(
         f"Negative prompt={negative_prompt_vid2vid_ze} | "+\
         f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_vid2vid_ze) 
+
+    if output_type_vid2vid_ze == "mp4":
+        metadata_writer_mp4(reporting_vid2vid_ze, savename)
+    elif output_type_vid2vid_ze == "gif":
+        metadata_writer_gif(reporting_vid2vid_ze, savename, num_fps_vid2vid_ze)
 
     del nsfw_filter_final, feat_ex, pipe_vid2vid_ze, generator, image
     clean_ram()            

@@ -1160,6 +1160,12 @@ def change_model_type_img2vid(model_img2vid):
 
 ## Functions specific to Video Instruct-Pix2Pix
 
+def change_output_type_vid2vid_ze(output_type_vid2vid_ze):
+    if output_type_vid2vid_ze == "mp4" :
+        return out_vid2vid_ze.update(visible=True), gif_out_vid2vid_ze.update(visible=False), btn_vid2vid_ze.update(visible=True), btn_vid2vid_ze_gif.update(visible=False)
+    elif output_type_vid2vid_ze == "gif" :
+        return out_vid2vid_ze.update(visible=False), gif_out_vid2vid_ze.update(visible=True), btn_vid2vid_ze.update(visible=False), btn_vid2vid_ze_gif.update(visible=True)
+
 ## Functions specific to txt2shape
 def zip_download_file_txt2shape(content):
     savename = zipper(content)
@@ -8038,24 +8044,39 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_vid2vid_ze = gr.Textbox(lines=5, max_lines=5, label="Prompt", info="Describe what you want to modify in your input video", placeholder="make it Van Gogh Starry Night style")
+                                    prompt_vid2vid_ze = gr.Textbox(lines=3, max_lines=3, label="Prompt", info="Describe what you want to modify in your input video", placeholder="make it Van Gogh Starry Night style")
+                            with gr.Row():
                                 with gr.Column():
-                                    negative_prompt_vid2vid_ze = gr.Textbox(lines=5, max_lines=5, label="Negative Prompt", info="Describe what you DO NOT want in your output video", placeholder="out of frame, bad quality, blurry, ugly, text, characters, logo")
+                                    negative_prompt_vid2vid_ze = gr.Textbox(lines=3, max_lines=3, label="Negative Prompt", info="Describe what you DO NOT want in your output video", placeholder="out of frame, bad quality, blurry, ugly, text, characters, logo")
+                            with gr.Row():
+                                with gr.Column():
+                                    output_type_vid2vid_ze = gr.Radio(choices=["mp4", "gif"], value="mp4", label="Output type", info="Choose output type")
+                                with gr.Column():
+                                    gr.Number(visible=False)
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
-                                    out_vid2vid_ze = gr.Video(label="Generated video", height=400, interactive=False)
+                                    out_vid2vid_ze = gr.Video(label="Generated video", height=400, visible=True, interactive=False)
+                                    gif_out_vid2vid_ze = gr.Gallery(
+                                        label="Generated gif",
+                                        show_label=True,
+                                        elem_id="gallery",
+                                        columns=3,
+                                        height=400,
+                                        visible=False
+                                    )
                                     gs_out_vid2vid_ze = gr.State()
                     with gr.Row():
                         with gr.Column():
-                            btn_vid2vid_ze = gr.Button("Generate 🚀", variant="primary")
+                            btn_vid2vid_ze = gr.Button("Generate 🚀", variant="primary", visible=True)
+                            btn_vid2vid_ze_gif = gr.Button("Generate 🚀", variant="primary", visible=False)
                         with gr.Column():                            
                             btn_vid2vid_ze_cancel = gr.Button("Cancel 🛑", variant="stop")
                             btn_vid2vid_ze_cancel.click(fn=initiate_stop_vid2vid_ze, inputs=None, outputs=None)                              
                         with gr.Column():
                             btn_vid2vid_ze_clear_input = gr.ClearButton(components=[vid_vid2vid_ze, prompt_vid2vid_ze, negative_prompt_vid2vid_ze], value="Clear inputs 🧹")
                         with gr.Column():                            
-                            btn_vid2vid_ze_clear_output = gr.ClearButton(components=[out_vid2vid_ze, gs_out_vid2vid_ze], value="Clear outputs 🧹")
+                            btn_vid2vid_ze_clear_output = gr.ClearButton(components=[out_vid2vid_ze, gif_out_vid2vid_ze, gs_out_vid2vid_ze], value="Clear outputs 🧹")
                             btn_vid2vid_ze.click(
                                 fn=image_vid2vid_ze,
                                 inputs=[
@@ -8064,6 +8085,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     vid_vid2vid_ze,
                                     prompt_vid2vid_ze,
                                     negative_prompt_vid2vid_ze,
+                                    output_type_vid2vid_ze,
                                     num_images_per_prompt_vid2vid_ze,
                                     num_prompt_vid2vid_ze,
                                     guidance_scale_vid2vid_ze,
@@ -8080,7 +8102,45 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 ],
                                 outputs=[out_vid2vid_ze, gs_out_vid2vid_ze],
                                 show_progress="full",
-                            )  
+                            )
+                            btn_vid2vid_ze_gif.click(
+                                fn=image_vid2vid_ze,
+                                inputs=[
+                                    model_vid2vid_ze,
+                                    sampler_vid2vid_ze,
+                                    vid_vid2vid_ze,
+                                    prompt_vid2vid_ze,
+                                    negative_prompt_vid2vid_ze,
+                                    output_type_vid2vid_ze,
+                                    num_images_per_prompt_vid2vid_ze,
+                                    num_prompt_vid2vid_ze,
+                                    guidance_scale_vid2vid_ze,
+                                    image_guidance_scale_vid2vid_ze,
+                                    num_inference_step_vid2vid_ze,
+                                    height_vid2vid_ze,
+                                    width_vid2vid_ze,
+                                    seed_vid2vid_ze,
+                                    num_frames_vid2vid_ze,
+                                    num_fps_vid2vid_ze,
+                                    use_gfpgan_vid2vid_ze,
+                                    nsfw_filter,
+                                    tkme_vid2vid_ze,
+                                ],
+                                outputs=[gif_out_vid2vid_ze, gs_out_vid2vid_ze],
+                                show_progress="full",
+                            )
+                            output_type_vid2vid_ze.change(
+                                fn=change_output_type_vid2vid_ze,
+                                inputs=[
+                                    output_type_vid2vid_ze,
+                                ],
+                                outputs=[
+                                    out_vid2vid_ze,
+                                    gif_out_vid2vid_ze,
+                                    btn_vid2vid_ze,
+                                    btn_vid2vid_ze_gif,
+                                    ]
+                            )
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():

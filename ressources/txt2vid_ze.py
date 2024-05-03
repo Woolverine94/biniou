@@ -213,7 +213,7 @@ def video_txt2vid_ze(
                     imageio.mimsave(savename, result, fps=num_fps_txt2vid_ze)
                 elif output_type_txt2vid_ze == "gif" :
                     savename_gif = name_seeded_gif(seed_id)
-                    imageio.mimsave(savename_gif, result, format='GIF', fps=num_fps_txt2vid_ze)
+                    imageio.mimsave(savename_gif, result, format='GIF', loop=0, fps=num_fps_txt2vid_ze)
                     savename.append(savename_gif)
                 final_seed.append(seed_id)
                 a = 1
