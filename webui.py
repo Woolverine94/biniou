@@ -1158,6 +1158,12 @@ def change_model_type_img2vid(model_img2vid):
     else:
         return num_frames_img2vid.update(value=25)
 
+def change_output_type_img2vid(output_type_img2vid):
+    if output_type_img2vid == "mp4" :
+        return out_img2vid.update(visible=True), gif_out_img2vid.update(visible=False), btn_img2vid.update(visible=True), btn_img2vid_gif.update(visible=False)
+    elif output_type_img2vid == "gif" :
+        return out_img2vid.update(visible=False), gif_out_img2vid.update(visible=True), btn_img2vid.update(visible=False), btn_img2vid_gif.update(visible=True)
+
 ## Functions specific to Video Instruct-Pix2Pix
 
 def change_output_type_vid2vid_ze(output_type_vid2vid_ze):
@@ -7872,25 +7878,39 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         if test_ini_exist(module_name_img2vid.value) :
                             with open(f".ini/{module_name_img2vid.value}.ini", "r", encoding="utf-8") as fichier:
                                 exec(fichier.read())
-
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
-                                    img_img2vid = gr.Image(label="Input image", type="filepath", height=400)
-                                    img_img2vid.change(image_upload_event, inputs=img_img2vid, outputs=[width_img2vid, height_img2vid])
+                                    with gr.Row():
+                                        img_img2vid = gr.Image(label="Input image", type="filepath", height=275)
+                                        img_img2vid.change(image_upload_event, inputs=img_img2vid, outputs=[width_img2vid, height_img2vid])
+                                    with gr.Row():
+                                        with gr.Column():
+                                            output_type_img2vid = gr.Radio(choices=["mp4", "gif"], value="mp4", label="Output type", info="Choose output type")
+#                                        with gr.Column():
+#                                            gr.Number(visible=False)
                         with gr.Column():
-                            out_img2vid = gr.Video(label="Generated video", height=400, interactive=False)
+                            out_img2vid = gr.Video(label="Generated video", height=400, visible=True, interactive=False)
+                            gif_out_img2vid = gr.Gallery(
+                                label="Generated gif",
+                                show_label=True,
+                                elem_id="gallery",
+                                columns=3,
+                                height=400,
+                                visible=False
+                            )
                     with gr.Row():
                         with gr.Column():
-                            btn_img2vid = gr.Button("Generate 🚀", variant="primary")
+                            btn_img2vid = gr.Button("Generate 🚀", variant="primary", visible=True)
+                            btn_img2vid_gif = gr.Button("Generate 🚀", variant="primary", visible=False)
                         with gr.Column():
                             btn_img2vid_cancel = gr.Button("Cancel 🛑", variant="stop")
                             btn_img2vid_cancel.click(fn=initiate_stop_img2vid, inputs=None, outputs=None)
                         with gr.Column():
                             btn_img2vid_clear_input = gr.ClearButton(components=img_img2vid, value="Clear inputs 🧹")
                         with gr.Column():
-                            btn_img2vid_clear_output = gr.ClearButton(components=out_img2vid, value="Clear outputs 🧹")
+                            btn_img2vid_clear_output = gr.ClearButton(components=[out_img2vid, gif_out_img2vid], value="Clear outputs 🧹")
                             btn_img2vid.click(
                                 fn=video_img2vid,
                                 inputs=[
@@ -7911,11 +7931,53 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     noise_aug_strength_img2vid,
                                     nsfw_filter,
                                     img_img2vid,
+                                    output_type_img2vid,
                                     use_gfpgan_img2vid,
                                     tkme_img2vid,
                                 ],
                                 outputs=out_img2vid,
                                 show_progress="full",
+                            )
+
+                            btn_img2vid_gif.click(
+                                fn=video_img2vid,
+                                inputs=[
+                                    model_img2vid,
+                                    num_inference_steps_img2vid,
+                                    sampler_img2vid,
+                                    min_guidance_scale_img2vid,
+                                    max_guidance_scale_img2vid,
+                                    seed_img2vid,
+                                    num_frames_img2vid,
+                                    num_fps_img2vid,
+                                    decode_chunk_size_img2vid,
+                                    width_img2vid,
+                                    height_img2vid,
+                                    num_prompt_img2vid,
+                                    num_videos_per_prompt_img2vid,
+                                    motion_bucket_id_img2vid,
+                                    noise_aug_strength_img2vid,
+                                    nsfw_filter,
+                                    img_img2vid,
+                                    output_type_img2vid,
+                                    use_gfpgan_img2vid,
+                                    tkme_img2vid,
+                                ],
+                                outputs=gif_out_img2vid,
+                                show_progress="full",
+                            )
+
+                            output_type_img2vid.change(
+                                fn=change_output_type_img2vid,
+                                inputs=[
+                                    output_type_img2vid,
+                                ],
+                                outputs=[
+                                    out_img2vid,
+                                    gif_out_img2vid,
+                                    btn_img2vid,
+                                    btn_img2vid_gif,
+                                    ]
                             )
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():

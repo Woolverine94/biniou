@@ -3,7 +3,7 @@
 import gradio as gr
 import os
 from diffusers import StableVideoDiffusionPipeline
-from diffusers.utils import export_to_video
+from diffusers.utils import export_to_video, export_to_gif
 import numpy as np
 import torch
 import random
@@ -67,6 +67,7 @@ def video_img2vid(
     noise_aug_strength_img2vid,
     nsfw_filter,
     img_img2vid,
+    output_type_img2vid,
     use_gfpgan_img2vid,
     tkme_img2vid,
     progress_img2vid=gr.Progress(track_tqdm=True)
@@ -107,6 +108,8 @@ def video_img2vid(
     image_input = PIL.Image.open(img_img2vid)
     image_input = image_input.convert("RGB")
 
+    if output_type_img2vid == "gif" :
+        savename = []
     final_seed = []
     for i in range (num_prompt_img2vid):
         result = pipe_img2vid(
@@ -127,10 +130,15 @@ def video_img2vid(
             callback_on_step_end_tensor_inputs=['latents'],
         ).frames[0]
 
-        timestamp = time.time()
         seed_id = random_seed + i*num_videos_per_prompt_img2vid if (seed_img2vid == 0) else seed_img2vid + i*num_videos_per_prompt_img2vid
-        savename = name_seeded_video(seed_id)
-        export_to_video(result, savename, fps=num_fps_img2vid)
+
+        if output_type_img2vid == "mp4":
+            savename = name_seeded_video(seed_id)
+            export_to_video(result, savename, fps=num_fps_img2vid)
+        elif output_type_img2vid == "gif":
+            savename_gif = name_seeded_gif(seed_id)
+            export_to_gif(result, savename_gif, fps=num_fps_img2vid)
+            savename.append(savename_gif)
         final_seed.append(seed_id)
 
     print(f">>>[Stable Video Diffusion 📼 ]: generated {num_prompt_img2vid} batch(es) of {num_videos_per_prompt_img2vid}")
@@ -150,6 +158,11 @@ def video_img2vid(
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_img2vid)
+
+    if output_type_img2vid == "mp4":
+        metadata_writer_mp4(reporting_img2vid, savename)
+    elif output_type_img2vid == "gif":
+        metadata_writer_gif(reporting_img2vid, savename, num_fps_img2vid)
 
     del nsfw_filter_final, feat_ex, pipe_img2vid, generator, result
     clean_ram()
