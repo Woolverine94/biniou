@@ -2,7 +2,7 @@
 # txt2img_paa.py
 import gradio as gr
 import os
-from diffusers import PixArtAlphaPipeline, Transformer2DModel, LCMScheduler
+from diffusers import PixArtAlphaPipeline, Transformer2DModel, LCMScheduler, PixArtSigmaPipeline
 import torch
 import random
 from ressources.gfpgan import *
@@ -25,6 +25,7 @@ for filename in os.listdir(model_path_txt2img_paa):
 model_list_txt2img_paa_builtin = [
     "PixArt-alpha/PixArt-XL-2-512x512",
     "PixArt-alpha/PixArt-XL-2-1024-MS",
+    "PixArt-alpha/PixArt-Sigma-XL-2-1024-MS",
     "PixArt-alpha/PixArt-LCM-XL-2-1024-MS",
     "Luo-Yihong/yoso_pixart512",
     "Luo-Yihong/yoso_pixart1024", 
@@ -94,7 +95,6 @@ def image_txt2img_paa(
             resume_download=True,
             local_files_only=True if offline_test() else None
         )
-
         if modelid_txt2img_paa[0:9] == "./models/" :
             pipe_txt2img_paa = PixArtAlphaPipeline.from_single_file(
                 modelid_txt2img_paa, 
@@ -119,6 +119,30 @@ def image_txt2img_paa(
             )
         pipe_txt2img_paa.scheduler = LCMScheduler.from_config(pipe_txt2img_paa.scheduler.config)
         pipe_txt2img_paa.scheduler.config.prediction_type = "v_prediction"
+
+    elif ("PIXART-SIGMA-XL-2" in modelid_txt2img_paa.upper()):
+        if modelid_txt2img_paa[0:9] == "./models/" :
+            pipe_txt2img_paa = PixArtSigmaPipeline.from_single_file(
+                modelid_txt2img_paa,
+                torch_dtype=model_arch,
+                use_safetensors=True,
+                load_safety_checker=False if (nsfw_filter_final == None) else True,
+    #            safety_checker=nsfw_filter_final,
+    #            feature_extractor=feat_ex,
+            )
+        else:
+            pipe_txt2img_paa = PixArtSigmaPipeline.from_pretrained(
+                modelid_txt2img_paa,
+                cache_dir=model_path_txt2img_paa,
+                torch_dtype=model_arch,
+                use_safetensors=True,
+                safety_checker=nsfw_filter_final,
+                feature_extractor=feat_ex,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+        pipe_txt2img_paa = schedulerer(pipe_txt2img_paa, sampler_txt2img_paa)
+
     else:
         if modelid_txt2img_paa[0:9] == "./models/" :
             pipe_txt2img_paa = PixArtAlphaPipeline.from_single_file(

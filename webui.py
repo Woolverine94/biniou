@@ -81,8 +81,8 @@ biniou_global_auth_message = "Welcome to biniou !"
 biniou_global_share = False
 biniou_global_steps_max = 100
 biniou_global_batch_size_max = 4
-biniou_global_width_max_img_create = 1280
-biniou_global_height_max_img_create = 1280
+biniou_global_width_max_img_create = 4096
+biniou_global_height_max_img_create = 4096
 biniou_global_width_max_img_modify = 8192
 biniou_global_height_max_img_modify = 8192
 biniou_global_sd15_width = 512
@@ -517,6 +517,10 @@ def change_model_type_txt2img_paa(model_txt2img_paa):
         return sampler_txt2img_paa.update(value="LCM", interactive=False), width_txt2img_paa.update(value=biniou_global_sdxl_width), height_txt2img_paa.update(value=biniou_global_sdxl_height), guidance_scale_txt2img_paa.update(value=1.0), num_inference_step_txt2img_paa.update(value=1)
     elif model_txt2img_paa == "PixArt-alpha/PixArt-LCM-XL-2-1024-MS":
         return sampler_txt2img_paa.update(value="LCM", interactive=False), width_txt2img_paa.update(value=biniou_global_sdxl_width), height_txt2img_paa.update(value=biniou_global_sdxl_height), guidance_scale_txt2img_paa.update(value=0.0), num_inference_step_txt2img_paa.update(value=4)
+    elif model_txt2img_paa == "PixArt-alpha/PixArt-Sigma-XL-2-1024-MS":
+        return sampler_txt2img_paa.update(value="UniPC", interactive=True), width_txt2img_paa.update(value=biniou_global_sdxl_width), height_txt2img_paa.update(value=biniou_global_sdxl_height), guidance_scale_txt2img_paa.update(value=7.0), num_inference_step_txt2img_paa.update(value=15)
+    elif model_txt2img_paa == "PixArt-alpha/PixArt-Sigma-XL-2-2K-MS":
+        return sampler_txt2img_paa.update(value="UniPC", interactive=True), width_txt2img_paa.update(value=2048), height_txt2img_paa.update(value=2048), guidance_scale_txt2img_paa.update(value=7.0), num_inference_step_txt2img_paa.update(value=15)
     else:
         return sampler_txt2img_paa.update(value="UniPC", interactive=True), width_txt2img_paa.update(value=biniou_global_sd15_width), height_txt2img_paa.update(value=biniou_global_sd15_height), guidance_scale_txt2img_paa.update(value=7.0), num_inference_step_txt2img_paa.update(value=15)
 
@@ -3274,6 +3278,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>HF model page : </b>
                                 <a href='https://huggingface.co/PixArt-alpha/PixArt-XL-2-512x512' target='_blank'>PixArt-alpha/PixArt-XL-2-512x512</a>, 
                                 <a href='https://huggingface.co/PixArt-alpha/PixArt-XL-2-1024-MS' target='_blank'>PixArt-alpha/PixArt-XL-2-1024-MS</a>, 
+                                <a href='https://huggingface.co/PixArt-alpha/PixArt-Sigma-XL-2-1024-MS' target='_blank'>PixArt-alpha/PixArt-Sigma-XL-2-1024-MS</a>, 
                                 <a href='https://huggingface.co/PixArt-alpha/PixArt-LCM-XL-2-1024-MS' target='_blank'>PixArt-alpha/PixArt-LCM-XL-2-1024-MS</a>, 
                                 <a href='https://huggingface.co/Luo-Yihong/yoso_pixart512' target='_blank'>Luo-Yihong/yoso_pixart512</a>, 
                                 <a href='https://huggingface.co/Luo-Yihong/yoso_pixart1024' target='_blank'>Luo-Yihong/yoso_pixart1024</a>, 
