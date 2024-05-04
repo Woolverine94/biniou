@@ -161,6 +161,9 @@ def image_img2shape(
         f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_img2shape) 
 
+    if output_type_img2shape == "gif":
+        metadata_writer_gif(reporting_img2shape, savename_final, 8)
+
     del nsfw_filter_final, feat_ex, pipe_img2shape, generator, image
     clean_ram()
 

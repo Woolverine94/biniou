@@ -160,9 +160,12 @@ def image_txt2shape(
         f"Prompt={prompt_txt2shape} | "+\
         f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_txt2shape) 
-    
+
+    if output_type_txt2shape == "gif":
+        metadata_writer_gif(reporting_txt2shape, savename_final, 8)
+
     del nsfw_filter_final, feat_ex, pipe_txt2shape, generator, image
     clean_ram()
-    
+
     print(f">>>[Shap-E txt2shape 🧊 ]: leaving module")
     return savename_final, savename_final
