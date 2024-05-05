@@ -115,6 +115,12 @@ biniou_global_version = biniou_global_version.replace("\n", "")
 if biniou_global_version == "main":
     biniou_global_version = "dev"
 
+if test_lang_exist("lang_EN.cfg") :
+    with open("lang/lang_EN.cfg", "r", encoding="utf-8") as fichier:
+        exec(fichier.read())
+
+
+
 ## Fonctions communes
 def dummy():
     return
@@ -243,9 +249,6 @@ def change_model_type_llava(model_llava):
     else:
         return prompt_template_llava.update(value="{prompt}"), system_template_llava.update(value="")
 
-
-
-        
 ## Functions specific to img2txt_git
 
 ## Functions specific to whisper
@@ -1297,20 +1300,20 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     url_params_current.change(url_params_theme, url_params_current, [banner_biniou, banner_biniou], show_progress="hidden")
     with gr.Tabs() as tabs:
 # Chat
-        with gr.TabItem("Text ✍️", id=1) as tab_text:
+        with gr.TabItem(f"{biniou_lang_tab_text} ✍️", id=1) as tab_text:
             with gr.Tabs() as tabs_text:
 # llamacpp
-                with gr.TabItem("Chatbot Llama-cpp (gguf) 📝", id=11) as tab_llamacpp:
-                    with gr.Accordion("About", open=False):
+                with gr.TabItem(f"{biniou_lang_tab_llamacpp} 📝", id=11) as tab_llamacpp:
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
                         with gr.Box():                       
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>Llama-cpp</br>
-                                <b>Function : </b>Chat with an AI using <a href='https://github.com/abetlen/llama-cpp-python' target='_blank'>llama-cpp-python</a></br>
-                                <b>Input(s) : </b>Input text</br>
-                                <b>Output(s) : </b>Output text</br>
-                                <b>HF models pages : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>Llama-cpp</br>
+                                <b>{biniou_lang_about_function}</b>Chat with an AI using <a href='https://github.com/abetlen/llama-cpp-python' target='_blank'>llama-cpp-python</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Input text</br>
+                                <b>{biniou_lang_about_outputs}</b>Output text</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/NousResearch/Meta-Llama-3-8B-Instruct-GGUF' target='_blank'>NousResearch/Meta-Llama-3-8B-Instruct-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/openchat-3.5-0106-GGUF' target='_blank'>TheBloke/openchat-3.5-0106-GGUF</a>, 
                                 <a href='https://huggingface.co/LoneStriker/Starling-LM-7B-beta-GGUF' target='_blank'>LoneStriker/Starling-LM-7B-beta-GGUF</a>, 
@@ -1344,43 +1347,43 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
 #                                <a href='https://huggingface.co/TheBloke/Airoboros-L2-13B-2.1-GGUF' target='_blank'>TheBloke/Airoboros-L2-13B-2.1-GGUF</a>, 
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Type your request in the <b>Input</b> textbox field</br>
                                 - (optional) modify settings to use another model, change context size or modify maximum number of tokens generated.</br>
                                 - Click the <b>Generate</b> button to generate a response to your input, using the chatbot history to keep a context.</br>
                                 - Click the <b>Continue</b> button to complete the last reply.
                                 </br>
-                                <b>Models :</b></br>
+                                <b>{biniou_lang_about_models}</b></br>
                                 - You could place llama-cpp compatible .gguf models in the directory ./biniou/models/llamacpp. Restart Biniou to see them in the models list.</br>
                                 - You can also copy/paste in the <b>Model</b> dropdown menu a HF repo ID (e.g : TheBloke/some_model-GGUF) from <a href='https://huggingface.co/models?sort=trending&search=thebloke+gguf' target='_blank'>this list</a>. You must also set manually prompt and system templates according to the model page.
                                 </div>
                                 """
                             )
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_llamacpp = gr.Dropdown(choices=list(model_list_llamacpp.keys()), value=list(model_list_llamacpp.keys())[0], label="Model", allow_custom_value=True, info="Choose model to use for inference or copy/paste a HF repo id (TheBloke GGUF models only). Manually set prompt and system templates according to model page.")
+                                model_llamacpp = gr.Dropdown(choices=list(model_list_llamacpp.keys()), value=list(model_list_llamacpp.keys())[0], label=biniou_lang_model_label, allow_custom_value=True, info="Choose model to use for inference or copy/paste a HF repo id (TheBloke GGUF models only). Manually set prompt and system templates according to model page.")
                             with gr.Column():
-                                max_tokens_llamacpp = gr.Slider(0, 524288, step=16, value=1024, label="Max tokens", info="Maximum number of tokens to generate")
+                                max_tokens_llamacpp = gr.Slider(0, 524288, step=16, value=1024, label=biniou_lang_maxtoken_label, info=biniou_lang_maxtoken_info)
                             with gr.Column():
-                                seed_llamacpp = gr.Slider(0, 10000000000, step=1, value=1337, label="Seed(0 for random)", info="Seed to use for generation.")    
+                                seed_llamacpp = gr.Slider(0, 10000000000, step=1, value=1337, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                         with gr.Row():
                             with gr.Column():
-                                stream_llamacpp = gr.Checkbox(value=False, label="Stream", info="Stream results", interactive=False)                            
+                                stream_llamacpp = gr.Checkbox(value=False, label=biniou_lang_stream_label, info=biniou_lang_stream_info, interactive=False)
                             with gr.Column():
-                                n_ctx_llamacpp = gr.Slider(0, 131072, step=128, value=8192, label="n_ctx", info="Maximum context size")
+                                n_ctx_llamacpp = gr.Slider(0, 131072, step=128, value=8192, label=biniou_lang_ctx_label, info=biniou_lang_ctx_info)
                             with gr.Column():
-                                repeat_penalty_llamacpp = gr.Slider(0.0, 10.0, step=0.1, value=1.1, label="Repeat penalty", info="The penalty to apply to repeated tokens")
+                                repeat_penalty_llamacpp = gr.Slider(0.0, 10.0, step=0.1, value=1.1, label=biniou_lang_penalty_label, info=biniou_lang_penalty_info)
                         with gr.Row():
                             with gr.Column():
-                                temperature_llamacpp = gr.Slider(0.0, 10.0, step=0.1, value=0.8, label="Temperature", info="Temperature to use for sampling")
+                                temperature_llamacpp = gr.Slider(0.0, 10.0, step=0.1, value=0.8, label=biniou_lang_temperature_label, info=biniou_lang_temperature_info)
                             with gr.Column():
-                                top_p_llamacpp = gr.Slider(0.0, 10.0, step=0.05, value=0.95, label="top_p", info="The top-p value to use for sampling")
+                                top_p_llamacpp = gr.Slider(0.0, 10.0, step=0.05, value=0.95, label=biniou_lang_top_p_label, info=biniou_lang_top_p_info)
                             with gr.Column():
-                                top_k_llamacpp = gr.Slider(0, 500, step=1, value=40, label="top_k", info="The top-k value to use for sampling")
+                                top_k_llamacpp = gr.Slider(0, 500, step=1, value=40, label=biniou_lang_top_k_label, info=biniou_lang_top_k_info)
                         with gr.Row():
                             with gr.Column():
                                 force_prompt_template_llamacpp = gr.Dropdown(choices=list(prompt_template_list_llamacpp.keys()), value=list(prompt_template_list_llamacpp.keys())[0], label="Force prompt template", info="Choose prompt template to use for inference")
@@ -1390,18 +1393,18 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 gr.Number(visible=False)
                         with gr.Row():
                             with gr.Column():
-                                prompt_template_llamacpp = gr.Textbox(label="Prompt template", value=model_list_llamacpp[model_llamacpp.value][1], lines=4, max_lines=4, info="Place your custom prompt template here. Keep the {prompt} and {system} tags, they will be replaced by your prompt and system template.")
+                                prompt_template_llamacpp = gr.Textbox(label=biniou_lang_prompt_template_label, value=model_list_llamacpp[model_llamacpp.value][1], lines=4, max_lines=4, info=biniou_lang_prompt_template_info)
                         with gr.Row():
                             with gr.Column():
-                                system_template_llamacpp = gr.Textbox(label="System template", value=model_list_llamacpp[model_llamacpp.value][2], lines=4, max_lines=4, info="Place your custom system template here.")
+                                system_template_llamacpp = gr.Textbox(label=biniou_lang_system_template_label, value=model_list_llamacpp[model_llamacpp.value][2], lines=4, max_lines=4, info=biniou_lang_system_template_info)
                                 model_llamacpp.change(fn=change_model_type_llamacpp, inputs=model_llamacpp, outputs=[prompt_template_llamacpp, system_template_llamacpp])
                                 force_prompt_template_llamacpp.change(fn=change_prompt_template_llamacpp, inputs=force_prompt_template_llamacpp, outputs=[prompt_template_llamacpp, system_template_llamacpp])
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_llamacpp = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_llamacpp = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_llamacpp = gr.Textbox(value="llamacpp", visible=False, interactive=False)
-                                del_ini_btn_llamacpp = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_llamacpp.value) else False)
+                                del_ini_btn_llamacpp = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_llamacpp.value) else False)
                                 save_ini_btn_llamacpp.click(
                                     fn=write_ini_llamacpp,
                                     inputs=[
@@ -1420,61 +1423,61 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         system_template_llamacpp,
                                         ]
                                     )
-                                save_ini_btn_llamacpp.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_llamacpp.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_llamacpp.click(fn=lambda: del_ini_btn_llamacpp.update(interactive=True), outputs=del_ini_btn_llamacpp)
                                 del_ini_btn_llamacpp.click(fn=lambda: del_ini(module_name_llamacpp.value))
-                                del_ini_btn_llamacpp.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_llamacpp.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_llamacpp.click(fn=lambda: del_ini_btn_llamacpp.update(interactive=False), outputs=del_ini_btn_llamacpp)
                         if test_ini_exist(module_name_llamacpp.value) :
                             with open(f".ini/{module_name_llamacpp.value}.ini", "r", encoding="utf-8") as fichier:
                                 exec(fichier.read())
                     with gr.Row():
                         history_llamacpp = gr.Chatbot(
-                            label="Chatbot history", 
+                            label=biniou_lang_chatbot_history,
                             height=400,
                             autoscroll=True, 
-                            show_copy_button=True, 
+                            show_copy_button=True,
                             interactive=True,
                             bubble_full_width = False,
                             avatar_images = ("./images/avatar_cat_64.png", "./images/biniou_64.png"),
                         )
-                        last_reply_llamacpp = gr.Textbox(value="", visible=False)                        
+                        last_reply_llamacpp = gr.Textbox(value="", visible=False)
                     with gr.Row():
-                            prompt_llamacpp = gr.Textbox(label="Input", lines=1, max_lines=3, placeholder="Type your request here ...", autofocus=True)
+                            prompt_llamacpp = gr.Textbox(label=biniou_lang_chatbot_prompt_label, lines=1, max_lines=3, placeholder=biniou_lang_chatbot_prompt_placeholder, autofocus=True)
                             hidden_prompt_llamacpp = gr.Textbox(value="", visible=False)
                             last_reply_llamacpp.change(fn=lambda x:x, inputs=hidden_prompt_llamacpp, outputs=prompt_llamacpp)
                     with gr.Row():
                         with gr.Column():
-                            btn_llamacpp = gr.Button("Generate 🚀", variant="primary")
+                            btn_llamacpp = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():
-                            btn_llamacpp_continue = gr.Button("Continue ➕")
-                        with gr.Column():                      
-                            btn_llamacpp_clear_output = gr.ClearButton(components=[history_llamacpp], value="Clear outputs 🧹") 
+                            btn_llamacpp_continue = gr.Button(f"{biniou_lang_continue} ➕")
                         with gr.Column():
-                            btn_download_file_llamacpp = gr.ClearButton(value="Download full conversation 💾", visible=True) 
-                            download_file_llamacpp = gr.File(label="Download full conversation", value=blankfile_common, height=30, interactive=False, visible=False)
+                            btn_llamacpp_clear_output = gr.ClearButton(components=[history_llamacpp], value=f"{biniou_lang_clear_outputs} 🧹")
+                        with gr.Column():
+                            btn_download_file_llamacpp = gr.ClearButton(value=f"{biniou_lang_download_chat} 💾", visible=True)
+                            download_file_llamacpp = gr.File(label=f"{biniou_lang_download_chat}", value=blankfile_common, height=30, interactive=False, visible=False)
                             download_file_llamacpp_hidden = gr.Textbox(value=blankfile_common, interactive=False, visible=False)
                             btn_download_file_llamacpp.click(fn=show_download_llamacpp, outputs=[btn_download_file_llamacpp, download_file_llamacpp])
                             download_file_llamacpp_hidden.change(fn=lambda x:x, inputs=download_file_llamacpp_hidden, outputs=download_file_llamacpp)
                         btn_llamacpp.click(
                             fn=text_llamacpp,
                             inputs=[
-                                model_llamacpp, 
+                                model_llamacpp,
                                 max_tokens_llamacpp,
-                                seed_llamacpp, 
-                                stream_llamacpp, 
-                                n_ctx_llamacpp, 
-                                repeat_penalty_llamacpp, 
-                                temperature_llamacpp, 
-                                top_p_llamacpp, 
-                                top_k_llamacpp, 
-                                prompt_llamacpp, 
-                                history_llamacpp, 
-                                prompt_template_llamacpp, 
+                                seed_llamacpp,
+                                stream_llamacpp,
+                                n_ctx_llamacpp,
+                                repeat_penalty_llamacpp,
+                                temperature_llamacpp,
+                                top_p_llamacpp,
+                                top_k_llamacpp,
+                                prompt_llamacpp,
+                                history_llamacpp,
+                                prompt_template_llamacpp,
                                 system_template_llamacpp,
                             ],
                             outputs=[
-                                history_llamacpp, 
+                                history_llamacpp,
                                 last_reply_llamacpp,
                                 download_file_llamacpp_hidden,
                             ],
@@ -1484,22 +1487,22 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         prompt_llamacpp.submit(
                             fn=text_llamacpp,
                             inputs=[
-                                model_llamacpp, 
+                                model_llamacpp,
                                 max_tokens_llamacpp,
-                                seed_llamacpp, 
-                                stream_llamacpp, 
-                                n_ctx_llamacpp, 
-                                repeat_penalty_llamacpp, 
-                                temperature_llamacpp, 
-                                top_p_llamacpp, 
+                                seed_llamacpp,
+                                stream_llamacpp,
+                                n_ctx_llamacpp,
+                                repeat_penalty_llamacpp,
+                                temperature_llamacpp,
+                                top_p_llamacpp,
                                 top_k_llamacpp,
                                 prompt_llamacpp,
                                 history_llamacpp,
-                                prompt_template_llamacpp, 
+                                prompt_template_llamacpp,
                                 system_template_llamacpp,
                             ],
                             outputs=[
-                                history_llamacpp, 
+                                history_llamacpp,
                                 last_reply_llamacpp,
                                 download_file_llamacpp_hidden,
                             ],
@@ -1509,36 +1512,36 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         btn_llamacpp_continue.click(
                             fn=text_llamacpp_continue,
                             inputs=[
-                                model_llamacpp, 
+                                model_llamacpp,
                                 max_tokens_llamacpp,
-                                seed_llamacpp, 
-                                stream_llamacpp, 
-                                n_ctx_llamacpp, 
-                                repeat_penalty_llamacpp, 
-                                temperature_llamacpp, 
-                                top_p_llamacpp, 
+                                seed_llamacpp,
+                                stream_llamacpp,
+                                n_ctx_llamacpp,
+                                repeat_penalty_llamacpp,
+                                temperature_llamacpp,
+                                top_p_llamacpp,
                                 top_k_llamacpp,
                                 history_llamacpp,
                             ],
                             outputs=[
-                                history_llamacpp, 
+                                history_llamacpp,
                                 last_reply_llamacpp,
                                 download_file_llamacpp_hidden,
                             ],
                             show_progress="full",
-                        )                        
+                        )
                         btn_llamacpp_continue.click(fn=hide_download_llamacpp, outputs=[btn_download_file_llamacpp, download_file_llamacpp])
 #                        btn_llamacpp.click(fn=lambda x:x, inputs=hidden_prompt_llamacpp, outputs=prompt_llamacpp)
 #                        prompt_llamacpp.submit(fn=lambda x:x, inputs=hidden_prompt_llamacpp, outputs=prompt_llamacpp)
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... last chatbot reply to ...')
                                         gr.HTML(value='... text module ...')
                                         llamacpp_nllb = gr.Button("✍️ >> Nllb translation")
-                                        gr.HTML(value='... image module ...')                                        
+                                        gr.HTML(value='... image module ...')
                                         llamacpp_txt2img_sd = gr.Button("✍️ >> Stable Diffusion")
                                         llamacpp_txt2img_kd = gr.Button("✍️ >> Kandinsky") 
                                         llamacpp_txt2img_lcm = gr.Button("✍️ >> LCM") 
@@ -1551,10 +1554,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         llamacpp_controlnet = gr.Button("✍️ >> ControlNet")
                                         llamacpp_faceid_ip = gr.Button("✍️ >> Photobooth")
                                         gr.HTML(value='... audio module ...')
-                                        llamacpp_musicgen = gr.Button("✍️ >> Musicgen")                                        
+                                        llamacpp_musicgen = gr.Button("✍️ >> Musicgen")
                                         llamacpp_audiogen = gr.Button("✍️ >> Audiogen")
-                                        llamacpp_bark = gr.Button("✍️ >> Bark")                                        
-                                        gr.HTML(value='... video module ...')                                               
+                                        llamacpp_bark = gr.Button("✍️ >> Bark")
+                                        gr.HTML(value='... video module ...')
                                         llamacpp_txt2vid_ms = gr.Button("✍️ >> Modelscope")
                                         llamacpp_txt2vid_ze = gr.Button("✍️ >> Text2Video-Zero")
                                         llamacpp_animatediff_lcm = gr.Button("✍️ >> AnimateDiff")
@@ -1563,22 +1566,22 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... input prompt(s) to ...')
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
 
 # llava
                 with gr.TabItem("Llava (gguf) 👁️", id=12) as tab_llava:
-                    with gr.Accordion("About", open=False):
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>Llava (gguf)</br>
-                                <b>Function : </b>Interrogate a chatbot about an input image using <a href='https://github.com/abetlen/llama-cpp-python' target='_blank'>llama-cpp-python</a>, <a href='https://llava-vl.github.io/' target='_blank'>Llava</a> and <a href='https://github.com/SkunkworksAI/BakLLaVA' target='_blank'>BakLLaVA</a></br>
-                                <b>Input(s) : </b>Input image, Input text</br>
-                                <b>Output(s) : </b>Output text</br>
-                                <b>HF models pages : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>Llava (gguf)</br>
+                                <b>{biniou_lang_about_function}</b>Interrogate a chatbot about an input image using <a href='https://github.com/abetlen/llama-cpp-python' target='_blank'>llama-cpp-python</a>, <a href='https://llava-vl.github.io/' target='_blank'>Llava</a> and <a href='https://github.com/SkunkworksAI/BakLLaVA' target='_blank'>BakLLaVA</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Input image, Input text</br>
+                                <b>{biniou_lang_about_outputs}</b>Output text</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/mys/ggml_bakllava-1' target='_blank'>mys/ggml_bakllava-1</a>, 
                                 <a href='https://huggingface.co/cmp-nct/llava-1.6-gguf' target='_blank'>cmp-nct/llava-1.6-gguf</a>, 
                                 <a href='https://huggingface.co/mys/ggml_llava-v1.5-7b' target='_blank'>mys/ggml_llava-v1.5-7b</a>, 
@@ -1588,57 +1591,57 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Upload or import an <b>Input image</b></br>
                                 - Type your request in the <b>Input</b> textbox field</br>
                                 - (optional) modify settings to use another model, change context size or modify maximum number of tokens generated.</br>
                                 - Click the <b>Generate</b> button to generate a response to your input, using the chatbot history to keep a context.</br>
                                 - Click the <b>Continue</b> button to complete the last reply.
                                 </br>
-                                <b>Models :</b></br>
+                                <b>{biniou_lang_about_models}</b></br>
                                 - You could place llama-cpp compatible .gguf models in the directory ./biniou/models/llava. Restart Biniou to see them in the models list.
                                 </div>
                                 """
                             )
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_llava = gr.Dropdown(choices=list(model_list_llava.keys()), value=list(model_list_llava.keys())[0], label="Model", info="Choose model to use for inference")
+                                model_llava = gr.Dropdown(choices=list(model_list_llava.keys()), value=list(model_list_llava.keys())[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                max_tokens_llava = gr.Slider(0, 131072, step=16, value=512, label="Max tokens", info="Maximum number of tokens to generate")
+                                max_tokens_llava = gr.Slider(0, 131072, step=16, value=512, label=biniou_lang_maxtoken_label, info=biniou_lang_maxtoken_info)
                             with gr.Column():
-                                seed_llava = gr.Slider(0, 10000000000, step=1, value=1337, label="Seed(0 for random)", info="Seed to use for generation.")
+                                seed_llava = gr.Slider(0, 10000000000, step=1, value=1337, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                         with gr.Row():
                             with gr.Column():
-                                stream_llava = gr.Checkbox(value=False, label="Stream", info="Stream results", interactive=False)
+                                stream_llava = gr.Checkbox(value=False, label=biniou_lang_stream_label, info=biniou_lang_stream_info, interactive=False)
                             with gr.Column():
-                                n_ctx_llava = gr.Slider(0, 131072, step=128, value=8192, label="n_ctx", info="Maximum context size")
+                                n_ctx_llava = gr.Slider(0, 131072, step=128, value=8192, label=biniou_lang_ctx_label, info=biniou_lang_ctx_info)
                             with gr.Column():
-                                repeat_penalty_llava = gr.Slider(0.0, 10.0, step=0.1, value=1.1, label="Repeat penalty", info="The penalty to apply to repeated tokens")
+                                repeat_penalty_llava = gr.Slider(0.0, 10.0, step=0.1, value=1.1, label=biniou_lang_penalty_label, info=biniou_lang_penalty_info)
                         with gr.Row():
                             with gr.Column():
-                                temperature_llava = gr.Slider(0.0, 10.0, step=0.1, value=0.8, label="Temperature", info="Temperature to use for sampling")
+                                temperature_llava = gr.Slider(0.0, 10.0, step=0.1, value=0.8, label=biniou_lang_temperature_label, info=biniou_lang_temperature_info)
                             with gr.Column():
-                                top_p_llava = gr.Slider(0.0, 10.0, step=0.05, value=0.95, label="top_p", info="The top-p value to use for sampling")
+                                top_p_llava = gr.Slider(0.0, 10.0, step=0.05, value=0.95, label=biniou_lang_top_p_label, info=biniou_lang_top_p_info)
                             with gr.Column():
-                                top_k_llava = gr.Slider(0, 500, step=1, value=40, label="top_k", info="The top-k value to use for sampling")
+                                top_k_llava = gr.Slider(0, 500, step=1, value=40, label=biniou_lang_top_k_label, info=biniou_lang_top_k_info)
                         with gr.Row():
                             with gr.Column():
-                                prompt_template_llava = gr.Textbox(label="Prompt template", value=model_list_llava[model_llava.value][2], lines=4, max_lines=4, info="Place your custom prompt template here. Keep the {prompt} tag, that will be replaced by your prompt.")
+                                prompt_template_llava = gr.Textbox(label=biniou_lang_prompt_template_label, value=model_list_llava[model_llava.value][2], lines=4, max_lines=4, info="Place your custom prompt template here. Keep the {prompt} tag, that will be replaced by your prompt.")
                         with gr.Row():
                             with gr.Column():
-                                system_template_llava = gr.Textbox(label="System template", value=model_list_llava[model_llava.value][3], lines=4, max_lines=4, info="Place your custom system template here.", interactive=True)
+                                system_template_llava = gr.Textbox(label=biniou_lang_system_template_label, value=model_list_llava[model_llava.value][3], lines=4, max_lines=4, info=biniou_lang_system_template_info, interactive=True)
                                 model_llava.change(fn=change_model_type_llava, inputs=model_llava, outputs=[prompt_template_llava, system_template_llava])
 #                                force_prompt_template_llava.change(fn=change_prompt_template_llava, inputs=force_prompt_template_llava, outputs=[prompt_tmplate_llava, system_template_llava])
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_llava = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_llava = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_llava = gr.Textbox(value="llava", visible=False, interactive=False)
-                                del_ini_btn_llava = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_llava.value) else False)
+                                del_ini_btn_llava = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_llava.value) else False)
                                 save_ini_btn_llava.click(
                                     fn=write_ini_llava,
                                     inputs=[
@@ -1656,20 +1659,20 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         system_template_llava,
                                         ]
                                     )
-                                save_ini_btn_llava.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_llava.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_llava.click(fn=lambda: del_ini_btn_llava.update(interactive=True), outputs=del_ini_btn_llava)
                                 del_ini_btn_llava.click(fn=lambda: del_ini(module_name_llava.value))
-                                del_ini_btn_llava.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_llava.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_llava.click(fn=lambda: del_ini_btn_llava.update(interactive=False), outputs=del_ini_btn_llava)
                         if test_ini_exist(module_name_llava.value) :
                             with open(f".ini/{module_name_llava.value}.ini", "r", encoding="utf-8") as fichier:
                                 exec(fichier.read())
                     with gr.Row():
                         with gr.Column(scale=1):
-                            img_llava = gr.Image(label="Input image", type="filepath", height=400)
+                            img_llava = gr.Image(label=biniou_lang_img_input_label, type="filepath", height=400)
                         with gr.Column(scale=3):
                             history_llava = gr.Chatbot(
-                                label="Chatbot history",
+                                label=biniou_lang_chatbot_history,
                                 height=400,
                                 autoscroll=True,
                                 show_copy_button=True,
@@ -1679,20 +1682,20 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                             last_reply_llava = gr.Textbox(value="", visible=False)
                     with gr.Row():
-                            prompt_llava = gr.Textbox(label="Input", lines=1, max_lines=3, placeholder="Type your request here ...", autofocus=True)
+                            prompt_llava = gr.Textbox(label=biniou_lang_chatbot_prompt_label, lines=1, max_lines=3, placeholder=biniou_lang_chatbot_prompt_placeholder, autofocus=True)
                             hidden_prompt_llava = gr.Textbox(value="", visible=False)
                             last_reply_llava.change(fn=lambda x:x, inputs=hidden_prompt_llava, outputs=prompt_llava)
                     with gr.Row():
                         with gr.Column():
-                            btn_llava = gr.Button("Generate 🚀", variant="primary")
+                            btn_llava = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():
-                            btn_llava_clear_input = gr.ClearButton(components=[img_llava, prompt_llava], value="Clear inputs 🧹")
-                            btn_llava_continue = gr.Button("Continue ➕", visible=False)
+                            btn_llava_clear_input = gr.ClearButton(components=[img_llava, prompt_llava], value=f"{biniou_lang_clear_inputs} 🧹")
+                            btn_llava_continue = gr.Button(f"{biniou_lang_continue} ➕", visible=False)
                         with gr.Column():
-                            btn_llava_clear_output = gr.ClearButton(components=[history_llava], value="Clear outputs 🧹")
+                            btn_llava_clear_output = gr.ClearButton(components=[history_llava], value=f"{biniou_lang_clear_outputs} 🧹")
                         with gr.Column():
-                            btn_download_file_llava = gr.ClearButton(value="Download full conversation 💾", visible=True)
-                            download_file_llava = gr.File(label="Download full conversation", value=blankfile_common, height=30, interactive=False, visible=False)
+                            btn_download_file_llava = gr.ClearButton(value=f"{biniou_lang_download_chat} 💾", visible=True)
+                            download_file_llava = gr.File(label=f"{biniou_lang_download_chat}", value=blankfile_common, height=30, interactive=False, visible=False)
                             download_file_llava_hidden = gr.Textbox(value=blankfile_common, interactive=False, visible=False)
                             btn_download_file_llava.click(fn=show_download_llava, outputs=[btn_download_file_llava, download_file_llava])
                             download_file_llava_hidden.change(fn=lambda x:x, inputs=download_file_llava_hidden, outputs=download_file_llava)
@@ -1784,9 +1787,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... image module ...')
                                         llava_txt2img_sd = gr.Button("✍️ >> Stable Diffusion")
                                         llava_txt2img_kd = gr.Button("✍️ >> Kandinsky") 
-                                        llava_txt2img_lcm = gr.Button("✍️ >> LCM") 
-                                        llava_txt2img_mjm = gr.Button("✍️ >> Midjourney-mini") 
-                                        llava_txt2img_paa = gr.Button("✍️ >> PixArt-Alpha") 
+                                        llava_txt2img_lcm = gr.Button("✍️ >> LCM")
+                                        llava_txt2img_mjm = gr.Button("✍️ >> Midjourney-mini")
+                                        llava_txt2img_paa = gr.Button("✍️ >> PixArt-Alpha")
                                         llava_img2img = gr.Button("✍️ >> img2img")
                                         llava_img2img_ip = gr.Button("✍️ >>  IP-Adapter")
                                         llava_pix2pix = gr.Button("✍️ >> Instruct pix2pix")
@@ -1806,44 +1809,44 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... input prompt(s) to ...')
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
 # Image captioning
                 with gr.TabItem("Image captioning 👁️", id=13) as tab_img2txt_git:
-                    with gr.Accordion("About", open=False):
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
                         with gr.Box():                       
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>Image Captioning</br>
-                                <b>Function : </b>Caption an image by a simple description of it using GIT</br>
-                                <b>Input(s) : </b>Input image</br>
-                                <b>Output(s) : </b>Caption text</br>
-                                <b>HF model page : </b><a href='https://huggingface.co/microsoft/git-large-coco' target='_blank'>microsoft/git-large-coco</a></br>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>Image Captioning</br>
+                                <b>{biniou_lang_about_function}</b>Caption an image by a simple description of it using GIT</br>
+                                <b>{biniou_lang_about_inputs}</b>Input image</br>
+                                <b>{biniou_lang_about_outputs}</b>Caption text</br>
+                                <b>{biniou_lang_about_modelpage}</b><a href='https://huggingface.co/microsoft/git-large-coco' target='_blank'>microsoft/git-large-coco</a></br>
                                 """
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Upload an input image by clicking on the <b>Input image</b> field</br>
                                 - (optional) modify settings to use another model, change min. and/or max. number of tokens generated.</br>
                                 - Click the <b>Generate button</b></br>
-                                - After generation, captions of the image are displayed in the Generated captions field                                 
+                                - After generation, captions of the image are displayed in the Generated captions field
                                 </div>
                                 """
                             )
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_img2txt_git = gr.Dropdown(choices=model_list_img2txt_git, value=model_list_img2txt_git[0], label="Model", info="Choose model to use for inference")
+                                model_img2txt_git = gr.Dropdown(choices=model_list_img2txt_git, value=model_list_img2txt_git[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
                                 min_tokens_img2txt_git = gr.Slider(0, 128, step=1, value=0, label="Min tokens", info="Minimum number of tokens in output")
                             with gr.Column():
-                                max_tokens_img2txt_git = gr.Slider(0, 256, step=1, value=20, label="Max tokens", info="Maximum number of tokens in output")
+                                max_tokens_img2txt_git = gr.Slider(0, 256, step=1, value=20, label=biniou_lang_maxtoken_label, info=biniou_lang_maxtoken_info)
                         with gr.Row():
                             with gr.Column():
                                 num_beams_img2txt_git = gr.Slider(1, 16, step=1, value=1, label="Num beams", info="Number of total beams")
@@ -1854,52 +1857,52 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 diversity_penalty_img2txt_git = gr.Slider(0.0, 5.0, step=0.01, value=0.5, label="Diversity penalty", info="Penalty score value for a beam")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_img2txt_git = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_img2txt_git = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_img2txt_git = gr.Textbox(value="img2txt_git", visible=False, interactive=False)
-                                del_ini_btn_img2txt_git = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_img2txt_git.value) else False)
+                                del_ini_btn_img2txt_git = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_img2txt_git.value) else False)
                                 save_ini_btn_img2txt_git.click(
                                     fn=write_ini_img2txt_git, 
                                     inputs=[
-                                        module_name_img2txt_git, 
-                                        model_img2txt_git, 
+                                        module_name_img2txt_git,
+                                        model_img2txt_git,
                                         min_tokens_img2txt_git,
-                                        max_tokens_img2txt_git, 
+                                        max_tokens_img2txt_git,
                                         num_beams_img2txt_git,
-                                        num_beam_groups_img2txt_git, 
-                                        diversity_penalty_img2txt_git, 
+                                        num_beam_groups_img2txt_git,
+                                        diversity_penalty_img2txt_git,
                                         ]
                                     )
-                                save_ini_btn_img2txt_git.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_img2txt_git.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_img2txt_git.click(fn=lambda: del_ini_btn_img2txt_git.update(interactive=True), outputs=del_ini_btn_img2txt_git)
                                 del_ini_btn_img2txt_git.click(fn=lambda: del_ini(module_name_img2txt_git.value))
-                                del_ini_btn_img2txt_git.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_img2txt_git.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_img2txt_git.click(fn=lambda: del_ini_btn_img2txt_git.update(interactive=False), outputs=del_ini_btn_img2txt_git)
                         if test_ini_exist(module_name_img2txt_git.value) :
                             with open(f".ini/{module_name_img2txt_git.value}.ini", "r", encoding="utf-8") as fichier:
                                 exec(fichier.read())
                     with gr.Row():
                         with gr.Column():
-                            img_img2txt_git = gr.Image(label="Input image", type="pil", height=400)
+                            img_img2txt_git = gr.Image(label=biniou_lang_img_input_label, type="pil", height=400)
                         with gr.Column():
                             out_img2txt_git = gr.Textbox(label="Generated captions", lines=15, show_copy_button=True, interactive=False)
                     with gr.Row():
                         with gr.Column():
-                            btn_img2txt_git = gr.Button("Generate 🚀", variant="primary")
+                            btn_img2txt_git = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():
-                            btn_img2txt_git_clear_input = gr.ClearButton(components=[img_img2txt_git], value="Clear inputs 🧹")
-                        with gr.Column():                            
-                            btn_img2txt_git_clear_output = gr.ClearButton(components=[out_img2txt_git], value="Clear outputs 🧹") 
+                            btn_img2txt_git_clear_input = gr.ClearButton(components=[img_img2txt_git], value=f"{biniou_lang_clear_inputs} 🧹")
+                        with gr.Column():
+                            btn_img2txt_git_clear_output = gr.ClearButton(components=[out_img2txt_git], value=f"{biniou_lang_clear_outputs} 🧹")
                         btn_img2txt_git.click(
                             fn=text_img2txt_git,
                             inputs=[
                                 model_img2txt_git,
                                 max_tokens_img2txt_git,
                                 min_tokens_img2txt_git,
-                                num_beams_img2txt_git, 
-                                num_beam_groups_img2txt_git, 
+                                num_beams_img2txt_git,
+                                num_beam_groups_img2txt_git,
                                 diversity_penalty_img2txt_git,
-                                img_img2txt_git,                                
+                                img_img2txt_git,
                             ],
                             outputs=out_img2txt_git,
                             show_progress="full",
@@ -1907,27 +1910,27 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
                                         img2txt_git_nllb = gr.Button("✍️ >> Nllb translation")
-                                        gr.HTML(value='... image module ...')                                        
+                                        gr.HTML(value='... image module ...')
                                         img2txt_git_txt2img_sd = gr.Button("✍️ >> Stable Diffusion")
-                                        img2txt_git_txt2img_kd = gr.Button("✍️ >> Kandinsky")                                        
-                                        img2txt_git_txt2img_lcm = gr.Button("✍️ >> LCM") 
-                                        img2txt_git_txt2img_mjm = gr.Button("✍️ >> Midjourney-mini") 
-                                        img2txt_git_txt2img_paa = gr.Button("✍️ >> PixArt-Alpha") 
+                                        img2txt_git_txt2img_kd = gr.Button("✍️ >> Kandinsky")
+                                        img2txt_git_txt2img_lcm = gr.Button("✍️ >> LCM")
+                                        img2txt_git_txt2img_mjm = gr.Button("✍️ >> Midjourney-mini")
+                                        img2txt_git_txt2img_paa = gr.Button("✍️ >> PixArt-Alpha")
                                         img2txt_git_img2img = gr.Button("✍️ >> img2img")
                                         img2txt_git_img2img_ip = gr.Button("✍️ >> IP-Adapter")
                                         img2txt_git_pix2pix = gr.Button("✍️ >> Instruct pix2pix")
                                         img2txt_git_inpaint = gr.Button("✍️ >> inpaint")
-                                        img2txt_git_controlnet = gr.Button("✍️ >> ControlNet")                                        
+                                        img2txt_git_controlnet = gr.Button("✍️ >> ControlNet")
                                         img2txt_git_faceid_ip = gr.Button("✍️ >> Photobooth")
                                         gr.HTML(value='... audio module ...')
-                                        img2txt_git_musicgen = gr.Button("✍️ >> Musicgen")                                        
+                                        img2txt_git_musicgen = gr.Button("✍️ >> Musicgen")
                                         img2txt_git_audiogen = gr.Button("✍️ >> Audiogen")
-                                        gr.HTML(value='... video module ...')                                               
+                                        gr.HTML(value='... video module ...')
                                         img2txt_git_txt2vid_ms = gr.Button("✍️ >> Modelscope")
                                         img2txt_git_txt2vid_ze = gr.Button("✍️ >> Text2Video-Zero")
                                         img2txt_git_animatediff_lcm = gr.Button("✍️ >> AnimateDiff")
@@ -1936,7 +1939,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... input prompt(s) to ...')
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
                                         img2txt_git_img2img_both = gr.Button("🖼️+✍️ >> img2img")
@@ -1948,16 +1951,16 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
 
 # Whisper 
                 with gr.TabItem("Whisper 👂", id=14) as tab_whisper:
-                    with gr.Accordion("About", open=False):
-                        with gr.Box():                       
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
+                        with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>Whisper</br>
-                                <b>Function : </b>Transcribe/translate audio to text with <a href='https://openai.com/research/whisper' target='_blank'>whisper</a></br>
-                                <b>Input(s) : </b>Input audio</br>
-                                <b>Output(s) : </b>Transcribed/translated text</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>Whisper</br>
+                                <b>{biniou_lang_about_function}</b>Transcribe/translate audio to text with <a href='https://openai.com/research/whisper' target='_blank'>whisper</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Input audio</br>
+                                <b>{biniou_lang_about_outputs}</b>Transcribed/translated text</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/openai/whisper-tiny' target='_blank'>openai/whisper-tiny</a>, 
                                 <a href='https://huggingface.co/openai/whisper-base' target='_blank'>openai/whisper-base</a>, 
                                 <a href='https://huggingface.co/openai/whisper-medium' target='_blank'>openai/whisper-medium</a>,
@@ -1968,10 +1971,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Upload an input audio file by clicking on the <b>Source audio</b> field or select the <b>micro</b> input type and record your voice</br>
                                 - Select the source language of the audio</br>
                                 - Select the task to execute : transcribe in source language or translate to english</br>
@@ -1981,30 +1984,30 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 </div>
                                 """
                             )
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_whisper = gr.Dropdown(choices=list(model_list_whisper.keys()), value=list(model_list_whisper.keys())[4], label="Model", info="Choose model to use for inference")
+                                model_whisper = gr.Dropdown(choices=list(model_list_whisper.keys()), value=list(model_list_whisper.keys())[4], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
                                 srt_output_whisper = gr.Checkbox(value=False, label=".srt format output", info="Generate an output in .srt format")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_whisper = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_whisper = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_whisper = gr.Textbox(value="whisper", visible=False, interactive=False)
-                                del_ini_btn_whisper = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_whisper.value) else False)
+                                del_ini_btn_whisper = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_whisper.value) else False)
                                 save_ini_btn_whisper.click(
-                                    fn=write_ini_whisper, 
+                                    fn=write_ini_whisper,
                                     inputs=[
-                                        module_name_whisper, 
-                                        model_whisper, 
+                                        module_name_whisper,
+                                        model_whisper,
                                         srt_output_whisper,
                                         ]
                                     )
-                                save_ini_btn_whisper.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_whisper.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_whisper.click(fn=lambda: del_ini_btn_whisper.update(interactive=True), outputs=del_ini_btn_whisper)
                                 del_ini_btn_whisper.click(fn=lambda: del_ini(module_name_whisper.value))
-                                del_ini_btn_whisper.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_whisper.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_whisper.click(fn=lambda: del_ini_btn_whisper.update(interactive=False), outputs=del_ini_btn_whisper)
                         if test_ini_exist(module_name_whisper.value) :
                             with open(f".ini/{module_name_whisper.value}.ini", "r", encoding="utf-8") as fichier:
@@ -2015,7 +2018,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Column():
                                     source_type_whisper = gr.Radio(choices=["audio", "micro"], value="audio", label="Input type", info="Choose input type")
                                 with gr.Column():
-                                    source_language_whisper = gr.Dropdown(choices=language_list_whisper, value=language_list_whisper[14], label="Input language", info="Select input language")    
+                                    source_language_whisper = gr.Dropdown(choices=language_list_whisper, value=language_list_whisper[14], label="Input language", info="Select input language")
                             with gr.Row():
                                 source_audio_whisper = gr.Audio(label="Source audio", source="upload", type="filepath")
                                 source_type_whisper.change(fn=change_source_type_whisper, inputs=source_type_whisper, outputs=source_audio_whisper)
@@ -2030,11 +2033,11 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 output_type_whisper.change(fn=change_output_type_whisper, inputs=output_type_whisper, outputs=output_language_whisper)
                     with gr.Row():
                         with gr.Column():
-                            btn_whisper = gr.Button("Generate 🚀", variant="primary")
+                            btn_whisper = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():
-                            btn_whisper_clear_input = gr.ClearButton(components=[source_audio_whisper], value="Clear inputs 🧹")
-                        with gr.Column():                            
-                            btn_whisper_clear_output = gr.ClearButton(components=[out_whisper], value="Clear outputs 🧹") 
+                            btn_whisper_clear_input = gr.ClearButton(components=[source_audio_whisper], value=f"{biniou_lang_clear_inputs} 🧹")
+                        with gr.Column():
+                            btn_whisper_clear_output = gr.ClearButton(components=[out_whisper], value=f"{biniou_lang_clear_outputs} 🧹")
                         btn_whisper.click(
                             fn=text_whisper,
                             inputs=[
@@ -2051,7 +2054,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... output text to ...')
                                         gr.HTML(value='... text module ...')
@@ -2059,9 +2062,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... image module ...')
                                         whisper_txt2img_sd = gr.Button("✍️ >> Stable Diffusion")
                                         whisper_txt2img_kd = gr.Button("✍️ >> Kandinsky")
-                                        whisper_txt2img_lcm = gr.Button("✍️ >> LCM") 
-                                        whisper_txt2img_mjm = gr.Button("✍️ >> Midjourney-mini") 
-                                        whisper_txt2img_paa = gr.Button("✍️ >> PixArt-Alpha") 
+                                        whisper_txt2img_lcm = gr.Button("✍️ >> LCM")
+                                        whisper_txt2img_mjm = gr.Button("✍️ >> Midjourney-mini")
+                                        whisper_txt2img_paa = gr.Button("✍️ >> PixArt-Alpha")
                                         whisper_img2img = gr.Button("✍️ >> img2img")
                                         whisper_img2img_ip = gr.Button("✍️ >> IP-Adapter")
                                         whisper_pix2pix = gr.Button("✍️ >> Instruct pix2pix")
@@ -2081,32 +2084,32 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... input prompt(s) to ...')
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
 
 # nllb 
                 with gr.TabItem("nllb translation 👥", id=15) as tab_nllb:
-                    with gr.Accordion("About", open=False):
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
                         with gr.Box():                       
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>nllb translation</br>
-                                <b>Function : </b>Translate text with <a href='https://ai.meta.com/research/no-language-left-behind/' target='_blank'>nllb</a></br>
-                                <b>Input(s) : </b>Input text</br>
-                                <b>Output(s) : </b>Translated text</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>nllb translation</br>
+                                <b>{biniou_lang_about_function}</b>Translate text with <a href='https://ai.meta.com/research/no-language-left-behind/' target='_blank'>nllb</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Input text</br>
+                                <b>{biniou_lang_about_outputs}</b>Translated text</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/facebook/nllb-200-distilled-600M' target='_blank'>facebook/nllb-200-distilled-600M</a>
                                 </br>
                                 """
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Select an <b>input language</b></br>
                                 - Type or copy/paste the text to translate in the <b>source text</b> field</br>
                                 - Select an <b>output language</b></br>
@@ -2116,18 +2119,18 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 </div>
                                 """
                             )
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_nllb = gr.Dropdown(choices=model_list_nllb, value=model_list_nllb[0], label="Model", info="Choose model to use for inference")
+                                model_nllb = gr.Dropdown(choices=model_list_nllb, value=model_list_nllb[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                max_tokens_nllb = gr.Slider(0, 1024, step=1, value=1024, label="Max tokens", info="Maximum number of tokens in output")
+                                max_tokens_nllb = gr.Slider(0, 1024, step=1, value=1024, label=biniou_lang_maxtoken_label, info=biniou_lang_maxtoken_info)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_nllb = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_nllb = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_nllb = gr.Textbox(value="nllb", visible=False, interactive=False)
-                                del_ini_btn_nllb = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_nllb.value) else False)
+                                del_ini_btn_nllb = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_nllb.value) else False)
                                 save_ini_btn_nllb.click(
                                     fn=write_ini_nllb, 
                                     inputs=[
@@ -2136,10 +2139,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         max_tokens_nllb,
                                         ]
                                     )
-                                save_ini_btn_nllb.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_nllb.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_nllb.click(fn=lambda: del_ini_btn_nllb.update(interactive=True), outputs=del_ini_btn_nllb)
                                 del_ini_btn_nllb.click(fn=lambda: del_ini(module_name_nllb.value))
-                                del_ini_btn_nllb.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_nllb.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_nllb.click(fn=lambda: del_ini_btn_nllb.update(interactive=False), outputs=del_ini_btn_nllb)
                         if test_ini_exist(module_name_nllb.value) :
                             with open(f".ini/{module_name_nllb.value}.ini", "r", encoding="utf-8") as fichier:
@@ -2147,7 +2150,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
-                                source_language_nllb = gr.Dropdown(choices=list(language_list_nllb.keys()), value=list(language_list_nllb.keys())[47], label="Input language", info="Select input language")    
+                                source_language_nllb = gr.Dropdown(choices=list(language_list_nllb.keys()), value=list(language_list_nllb.keys())[47], label="Input language", info="Select input language")
                             with gr.Row():
                                 prompt_nllb = gr.Textbox(label="Source text", lines=9, max_lines=9, placeholder="Type or paste here the text to translate")
                         with gr.Column():
@@ -2157,11 +2160,11 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 out_nllb = gr.Textbox(label="Output text", lines=9, max_lines=9, show_copy_button=True, interactive=False)
                     with gr.Row():
                         with gr.Column():
-                            btn_nllb = gr.Button("Generate 🚀", variant="primary")
+                            btn_nllb = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():
-                            btn_nllb_clear_input = gr.ClearButton(components=[prompt_nllb], value="Clear inputs 🧹")
+                            btn_nllb_clear_input = gr.ClearButton(components=[prompt_nllb], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_nllb_clear_output = gr.ClearButton(components=[out_nllb], value="Clear outputs 🧹") 
+                            btn_nllb_clear_output = gr.ClearButton(components=[out_nllb], value=f"{biniou_lang_clear_outputs} 🧹")
                         btn_nllb.click(
                             fn=text_nllb,
                             inputs=[
@@ -2177,36 +2180,36 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... output text to ...')
                                         nllb_llamacpp = gr.Button("✍️ >> Chatbot Llama-cpp")
-                                        gr.HTML(value='... image module ...')                                        
+                                        gr.HTML(value='... image module ...')
                                         nllb_txt2img_sd = gr.Button("✍️ >> Stable Diffusion")
-                                        nllb_txt2img_kd = gr.Button("✍️ >> Kandinsky")                                        
-                                        nllb_txt2img_lcm = gr.Button("✍️ >> LCM") 
-                                        nllb_txt2img_mjm = gr.Button("✍️ >> Midjourney-mini") 
-                                        nllb_txt2img_paa = gr.Button("✍️ >> PixArt-Alpha") 
+                                        nllb_txt2img_kd = gr.Button("✍️ >> Kandinsky")
+                                        nllb_txt2img_lcm = gr.Button("✍️ >> LCM")
+                                        nllb_txt2img_mjm = gr.Button("✍️ >> Midjourney-mini")
+                                        nllb_txt2img_paa = gr.Button("✍️ >> PixArt-Alpha")
                                         nllb_img2img = gr.Button("✍️ >> img2img")
                                         nllb_img2img_ip = gr.Button("✍️ >> IP-Adapter")
                                         nllb_pix2pix = gr.Button("✍️ >> Instruct pix2pix")
                                         nllb_inpaint = gr.Button("✍️ >> inpaint")
-                                        nllb_controlnet = gr.Button("✍️ >> ControlNet")                                        
+                                        nllb_controlnet = gr.Button("✍️ >> ControlNet")
                                         nllb_faceid_ip = gr.Button("✍️ >> Photobooth")
                                         gr.HTML(value='... audio module ...')
-                                        nllb_musicgen = gr.Button("✍️ >> Musicgen")                                        
+                                        nllb_musicgen = gr.Button("✍️ >> Musicgen")
                                         nllb_audiogen = gr.Button("✍️ >> Audiogen")
-                                        nllb_bark = gr.Button("✍️ >> Bark")                                        
-                                        gr.HTML(value='... video module ...')                                               
+                                        nllb_bark = gr.Button("✍️ >> Bark")
+                                        gr.HTML(value='... video module ...')
                                         nllb_txt2vid_ms = gr.Button("✍️ >> Modelscope")
-                                        nllb_txt2vid_ze = gr.Button("✍️ >> Text2Video-Zero")                                        
+                                        nllb_txt2vid_ze = gr.Button("✍️ >> Text2Video-Zero")
                                         nllb_animatediff_lcm = gr.Button("✍️ >> AnimateDiff")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... input prompt(s) to ...')
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
 
@@ -2217,16 +2220,16 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     titletab_txt2prompt = "Prompt generator ⛔"
 
                 with gr.TabItem(titletab_txt2prompt, id=16) as tab_txt2prompt:
-                    with gr.Accordion("About", open=False):
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
                         with gr.Box():                       
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>Prompt generator</br>
-                                <b>Function : </b>Create complex prompt from a simple instruction.</br>
-                                <b>Input(s) : </b>Prompt</br>
-                                <b>Output(s) : </b>Enhanced output prompt</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>Prompt generator</br>
+                                <b>{biniou_lang_about_function}</b>Create complex prompt from a simple instruction.</br>
+                                <b>{biniou_lang_about_inputs}</b>Prompt</br>
+                                <b>{biniou_lang_about_outputs}</b>Enhanced output prompt</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/PulsarAI/prompt-generator' target='_blank'>PulsarAI/prompt-generator</a>, 
                                 <a href='https://huggingface.co/RamAnanth1/distilgpt2-sd-prompts' target='_blank'>RamAnanth1/distilgpt2-sd-prompts</a>, 
                                 </br>
@@ -2234,10 +2237,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Define a <b>prompt</b></br>
                                 - Choose the type of output to produce : ChatGPT will produce a persona for the chatbot from your input, SD will generate a prompt usable for image and video modules</br>
                                 - Click the <b>Generate</b> button</br>
@@ -2245,25 +2248,25 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 </div>
                                 """
                             )
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_txt2prompt = gr.Dropdown(choices=model_list_txt2prompt, value=model_list_txt2prompt[0], label="Model", info="Choose model to use for inference")
+                                model_txt2prompt = gr.Dropdown(choices=model_list_txt2prompt, value=model_list_txt2prompt[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                max_tokens_txt2prompt = gr.Slider(0, 2048, step=1, value=128, label="Max tokens", info="Maximum number of tokens in output")
+                                max_tokens_txt2prompt = gr.Slider(0, 2048, step=1, value=128, label=biniou_lang_maxtoken_label, info=biniou_lang_maxtoken_info)
                             with gr.Column():
-                                repetition_penalty_txt2prompt = gr.Slider(0.0, 10.0, step=0.01, value=1.05, label="Repetition penalty", info="The penalty to apply to repeated tokens")
+                                repetition_penalty_txt2prompt = gr.Slider(0.0, 10.0, step=0.01, value=1.05, label=biniou_lang_penalty_label, info=biniou_lang_penalty_info)
                         with gr.Row():                                
                             with gr.Column():
-                                seed_txt2prompt = gr.Slider(0, 4294967295, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Permit reproducibility") 
+                                seed_txt2prompt = gr.Slider(0, 4294967295, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info) 
                             with gr.Column():
-                                num_prompt_txt2prompt = gr.Slider(1, 64, step=1, value=1, label="Batch size", info="Number of prompts to generate") 
+                                num_prompt_txt2prompt = gr.Slider(1, 64, step=1, value=1, label=biniou_lang_batch_size_label, info="Number of prompts to generate") 
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2prompt = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_txt2prompt = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_txt2prompt = gr.Textbox(value="txt2prompt", visible=False, interactive=False)
-                                del_ini_btn_txt2prompt = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_txt2prompt.value) else False)
+                                del_ini_btn_txt2prompt = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_txt2prompt.value) else False)
                                 save_ini_btn_txt2prompt.click(
                                     fn=write_ini_txt2prompt,
                                     inputs=[
@@ -2275,10 +2278,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         num_prompt_txt2prompt,
                                         ]
                                     )
-                                save_ini_btn_txt2prompt.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_txt2prompt.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_txt2prompt.click(fn=lambda: del_ini_btn_txt2prompt.update(interactive=True), outputs=del_ini_btn_txt2prompt)
                                 del_ini_btn_txt2prompt.click(fn=lambda: del_ini(module_name_txt2prompt.value))
-                                del_ini_btn_txt2prompt.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_txt2prompt.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_txt2prompt.click(fn=lambda: del_ini_btn_txt2prompt.update(interactive=False), outputs=del_ini_btn_txt2prompt)
                         if test_ini_exist(module_name_txt2prompt.value) :
                             with open(f".ini/{module_name_txt2prompt.value}.ini", "r", encoding="utf-8") as fichier:
@@ -2286,7 +2289,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
-                                prompt_txt2prompt = gr.Textbox(label="Prompt", lines=9, max_lines=9, placeholder="a doctor")
+                                prompt_txt2prompt = gr.Textbox(label=biniou_lang_prompt_label, lines=9, max_lines=9, placeholder="a doctor")
                             with gr.Row():
                                 output_type_txt2prompt = gr.Radio(choices=["ChatGPT", "SD"], value="ChatGPT", label="Output type", info="Choose type of prompt to generate")
                                 output_type_txt2prompt.change(fn=change_output_type_txt2prompt, inputs=output_type_txt2prompt, outputs=[model_txt2prompt, max_tokens_txt2prompt])
@@ -2295,11 +2298,11 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 out_txt2prompt = gr.Textbox(label="Output prompt", lines=16, max_lines=16, show_copy_button=True, interactive=False)
                     with gr.Row():
                         with gr.Column():
-                            btn_txt2prompt = gr.Button("Generate 🚀", variant="primary")
+                            btn_txt2prompt = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():
-                            btn_txt2prompt_clear_input = gr.ClearButton(components=[prompt_txt2prompt], value="Clear inputs 🧹")
+                            btn_txt2prompt_clear_input = gr.ClearButton(components=[prompt_txt2prompt], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_txt2prompt_clear_output = gr.ClearButton(components=[out_txt2prompt], value="Clear outputs 🧹") 
+                            btn_txt2prompt_clear_output = gr.ClearButton(components=[out_txt2prompt], value=f"{biniou_lang_clear_outputs} 🧹") 
                         btn_txt2prompt.click(
                             fn=text_txt2prompt,
                             inputs=[
@@ -2317,15 +2320,15 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... output text to ...')
                                         gr.HTML(value='... text module ...') 
                                         txt2prompt_nllb = gr.Button("✍️ >> Nllb translation")
                                         txt2prompt_llamacpp = gr.Button("✍️ >> Chatbot llama-cpp")
-                                        gr.HTML(value='... image module ...')                                        
+                                        gr.HTML(value='... image module ...')
                                         txt2prompt_txt2img_sd = gr.Button("✍️ >> Stable Diffusion")
-                                        txt2prompt_txt2img_kd = gr.Button("✍️ >> Kandinsky")                                        
+                                        txt2prompt_txt2img_kd = gr.Button("✍️ >> Kandinsky")
                                         txt2prompt_txt2img_lcm = gr.Button("✍️ >> LCM") 
                                         txt2prompt_txt2img_mjm = gr.Button("✍️ >> Midjourney-mini") 
                                         txt2prompt_txt2img_paa = gr.Button("✍️ >> PixArt-Alpha") 
@@ -2333,36 +2336,36 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2prompt_img2img_ip = gr.Button("✍️ >> IP-Adapter")
                                         txt2prompt_pix2pix = gr.Button("✍️ >> Instruct pix2pix")
                                         txt2prompt_inpaint = gr.Button("✍️ >> inpaint")
-                                        txt2prompt_controlnet = gr.Button("✍️ >> ControlNet")                                        
+                                        txt2prompt_controlnet = gr.Button("✍️ >> ControlNet")
                                         txt2prompt_faceid_ip = gr.Button("✍️ >> Photobooth")
-                                        gr.HTML(value='... video module ...')                                               
+                                        gr.HTML(value='... video module ...')
                                         txt2prompt_txt2vid_ms = gr.Button("✍️ >> Modelscope")
-                                        txt2prompt_txt2vid_ze = gr.Button("✍️ >> Text2Video-Zero")                                        
+                                        txt2prompt_txt2vid_ze = gr.Button("✍️ >> Text2Video-Zero")
                                         txt2prompt_animatediff_lcm = gr.Button("✍️ >> AnimateDiff")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... input prompt(s) to ...')
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
-                                        gr.HTML(value='... both to ...')                                        
+                                        gr.HTML(value='... both to ...')
 
 # Image
         with gr.TabItem("Image 🖼️", id=2) as tab_image:
             with gr.Tabs() as tabs_image:
 # Stable Diffusion
                 with gr.TabItem("Stable Diffusion 🖼️", id=21) as tab_txt2img_sd:
-                    with gr.Accordion("About", open=False):                
-                        with gr.Box():                       
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
+                        with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>Stable diffusion</br>
-                                <b>Function : </b>Generate images from a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
-                                <b>Input(s) : </b>Prompt, negative prompt</br>
-                                <b>Output(s) : </b>Image(s)</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>Stable diffusion</br>
+                                <b>{biniou_lang_about_function}</b>Generate images from a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Prompt, negative prompt</br>
+                                <b>{biniou_lang_about_outputs}</b>Image(s)</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
                                 <a href='https://huggingface.co/IDKiro/sdxs-512-dreamshaper' target='_blank'>IDKiro/sdxs-512-dreamshaper</a>, 
                                 <a href='https://huggingface.co/IDKiro/sdxs-512-0.9' target='_blank'>IDKiro/sdxs-512-0.9</a>, 
@@ -2391,10 +2394,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - (optional) Modify the settings to use another model, generate several images in a single run or change dimensions of the outputs</br>
                                 - (optional) Select a LoRA model and set its weight</br>
                                 - Fill the <b>prompt</b> with what you want to see in your output image</br>
@@ -2402,51 +2405,51 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 - Click the <b>Generate</b> button</br>
                                 - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
                                 </br>
-                                <b>Models :</b></br>
+                                <b>{biniou_lang_about_models}</b></br>
                                 - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or  <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors models in the directory ./biniou/models/Stable Diffusion. Restart Biniou to see them in the models list.</br>
                                 <b>LoRA models :</b></br>
                                 - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or  <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors LoRA models in the directory ./biniou/models/lora/SD or ./biniou/models/lora/SDXL (depending on the LoRA model type : SD 1.5 or SDXL). Restart Biniou to see them in the models list.
                                 </div>                                
                                 """
-                            )                
-                    with gr.Accordion("Settings", open=False):
+                            )
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_txt2img_sd = gr.Dropdown(choices=model_list_txt2img_sd, value=model_list_txt2img_sd[0], label="Model", info="Choose model to use for inference")
+                                model_txt2img_sd = gr.Dropdown(choices=model_list_txt2img_sd, value=model_list_txt2img_sd[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                num_inference_step_txt2img_sd = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_txt2img_sd = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label=biniou_lang_steps_label, info=biniou_lang_steps_info)
                             with gr.Column():
-                                sampler_txt2img_sd = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
+                                sampler_txt2img_sd = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label=biniou_lang_sampler_label, info=biniou_lang_sampler_info)
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_txt2img_sd = gr.Slider(0.0, 20.0, step=0.1, value=7.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_txt2img_sd = gr.Slider(0.0, 20.0, step=0.1, value=7.0, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
-                                num_images_per_prompt_txt2img_sd = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_txt2img_sd = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info=biniou_lang_batch_size_image_info)
                             with gr.Column():
-                                num_prompt_txt2img_sd = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                num_prompt_txt2img_sd = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
                             with gr.Column():
-                                width_txt2img_sd = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs")
+                                width_txt2img_sd = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sd15_width, label=biniou_lang_image_width_label, info=biniou_lang_image_width_info)
                             with gr.Column():
-                                height_txt2img_sd = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs")
+                                height_txt2img_sd = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=biniou_global_sd15_height, label=biniou_lang_image_height_label, info=biniou_lang_image_height_info)
                             with gr.Column():
-                                seed_txt2img_sd = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")    
-                        with gr.Row():
-                            with gr.Column():    
-                                use_gfpgan_txt2img_sd = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
-                            with gr.Column():
-                                tkme_txt2img_sd = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                                seed_txt2img_sd = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2img_sd = gr.Button("Save custom defaults settings 💾")
+                                use_gfpgan_txt2img_sd = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
+                            with gr.Column():
+                                tkme_txt2img_sd = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_txt2img_sd = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_txt2img_sd = gr.Textbox(value="txt2img_sd", visible=False, interactive=False)
-                                del_ini_btn_txt2img_sd = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_txt2img_sd.value) else False)
+                                del_ini_btn_txt2img_sd = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_txt2img_sd.value) else False)
                                 save_ini_btn_txt2img_sd.click(
-                                    fn=write_ini_txt2img_sd, 
+                                    fn=write_ini_txt2img_sd,
                                     inputs=[
-                                        module_name_txt2img_sd, 
-                                        model_txt2img_sd, 
+                                        module_name_txt2img_sd,
+                                        model_txt2img_sd,
                                         num_inference_step_txt2img_sd,
                                         sampler_txt2img_sd,
                                         guidance_scale_txt2img_sd,
@@ -2459,34 +2462,34 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         tkme_txt2img_sd,
                                         ]
                                     )
-                                save_ini_btn_txt2img_sd.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_txt2img_sd.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_txt2img_sd.click(fn=lambda: del_ini_btn_txt2img_sd.update(interactive=True), outputs=del_ini_btn_txt2img_sd)
                                 del_ini_btn_txt2img_sd.click(fn=lambda: del_ini(module_name_txt2img_sd.value))
-                                del_ini_btn_txt2img_sd.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_txt2img_sd.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_txt2img_sd.click(fn=lambda: del_ini_btn_txt2img_sd.update(interactive=False), outputs=del_ini_btn_txt2img_sd)
                         if test_ini_exist(module_name_txt2img_sd.value) :
                             with open(f".ini/{module_name_txt2img_sd.value}.ini", "r", encoding="utf-8") as fichier:
                                 exec(fichier.read())
-                        with gr.Accordion("LoRA models", open=True):
+                        with gr.Accordion(biniou_lang_lora_label, open=True):
                             with gr.Row():
                                 with gr.Column():
-                                    lora_model_txt2img_sd = gr.Dropdown(choices=list(lora_model_list(model_txt2img_sd.value).keys()), value="", label="LoRA model", info="Choose LoRA model to use for inference")
+                                    lora_model_txt2img_sd = gr.Dropdown(choices=list(lora_model_list(model_txt2img_sd.value).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info)
                                 with gr.Column():
-                                    lora_weight_txt2img_sd = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label="LoRA weight", info="Weight of the LoRA model in the final result")
-                        with gr.Accordion("Textual inversion", open=True):
+                                    lora_weight_txt2img_sd = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info)
+                        with gr.Accordion(biniou_lang_textinv_label, open=True):
                             with gr.Row():
                                 with gr.Column():
-                                    txtinv_txt2img_sd = gr.Dropdown(choices=list(txtinv_list(model_txt2img_sd.value).keys()), value="", label="Textual inversion", info="Choose textual inversion to use for inference")
+                                    txtinv_txt2img_sd = gr.Dropdown(choices=list(txtinv_list(model_txt2img_sd.value).keys()), value="", label=biniou_lang_textinv_label, info=biniou_lang_textinv_info)
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
-                                with gr.Column():                        
-                                    prompt_txt2img_sd = gr.Textbox(lines=6, max_lines=6, label="Prompt", info="Describe what you want in your image", placeholder="a cute kitten playing with a ball, dynamic pose, close-up cinematic still, photo realistic, ultra quality, 4k uhd, perfect lighting, HDR, bokeh")
+                                with gr.Column():
+                                    prompt_txt2img_sd = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_image_prompt_placeholder)
                             with gr.Row():
-                                with gr.Column(): 
-                                    negative_prompt_txt2img_sd = gr.Textbox(lines=6, max_lines=6, label="Negative Prompt", info="Describe what you DO NOT want in your image", placeholder="out of frame, bad quality, medium quality, blurry, ugly, duplicate, text, characters, logo")
+                                with gr.Column():
+                                    negative_prompt_txt2img_sd = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
                         model_txt2img_sd.change(
-                            fn=change_model_type_txt2img_sd, 
+                            fn=change_model_type_txt2img_sd,
                             inputs=[model_txt2img_sd],
                             outputs=[
                                 sampler_txt2img_sd,
@@ -2503,34 +2506,34 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         txtinv_txt2img_sd.change(fn=change_txtinv_txt2img_sd, inputs=[model_txt2img_sd, txtinv_txt2img_sd, prompt_txt2img_sd, negative_prompt_txt2img_sd], outputs=[prompt_txt2img_sd, negative_prompt_txt2img_sd])
                         with gr.Column(scale=2):
                             out_txt2img_sd = gr.Gallery(
-                                label="Generated images",
+                                label=biniou_lang_image_gallery_label,
                                 show_label=True,
                                 elem_id="gallery",
                                 columns=3,
-                                height=400,                                
-                            )    
+                                height=400,
+                            )
                             gs_out_txt2img_sd = gr.State()
                             sel_out_txt2img_sd = gr.Number(precision=0, visible=False)
                             out_txt2img_sd.select(get_select_index, None, sel_out_txt2img_sd)
                             with gr.Row():
                                 with gr.Column():
-                                    download_btn_txt2img_sd = gr.Button("Zip gallery 💾")
+                                    download_btn_txt2img_sd = gr.Button(f"{biniou_lang_image_zip} 💾")
                                 with gr.Column():
-                                    download_file_txt2img_sd = gr.File(label="Output", height=30, interactive=False, visible=False)
+                                    download_file_txt2img_sd = gr.File(label=biniou_lang_image_zip_file, height=30, interactive=False, visible=False)
                                     download_btn_txt2img_sd.click(fn=zip_download_file_txt2img_sd, inputs=out_txt2img_sd, outputs=[download_file_txt2img_sd, download_file_txt2img_sd])
                     with gr.Row():
                         with gr.Column():
-                            btn_txt2img_sd = gr.Button("Generate 🚀", variant="primary")
+                            btn_txt2img_sd = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():                            
-                            btn_txt2img_sd_cancel = gr.Button("Cancel 🛑", variant="stop")
-                            btn_txt2img_sd_cancel.click(fn=initiate_stop_txt2img_sd, inputs=None, outputs=None)                              
+                            btn_txt2img_sd_cancel = gr.Button(f"{biniou_lang_cancel}🛑", variant="stop")
+                            btn_txt2img_sd_cancel.click(fn=initiate_stop_txt2img_sd, inputs=None, outputs=None)
                         with gr.Column():
-                            btn_txt2img_sd_clear_input = gr.ClearButton(components=[prompt_txt2img_sd, negative_prompt_txt2img_sd], value="Clear inputs 🧹")
-                        with gr.Column():                            
-                            btn_txt2img_sd_clear_output = gr.ClearButton(components=[out_txt2img_sd, gs_out_txt2img_sd], value="Clear outputs 🧹")   
-                            btn_txt2img_sd.click(fn=hide_download_file_txt2img_sd, inputs=None, outputs=download_file_txt2img_sd)   
+                            btn_txt2img_sd_clear_input = gr.ClearButton(components=[prompt_txt2img_sd, negative_prompt_txt2img_sd], value=f"{biniou_lang_clear_inputs} 🧹")
+                        with gr.Column():
+                            btn_txt2img_sd_clear_output = gr.ClearButton(components=[out_txt2img_sd, gs_out_txt2img_sd], value=f"{biniou_lang_clear_outputs} 🧹")
+                            btn_txt2img_sd.click(fn=hide_download_file_txt2img_sd, inputs=None, outputs=download_file_txt2img_sd)
                             btn_txt2img_sd.click(
-                            fn=image_txt2img_sd, 
+                            fn=image_txt2img_sd,
                             inputs=[
                                 model_txt2img_sd,
                                 sampler_txt2img_sd,
@@ -2556,10 +2559,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
-                                        gr.HTML(value='... text module ...')                                        
+                                        gr.HTML(value='... text module ...')
                                         txt2img_sd_llava = gr.Button("🖼️ >> Llava")
                                         txt2img_sd_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
@@ -2569,7 +2572,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_sd_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
                                         txt2img_sd_magicmix = gr.Button("🖼️ >> MagicMix")
                                         txt2img_sd_inpaint = gr.Button("🖼️ >> inpaint")
-                                        txt2img_sd_paintbyex = gr.Button("🖼️ >> Paint by example") 
+                                        txt2img_sd_paintbyex = gr.Button("🖼️ >> Paint by example")
                                         txt2img_sd_outpaint = gr.Button("🖼️ >> outpaint")
                                         txt2img_sd_controlnet = gr.Button("🖼️ >> ControlNet")
                                         txt2img_sd_faceid_ip = gr.Button("🖼️ >> Photobooth")
@@ -2587,25 +2590,25 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... image module ...')
                                         txt2img_sd_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")
                                         txt2img_sd_txt2img_lcm_input = gr.Button("✍️ >> LCM")
-                                        txt2img_sd_txt2img_mjm_input = gr.Button("✍️ >> Midjourney-mini") 
-                                        txt2img_sd_txt2img_paa_input = gr.Button("✍️ >> PixArt-Alpha") 
+                                        txt2img_sd_txt2img_mjm_input = gr.Button("✍️ >> Midjourney-mini")
+                                        txt2img_sd_txt2img_paa_input = gr.Button("✍️ >> PixArt-Alpha")
                                         txt2img_sd_img2img_input = gr.Button("✍️ >> img2img")
                                         txt2img_sd_img2img_ip_input = gr.Button("✍️ >> IP-Adapter")
                                         txt2img_sd_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         txt2img_sd_inpaint_input = gr.Button("✍️ >> inpaint")
                                         txt2img_sd_controlnet_input = gr.Button("✍️ >> ControlNet")
                                         txt2img_sd_faceid_ip_input = gr.Button("✍️ >> Photobooth")
-                                        gr.HTML(value='... video module ...')                                        
+                                        gr.HTML(value='... video module ...')
                                         txt2img_sd_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
-                                        txt2img_sd_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")                                        
+                                        txt2img_sd_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")
                                         txt2img_sd_animatediff_lcm_input = gr.Button("✍️ >> AnimateDiff")
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
-                                        gr.HTML(value='... image module ...') 
+                                        gr.HTML(value='... image module ...')
                                         txt2img_sd_img2img_both = gr.Button("🖼️ + ✍️ >> img2img")
-                                        txt2img_sd_img2img_ip_both = gr.Button("🖼️ + ✍️ >> IP-Adapter")                                        
+                                        txt2img_sd_img2img_ip_both = gr.Button("🖼️ + ✍️ >> IP-Adapter")
                                         txt2img_sd_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
                                         txt2img_sd_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
                                         txt2img_sd_controlnet_both = gr.Button("🖼️ + ✍️️ >> ControlNet")
@@ -2617,17 +2620,17 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                 else :
                     titletab_txt2img_kd = "Kandinsky ⛔"
 
-                with gr.TabItem(titletab_txt2img_kd, id=22) as tab_txt2img_kd:                    
-                    with gr.Accordion("About", open=False):                
+                with gr.TabItem(titletab_txt2img_kd, id=22) as tab_txt2img_kd:
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
                         with gr.Box():                       
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left; text-decoration: underline;'>Informations</h1>
-                                <b>Module : </b>Kandinsky</br>
-                                <b>Function : </b>Generate images from a prompt and a negative prompt using <a href='https://github.com/ai-forever/Kandinsky-2' target='_blank'>Kandinsky</a></br>
-                                <b>Input(s) : </b>Prompt, negative prompt</br>
-                                <b>Output(s) : </b>Image(s)</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>Kandinsky</br>
+                                <b>{biniou_lang_about_function}</b>Generate images from a prompt and a negative prompt using <a href='https://github.com/ai-forever/Kandinsky-2' target='_blank'>Kandinsky</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Prompt, negative prompt</br>
+                                <b>{biniou_lang_about_outputs}</b>Image(s)</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/kandinsky-community/kandinsky-2-2-decoder' target='_blank'>kandinsky-community/kandinsky-2-2-decoder</a>, 
                                 <a href='https://huggingface.co/kandinsky-community/kandinsky-3' target='_blank'>kandinsky-community/kandinsky-3</a>, 
                                 <a href='https://huggingface.co/kandinsky-community/kandinsky-2-1' target='_blank'>kandinsky-community/kandinsky-2-1</a></br>
@@ -2635,54 +2638,54 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left; text-decoration: underline;'>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Fill the <b>prompt</b> with what you want to see in your output image</br>
                                 - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output image</br>
                                 - (optional) Modify the settings to use another model, generate several images in a single run or change dimensions of the outputs</br>
                                 - Click the <b>generate</b> button</br>
-                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.                                
+                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
                                 </div>
                                 """
                             )                                
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_txt2img_kd = gr.Dropdown(choices=model_list_txt2img_kd, value=model_list_txt2img_kd[0], label="Model", info="Choose model to use for inference")
+                                model_txt2img_kd = gr.Dropdown(choices=model_list_txt2img_kd, value=model_list_txt2img_kd[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                num_inference_step_txt2img_kd = gr.Slider(1, biniou_global_steps_max, step=1, value=25, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_txt2img_kd = gr.Slider(1, biniou_global_steps_max, step=1, value=25, label=biniou_lang_steps_label, info=biniou_lang_steps_info)
                             with gr.Column():
-                                sampler_txt2img_kd = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[5], label="Sampler", info="Sampler to use for inference")
+                                sampler_txt2img_kd = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[5], label=biniou_lang_sampler_label, info=biniou_lang_sampler_info)
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_txt2img_kd = gr.Slider(0.1, 20.0, step=0.1, value=4.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_txt2img_kd = gr.Slider(0.1, 20.0, step=0.1, value=4.0, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
-                                num_images_per_prompt_txt2img_kd = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_txt2img_kd = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info=biniou_lang_batch_size_image_info)
                             with gr.Column():
-                                num_prompt_txt2img_kd = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                num_prompt_txt2img_kd = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
                             with gr.Column():
-                                width_txt2img_kd = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs")
+                                width_txt2img_kd = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sd15_width, label=biniou_lang_image_width_label, info=biniou_lang_image_width_info)
                             with gr.Column():
-                                height_txt2img_kd = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs")
+                                height_txt2img_kd = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=biniou_global_sd15_height, label=biniou_lang_image_height_label, info=biniou_lang_image_height_info)
                             with gr.Column():
-                                seed_txt2img_kd = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
-                        with gr.Row():
-                            with gr.Column():    
-                                use_gfpgan_txt2img_kd = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                seed_txt2img_kd = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2img_kd = gr.Button("Save custom defaults settings 💾")
+                                use_gfpgan_txt2img_kd = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_txt2img_kd = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_txt2img_kd = gr.Textbox(value="txt2img_kd", visible=False, interactive=False)
-                                del_ini_btn_txt2img_kd = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_txt2img_kd.value) else False)
+                                del_ini_btn_txt2img_kd = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_txt2img_kd.value) else False)
                                 save_ini_btn_txt2img_kd.click(
                                     fn=write_ini_txt2img_kd, 
                                     inputs=[
-                                        module_name_txt2img_kd, 
-                                        model_txt2img_kd, 
+                                        module_name_txt2img_kd,
+                                        model_txt2img_kd,
                                         num_inference_step_txt2img_kd,
                                         sampler_txt2img_kd,
                                         guidance_scale_txt2img_kd,
@@ -2694,10 +2697,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         use_gfpgan_txt2img_kd,
                                         ]
                                     )
-                                save_ini_btn_txt2img_kd.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_txt2img_kd.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_txt2img_kd.click(fn=lambda: del_ini_btn_txt2img_kd.update(interactive=True), outputs=del_ini_btn_txt2img_kd)
                                 del_ini_btn_txt2img_kd.click(fn=lambda: del_ini(module_name_txt2img_kd.value))
-                                del_ini_btn_txt2img_kd.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_txt2img_kd.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_txt2img_kd.click(fn=lambda: del_ini_btn_txt2img_kd.update(interactive=False), outputs=del_ini_btn_txt2img_kd)
                         if test_ini_exist(module_name_txt2img_kd.value) :
                             with open(f".ini/{module_name_txt2img_kd.value}.ini", "r", encoding="utf-8") as fichier:
@@ -2705,11 +2708,11 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
-                                with gr.Column():   
-                                    prompt_txt2img_kd = gr.Textbox(lines=6, max_lines=6, label="Prompt", info="Describe what you want in your image", placeholder="An alien cheeseburger creature eating itself, claymation, cinematic, moody lighting")
+                                with gr.Column():
+                                    prompt_txt2img_kd = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder="An alien cheeseburger creature eating itself, claymation, cinematic, moody lighting")
                             with gr.Row():
                                 with gr.Column():
-                                    negative_prompt_txt2img_kd = gr.Textbox(lines=6, max_lines=6, label="Negative Prompt", info="Describe what you DO NOT want in your image", placeholder="low quality, bad quality")
+                                    negative_prompt_txt2img_kd = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder="low quality, bad quality")
                         model_txt2img_kd.change(
                             fn=change_model_type_txt2img_kd,
                             inputs=[model_txt2img_kd],
@@ -2722,32 +2725,32 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         )
                         with gr.Column(scale=2):
                             out_txt2img_kd = gr.Gallery(
-                                label="Generated images",
+                                label=biniou_lang_image_gallery_label,
                                 show_label=True,
                                 elem_id="gallery_k",
                                 columns=3,
                                 height=400,
                             )
                             gs_out_txt2img_kd = gr.State()
-                            sel_out_txt2img_kd = gr.Number(precision=0, visible=False)                        
+                            sel_out_txt2img_kd = gr.Number(precision=0, visible=False)
                             out_txt2img_kd.select(get_select_index, None, sel_out_txt2img_kd)
                             with gr.Row():
                                 with gr.Column():
-                                    download_btn_txt2img_kd = gr.Button("Zip gallery 💾")
+                                    download_btn_txt2img_kd = gr.Button(f"{biniou_lang_image_zip} 💾")
                                 with gr.Column():
-                                    download_file_txt2img_kd = gr.File(label="Output", height=30, interactive=False, visible=False)
+                                    download_file_txt2img_kd = gr.File(label=biniou_lang_image_zip_file, height=30, interactive=False, visible=False)
                                     download_btn_txt2img_kd.click(fn=zip_download_file_txt2img_kd, inputs=out_txt2img_kd, outputs=[download_file_txt2img_kd, download_file_txt2img_kd])                            
                     with gr.Row():
                         with gr.Column():
-                            btn_txt2img_kd = gr.Button("Generate 🚀", variant="primary")
+                            btn_txt2img_kd = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():                            
-                            btn_txt2img_kd_cancel = gr.Button("Cancel 🛑", variant="stop")
-                            btn_txt2img_kd_cancel.click(fn=initiate_stop_txt2img_kd, inputs=None, outputs=None)                              
+                            btn_txt2img_kd_cancel = gr.Button(f"{biniou_lang_cancel}🛑", variant="stop")
+                            btn_txt2img_kd_cancel.click(fn=initiate_stop_txt2img_kd, inputs=None, outputs=None)
                         with gr.Column():
-                            btn_txt2img_kd_clear_input = gr.ClearButton(components=[prompt_txt2img_kd, negative_prompt_txt2img_kd], value="Clear inputs 🧹")
+                            btn_txt2img_kd_clear_input = gr.ClearButton(components=[prompt_txt2img_kd, negative_prompt_txt2img_kd], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_txt2img_kd_clear_output = gr.ClearButton(components=[out_txt2img_kd, gs_out_txt2img_kd], value="Clear outputs 🧹")
-                            btn_txt2img_kd.click(fn=hide_download_file_txt2img_kd, inputs=None, outputs=download_file_txt2img_kd)                              
+                            btn_txt2img_kd_clear_output = gr.ClearButton(components=[out_txt2img_kd, gs_out_txt2img_kd], value=f"{biniou_lang_clear_outputs} 🧹")
+                            btn_txt2img_kd.click(fn=hide_download_file_txt2img_kd, inputs=None, outputs=download_file_txt2img_kd)
                             btn_txt2img_kd.click(
                                 fn=image_txt2img_kd,
                                 inputs=[
@@ -2770,7 +2773,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
@@ -2783,7 +2786,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_kd_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
                                         txt2img_kd_magicmix = gr.Button("🖼️ >> MagicMix")
                                         txt2img_kd_inpaint = gr.Button("🖼️ >> inpaint")
-                                        txt2img_kd_paintbyex = gr.Button("🖼️ >> Paint by example") 
+                                        txt2img_kd_paintbyex = gr.Button("🖼️ >> Paint by example")
                                         txt2img_kd_outpaint = gr.Button("🖼️ >> outpaint")
                                         txt2img_kd_controlnet = gr.Button("🖼️ >> ControlNet")
                                         txt2img_kd_faceid_ip = gr.Button("🖼️ >> Photobooth")
@@ -2801,20 +2804,20 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... image module ...')
                                         txt2img_kd_txt2img_sd_input = gr.Button("✍️ >> Stable Diffusion")
                                         txt2img_kd_txt2img_lcm_input = gr.Button("✍️ >> LCM")
-                                        txt2img_kd_txt2img_mjm_input = gr.Button("✍️ >> Midjourney-mini") 
+                                        txt2img_kd_txt2img_mjm_input = gr.Button("✍️ >> Midjourney-mini")
                                         txt2img_kd_txt2img_paa_input = gr.Button("✍️ >> PixArt-Alpha") 
                                         txt2img_kd_img2img_input = gr.Button("✍️ >> img2img")
                                         txt2img_kd_img2img_ip_input = gr.Button("✍️ >> IP-Adapter")
                                         txt2img_kd_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         txt2img_kd_inpaint_input = gr.Button("✍️ >> inpaint")
-                                        txt2img_kd_controlnet_input = gr.Button("✍️ >> ControlNet")                                        
+                                        txt2img_kd_controlnet_input = gr.Button("✍️ >> ControlNet")
                                         txt2img_kd_faceid_ip_input = gr.Button("✍️ >> Photobooth")
-                                        gr.HTML(value='... video module ...')                                                                                
+                                        gr.HTML(value='... video module ...')
                                         txt2img_kd_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
                                         txt2img_kd_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")
                                         txt2img_kd_animatediff_lcm_input = gr.Button("✍️ >> AnimateDiff")
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
                                         gr.HTML(value='... image module ...')
@@ -2827,16 +2830,16 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
 
 # LCM
                 with gr.TabItem("LCM 🖼️", id=23) as tab_txt2img_lcm:
-                    with gr.Accordion("About", open=False):                
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):                
                         with gr.Box():                       
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>LCM</br>
-                                <b>Function : </b>Generate images from a prompt using <a href='https://github.com/luosiallen/latent-consistency-model' target='_blank'>LCM (Latent Consistency Model)</a></br>
-                                <b>Input(s) : </b>Prompt</br>
-                                <b>Output(s) : </b>Image(s)</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>LCM</br>
+                                <b>{biniou_lang_about_function}</b>Generate images from a prompt using <a href='https://github.com/luosiallen/latent-consistency-model' target='_blank'>LCM (Latent Consistency Model)</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Prompt</br>
+                                <b>{biniou_lang_about_outputs}</b>Image(s)</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/SimianLuo/LCM_Dreamshaper_v7' target='_blank'>SimianLuo/LCM_Dreamshaper_v7</a>, 
                                 <a href='https://huggingface.co/segmind/Segmind-VegaRT' target='_blank'>segmind/Segmind-VegaRT</a>, 
                                 <a href='https://huggingface.co/latent-consistency/lcm-ssd-1b' target='_blank'>latent-consistency/lcm-ssd-1b</a>, 
@@ -2848,10 +2851,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - (optional) Modify the settings to generate several images in a single run or change dimensions of the outputs</br>
                                 - (optional) Select a LoRA model and set its weight</br>
                                 - Fill the <b>prompt</b> with what you want to see in your output image</br>
@@ -2861,41 +2864,41 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors LoRA models in the directory ./biniou/models/lora/SD or ./biniou/models/lora/SDXL (depending on the LoRA model type : SD 1.5 or SDXL). Restart Biniou to see them in the models list.</br>
                                 """
                             )                
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_txt2img_lcm = gr.Dropdown(choices=model_list_txt2img_lcm, value=model_list_txt2img_lcm[0], label="Model", info="Choose model to use for inference")
+                                model_txt2img_lcm = gr.Dropdown(choices=model_list_txt2img_lcm, value=model_list_txt2img_lcm[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                num_inference_step_txt2img_lcm = gr.Slider(1, biniou_global_steps_max, step=1, value=4, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_txt2img_lcm = gr.Slider(1, biniou_global_steps_max, step=1, value=4, label=biniou_lang_steps_label, info=biniou_lang_steps_info)
                             with gr.Column():
-                                sampler_txt2img_lcm = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[13], label="Sampler", info="Sampler to use for inference", interactive=False)
+                                sampler_txt2img_lcm = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[13], label=biniou_lang_sampler_label, info=biniou_lang_sampler_info, interactive=False)
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_txt2img_lcm = gr.Slider(0.1, 20.0, step=0.1, value=8.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_txt2img_lcm = gr.Slider(0.1, 20.0, step=0.1, value=8.0, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
                                 lcm_origin_steps_txt2img_lcm = gr.Slider(1, biniou_global_steps_max, step=1, value=50, label="LCM origin steps", info="LCM origin steps")
                             with gr.Column():
-                                num_images_per_prompt_txt2img_lcm = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_txt2img_lcm = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info=biniou_lang_batch_size_image_info)
                             with gr.Column():
-                                num_prompt_txt2img_lcm = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                num_prompt_txt2img_lcm = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
                             with gr.Column():
-                                width_txt2img_lcm = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs")
+                                width_txt2img_lcm = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sd15_width, label=biniou_lang_image_width_label, info=biniou_lang_image_width_info)
                             with gr.Column():
-                                height_txt2img_lcm = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs")
+                                height_txt2img_lcm = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=biniou_global_sd15_height, label=biniou_lang_image_height_label, info=biniou_lang_image_height_info)
                             with gr.Column():
-                                seed_txt2img_lcm = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility") 
+                                seed_txt2img_lcm = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info) 
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_txt2img_lcm = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_txt2img_lcm = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
                             with gr.Column():
-                                tkme_txt2img_lcm = gr.Slider(0.0, 1.0, step=0.01, value=0.0, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                                tkme_txt2img_lcm = gr.Slider(0.0, 1.0, step=0.01, value=0.0, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2img_lcm = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_txt2img_lcm = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_txt2img_lcm = gr.Textbox(value="txt2img_lcm", visible=False, interactive=False)
-                                del_ini_btn_txt2img_lcm = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_txt2img_lcm.value) else False)
+                                del_ini_btn_txt2img_lcm = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_txt2img_lcm.value) else False)
                                 save_ini_btn_txt2img_lcm.click(
                                     fn=write_ini_txt2img_lcm, 
                                     inputs=[
@@ -2914,29 +2917,29 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         tkme_txt2img_lcm,
                                         ]
                                     )
-                                save_ini_btn_txt2img_lcm.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_txt2img_lcm.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_txt2img_lcm.click(fn=lambda: del_ini_btn_txt2img_lcm.update(interactive=True), outputs=del_ini_btn_txt2img_lcm)
                                 del_ini_btn_txt2img_lcm.click(fn=lambda: del_ini(module_name_txt2img_lcm.value))
-                                del_ini_btn_txt2img_lcm.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_txt2img_lcm.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_txt2img_lcm.click(fn=lambda: del_ini_btn_txt2img_lcm.update(interactive=False), outputs=del_ini_btn_txt2img_lcm)
                         if test_ini_exist(module_name_txt2img_lcm.value) :
                             with open(f".ini/{module_name_txt2img_lcm.value}.ini", "r", encoding="utf-8") as fichier:
                                 exec(fichier.read())
-                        with gr.Accordion("LoRA Model", open=True):
+                        with gr.Accordion(biniou_lang_lora_label, open=True):
                             with gr.Row():
                                 with gr.Column():
-                                    lora_model_txt2img_lcm = gr.Dropdown(choices=list(lora_model_list(model_txt2img_lcm.value).keys()), value="", label="LoRA model", info="Choose LoRA model to use for inference")
+                                    lora_model_txt2img_lcm = gr.Dropdown(choices=list(lora_model_list(model_txt2img_lcm.value).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info)
                                 with gr.Column():
-                                    lora_weight_txt2img_lcm = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label="LoRA weight", info="Weight of the LoRA model in the final result")
-                        with gr.Accordion("Textual inversion", open=True):
+                                    lora_weight_txt2img_lcm = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info)
+                        with gr.Accordion(biniou_lang_textinv_label, open=True):
                             with gr.Row():
                                 with gr.Column():
-                                    txtinv_txt2img_lcm = gr.Dropdown(choices=list(txtinv_list(model_txt2img_lcm.value).keys()), value="", label="Textual inversion", info="Choose textual inversion to use for inference")
+                                    txtinv_txt2img_lcm = gr.Dropdown(choices=list(txtinv_list(model_txt2img_lcm.value).keys()), value="", label=biniou_lang_textinv_label, info=biniou_lang_textinv_info)
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():                        
-                                    prompt_txt2img_lcm = gr.Textbox(lines=18, max_lines=18, label="Prompt", info="Describe what you want in your image", placeholder="Self-portrait oil painting, a beautiful cyborg with golden hair, 8k")
+                                    prompt_txt2img_lcm = gr.Textbox(lines=18, max_lines=18, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder="Self-portrait oil painting, a beautiful cyborg with golden hair, 8k")
                         model_txt2img_lcm.change(fn=change_model_type_txt2img_lcm,
                             inputs=model_txt2img_lcm, 
                             outputs=[
@@ -2952,7 +2955,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         txtinv_txt2img_lcm.change(fn=change_txtinv_txt2img_lcm, inputs=[model_txt2img_lcm, txtinv_txt2img_lcm, prompt_txt2img_lcm], outputs=[prompt_txt2img_lcm])
                         with gr.Column(scale=2):
                             out_txt2img_lcm = gr.Gallery(
-                                label="Generated images",
+                                label=biniou_lang_image_gallery_label,
                                 show_label=True,
                                 elem_id="gallery",
                                 columns=3,
@@ -2963,23 +2966,23 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             out_txt2img_lcm.select(get_select_index, None, sel_out_txt2img_lcm)
                             with gr.Row():
                                 with gr.Column():
-                                    download_btn_txt2img_lcm = gr.Button("Zip gallery 💾")
+                                    download_btn_txt2img_lcm = gr.Button(f"{biniou_lang_image_zip} 💾")
                                 with gr.Column():
-                                    download_file_txt2img_lcm = gr.File(label="Output", height=30, interactive=False, visible=False)
+                                    download_file_txt2img_lcm = gr.File(label=biniou_lang_image_zip_file, height=30, interactive=False, visible=False)
                                     download_btn_txt2img_lcm.click(fn=zip_download_file_txt2img_lcm, inputs=out_txt2img_lcm, outputs=[download_file_txt2img_lcm, download_file_txt2img_lcm])
                     with gr.Row():
                         with gr.Column():
-                            btn_txt2img_lcm = gr.Button("Generate 🚀", variant="primary")
+                            btn_txt2img_lcm = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():
-                            btn_txt2img_lcm_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_txt2img_lcm_cancel = gr.Button(f"{biniou_lang_cancel}🛑", variant="stop")
                             btn_txt2img_lcm_cancel.click(fn=initiate_stop_txt2img_lcm, inputs=None, outputs=None)
                         with gr.Column():
-                            btn_txt2img_lcm_clear_input = gr.ClearButton(components=[prompt_txt2img_lcm], value="Clear inputs 🧹")
+                            btn_txt2img_lcm_clear_input = gr.ClearButton(components=[prompt_txt2img_lcm], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_txt2img_lcm_clear_output = gr.ClearButton(components=[out_txt2img_lcm, gs_out_txt2img_lcm], value="Clear outputs 🧹")   
-                            btn_txt2img_lcm.click(fn=hide_download_file_txt2img_lcm, inputs=None, outputs=download_file_txt2img_lcm)   
+                            btn_txt2img_lcm_clear_output = gr.ClearButton(components=[out_txt2img_lcm, gs_out_txt2img_lcm], value=f"{biniou_lang_clear_outputs} 🧹")
+                            btn_txt2img_lcm.click(fn=hide_download_file_txt2img_lcm, inputs=None, outputs=download_file_txt2img_lcm)
                             btn_txt2img_lcm.click(
-                            fn=image_txt2img_lcm, 
+                            fn=image_txt2img_lcm,
                             inputs=[
                                 model_txt2img_lcm,
                                 sampler_txt2img_lcm,
@@ -2987,8 +2990,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 num_images_per_prompt_txt2img_lcm,
                                 num_prompt_txt2img_lcm,
                                 guidance_scale_txt2img_lcm,
-                                lcm_origin_steps_txt2img_lcm, 
-                                num_inference_step_txt2img_lcm, 
+                                lcm_origin_steps_txt2img_lcm,
+                                num_inference_step_txt2img_lcm,
                                 height_txt2img_lcm,
                                 width_txt2img_lcm,
                                 seed_txt2img_lcm,
@@ -3005,12 +3008,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
-                                        gr.HTML(value='... text module ...')                                        
+                                        gr.HTML(value='... text module ...')
                                         txt2img_lcm_llava = gr.Button("🖼️ >> Llava")
-                                        txt2img_lcm_img2txt_git = gr.Button("🖼️ >> GIT Captioning")      
+                                        txt2img_lcm_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         txt2img_lcm_img2img = gr.Button("🖼️ >> img2img")
                                         txt2img_lcm_img2img_ip = gr.Button("🖼️ >> IP-Adapter")
@@ -3018,7 +3021,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_lcm_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
                                         txt2img_lcm_magicmix = gr.Button("🖼️ >> MagicMix")
                                         txt2img_lcm_inpaint = gr.Button("🖼️ >> inpaint")
-                                        txt2img_lcm_paintbyex = gr.Button("🖼️ >> Paint by example") 
+                                        txt2img_lcm_paintbyex = gr.Button("🖼️ >> Paint by example")
                                         txt2img_lcm_outpaint = gr.Button("🖼️ >> outpaint")
                                         txt2img_lcm_controlnet = gr.Button("🖼️ >> ControlNet")
                                         txt2img_lcm_faceid_ip = gr.Button("🖼️ >> Photobooth")
@@ -3027,8 +3030,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_lcm_gfpgan = gr.Button("🖼️ >> GFPGAN")
                                         gr.HTML(value='... Video module ...')
                                         txt2img_lcm_img2vid = gr.Button("🖼️ >> Stable Video Diffusion")
-                                        gr.HTML(value='... 3d module ...') 
-                                        txt2img_lcm_img2shape = gr.Button("🖼️ >> Shap-E img2shape") 
+                                        gr.HTML(value='... 3d module ...')
+                                        txt2img_lcm_img2shape = gr.Button("🖼️ >> Shap-E img2shape")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -3036,8 +3039,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... image module ...')
                                         txt2img_lcm_txt2img_sd_input = gr.Button("✍️ >> Stable Diffusion")
                                         txt2img_lcm_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")
-                                        txt2img_lcm_txt2img_mjm_input = gr.Button("✍️ >> Midjourney-mini") 
-                                        txt2img_lcm_txt2img_paa_input = gr.Button("✍️ >> PixArt-Alpha") 
+                                        txt2img_lcm_txt2img_mjm_input = gr.Button("✍️ >> Midjourney-mini")
+                                        txt2img_lcm_txt2img_paa_input = gr.Button("✍️ >> PixArt-Alpha")
                                         txt2img_lcm_img2img_input = gr.Button("✍️ >> img2img")
                                         txt2img_lcm_img2img_ip_input = gr.Button("✍️ >> IP-Adapter")
                                         txt2img_lcm_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
@@ -3049,7 +3052,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_lcm_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")
                                         txt2img_lcm_animatediff_lcm_input = gr.Button("✍️ >> AnimateDiff")
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
                                         gr.HTML(value='... image module ...')
@@ -3062,26 +3065,26 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
 
 # txt2img_mjm
                 with gr.TabItem("Midjourney-mini 🖼️", id=24) as tab_txt2img_mjm:
-                    with gr.Accordion("About", open=False):                
-                        with gr.Box():                       
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
+                        with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>Midjourney-mini</br>
-                                <b>Function : </b>Generate images from a prompt and a negative prompt using <a href='https://huggingface.co/openskyml/midjourney-mini' target='_blank'>Midjourney-mini</a></br>
-                                <b>Input(s) : </b>Prompt, negative prompt</br>
-                                <b>Output(s) : </b>Image(s)</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>Midjourney-mini</br>
+                                <b>{biniou_lang_about_function}</b>Generate images from a prompt and a negative prompt using <a href='https://huggingface.co/openskyml/midjourney-mini' target='_blank'>Midjourney-mini</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Prompt, negative prompt</br>
+                                <b>{biniou_lang_about_outputs}</b>Image(s)</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/openskyml/midjourney-mini' target='_blank'>openskyml/midjourney-mini</a>
                                 </br>
                                 """
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Fill the <b>prompt</b> with what you want to see in your output image</br>
                                 - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output image</br>
                                 - (optional) Modify the settings to generate several images in a single run or change dimensions of the outputs</br>
@@ -3089,45 +3092,45 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
                                 </br>
                                 """
-                            )                
-                    with gr.Accordion("Settings", open=False):
+                            )
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_txt2img_mjm = gr.Dropdown(choices=model_list_txt2img_mjm, value=model_list_txt2img_mjm[0], label="Model", info="Choose model to use for inference")
+                                model_txt2img_mjm = gr.Dropdown(choices=model_list_txt2img_mjm, value=model_list_txt2img_mjm[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                num_inference_step_txt2img_mjm = gr.Slider(1, biniou_global_steps_max, step=1, value=15, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_txt2img_mjm = gr.Slider(1, biniou_global_steps_max, step=1, value=15, label=biniou_lang_steps_label, info=biniou_lang_steps_info)
                             with gr.Column():
-                                sampler_txt2img_mjm = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[4], label="Sampler", info="Sampler to use for inference")
+                                sampler_txt2img_mjm = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[4], label=biniou_lang_sampler_label, info=biniou_lang_sampler_info)
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_txt2img_mjm = gr.Slider(0.1, 20.0, step=0.1, value=7.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_txt2img_mjm = gr.Slider(0.1, 20.0, step=0.1, value=7.0, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
-                                num_images_per_prompt_txt2img_mjm = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_txt2img_mjm = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info=biniou_lang_batch_size_image_info)
                             with gr.Column():
-                                num_prompt_txt2img_mjm = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                num_prompt_txt2img_mjm = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
                             with gr.Column():
-                                width_txt2img_mjm = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs")
+                                width_txt2img_mjm = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sd15_width, label=biniou_lang_image_width_label, info=biniou_lang_image_width_info)
                             with gr.Column():
-                                height_txt2img_mjm = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs")
+                                height_txt2img_mjm = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=biniou_global_sd15_height, label=biniou_lang_image_height_label, info=biniou_lang_image_height_info)
                             with gr.Column():
-                                seed_txt2img_mjm = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")    
-                        with gr.Row():
-                            with gr.Column():    
-                                use_gfpgan_txt2img_mjm = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
-                            with gr.Column():
-                                tkme_txt2img_mjm = gr.Slider(0.0, 1.0, step=0.01, value=0.0, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                                seed_txt2img_mjm = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2img_mjm = gr.Button("Save custom defaults settings 💾")
+                                use_gfpgan_txt2img_mjm = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
+                            with gr.Column():
+                                tkme_txt2img_mjm = gr.Slider(0.0, 1.0, step=0.01, value=0.0, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_txt2img_mjm = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_txt2img_mjm = gr.Textbox(value="txt2img_mjm", visible=False, interactive=False)
-                                del_ini_btn_txt2img_mjm = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_txt2img_mjm.value) else False)
+                                del_ini_btn_txt2img_mjm = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_txt2img_mjm.value) else False)
                                 save_ini_btn_txt2img_mjm.click(
-                                    fn=write_ini_txt2img_mjm, 
+                                    fn=write_ini_txt2img_mjm,
                                     inputs=[
-                                        module_name_txt2img_mjm, 
-                                        model_txt2img_mjm, 
+                                        module_name_txt2img_mjm,
+                                        model_txt2img_mjm,
                                         num_inference_step_txt2img_mjm,
                                         sampler_txt2img_mjm,
                                         guidance_scale_txt2img_mjm,
@@ -3140,53 +3143,52 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         tkme_txt2img_mjm,
                                         ]
                                     )
-                                save_ini_btn_txt2img_mjm.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_txt2img_mjm.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_txt2img_mjm.click(fn=lambda: del_ini_btn_txt2img_mjm.update(interactive=True), outputs=del_ini_btn_txt2img_mjm)
                                 del_ini_btn_txt2img_mjm.click(fn=lambda: del_ini(module_name_txt2img_mjm.value))
-                                del_ini_btn_txt2img_mjm.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_txt2img_mjm.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_txt2img_mjm.click(fn=lambda: del_ini_btn_txt2img_mjm.update(interactive=False), outputs=del_ini_btn_txt2img_mjm)
                         if test_ini_exist(module_name_txt2img_mjm.value) :
                             with open(f".ini/{module_name_txt2img_mjm.value}.ini", "r", encoding="utf-8") as fichier:
                                 exec(fichier.read())
-
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
-                                with gr.Column():                        
-                                    prompt_txt2img_mjm = gr.Textbox(lines=6, max_lines=6, label="Prompt", info="Describe what you want in your image", placeholder="a cute kitten playing with a ball, dynamic pose, close-up cinematic still, photo realistic, ultra quality, 4k uhd, perfect lighting, HDR, bokeh")
+                                with gr.Column():
+                                    prompt_txt2img_mjm = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_image_prompt_placeholder)
                             with gr.Row():
-                                with gr.Column(): 
-                                    negative_prompt_txt2img_mjm = gr.Textbox(lines=6, max_lines=6, label="Negative Prompt", info="Describe what you DO NOT want in your image", placeholder="out of frame, bad quality, medium quality, blurry, ugly, duplicate, text, characters, logo")
+                                with gr.Column():
+                                    negative_prompt_txt2img_mjm = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
                         with gr.Column(scale=2):
                             out_txt2img_mjm = gr.Gallery(
-                                label="Generated images",
+                                label=biniou_lang_image_gallery_label,
                                 show_label=True,
                                 elem_id="gallery",
                                 columns=3,
                                 height=400,
-                            )    
+                            )
                             gs_out_txt2img_mjm = gr.State()
                             sel_out_txt2img_mjm = gr.Number(precision=0, visible=False)
                             out_txt2img_mjm.select(get_select_index, None, sel_out_txt2img_mjm)
                             with gr.Row():
                                 with gr.Column():
-                                    download_btn_txt2img_mjm = gr.Button("Zip gallery 💾")
+                                    download_btn_txt2img_mjm = gr.Button(f"{biniou_lang_image_zip} 💾")
                                 with gr.Column():
-                                    download_file_txt2img_mjm = gr.File(label="Output", height=30, interactive=False, visible=False)
+                                    download_file_txt2img_mjm = gr.File(label=biniou_lang_image_zip_file, height=30, interactive=False, visible=False)
                                     download_btn_txt2img_mjm.click(fn=zip_download_file_txt2img_mjm, inputs=out_txt2img_mjm, outputs=[download_file_txt2img_mjm, download_file_txt2img_mjm])
                     with gr.Row():
                         with gr.Column():
-                            btn_txt2img_mjm = gr.Button("Generate 🚀", variant="primary")
-                        with gr.Column():                            
-                            btn_txt2img_mjm_cancel = gr.Button("Cancel 🛑", variant="stop")
-                            btn_txt2img_mjm_cancel.click(fn=initiate_stop_txt2img_mjm, inputs=None, outputs=None)                              
+                            btn_txt2img_mjm = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():
-                            btn_txt2img_mjm_clear_input = gr.ClearButton(components=[prompt_txt2img_mjm, negative_prompt_txt2img_mjm], value="Clear inputs 🧹")
-                        with gr.Column():                            
-                            btn_txt2img_mjm_clear_output = gr.ClearButton(components=[out_txt2img_mjm, gs_out_txt2img_mjm], value="Clear outputs 🧹")   
-                            btn_txt2img_mjm.click(fn=hide_download_file_txt2img_mjm, inputs=None, outputs=download_file_txt2img_mjm)   
+                            btn_txt2img_mjm_cancel = gr.Button(f"{biniou_lang_cancel}🛑", variant="stop")
+                            btn_txt2img_mjm_cancel.click(fn=initiate_stop_txt2img_mjm, inputs=None, outputs=None)
+                        with gr.Column():
+                            btn_txt2img_mjm_clear_input = gr.ClearButton(components=[prompt_txt2img_mjm, negative_prompt_txt2img_mjm], value=f"{biniou_lang_clear_inputs} 🧹")
+                        with gr.Column():
+                            btn_txt2img_mjm_clear_output = gr.ClearButton(components=[out_txt2img_mjm, gs_out_txt2img_mjm], value=f"{biniou_lang_clear_outputs} 🧹")
+                            btn_txt2img_mjm.click(fn=hide_download_file_txt2img_mjm, inputs=None, outputs=download_file_txt2img_mjm)
                             btn_txt2img_mjm.click(
-                            fn=image_txt2img_mjm, 
+                            fn=image_txt2img_mjm,
                             inputs=[
                                 model_txt2img_mjm,
                                 sampler_txt2img_mjm,
@@ -3209,7 +3211,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
@@ -3222,16 +3224,16 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_mjm_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
                                         txt2img_mjm_magicmix = gr.Button("🖼️ >> MagicMix")
                                         txt2img_mjm_inpaint = gr.Button("🖼️ >> inpaint")
-                                        txt2img_mjm_paintbyex = gr.Button("🖼️ >> Paint by example") 
+                                        txt2img_mjm_paintbyex = gr.Button("🖼️ >> Paint by example")
                                         txt2img_mjm_outpaint = gr.Button("🖼️ >> outpaint")
                                         txt2img_mjm_controlnet = gr.Button("🖼️ >> ControlNet")
                                         txt2img_mjm_faceid_ip = gr.Button("🖼️ >> Photobooth")
                                         txt2img_mjm_faceswap = gr.Button("🖼️ >> Faceswap target")
                                         txt2img_mjm_resrgan = gr.Button("🖼️ >> Real ESRGAN")
                                         txt2img_mjm_gfpgan = gr.Button("🖼️ >> GFPGAN")
-                                        gr.HTML(value='... Video module ...') 
+                                        gr.HTML(value='... Video module ...')
                                         txt2img_mjm_img2vid = gr.Button("🖼️ >> Stable Video Diffusion")
-                                        gr.HTML(value='... 3d module ...') 
+                                        gr.HTML(value='... 3d module ...')
                                         txt2img_mjm_img2shape = gr.Button("🖼️ >> Shap-E img2shape")
                             with gr.Column():
                                 with gr.Box():
@@ -3241,41 +3243,41 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_mjm_txt2img_sd_input = gr.Button("✍️ >> Stable Diffusion")
                                         txt2img_mjm_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")
                                         txt2img_mjm_txt2img_lcm_input = gr.Button("✍️ >> LCM")
-                                        txt2img_mjm_txt2img_paa_input = gr.Button("✍️ >> PixArt-Alpha") 
+                                        txt2img_mjm_txt2img_paa_input = gr.Button("✍️ >> PixArt-Alpha")
                                         txt2img_mjm_img2img_input = gr.Button("✍️ >> img2img")
                                         txt2img_mjm_img2img_ip_input = gr.Button("✍️ >> IP-Adapter")
                                         txt2img_mjm_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         txt2img_mjm_inpaint_input = gr.Button("✍️ >> inpaint")
                                         txt2img_mjm_controlnet_input = gr.Button("✍️ >> ControlNet")
                                         txt2img_mjm_faceid_ip_input = gr.Button("✍️ >> Photobooth")
-                                        gr.HTML(value='... video module ...')                                        
+                                        gr.HTML(value='... video module ...')
                                         txt2img_mjm_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
-                                        txt2img_mjm_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")                                        
+                                        txt2img_mjm_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")
                                         txt2img_mjm_animatediff_lcm_input = gr.Button("✍️ >> AnimateDiff")
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
-                                        gr.HTML(value='... image module ...') 
+                                        gr.HTML(value='... image module ...')
                                         txt2img_mjm_img2img_both = gr.Button("🖼️ + ✍️ >> img2img")
                                         txt2img_mjm_img2img_ip_both = gr.Button("🖼️ + ✍️ >> IP-Adapter")
                                         txt2img_mjm_pix2pix_both = gr.Button("🖼️ + ✍️ >> Instruct pix2pix")
                                         txt2img_mjm_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
-                                        txt2img_mjm_controlnet_both = gr.Button("🖼️ + ✍️️ >> ControlNet") 
-                                        txt2img_mjm_faceid_ip_both = gr.Button("🖼️ + ✍️️ >> Photobooth") 
+                                        txt2img_mjm_controlnet_both = gr.Button("🖼️ + ✍️️ >> ControlNet")
+                                        txt2img_mjm_faceid_ip_both = gr.Button("🖼️ + ✍️️ >> Photobooth")
 
 # txt2img_paa
                 with gr.TabItem("PixArt-Alpha 🖼️", id=25) as tab_txt2img_paa:
-                    with gr.Accordion("About", open=False):                
-                        with gr.Box():                       
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
+                        with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>PixArt-Alpha</br>
-                                <b>Function : </b>Generate images from a prompt and a negative prompt using <a href='https://pixart-alpha.github.io/' target='_blank'>PixArt-Alpha</a></br>
-                                <b>Input(s) : </b>Prompt, negative prompt</br>
-                                <b>Output(s) : </b>Image(s)</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>PixArt-Alpha</br>
+                                <b>{biniou_lang_about_function}</b>Generate images from a prompt and a negative prompt using <a href='https://pixart-alpha.github.io/' target='_blank'>PixArt-Alpha</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Prompt, negative prompt</br>
+                                <b>{biniou_lang_about_outputs}</b>Image(s)</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/PixArt-alpha/PixArt-XL-2-512x512' target='_blank'>PixArt-alpha/PixArt-XL-2-512x512</a>, 
                                 <a href='https://huggingface.co/PixArt-alpha/PixArt-XL-2-1024-MS' target='_blank'>PixArt-alpha/PixArt-XL-2-1024-MS</a>, 
                                 <a href='https://huggingface.co/PixArt-alpha/PixArt-Sigma-XL-2-1024-MS' target='_blank'>PixArt-alpha/PixArt-Sigma-XL-2-1024-MS</a>, 
@@ -3287,10 +3289,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Fill the <b>prompt</b> with what you want to see in your output image</br>
                                 - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output image</br>
                                 - (optional) Modify the settings to use another model, generate several images in a single run or change dimensions of the outputs</br>
@@ -3299,40 +3301,40 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 </br>
                                 """
                             )                
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_txt2img_paa = gr.Dropdown(choices=model_list_txt2img_paa, value=model_list_txt2img_paa[0], label="Model", info="Choose model to use for inference")
+                                model_txt2img_paa = gr.Dropdown(choices=model_list_txt2img_paa, value=model_list_txt2img_paa[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                num_inference_step_txt2img_paa = gr.Slider(1, biniou_global_steps_max, step=1, value=15, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_txt2img_paa = gr.Slider(1, biniou_global_steps_max, step=1, value=15, label=biniou_lang_steps_label, info=biniou_lang_steps_info)
                             with gr.Column():
-                                sampler_txt2img_paa = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
+                                sampler_txt2img_paa = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label=biniou_lang_sampler_label, info=biniou_lang_sampler_info)
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_txt2img_paa = gr.Slider(0.1, 20.0, step=0.1, value=7.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_txt2img_paa = gr.Slider(0.1, 20.0, step=0.1, value=7.0, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
-                                num_images_per_prompt_txt2img_paa = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_txt2img_paa = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info=biniou_lang_batch_size_image_info)
                             with gr.Column():
-                                num_prompt_txt2img_paa = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                num_prompt_txt2img_paa = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
                             with gr.Column():
-                                width_txt2img_paa = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs")
+                                width_txt2img_paa = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sd15_width, label=biniou_lang_image_width_label, info=biniou_lang_image_width_info)
                             with gr.Column():
-                                height_txt2img_paa = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs")
+                                height_txt2img_paa = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=biniou_global_sd15_height, label=biniou_lang_image_height_label, info=biniou_lang_image_height_info)
                             with gr.Column():
-                                seed_txt2img_paa = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")    
+                                seed_txt2img_paa = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info)    
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_txt2img_paa = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_txt2img_paa = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
                             with gr.Column():
-                                tkme_txt2img_paa = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality", visible=False, interactive=False)
+                                tkme_txt2img_paa = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info, visible=False, interactive=False)
                         model_txt2img_paa.change(fn=change_model_type_txt2img_paa, inputs=model_txt2img_paa, outputs=[sampler_txt2img_paa, width_txt2img_paa, height_txt2img_paa, guidance_scale_txt2img_paa, num_inference_step_txt2img_paa])
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2img_paa = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_txt2img_paa = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_txt2img_paa = gr.Textbox(value="txt2img_paa", visible=False, interactive=False)
-                                del_ini_btn_txt2img_paa = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_txt2img_paa.value) else False)
+                                del_ini_btn_txt2img_paa = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_txt2img_paa.value) else False)
                                 save_ini_btn_txt2img_paa.click(
                                     fn=write_ini_txt2img_paa, 
                                     inputs=[
@@ -3350,10 +3352,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         tkme_txt2img_paa,
                                         ]
                                     )
-                                save_ini_btn_txt2img_paa.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_txt2img_paa.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_txt2img_paa.click(fn=lambda: del_ini_btn_txt2img_paa.update(interactive=True), outputs=del_ini_btn_txt2img_paa)
                                 del_ini_btn_txt2img_paa.click(fn=lambda: del_ini(module_name_txt2img_paa.value))
-                                del_ini_btn_txt2img_paa.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_txt2img_paa.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_txt2img_paa.click(fn=lambda: del_ini_btn_txt2img_paa.update(interactive=False), outputs=del_ini_btn_txt2img_paa)
                         if test_ini_exist(module_name_txt2img_paa.value) :
                             with open(f".ini/{module_name_txt2img_paa.value}.ini", "r", encoding="utf-8") as fichier:
@@ -3362,13 +3364,13 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():                        
-                                    prompt_txt2img_paa = gr.Textbox(lines=6, max_lines=6, label="Prompt", info="Describe what you want in your image", placeholder="A small cactus with a happy face in the Sahara desert.")
+                                    prompt_txt2img_paa = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder="A small cactus with a happy face in the Sahara desert.")
                             with gr.Row():
                                 with gr.Column(): 
-                                    negative_prompt_txt2img_paa = gr.Textbox(lines=6, max_lines=6, label="Negative Prompt", info="Describe what you DO NOT want in your image", placeholder="out of frame, bad quality, medium quality, blurry, ugly, duplicate, text, characters, logo")
+                                    negative_prompt_txt2img_paa = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
                         with gr.Column(scale=2):
                             out_txt2img_paa = gr.Gallery(
-                                label="Generated images",
+                                label=biniou_lang_image_gallery_label,
                                 show_label=True,
                                 elem_id="gallery",
                                 columns=3,
@@ -3379,20 +3381,20 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             out_txt2img_paa.select(get_select_index, None, sel_out_txt2img_paa)
                             with gr.Row():
                                 with gr.Column():
-                                    download_btn_txt2img_paa = gr.Button("Zip gallery 💾")
+                                    download_btn_txt2img_paa = gr.Button(f"{biniou_lang_image_zip} 💾")
                                 with gr.Column():
-                                    download_file_txt2img_paa = gr.File(label="Output", height=30, interactive=False, visible=False)
+                                    download_file_txt2img_paa = gr.File(label=biniou_lang_image_zip_file, height=30, interactive=False, visible=False)
                                     download_btn_txt2img_paa.click(fn=zip_download_file_txt2img_paa, inputs=out_txt2img_paa, outputs=[download_file_txt2img_paa, download_file_txt2img_paa])
                     with gr.Row():
                         with gr.Column():
-                            btn_txt2img_paa = gr.Button("Generate 🚀", variant="primary")
+                            btn_txt2img_paa = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():                            
-                            btn_txt2img_paa_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_txt2img_paa_cancel = gr.Button(f"{biniou_lang_cancel}🛑", variant="stop")
                             btn_txt2img_paa_cancel.click(fn=initiate_stop_txt2img_paa, inputs=None, outputs=None)                              
                         with gr.Column():
-                            btn_txt2img_paa_clear_input = gr.ClearButton(components=[prompt_txt2img_paa, negative_prompt_txt2img_paa], value="Clear inputs 🧹")
+                            btn_txt2img_paa_clear_input = gr.ClearButton(components=[prompt_txt2img_paa, negative_prompt_txt2img_paa], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_txt2img_paa_clear_output = gr.ClearButton(components=[out_txt2img_paa, gs_out_txt2img_paa], value="Clear outputs 🧹")   
+                            btn_txt2img_paa_clear_output = gr.ClearButton(components=[out_txt2img_paa, gs_out_txt2img_paa], value=f"{biniou_lang_clear_outputs} 🧹")   
                             btn_txt2img_paa.click(fn=hide_download_file_txt2img_paa, inputs=None, outputs=download_file_txt2img_paa)   
                             btn_txt2img_paa.click(
                             fn=image_txt2img_paa, 
@@ -3418,12 +3420,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
                                         txt2img_paa_llava = gr.Button("🖼️ >> Llava")
-                                        txt2img_paa_img2txt_git = gr.Button("🖼️ >> GIT Captioning")      
+                                        txt2img_paa_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         txt2img_paa_img2img = gr.Button("🖼️ >> img2img")
                                         txt2img_paa_img2img_ip = gr.Button("🖼️ >> IP-Adapter")
@@ -3431,7 +3433,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_paa_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
                                         txt2img_paa_magicmix = gr.Button("🖼️ >> MagicMix")
                                         txt2img_paa_inpaint = gr.Button("🖼️ >> inpaint")
-                                        txt2img_paa_paintbyex = gr.Button("🖼️ >> Paint by example") 
+                                        txt2img_paa_paintbyex = gr.Button("🖼️ >> Paint by example")
                                         txt2img_paa_outpaint = gr.Button("🖼️ >> outpaint")
                                         txt2img_paa_controlnet = gr.Button("🖼️ >> ControlNet")
                                         txt2img_paa_faceid_ip = gr.Button("🖼️ >> Photobooth")
@@ -3450,19 +3452,19 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_paa_txt2img_sd_input = gr.Button("✍️ >> Stable Diffusion")
                                         txt2img_paa_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")
                                         txt2img_paa_txt2img_lcm_input = gr.Button("✍️ >> LCM")
-                                        txt2img_paa_txt2img_mjm_input = gr.Button("✍️ >> Midjourney-mini") 
+                                        txt2img_paa_txt2img_mjm_input = gr.Button("✍️ >> Midjourney-mini")
                                         txt2img_paa_img2img_input = gr.Button("✍️ >> img2img")
                                         txt2img_paa_img2img_ip_input = gr.Button("✍️ >> IP-Adapter")
                                         txt2img_paa_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         txt2img_paa_inpaint_input = gr.Button("✍️ >> inpaint")
                                         txt2img_paa_controlnet_input = gr.Button("✍️ >> ControlNet")
                                         txt2img_paa_faceid_ip_input = gr.Button("✍️ >> Photobooth")
-                                        gr.HTML(value='... video module ...')                                        
+                                        gr.HTML(value='... video module ...')
                                         txt2img_paa_txt2vid_ms_input = gr.Button("✍️ >> Modelscope")
-                                        txt2img_paa_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")                                        
+                                        txt2img_paa_txt2vid_ze_input = gr.Button("✍️ >> Text2Video-Zero")
                                         txt2img_paa_animatediff_lcm_input = gr.Button("✍️ >> AnimateDiff")
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
                                         gr.HTML(value='... image module ...') 
@@ -3472,20 +3474,19 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         txt2img_paa_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
                                         txt2img_paa_controlnet_both = gr.Button("🖼️ + ✍️️ >> Photobooth") 
                                         txt2img_paa_faceid_ip_both = gr.Button("🖼️ + ✍️️ >> ControlNet") 
-                                        
-# img2img    
+# img2img
                 with gr.TabItem("img2img 🖌️", id=26) as tab_img2img:
-                    with gr.Accordion("About", open=False):                
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
                         with gr.Box():                       
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>Img2img</br>
-                                <b>Function : </b>Generate images variations of an input image, from a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>Img2img</br>
+                                <b>{biniou_lang_about_function}</b>Generate images variations of an input image, from a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
                                 You could use this module to refine an image produced by another module.</br>
-                                <b>Input(s) : </b>Input image, prompt, negative prompt</br>
-                                <b>Output(s) : </b>Image(s)</br>
-                                <b>HF model page : </b>
+                                <b>{biniou_lang_about_inputs}</b>Input image, prompt, negative prompt</br>
+                                <b>{biniou_lang_about_outputs}</b>Image(s)</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
                                 <a href='https://huggingface.co/IDKiro/sdxs-512-dreamshaper' target='_blank'>IDKiro/sdxs-512-dreamshaper</a>, 
                                 <a href='https://huggingface.co/IDKiro/sdxs-512-0.9' target='_blank'>IDKiro/sdxs-512-0.9</a>, 
@@ -3513,10 +3514,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - (optional) Modify the settings to use another model, generate several images in a single run</br>
                                 - (optional) Select a LoRA model and set its weight</br>
                                 - Upload, import an image or draw a sketch as an <b>Input image</b></br>
@@ -3526,50 +3527,50 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 - Click the <b>Generate</b> button</br>
                                 - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
                                 </br>
-                                <b>Models :</b></br>
+                                <b>{biniou_lang_about_models}</b></br>
                                 - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or  <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors models in the directory /biniou/models/Stable Diffusion. Restart Biniou to see them in the models list.</br>
                                 <b>LoRA models :</b></br>
                                 - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or  <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors LoRA models in the directory ./biniou/models/lora/SD or ./biniou/models/lora/SDXL (depending on the LoRA model type : SD 1.5 or SDXL). Restart Biniou to see them in the models list.</br>
                                 </div>
                                 """
                             )               
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_img2img = gr.Dropdown(choices=model_list_img2img, value=model_list_img2img[0], label="Model", info="Choose model to use for inference")
+                                model_img2img = gr.Dropdown(choices=model_list_img2img, value=model_list_img2img[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                num_inference_step_img2img = gr.Slider(2, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_img2img = gr.Slider(2, biniou_global_steps_max, step=1, value=10, label=biniou_lang_steps_label, info=biniou_lang_steps_info)
                             with gr.Column():
-                                sampler_img2img = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
+                                sampler_img2img = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label=biniou_lang_sampler_label, info=biniou_lang_sampler_info)
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_img2img = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_img2img = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
-                                num_images_per_prompt_img2img = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_img2img = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info=biniou_lang_batch_size_image_info)
                             with gr.Column():
-                                num_prompt_img2img = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                num_prompt_img2img = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
                             with gr.Column():
-                                width_img2img = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs", interactive=False)
+                                width_img2img = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label=biniou_lang_image_width_label, info=biniou_lang_image_width_info, interactive=False)
                             with gr.Column():
-                                height_img2img = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs", interactive=False)
+                                height_img2img = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label=biniou_lang_image_height_label, info=biniou_lang_image_height_info, interactive=False)
                             with gr.Column():
-                                seed_img2img = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
+                                seed_img2img = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_img2img = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_img2img = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
                             with gr.Column():
-                                tkme_img2img = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")    
+                                tkme_img2img = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)    
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_img2img = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_img2img = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_img2img = gr.Textbox(value="img2img", visible=False, interactive=False)
-                                del_ini_btn_img2img = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_img2img.value) else False)
+                                del_ini_btn_img2img = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_img2img.value) else False)
                                 save_ini_btn_img2img.click(
-                                    fn=write_ini_img2img, 
+                                    fn=write_ini_img2img,
                                     inputs=[
-                                        module_name_img2img, 
+                                        module_name_img2img,
                                         model_img2img, 
                                         num_inference_step_img2img,
                                         sampler_img2img,
@@ -3583,27 +3584,27 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         tkme_img2img,
                                         ]
                                     )
-                                save_ini_btn_img2img.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_img2img.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_img2img.click(fn=lambda: del_ini_btn_img2img.update(interactive=True), outputs=del_ini_btn_img2img)
                                 del_ini_btn_img2img.click(fn=lambda: del_ini(module_name_img2img.value))
-                                del_ini_btn_img2img.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_img2img.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_img2img.click(fn=lambda: del_ini_btn_img2img.update(interactive=False), outputs=del_ini_btn_img2img)
                         if test_ini_exist(module_name_img2img.value) :
                             with open(f".ini/{module_name_img2img.value}.ini", "r", encoding="utf-8") as fichier:
                                 exec(fichier.read())
-                        with gr.Accordion("LoRA Model", open=True):
+                        with gr.Accordion(biniou_lang_lora_label, open=True):
                             with gr.Row():
                                 with gr.Column():
-                                    lora_model_img2img = gr.Dropdown(choices=list(lora_model_list(model_img2img.value).keys()), value="", label="LoRA model", info="Choose LoRA model to use for inference")
+                                    lora_model_img2img = gr.Dropdown(choices=list(lora_model_list(model_img2img.value).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info)
                                 with gr.Column():
-                                    lora_weight_img2img = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label="LoRA weight", info="Weight of the LoRA model in the final result")
-                        with gr.Accordion("Textual inversion", open=True):
+                                    lora_weight_img2img = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info)
+                        with gr.Accordion(biniou_lang_textinv_label, open=True):
                             with gr.Row():
                                 with gr.Column():
-                                    txtinv_img2img = gr.Dropdown(choices=list(txtinv_list(model_img2img.value).keys()), value="", label="Textual inversion", info="Choose textual inversion to use for inference")
+                                    txtinv_img2img = gr.Dropdown(choices=list(txtinv_list(model_img2img.value).keys()), value="", label=biniou_lang_textinv_label, info=biniou_lang_textinv_info)
                     with gr.Row():
                         with gr.Column():
-                            img_img2img = gr.Image(label="Input image", height=400, type="filepath")
+                            img_img2img = gr.Image(label=biniou_lang_img_input_label, height=400, type="filepath")
                             with gr.Row():
                                 source_type_img2img = gr.Radio(choices=["image", "sketch"], value="image", label="Input type", info="Choose input type")
                                 img_img2img.change(image_upload_event, inputs=img_img2img, outputs=[width_img2img, height_img2img])
@@ -3614,10 +3615,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     denoising_strength_img2img = gr.Slider(0.01, 1.0, step=0.01, value=0.75, label="Denoising strength", info="Balance between input image (0) and prompts (1)")  
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_img2img = gr.Textbox(lines=5, max_lines=5, label="Prompt", info="Describe what you want in your image", placeholder="a cute kitten playing with a ball, dynamic pose, close-up cinematic still, photo realistic, ultra quality, 4k uhd, perfect lighting, HDR, bokeh")
+                                    prompt_img2img = gr.Textbox(lines=5, max_lines=5, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_image_prompt_placeholder)
                             with gr.Row():                                    
                                 with gr.Column():
-                                    negative_prompt_img2img = gr.Textbox(lines=5, max_lines=5, label="Negative Prompt", info="Describe what you DO NOT want in your image", placeholder="out of frame, bad quality, medium quality, blurry, ugly, duplicate, text, characters, logo")
+                                    negative_prompt_img2img = gr.Textbox(lines=5, max_lines=5, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
                         model_img2img.change(
                             fn=change_model_type_img2img, 
                             inputs=[model_img2img],
@@ -3639,7 +3640,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Row():
                                 with gr.Column():                            
                                     out_img2img = gr.Gallery(
-                                        label="Generated images",
+                                        label=biniou_lang_image_gallery_label,
                                         show_label=True,
                                         elem_id="gallery_i2i",
                                         columns=2,
@@ -3651,20 +3652,20 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 out_img2img.select(get_select_index, None, sel_out_img2img)
                                 with gr.Row():
                                     with gr.Column():
-                                        download_btn_img2img = gr.Button("Zip gallery 💾")
+                                        download_btn_img2img = gr.Button(f"{biniou_lang_image_zip} 💾")
                                     with gr.Column():
-                                        download_file_img2img = gr.File(label="Output", height=30, interactive=False, visible=False)
+                                        download_file_img2img = gr.File(label=biniou_lang_image_zip_file, height=30, interactive=False, visible=False)
                                         download_btn_img2img.click(fn=zip_download_file_img2img, inputs=out_img2img, outputs=[download_file_img2img, download_file_img2img])
                     with gr.Row():
                         with gr.Column():
-                            btn_img2img = gr.Button("Generate 🚀", variant="primary")
+                            btn_img2img = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():                            
-                            btn_img2img_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_img2img_cancel = gr.Button(f"{biniou_lang_cancel}🛑", variant="stop")
                             btn_img2img_cancel.click(fn=initiate_stop_img2img, inputs=None, outputs=None)                              
                         with gr.Column():
-                            btn_img2img_clear_input = gr.ClearButton(components=[img_img2img, prompt_img2img, negative_prompt_img2img], value="Clear inputs 🧹")
+                            btn_img2img_clear_input = gr.ClearButton(components=[img_img2img, prompt_img2img, negative_prompt_img2img], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_img2img_clear_output = gr.ClearButton(components=[out_img2img, gs_out_img2img], value="Clear outputs 🧹")
+                            btn_img2img_clear_output = gr.ClearButton(components=[out_img2img, gs_out_img2img], value=f"{biniou_lang_clear_outputs} 🧹")
                             btn_img2img.click(fn=hide_download_file_img2img, inputs=None, outputs=download_file_img2img)                             
                             btn_img2img.click(
                                 fn=image_img2img,
@@ -3696,7 +3697,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
@@ -3709,7 +3710,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         img2img_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
                                         img2img_inpaint = gr.Button("🖼️ >> inpaint")
                                         img2img_magicmix = gr.Button("🖼️ >> MagicMix")
-                                        img2img_paintbyex = gr.Button("🖼️ >> Paint by example") 
+                                        img2img_paintbyex = gr.Button("🖼️ >> Paint by example")
                                         img2img_outpaint = gr.Button("🖼️ >> outpaint")
                                         img2img_controlnet = gr.Button("🖼️ >> ControlNet")
                                         img2img_faceid_ip = gr.Button("🖼️ >> Photobooth")
@@ -3719,7 +3720,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... Video module ...')
                                         img2img_img2vid = gr.Button("🖼️ >> Stable Video Diffusion")
                                         gr.HTML(value='... 3d module ...')
-                                        img2img_img2shape = gr.Button("🖼️ >> Shap-E img2shape") 
+                                        img2img_img2shape = gr.Button("🖼️ >> Shap-E img2shape")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
@@ -3728,14 +3729,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         img2img_txt2img_sd_input = gr.Button("✍️ >> Stable Diffusion")
                                         img2img_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")
                                         img2img_txt2img_lcm_input = gr.Button("✍️ >> LCM")
-                                        img2img_txt2img_mjm_input = gr.Button("✍️ >> Midjourney-mini") 
-                                        img2img_txt2img_paa_input = gr.Button("✍️ >> PixArt-Alpha") 
+                                        img2img_txt2img_mjm_input = gr.Button("✍️ >> Midjourney-mini")
+                                        img2img_txt2img_paa_input = gr.Button("✍️ >> PixArt-Alpha")
                                         img2img_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         img2img_inpaint_input = gr.Button("✍️ >> inpaint")
                                         img2img_controlnet_input = gr.Button("✍️ >> ControlNet")
                                         img2img_faceid_ip_input = gr.Button("✍️ >> Photobooth")
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
                                         gr.HTML(value='... image module ...')
@@ -3746,16 +3747,16 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
 
 # img2img_ip    
                 with gr.TabItem("IP-Adapter 🖌️", id=27) as tab_img2img_ip:
-                    with gr.Accordion("About", open=False):                
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
                         with gr.Box():                       
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>IP-Adapter</br>
-                                <b>Function : </b>Transform an input image, with a conditional IP-Adapter image, a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a>, <a href='https://ip-adapter.github.io/' target='_blank'>IP-Adapter</a> and <a href='https://huggingface.co/ostris/ip-composition-adapter' target='_blank'>ostris/ip-composition-adapter</a></br>
-                                <b>Input(s) : </b>Input image, conditional IP-Adapter image, prompt, negative prompt</br>
-                                <b>Output(s) : </b>Image(s)</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>IP-Adapter</br>
+                                <b>{biniou_lang_about_function}</b>Transform an input image, with a conditional IP-Adapter image, a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a>, <a href='https://ip-adapter.github.io/' target='_blank'>IP-Adapter</a> and <a href='https://huggingface.co/ostris/ip-composition-adapter' target='_blank'>ostris/ip-composition-adapter</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Input image, conditional IP-Adapter image, prompt, negative prompt</br>
+                                <b>{biniou_lang_about_outputs}</b>Image(s)</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
                                 <a href='https://huggingface.co/playgroundai/playground-v2-512px-base' target='_blank'>playgroundai/playground-v2-512px-base</a>, 
                                 <a href='https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic' target='_blank'>playgroundai/playground-v2-1024px-aesthetic</a>, 
@@ -3776,10 +3777,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - (optional) Modify the settings to use another model or generate several images in a single run</br>
                                 - (optional) Select a LoRA model and set its weight</br>
                                 - Select the IP-Adapter type to use : standard (image to image + prompt) or composition (import composition into the output image)</br>
@@ -3795,44 +3796,44 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 </br>
                                 """
                             )
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_img2img_ip = gr.Dropdown(choices=model_list_img2img_ip, value=model_list_img2img_ip[0], label="Model", info="Choose model to use for inference")
+                                model_img2img_ip = gr.Dropdown(choices=model_list_img2img_ip, value=model_list_img2img_ip[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                num_inference_step_img2img_ip = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_img2img_ip = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label=biniou_lang_steps_label, info=biniou_lang_steps_info)
                             with gr.Column():
-                                sampler_img2img_ip = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
+                                sampler_img2img_ip = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label=biniou_lang_sampler_label, info=biniou_lang_sampler_info)
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_img2img_ip = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_img2img_ip = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
-                                num_images_per_prompt_img2img_ip = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_img2img_ip = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info=biniou_lang_batch_size_image_info)
                             with gr.Column():
-                                num_prompt_img2img_ip = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                num_prompt_img2img_ip = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
                             with gr.Column():
-                                width_img2img_ip = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs", interactive=False)
+                                width_img2img_ip = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label=biniou_lang_image_width_label, info=biniou_lang_image_width_info, interactive=False)
                             with gr.Column():
-                                height_img2img_ip = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs", interactive=False)
+                                height_img2img_ip = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label=biniou_lang_image_height_label, info=biniou_lang_image_height_info, interactive=False)
                             with gr.Column():
-                                seed_img2img_ip = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
+                                seed_img2img_ip = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_img2img_ip = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_img2img_ip = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
                             with gr.Column():
-                                tkme_img2img_ip = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")    
+                                tkme_img2img_ip = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)    
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_img2img_ip = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_img2img_ip = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_img2img_ip = gr.Textbox(value="img2img_ip", visible=False, interactive=False)
-                                del_ini_btn_img2img_ip = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_img2img_ip.value) else False)
+                                del_ini_btn_img2img_ip = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_img2img_ip.value) else False)
                                 save_ini_btn_img2img_ip.click(
                                     fn=write_ini_img2img_ip,
                                     inputs=[
-                                        module_name_img2img_ip, 
-                                        model_img2img_ip, 
+                                        module_name_img2img_ip,
+                                        model_img2img_ip,
                                         num_inference_step_img2img_ip,
                                         sampler_img2img_ip,
                                         guidance_scale_img2img_ip,
@@ -3845,27 +3846,27 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         tkme_img2img_ip,
                                         ]
                                     )
-                                save_ini_btn_img2img_ip.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_img2img_ip.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_img2img_ip.click(fn=lambda: del_ini_btn_img2img_ip.update(interactive=True), outputs=del_ini_btn_img2img_ip)
                                 del_ini_btn_img2img_ip.click(fn=lambda: del_ini(module_name_img2img_ip.value))
-                                del_ini_btn_img2img_ip.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_img2img_ip.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_img2img_ip.click(fn=lambda: del_ini_btn_img2img_ip.update(interactive=False), outputs=del_ini_btn_img2img_ip)
                         if test_ini_exist(module_name_img2img_ip.value) :
                             with open(f".ini/{module_name_img2img_ip.value}.ini", "r", encoding="utf-8") as fichier:
                                 exec(fichier.read())
-                        with gr.Accordion("LoRA Model", open=True):
+                        with gr.Accordion(biniou_lang_lora_label, open=True):
                             with gr.Row():
                                 with gr.Column():
-                                    lora_model_img2img_ip = gr.Dropdown(choices=list(lora_model_list(model_img2img_ip.value).keys()), value="", label="LoRA model", info="Choose LoRA model to use for inference")
+                                    lora_model_img2img_ip = gr.Dropdown(choices=list(lora_model_list(model_img2img_ip.value).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info)
                                 with gr.Column():
-                                    lora_weight_img2img_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label="LoRA weight", info="Weight of the LoRA model in the final result")
-                        with gr.Accordion("Textual inversion", open=True):
+                                    lora_weight_img2img_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info)
+                        with gr.Accordion(biniou_lang_textinv_label, open=True):
                             with gr.Row():
                                 with gr.Column():
-                                    txtinv_img2img_ip = gr.Dropdown(choices=list(txtinv_list(model_img2img_ip.value).keys()), value="", label="Textual inversion", info="Choose textual inversion to use for inference")
+                                    txtinv_img2img_ip = gr.Dropdown(choices=list(txtinv_list(model_img2img_ip.value).keys()), value="", label=biniou_lang_textinv_label, info=biniou_lang_textinv_info)
                     with gr.Row():
                         with gr.Column():
-                            img_img2img_ip = gr.Image(label="Input image", height=400, type="filepath")
+                            img_img2img_ip = gr.Image(label=biniou_lang_img_input_label, height=400, type="filepath")
                             img_img2img_ip.change(image_upload_event, inputs=img_img2img_ip, outputs=[width_img2img_ip, height_img2img_ip])
                             source_type_img2img_ip = gr.Radio(choices=["standard", "composition"], value="standard", label="IP-Adapter type", info="Choose IP-Adapter type")
                         with gr.Column():
@@ -3876,10 +3877,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     denoising_strength_img2img_ip = gr.Slider(0.01, 1.0, step=0.01, value=0.6, label="Denoising strength", info="Balance between input image (0) and prompts (1)", interactive=True)
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_img2img_ip = gr.Textbox(lines=1, max_lines=1, label="Prompt", info="Describe what you want in your image", placeholder="wearing sunglasses, high quality")
-                            with gr.Row():                                    
+                                    prompt_img2img_ip = gr.Textbox(lines=1, max_lines=1, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder="wearing sunglasses, high quality")
+                            with gr.Row():
                                 with gr.Column():
-                                    negative_prompt_img2img_ip = gr.Textbox(lines=1, max_lines=1, label="Negative Prompt", info="Describe what you DO NOT want in your image", placeholder="low quality, medium quality, blurry")
+                                    negative_prompt_img2img_ip = gr.Textbox(lines=1, max_lines=1, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder="low quality, medium quality, blurry")
                         denoising_strength_img2img_ip.change(check_steps_strength, [num_inference_step_img2img_ip, denoising_strength_img2img_ip, model_img2img_ip], [num_inference_step_img2img_ip])
                         model_img2img_ip.change(
                             fn=change_model_type_img2img_ip,
@@ -3923,9 +3924,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         )
                         with gr.Column():
                             with gr.Row():
-                                with gr.Column():                            
+                                with gr.Column():
                                     out_img2img_ip = gr.Gallery(
-                                        label="Generated images",
+                                        label=biniou_lang_image_gallery_label,
                                         show_label=True,
                                         elem_id="gallery_i2i",
                                         columns=2,
@@ -3933,24 +3934,24 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         preview=True,
                                 )
                                 gs_out_img2img_ip = gr.State()
-                                sel_out_img2img_ip = gr.Number(precision=0, visible=False)                              
+                                sel_out_img2img_ip = gr.Number(precision=0, visible=False)
                                 out_img2img_ip.select(get_select_index, None, sel_out_img2img_ip)
                                 with gr.Row():
                                     with gr.Column():
-                                        download_btn_img2img_ip = gr.Button("Zip gallery 💾")
+                                        download_btn_img2img_ip = gr.Button(f"{biniou_lang_image_zip} 💾")
                                     with gr.Column():
-                                        download_file_img2img_ip = gr.File(label="Output", height=30, interactive=False, visible=False)
-                                        download_btn_img2img_ip.click(fn=zip_download_file_img2img_ip, inputs=out_img2img_ip, outputs=[download_file_img2img_ip, download_file_img2img_ip])                                
+                                        download_file_img2img_ip = gr.File(label=biniou_lang_image_zip_file, height=30, interactive=False, visible=False)
+                                        download_btn_img2img_ip.click(fn=zip_download_file_img2img_ip, inputs=out_img2img_ip, outputs=[download_file_img2img_ip, download_file_img2img_ip])
                     with gr.Row():
                         with gr.Column():
-                            btn_img2img_ip = gr.Button("Generate 🚀", variant="primary")
+                            btn_img2img_ip = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():                            
-                            btn_img2img_ip_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_img2img_ip_cancel = gr.Button(f"{biniou_lang_cancel}🛑", variant="stop")
                             btn_img2img_ip_cancel.click(fn=initiate_stop_img2img_ip, inputs=None, outputs=None)
                         with gr.Column():
-                            btn_img2img_ip_clear_input = gr.ClearButton(components=[img_img2img_ip, img_ipa_img2img_ip, prompt_img2img_ip, negative_prompt_img2img_ip], value="Clear inputs 🧹")
+                            btn_img2img_ip_clear_input = gr.ClearButton(components=[img_img2img_ip, img_ipa_img2img_ip, prompt_img2img_ip, negative_prompt_img2img_ip], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():
-                            btn_img2img_ip_clear_output = gr.ClearButton(components=[out_img2img_ip, gs_out_img2img_ip], value="Clear outputs 🧹")
+                            btn_img2img_ip_clear_output = gr.ClearButton(components=[out_img2img_ip, gs_out_img2img_ip], value=f"{biniou_lang_clear_outputs} 🧹")
                             btn_img2img_ip.click(fn=hide_download_file_img2img_ip, inputs=None, outputs=download_file_img2img_ip)
                             btn_img2img_ip.click(
                                 fn=image_img2img_ip,
@@ -3983,7 +3984,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
@@ -4015,14 +4016,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         img2img_ip_txt2img_sd_input = gr.Button("✍️ >> Stable Diffusion")
                                         img2img_ip_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")
                                         img2img_ip_txt2img_lcm_input = gr.Button("✍️ >> LCM")
-                                        img2img_ip_txt2img_mjm_input = gr.Button("✍️ >> Midjourney-mini") 
+                                        img2img_ip_txt2img_mjm_input = gr.Button("✍️ >> Midjourney-mini")
                                         img2img_ip_txt2img_paa_input = gr.Button("✍️ >> PixArt-Alpha") 
                                         img2img_ip_pix2pix_input = gr.Button("✍️ >> Instruct pix2pix")
                                         img2img_ip_inpaint_input = gr.Button("✍️ >> inpaint")
                                         img2img_ip_controlnet_input = gr.Button("✍️ >> ControlNet")
                                         img2img_ip_faceid_ip_input = gr.Button("✍️ >> Photobooth")
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
                                         gr.HTML(value='... image module ...')
@@ -4031,77 +4032,77 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         img2img_ip_controlnet_both = gr.Button("🖼️ + ✍️ >> ControlNet")
                                         img2img_ip_faceid_ip_both = gr.Button("🖼️ + ✍️ >> Photobooth")
 
-# img2var    
+# img2var
                 if ram_size() >= 16 :
                     titletab_img2var = "Image variation 🖼️"
                 else :
                     titletab_img2var = "Image variation ⛔"
 
                 with gr.TabItem(titletab_img2var, id=28) as tab_img2var: 
-                    with gr.Accordion("About", open=False):                
-                        with gr.Box():                       
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
+                        with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>Image variation</br>
-                                <b>Function : </b>Generate variations of an input image using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
-                                <b>Input(s) : </b>Input image</br>
-                                <b>Output(s) : </b>Image(s)</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>Image variation</br>
+                                <b>{biniou_lang_about_function}</b>Generate variations of an input image using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Input image</br>
+                                <b>{biniou_lang_about_outputs}</b>Image(s)</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/lambdalabs/sd-image-variations-diffusers' target='_blank'>lambdalabs/sd-image-variations-diffusers</a>
                                 """
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Upload or import an image as an <b>Input image</b></br>
                                 - (optional) Modify the settings to generate several images in a single run</br>
                                 - Click the <b>Generate</b> button</br>
                                 - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
                                 </br>
                                 """
-                            )               
-                    with gr.Accordion("Settings", open=False):
+                            )
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_img2var = gr.Dropdown(choices=model_list_img2var, value=model_list_img2var[0], label="Model", info="Choose model to use for inference")
+                                model_img2var = gr.Dropdown(choices=model_list_img2var, value=model_list_img2var[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                num_inference_step_img2var = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_img2var = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label=biniou_lang_steps_label, info=biniou_lang_steps_info)
                             with gr.Column():
-                                sampler_img2var = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
+                                sampler_img2var = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label=biniou_lang_sampler_label, info=biniou_lang_sampler_info)
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_img2var = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_img2var = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
-                                num_images_per_prompt_img2var = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_img2var = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info=biniou_lang_batch_size_image_info)
                             with gr.Column():
-                                num_prompt_img2var = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                num_prompt_img2var = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
                             with gr.Column():
-                                width_img2var = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs", interactive=False)
+                                width_img2var = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label=biniou_lang_image_width_label, info=biniou_lang_image_width_info, interactive=False)
                             with gr.Column():
-                                height_img2var = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs", interactive=False)
+                                height_img2var = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label=biniou_lang_image_height_label, info=biniou_lang_image_height_info, interactive=False)
                             with gr.Column():
-                                seed_img2var = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
-                        with gr.Row():
-                            with gr.Column():    
-                                use_gfpgan_img2var = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
-                            with gr.Column():
-                                tkme_img2var = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                                seed_img2var = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_img2var = gr.Button("Save custom defaults settings 💾")
+                                use_gfpgan_img2var = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
+                            with gr.Column():
+                                tkme_img2var = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_img2var = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_img2var = gr.Textbox(value="img2var", visible=False, interactive=False)
-                                del_ini_btn_img2var = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_img2var.value) else False)
+                                del_ini_btn_img2var = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_img2var.value) else False)
                                 save_ini_btn_img2var.click(
                                     fn=write_ini_img2var,
                                     inputs=[
-                                        module_name_img2var, 
-                                        model_img2var, 
+                                        module_name_img2var,
+                                        model_img2var,
                                         num_inference_step_img2var,
                                         sampler_img2var,
                                         guidance_scale_img2var,
@@ -4114,22 +4115,22 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         tkme_img2var,
                                         ]
                                     )
-                                save_ini_btn_img2var.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_img2var.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_img2var.click(fn=lambda: del_ini_btn_img2var.update(interactive=True), outputs=del_ini_btn_img2var)
                                 del_ini_btn_img2var.click(fn=lambda: del_ini(module_name_img2var.value))
-                                del_ini_btn_img2var.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_img2var.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_img2var.click(fn=lambda: del_ini_btn_img2var.update(interactive=False), outputs=del_ini_btn_img2var)
                         if test_ini_exist(module_name_img2var.value) :
                             with open(f".ini/{module_name_img2var.value}.ini", "r", encoding="utf-8") as fichier:
                                 exec(fichier.read())
                     with gr.Row():
                         with gr.Column():
-                            img_img2var = gr.Image(label="Input image", height=400, type="filepath")
+                            img_img2var = gr.Image(label=biniou_lang_img_input_label, height=400, type="filepath")
                             img_img2var.change(image_upload_event, inputs=img_img2var, outputs=[width_img2var, height_img2var])
                         with gr.Column():
                             with gr.Row():
                                 out_img2var = gr.Gallery(
-                                    label="Generated images",
+                                    label=biniou_lang_image_gallery_label,
                                     show_label=True,
                                     elem_id="gallery_i2v",
                                     columns=2,
@@ -4137,25 +4138,25 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     preview=True,
                                 )
                                 gs_out_img2var = gr.State()
-                                sel_out_img2var = gr.Number(precision=0, visible=False)                              
+                                sel_out_img2var = gr.Number(precision=0, visible=False)
                                 out_img2var.select(get_select_index, None, sel_out_img2var)
                             with gr.Row():
                                 with gr.Column():
-                                    download_btn_img2var = gr.Button("Zip gallery 💾")
+                                    download_btn_img2var = gr.Button(f"{biniou_lang_image_zip} 💾")
                                 with gr.Column():
-                                    download_file_img2var = gr.File(label="Output", height=30, interactive=False, visible=False)
-                                    download_btn_img2var.click(fn=zip_download_file_img2var, inputs=out_img2var, outputs=[download_file_img2var, download_file_img2var])                                
+                                    download_file_img2var = gr.File(label=biniou_lang_image_zip_file, height=30, interactive=False, visible=False)
+                                    download_btn_img2var.click(fn=zip_download_file_img2var, inputs=out_img2var, outputs=[download_file_img2var, download_file_img2var])
                     with gr.Row():
                         with gr.Column():
-                            btn_img2var = gr.Button("Generate 🚀", variant="primary")
+                            btn_img2var = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():                            
-                            btn_img2var_cancel = gr.Button("Cancel 🛑", variant="stop")
-                            btn_img2var_cancel.click(fn=initiate_stop_img2var, inputs=None, outputs=None)                              
+                            btn_img2var_cancel = gr.Button(f"{biniou_lang_cancel}🛑", variant="stop")
+                            btn_img2var_cancel.click(fn=initiate_stop_img2var, inputs=None, outputs=None)
                         with gr.Column():
-                            btn_img2var_clear_input = gr.ClearButton(components=[img_img2var], value="Clear inputs 🧹")
-                        with gr.Column():                            
-                            btn_img2var_clear_output = gr.ClearButton(components=[out_img2var, gs_out_img2var], value="Clear outputs 🧹")
-                            btn_img2var.click(fn=hide_download_file_img2var, inputs=None, outputs=download_file_img2var)                             
+                            btn_img2var_clear_input = gr.ClearButton(components=[img_img2var], value=f"{biniou_lang_clear_inputs} 🧹")
+                        with gr.Column():
+                            btn_img2var_clear_output = gr.ClearButton(components=[out_img2var, gs_out_img2var], value=f"{biniou_lang_clear_outputs} 🧹")
+                            btn_img2var.click(fn=hide_download_file_img2var, inputs=None, outputs=download_file_img2var)
                             btn_img2var.click(
                                 fn=image_img2var,
                                 inputs=[
@@ -4179,7 +4180,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
@@ -4202,29 +4203,29 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... Video module ...')
                                         img2var_img2vid = gr.Button("🖼️ >> Stable Video Diffusion")
                                         gr.HTML(value='... 3d module ...') 
-                                        img2var_img2shape = gr.Button("🖼️ >> Shap-E img2shape") 
+                                        img2var_img2shape = gr.Button("🖼️ >> Shap-E img2shape")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... input prompt(s) to ...')
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
                                        
 
 # pix2pix    
                 with gr.TabItem("Instruct pix2pix 🖌️", id=29) as tab_pix2pix:
-                    with gr.Accordion("About", open=False):                
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
                         with gr.Box():                       
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>Instruct pix2pix</br>
-                                <b>Function : </b>Edit an input image with instructions from a prompt and a negative prompt using <a href='https://github.com/timothybrooks/instruct-pix2pix' target='_blank'>Instructpix2pix</a></br>
-                                <b>Input(s) : </b>Input image, prompt, negative prompt</br>
-                                <b>Output(s) : </b>Image(s)</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>Instruct pix2pix</br>
+                                <b>{biniou_lang_about_function}</b>Edit an input image with instructions from a prompt and a negative prompt using <a href='https://github.com/timothybrooks/instruct-pix2pix' target='_blank'>Instructpix2pix</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Input image, prompt, negative prompt</br>
+                                <b>{biniou_lang_about_outputs}</b>Image(s)</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/timbrooks/instruct-pix2pix' target='_blank'>timbrooks/instruct-pix2pix</a>, 
                                 <a href='https://huggingface.co/instruction-tuning-sd/low-level-img-proc' target='_blank'>instruction-tuning-sd/low-level-img-proc</a>, 
                                 <a href='https://huggingface.co/instruction-tuning-sd/cartoonizer' target='_blank'>instruction-tuning-sd/cartoonizer</a></br>
@@ -4232,10 +4233,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Upload or import an image using the <b>Input image</b> field</br>
                                 - Fill the <b>prompt</b> with the instructions for modifying your input image</br>
                                 - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output image</br>
@@ -4246,41 +4247,41 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 </div>
                                 """
                             )                
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_pix2pix = gr.Dropdown(choices=model_list_pix2pix, value=model_list_pix2pix[0], label="Model", info="Choose model to use for inference")
+                                model_pix2pix = gr.Dropdown(choices=model_list_pix2pix, value=model_list_pix2pix[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                num_inference_step_pix2pix = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_pix2pix = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label=biniou_lang_steps_label, info=biniou_lang_steps_info)
                             with gr.Column():
-                                sampler_pix2pix = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
+                                sampler_pix2pix = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label=biniou_lang_sampler_label, info=biniou_lang_sampler_info)
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_pix2pix = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_pix2pix = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
                                 image_guidance_scale_pix2pix = gr.Slider(0.0, 10.0, step=0.1, value=1.5, label="Img CFG Scale", info="Low values : more creativity. High values : more fidelity to the input image")
                             with gr.Column():
-                                num_images_per_prompt_pix2pix = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_pix2pix = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info=biniou_lang_batch_size_image_info)
                             with gr.Column():
-                                num_prompt_pix2pix = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                num_prompt_pix2pix = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
                             with gr.Column():
-                                width_pix2pix = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs", interactive=False)
+                                width_pix2pix = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label=biniou_lang_image_width_label, info=biniou_lang_image_width_info, interactive=False)
                             with gr.Column():
-                                height_pix2pix = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs", interactive=False)
+                                height_pix2pix = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label=biniou_lang_image_height_label, info=biniou_lang_image_height_info, interactive=False)
                             with gr.Column():
-                                seed_pix2pix = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
+                                seed_pix2pix = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_pix2pix = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_pix2pix = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
                             with gr.Column():
-                                tkme_pix2pix = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                                tkme_pix2pix = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_pix2pix = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_pix2pix = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_pix2pix = gr.Textbox(value="pix2pix", visible=False, interactive=False)
-                                del_ini_btn_pix2pix = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_pix2pix.value) else False)
+                                del_ini_btn_pix2pix = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_pix2pix.value) else False)
                                 save_ini_btn_pix2pix.click(
                                     fn=write_ini_pix2pix, 
                                     inputs=[
@@ -4299,54 +4300,54 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         tkme_pix2pix,
                                         ]
                                     )
-                                save_ini_btn_pix2pix.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_pix2pix.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_pix2pix.click(fn=lambda: del_ini_btn_pix2pix.update(interactive=True), outputs=del_ini_btn_pix2pix)
                                 del_ini_btn_pix2pix.click(fn=lambda: del_ini(module_name_pix2pix.value))
-                                del_ini_btn_pix2pix.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_pix2pix.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_pix2pix.click(fn=lambda: del_ini_btn_pix2pix.update(interactive=False), outputs=del_ini_btn_pix2pix)
                         if test_ini_exist(module_name_pix2pix.value) :
                             with open(f".ini/{module_name_pix2pix.value}.ini", "r", encoding="utf-8") as fichier:
                                 exec(fichier.read())
                     with gr.Row():
                         with gr.Column():
-                             img_pix2pix = gr.Image(label="Input image", height=400, type="filepath")
+                             img_pix2pix = gr.Image(label=biniou_lang_img_input_label, height=400, type="filepath")
                              img_pix2pix.change(image_upload_event, inputs=img_pix2pix, outputs=[width_pix2pix, height_pix2pix])
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_pix2pix = gr.Textbox(lines=6, max_lines=6, label="Prompt", info="Describe what you want to modify in your input image", placeholder="make it a Rembrandt painting")
+                                    prompt_pix2pix = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_prompt_label, info="Describe what you want to modify in your input image", placeholder="make it a Rembrandt painting")
                                 with gr.Column():
-                                    negative_prompt_pix2pix = gr.Textbox(lines=6, max_lines=6, label="Negative Prompt", info="Describe what you DO NOT want in your output image", placeholder="out of frame, bad quality, medium quality, blurry, ugly, duplicate, text, characters, logo")
+                                    negative_prompt_pix2pix = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_negprompt_label, info="Describe what you DO NOT want in your output image", placeholder=biniou_lang_image_negprompt_placeholder)
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
                                     out_pix2pix = gr.Gallery(
-                                        label="Generated images",
+                                        label=biniou_lang_image_gallery_label,
                                         show_label=True,
                                         elem_id="gallery_p2p",
                                         columns=2,
                                         height=400,
-                                        preview=True,                                        
+                                        preview=True,
                                     )
                                     gs_out_pix2pix = gr.State()
-                                    sel_out_pix2pix = gr.Number(precision=0, visible=False)                        
+                                    sel_out_pix2pix = gr.Number(precision=0, visible=False)
                                     out_pix2pix.select(get_select_index, None, sel_out_pix2pix)
                                     with gr.Row():
                                         with gr.Column():
-                                            download_btn_pix2pix = gr.Button("Zip gallery 💾")
+                                            download_btn_pix2pix = gr.Button(f"{biniou_lang_image_zip} 💾")
                                         with gr.Column():
-                                            download_file_pix2pix = gr.File(label="Output", height=30, interactive=False, visible=False)
+                                            download_file_pix2pix = gr.File(label=biniou_lang_image_zip_file, height=30, interactive=False, visible=False)
                                             download_btn_pix2pix.click(fn=zip_download_file_pix2pix, inputs=out_pix2pix, outputs=[download_file_pix2pix, download_file_pix2pix])                                       
                     with gr.Row():
                         with gr.Column():
-                            btn_pix2pix = gr.Button("Generate 🚀", variant="primary")
+                            btn_pix2pix = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():                            
-                            btn_pix2pix_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_pix2pix_cancel = gr.Button(f"{biniou_lang_cancel}🛑", variant="stop")
                             btn_pix2pix_cancel.click(fn=initiate_stop_pix2pix, inputs=None, outputs=None)                              
                         with gr.Column():
-                            btn_pix2pix_clear_input = gr.ClearButton(components=[img_pix2pix, prompt_pix2pix, negative_prompt_pix2pix], value="Clear inputs 🧹")
+                            btn_pix2pix_clear_input = gr.ClearButton(components=[img_pix2pix, prompt_pix2pix, negative_prompt_pix2pix], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_pix2pix_clear_output = gr.ClearButton(components=[out_pix2pix, gs_out_pix2pix], value="Clear outputs 🧹")
+                            btn_pix2pix_clear_output = gr.ClearButton(components=[out_pix2pix, gs_out_pix2pix], value=f"{biniou_lang_clear_outputs} 🧹")
                             btn_pix2pix.click(fn=hide_download_file_pix2pix, inputs=None, outputs=download_file_pix2pix)                               
                             btn_pix2pix.click(
                                 fn=image_pix2pix,
@@ -4374,7 +4375,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
@@ -4402,9 +4403,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... input prompt(s) to ...')
-                                        gr.HTML(value='... image module ...')                                        
+                                        gr.HTML(value='... image module ...')
                                         pix2pix_txt2img_sd_input = gr.Button("✍️ >> Stable Diffusion")
-                                        pix2pix_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")                                        
+                                        pix2pix_txt2img_kd_input = gr.Button("✍️ >> Kandinsky")
                                         pix2pix_txt2img_lcm_input = gr.Button("✍️ >> LCM")
                                         pix2pix_txt2img_mjm_input = gr.Button("✍️ >> Midjourney-mini") 
                                         pix2pix_txt2img_paa_input = gr.Button("✍️ >> PixArt-Alpha") 
@@ -4413,13 +4414,13 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         pix2pix_inpaint_input = gr.Button("✍️ >> inpaint")
                                         pix2pix_controlnet_input = gr.Button("✍️ >> ControlNet")
                                         pix2pix_faceid_ip_input = gr.Button("✍️ >> Photobooth")
-                                        gr.HTML(value='... video module ...')                                        
+                                        gr.HTML(value='... video module ...')
                                         pix2pix_vid2vid_ze_input = gr.Button("✍️ >> Video Instruct-pix2pix")
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
-                                        gr.HTML(value='... image module ...')                                        
+                                        gr.HTML(value='... image module ...')
                                         pix2pix_img2img_both = gr.Button("🖼️ + ✍️ >> img2img")
                                         pix2pix_img2img_ip_both = gr.Button("🖼️ + ✍️ >> IP-Adapter")
                                         pix2pix_inpaint_both = gr.Button("🖼️ + ✍️ >> inpaint")
@@ -4427,16 +4428,16 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         pix2pix_faceid_ip_both = gr.Button("🖼️ + ✍️ >> Photobooth")
 # magicmix    
                 with gr.TabItem("MagicMix 🖌️", id=291) as tab_magicmix:
-                    with gr.Accordion("About", open=False):                
-                        with gr.Box():                       
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
+                        with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>MagicMix</br>
-                                <b>Function : </b>Edit an input image with instructions from a prompt using <a href='https://magicmix.github.io/' target='_blank'>MagicMix</a> and <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
-                                <b>Input(s) : </b>Input image, prompt</br>
-                                <b>Output(s) : </b>Image(s)</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>MagicMix</br>
+                                <b>{biniou_lang_about_function}</b>Edit an input image with instructions from a prompt using <a href='https://magicmix.github.io/' target='_blank'>MagicMix</a> and <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Input image, prompt</br>
+                                <b>{biniou_lang_about_outputs}</b>Image(s)</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>,
                                 <a href='https://huggingface.co/runwayml/stable-diffusion-v1-5' target='_blank'>runwayml/stable-diffusion-v1-5</a>,
                                 <a href='https://huggingface.co/nitrosocke/Ghibli-Diffusion' target='_blank'>nitrosocke/Ghibli-Diffusion</a>
@@ -4444,10 +4445,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Upload or import an image using the <b>Input image</b> field</br>
                                 - Set the <b>Mix Factor</b> field to create a balance between input image and prompt</br>
                                 - Fill the <b>prompt</b> with the instructions for modifying your input image. Use simple prompt instruction (e.g. "a dog")</br>
@@ -4457,38 +4458,38 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>Examples : </b><a href='https://magicmix.github.io/' target='_blank'>MagicMix: Semantic Mixing with Diffusion Models</a>
                                 </div>
                                 """
-                            )                
-                    with gr.Accordion("Settings", open=False):
+                            )
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_magicmix = gr.Dropdown(choices=model_list_magicmix, value=model_list_magicmix[0], label="Model", info="Choose model to use for inference")
+                                model_magicmix = gr.Dropdown(choices=model_list_magicmix, value=model_list_magicmix[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                num_inference_step_magicmix = gr.Slider(1, biniou_global_steps_max, step=1, value=15, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_magicmix = gr.Slider(1, biniou_global_steps_max, step=1, value=15, label=biniou_lang_steps_label, info=biniou_lang_steps_info)
                             with gr.Column():
-                                sampler_magicmix = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[1], label="Sampler", info="Sampler to use for inference", interactive=False)
+                                sampler_magicmix = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[1], label=biniou_lang_sampler_label, info=biniou_lang_sampler_info, interactive=False)
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_magicmix = gr.Slider(0.0, 20.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_magicmix = gr.Slider(0.0, 20.0, step=0.1, value=7.5, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
                                 kmin_magicmix = gr.Slider(0.0, 1.0, step=0.01, value=0.3, label="Kmin", info="Controls the number of steps during the content generation process")
                             with gr.Column():
                                 kmax_magicmix = gr.Slider(0.0, 1.0, step=0.01, value=0.6, label="Kmax", info="Determines how much information is kept in the layout of the original image")
                         with gr.Row():
                             with gr.Column():
-                                num_prompt_magicmix = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                num_prompt_magicmix = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                             with gr.Column():
-                                seed_magicmix = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
+                                seed_magicmix = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_magicmix = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_magicmix = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
                             with gr.Column():
-                                tkme_magicmix = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                                tkme_magicmix = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_magicmix = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_magicmix = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_magicmix = gr.Textbox(value="magicmix", visible=False, interactive=False)
-                                del_ini_btn_magicmix = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_magicmix.value) else False)
+                                del_ini_btn_magicmix = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_magicmix.value) else False)
                                 save_ini_btn_magicmix.click(
                                     fn=write_ini_magicmix, 
                                     inputs=[
@@ -4505,29 +4506,29 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         tkme_magicmix,
                                         ]
                                     )
-                                save_ini_btn_magicmix.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_magicmix.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_magicmix.click(fn=lambda: del_ini_btn_magicmix.update(interactive=True), outputs=del_ini_btn_magicmix)
                                 del_ini_btn_magicmix.click(fn=lambda: del_ini(module_name_magicmix.value))
-                                del_ini_btn_magicmix.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_magicmix.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_magicmix.click(fn=lambda: del_ini_btn_magicmix.update(interactive=False), outputs=del_ini_btn_magicmix)
                         if test_ini_exist(module_name_magicmix.value):
                             with open(f".ini/{module_name_magicmix.value}.ini", "r", encoding="utf-8") as fichier:
                                 exec(fichier.read())
                     with gr.Row():
                         with gr.Column():
-                             img_magicmix = gr.Image(label="Input image", height=400, type="filepath")
+                             img_magicmix = gr.Image(label=biniou_lang_img_input_label, height=400, type="filepath")
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
                                     mix_factor_magicmix = gr.Slider(0.0, 1.0, step=0.01, value=0.5, label="Mix Factor", info="Determines how much influence the prompt has on the layout generation")
                             with gr.Row(): 
                                 with gr.Column():
-                                    prompt_magicmix = gr.Textbox(lines=9, max_lines=9, label="Prompt", info="Describe how you want to modify your input image", placeholder="a bed")
+                                    prompt_magicmix = gr.Textbox(lines=9, max_lines=9, label=biniou_lang_prompt_label, info="Describe how you want to modify your input image", placeholder="a bed")
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
                                     out_magicmix = gr.Gallery(
-                                        label="Generated images",
+                                        label=biniou_lang_image_gallery_label,
                                         show_label=True,
                                         elem_id="gallery_p2p",
                                         columns=2,
@@ -4539,23 +4540,23 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     out_magicmix.select(get_select_index, None, sel_out_magicmix)
                                     with gr.Row():
                                         with gr.Column():
-                                            download_btn_magicmix = gr.Button("Zip gallery 💾")
+                                            download_btn_magicmix = gr.Button(f"{biniou_lang_image_zip} 💾")
                                         with gr.Column():
-                                            download_file_magicmix = gr.File(label="Output", height=30, interactive=False, visible=False)
+                                            download_file_magicmix = gr.File(label=biniou_lang_image_zip_file, height=30, interactive=False, visible=False)
                                             download_btn_magicmix.click(fn=zip_download_file_magicmix, inputs=out_magicmix, outputs=[download_file_magicmix, download_file_magicmix])                                       
                     with gr.Row():
                         with gr.Column():
-                            btn_magicmix = gr.Button("Generate 🚀", variant="primary")
+                            btn_magicmix = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():
-                            btn_magicmix_clear_input = gr.ClearButton(components=[img_magicmix, prompt_magicmix], value="Clear inputs 🧹")
+                            btn_magicmix_clear_input = gr.ClearButton(components=[img_magicmix, prompt_magicmix], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_magicmix_clear_output = gr.ClearButton(components=[out_magicmix, gs_out_magicmix], value="Clear outputs 🧹")
+                            btn_magicmix_clear_output = gr.ClearButton(components=[out_magicmix, gs_out_magicmix], value=f"{biniou_lang_clear_outputs} 🧹")
                             btn_magicmix.click(fn=hide_download_file_magicmix, inputs=None, outputs=download_file_magicmix)                               
                             btn_magicmix.click(
                                 fn=image_magicmix,
                                 inputs=[
-                                    model_magicmix, 
-                                    sampler_magicmix, 
+                                    model_magicmix,
+                                    sampler_magicmix,
                                     num_inference_step_magicmix,
                                     guidance_scale_magicmix,
                                     kmin_magicmix,
@@ -4575,7 +4576,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
@@ -4604,22 +4605,22 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... input prompt(s) to ...')
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
-                                       
+
 # inpaint    
                 with gr.TabItem("inpaint 🖌️", id=292) as tab_inpaint:
-                    with gr.Accordion("About", open=False):                
-                        with gr.Box():                       
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
+                        with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>Inpaint</br>
-                                <b>Function : </b>Inpaint the masked area of an input image, from a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
-                                <b>Input(s) : </b>Input image, inpaint masked area, prompt, negative prompt</br>
-                                <b>Output(s) : </b>Image(s)</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>Inpaint</br>
+                                <b>{biniou_lang_about_function}</b>Inpaint the masked area of an input image, from a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Input image, inpaint masked area, prompt, negative prompt</br>
+                                <b>{biniou_lang_about_outputs}</b>Image(s)</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/Uminosachi/realisticVisionV30_v30VAE-inpainting' target='_blank'>Uminosachi/realisticVisionV30_v30VAE-inpainting</a> ,
                                 <a href='https://huggingface.co/Uminosachi/diffusers/stable-diffusion-xl-1.0-inpainting-0.1' target='_blank'>diffusers/stable-diffusion-xl-1.0-inpainting-0.1</a> ,
                                 <a href='https://huggingface.co/runwayml/stable-diffusion-inpainting' target='_blank'>runwayml/stable-diffusion-inpainting</a></br>
@@ -4627,10 +4628,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Upload or import an image using the <b>Input image</b> field</br>
                                 - Using the sketch tool of the <b>inpaint field</b>, mask the area to be modified</br>
                                 - Modify the <b>denoising strength of the inpainted area</b> : 0 will keep the original content, 1 will ignore it</br>
@@ -4640,44 +4641,44 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 - Click the <b>Generate button</b></br>
                                 - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
                                 </br>
-                                <b>Models :</b></br>
+                                <b>{biniou_lang_about_models}</b></br>
                                 - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or  <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors models in the directory /biniou/models/Stable Diffusion. Restart Biniou to see them in the models list.
                                 </div>
                                 """
                             )                   
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_inpaint = gr.Dropdown(choices=model_list_inpaint, value=model_list_inpaint[0], label="Model", info="Choose model to use for inference")
+                                model_inpaint = gr.Dropdown(choices=model_list_inpaint, value=model_list_inpaint[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                num_inference_step_inpaint = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_inpaint = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label=biniou_lang_steps_label, info=biniou_lang_steps_info)
                             with gr.Column():
-                                sampler_inpaint = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
+                                sampler_inpaint = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label=biniou_lang_sampler_label, info=biniou_lang_sampler_info)
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_inpaint = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_inpaint = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
-                                num_images_per_prompt_inpaint= gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_inpaint= gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info=biniou_lang_batch_size_image_info)
                             with gr.Column():
-                                num_prompt_inpaint = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                num_prompt_inpaint = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
                             with gr.Column():
-                                width_inpaint = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs", interactive=False)
+                                width_inpaint = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label=biniou_lang_image_width_label, info=biniou_lang_image_width_info, interactive=False)
                             with gr.Column():
-                                height_inpaint = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs", interactive=False)
+                                height_inpaint = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label=biniou_lang_image_height_label, info=biniou_lang_image_height_info, interactive=False)
                             with gr.Column():
-                                seed_inpaint = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
+                                seed_inpaint = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_inpaint = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_inpaint = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
                             with gr.Column():
-                                tkme_inpaint = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                                tkme_inpaint = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_inpaint = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_inpaint = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_inpaint = gr.Textbox(value="inpaint", visible=False, interactive=False)
-                                del_ini_btn_inpaint = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_inpaint.value) else False)
+                                del_ini_btn_inpaint = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_inpaint.value) else False)
                                 save_ini_btn_inpaint.click(
                                     fn=write_ini_inpaint, 
                                     inputs=[
@@ -4695,10 +4696,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         tkme_inpaint,
                                         ]
                                     )
-                                save_ini_btn_inpaint.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_inpaint.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_inpaint.click(fn=lambda: del_ini_btn_inpaint.update(interactive=True), outputs=del_ini_btn_inpaint)
                                 del_ini_btn_inpaint.click(fn=lambda: del_ini(module_name_inpaint.value))
-                                del_ini_btn_inpaint.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_inpaint.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_inpaint.click(fn=lambda: del_ini_btn_inpaint.update(interactive=False), outputs=del_ini_btn_inpaint)
                         if test_ini_exist(module_name_inpaint.value) :
                             with open(f".ini/{module_name_inpaint.value}.ini", "r", encoding="utf-8") as fichier:
@@ -4706,7 +4707,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Row():
                         with gr.Column(scale=2):
                              rotation_img_inpaint = gr.Number(value=0, visible=False)
-                             img_inpaint = gr.Image(label="Input image", type="pil", height=400, tool="sketch")
+                             img_inpaint = gr.Image(label=biniou_lang_img_input_label, type="pil", height=400, tool="sketch")
                              img_inpaint.upload(image_upload_event_inpaint_c, inputs=[img_inpaint, model_inpaint], outputs=[width_inpaint, height_inpaint, img_inpaint, rotation_img_inpaint], preprocess=False)
                              gs_img_inpaint = gr.Image(type="pil", visible=False)
                              gs_img_inpaint.change(image_upload_event_inpaint_b, inputs=gs_img_inpaint, outputs=[width_inpaint, height_inpaint], preprocess=False)
@@ -4716,14 +4717,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     denoising_strength_inpaint = gr.Slider(0.0, 1.0, step=0.01, value=1.0, label="Denoising strength", info="Balance between input image (0) and prompts (1)")                                
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_inpaint = gr.Textbox(lines=3, max_lines=3, label="Prompt", info="Describe what you want in your image", placeholder="a cute kitten playing with a ball, dynamic pose, close-up cinematic still, photo realistic, ultra quality, 4k uhd, perfect lighting, HDR, bokeh")
+                                    prompt_inpaint = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_image_prompt_placeholder)
                                 with gr.Column():
-                                    negative_prompt_inpaint = gr.Textbox(lines=3, max_lines=3, label="Negative Prompt", info="Describe what you DO NOT want in your image", placeholder="out of frame, bad quality, medium quality, blurry, ugly, duplicate, text, characters, logo")
+                                    negative_prompt_inpaint = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
                         with gr.Column():
                             with gr.Row(): 
                                 with gr.Column():
                                     out_inpaint = gr.Gallery(
-                                        label="Generated images",
+                                        label=biniou_lang_image_gallery_label,
                                         show_label=True,
                                         elem_id="gallery_inpaint",
                                         columns=2,
@@ -4735,20 +4736,20 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     out_inpaint.select(get_select_index, None, sel_out_inpaint)   
                                     with gr.Row():
                                         with gr.Column():
-                                            download_btn_inpaint = gr.Button("Zip gallery 💾")
+                                            download_btn_inpaint = gr.Button(f"{biniou_lang_image_zip} 💾")
                                         with gr.Column():
-                                            download_file_inpaint = gr.File(label="Output", height=30, interactive=False, visible=False)
+                                            download_file_inpaint = gr.File(label=biniou_lang_image_zip_file, height=30, interactive=False, visible=False)
                                             download_btn_inpaint.click(fn=zip_download_file_inpaint, inputs=out_inpaint, outputs=[download_file_inpaint, download_file_inpaint])                                       
                     with gr.Row():
                         with gr.Column():
-                            btn_inpaint = gr.Button("Generate 🚀", variant="primary")
+                            btn_inpaint = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():                            
-                            btn_inpaint_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_inpaint_cancel = gr.Button(f"{biniou_lang_cancel}🛑", variant="stop")
                             btn_inpaint_cancel.click(fn=initiate_stop_inpaint, inputs=None, outputs=None)                              
                         with gr.Column():
-                            btn_inpaint_clear_input = gr.ClearButton(components=[img_inpaint, gs_img_inpaint, prompt_inpaint, negative_prompt_inpaint], value="Clear inputs 🧹")
+                            btn_inpaint_clear_input = gr.ClearButton(components=[img_inpaint, gs_img_inpaint, prompt_inpaint, negative_prompt_inpaint], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_inpaint_clear_output = gr.ClearButton(components=[out_inpaint, gs_out_inpaint], value="Clear outputs 🧹")  
+                            btn_inpaint_clear_output = gr.ClearButton(components=[out_inpaint, gs_out_inpaint], value=f"{biniou_lang_clear_outputs} 🧹")  
                             btn_inpaint.click(fn=hide_download_file_inpaint, inputs=None, outputs=download_file_inpaint)                             
                             btn_inpaint.click(
                                 fn=image_inpaint,
@@ -4834,25 +4835,25 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     titletab_paintbyex = "Paint by example ⛔"
 
                 with gr.TabItem(titletab_paintbyex, id=293) as tab_paintbyex: 
-                    with gr.Accordion("About", open=False): 
+                    with gr.Accordion(f"{biniou_lang_about}", open=False): 
                         with gr.Box():                       
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>Paint by example</br>
-                                <b>Function : </b>Paint the masked area of an input image, from an example image using  <a href='https://github.com/Fantasy-Studio/Paint-by-Example' target='_blank'>Paint by example</a>  and <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
-                                <b>Input(s) : </b>Input image, masked area, example image</br>
-                                <b>Output(s) : </b>Image(s)</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>Paint by example</br>
+                                <b>{biniou_lang_about_function}</b>Paint the masked area of an input image, from an example image using  <a href='https://github.com/Fantasy-Studio/Paint-by-Example' target='_blank'>Paint by example</a>  and <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Input image, masked area, example image</br>
+                                <b>{biniou_lang_about_outputs}</b>Image(s)</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/Fantasy-Studio/Paint-by-Example' target='_blank'>Fantasy-Studio/Paint-by-Example</a></br>
                                 """
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Upload or import an image using the <b>Input image</b> field</br>
                                 - Using the sketch tool of the <b>Input image field</b>, mask the area to be modified</br>
                                 - Upload or import an example image using the <b>Example image</b> field. This image will be used as an example on how to modify the masked area of the input image</br>
@@ -4863,39 +4864,39 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 </div>
                                 """
                             )                   
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_paintbyex = gr.Dropdown(choices=model_list_paintbyex, value=model_list_paintbyex[0], label="Model", info="Choose model to use for inference")
+                                model_paintbyex = gr.Dropdown(choices=model_list_paintbyex, value=model_list_paintbyex[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                num_inference_step_paintbyex = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_paintbyex = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label=biniou_lang_steps_label, info=biniou_lang_steps_info)
                             with gr.Column():
-                                sampler_paintbyex = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
+                                sampler_paintbyex = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label=biniou_lang_sampler_label, info=biniou_lang_sampler_info)
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_paintbyex = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_paintbyex = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
-                                num_images_per_prompt_paintbyex= gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_paintbyex= gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info=biniou_lang_batch_size_image_info)
                             with gr.Column():
-                                num_prompt_paintbyex = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                num_prompt_paintbyex = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
                             with gr.Column():
-                                width_paintbyex = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs", interactive=False)
+                                width_paintbyex = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label=biniou_lang_image_width_label, info=biniou_lang_image_width_info, interactive=False)
                             with gr.Column():
-                                height_paintbyex = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs", interactive=False)
+                                height_paintbyex = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label=biniou_lang_image_height_label, info=biniou_lang_image_height_info, interactive=False)
                             with gr.Column():
-                                seed_paintbyex = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
+                                seed_paintbyex = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_paintbyex = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_paintbyex = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
                             with gr.Column():
-                                tkme_paintbyex = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                                tkme_paintbyex = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_paintbyex = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_paintbyex = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_paintbyex = gr.Textbox(value="paintbyex", visible=False, interactive=False)
-                                del_ini_btn_paintbyex = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_paintbyex.value) else False)
+                                del_ini_btn_paintbyex = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_paintbyex.value) else False)
                                 save_ini_btn_paintbyex.click(
                                     fn=write_ini_paintbyex,
                                     inputs=[
@@ -4913,10 +4914,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         tkme_paintbyex,
                                         ]
                                     )
-                                save_ini_btn_paintbyex.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_paintbyex.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_paintbyex.click(fn=lambda: del_ini_btn_paintbyex.update(interactive=True), outputs=del_ini_btn_paintbyex)
                                 del_ini_btn_paintbyex.click(fn=lambda: del_ini(module_name_paintbyex.value))
-                                del_ini_btn_paintbyex.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_paintbyex.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_paintbyex.click(fn=lambda: del_ini_btn_paintbyex.update(interactive=False), outputs=del_ini_btn_paintbyex)
                         if test_ini_exist(module_name_paintbyex.value) :
                             with open(f".ini/{module_name_paintbyex.value}.ini", "r", encoding="utf-8") as fichier:
@@ -4924,7 +4925,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Row():
                         with gr.Column(scale=2):
                              rotation_img_paintbyex = gr.Number(value=0, visible=False)
-                             img_paintbyex = gr.Image(label="Input image", type="pil", height=400, tool="sketch")
+                             img_paintbyex = gr.Image(label=biniou_lang_img_input_label, type="pil", height=400, tool="sketch")
                              img_paintbyex.upload(image_upload_event_inpaint, inputs=img_paintbyex, outputs=[width_paintbyex, height_paintbyex, img_paintbyex, rotation_img_paintbyex], preprocess=False)
                              gs_img_paintbyex = gr.Image(type="pil", visible=False)
                              gs_img_paintbyex.change(image_upload_event_inpaint_b, inputs=gs_img_paintbyex, outputs=[width_paintbyex, height_paintbyex], preprocess=False)
@@ -4934,7 +4935,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Row(): 
                                 with gr.Column():
                                     out_paintbyex = gr.Gallery(
-                                        label="Generated images",
+                                        label=biniou_lang_image_gallery_label,
                                         show_label=True,
                                         elem_id="gallery_paintbyex",
                                         columns=2,
@@ -4946,20 +4947,20 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     out_paintbyex.select(get_select_index, None, sel_out_paintbyex)   
                                     with gr.Row():
                                         with gr.Column():
-                                            download_btn_paintbyex = gr.Button("Zip gallery 💾")
+                                            download_btn_paintbyex = gr.Button(f"{biniou_lang_image_zip} 💾")
                                         with gr.Column():
-                                            download_file_paintbyex = gr.File(label="Output", height=30, interactive=False, visible=False)
+                                            download_file_paintbyex = gr.File(label=biniou_lang_image_zip_file, height=30, interactive=False, visible=False)
                                             download_btn_paintbyex.click(fn=zip_download_file_paintbyex, inputs=out_paintbyex, outputs=[download_file_paintbyex, download_file_paintbyex])                                       
                     with gr.Row():
                         with gr.Column():
-                            btn_paintbyex = gr.Button("Generate 🚀", variant="primary")
+                            btn_paintbyex = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():                            
-                            btn_paintbyex_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_paintbyex_cancel = gr.Button(f"{biniou_lang_cancel}🛑", variant="stop")
                             btn_paintbyex_cancel.click(fn=initiate_stop_paintbyex, inputs=None, outputs=None)                              
                         with gr.Column():
-                            btn_paintbyex_clear_input = gr.ClearButton(components=[img_paintbyex, gs_img_paintbyex, example_img_paintbyex], value="Clear inputs 🧹")
+                            btn_paintbyex_clear_input = gr.ClearButton(components=[img_paintbyex, gs_img_paintbyex, example_img_paintbyex], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_paintbyex_clear_output = gr.ClearButton(components=[out_paintbyex, gs_out_paintbyex], value="Clear outputs 🧹")  
+                            btn_paintbyex_clear_output = gr.ClearButton(components=[out_paintbyex, gs_out_paintbyex], value=f"{biniou_lang_clear_outputs} 🧹")  
                             btn_paintbyex.click(fn=hide_download_file_paintbyex, inputs=None, outputs=download_file_paintbyex)                             
                             btn_paintbyex.click(
                                 fn=image_paintbyex,
@@ -5025,16 +5026,16 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     titletab_outpaint = "outpaint ⛔"
 
                 with gr.TabItem(titletab_outpaint, id=294) as tab_outpaint:
-                    with gr.Accordion("About", open=False):                
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):                
                         with gr.Box():                       
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>outpaint</br>
-                                <b>Function : </b>Outpaint an input image, by defining borders and using a prompt and a negative prompt, with <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
-                                <b>Input(s) : </b>Input image, outpaint mask, prompt, negative prompt</br>
-                                <b>Output(s) : </b>Image(s)</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>outpaint</br>
+                                <b>{biniou_lang_about_function}</b>Outpaint an input image, by defining borders and using a prompt and a negative prompt, with <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Input image, outpaint mask, prompt, negative prompt</br>
+                                <b>{biniou_lang_about_outputs}</b>Image(s)</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/Uminosachi/realisticVisionV30_v30VAE-inpainting' target='_blank'>Uminosachi/realisticVisionV30_v30VAE-inpainting</a> ,
                                 <a href='https://huggingface.co/Uminosachi/diffusers/stable-diffusion-xl-1.0-inpainting-0.1' target='_blank'>diffusers/stable-diffusion-xl-1.0-inpainting-0.1</a> ,
                                 <a href='https://huggingface.co/runwayml/stable-diffusion-inpainting' target='_blank'>runwayml/stable-diffusion-inpainting</a></br>
@@ -5042,10 +5043,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Upload or import an image using the <b>Input image</b> field</br>
                                 - Define the size in pixels of the borders to add for top, bottom, left and right sides 
                                 - Click the <b>Create mask</b> button to add borders to your image and generate a mask</br>
@@ -5056,44 +5057,44 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 - Click the <b>Generate button</b></br>
                                 - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
                                 </br>
-                                <b>Models :</b></br>
+                                <b>{biniou_lang_about_models}</b></br>
                                 - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or  <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors models in the directory /biniou/models/Stable Diffusion. Restart Biniou to see them in the models list.
                                 </div>
                                 """
                             )                   
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_outpaint = gr.Dropdown(choices=model_list_outpaint, value=model_list_outpaint[0], label="Model", info="Choose model to use for inference")
+                                model_outpaint = gr.Dropdown(choices=model_list_outpaint, value=model_list_outpaint[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                num_inference_step_outpaint = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_outpaint = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label=biniou_lang_steps_label, info=biniou_lang_steps_info)
                             with gr.Column():
-                                sampler_outpaint = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
+                                sampler_outpaint = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label=biniou_lang_sampler_label, info=biniou_lang_sampler_info)
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_outpaint = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_outpaint = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
-                                num_images_per_prompt_outpaint= gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_outpaint= gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info=biniou_lang_batch_size_image_info)
                             with gr.Column():
-                                num_prompt_outpaint = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                num_prompt_outpaint = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
                             with gr.Column():
-                                width_outpaint = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs", interactive=False)
+                                width_outpaint = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label=biniou_lang_image_width_label, info=biniou_lang_image_width_info, interactive=False)
                             with gr.Column():
-                                height_outpaint = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs", interactive=False)
+                                height_outpaint = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label=biniou_lang_image_height_label, info=biniou_lang_image_height_info, interactive=False)
                             with gr.Column():
-                                seed_outpaint = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
+                                seed_outpaint = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_outpaint = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_outpaint = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
                             with gr.Column():
-                                tkme_outpaint = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                                tkme_outpaint = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_outpaint = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_outpaint = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_outpaint = gr.Textbox(value="outpaint", visible=False, interactive=False)
-                                del_ini_btn_outpaint = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_outpaint.value) else False)
+                                del_ini_btn_outpaint = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_outpaint.value) else False)
                                 save_ini_btn_outpaint.click(
                                     fn=write_ini_outpaint,
                                     inputs=[
@@ -5111,10 +5112,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         tkme_outpaint,
                                         ]
                                     )
-                                save_ini_btn_outpaint.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_outpaint.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_outpaint.click(fn=lambda: del_ini_btn_outpaint.update(interactive=True), outputs=del_ini_btn_outpaint)
                                 del_ini_btn_outpaint.click(fn=lambda: del_ini(module_name_outpaint.value))
-                                del_ini_btn_outpaint.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_outpaint.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_outpaint.click(fn=lambda: del_ini_btn_outpaint.update(interactive=False), outputs=del_ini_btn_outpaint)
                         if test_ini_exist(module_name_outpaint.value):
                             with open(f".ini/{module_name_outpaint.value}.ini", "r", encoding="utf-8") as fichier:
@@ -5123,7 +5124,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 rotation_img_outpaint = gr.Number(value=0, visible=False)
-                                img_outpaint = gr.Image(label="Input image", type="pil", height=350)
+                                img_outpaint = gr.Image(label=biniou_lang_img_input_label, type="pil", height=350)
                                 gs_img_outpaint = gr.Image(type="pil", visible=False)
                                 gs_img_outpaint.change(image_upload_event_inpaint_b, inputs=gs_img_outpaint, outputs=[width_outpaint, height_outpaint], preprocess=False)
                             with gr.Column():
@@ -5153,14 +5154,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     denoising_strength_outpaint = gr.Slider(0.0, 1.0, step=0.01, value=1.0, label="Denoising strength", info="Balance between input image (0) and prompts (1)")                                
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_outpaint = gr.Textbox(lines=3, max_lines=3, label="Prompt", info="Describe what you want in your image", placeholder="a cute kitten playing with a ball, dynamic pose, close-up cinematic still, photo realistic, ultra quality, 4k uhd, perfect lighting, HDR, bokeh")
+                                    prompt_outpaint = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_image_prompt_placeholder)
                                 with gr.Column():
-                                    negative_prompt_outpaint = gr.Textbox(lines=3, max_lines=3, label="Negative Prompt", info="Describe what you DO NOT want in your image", placeholder="out of frame, bad quality, medium quality, blurry, ugly, duplicate, text, characters, logo")
+                                    negative_prompt_outpaint = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
                         with gr.Column():
                             with gr.Row(): 
                                 with gr.Column():
                                     out_outpaint = gr.Gallery(
-                                        label="Generated images",
+                                        label=biniou_lang_image_gallery_label,
                                         show_label=True,
                                         elem_id="gallery_outpaint",
                                         columns=2,
@@ -5172,20 +5173,20 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     out_outpaint.select(get_select_index, None, sel_out_outpaint)   
                                     with gr.Row():
                                         with gr.Column():
-                                            download_btn_outpaint = gr.Button("Zip gallery 💾")
+                                            download_btn_outpaint = gr.Button(f"{biniou_lang_image_zip} 💾")
                                         with gr.Column():
-                                            download_file_outpaint = gr.File(label="Output", height=30, interactive=False, visible=False)
+                                            download_file_outpaint = gr.File(label=biniou_lang_image_zip_file, height=30, interactive=False, visible=False)
                                             download_btn_outpaint.click(fn=zip_download_file_outpaint, inputs=out_outpaint, outputs=[download_file_outpaint, download_file_outpaint])                                       
                     with gr.Row():
                         with gr.Column():
-                            btn_outpaint = gr.Button("Generate 🚀", variant="primary")
+                            btn_outpaint = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():                            
-                            btn_outpaint_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_outpaint_cancel = gr.Button(f"{biniou_lang_cancel}🛑", variant="stop")
                             btn_outpaint_cancel.click(fn=initiate_stop_outpaint, inputs=None, outputs=None)                              
                         with gr.Column():
-                            btn_outpaint_clear_input = gr.ClearButton(components=[img_outpaint, gs_img_outpaint, prompt_outpaint, negative_prompt_outpaint], value="Clear inputs 🧹")
+                            btn_outpaint_clear_input = gr.ClearButton(components=[img_outpaint, gs_img_outpaint, prompt_outpaint, negative_prompt_outpaint], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_outpaint_clear_output = gr.ClearButton(components=[out_outpaint, gs_out_outpaint], value="Clear outputs 🧹")  
+                            btn_outpaint_clear_output = gr.ClearButton(components=[out_outpaint, gs_out_outpaint], value=f"{biniou_lang_clear_outputs} 🧹")  
                             btn_outpaint.click(fn=hide_download_file_outpaint, inputs=None, outputs=download_file_outpaint)                             
                             btn_outpaint.click(
                                 fn=image_outpaint,
@@ -5266,15 +5267,15 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         outpaint_faceid_ip_both = gr.Button("🖼️ + ✍️ >> Photobooth")
 # ControlNet
                 with gr.TabItem("ControlNet 🖼️", id=295) as tab_controlnet:
-                    with gr.Accordion("About", open=False):                
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):                
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>ControlNet</br>
-                                <b>Function : </b>Generate images from a prompt, a negative prompt and a control image using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a> and <a href='https://stablediffusionweb.com/ControlNet' target='_blank'>ControlNet</a></br>
-                                <b>Input(s) : </b>Prompt, negative prompt, ControlNet input</br>
-                                <b>Output(s) : </b>Image(s)</br>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>ControlNet</br>
+                                <b>{biniou_lang_about_function}</b>Generate images from a prompt, a negative prompt and a control image using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a> and <a href='https://stablediffusionweb.com/ControlNet' target='_blank'>ControlNet</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Prompt, negative prompt, ControlNet input</br>
+                                <b>{biniou_lang_about_outputs}</b>Image(s)</br>
                                 <b>HF Stable Diffusion models pages : </b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
                                 <a href='https://huggingface.co/playgroundai/playground-v2-512px-base' target='_blank'>playgroundai/playground-v2-512px-base</a>, 
@@ -5309,10 +5310,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - (optional) Modify the settings to use another model, change the settings for ControlNet or adjust threshold on canny</br>
                                 - (optional) Select a LoRA model and set its weight</br>                                     
                                 - Select a <b>Source image</b> that will be used to generate the control image</br>
@@ -5324,35 +5325,35 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output image</br>
                                 - Click the <b>Generate button</b></br>
                                 - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery</br>
-                                <b>Models :</b></br>
+                                <b>{biniou_lang_about_models}</b></br>
                                 - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors models in the directory ./biniou/models/Stable Diffusion. Restart Biniou to see them in the models list.</br>
                                 <b>LoRA models :</b></br>
                                 - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or  <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors LoRA models in the directory ./biniou/models/lora/SD or ./biniou/models/lora/SDXL (depending on the LoRA model type : SD 1.5 or SDXL). Restart Biniou to see them in the models list.</br>
                                 </div>
                                 """
                             )                
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_controlnet = gr.Dropdown(choices=model_list_controlnet, value=model_list_controlnet[0], label="Model", info="Choose model to use for inference")
+                                model_controlnet = gr.Dropdown(choices=model_list_controlnet, value=model_list_controlnet[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                num_inference_step_controlnet = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_controlnet = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label=biniou_lang_steps_label, info=biniou_lang_steps_info)
                             with gr.Column():
-                                sampler_controlnet = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
+                                sampler_controlnet = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label=biniou_lang_sampler_label, info=biniou_lang_sampler_info)
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_controlnet = gr.Slider(0.0, 20.0, step=0.1, value=7.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_controlnet = gr.Slider(0.0, 20.0, step=0.1, value=7.0, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
-                                num_images_per_prompt_controlnet = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_controlnet = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info=biniou_lang_batch_size_image_info)
                             with gr.Column():
-                                num_prompt_controlnet = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                num_prompt_controlnet = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
                             with gr.Column():
-                                width_controlnet = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs", interactive=False)
+                                width_controlnet = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sd15_width, label=biniou_lang_image_width_label, info=biniou_lang_image_width_info, interactive=False)
                             with gr.Column():
-                                height_controlnet = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs", interactive=False)
+                                height_controlnet = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=biniou_global_sd15_height, label=biniou_lang_image_height_label, info=biniou_lang_image_height_info, interactive=False)
                             with gr.Column():
-                                seed_controlnet = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")    
+                                seed_controlnet = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info)    
                         with gr.Row():
                             with gr.Column():
                                 low_threshold_controlnet = gr.Slider(0, 255, step=1, value=100, label="Canny low threshold", info="ControlNet Low threshold")  
@@ -5367,15 +5368,15 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 stop_controlnet = gr.Slider(0.0, 1.0, step=0.01, value=1.0, label="Stop ControlNet", info="Stop ControlNet at % step")
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_controlnet = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_controlnet = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
                             with gr.Column():
-                                tkme_controlnet = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                                tkme_controlnet = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_controlnet = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_controlnet = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_controlnet = gr.Textbox(value="controlnet", visible=False, interactive=False)
-                                del_ini_btn_controlnet = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_controlnet.value) else False)
+                                del_ini_btn_controlnet = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_controlnet.value) else False)
                                 save_ini_btn_controlnet.click(
                                     fn=write_ini_controlnet, 
                                     inputs=[
@@ -5398,24 +5399,24 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         tkme_controlnet,
                                         ]
                                     )
-                                save_ini_btn_controlnet.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_controlnet.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_controlnet.click(fn=lambda: del_ini_btn_controlnet.update(interactive=True), outputs=del_ini_btn_controlnet)
                                 del_ini_btn_controlnet.click(fn=lambda: del_ini(module_name_controlnet.value))
-                                del_ini_btn_controlnet.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_controlnet.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_controlnet.click(fn=lambda: del_ini_btn_controlnet.update(interactive=False), outputs=del_ini_btn_controlnet)
                         if test_ini_exist(module_name_controlnet.value) :
                             with open(f".ini/{module_name_controlnet.value}.ini", "r", encoding="utf-8") as fichier:
                                 exec(fichier.read())
-                        with gr.Accordion("LoRA Model", open=True):
+                        with gr.Accordion(biniou_lang_lora_label, open=True):
                             with gr.Row():
                                 with gr.Column():
-                                    lora_model_controlnet = gr.Dropdown(choices=list(lora_model_list(model_controlnet.value).keys()), value="", label="LoRA model", info="Choose LoRA model to use for inference")
+                                    lora_model_controlnet = gr.Dropdown(choices=list(lora_model_list(model_controlnet.value).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info)
                                 with gr.Column():
-                                    lora_weight_controlnet = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label="LoRA weight", info="Weight of the LoRA model in the final result")                            
-                        with gr.Accordion("Textual inversion", open=True):
+                                    lora_weight_controlnet = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info)                            
+                        with gr.Accordion(biniou_lang_textinv_label, open=True):
                             with gr.Row():
                                 with gr.Column():
-                                    txtinv_controlnet = gr.Dropdown(choices=list(txtinv_list(model_controlnet.value).keys()), value="", label="Textual inversion", info="Choose textual inversion to use for inference")
+                                    txtinv_controlnet = gr.Dropdown(choices=list(txtinv_list(model_controlnet.value).keys()), value="", label=biniou_lang_textinv_label, info=biniou_lang_textinv_info)
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -5448,10 +5449,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():                        
-                                    prompt_controlnet = gr.Textbox(lines=6, max_lines=6, label="Prompt", info="Describe what you want in your image", placeholder="a cute kitten playing with a ball, dynamic pose, close-up cinematic still, photo realistic, ultra quality, 4k uhd, perfect lighting, HDR, bokeh")
+                                    prompt_controlnet = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_image_prompt_placeholder)
                             with gr.Row():
                                 with gr.Column(): 
-                                    negative_prompt_controlnet = gr.Textbox(lines=6, max_lines=6, label="Negative Prompt", info="Describe what you DO NOT want in your image", placeholder="out of frame, bad quality, medium quality, blurry, ugly, duplicate, text, characters, logo")
+                                    negative_prompt_controlnet = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
                             model_controlnet.change(
                                 fn=change_model_type_controlnet, 
                                 inputs=[model_controlnet],
@@ -5472,7 +5473,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             txtinv_controlnet.change(fn=change_txtinv_controlnet, inputs=[model_controlnet, txtinv_controlnet, prompt_controlnet, negative_prompt_controlnet], outputs=[prompt_controlnet, negative_prompt_controlnet])
                         with gr.Column():
                             out_controlnet = gr.Gallery(
-                                label="Generated images",
+                                label=biniou_lang_image_gallery_label,
                                 show_label=True,
                                 elem_id="gallery",
                                 columns=1,
@@ -5484,20 +5485,20 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             out_controlnet.select(get_select_index, None, sel_out_controlnet)
                             with gr.Row():
                                 with gr.Column():
-                                    download_btn_controlnet = gr.Button("Zip gallery 💾")
+                                    download_btn_controlnet = gr.Button(f"{biniou_lang_image_zip} 💾")
                                 with gr.Column():
-                                    download_file_controlnet = gr.File(label="Output", height=30, interactive=False, visible=False)
+                                    download_file_controlnet = gr.File(label=biniou_lang_image_zip_file, height=30, interactive=False, visible=False)
                                     download_btn_controlnet.click(fn=zip_download_file_controlnet, inputs=out_controlnet, outputs=[download_file_controlnet, download_file_controlnet])
                     with gr.Row():
                         with gr.Column():
-                            btn_controlnet = gr.Button("Generate 🚀", variant="primary")
+                            btn_controlnet = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():                            
-                            btn_controlnet_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_controlnet_cancel = gr.Button(f"{biniou_lang_cancel}🛑", variant="stop")
                             btn_controlnet_cancel.click(fn=initiate_stop_controlnet, inputs=None, outputs=None)                              
                         with gr.Column():
-                            btn_controlnet_clear_input = gr.ClearButton(components=[prompt_controlnet, negative_prompt_controlnet, img_source_controlnet, gs_img_source_controlnet, img_preview_controlnet], value="Clear inputs 🧹")
+                            btn_controlnet_clear_input = gr.ClearButton(components=[prompt_controlnet, negative_prompt_controlnet, img_source_controlnet, gs_img_source_controlnet, img_preview_controlnet], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_controlnet_clear_output = gr.ClearButton(components=[out_controlnet, gs_out_controlnet], value="Clear outputs 🧹")   
+                            btn_controlnet_clear_output = gr.ClearButton(components=[out_controlnet, gs_out_controlnet], value=f"{biniou_lang_clear_outputs} 🧹")   
                             btn_controlnet.click(fn=hide_download_file_controlnet, inputs=None, outputs=download_file_controlnet)   
                             btn_controlnet.click(
                             fn=image_controlnet, 
@@ -5590,16 +5591,16 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
 
 # faceid_ip
                 with gr.TabItem("Photobooth 🖼️", id=296) as tab_faceid_ip:
-                    with gr.Accordion("About", open=False):                
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):                
                         with gr.Box():                       
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>Photobooth</br>
-                                <b>Function : </b>Generate portraits using the face taken from the input image, a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a>, <a href='https://huggingface.co/h94/IP-Adapter-FaceID' target='_blank'>IP-Adapter FaceID</a>, <a href='https://github.com/deepinsight/insightface' target='_blank'>Insight face</a> and <a href='https://photo-maker.github.io/' target='_blank'>Photomaker</a>.</br>
-                                <b>Input(s) : </b>Input image, prompt, negative prompt</br>
-                                <b>Output(s) : </b>Image(s)</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>Photobooth</br>
+                                <b>{biniou_lang_about_function}</b>Generate portraits using the face taken from the input image, a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a>, <a href='https://huggingface.co/h94/IP-Adapter-FaceID' target='_blank'>IP-Adapter FaceID</a>, <a href='https://github.com/deepinsight/insightface' target='_blank'>Insight face</a> and <a href='https://photo-maker.github.io/' target='_blank'>Photomaker</a>.</br>
+                                <b>{biniou_lang_about_inputs}</b>Input image, prompt, negative prompt</br>
+                                <b>{biniou_lang_about_outputs}</b>Image(s)</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
                                 <a href='https://huggingface.co/playgroundai/playground-v2-512px-base' target='_blank'>playgroundai/playground-v2-512px-base</a>, 
                                 <a href='https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic' target='_blank'>playgroundai/playground-v2-1024px-aesthetic</a>, 
@@ -5616,10 +5617,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - (optional) Modify the settings to use another model, generate several images in a single run</br>
                                 - (optional) Select a LoRA model and set its weight</br>
                                 - Upload or import an image using the <b>Input image</b> field</br>
@@ -5629,47 +5630,47 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 - Click the <b>Generate</b> button</br>
                                 - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
                                 </br>
-                                <b>Models :</b></br>
+                                <b>{biniou_lang_about_models}</b></br>
                                 - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or  <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors models in the directory /biniou/models/Stable Diffusion. Restart Biniou to see them in the models list.</br>
                                 <b>LoRA models :</b></br>
                                 - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or  <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors LoRA models in the directory ./biniou/models/lora/SD or ./biniou/models/lora/SDXL (depending on the LoRA model type : SD 1.5 or SDXL). Restart Biniou to see them in the models list.</br>
                                 </div>
                                 """
                             )               
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_faceid_ip = gr.Dropdown(choices=model_list_faceid_ip, value=model_list_faceid_ip[0], label="Model", info="Choose model to use for inference")
+                                model_faceid_ip = gr.Dropdown(choices=model_list_faceid_ip, value=model_list_faceid_ip[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                num_inference_step_faceid_ip = gr.Slider(2, biniou_global_steps_max, step=1, value=35, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_faceid_ip = gr.Slider(2, biniou_global_steps_max, step=1, value=35, label=biniou_lang_steps_label, info=biniou_lang_steps_info)
                             with gr.Column():
-#                                sampler_faceid_ip = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
-                                sampler_faceid_ip = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value="DDIM", label="Sampler", info="Sampler to use for inference")
+#                                sampler_faceid_ip = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label=biniou_lang_sampler_label, info=biniou_lang_sampler_info)
+                                sampler_faceid_ip = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value="DDIM", label=biniou_lang_sampler_label, info=biniou_lang_sampler_info)
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_faceid_ip = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_faceid_ip = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
-                                num_images_per_prompt_faceid_ip = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run")
+                                num_images_per_prompt_faceid_ip = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info=biniou_lang_batch_size_image_info)
                             with gr.Column():
-                                num_prompt_faceid_ip = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                num_prompt_faceid_ip = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
                             with gr.Column():
-                                width_faceid_ip = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs")
+                                width_faceid_ip = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label=biniou_lang_image_width_label, info=biniou_lang_image_width_info)
                             with gr.Column():
-                                height_faceid_ip = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs")
+                                height_faceid_ip = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label=biniou_lang_image_height_label, info=biniou_lang_image_height_info)
                             with gr.Column():
-                                seed_faceid_ip = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
+                                seed_faceid_ip = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_faceid_ip = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_faceid_ip = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
                             with gr.Column():
-                                tkme_faceid_ip = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")    
+                                tkme_faceid_ip = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_faceid_ip = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_faceid_ip = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_faceid_ip = gr.Textbox(value="faceid_ip", visible=False, interactive=False)
-                                del_ini_btn_faceid_ip = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_faceid_ip.value) else False)
+                                del_ini_btn_faceid_ip = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_faceid_ip.value) else False)
                                 save_ini_btn_faceid_ip.click(
                                     fn=write_ini_faceid_ip,
                                     inputs=[
@@ -5687,27 +5688,27 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         tkme_faceid_ip,
                                         ]
                                     )
-                                save_ini_btn_faceid_ip.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_faceid_ip.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_faceid_ip.click(fn=lambda: del_ini_btn_faceid_ip.update(interactive=True), outputs=del_ini_btn_faceid_ip)
                                 del_ini_btn_faceid_ip.click(fn=lambda: del_ini(module_name_faceid_ip.value))
-                                del_ini_btn_faceid_ip.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_faceid_ip.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_faceid_ip.click(fn=lambda: del_ini_btn_faceid_ip.update(interactive=False), outputs=del_ini_btn_faceid_ip)
                         if test_ini_exist(module_name_faceid_ip.value) :
                             with open(f".ini/{module_name_faceid_ip.value}.ini", "r", encoding="utf-8") as fichier:
                                 exec(fichier.read())
-                        with gr.Accordion("LoRA Model", open=True):
+                        with gr.Accordion(biniou_lang_lora_label, open=True):
                             with gr.Row():
                                 with gr.Column():
-                                    lora_model_faceid_ip = gr.Dropdown(choices=list(lora_model_list(model_faceid_ip.value).keys()), value="", label="LoRA model", info="Choose LoRA model to use for inference")
+                                    lora_model_faceid_ip = gr.Dropdown(choices=list(lora_model_list(model_faceid_ip.value).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info)
                                 with gr.Column():
-                                    lora_weight_faceid_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label="LoRA weight", info="Weight of the LoRA model in the final result")
-                        with gr.Accordion("Textual inversion", open=True):
+                                    lora_weight_faceid_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info)
+                        with gr.Accordion(biniou_lang_textinv_label, open=True):
                             with gr.Row():
                                 with gr.Column():
-                                    txtinv_faceid_ip = gr.Dropdown(choices=list(txtinv_list(model_faceid_ip.value).keys()), value="", label="Textual inversion", info="Choose textual inversion to use for inference")
+                                    txtinv_faceid_ip = gr.Dropdown(choices=list(txtinv_list(model_faceid_ip.value).keys()), value="", label=biniou_lang_textinv_label, info=biniou_lang_textinv_info)
                     with gr.Row():
                         with gr.Column():
-                            img_faceid_ip = gr.Image(label="Input image", height=400, type="filepath")
+                            img_faceid_ip = gr.Image(label=biniou_lang_img_input_label, height=400, type="filepath")
                             scale_preview_faceid_ip = gr.Number(value=512, visible=False)
                             img_faceid_ip.upload(fn=scale_image_any, inputs=[img_faceid_ip, scale_preview_faceid_ip], outputs=[img_faceid_ip])
 #                            img_faceid_ip.change(image_upload_event, inputs=img_faceid_ip, outputs=[width_faceid_ip, height_faceid_ip])
@@ -5717,10 +5718,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     denoising_strength_faceid_ip = gr.Slider(0.01, 2.0, step=0.01, value=1.0, label="FaceID strength", info="Weight of the FaceID in the generated image")  
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_faceid_ip = gr.Textbox(lines=5, max_lines=5, label="Prompt", info="Describe what you want in your image", placeholder="a cute kitten playing with a ball, dynamic pose, close-up cinematic still, photo realistic, ultra quality, 4k uhd, perfect lighting, HDR, bokeh")
+                                    prompt_faceid_ip = gr.Textbox(lines=5, max_lines=5, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_image_prompt_placeholder)
                             with gr.Row():                                    
                                 with gr.Column():
-                                    negative_prompt_faceid_ip = gr.Textbox(lines=5, max_lines=5, label="Negative Prompt", info="Describe what you DO NOT want in your image", placeholder="out of frame, bad quality, medium quality, blurry, ugly, duplicate, text, characters, logo")
+                                    negative_prompt_faceid_ip = gr.Textbox(lines=5, max_lines=5, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
                         model_faceid_ip.change(
                             fn=change_model_type_faceid_ip, 
                             inputs=[model_faceid_ip, prompt_faceid_ip],
@@ -5743,7 +5744,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Row():
                                 with gr.Column():                            
                                     out_faceid_ip = gr.Gallery(
-                                        label="Generated images",
+                                        label=biniou_lang_image_gallery_label,
                                         show_label=True,
                                         elem_id="gallery_i2i",
                                         columns=2,
@@ -5755,20 +5756,20 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 out_faceid_ip.select(get_select_index, None, sel_out_faceid_ip)
                                 with gr.Row():
                                     with gr.Column():
-                                        download_btn_faceid_ip = gr.Button("Zip gallery 💾")
+                                        download_btn_faceid_ip = gr.Button(f"{biniou_lang_image_zip} 💾")
                                     with gr.Column():
-                                        download_file_faceid_ip = gr.File(label="Output", height=30, interactive=False, visible=False)
+                                        download_file_faceid_ip = gr.File(label=biniou_lang_image_zip_file, height=30, interactive=False, visible=False)
                                         download_btn_faceid_ip.click(fn=zip_download_file_faceid_ip, inputs=out_faceid_ip, outputs=[download_file_faceid_ip, download_file_faceid_ip])
                     with gr.Row():
                         with gr.Column():
-                            btn_faceid_ip = gr.Button("Generate 🚀", variant="primary")
+                            btn_faceid_ip = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():                            
-                            btn_faceid_ip_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_faceid_ip_cancel = gr.Button(f"{biniou_lang_cancel}🛑", variant="stop")
                             btn_faceid_ip_cancel.click(fn=initiate_stop_faceid_ip, inputs=None, outputs=None)                              
                         with gr.Column():
-                            btn_faceid_ip_clear_input = gr.ClearButton(components=[img_faceid_ip, prompt_faceid_ip, negative_prompt_faceid_ip], value="Clear inputs 🧹")
+                            btn_faceid_ip_clear_input = gr.ClearButton(components=[img_faceid_ip, prompt_faceid_ip, negative_prompt_faceid_ip], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_faceid_ip_clear_output = gr.ClearButton(components=[out_faceid_ip, gs_out_faceid_ip], value="Clear outputs 🧹")
+                            btn_faceid_ip_clear_output = gr.ClearButton(components=[out_faceid_ip, gs_out_faceid_ip], value=f"{biniou_lang_clear_outputs} 🧹")
                             btn_faceid_ip.click(fn=hide_download_file_faceid_ip, inputs=None, outputs=download_file_faceid_ip)                             
                             btn_faceid_ip.click(
                                 fn=image_faceid_ip,
@@ -5837,7 +5838,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         faceid_ip_inpaint_input = gr.Button("✍️ >> inpaint")
                                         faceid_ip_controlnet_input = gr.Button("✍️ >> ControlNet")
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... both to ...')
                                         gr.HTML(value='... image module ...')
@@ -5847,25 +5848,25 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
 
 # faceswap    
                 with gr.TabItem("Faceswap 🎭", id=297) as tab_faceswap:
-                    with gr.Accordion("About", open=False):                
-                        with gr.Box():                       
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
+                        with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>Faceswap</br>
-                                <b>Function : </b>Swap faces between images (source -> target) using <a href='https://github.com/deepinsight/insightface' target='_blank'>Insight Face</a> et <a href='https://github.com/microsoft/onnxruntime' target='_blank'>Onnx runtime</a></br>
-                                <b>Input(s) : </b>Source image, target image</br>
-                                <b>Output(s) : </b>Image(s)</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>Faceswap</br>
+                                <b>{biniou_lang_about_function}</b>Swap faces between images (source -> target) using <a href='https://github.com/deepinsight/insightface' target='_blank'>Insight Face</a> et <a href='https://github.com/microsoft/onnxruntime' target='_blank'>Onnx runtime</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Source image, target image</br>
+                                <b>{biniou_lang_about_outputs}</b>Image(s)</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/thebiglaskowski/inswapper_128.onnx' target='_blank'>thebiglaskowski/inswapper_128.onnx</a></br>
                                 """
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Upload a <b>Source image</b>. The face(s) in this image will replaces face(s) in the target image.</br>
                                 - Upload or import a <b>target image</b>. The face(s) in this image will be replaced with the source one(s)</br>
                                 - Set the <b>source index</b> list to choose which face(s) to extract from source image and in which order. From left to right and starting from 0, id comma separated list of faces number. For example, if there is 3 faces in a picture '0,2' will select the face on the left, then on the right, but not on the one in the middle. If set to 0, take only the first face from the left.</br>
@@ -5875,38 +5876,38 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
                                 </div>
                                 """
-                            )                
-                    with gr.Accordion("Settings", open=False):
+                            )
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_faceswap = gr.Dropdown(choices=list(model_list_faceswap.keys()), value=list(model_list_faceswap.keys())[0], label="Model", info="Choose model to use for inference")
+                                model_faceswap = gr.Dropdown(choices=list(model_list_faceswap.keys()), value=list(model_list_faceswap.keys())[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                width_faceswap = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs", interactive=False)
+                                width_faceswap = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label=biniou_lang_image_width_label, info=biniou_lang_image_width_info, interactive=False)
                             with gr.Column():
-                                height_faceswap = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs", interactive=False)
-                        with gr.Row():
-                            with gr.Column():    
-                                use_gfpgan_faceswap = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")    
+                                height_faceswap = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label=biniou_lang_image_height_label, info=biniou_lang_image_height_info, interactive=False)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_faceswap = gr.Button("Save custom defaults settings 💾")
+                                use_gfpgan_faceswap = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_faceswap = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_faceswap = gr.Textbox(value="faceswap", visible=False, interactive=False)
-                                del_ini_btn_faceswap = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_faceswap.value) else False)
+                                del_ini_btn_faceswap = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_faceswap.value) else False)
                                 save_ini_btn_faceswap.click(
                                     fn=write_ini_faceswap,
                                     inputs=[
-                                        module_name_faceswap, 
-                                        model_faceswap, 
+                                        module_name_faceswap,
+                                        model_faceswap,
                                         width_faceswap,
                                         height_faceswap,
                                         use_gfpgan_faceswap,
                                         ]
                                     )
-                                save_ini_btn_faceswap.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_faceswap.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_faceswap.click(fn=lambda: del_ini_btn_faceswap.update(interactive=True), outputs=del_ini_btn_faceswap)
                                 del_ini_btn_faceswap.click(fn=lambda: del_ini(module_name_faceswap.value))
-                                del_ini_btn_faceswap.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_faceswap.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_faceswap.click(fn=lambda: del_ini_btn_faceswap.update(interactive=False), outputs=del_ini_btn_faceswap)
                         if test_ini_exist(module_name_faceswap.value) :
                             with open(f".ini/{module_name_faceswap.value}.ini", "r", encoding="utf-8") as fichier:
@@ -5928,30 +5929,30 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Row():
                                 with gr.Column():
                                     out_faceswap = gr.Gallery(
-                                        label="Generated images",
+                                        label=biniou_lang_image_gallery_label,
                                         show_label=True,
                                         elem_id="gallery_fsw",
                                         columns=2,
                                         height=400,
-                                        preview=True,                                   
+                                        preview=True,
                                     )
                                     gs_out_faceswap = gr.State()
-                                    sel_out_faceswap = gr.Number(precision=0, visible=False)                        
+                                    sel_out_faceswap = gr.Number(precision=0, visible=False)
                                     out_faceswap.select(get_select_index, None, sel_out_faceswap)
                                     with gr.Row():
                                         with gr.Column():
-                                            download_btn_faceswap = gr.Button("Zip gallery 💾")
+                                            download_btn_faceswap = gr.Button(f"{biniou_lang_image_zip} 💾")
                                         with gr.Column():
-                                            download_file_faceswap = gr.File(label="Output", height=30, interactive=False, visible=False)
-                                            download_btn_faceswap.click(fn=zip_download_file_faceswap, inputs=out_faceswap, outputs=[download_file_faceswap, download_file_faceswap])                                       
+                                            download_file_faceswap = gr.File(label=biniou_lang_image_zip_file, height=30, interactive=False, visible=False)
+                                            download_btn_faceswap.click(fn=zip_download_file_faceswap, inputs=out_faceswap, outputs=[download_file_faceswap, download_file_faceswap])
                     with gr.Row():
                         with gr.Column():
-                            btn_faceswap = gr.Button("Generate 🚀", variant="primary")
+                            btn_faceswap = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():
-                            btn_faceswap_clear_input = gr.ClearButton(components=[img_source_faceswap, img_target_faceswap, source_index_faceswap, target_index_faceswap, gs_img_target_faceswap], value="Clear inputs 🧹")
+                            btn_faceswap_clear_input = gr.ClearButton(components=[img_source_faceswap, img_target_faceswap, source_index_faceswap, target_index_faceswap, gs_img_target_faceswap], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_faceswap_clear_output = gr.ClearButton(components=[out_faceswap, gs_out_faceswap], value="Clear outputs 🧹")
-                            btn_faceswap.click(fn=hide_download_file_faceswap, inputs=None, outputs=download_file_faceswap)                               
+                            btn_faceswap_clear_output = gr.ClearButton(components=[out_faceswap, gs_out_faceswap], value=f"{biniou_lang_clear_outputs} 🧹")
+                            btn_faceswap.click(fn=hide_download_file_faceswap, inputs=None, outputs=download_file_faceswap)
                             btn_faceswap.click(
                                 fn=image_faceswap,
                                 inputs=[
@@ -5968,10 +5969,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
-                                        gr.HTML(value='... text module ...')                                        
+                                        gr.HTML(value='... text module ...')
                                         faceswap_llava = gr.Button("🖼️ >> Llava")
                                         faceswap_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
@@ -5997,81 +5998,81 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... prompt(s) to ...')
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
-                                        gr.HTML(value='... both to ...')                                    
+                                        gr.HTML(value='... both to ...')
 
 # Real ESRGAN    
                 with gr.TabItem("Real ESRGAN 🔎", id=298) as tab_resrgan:
-                    with gr.Accordion("About", open=False):                
-                        with gr.Box():                       
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
+                        with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>Real ESRGAN</br>
-                                <b>Function : </b>Upscale x4 using <a href='https://github.com/xinntao/Real-ESRGAN' target='_blank'>Real ESRGAN</a></br>
-                                <b>Input(s) : </b>Input image</br>
-                                <b>Output(s) : </b>Upscaled image</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>Real ESRGAN</br>
+                                <b>{biniou_lang_about_function}</b>Upscale x4 using <a href='https://github.com/xinntao/Real-ESRGAN' target='_blank'>Real ESRGAN</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Input image</br>
+                                <b>{biniou_lang_about_outputs}</b>Upscaled image</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/ai-forever/Real-ESRGAN' target='_blank'>ai-forever/Real-ESRGAN</a></br>
                                 """
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Upload or import an <b>Input image</b> </br>
                                 - (optional) Modify the settings to change scale factor or use another model</br>
                                 - Click the <b>Generate</b> button</br>
                                 - After generation, upscaled image is displayed in the gallery.
                                 </div>
                                 """
-                            )                
-                    with gr.Accordion("Settings", open=False):
+                            )
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_resrgan = gr.Dropdown(choices=model_list_resrgan, value=model_list_resrgan[1], label="Model", info="Choose model to use for inference")
+                                model_resrgan = gr.Dropdown(choices=model_list_resrgan, value=model_list_resrgan[1], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                scale_resrgan = gr.Dropdown(choices=list(RESRGAN_SCALES.keys()), value=list(RESRGAN_SCALES.keys())[1], label="Upscale factor", info="Choose upscale factor")  
+                                scale_resrgan = gr.Dropdown(choices=list(RESRGAN_SCALES.keys()), value=list(RESRGAN_SCALES.keys())[1], label="Upscale factor", info="Choose upscale factor")
                                 scale_resrgan.change(scale_resrgan_change, inputs=scale_resrgan, outputs=model_resrgan)                                
                         with gr.Row():
                             with gr.Column():
-                                width_resrgan = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of input", interactive=False)
+                                width_resrgan = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label=biniou_lang_image_width_label, info="Width of input", interactive=False)
                             with gr.Column():
-                                height_resrgan = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of input", interactive=False)
-                        with gr.Row():
-                            with gr.Column():    
-                                use_gfpgan_resrgan = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")     
+                                height_resrgan = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label=biniou_lang_image_height_label, info="Height of input", interactive=False)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_resrgan = gr.Button("Save custom defaults settings 💾")
+                                use_gfpgan_resrgan = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
+                        with gr.Row():
+                            with gr.Column():
+                                save_ini_btn_resrgan = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_resrgan = gr.Textbox(value="resrgan", visible=False, interactive=False)
-                                del_ini_btn_resrgan = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_resrgan.value) else False)
+                                del_ini_btn_resrgan = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_resrgan.value) else False)
                                 save_ini_btn_resrgan.click(
                                     fn=write_ini_resrgan,
                                     inputs=[
-                                        module_name_resrgan, 
-                                        model_resrgan, 
-                                        scale_resrgan,                                         
+                                        module_name_resrgan,
+                                        model_resrgan,
+                                        scale_resrgan,
                                         width_resrgan,
                                         height_resrgan,
                                         use_gfpgan_resrgan,
                                         ]
                                     )
-                                save_ini_btn_resrgan.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_resrgan.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_resrgan.click(fn=lambda: del_ini_btn_resrgan.update(interactive=True), outputs=del_ini_btn_resrgan)
                                 del_ini_btn_resrgan.click(fn=lambda: del_ini(module_name_resrgan.value))
-                                del_ini_btn_resrgan.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_resrgan.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_resrgan.click(fn=lambda: del_ini_btn_resrgan.update(interactive=False), outputs=del_ini_btn_resrgan)
                         if test_ini_exist(module_name_resrgan.value) :
                             with open(f".ini/{module_name_resrgan.value}.ini", "r", encoding="utf-8") as fichier:
                                 exec(fichier.read())
                     with gr.Row():
                         with gr.Column():
-                             img_resrgan = gr.Image(label="Input image", type="filepath", height=400)
+                             img_resrgan = gr.Image(label=biniou_lang_img_input_label, type="filepath", height=400)
                              img_resrgan.change(image_upload_event, inputs=img_resrgan, outputs=[width_resrgan, height_resrgan])
                         with gr.Column():
                             out_resrgan = gr.Gallery(
@@ -6083,19 +6084,19 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 preview=True,
                             )
                         gs_out_resrgan = gr.State()
-                        sel_out_resrgan = gr.Number(precision=0, visible=False)                                   
+                        sel_out_resrgan = gr.Number(precision=0, visible=False)
                     with gr.Row():
                         with gr.Column():
-                            btn_resrgan = gr.Button("Generate 🚀", variant="primary")
+                            btn_resrgan = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():
-                            btn_resrgan_clear_input = gr.ClearButton(components=[img_resrgan], value="Clear inputs 🧹")
-                        with gr.Column():                            
-                            btn_resrgan_clear_output = gr.ClearButton(components=[out_resrgan, gs_out_resrgan], value="Clear outputs 🧹") 
+                            btn_resrgan_clear_input = gr.ClearButton(components=[img_resrgan], value=f"{biniou_lang_clear_inputs} 🧹")
+                        with gr.Column():
+                            btn_resrgan_clear_output = gr.ClearButton(components=[out_resrgan, gs_out_resrgan], value=f"{biniou_lang_clear_outputs} 🧹") 
                             btn_resrgan.click(
                                 fn=image_resrgan,
                                 inputs=[
                                     model_resrgan,
-                                    scale_resrgan,                                    
+                                    scale_resrgan,
                                     img_resrgan,
                                     use_gfpgan_resrgan,
                                 ],
@@ -6105,7 +6106,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... text module ...')
@@ -6133,30 +6134,30 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     with gr.Group():
                                         gr.HTML(value='... input prompt(s) to ...')
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
-                                        gr.HTML(value='... both to ...')                         
+                                        gr.HTML(value='... both to ...')
 # GFPGAN    
                 with gr.TabItem("GFPGAN 🔎", id=299) as tab_gfpgan:
-                    with gr.Accordion("About", open=False):                
-                        with gr.Box():                       
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
+                        with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>GFPGAN</br>
-                                <b>Function : </b>Restore and enhance faces in an image using <a href='https://github.com/TencentARC/GFPGAN' target='_blank'>GFPGAN</a></br>
-                                <b>Input(s) : </b>Input image</br>
-                                <b>Output(s) : </b>Enhanced Image</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>GFPGAN</br>
+                                <b>{biniou_lang_about_function}</b>Restore and enhance faces in an image using <a href='https://github.com/TencentARC/GFPGAN' target='_blank'>GFPGAN</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Input image</br>
+                                <b>{biniou_lang_about_outputs}</b>Enhanced Image</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/leonelhs/gfpgan' target='_blank'>leonelhs/gfpgan</a></br>
                                 """
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Upload or import an <b>Input image</b></br>
                                 - (optional) Modify the settings to use another variant of the GFPGAN model</br> 
                                 - Click the <b>Generate</b> button</br>
@@ -6164,23 +6165,23 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 </div>
                                 """
                             )                     
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_gfpgan = gr.Dropdown(choices=model_list_gfpgan, value=model_list_gfpgan[0], label="Model", info="Choose model to use for inference")
+                                model_gfpgan = gr.Dropdown(choices=model_list_gfpgan, value=model_list_gfpgan[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
                                 variant_gfpgan = gr.Dropdown(choices=variant_list_gfpgan, value=variant_list_gfpgan[4], label="Variant", info="Variant of GPFGAN to use")
                         with gr.Row():
                             with gr.Column():
-                                width_gfpgan = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs", interactive=False)
+                                width_gfpgan = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label=biniou_lang_image_width_label, info=biniou_lang_image_width_info, interactive=False)
                             with gr.Column():
-                                height_gfpgan = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs", interactive=False)
+                                height_gfpgan = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label=biniou_lang_image_height_label, info=biniou_lang_image_height_info, interactive=False)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_gfpgan = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_gfpgan = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_gfpgan = gr.Textbox(value="gfpgan", visible=False, interactive=False)
-                                del_ini_btn_gfpgan = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_gfpgan.value) else False)
+                                del_ini_btn_gfpgan = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_gfpgan.value) else False)
                                 save_ini_btn_gfpgan.click(
                                     fn=write_ini_gfpgan,
                                     inputs=[
@@ -6191,18 +6192,17 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         height_gfpgan,
                                         ]
                                     )
-                                save_ini_btn_gfpgan.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_gfpgan.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_gfpgan.click(fn=lambda: del_ini_btn_gfpgan.update(interactive=True), outputs=del_ini_btn_gfpgan)
                                 del_ini_btn_gfpgan.click(fn=lambda: del_ini(module_name_gfpgan.value))
-                                del_ini_btn_gfpgan.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_gfpgan.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_gfpgan.click(fn=lambda: del_ini_btn_gfpgan.update(interactive=False), outputs=del_ini_btn_gfpgan)
                         if test_ini_exist(module_name_gfpgan.value):
                             with open(f".ini/{module_name_gfpgan.value}.ini", "r", encoding="utf-8") as fichier:
                                 exec(fichier.read())
-
                     with gr.Row():
                         with gr.Column():
-                            img_gfpgan = gr.Image(label="Input image", type="filepath", height=400)
+                            img_gfpgan = gr.Image(label=biniou_lang_img_input_label, type="filepath", height=400)
                             img_gfpgan.change(image_upload_event, inputs=img_gfpgan, outputs=[width_gfpgan, height_gfpgan])
                         with gr.Column():
                             out_gfpgan = gr.Gallery(
@@ -6214,14 +6214,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 preview=True,
                             )
                         gs_out_gfpgan = gr.State()
-                        sel_out_gfpgan = gr.Number(precision=0, visible=False)                            
+                        sel_out_gfpgan = gr.Number(precision=0, visible=False)
                     with gr.Row():
                         with gr.Column():
-                            btn_gfpgan = gr.Button("Generate 🚀", variant="primary")
+                            btn_gfpgan = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():
-                            btn_gfpgan_clear_input = gr.ClearButton(components=[img_gfpgan], value="Clear inputs 🧹")
+                            btn_gfpgan_clear_input = gr.ClearButton(components=[img_gfpgan], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_gfpgan_clear_output = gr.ClearButton(components=[out_gfpgan, gs_out_gfpgan], value="Clear outputs 🧹") 
+                            btn_gfpgan_clear_output = gr.ClearButton(components=[out_gfpgan, gs_out_gfpgan], value=f"{biniou_lang_clear_outputs} 🧹") 
                         btn_gfpgan.click(
                             fn=image_gfpgan,
                             inputs=[
@@ -6235,12 +6235,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
-                                        gr.HTML(value='... text module ...')                                        
+                                        gr.HTML(value='... text module ...')
                                         gfpgan_llava = gr.Button("🖼️ >> Llava")
-                                        gfpgan_img2txt_git = gr.Button("🖼️ >> GIT Captioning")   
+                                        gfpgan_img2txt_git = gr.Button("🖼️ >> GIT Captioning")
                                         gr.HTML(value='... image module ...')
                                         gfpgan_img2img = gr.Button("🖼️ >> img2img")
                                         gfpgan_img2img_ip = gr.Button("🖼️ >> IP-Adapter")
@@ -6248,7 +6248,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gfpgan_pix2pix = gr.Button("🖼️ >> Instruct pix2pix")
                                         gfpgan_magicmix = gr.Button("🖼️ >> MagicMix")
                                         gfpgan_inpaint = gr.Button("🖼️ >> inpaint")
-                                        gfpgan_paintbyex = gr.Button("🖼️ >> Paint by example") 
+                                        gfpgan_paintbyex = gr.Button("🖼️ >> Paint by example")
                                         gfpgan_outpaint = gr.Button("🖼️ >> outpaint")
                                         gfpgan_controlnet = gr.Button("🖼️ >> ControlNet")
                                         gfpgan_faceid_ip = gr.Button("🖼️ >> Photobooth")
@@ -6257,30 +6257,30 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... Video module ...')
                                         gfpgan_img2vid = gr.Button("🖼️ >> Stable Video Diffusion")
                                         gr.HTML(value='... 3d module ...') 
-                                        gfpgan_img2shape = gr.Button("🖼️ >> Shap-E img2shape") 
+                                        gfpgan_img2shape = gr.Button("🖼️ >> Shap-E img2shape")
                             with gr.Column():
                                 with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... input prompt(s) to ...')
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
-                                        gr.HTML(value='... both to ...')                        
+                                        gr.HTML(value='... both to ...')
 # Audio
         with gr.TabItem("Audio 🎵", id=3) as tab_audio:
             with gr.Tabs() as tabs_audio:        
 # Musicgen
                 with gr.TabItem("MusicGen 🎶", id=31) as tab_musicgen:
-                    with gr.Accordion("About", open=False):                
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
                         with gr.Box():                       
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>MusicGen</br>
-                                <b>Function : </b>Generate music from a prompt, using <a href='https://github.com/facebookresearch/audiocraft' target='_blank'>MusicGen</a></br>
-                                <b>Input(s) : </b>Input prompt</br>
-                                <b>Output(s) : </b>Generated music</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>MusicGen</br>
+                                <b>{biniou_lang_about_function}</b>Generate music from a prompt, using <a href='https://github.com/facebookresearch/audiocraft' target='_blank'>MusicGen</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Input prompt</br>
+                                <b>{biniou_lang_about_outputs}</b>Generated music</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/facebook/musicgen-small' target='_blank'>facebook/musicgen-small</a>, 
                                 <a href='https://huggingface.co/facebook/musicgen-medium' target='_blank'>facebook/musicgen-medium</a>, 
                                 <a href='https://huggingface.co/facebook/musicgen-large' target='_blank'>facebook/musicgen-large</a>, 
@@ -6288,42 +6288,42 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Fill the <b>prompt</b> by describing the music you want to generate</br>
-                                - (optional) Modify the settings to use another model or change audio duration</br>                                
+                                - (optional) Modify the settings to use another model or change audio duration</br>
                                 - Click the <b>Generate<b> button</br>
                                 - After generation, generated music is available to listen in the <b>Generated music<b> field.
                                 </div>
                                 """
                             )                           
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_musicgen= gr.Dropdown(choices=modellist_musicgen, value=modellist_musicgen[0], label="Model", info="Choose model to use for inference")
-                            with gr.Column():    
+                                model_musicgen= gr.Dropdown(choices=modellist_musicgen, value=modellist_musicgen[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
+                            with gr.Column():
                                 duration_musicgen = gr.Slider(1, 160, step=1, value=5, label="Audio length (sec)")
                             with gr.Column():
-                                cfg_coef_musicgen = gr.Slider(0.1, 20.0, step=0.1, value=3.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                cfg_coef_musicgen = gr.Slider(0.1, 20.0, step=0.1, value=3.0, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
-                                num_batch_musicgen = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")  
+                                num_batch_musicgen = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
-                            with gr.Column():    
+                            with gr.Column():
                                 use_sampling_musicgen = gr.Checkbox(value=True, label="Use sampling")
-                            with gr.Column():    
-                                temperature_musicgen = gr.Slider(0.0, 10.0, step=0.1, value=1.0, label="temperature")
                             with gr.Column():
-                                top_k_musicgen = gr.Slider(0, 500, step=1, value=250, label="top_k")
+                                temperature_musicgen = gr.Slider(0.0, 10.0, step=0.1, value=1.0, label=biniou_lang_temperature_label)
                             with gr.Column():
-                                top_p_musicgen = gr.Slider(0.0, 500.0, step=1.0, value=0.0, label="top_p")
+                                top_k_musicgen = gr.Slider(0, 500, step=1, value=250, label=biniou_lang_top_k_label)
+                            with gr.Column():
+                                top_p_musicgen = gr.Slider(0.0, 500.0, step=1.0, value=0.0, label=biniou_lang_top_p_label)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_musicgen = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_musicgen = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_musicgen = gr.Textbox(value="musicgen", visible=False, interactive=False)
-                                del_ini_btn_musicgen = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_musicgen.value) else False)
+                                del_ini_btn_musicgen = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_musicgen.value) else False)
                                 save_ini_btn_musicgen.click(
                                     fn=write_ini_musicgen, 
                                     inputs=[
@@ -6338,10 +6338,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         top_p_musicgen,
                                         ]
                                     )
-                                save_ini_btn_musicgen.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_musicgen.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_musicgen.click(fn=lambda: del_ini_btn_musicgen.update(interactive=True), outputs=del_ini_btn_musicgen)
                                 del_ini_btn_musicgen.click(fn=lambda: del_ini(module_name_musicgen.value))
-                                del_ini_btn_musicgen.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_musicgen.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_musicgen.click(fn=lambda: del_ini_btn_musicgen.update(interactive=False), outputs=del_ini_btn_musicgen)
                         if test_ini_exist(module_name_musicgen.value) :
                             with open(f".ini/{module_name_musicgen.value}.ini", "r", encoding="utf-8") as fichier:
@@ -6354,18 +6354,18 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             out_musicgen = gr.Audio(label="Generated music", type="filepath", show_download_button=True, interactive=False)
                     with gr.Row():
                         with gr.Column():
-                            btn_musicgen = gr.Button("Generate 🚀", variant="primary")
-                        with gr.Column():                            
-                            btn_musicgen_cancel = gr.Button("Cancel 🛑", variant="stop")
-                            btn_musicgen_cancel.click(fn=initiate_stop_musicgen, inputs=None, outputs=None)                              
+                            btn_musicgen = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():
-                            btn_musicgen_clear_input = gr.ClearButton(components=prompt_musicgen, value="Clear inputs 🧹")
+                            btn_musicgen_cancel = gr.Button(f"{biniou_lang_cancel}🛑", variant="stop")
+                            btn_musicgen_cancel.click(fn=initiate_stop_musicgen, inputs=None, outputs=None)
+                        with gr.Column():
+                            btn_musicgen_clear_input = gr.ClearButton(components=prompt_musicgen, value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_musicgen_clear_output = gr.ClearButton(components=out_musicgen, value="Clear outputs 🧹")
+                            btn_musicgen_clear_output = gr.ClearButton(components=out_musicgen, value=f"{biniou_lang_clear_outputs} 🧹")
                         btn_musicgen.click(
-                            fn=music_musicgen, 
+                            fn=music_musicgen,
                             inputs=[
-                                prompt_musicgen, 
+                                prompt_musicgen,
                                 model_musicgen,
                                 duration_musicgen,
                                 num_batch_musicgen,
@@ -6376,12 +6376,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 cfg_coef_musicgen,
                             ], 
                             outputs=out_musicgen,
-                            show_progress="full",                            
+                            show_progress="full",
                         )
                     with gr.Accordion("Send ...", open=False):
                         with gr.Row():
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... selected output to ...')
                                         gr.HTML(value='... audio module ...')
@@ -6390,14 +6390,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Box():
                                     with gr.Group():
                                         gr.HTML(value='... input prompt(s) to ...')
-                                        gr.HTML(value='... audio module ...')                                        
+                                        gr.HTML(value='... audio module ...')
                                         musicgen_musicgen_mel_input = gr.Button("✍️ >> MusicGen Melody")
                                         musicgen_musicldm_input = gr.Button("✍️ >> MusicLDM")
                                         musicgen_audiogen_input = gr.Button("✍️ >> Audiogen")
                             with gr.Column():
-                                with gr.Box():                                
+                                with gr.Box():
                                     with gr.Group():
-                                        gr.HTML(value='... both to ...')                                    
+                                        gr.HTML(value='... both to ...')
 
 # Musicgen Melody
                 if ram_size() >= 16 :
@@ -6406,25 +6406,25 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     titletab_musicgen_mel = "MusicGen Melody ⛔"
 
                 with gr.TabItem(titletab_musicgen_mel, id=32) as tab_musicgen_mel:
-                    with gr.Accordion("About", open=False):                
-                        with gr.Box():                       
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
+                        with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>MusicGen Melody</br>
-                                <b>Function : </b>Generate music from a prompt with guidance from an input audio, using <a href='https://github.com/facebookresearch/audiocraft' target='_blank'>MusicGen</a></br>
-                                <b>Input(s) : </b>Input prompt, Input audio</br>
-                                <b>Output(s) : </b>Generated music</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>MusicGen Melody</br>
+                                <b>{biniou_lang_about_function}</b>Generate music from a prompt with guidance from an input audio, using <a href='https://github.com/facebookresearch/audiocraft' target='_blank'>MusicGen</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Input prompt, Input audio</br>
+                                <b>{biniou_lang_about_outputs}</b>Generated music</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/facebook/musicgen-melody' target='_blank'>facebook/musicgen-melody</a></br>
                                 """
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Select an audio source type (file or micro recording)</br>
                                 - Select an audio source by choosing a file or recording something</br>
                                 - Fill the <b>prompt</b> by describing the music you want to generate from the audio source</br>
@@ -6433,38 +6433,38 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 - After generation, generated music is available to listen in the <b>Generated music<b> field.
                                 </div>
                                 """
-                            )                           
-                    with gr.Accordion("Settings", open=False):
+                            )
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_musicgen_mel= gr.Dropdown(choices=modellist_musicgen_mel, value=modellist_musicgen_mel[0], label="Model", info="Choose model to use for inference")
-                            with gr.Column():    
+                                model_musicgen_mel= gr.Dropdown(choices=modellist_musicgen_mel, value=modellist_musicgen_mel[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
+                            with gr.Column():
                                 duration_musicgen_mel = gr.Slider(1, 160, step=1, value=5, label="Audio length (sec)")
                             with gr.Column():
-                                cfg_coef_musicgen_mel = gr.Slider(0.1, 20.0, step=0.1, value=3.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                cfg_coef_musicgen_mel = gr.Slider(0.1, 20.0, step=0.1, value=3.0, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
-                                num_batch_musicgen_mel = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")  
+                                num_batch_musicgen_mel = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
-                            with gr.Column():    
+                            with gr.Column():
                                 use_sampling_musicgen_mel = gr.Checkbox(value=True, label="Use sampling")
-                            with gr.Column():    
-                                temperature_musicgen_mel = gr.Slider(0.0, 10.0, step=0.1, value=1.0, label="temperature")
                             with gr.Column():
-                                top_k_musicgen_mel = gr.Slider(0, 500, step=1, value=250, label="top_k")
+                                temperature_musicgen_mel = gr.Slider(0.0, 10.0, step=0.1, value=1.0, label=biniou_lang_temperature_label)
                             with gr.Column():
-                                top_p_musicgen_mel = gr.Slider(0.0, 500.0, step=1.0, value=0.0, label="top_p")
+                                top_k_musicgen_mel = gr.Slider(0, 500, step=1, value=250, label=biniou_lang_top_k_label)
+                            with gr.Column():
+                                top_p_musicgen_mel = gr.Slider(0.0, 500.0, step=1.0, value=0.0, label=biniou_lang_top_p_label)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_musicgen_mel = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_musicgen_mel = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_musicgen_mel = gr.Textbox(value="musicgen_mel", visible=False, interactive=False)
-                                del_ini_btn_musicgen_mel = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_musicgen_mel.value) else False)
+                                del_ini_btn_musicgen_mel = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_musicgen_mel.value) else False)
                                 save_ini_btn_musicgen_mel.click(
-                                    fn=write_ini_musicgen_mel, 
+                                    fn=write_ini_musicgen_mel,
                                     inputs=[
-                                        module_name_musicgen_mel, 
-                                        model_musicgen_mel, 
-                                        duration_musicgen_mel, 
+                                        module_name_musicgen_mel,
+                                        model_musicgen_mel,
+                                        duration_musicgen_mel,
                                         cfg_coef_musicgen_mel,
                                         num_batch_musicgen_mel,
                                         use_sampling_musicgen_mel,
@@ -6473,17 +6473,17 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         top_p_musicgen_mel,
                                         ]
                                     )
-                                save_ini_btn_musicgen_mel.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_musicgen_mel.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_musicgen_mel.click(fn=lambda: del_ini_btn_musicgen_mel.update(interactive=True), outputs=del_ini_btn_musicgen_mel)
                                 del_ini_btn_musicgen_mel.click(fn=lambda: del_ini(module_name_musicgen_mel.value))
-                                del_ini_btn_musicgen_mel.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_musicgen_mel.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_musicgen_mel.click(fn=lambda: del_ini_btn_musicgen_mel.update(interactive=False), outputs=del_ini_btn_musicgen_mel)
                         if test_ini_exist(module_name_musicgen_mel.value) :
                             with open(f".ini/{module_name_musicgen_mel.value}.ini", "r", encoding="utf-8") as fichier:
                                 exec(fichier.read())
                     with gr.Row():
                         with gr.Column():
-                            with gr.Row():                                
+                            with gr.Row():
                                 source_type_musicgen_mel = gr.Radio(choices=["audio", "micro"], value="audio", label="Source audio type", info="Choose source audio type")
                     with gr.Row(equal_height=True):
                         with gr.Column():
@@ -6495,14 +6495,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             out_musicgen_mel = gr.Audio(label="Generated music", type="filepath", show_download_button=True, interactive=False)
                     with gr.Row():
                         with gr.Column():
-                            btn_musicgen_mel = gr.Button("Generate 🚀", variant="primary")
+                            btn_musicgen_mel = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():
-                            btn_musicgen_mel_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_musicgen_mel_cancel = gr.Button(f"{biniou_lang_cancel}🛑", variant="stop")
                             btn_musicgen_mel_cancel.click(fn=initiate_stop_musicgen_mel, inputs=None, outputs=None)
                         with gr.Column():
-                            btn_musicgen_mel_clear_input = gr.ClearButton(components=[prompt_musicgen_mel, source_audio_musicgen_mel], value="Clear inputs 🧹")
+                            btn_musicgen_mel_clear_input = gr.ClearButton(components=[prompt_musicgen_mel, source_audio_musicgen_mel], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():
-                            btn_musicgen_mel_clear_output = gr.ClearButton(components=out_musicgen_mel, value="Clear outputs 🧹")
+                            btn_musicgen_mel_clear_output = gr.ClearButton(components=out_musicgen_mel, value=f"{biniou_lang_clear_outputs} 🧹")
                         btn_musicgen_mel.click(
                             fn=music_musicgen_mel,
                             inputs=[
@@ -6544,26 +6544,26 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
 
 # MusicLDM
                 with gr.TabItem("MusicLDM 🎶", id=33) as tab_musicldm:
-                    with gr.Accordion("About", open=False):                
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
                         with gr.Box():                       
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>MusicLDM</br>
-                                <b>Function : </b>Generate music from a prompt and a negative prompt, using <a href='https://musicldm.github.io' target='_blank'>MusicLDM</a></br>
-                                <b>Input(s) : </b>Prompt, negative prompt</br>
-                                <b>Output(s) : </b>Generated music</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>MusicLDM</br>
+                                <b>{biniou_lang_about_function}</b>Generate music from a prompt and a negative prompt, using <a href='https://musicldm.github.io' target='_blank'>MusicLDM</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Prompt, negative prompt</br>
+                                <b>{biniou_lang_about_outputs}</b>Generated music</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/ucsd-reach/musicldm' target='_blank'>ucsd-reach/musicldm</a>, 
                                 <a href='https://huggingface.co/sanchit-gandhi/musicldm-full' target='_blank'>sanchit-gandhi/musicldm-full</a>
                                 """
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Fill the <b>prompt</b> by describing the music you want to generate</br>
                                 - Fill the <b>negative prompt</b> by describing what you DO NOT want to generate</br>
                                 - (optional) Modify the settings to use another model or change audio duration</br>
@@ -6571,33 +6571,33 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 - After generation, generated music is available to listen in the <b>Generated music<b> field.
                                 </div>
                                 """
-                            )                           
-                    with gr.Accordion("Settings", open=False):
+                            )
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_musicldm = gr.Dropdown(choices=model_list_musicldm, value=model_list_musicldm[0], label="Model", info="Choose model to use for inference")
+                                model_musicldm = gr.Dropdown(choices=model_list_musicldm, value=model_list_musicldm[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                num_inference_step_musicldm = gr.Slider(1, 400, step=1, value=50, label="Steps", info="Number of iterations per audio. Results and speed depends of sampler")
+                                num_inference_step_musicldm = gr.Slider(1, 400, step=1, value=50, label=biniou_lang_steps_label, info="Number of iterations per audio. Results and speed depends of sampler")
                             with gr.Column():
-                                sampler_musicldm = gr.Dropdown(choices=list(SCHEDULER_MAPPING_MUSICLDM.keys()), value=list(SCHEDULER_MAPPING_MUSICLDM.keys())[0], label="Sampler", info="Sampler to use for inference")
+                                sampler_musicldm = gr.Dropdown(choices=list(SCHEDULER_MAPPING_MUSICLDM.keys()), value=list(SCHEDULER_MAPPING_MUSICLDM.keys())[0], label=biniou_lang_sampler_label, info=biniou_lang_sampler_info)
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_musicldm = gr.Slider(0.1, 20.0, step=0.1, value=2.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_musicldm = gr.Slider(0.1, 20.0, step=0.1, value=2.0, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
                                 audio_length_musicldm=gr.Slider(0, 160, step=1, value=10, label="Audio length", info="Duration of audio file to generate")
                             with gr.Column():
-                                seed_musicldm = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")    
+                                seed_musicldm = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info)    
                         with gr.Row():
                             with gr.Column():
-                                num_audio_per_prompt_musicldm = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of audios to generate in a single run")
+                                num_audio_per_prompt_musicldm = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info ="Number of audios to generate in a single run")
                             with gr.Column():
-                                num_prompt_musicldm = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                num_prompt_musicldm = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_musicldm = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_musicldm = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_musicldm = gr.Textbox(value="musicldm", visible=False, interactive=False)
-                                del_ini_btn_musicldm = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_musicldm.value) else False)
+                                del_ini_btn_musicldm = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_musicldm.value) else False)
                                 save_ini_btn_musicldm.click(
                                     fn=write_ini_musicldm, 
                                     inputs=[
@@ -6612,10 +6612,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         num_prompt_musicldm,
                                         ]
                                     )
-                                save_ini_btn_musicldm.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_musicldm.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_musicldm.click(fn=lambda: del_ini_btn_musicldm.update(interactive=True), outputs=del_ini_btn_musicldm)
                                 del_ini_btn_musicldm.click(fn=lambda: del_ini(module_name_musicldm.value))
-                                del_ini_btn_musicldm.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_musicldm.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_musicldm.click(fn=lambda: del_ini_btn_musicldm.update(interactive=False), outputs=del_ini_btn_musicldm)
                         if test_ini_exist(module_name_musicldm.value):
                             with open(f".ini/{module_name_musicldm.value}.ini", "r", encoding="utf-8") as fichier:
@@ -6623,21 +6623,21 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
-                                prompt_musicldm = gr.Textbox(label="Prompt", lines=2, max_lines=2, info="Describe the content of your output audio file", placeholder="Techno music with a strong, upbeat tempo and high melodic riffs, high quality, clear")
+                                prompt_musicldm = gr.Textbox(label=biniou_lang_prompt_label, lines=2, max_lines=2, info="Describe the content of your output audio file", placeholder="Techno music with a strong, upbeat tempo and high melodic riffs, high quality, clear")
                             with gr.Row():
-                                negative_prompt_musicldm = gr.Textbox(label="Negative prompt", info="Describe what you DO NOT want in your output audio file", lines=2, max_lines=2, placeholder="low quality, average quality")
+                                negative_prompt_musicldm = gr.Textbox(label=biniou_lang_negprompt_label, info="Describe what you DO NOT want in your output audio file", lines=2, max_lines=2, placeholder="low quality, average quality")
                         with gr.Column():
                             out_musicldm = gr.Audio(label="Generated music", type="filepath", show_download_button=True, interactive=False)
                     with gr.Row():
                         with gr.Column():
-                            btn_musicldm = gr.Button("Generate 🚀", variant="primary")
+                            btn_musicldm = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():                            
-                            btn_musicldm_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_musicldm_cancel = gr.Button(f"{biniou_lang_cancel}🛑", variant="stop")
                             btn_musicldm_cancel.click(fn=initiate_stop_musicldm, inputs=None, outputs=None)                              
                         with gr.Column():
-                            btn_musicldm_clear_input = gr.ClearButton(components=prompt_musicldm, value="Clear inputs 🧹")
+                            btn_musicldm_clear_input = gr.ClearButton(components=prompt_musicldm, value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_musicldm_clear_output = gr.ClearButton(components=out_musicldm, value="Clear outputs 🧹")
+                            btn_musicldm_clear_output = gr.ClearButton(components=out_musicldm, value=f"{biniou_lang_clear_outputs} 🧹")
                         btn_musicldm.click(
                             fn=music_musicldm, 
                             inputs=[
@@ -6684,25 +6684,25 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                 
                 with gr.TabItem(titletab_audiogen, id=34) as tab_audiogen:
 
-                    with gr.Accordion("About", open=False):                
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):                
                         with gr.Box():                       
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>AudioGen</br>
-                                <b>Function : </b>Generate sound from a prompt, using <a href='https://github.com/facebookresearch/audiocraft' target='_blank'>Audiogen</a></br>
-                                <b>Input(s) : </b>Input prompt</br>
-                                <b>Output(s) : </b>Generated sound</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>AudioGen</br>
+                                <b>{biniou_lang_about_function}</b>Generate sound from a prompt, using <a href='https://github.com/facebookresearch/audiocraft' target='_blank'>Audiogen</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Input prompt</br>
+                                <b>{biniou_lang_about_outputs}</b>Generated sound</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/facebook/audiogen-medium' target='_blank'>facebook/audiogen-medium</a></br>                                
                                 """
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Fill the <b>Prompt</b> by describing the sound you want to generate</br>
                                 - (optional) Modify the settings to change audio duration</br>                                
                                 - Click the <b>Generate</b> button</br>
@@ -6710,31 +6710,31 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 </div>
                                 """
                             )                       
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_audiogen= gr.Dropdown(choices=modellist_audiogen, value=modellist_audiogen[0], label="Model", info="Choose model to use for inference")
+                                model_audiogen= gr.Dropdown(choices=modellist_audiogen, value=modellist_audiogen[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():    
                                 duration_audiogen = gr.Slider(1, 160, step=1, value=5, label="Audio length (sec)")
                             with gr.Column():
-                                cfg_coef_audiogen = gr.Slider(0.1, 20.0, step=0.1, value=3.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                cfg_coef_audiogen = gr.Slider(0.1, 20.0, step=0.1, value=3.0, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
-                                num_batch_audiogen = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")  
+                                num_batch_audiogen = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)  
                         with gr.Row():
                             with gr.Column():    
                                 use_sampling_audiogen = gr.Checkbox(value=True, label="Use sampling")
                             with gr.Column():    
-                                temperature_audiogen = gr.Slider(0.0, 10.0, step=0.1, value=1.0, label="temperature")
+                                temperature_audiogen = gr.Slider(0.0, 10.0, step=0.1, value=1.0, label=biniou_lang_temperature_label)
                             with gr.Column():
-                                top_k_audiogen = gr.Slider(0, 500, step=1, value=250, label="top_k")
+                                top_k_audiogen = gr.Slider(0, 500, step=1, value=250, label=biniou_lang_top_k_label)
                             with gr.Column():
-                                top_p_audiogen = gr.Slider(0.0, 500.0, step=1.0, value=0.0, label="top_p")
+                                top_p_audiogen = gr.Slider(0.0, 500.0, step=1.0, value=0.0, label=biniou_lang_top_p_label)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_audiogen = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_audiogen = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_audiogen = gr.Textbox(value="audiogen", visible=False, interactive=False)
-                                del_ini_btn_audiogen = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_audiogen.value) else False)
+                                del_ini_btn_audiogen = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_audiogen.value) else False)
                                 save_ini_btn_audiogen.click(
                                     fn=write_ini_audiogen, 
                                     inputs=[
@@ -6749,10 +6749,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         top_p_audiogen,
                                         ]
                                     )
-                                save_ini_btn_audiogen.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_audiogen.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_audiogen.click(fn=lambda: del_ini_btn_audiogen.update(interactive=True), outputs=del_ini_btn_audiogen)
                                 del_ini_btn_audiogen.click(fn=lambda: del_ini(module_name_audiogen.value))
-                                del_ini_btn_audiogen.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_audiogen.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_audiogen.click(fn=lambda: del_ini_btn_audiogen.update(interactive=False), outputs=del_ini_btn_audiogen)
                         if test_ini_exist(module_name_audiogen.value):
                             with open(f".ini/{module_name_audiogen.value}.ini", "r", encoding="utf-8") as fichier:
@@ -6764,14 +6764,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             out_audiogen = gr.Audio(label="Generated sound", type="filepath", show_download_button=True, interactive=False)
                     with gr.Row():
                         with gr.Column():
-                            btn_audiogen = gr.Button("Generate 🚀", variant="primary")
+                            btn_audiogen = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():                            
-                            btn_audiogen_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_audiogen_cancel = gr.Button(f"{biniou_lang_cancel}🛑", variant="stop")
                             btn_audiogen_cancel.click(fn=initiate_stop_audiogen, inputs=None, outputs=None)                              
                         with gr.Column():
-                            btn_audiogen_clear_input = gr.ClearButton(components=prompt_audiogen, value="Clear inputs 🧹")
+                            btn_audiogen_clear_input = gr.ClearButton(components=prompt_audiogen, value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_audiogen_clear_output = gr.ClearButton(components=out_audiogen, value="Clear outputs 🧹")                        
+                            btn_audiogen_clear_output = gr.ClearButton(components=out_audiogen, value=f"{biniou_lang_clear_outputs} 🧹")                        
                         btn_audiogen.click(
                             fn=music_audiogen, 
                             inputs=[
@@ -6811,16 +6811,16 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
 
 # Harmonai
                 with gr.TabItem("Harmonai 🔊", id=35) as tab_harmonai:
-                    with gr.Accordion("About", open=False):                
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):                
                         with gr.Box():                       
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>Harmonai</br>
-                                <b>Function : </b>Generate audio from a specific model using <a href='https://www.harmonai.org/' target='_blank'>Harmonai</a></br>
-                                <b>Input(s) : </b>None</br>
-                                <b>Output(s) : </b>Generated audio</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>Harmonai</br>
+                                <b>{biniou_lang_about_function}</b>Generate audio from a specific model using <a href='https://www.harmonai.org/' target='_blank'>Harmonai</a></br>
+                                <b>{biniou_lang_about_inputs}</b>None</br>
+                                <b>{biniou_lang_about_outputs}</b>Generated audio</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/harmonai/glitch-440k' target='_blank'>harmonai/glitch-440k</a> ,
                                 <a href='https://huggingface.co/harmonai/honk-140k' target='_blank'>harmonai/honk-140k</a> ,
                                 <a href='https://huggingface.co/harmonai/jmann-small-190k' target='_blank'>harmonai/jmann-small-190k</a> ,
@@ -6831,37 +6831,37 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - (optional) Modify the settings to change audio duration</br>                                
                                 - Click the <b>Generate<b> button</br>
                                 - After generation, generated audio is available to listen in the <b>Output<b> field.
                                 </div>
                                 """
                             )                                       
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_harmonai = gr.Dropdown(choices=model_list_harmonai, value=model_list_harmonai[4], label="Model", info="Choose model to use for inference")
+                                model_harmonai = gr.Dropdown(choices=model_list_harmonai, value=model_list_harmonai[4], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                steps_harmonai = gr.Slider(1, biniou_global_steps_max, step=1, value=50, label="Steps", info="Number of iterations per audio. Results and speed depends of sampler")
+                                steps_harmonai = gr.Slider(1, biniou_global_steps_max, step=1, value=50, label=biniou_lang_steps_label, info="Number of iterations per audio. Results and speed depends of sampler")
                             with gr.Column():
-                                seed_harmonai = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
+                                seed_harmonai = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                         with gr.Row():
                             with gr.Column():
                                 length_harmonai = gr.Slider(1, 1200, value=5, step=1, label="Audio length (sec)")
                             with gr.Column():
-                                batch_size_harmonai = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of audios to generate in a single run")
+                                batch_size_harmonai = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info ="Number of audios to generate in a single run")
                             with gr.Column():
-                                batch_repeat_harmonai = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                batch_repeat_harmonai = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_harmonai = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_harmonai = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_harmonai = gr.Textbox(value="harmonai", visible=False, interactive=False)
-                                del_ini_btn_harmonai = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_harmonai.value) else False)
+                                del_ini_btn_harmonai = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_harmonai.value) else False)
                                 save_ini_btn_harmonai.click(
                                     fn=write_ini_harmonai, 
                                     inputs=[
@@ -6874,10 +6874,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         batch_repeat_harmonai,
                                         ]
                                     )
-                                save_ini_btn_harmonai.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_harmonai.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_harmonai.click(fn=lambda: del_ini_btn_harmonai.update(interactive=True), outputs=del_ini_btn_harmonai)
                                 del_ini_btn_harmonai.click(fn=lambda: del_ini(module_name_harmonai.value))
-                                del_ini_btn_harmonai.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_harmonai.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_harmonai.click(fn=lambda: del_ini_btn_harmonai.update(interactive=False), outputs=del_ini_btn_harmonai)
                         if test_ini_exist(module_name_harmonai.value) :
                             with open(f".ini/{module_name_harmonai.value}.ini", "r", encoding="utf-8") as fichier:
@@ -6886,9 +6886,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         out_harmonai = gr.Audio(label="Output", type="filepath", show_download_button=True, interactive=False)
                     with gr.Row():
                         with gr.Column():
-                            btn_harmonai = gr.Button("Generate 🚀", variant="primary")
+                            btn_harmonai = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():                            
-                            btn_harmonai_clear_output = gr.ClearButton(components=out_harmonai, value="Clear outputs 🧹")                           
+                            btn_harmonai_clear_output = gr.ClearButton(components=out_harmonai, value=f"{biniou_lang_clear_outputs} 🧹")                           
                         btn_harmonai.click(
                             fn=music_harmonai,
                             inputs=[
@@ -6920,26 +6920,26 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... both to ...')                       
 # Bark
                 with gr.TabItem("Bark 🗣️", id=36) as tab_bark:
-                    with gr.Accordion("About", open=False):                
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):                
                         with gr.Box():                       
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>Bark</br>
-                                <b>Function : </b>Generate high quality text-to-speech in several languages with <a href='https://github.com/suno-ai/bark' target='_blank'>Bark</a></br>
-                                <b>Input(s) : </b>Prompt</br>
-                                <b>Output(s) : </b>Generated speech</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>Bark</br>
+                                <b>{biniou_lang_about_function}</b>Generate high quality text-to-speech in several languages with <a href='https://github.com/suno-ai/bark' target='_blank'>Bark</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Prompt</br>
+                                <b>{biniou_lang_about_outputs}</b>Generated speech</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/suno/bark' target='_blank'>suno/bark</a> ,
                                 <a href='https://huggingface.co/suno/bark-small' target='_blank'>suno/bark-small</a></br>               
                                 """
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Fill the <b>prompt</b> with the text you want to hear</br>                                
                                 - (optional) Modify the settings to select a model and a voice</br>                                
                                 - Click the <b>Generate</b> button</br>
@@ -6958,18 +6958,18 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 </div>
                                 """
                             )                                                       
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_bark = gr.Dropdown(choices=model_list_bark, value=model_list_bark[0], label="Model", info="Choose model to use for inference")
+                                model_bark = gr.Dropdown(choices=model_list_bark, value=model_list_bark[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
                                 voice_preset_bark = gr.Dropdown(choices=list(voice_preset_list_bark.keys()), value=list(voice_preset_list_bark.keys())[2], label="Voice")
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_bark = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_bark = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_bark = gr.Textbox(value="bark", visible=False, interactive=False)
-                                del_ini_btn_bark = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_bark.value) else False)
+                                del_ini_btn_bark = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_bark.value) else False)
                                 save_ini_btn_bark.click(
                                     fn=write_ini_bark, 
                                     inputs=[
@@ -6978,10 +6978,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         voice_preset_bark,
                                         ]
                                     )
-                                save_ini_btn_bark.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_bark.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_bark.click(fn=lambda: del_ini_btn_bark.update(interactive=True), outputs=del_ini_btn_bark)
                                 del_ini_btn_bark.click(fn=lambda: del_ini(module_name_bark.value))
-                                del_ini_btn_bark.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_bark.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_bark.click(fn=lambda: del_ini_btn_bark.update(interactive=False), outputs=del_ini_btn_bark)
                         if test_ini_exist(module_name_bark.value) :
                             with open(f".ini/{module_name_bark.value}.ini", "r", encoding="utf-8") as fichier:
@@ -6993,11 +6993,11 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             out_bark = gr.Audio(label="Generated speech", type="filepath", show_download_button=True, interactive=False)
                     with gr.Row():
                         with gr.Column():
-                            btn_bark = gr.Button("Generate 🚀", variant="primary")
+                            btn_bark = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():
-                            btn_bark_clear_input = gr.ClearButton(components=prompt_bark, value="Clear inputs 🧹")
+                            btn_bark_clear_input = gr.ClearButton(components=prompt_bark, value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_bark_clear_output = gr.ClearButton(components=out_bark, value="Clear outputs 🧹")                        
+                            btn_bark_clear_output = gr.ClearButton(components=out_bark, value=f"{biniou_lang_clear_outputs} 🧹")                        
                         btn_bark.click(
                             fn=music_bark,
                             inputs=[
@@ -7037,16 +7037,16 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     
                 with gr.TabItem(titletab_txt2vid_ms, id=41) as tab_txt2vid_ms:                        
                         
-                    with gr.Accordion("About", open=False):                
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):                
                         with gr.Box():                       
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>Modelscope</br>
-                                <b>Function : </b>Generate video from a prompt and a negative prompt using <a href='https://github.com/modelscope/modelscope' target='_blank'>Modelscope</a></br>
-                                <b>Input(s) : </b>Prompt, negative prompt</br>
-                                <b>Output(s) : </b>Video</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>Modelscope</br>
+                                <b>{biniou_lang_about_function}</b>Generate video from a prompt and a negative prompt using <a href='https://github.com/modelscope/modelscope' target='_blank'>Modelscope</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Prompt, negative prompt</br>
+                                <b>{biniou_lang_about_outputs}</b>Video</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/cerspense/zeroscope_v2_576w' target='_blank'>cerspense/zeroscope_v2_576w</a>, 
                                 <a href='https://huggingface.co/camenduru/potat1' target='_blank'>camenduru/potat1</a>, 
                                 <a href='https://huggingface.co/damo-vilab/text-to-video-ms-1.7b' target='_blank'>damo-vilab/text-to-video-ms-1.7b</a></br>
@@ -7054,10 +7054,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Fill the <b>prompt</b> with what you want to see in your output video</br>
                                 - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output video</br>
                                 - (optional) Modify the settings to use another model, modify the number of frames to generate, or change dimensions of the outputs</br>
@@ -7067,39 +7067,39 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 </div>
                                 """
                             )                
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_txt2vid_ms = gr.Dropdown(choices=model_list_txt2vid_ms, value=model_list_txt2vid_ms[0], label="Model", info="Choose model to use for inference")
+                                model_txt2vid_ms = gr.Dropdown(choices=model_list_txt2vid_ms, value=model_list_txt2vid_ms[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                num_inference_step_txt2vid_ms = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per video. Results and speed depends of sampler")
+                                num_inference_step_txt2vid_ms = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label=biniou_lang_steps_label, info="Number of iterations per video. Results and speed depends of sampler")
                             with gr.Column():
-                                sampler_txt2vid_ms = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
+                                sampler_txt2vid_ms = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label=biniou_lang_sampler_label, info=biniou_lang_sampler_info)
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_txt2vid_ms = gr.Slider(0.1, 20.0, step=0.1, value=4.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_txt2vid_ms = gr.Slider(0.1, 20.0, step=0.1, value=4.0, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
-                                seed_txt2vid_ms = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
+                                seed_txt2vid_ms = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                             with gr.Column():
                                 num_frames_txt2vid_ms = gr.Slider(1, 1200, step=1, value=8, label="Video Length (frames)", info="Number of frames in the output video")
                             with gr.Column():
                                 num_fps_txt2vid_ms = gr.Slider(1, 120, step=1, value=8, label="Frames per second", info="Number of frames per second")
                         with gr.Row():
                             with gr.Column():
-                                width_txt2vid_ms = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=576, label="Video Width", info="Width of outputs")
+                                width_txt2vid_ms = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=576, label="Video Width", info=biniou_lang_image_width_info)
                             with gr.Column():
-                                height_txt2vid_ms = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=320, label="Video Height", info="Height of outputs")
+                                height_txt2vid_ms = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=320, label="Video Height", info=biniou_lang_image_height_info)
                             with gr.Column():
-                                num_prompt_txt2vid_ms = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                num_prompt_txt2vid_ms = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_txt2vid_ms = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_txt2vid_ms = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2vid_ms = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_txt2vid_ms = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_txt2vid_ms = gr.Textbox(value="txt2vid_ms", visible=False, interactive=False)
-                                del_ini_btn_txt2vid_ms = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_txt2vid_ms.value) else False)
+                                del_ini_btn_txt2vid_ms = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_txt2vid_ms.value) else False)
                                 save_ini_btn_txt2vid_ms.click(
                                     fn=write_ini_txt2vid_ms, 
                                     inputs=[
@@ -7117,10 +7117,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         use_gfpgan_txt2vid_ms,
                                         ]
                                     )
-                                save_ini_btn_txt2vid_ms.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_txt2vid_ms.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_txt2vid_ms.click(fn=lambda: del_ini_btn_txt2vid_ms.update(interactive=True), outputs=del_ini_btn_txt2vid_ms)
                                 del_ini_btn_txt2vid_ms.click(fn=lambda: del_ini(module_name_txt2vid_ms.value))
-                                del_ini_btn_txt2vid_ms.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_txt2vid_ms.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_txt2vid_ms.click(fn=lambda: del_ini_btn_txt2vid_ms.update(interactive=False), outputs=del_ini_btn_txt2vid_ms)
                         if test_ini_exist(module_name_txt2vid_ms.value) :
                             with open(f".ini/{module_name_txt2vid_ms.value}.ini", "r", encoding="utf-8") as fichier:
@@ -7129,10 +7129,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_txt2vid_ms = gr.Textbox(lines=3, max_lines=3, label="Prompt", info="Describe what you want in your video", placeholder="Darth vader is surfing on waves, photo realistic, best quality")
+                                    prompt_txt2vid_ms = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_prompt_label, info="Describe what you want in your video", placeholder="Darth vader is surfing on waves, photo realistic, best quality")
                             with gr.Row():
                                 with gr.Column():
-                                    negative_prompt_txt2vid_ms = gr.Textbox(lines=3, max_lines=3, label="Negative Prompt", info="Describe what you DO NOT want in your video", placeholder="out of frame, ugly")
+                                    negative_prompt_txt2vid_ms = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_negprompt_label, info="Describe what you DO NOT want in your video", placeholder="out of frame, ugly")
                             with gr.Row():
                                 with gr.Column():
                                    output_type_txt2vid_ms = gr.Radio(choices=["mp4", "gif"], value="mp4", label="Output type", info="Choose output type")
@@ -7150,15 +7150,15 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                     with gr.Row():
                         with gr.Column():
-                            btn_txt2vid_ms = gr.Button("Generate 🚀", variant="primary", visible=True)
-                            btn_txt2vid_ms_gif = gr.Button("Generate 🚀", variant="primary", visible=False)
+                            btn_txt2vid_ms = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary", visible=True)
+                            btn_txt2vid_ms_gif = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary", visible=False)
                         with gr.Column():                            
-                            btn_txt2vid_ms_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_txt2vid_ms_cancel = gr.Button(f"{biniou_lang_cancel}🛑", variant="stop")
                             btn_txt2vid_ms_cancel.click(fn=initiate_stop_txt2vid_ms, inputs=None, outputs=None)                              
                         with gr.Column():
-                            btn_txt2vid_ms_clear_input = gr.ClearButton(components=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms], value="Clear inputs 🧹")
+                            btn_txt2vid_ms_clear_input = gr.ClearButton(components=[prompt_txt2vid_ms, negative_prompt_txt2vid_ms], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_txt2vid_ms_clear_output = gr.ClearButton(components=[out_txt2vid_ms, gif_out_txt2vid_ms], value="Clear outputs 🧹")
+                            btn_txt2vid_ms_clear_output = gr.ClearButton(components=[out_txt2vid_ms, gif_out_txt2vid_ms], value=f"{biniou_lang_clear_outputs} 🧹")
                             btn_txt2vid_ms.click(
                                 fn=video_txt2vid_ms,
                                 inputs=[
@@ -7240,16 +7240,16 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         gr.HTML(value='... both to ...')
 # Txt2vid_zero            
                 with gr.TabItem("Text2Video-Zero 📼", id=42) as tab_txt2vid_ze:
-                    with gr.Accordion("About", open=False):                
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):                
                         with gr.Box():                       
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>Text2Video-Zero</br>
-                                <b>Function : </b>Generate video from a prompt and a negative prompt using <a href='https://github.com/Picsart-AI-Research/Text2Video-Zero' target='_blank'>Text2Video-Zero</a> with <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a> Models</br>
-                                <b>Input(s) : </b>Prompt, negative prompt</br>
-                                <b>Output(s) : </b>Video</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>Text2Video-Zero</br>
+                                <b>{biniou_lang_about_function}</b>Generate video from a prompt and a negative prompt using <a href='https://github.com/Picsart-AI-Research/Text2Video-Zero' target='_blank'>Text2Video-Zero</a> with <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a> Models</br>
+                                <b>{biniou_lang_about_inputs}</b>Prompt, negative prompt</br>
+                                <b>{biniou_lang_about_outputs}</b>Video</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
                                 <a href='https://huggingface.co/playgroundai/playground-v2-512px-base' target='_blank'>playgroundai/playground-v2-512px-base</a>, 
                                 <a href='https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic' target='_blank'>playgroundai/playground-v2-1024px-aesthetic</a>, 
@@ -7271,34 +7271,34 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Fill the <b>prompt</b> with what you want to see in your output video</br>
                                 - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output video</br>
                                 - (optional) Modify the settings to use another model, modify the number of frames to generate, fps of the output video or change dimensions of the outputs</br>
                                 - Click the <b>Generate</b> button</br>
                                 - After generation, generated video is displayed in the <b>Generated video</b> field.
                                 </br>
-                                <b>Models :</b></br>
+                                <b>{biniou_lang_about_models}</b></br>
                                 - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or  <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors models in the directory /biniou/models/Stable Diffusion. Restart Biniou to see them in the models list.
                                 </div>
                                 """
                             )                      
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_txt2vid_ze = gr.Dropdown(choices=model_list_txt2vid_ze, value=model_list_txt2vid_ze[0], label="Model", info="Choose model to use for inference")
+                                model_txt2vid_ze = gr.Dropdown(choices=model_list_txt2vid_ze, value=model_list_txt2vid_ze[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                num_inference_step_txt2vid_ze = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per video. Results and speed depends of sampler")
+                                num_inference_step_txt2vid_ze = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label=biniou_lang_steps_label, info="Number of iterations per video. Results and speed depends of sampler")
                             with gr.Column():
-                                sampler_txt2vid_ze = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
+                                sampler_txt2vid_ze = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label=biniou_lang_sampler_label, info=biniou_lang_sampler_info)
                             with gr.Column():
-                                guidance_scale_txt2vid_ze = gr.Slider(0.1, 20.0, step=0.1, value=7.5, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_txt2vid_ze = gr.Slider(0.1, 20.0, step=0.1, value=7.5, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                         with gr.Row():
                             with gr.Column():
-                                seed_txt2vid_ze = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
+                                seed_txt2vid_ze = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                             with gr.Column():
                                 num_frames_txt2vid_ze = gr.Slider(1, 1200, step=1, value=8, label="Video Length (frames)", info="Number of frames in the output video")
                             with gr.Column():
@@ -7307,13 +7307,13 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 num_chunks_txt2vid_ze = gr.Slider(1, 32, step=1, value=1, label="Chunk size", info="Number of frames processed in a chunk. 1 = no chunks.")
                         with gr.Row():
                             with gr.Column():
-                                width_txt2vid_ze = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=512, label="Video Width", info="Width of outputs")
+                                width_txt2vid_ze = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=512, label="Video Width", info=biniou_lang_image_width_info)
                             with gr.Column():
-                                height_txt2vid_ze = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=512, label="Video Height", info="Height of outputs")
+                                height_txt2vid_ze = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=512, label="Video Height", info=biniou_lang_image_height_info)
                             with gr.Column():
-                                num_videos_per_prompt_txt2vid_ze = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of videos to generate in a single run", interactive=False)
+                                num_videos_per_prompt_txt2vid_ze = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info ="Number of videos to generate in a single run", interactive=False)
                             with gr.Column():
-                                num_prompt_txt2vid_ze = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")                            
+                                num_prompt_txt2vid_ze = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)                            
                         with gr.Accordion("Advanced Settings", open=False):
                             with gr.Row():
                                 with gr.Column():
@@ -7327,15 +7327,15 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     num_inference_step_txt2vid_ze.change(set_timestep_vid_ze, inputs=[num_inference_step_txt2vid_ze, model_txt2vid_ze], outputs=[timestep_t0_txt2vid_ze, timestep_t1_txt2vid_ze])
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_txt2vid_ze = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_txt2vid_ze = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
                             with gr.Column():    
-                                tkme_txt2vid_ze = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token Merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                                tkme_txt2vid_ze = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2vid_ze = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_txt2vid_ze = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_txt2vid_ze = gr.Textbox(value="txt2vid_ze", visible=False, interactive=False)
-                                del_ini_btn_txt2vid_ze = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_txt2vid_ze.value) else False)
+                                del_ini_btn_txt2vid_ze = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_txt2vid_ze.value) else False)
                                 save_ini_btn_txt2vid_ze.click(
                                     fn=write_ini_txt2vid_ze, 
                                     inputs=[
@@ -7360,10 +7360,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         tkme_txt2vid_ze,
                                         ]
                                     )
-                                save_ini_btn_txt2vid_ze.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_txt2vid_ze.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_txt2vid_ze.click(fn=lambda: del_ini_btn_txt2vid_ze.update(interactive=True), outputs=del_ini_btn_txt2vid_ze)
                                 del_ini_btn_txt2vid_ze.click(fn=lambda: del_ini(module_name_txt2vid_ze.value))
-                                del_ini_btn_txt2vid_ze.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_txt2vid_ze.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_txt2vid_ze.click(fn=lambda: del_ini_btn_txt2vid_ze.update(interactive=False), outputs=del_ini_btn_txt2vid_ze)
                         if test_ini_exist(module_name_txt2vid_ze.value) :
                             with open(f".ini/{module_name_txt2vid_ze.value}.ini", "r", encoding="utf-8") as fichier:
@@ -7372,10 +7372,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_txt2vid_ze = gr.Textbox(lines=3, max_lines=3, label="Prompt", info="Describe what you want in your video", placeholder="a panda is playing guitar on times square")
+                                    prompt_txt2vid_ze = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_prompt_label, info="Describe what you want in your video", placeholder="a panda is playing guitar on times square")
                             with gr.Row():
                                 with gr.Column():
-                                    negative_prompt_txt2vid_ze = gr.Textbox(lines=3, max_lines=3, label="Negative Prompt", info="Describe what you DO NOT want in your video", placeholder="out of frame, ugly")
+                                    negative_prompt_txt2vid_ze = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_negprompt_label, info="Describe what you DO NOT want in your video", placeholder="out of frame, ugly")
                             with gr.Row():
                                 with gr.Column():
                                     output_type_txt2vid_ze = gr.Radio(choices=["mp4", "gif"], value="mp4", label="Output type", info="Choose output type")
@@ -7405,15 +7405,15 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                     with gr.Row():
                         with gr.Column():
-                            btn_txt2vid_ze = gr.Button("Generate 🚀", variant="primary", visible=True)
-                            btn_txt2vid_ze_gif = gr.Button("Generate 🚀", variant="primary", visible=False)
+                            btn_txt2vid_ze = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary", visible=True)
+                            btn_txt2vid_ze_gif = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary", visible=False)
                         with gr.Column():                            
-                            btn_txt2vid_ze_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_txt2vid_ze_cancel = gr.Button(f"{biniou_lang_cancel}🛑", variant="stop")
                             btn_txt2vid_ze_cancel.click(fn=initiate_stop_txt2vid_ze, inputs=None, outputs=None)                              
                         with gr.Column():
-                            btn_txt2vid_ze_clear_input = gr.ClearButton(components=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze], value="Clear inputs 🧹")
+                            btn_txt2vid_ze_clear_input = gr.ClearButton(components=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_txt2vid_ze_clear_output = gr.ClearButton(components=[out_txt2vid_ze, gif_out_txt2vid_ze], value="Clear outputs 🧹")
+                            btn_txt2vid_ze_clear_output = gr.ClearButton(components=[out_txt2vid_ze, gif_out_txt2vid_ze], value=f"{biniou_lang_clear_outputs} 🧹")
                             btn_txt2vid_ze.click(
                                 fn=video_txt2vid_ze,
                                 inputs=[
@@ -7516,16 +7516,16 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                 else :
                     titletab_tab_animatediff_lcm = "AnimateDiff ⛔"
                 with gr.TabItem(titletab_tab_animatediff_lcm, id=43) as tab_animatediff_lcm:
-                    with gr.Accordion("About", open=False):
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>AnimateDiff</br>
-                                <b>Function : </b>Generate video from a prompt and a negative prompt using <a href='https://animatelcm.github.io/' target='_blank'>AnimateLCM</a> or <a href='https://huggingface.co/ByteDance/AnimateDiff-Lightning' target='_blank'>ByteDance/AnimateDiff-Lightning</a> with <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a> Models</br>
-                                <b>Input(s) : </b>Prompt, negative prompt</br>
-                                <b>Output(s) : </b>Video</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>AnimateDiff</br>
+                                <b>{biniou_lang_about_function}</b>Generate video from a prompt and a negative prompt using <a href='https://animatelcm.github.io/' target='_blank'>AnimateLCM</a> or <a href='https://huggingface.co/ByteDance/AnimateDiff-Lightning' target='_blank'>ByteDance/AnimateDiff-Lightning</a> with <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a> Models</br>
+                                <b>{biniou_lang_about_inputs}</b>Prompt, negative prompt</br>
+                                <b>{biniou_lang_about_outputs}</b>Video</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/emilianJR/epiCRealism' target='_blank'>emilianJR/epiCRealism</a>, 
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
                                 <a href='https://huggingface.co/digiplay/AbsoluteReality_v1.8.1' target='_blank'>digiplay/AbsoluteReality_v1.8.1</a>, 
@@ -7536,60 +7536,60 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - (optional) Modify the settings to use another model, modify the number of frames to generate or change dimensions of the outputs</br>
                                 - Fill the <b>prompt</b> with what you want to see in your output video</br>
                                 - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output video</br>
                                 - Click the <b>Generate</b> button</br>
                                 - After generation, generated video is displayed in the <b>Generated video</b> field.
                                 </br>
-                                <b>Models :</b></br>
+                                <b>{biniou_lang_about_models}</b></br>
                                 - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or  <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors models in the directory /biniou/models/Stable Diffusion. Restart Biniou to see them in the models list.
                                 </div>
                                 """
                             )
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_animatediff_lcm = gr.Dropdown(choices=model_list_animatediff_lcm, value=model_list_animatediff_lcm[0], label="Model", info="Choose model to use for inference")
+                                model_animatediff_lcm = gr.Dropdown(choices=model_list_animatediff_lcm, value=model_list_animatediff_lcm[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
                                 model_adapters_animatediff_lcm = gr.Dropdown(choices=list(model_list_adapters_animatediff_lcm.keys()), value=list(model_list_adapters_animatediff_lcm.keys())[0], label="Adapter", info="Choose adapter to use for inference")
                             with gr.Column():
-                                num_inference_step_animatediff_lcm = gr.Slider(1, biniou_global_steps_max, step=1, value=4, label="Steps", info="Number of iterations per video. Results and speed depends of sampler")
+                                num_inference_step_animatediff_lcm = gr.Slider(1, biniou_global_steps_max, step=1, value=4, label=biniou_lang_steps_label, info="Number of iterations per video. Results and speed depends of sampler")
                             with gr.Column():
-                                sampler_animatediff_lcm = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value="LCM", label="Sampler", info="Sampler to use for inference", interactive=True)
+                                sampler_animatediff_lcm = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value="LCM", label=biniou_lang_sampler_label, info=biniou_lang_sampler_info, interactive=True)
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_animatediff_lcm = gr.Slider(0.1, 20.0, step=0.1, value=2.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_animatediff_lcm = gr.Slider(0.1, 20.0, step=0.1, value=2.0, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
-                                seed_animatediff_lcm = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
+                                seed_animatediff_lcm = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                             with gr.Column():
                                 num_frames_animatediff_lcm = gr.Slider(1, 32, step=1, value=16, label="Video Length (frames)", info="Number of frames in the output video")
                             with gr.Column():
                                 num_fps_animatediff_lcm = gr.Slider(1, 120, step=1, value=8, label="Frames per second", info="Number of frames per second")
                         with gr.Row():
                             with gr.Column():
-                                width_animatediff_lcm = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sd15_width, label="Video Width", info="Width of outputs")
+                                width_animatediff_lcm = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sd15_width, label="Video Width", info=biniou_lang_image_width_info)
                             with gr.Column():
-                                height_animatediff_lcm = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=biniou_global_sd15_height, label="Video Height", info="Height of outputs")
+                                height_animatediff_lcm = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=biniou_global_sd15_height, label="Video Height", info=biniou_lang_image_height_info)
                             with gr.Column():
-                                num_videos_per_prompt_animatediff_lcm = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of videos to generate in a single run", interactive=False)
+                                num_videos_per_prompt_animatediff_lcm = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info ="Number of videos to generate in a single run", interactive=False)
                             with gr.Column():
-                                num_prompt_animatediff_lcm = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                num_prompt_animatediff_lcm = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
                             with gr.Column():
-                                use_gfpgan_animatediff_lcm = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs", visible=False)
+                                use_gfpgan_animatediff_lcm = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info, visible=False)
                             with gr.Column():
-                                tkme_animatediff_lcm = gr.Slider(0.0, 1.0, step=0.01, value=0, label="Token Merging ratio", info="0=slow,best quality, 1=fast,worst quality", visible=False)
+                                tkme_animatediff_lcm = gr.Slider(0.0, 1.0, step=0.01, value=0, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info, visible=False)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_animatediff_lcm = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_animatediff_lcm = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_animatediff_lcm = gr.Textbox(value="animatediff_lcm", visible=False, interactive=False)
-                                del_ini_btn_animatediff_lcm = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_animatediff_lcm.value) else False)
+                                del_ini_btn_animatediff_lcm = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_animatediff_lcm.value) else False)
                                 save_ini_btn_animatediff_lcm.click(
                                     fn=write_ini_animatediff_lcm,
                                     inputs=[
@@ -7610,10 +7610,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         tkme_animatediff_lcm,
                                         ]
                                     )
-                                save_ini_btn_animatediff_lcm.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_animatediff_lcm.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_animatediff_lcm.click(fn=lambda: del_ini_btn_animatediff_lcm.update(interactive=True), outputs=del_ini_btn_animatediff_lcm)
                                 del_ini_btn_animatediff_lcm.click(fn=lambda: del_ini(module_name_animatediff_lcm.value))
-                                del_ini_btn_animatediff_lcm.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_animatediff_lcm.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_animatediff_lcm.click(fn=lambda: del_ini_btn_animatediff_lcm.update(interactive=False), outputs=del_ini_btn_animatediff_lcm)
                         if test_ini_exist(module_name_animatediff_lcm.value) :
                             with open(f".ini/{module_name_animatediff_lcm.value}.ini", "r", encoding="utf-8") as fichier:
@@ -7622,10 +7622,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_animatediff_lcm = gr.Textbox(lines=3, max_lines=3, label="Prompt", info="Describe what you want in your video", placeholder="A space rocket with trails of smoke behind it launching into space from the desert, 4k, high resolution")
+                                    prompt_animatediff_lcm = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_prompt_label, info="Describe what you want in your video", placeholder="A space rocket with trails of smoke behind it launching into space from the desert, 4k, high resolution")
                             with gr.Row():
                                 with gr.Column():
-                                    negative_prompt_animatediff_lcm = gr.Textbox(lines=3, max_lines=3, label="Negative Prompt", info="Describe what you DO NOT want in your video", placeholder="bad quality, worst quality, low resolution")
+                                    negative_prompt_animatediff_lcm = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_negprompt_label, info="Describe what you DO NOT want in your video", placeholder="bad quality, worst quality, low resolution")
                             with gr.Row():
                                 with gr.Column():
                                     output_type_animatediff_lcm = gr.Radio(choices=["mp4", "gif"], value="mp4", label="Output type", info="Choose output type")
@@ -7673,15 +7673,15 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                     with gr.Row():
                         with gr.Column():
-                            btn_animatediff_lcm = gr.Button("Generate 🚀", variant="primary", visible=True)
-                            btn_animatediff_lcm_gif = gr.Button("Generate 🚀", variant="primary", visible=False)
+                            btn_animatediff_lcm = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary", visible=True)
+                            btn_animatediff_lcm_gif = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary", visible=False)
                         with gr.Column():
-                            btn_animatediff_lcm_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_animatediff_lcm_cancel = gr.Button(f"{biniou_lang_cancel}🛑", variant="stop")
                             btn_animatediff_lcm_cancel.click(fn=initiate_stop_animatediff_lcm, inputs=None, outputs=None)
                         with gr.Column():
-                            btn_animatediff_lcm_clear_input = gr.ClearButton(components=[prompt_animatediff_lcm, negative_prompt_animatediff_lcm], value="Clear inputs 🧹")
+                            btn_animatediff_lcm_clear_input = gr.ClearButton(components=[prompt_animatediff_lcm, negative_prompt_animatediff_lcm], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():
-                            btn_animatediff_lcm_clear_output = gr.ClearButton(components=[out_animatediff_lcm, gif_out_animatediff_lcm], value="Clear outputs 🧹")
+                            btn_animatediff_lcm_clear_output = gr.ClearButton(components=[out_animatediff_lcm, gif_out_animatediff_lcm], value=f"{biniou_lang_clear_outputs} 🧹")
                             btn_animatediff_lcm.click(
                                 fn=video_animatediff_lcm,
                                 inputs=[
@@ -7776,26 +7776,26 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                 else :
                     titletab_img2vid = "Stable Video Diffusion ⛔"
                 with gr.TabItem(titletab_img2vid, id=44) as tab_img2vid:
-                    with gr.Accordion("About", open=False):
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>Stable Video Diffusion</br>
-                                <b>Function : </b>Generate video from an input image using <a href='https://stability.ai/news/stable-video-diffusion-open-ai-video-model' target='_blank'>Stable Video Diffusion</a></br>
-                                <b>Input(s) : </b>Input image</br>
-                                <b>Output(s) : </b>Video</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>Stable Video Diffusion</br>
+                                <b>{biniou_lang_about_function}</b>Generate video from an input image using <a href='https://stability.ai/news/stable-video-diffusion-open-ai-video-model' target='_blank'>Stable Video Diffusion</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Input image</br>
+                                <b>{biniou_lang_about_outputs}</b>Video</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/stabilityai/stable-video-diffusion-img2vid' target='_blank'>stabilityai/stable-video-diffusion-img2vid</a>, 
                                 <a href='https://huggingface.co/stabilityai/stable-video-diffusion-img2vid-xt' target='_blank'>stabilityai/stable-video-diffusion-img2vid-xt</a></br>
                                 """
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Upload or import an input image</br>
                                 - (optional) Modify the settings to use another model, modify the number of frames to generate, fps of the output video or change dimensions of the outputs</br>
                                 - Click the <b>Generate</b> button</br>
@@ -7803,21 +7803,21 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 </br>
                                 """
                             )
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_img2vid = gr.Dropdown(choices=model_list_img2vid, value=model_list_img2vid[0], label="Model", info="Choose model to use for inference")
+                                model_img2vid = gr.Dropdown(choices=model_list_img2vid, value=model_list_img2vid[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                num_inference_steps_img2vid = gr.Slider(1, biniou_global_steps_max, step=1, value=15, label="Steps", info="Number of iterations per video. Results and speed depends of sampler")
+                                num_inference_steps_img2vid = gr.Slider(1, biniou_global_steps_max, step=1, value=15, label=biniou_lang_steps_label, info="Number of iterations per video. Results and speed depends of sampler")
                             with gr.Column():
-                                sampler_img2vid = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[5], label="Sampler", info="Sampler to use for inference", interactive=False)
+                                sampler_img2vid = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[5], label=biniou_lang_sampler_label, info=biniou_lang_sampler_info, interactive=False)
                         with gr.Row():
                             with gr.Column():
                                 min_guidance_scale_img2vid = gr.Slider(0.1, 20.0, step=0.1, value=1.0, label="Min guidance scale", info="CFG scale with first frame")
                             with gr.Column():
                                 max_guidance_scale_img2vid = gr.Slider(0.1, 20.0, step=0.1, value=3.0, label="Max guidance scale", info="CFG scale with last frame")
                             with gr.Column():
-                                seed_img2vid = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
+                                seed_img2vid = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                         with gr.Row():
                             with gr.Column():
                                 num_frames_img2vid = gr.Slider(1, 1200, step=1, value=14, label="Video Length (frames)", info="Number of frames in the output video")
@@ -7827,13 +7827,13 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 decode_chunk_size_img2vid = gr.Slider(1, 32, step=1, value=7, label="Chunk size", info="Number of frames processed in a chunk")
                         with gr.Row():
                             with gr.Column():
-                                width_img2vid = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sdxl_width, label="Video Width", info="Width of outputs")
+                                width_img2vid = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sdxl_width, label="Video Width", info=biniou_lang_image_width_info)
                             with gr.Column():
-                                height_img2vid = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=576, label="Video Height", info="Height of outputs")
+                                height_img2vid = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=576, label="Video Height", info=biniou_lang_image_height_info)
                             with gr.Column():
-                                num_videos_per_prompt_img2vid = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of videos to generate in a single run", interactive=False)
+                                num_videos_per_prompt_img2vid = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info ="Number of videos to generate in a single run", interactive=False)
                             with gr.Column():
-                                num_prompt_img2vid = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                num_prompt_img2vid = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
 #                       with gr.Accordion("Advanced Settings", open=False):
                         with gr.Row():
                             with gr.Column():
@@ -7842,16 +7842,16 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 noise_aug_strength_img2vid = gr.Slider(0.01, 1.0, step=0.01, value=0.02, label="Noise strength", info="Higher value = more motion")
                         with gr.Row():
                             with gr.Column():
-                                use_gfpgan_img2vid = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs", visible=False)
+                                use_gfpgan_img2vid = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info, visible=False)
                             with gr.Column():
-                                tkme_img2vid = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token Merging ratio", info="0=slow,best quality, 1=fast,worst quality", visible=False)
+                                tkme_img2vid = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info, visible=False)
                         model_img2vid.change(fn=change_model_type_img2vid, inputs=model_img2vid, outputs=num_frames_img2vid)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_img2vid = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_img2vid = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_img2vid = gr.Textbox(value="img2vid", visible=False, interactive=False)
-                                del_ini_btn_img2vid = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_img2vid.value) else False)
+                                del_ini_btn_img2vid = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_img2vid.value) else False)
                                 save_ini_btn_img2vid.click(
                                     fn=write_ini_img2vid,
                                     inputs=[
@@ -7875,10 +7875,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         tkme_img2vid,
                                         ]
                                     )
-                                save_ini_btn_img2vid.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_img2vid.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_img2vid.click(fn=lambda: del_ini_btn_img2vid.update(interactive=True), outputs=del_ini_btn_img2vid)
                                 del_ini_btn_img2vid.click(fn=lambda: del_ini(module_name_img2vid.value))
-                                del_ini_btn_img2vid.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_img2vid.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_img2vid.click(fn=lambda: del_ini_btn_img2vid.update(interactive=False), outputs=del_ini_btn_img2vid)
                         if test_ini_exist(module_name_img2vid.value) :
                             with open(f".ini/{module_name_img2vid.value}.ini", "r", encoding="utf-8") as fichier:
@@ -7888,7 +7888,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Row():
                                 with gr.Column():
                                     with gr.Row():
-                                        img_img2vid = gr.Image(label="Input image", type="filepath", height=275)
+                                        img_img2vid = gr.Image(label=biniou_lang_img_input_label, type="filepath", height=275)
                                         img_img2vid.change(image_upload_event, inputs=img_img2vid, outputs=[width_img2vid, height_img2vid])
                                     with gr.Row():
                                         with gr.Column():
@@ -7907,15 +7907,15 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                     with gr.Row():
                         with gr.Column():
-                            btn_img2vid = gr.Button("Generate 🚀", variant="primary", visible=True)
-                            btn_img2vid_gif = gr.Button("Generate 🚀", variant="primary", visible=False)
+                            btn_img2vid = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary", visible=True)
+                            btn_img2vid_gif = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary", visible=False)
                         with gr.Column():
-                            btn_img2vid_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_img2vid_cancel = gr.Button(f"{biniou_lang_cancel}🛑", variant="stop")
                             btn_img2vid_cancel.click(fn=initiate_stop_img2vid, inputs=None, outputs=None)
                         with gr.Column():
-                            btn_img2vid_clear_input = gr.ClearButton(components=img_img2vid, value="Clear inputs 🧹")
+                            btn_img2vid_clear_input = gr.ClearButton(components=img_img2vid, value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():
-                            btn_img2vid_clear_output = gr.ClearButton(components=[out_img2vid, gif_out_img2vid], value="Clear outputs 🧹")
+                            btn_img2vid_clear_output = gr.ClearButton(components=[out_img2vid, gif_out_img2vid], value=f"{biniou_lang_clear_outputs} 🧹")
                             btn_img2vid.click(
                                 fn=video_img2vid,
                                 inputs=[
@@ -8008,25 +8008,25 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     titletab_vid2vid_ze = "Video Instruct-Pix2Pix ⛔"
 
                 with gr.TabItem(titletab_vid2vid_ze, id=45) as tab_vid2vid_ze:
-                    with gr.Accordion("About", open=False):                
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):                
                         with gr.Box():                       
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>Video Instruct-Pix2Pix</br>
-                                <b>Function : </b>Edit an input video with instructions from a prompt and a negative prompt using <a href='https://github.com/timothybrooks/instruct-pix2pix' target='_blank'>Instructpix2pix</a> and <a href='https://github.com/Picsart-AI-Research/Text2Video-Zero' target='_blank'>Text2Video-Zero</a></br>
-                                <b>Input(s) : </b>Input video, prompt, negative prompt</br>
-                                <b>Output(s) : </b>Video(s)</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>Video Instruct-Pix2Pix</br>
+                                <b>{biniou_lang_about_function}</b>Edit an input video with instructions from a prompt and a negative prompt using <a href='https://github.com/timothybrooks/instruct-pix2pix' target='_blank'>Instructpix2pix</a> and <a href='https://github.com/Picsart-AI-Research/Text2Video-Zero' target='_blank'>Text2Video-Zero</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Input video, prompt, negative prompt</br>
+                                <b>{biniou_lang_about_outputs}</b>Video(s)</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/timbrooks/instruct-pix2pix' target='_blank'>timbrooks/instruct-pix2pix</a></br>
                                 """
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Upload or import a video using the <b>Input video</b> field</br>
                                 - Fill the <b>prompt</b> with the instructions for modifying your input video</br>
                                 - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output video</br>
@@ -8037,30 +8037,30 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 </div>
                                 """
                             )                
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_vid2vid_ze = gr.Dropdown(choices=model_list_vid2vid_ze, value=model_list_vid2vid_ze[0], label="Model", info="Choose model to use for inference")
+                                model_vid2vid_ze = gr.Dropdown(choices=model_list_vid2vid_ze, value=model_list_vid2vid_ze[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                num_inference_step_vid2vid_ze = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_vid2vid_ze = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label=biniou_lang_steps_label, info=biniou_lang_steps_info)
                             with gr.Column():
-                                sampler_vid2vid_ze = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label="Sampler", info="Sampler to use for inference")
+                                sampler_vid2vid_ze = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[0], label=biniou_lang_sampler_label, info=biniou_lang_sampler_info)
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_vid2vid_ze = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label="CFG Scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_vid2vid_ze = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
                                 image_guidance_scale_vid2vid_ze = gr.Slider(0.0, 10.0, step=0.1, value=1.5, label="Img CFG Scale", info="Low values : more creativity. High values : more fidelity to the input video")
                             with gr.Column():
-                                num_images_per_prompt_vid2vid_ze = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of videos to generate in a single run", interactive=False)
+                                num_images_per_prompt_vid2vid_ze = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info ="Number of videos to generate in a single run", interactive=False)
                             with gr.Column():
-                                num_prompt_vid2vid_ze = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                num_prompt_vid2vid_ze = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
                             with gr.Column():
-                                width_vid2vid_ze = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label="Image Width", info="Width of outputs", interactive=False)
+                                width_vid2vid_ze = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label=biniou_lang_image_width_label, info=biniou_lang_image_width_info, interactive=False)
                             with gr.Column():
-                                height_vid2vid_ze = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label="Image Height", info="Height of outputs", interactive=False)
+                                height_vid2vid_ze = gr.Slider(128, biniou_global_height_max_img_modify, step=64, value=biniou_global_sd15_height, label=biniou_lang_image_height_label, info=biniou_lang_image_height_info, interactive=False)
                             with gr.Column():
-                                seed_vid2vid_ze = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility")
+                                seed_vid2vid_ze = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                         with gr.Row():
                             with gr.Column():
                                 num_frames_vid2vid_ze = gr.Slider(0, 1200, step=1, value=8, label="Video Length (frames)", info="Number of frames to process")
@@ -8068,15 +8068,15 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 num_fps_vid2vid_ze = gr.Slider(1, 120, step=1, value=4, label="Frames per second", info="Number of frames per second")
                         with gr.Row():
                             with gr.Column():    
-                                use_gfpgan_vid2vid_ze = gr.Checkbox(value=biniou_global_gfpgan, label="Use GFPGAN to restore faces", info="Use GFPGAN to enhance faces in the outputs")
+                                use_gfpgan_vid2vid_ze = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
                             with gr.Column():
-                                tkme_vid2vid_ze = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label="Token merging ratio", info="0=slow,best quality, 1=fast,worst quality")
+                                tkme_vid2vid_ze = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_vid2vid_ze = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_vid2vid_ze = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_vid2vid_ze = gr.Textbox(value="vid2vid_ze", visible=False, interactive=False)
-                                del_ini_btn_vid2vid_ze = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_vid2vid_ze.value) else False)
+                                del_ini_btn_vid2vid_ze = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_vid2vid_ze.value) else False)
                                 save_ini_btn_vid2vid_ze.click(
                                     fn=write_ini_vid2vid_ze, 
                                     inputs=[
@@ -8097,10 +8097,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         tkme_vid2vid_ze,
                                         ]
                                     )
-                                save_ini_btn_vid2vid_ze.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_vid2vid_ze.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_vid2vid_ze.click(fn=lambda: del_ini_btn_vid2vid_ze.update(interactive=True), outputs=del_ini_btn_vid2vid_ze)
                                 del_ini_btn_vid2vid_ze.click(fn=lambda: del_ini(module_name_vid2vid_ze.value))
-                                del_ini_btn_vid2vid_ze.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_vid2vid_ze.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_vid2vid_ze.click(fn=lambda: del_ini_btn_vid2vid_ze.update(interactive=False), outputs=del_ini_btn_vid2vid_ze)
                         if test_ini_exist(module_name_vid2vid_ze.value) :
                             with open(f".ini/{module_name_vid2vid_ze.value}.ini", "r", encoding="utf-8") as fichier:
@@ -8111,10 +8111,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_vid2vid_ze = gr.Textbox(lines=3, max_lines=3, label="Prompt", info="Describe what you want to modify in your input video", placeholder="make it Van Gogh Starry Night style")
+                                    prompt_vid2vid_ze = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_prompt_label, info="Describe what you want to modify in your input video", placeholder="make it Van Gogh Starry Night style")
                             with gr.Row():
                                 with gr.Column():
-                                    negative_prompt_vid2vid_ze = gr.Textbox(lines=3, max_lines=3, label="Negative Prompt", info="Describe what you DO NOT want in your output video", placeholder="out of frame, bad quality, blurry, ugly, text, characters, logo")
+                                    negative_prompt_vid2vid_ze = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_negprompt_label, info="Describe what you DO NOT want in your output video", placeholder="out of frame, bad quality, blurry, ugly, text, characters, logo")
                             with gr.Row():
                                 with gr.Column():
                                     output_type_vid2vid_ze = gr.Radio(choices=["mp4", "gif"], value="mp4", label="Output type", info="Choose output type")
@@ -8135,15 +8135,15 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     gs_out_vid2vid_ze = gr.State()
                     with gr.Row():
                         with gr.Column():
-                            btn_vid2vid_ze = gr.Button("Generate 🚀", variant="primary", visible=True)
-                            btn_vid2vid_ze_gif = gr.Button("Generate 🚀", variant="primary", visible=False)
+                            btn_vid2vid_ze = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary", visible=True)
+                            btn_vid2vid_ze_gif = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary", visible=False)
                         with gr.Column():                            
-                            btn_vid2vid_ze_cancel = gr.Button("Cancel 🛑", variant="stop")
+                            btn_vid2vid_ze_cancel = gr.Button(f"{biniou_lang_cancel}🛑", variant="stop")
                             btn_vid2vid_ze_cancel.click(fn=initiate_stop_vid2vid_ze, inputs=None, outputs=None)                              
                         with gr.Column():
-                            btn_vid2vid_ze_clear_input = gr.ClearButton(components=[vid_vid2vid_ze, prompt_vid2vid_ze, negative_prompt_vid2vid_ze], value="Clear inputs 🧹")
+                            btn_vid2vid_ze_clear_input = gr.ClearButton(components=[vid_vid2vid_ze, prompt_vid2vid_ze, negative_prompt_vid2vid_ze], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_vid2vid_ze_clear_output = gr.ClearButton(components=[out_vid2vid_ze, gif_out_vid2vid_ze, gs_out_vid2vid_ze], value="Clear outputs 🧹")
+                            btn_vid2vid_ze_clear_output = gr.ClearButton(components=[out_vid2vid_ze, gif_out_vid2vid_ze, gs_out_vid2vid_ze], value=f"{biniou_lang_clear_outputs} 🧹")
                             btn_vid2vid_ze.click(
                                 fn=image_vid2vid_ze,
                                 inputs=[
@@ -8229,26 +8229,26 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
             with gr.Tabs() as tabs_3d:
 # txt2shape
                 with gr.TabItem("Shap-E txt2shape 🧊", id=51) as tab_txt2shape:
-                    with gr.Accordion("About", open=False):                
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):                
                         with gr.Box():                       
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>txt2shape</br>
-                                <b>Function : </b>Generate 3d animated gif or 3d mesh object from a prompt using <a href='https://github.com/openai/shap-e' target='_blank'>Shap-E</a></br>
-                                <b>Input(s) : </b>Prompt</br>
-                                <b>Output(s) : </b>Animated gif or mesh object</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>txt2shape</br>
+                                <b>{biniou_lang_about_function}</b>Generate 3d animated gif or 3d mesh object from a prompt using <a href='https://github.com/openai/shap-e' target='_blank'>Shap-E</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Prompt</br>
+                                <b>{biniou_lang_about_outputs}</b>Animated gif or mesh object</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/openai/shap-e' target='_blank'>openai/shap-e</a>
                                 </br>
                                 """
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Fill the <b>prompt</b> with what you want to see in your output</br>
                                 - Select the desired output type : animated Gif or 3D Model (mesh)</br> 
                                 - (optional) Modify the settings to generate several images in a single run or change dimensions of the outputs</br>
@@ -8257,32 +8257,32 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 </br>
                                 """
                             ) 
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_txt2shape = gr.Dropdown(choices=model_list_txt2shape, value=model_list_txt2shape[0], label="Model", info="Choose model to use for inference")
+                                model_txt2shape = gr.Dropdown(choices=model_list_txt2shape, value=model_list_txt2shape[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                num_inference_step_txt2shape = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_txt2shape = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label=biniou_lang_steps_label, info=biniou_lang_steps_info)
                             with gr.Column():
-                                sampler_txt2shape = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[11], label="Sampler", info="Sampler to use for inference", interactive=False)
+                                sampler_txt2shape = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[11], label=biniou_lang_sampler_label, info=biniou_lang_sampler_info, interactive=False)
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_txt2shape = gr.Slider(0.1, 50.0, step=0.1, value=15.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_txt2shape = gr.Slider(0.1, 50.0, step=0.1, value=15.0, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
-                                num_images_per_prompt_txt2shape = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run", interactive=False)
+                                num_images_per_prompt_txt2shape = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info=biniou_lang_batch_size_image_info, interactive=False)
                             with gr.Column():
-                                num_prompt_txt2shape = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                num_prompt_txt2shape = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
                             with gr.Column():
                                 frame_size_txt2shape = gr.Slider(0, biniou_global_width_max_img_create, step=8, value=64, label="Frame size", info="Size of the outputs")
                             with gr.Column():
-                                seed_txt2shape = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility", interactive=False) 
+                                seed_txt2shape = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info, interactive=False) 
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_txt2shape = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_txt2shape = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_txt2shape = gr.Textbox(value="txt2shape", visible=False, interactive=False)
-                                del_ini_btn_txt2shape = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_txt2shape.value) else False)
+                                del_ini_btn_txt2shape = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_txt2shape.value) else False)
                                 save_ini_btn_txt2shape.click(
                                     fn=write_ini_txt2shape, 
                                     inputs=[
@@ -8297,10 +8297,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         seed_txt2shape,
                                         ]
                                     )
-                                save_ini_btn_txt2shape.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_txt2shape.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_txt2shape.click(fn=lambda: del_ini_btn_txt2shape.update(interactive=True), outputs=del_ini_btn_txt2shape)
                                 del_ini_btn_txt2shape.click(fn=lambda: del_ini(module_name_txt2shape.value))
-                                del_ini_btn_txt2shape.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_txt2shape.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_txt2shape.click(fn=lambda: del_ini_btn_txt2shape.update(interactive=False), outputs=del_ini_btn_txt2shape)
                         if test_ini_exist(module_name_txt2shape.value) :
                             with open(f".ini/{module_name_txt2shape.value}.ini", "r", encoding="utf-8") as fichier:
@@ -8309,13 +8309,13 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():                        
-                                    prompt_txt2shape = gr.Textbox(lines=12, max_lines=12, label="Prompt", info="Describe what you want in your image", placeholder="a firecracker")
+                                    prompt_txt2shape = gr.Textbox(lines=12, max_lines=12, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder="a firecracker")
                             with gr.Row():
                                 with gr.Column():
                                     output_type_txt2shape = gr.Radio(choices=["gif", "mesh"], value="gif", label="Output type", info="Choose output type")
                         with gr.Column(scale=2):
                             out_txt2shape = gr.Gallery(
-                                label="Generated images",
+                                label=biniou_lang_image_gallery_label,
                                 show_label=True,
                                 elem_id="gallery",
                                 columns=3,
@@ -8339,20 +8339,20 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             gs_mesh_out_txt2shape = gr.Textbox(visible=False)
                             with gr.Row():
                                 with gr.Column():
-                                    download_btn_txt2shape_gif = gr.Button("Zip gallery 💾", visible=True) 
+                                    download_btn_txt2shape_gif = gr.Button(f"{biniou_lang_image_zip} 💾", visible=True) 
                                     download_btn_txt2shape_mesh = gr.Button("Zip model 💾", visible=False) 
                                 with gr.Column():
-                                    download_file_txt2shape = gr.File(label="Output", height=30, interactive=False, visible=False)
+                                    download_file_txt2shape = gr.File(label=biniou_lang_image_zip_file, height=30, interactive=False, visible=False)
                                     download_btn_txt2shape_gif.click(fn=zip_download_file_txt2shape, inputs=[out_txt2shape], outputs=[download_file_txt2shape, download_file_txt2shape]) 
                                     download_btn_txt2shape_mesh.click(fn=zip_mesh_txt2shape, inputs=[gs_mesh_out_txt2shape], outputs=[download_file_txt2shape, download_file_txt2shape]) 
                     with gr.Row():
                         with gr.Column():
-                            btn_txt2shape_gif = gr.Button("Generate 🚀", variant="primary", visible=True)
-                            btn_txt2shape_mesh = gr.Button("Generate 🚀", variant="primary", visible=False) 
+                            btn_txt2shape_gif = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary", visible=True)
+                            btn_txt2shape_mesh = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary", visible=False) 
                         with gr.Column():
-                            btn_txt2shape_clear_input = gr.ClearButton(components=[prompt_txt2shape], value="Clear inputs 🧹")
+                            btn_txt2shape_clear_input = gr.ClearButton(components=[prompt_txt2shape], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_txt2shape_clear_output = gr.ClearButton(components=[out_txt2shape, gs_out_txt2shape, mesh_out_txt2shape, gs_mesh_out_txt2shape], value="Clear outputs 🧹")   
+                            btn_txt2shape_clear_output = gr.ClearButton(components=[out_txt2shape, gs_out_txt2shape, mesh_out_txt2shape, gs_mesh_out_txt2shape], value=f"{biniou_lang_clear_outputs} 🧹")   
                             btn_txt2shape_gif.click(fn=hide_download_file_txt2shape, inputs=None, outputs=download_file_txt2shape)   
                             btn_txt2shape_gif.click(
                             fn=image_txt2shape, 
@@ -8432,26 +8432,26 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     titletab_img2shape = "Shap-E img2shape ⛔"
 # img2shape
                 with gr.TabItem(titletab_img2shape, id=52) as tab_img2shape:
-                    with gr.Accordion("About", open=False):                
+                    with gr.Accordion(f"{biniou_lang_about}", open=False):                
                         with gr.Box():                       
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Informations</h1>
-                                <b>Module : </b>img2shape</br>
-                                <b>Function : </b>Generate 3d animated gif or 3d mesh object from an imput image using <a href='https://github.com/openai/shap-e' target='_blank'>Shap-E</a></br>
-                                <b>Input(s) : </b>Input image</br>
-                                <b>Output(s) : </b>Animated gif or mesh object</br>
-                                <b>HF model page : </b>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
+                                <b>{biniou_lang_about_module}</b>img2shape</br>
+                                <b>{biniou_lang_about_function}</b>Generate 3d animated gif or 3d mesh object from an imput image using <a href='https://github.com/openai/shap-e' target='_blank'>Shap-E</a></br>
+                                <b>{biniou_lang_about_inputs}</b>Input image</br>
+                                <b>{biniou_lang_about_outputs}</b>Animated gif or mesh object</br>
+                                <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/openai/shap-e-img2img' target='_blank'>openai/shap-e-img2img</a>
                                 </br>
                                 """
                             )
                         with gr.Box():
                             gr.HTML(
-                                """
-                                <h1 style='text-align: left'; text-decoration: underline;>Help</h1>
+                                f"""
+                                <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
-                                <b>Usage :</b></br>
+                                <b>{biniou_lang_about_usage}</b></br>
                                 - Upload or import an image using the <b>Input image</b> field. To achieve good results, objects to create should be on a white backgrounds</br>
                                 - Select the desired output type : animated Gif or 3D Model (mesh)</br>
                                 - (optional) Modify the settings to generate several images in a single run or change dimensions of the outputs</br>
@@ -8460,32 +8460,32 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 </br>
                                 """
                             ) 
-                    with gr.Accordion("Settings", open=False):
+                    with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_img2shape = gr.Dropdown(choices=model_list_img2shape, value=model_list_img2shape[0], label="Model", info="Choose model to use for inference")
+                                model_img2shape = gr.Dropdown(choices=model_list_img2shape, value=model_list_img2shape[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                num_inference_step_img2shape = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label="Steps", info="Number of iterations per image. Results and speed depends of sampler")
+                                num_inference_step_img2shape = gr.Slider(1, biniou_global_steps_max, step=1, value=10, label=biniou_lang_steps_label, info=biniou_lang_steps_info)
                             with gr.Column():
-                                sampler_img2shape = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[11], label="Sampler", info="Sampler to use for inference", interactive=False)
+                                sampler_img2shape = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[11], label=biniou_lang_sampler_label, info=biniou_lang_sampler_info, interactive=False)
                         with gr.Row():
                             with gr.Column():
-                                guidance_scale_img2shape = gr.Slider(0.1, 50.0, step=0.1, value=3.0, label="CFG scale", info="Low values : more creativity. High values : more fidelity to the prompts")
+                                guidance_scale_img2shape = gr.Slider(0.1, 50.0, step=0.1, value=3.0, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
-                                num_images_per_prompt_img2shape = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label="Batch size", info ="Number of images to generate in a single run", interactive=False)
+                                num_images_per_prompt_img2shape = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info=biniou_lang_batch_size_image_info, interactive=False)
                             with gr.Column():
-                                num_prompt_img2shape = gr.Slider(1, 32, step=1, value=1, label="Batch count", info="Number of batch to run successively")
+                                num_prompt_img2shape = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
                             with gr.Column():
                                 frame_size_img2shape = gr.Slider(0, biniou_global_width_max_img_create, step=8, value=64, label="Frame size", info="Size of the outputs")
                             with gr.Column():
-                                seed_img2shape = gr.Slider(0, 10000000000, step=1, value=0, label="Seed(0 for random)", info="Seed to use for generation. Depending on scheduler, may permit reproducibility", interactive=False) 
+                                seed_img2shape = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info, interactive=False) 
                         with gr.Row():
                             with gr.Column():
-                                save_ini_btn_img2shape = gr.Button("Save custom defaults settings 💾")
+                                save_ini_btn_img2shape = gr.Button(f"{biniou_lang_save_settings} 💾")
                             with gr.Column():
                                 module_name_img2shape = gr.Textbox(value="img2shape", visible=False, interactive=False)
-                                del_ini_btn_img2shape = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_ini_exist(module_name_img2shape.value) else False)
+                                del_ini_btn_img2shape = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_img2shape.value) else False)
                                 save_ini_btn_img2shape.click(
                                     fn=write_ini_img2shape, 
                                     inputs=[
@@ -8500,10 +8500,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         seed_img2shape,
                                         ]
                                     )
-                                save_ini_btn_img2shape.click(fn=lambda: gr.Info('Settings saved'))
+                                save_ini_btn_img2shape.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
                                 save_ini_btn_img2shape.click(fn=lambda: del_ini_btn_img2shape.update(interactive=True), outputs=del_ini_btn_img2shape)
                                 del_ini_btn_img2shape.click(fn=lambda: del_ini(module_name_img2shape.value))
-                                del_ini_btn_img2shape.click(fn=lambda: gr.Info('Settings deleted'))
+                                del_ini_btn_img2shape.click(fn=lambda: gr.Info(biniou_lang_delete_settings_msg))
                                 del_ini_btn_img2shape.click(fn=lambda: del_ini_btn_img2shape.update(interactive=False), outputs=del_ini_btn_img2shape)
                         if test_ini_exist(module_name_img2shape.value):
                             with open(f".ini/{module_name_img2shape.value}.ini", "r", encoding="utf-8") as fichier:
@@ -8512,13 +8512,13 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():                        
-                                    img_img2shape = gr.Image(label="Input image", height=320, type="pil")
+                                    img_img2shape = gr.Image(label=biniou_lang_img_input_label, height=320, type="pil")
                             with gr.Row():
                                 with gr.Column():
                                     output_type_img2shape = gr.Radio(choices=["gif", "mesh"], value="gif", label="Output type", info="Choose output type")
                         with gr.Column(scale=2):
                             out_img2shape = gr.Gallery(
-                                label="Generated images",
+                                label=biniou_lang_image_gallery_label,
                                 show_label=True,
                                 elem_id="gallery",
                                 columns=3,
@@ -8542,20 +8542,20 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             gs_mesh_out_img2shape = gr.Textbox(visible=False)
                             with gr.Row():
                                 with gr.Column():
-                                    download_btn_img2shape_gif = gr.Button("Zip gallery 💾", visible=True) 
+                                    download_btn_img2shape_gif = gr.Button(f"{biniou_lang_image_zip} 💾", visible=True) 
                                     download_btn_img2shape_mesh = gr.Button("Zip model 💾", visible=False) 
                                 with gr.Column():
-                                    download_file_img2shape = gr.File(label="Output", height=30, interactive=False, visible=False)
+                                    download_file_img2shape = gr.File(label=biniou_lang_image_zip_file, height=30, interactive=False, visible=False)
                                     download_btn_img2shape_gif.click(fn=zip_download_file_img2shape, inputs=[out_img2shape], outputs=[download_file_img2shape, download_file_img2shape]) 
                                     download_btn_img2shape_mesh.click(fn=zip_mesh_img2shape, inputs=[gs_mesh_out_img2shape], outputs=[download_file_img2shape, download_file_img2shape]) 
                     with gr.Row():
                         with gr.Column():
-                            btn_img2shape_gif = gr.Button("Generate 🚀", variant="primary", visible=True)
-                            btn_img2shape_mesh = gr.Button("Generate 🚀", variant="primary", visible=False) 
+                            btn_img2shape_gif = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary", visible=True)
+                            btn_img2shape_mesh = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary", visible=False) 
                         with gr.Column():
-                            btn_img2shape_clear_input = gr.ClearButton(components=[img_img2shape], value="Clear inputs 🧹")
+                            btn_img2shape_clear_input = gr.ClearButton(components=[img_img2shape], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_img2shape_clear_output = gr.ClearButton(components=[out_img2shape, gs_out_img2shape, mesh_out_img2shape, gs_mesh_out_img2shape], value="Clear outputs 🧹")   
+                            btn_img2shape_clear_output = gr.ClearButton(components=[out_img2shape, gs_out_img2shape, mesh_out_img2shape, gs_mesh_out_img2shape], value=f"{biniou_lang_clear_outputs} 🧹")   
                             btn_img2shape_gif.click(fn=hide_download_file_img2shape, inputs=None, outputs=download_file_img2shape)   
                             btn_img2shape_gif.click(
                             fn=image_img2shape, 
@@ -8732,10 +8732,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         biniou_global_settings_img_exif = gr.Checkbox(value=biniou_global_img_exif, label="Add Exif metadatas", info="Add generation settings to images metadatas (default = True)", interactive=True)
                             with gr.Row():
                                 with gr.Column():
-                                    save_ini_btn_settings = gr.Button("Save custom defaults settings 💾")
+                                    save_ini_btn_settings = gr.Button(f"{biniou_lang_save_settings} 💾")
                                 with gr.Column():
                                     module_name_settings = gr.Textbox(value="settings", visible=False, interactive=False)
-                                    del_ini_btn_settings = gr.Button("Delete custom defaults settings 🗑️", interactive=True if test_cfg_exist(module_name_settings.value) else False)
+                                    del_ini_btn_settings = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_cfg_exist(module_name_settings.value) else False)
                                     save_ini_btn_settings.click(fn=write_settings_ini, 
                                         inputs=[
                                             module_name_settings,

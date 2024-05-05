@@ -484,7 +484,13 @@ def test_cfg_exist(module) :
     if os.path.isfile(f".ini/{module}.cfg") :
         return True
     else :
-        return False   
+        return False
+
+def test_lang_exist(cfg_file) :
+    if os.path.isfile(f"lang/{cfg_file}"):
+        return True
+    else :
+        return False
 
 def test_ini_exist(module) :
     if os.path.isfile(f".ini/{module}.ini") :
