@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-05-05** : 🔥 ***Support for PixArt-Sigma*** 🔥 > Adding support for model  [PixArt-alpha/PixArt-Sigma-XL-2-1024-MS](https://huggingface.co/PixArt-alpha/PixArt-Sigma-XL-2-1024-MS) to PixArt-Alpha module. Please note that although the model card advertises a generation size up to 4K (which is the case), the outputs seems upscaled from a 1024 size.
+
   * 🆕 **2024-05-04** : 🔥 ***Updates for Video modules*** 🔥 > Following commit [05b772e](https://github.com/Woolverine94/biniou/commit/05b772ed6c164881df6ca00c919232a66cee387a), all video modules support now the following features :
 
     - Choice for outputs format : .mp4 video or looped animated .gif.
@@ -28,10 +30,6 @@
   * 🆕 **2024-04-29** : 🔥 ***Llava modules updates*** 🔥 > Adding support for models [xtuner/llava-llama-3-8b-v1_1-gguf](https://huggingface.co/xtuner/llava-llama-3-8b-v1_1-gguf) and [xtuner/llava-phi-3-mini-gguf](https://huggingface.co/xtuner/llava-phi-3-mini-gguf) to llava module and making llava-llama-3-8b-v1_1-gguf the default model. 
 
   * 🆕 **2024-04-28** : 🔥 ***Support for LoRA model Hyper-SD*** 🔥 > All modules compatible with LoRA models can now takes benefits of [ByteDance/Hyper-SD](https://huggingface.co/ByteDance/Hyper-SD). Hyper-SD LoRA model will allow fast generation in 1,2,4 or 8 steps (2 by default) for both SD1.5 and SDXL models. Quality of results depends on model used, but it's always fast !
-
-  * 🆕 **2024-04-27** : 🔥 ***Chatbot module updates*** 🔥 > Adding support for model [microsoft/Phi-3-mini-4k-instruct-gguf](https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf) to Chatbot module. Also increasing maximum context size to 512k.
-
-  * 🆕 **2024-04-25** : ⚠️ ***Migration to new module settings management*** ⚠️ > Starting from commit [4866a00](https://github.com/Woolverine94/biniou/commit/4866a00e5a686836a541985d3475d0ec6095d353), old configuration files for individual modules settings will not be loaded anymore at startup. The old settings files stays available (./.ini/<module_name>.cfg), so you can recover manually your settings. I'm really sorry and apologize for this minor inconvenience, but this migration had to be done as the old system holds back a lot of possible evolutions for biniou. Paradoxically, one of the main goal of this new system is to prevent a similar situation in the future ... It has zero impact on fresh installations or people not using this feature.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
