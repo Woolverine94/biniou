@@ -1778,6 +1778,7 @@ def txtinv_list(model):
         model_path_txtinv = "./models/TextualInversion/SD"
         model_list_txtinv_builtin = {
             "embed/EasyNegative":("EasyNegative.safetensors", "EasyNegative"),
+            "sd-concepts-library/gta5-artwork":("learned_embeds.bin", "gta5-artwork"),
         }
 
     os.makedirs(model_path_txtinv, exist_ok=True)
