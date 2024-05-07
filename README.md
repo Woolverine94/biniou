@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-05-07** : 🔥 ***Support for Fluently-XL-v4*** 🔥 > Adding support for model  [fluently/Fluently-XL-v4](https://huggingface.co/fluently/Fluently-XL-v4) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero modules. This model simply pretends to be the best SDXL model around. Best or not, it indeed produces highly qualitative contents. Really worth the try.
+
   * 🆕 **2024-05-05** : 🔥 ***Support for PixArt-Sigma*** 🔥 > Adding support for model  [PixArt-alpha/PixArt-Sigma-XL-2-1024-MS](https://huggingface.co/PixArt-alpha/PixArt-Sigma-XL-2-1024-MS) to PixArt-Alpha module. Please note that although the model card advertises a generation size up to 4K (which is the case), the outputs seems upscaled from a 1024 size.
 
   * 🆕 **2024-05-04** : 🔥 ***Updates for Video modules*** 🔥 > Following commit [05b772e](https://github.com/Woolverine94/biniou/commit/05b772ed6c164881df6ca00c919232a66cee387a), all video modules support now the following features :
@@ -28,8 +30,6 @@
   * 🆕 **2024-05-01** : 🔥 ***Adding support for model aipicasso/emi-2*** 🔥 > Stable Diffusion, img2img, IP-Adapter, ControlNet, Photobooth and Text2Video-Zero can now use the Japanese anime-specialized model [aipicasso/emi-2](https://huggingface.co/aipicasso/emi-2).
 
   * 🆕 **2024-04-29** : 🔥 ***Llava modules updates*** 🔥 > Adding support for models [xtuner/llava-llama-3-8b-v1_1-gguf](https://huggingface.co/xtuner/llava-llama-3-8b-v1_1-gguf) and [xtuner/llava-phi-3-mini-gguf](https://huggingface.co/xtuner/llava-phi-3-mini-gguf) to llava module and making llava-llama-3-8b-v1_1-gguf the default model. 
-
-  * 🆕 **2024-04-28** : 🔥 ***Support for LoRA model Hyper-SD*** 🔥 > All modules compatible with LoRA models can now takes benefits of [ByteDance/Hyper-SD](https://huggingface.co/ByteDance/Hyper-SD). Hyper-SD LoRA model will allow fast generation in 1,2,4 or 8 steps (2 by default) for both SD1.5 and SDXL models. Quality of results depends on model used, but it's always fast !
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
@@ -108,18 +108,18 @@
 
   - Zeroconf installation through one-click installers or Windows exe.
   - Easy management through a control panel directly inside webui : update, restart, shutdown, activate authentication, control network access or share your instance online with a single click.
-  - Common panel settings, "overlayed" by indiviual modules settings
+  - Easy management of models through a simple interface.
   - Communication between modules : send an output as an input to another module
   - Powered by [🤗 Huggingface](https://huggingface.co/) and [gradio](https://www.gradio.app/)
   - Cross platform : GNU/Linux, Windows 10/11 and macOS(experimental, via homebrew)
   - Convenient Dockerfile for cloud instances
   - Support for CUDA (see [CUDA support](#cuda-support))
   - Experimental support for ROCm (see [here](https://github.com/Woolverine94/biniou/wiki/Experimental-features#rocm-support-under-gnulinux))
-  - Support for Stable Diffusion SD-1.5, SD-2.1, SD-Turbo, SDXL, SDXL-Turbo, SDXL-Lightning, LCM, VegaRT, Segmind, Playground-v2, Koala, Pixart-Alpha, Kandinsky and compatible models, through built-in model list or standalone .safetensors files
+  - Support for Stable Diffusion SD-1.5, SD-2.1, SD-Turbo, SDXL, SDXL-Turbo, SDXL-Lightning, Hyper-SD, LCM, VegaRT, Segmind, Playground-v2, Koala, Pixart-Alpha, Pixart-Sigma, Kandinsky and compatible models, through built-in model list or standalone .safetensors files
   - Support for LoRA models
   - Support for textual inversion
   - Support llama-cpp-python optimizations CUDA, OpenBLAS, OpenCL BLAS, ROCm and  Vulkan through a simple setting
-  - Support for Llama, Mistral, Mixtral and compatible GGUF quantized models, through built-in model list or standalone .gguf files.
+  - Support for Llama/2/3, Mistral, Mixtral and compatible GGUF quantized models, through built-in model list or standalone .gguf files.
   - Easy copy/paste integration for [TheBloke GGUF quantized models](https://huggingface.co/models?search=TheBloke%20GGUF).
 
 ---
