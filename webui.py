@@ -1443,7 +1443,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         )
                         last_reply_llamacpp = gr.Textbox(value="", visible=False)
                     with gr.Row():
-                            prompt_llamacpp = gr.Textbox(label=biniou_lang_chatbot_prompt_label, lines=1, max_lines=3, placeholder=biniou_lang_chatbot_prompt_placeholder, autofocus=True)
+                            prompt_llamacpp = gr.Textbox(label=biniou_lang_chatbot_prompt_label, lines=1, max_lines=3, show_copy_button=True, placeholder=biniou_lang_chatbot_prompt_placeholder, autofocus=True)
                             hidden_prompt_llamacpp = gr.Textbox(value="", visible=False)
                             last_reply_llamacpp.change(fn=lambda x:x, inputs=hidden_prompt_llamacpp, outputs=prompt_llamacpp)
                     with gr.Row():
@@ -1682,7 +1682,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                             last_reply_llava = gr.Textbox(value="", visible=False)
                     with gr.Row():
-                            prompt_llava = gr.Textbox(label=biniou_lang_chatbot_prompt_label, lines=1, max_lines=3, placeholder=biniou_lang_chatbot_prompt_placeholder, autofocus=True)
+                            prompt_llava = gr.Textbox(label=biniou_lang_chatbot_prompt_label, lines=1, max_lines=3, show_copy_button=True, placeholder=biniou_lang_chatbot_prompt_placeholder, autofocus=True)
                             hidden_prompt_llava = gr.Textbox(value="", visible=False)
                             last_reply_llava.change(fn=lambda x:x, inputs=hidden_prompt_llava, outputs=prompt_llava)
                     with gr.Row():
@@ -2152,7 +2152,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Row():
                                 source_language_nllb = gr.Dropdown(choices=list(language_list_nllb.keys()), value=list(language_list_nllb.keys())[47], label=biniou_lang_input_language_label, info=biniou_lang_input_language_info)
                             with gr.Row():
-                                prompt_nllb = gr.Textbox(label="Source text", lines=9, max_lines=9, placeholder="Type or paste here the text to translate")
+                                prompt_nllb = gr.Textbox(label="Source text", lines=9, max_lines=9, show_copy_button=True, placeholder="Type or paste here the text to translate")
                         with gr.Column():
                             with gr.Row():
                                 output_language_nllb = gr.Dropdown(choices=list(language_list_nllb.keys()), value=list(language_list_nllb.keys())[47], label=biniou_lang_output_language_label, info=biniou_lang_output_language_info)
@@ -2289,7 +2289,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
-                                prompt_txt2prompt = gr.Textbox(label=biniou_lang_prompt_label, lines=9, max_lines=9, placeholder="a doctor")
+                                prompt_txt2prompt = gr.Textbox(label=biniou_lang_prompt_label, lines=9, max_lines=9, show_copy_button=True, placeholder="a doctor")
                             with gr.Row():
                                 output_type_txt2prompt = gr.Radio(choices=["ChatGPT", "SD"], value="ChatGPT", label=biniou_lang_output_type_label, info="Choose type of prompt to generate")
                                 output_type_txt2prompt.change(fn=change_output_type_txt2prompt, inputs=output_type_txt2prompt, outputs=[model_txt2prompt, max_tokens_txt2prompt])
@@ -2484,10 +2484,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_txt2img_sd = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_image_prompt_placeholder)
+                                    prompt_txt2img_sd = gr.Textbox(lines=6, max_lines=6, show_copy_button=True, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_image_prompt_placeholder)
                             with gr.Row():
                                 with gr.Column():
-                                    negative_prompt_txt2img_sd = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
+                                    negative_prompt_txt2img_sd = gr.Textbox(lines=6, max_lines=6, show_copy_button=True, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
                         model_txt2img_sd.change(
                             fn=change_model_type_txt2img_sd,
                             inputs=[model_txt2img_sd],
@@ -2709,10 +2709,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_txt2img_kd = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder="An alien cheeseburger creature eating itself, claymation, cinematic, moody lighting")
+                                    prompt_txt2img_kd = gr.Textbox(lines=6, max_lines=6, show_copy_button=True, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder="An alien cheeseburger creature eating itself, claymation, cinematic, moody lighting")
                             with gr.Row():
                                 with gr.Column():
-                                    negative_prompt_txt2img_kd = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder="low quality, bad quality")
+                                    negative_prompt_txt2img_kd = gr.Textbox(lines=6, max_lines=6, show_copy_button=True, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder="low quality, bad quality")
                         model_txt2img_kd.change(
                             fn=change_model_type_txt2img_kd,
                             inputs=[model_txt2img_kd],
@@ -2939,7 +2939,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():                        
-                                    prompt_txt2img_lcm = gr.Textbox(lines=18, max_lines=18, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder="Self-portrait oil painting, a beautiful cyborg with golden hair, 8k")
+                                    prompt_txt2img_lcm = gr.Textbox(lines=18, max_lines=18, show_copy_button=True, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder="Self-portrait oil painting, a beautiful cyborg with golden hair, 8k")
                         model_txt2img_lcm.change(fn=change_model_type_txt2img_lcm,
                             inputs=model_txt2img_lcm, 
                             outputs=[
@@ -3155,10 +3155,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_txt2img_mjm = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_image_prompt_placeholder)
+                                    prompt_txt2img_mjm = gr.Textbox(lines=6, max_lines=6, show_copy_button=True, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_image_prompt_placeholder)
                             with gr.Row():
                                 with gr.Column():
-                                    negative_prompt_txt2img_mjm = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
+                                    negative_prompt_txt2img_mjm = gr.Textbox(lines=6, max_lines=6, show_copy_button=True, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
                         with gr.Column(scale=2):
                             out_txt2img_mjm = gr.Gallery(
                                 label=biniou_lang_image_gallery_label,
@@ -3364,10 +3364,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():                        
-                                    prompt_txt2img_paa = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder="A small cactus with a happy face in the Sahara desert.")
+                                    prompt_txt2img_paa = gr.Textbox(lines=6, max_lines=6, show_copy_button=True, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder="A small cactus with a happy face in the Sahara desert.")
                             with gr.Row():
                                 with gr.Column(): 
-                                    negative_prompt_txt2img_paa = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
+                                    negative_prompt_txt2img_paa = gr.Textbox(lines=6, max_lines=6, show_copy_button=True, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
                         with gr.Column(scale=2):
                             out_txt2img_paa = gr.Gallery(
                                 label=biniou_lang_image_gallery_label,
@@ -3615,10 +3615,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     denoising_strength_img2img = gr.Slider(0.01, 1.0, step=0.01, value=0.75, label="Denoising strength", info="Balance between input image (0) and prompts (1)")  
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_img2img = gr.Textbox(lines=5, max_lines=5, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_image_prompt_placeholder)
+                                    prompt_img2img = gr.Textbox(lines=5, max_lines=5, show_copy_button=True, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_image_prompt_placeholder)
                             with gr.Row():                                    
                                 with gr.Column():
-                                    negative_prompt_img2img = gr.Textbox(lines=5, max_lines=5, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
+                                    negative_prompt_img2img = gr.Textbox(lines=5, max_lines=5, show_copy_button=True, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
                         model_img2img.change(
                             fn=change_model_type_img2img, 
                             inputs=[model_img2img],
@@ -3877,10 +3877,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     denoising_strength_img2img_ip = gr.Slider(0.01, 1.0, step=0.01, value=0.6, label="Denoising strength", info="Balance between input image (0) and prompts (1)", interactive=True)
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_img2img_ip = gr.Textbox(lines=1, max_lines=1, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder="wearing sunglasses, high quality")
+                                    prompt_img2img_ip = gr.Textbox(lines=2, max_lines=2, show_copy_button=True, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder="wearing sunglasses, high quality")
                             with gr.Row():
                                 with gr.Column():
-                                    negative_prompt_img2img_ip = gr.Textbox(lines=1, max_lines=1, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder="low quality, medium quality, blurry")
+                                    negative_prompt_img2img_ip = gr.Textbox(lines=2, max_lines=2, show_copy_button=True, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder="low quality, medium quality, blurry")
                         denoising_strength_img2img_ip.change(check_steps_strength, [num_inference_step_img2img_ip, denoising_strength_img2img_ip, model_img2img_ip], [num_inference_step_img2img_ip])
                         model_img2img_ip.change(
                             fn=change_model_type_img2img_ip,
@@ -4315,9 +4315,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_pix2pix = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_prompt_label, info="Describe what you want to modify in your input image", placeholder="make it a Rembrandt painting")
+                                    prompt_pix2pix = gr.Textbox(lines=6, max_lines=6, show_copy_button=True, label=biniou_lang_prompt_label, info="Describe what you want to modify in your input image", placeholder="make it a Rembrandt painting")
                                 with gr.Column():
-                                    negative_prompt_pix2pix = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_negprompt_label, info="Describe what you DO NOT want in your output image", placeholder=biniou_lang_image_negprompt_placeholder)
+                                    negative_prompt_pix2pix = gr.Textbox(lines=6, max_lines=6, show_copy_button=True, label=biniou_lang_negprompt_label, info="Describe what you DO NOT want in your output image", placeholder=biniou_lang_image_negprompt_placeholder)
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
@@ -4523,7 +4523,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     mix_factor_magicmix = gr.Slider(0.0, 1.0, step=0.01, value=0.5, label="Mix Factor", info="Determines how much influence the prompt has on the layout generation")
                             with gr.Row(): 
                                 with gr.Column():
-                                    prompt_magicmix = gr.Textbox(lines=9, max_lines=9, label=biniou_lang_prompt_label, info="Describe how you want to modify your input image", placeholder="a bed")
+                                    prompt_magicmix = gr.Textbox(lines=9, max_lines=9, show_copy_button=True, label=biniou_lang_prompt_label, info="Describe how you want to modify your input image", placeholder="a bed")
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
@@ -4717,9 +4717,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     denoising_strength_inpaint = gr.Slider(0.0, 1.0, step=0.01, value=1.0, label="Denoising strength", info="Balance between input image (0) and prompts (1)")                                
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_inpaint = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_image_prompt_placeholder)
+                                    prompt_inpaint = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_image_prompt_placeholder)
                                 with gr.Column():
-                                    negative_prompt_inpaint = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
+                                    negative_prompt_inpaint = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
                         with gr.Column():
                             with gr.Row(): 
                                 with gr.Column():
@@ -5154,9 +5154,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     denoising_strength_outpaint = gr.Slider(0.0, 1.0, step=0.01, value=1.0, label="Denoising strength", info="Balance between input image (0) and prompts (1)")                                
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_outpaint = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_image_prompt_placeholder)
+                                    prompt_outpaint = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_image_prompt_placeholder)
                                 with gr.Column():
-                                    negative_prompt_outpaint = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
+                                    negative_prompt_outpaint = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
                         with gr.Column():
                             with gr.Row(): 
                                 with gr.Column():
@@ -5449,10 +5449,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():                        
-                                    prompt_controlnet = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_image_prompt_placeholder)
+                                    prompt_controlnet = gr.Textbox(lines=6, max_lines=6, show_copy_button=True, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_image_prompt_placeholder)
                             with gr.Row():
                                 with gr.Column(): 
-                                    negative_prompt_controlnet = gr.Textbox(lines=6, max_lines=6, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
+                                    negative_prompt_controlnet = gr.Textbox(lines=6, max_lines=6, show_copy_button=True, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
                             model_controlnet.change(
                                 fn=change_model_type_controlnet, 
                                 inputs=[model_controlnet],
@@ -5718,10 +5718,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     denoising_strength_faceid_ip = gr.Slider(0.01, 2.0, step=0.01, value=1.0, label="FaceID strength", info="Weight of the FaceID in the generated image")  
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_faceid_ip = gr.Textbox(lines=5, max_lines=5, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_image_prompt_placeholder)
+                                    prompt_faceid_ip = gr.Textbox(lines=5, max_lines=5, show_copy_button=True, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_image_prompt_placeholder)
                             with gr.Row():                                    
                                 with gr.Column():
-                                    negative_prompt_faceid_ip = gr.Textbox(lines=5, max_lines=5, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
+                                    negative_prompt_faceid_ip = gr.Textbox(lines=5, max_lines=5, show_copy_button=True, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
                         model_faceid_ip.change(
                             fn=change_model_type_faceid_ip, 
                             inputs=[model_faceid_ip, prompt_faceid_ip],
@@ -6349,7 +6349,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
 
                     with gr.Row():
                         with gr.Column():
-                            prompt_musicgen = gr.Textbox(label=biniou_lang_audio_prompt_label, lines=2, max_lines=2, placeholder=biniou_lang_audio_prompt_placeholder)
+                            prompt_musicgen = gr.Textbox(label=biniou_lang_audio_prompt_label, lines=2, max_lines=2, show_copy_button=True, placeholder=biniou_lang_audio_prompt_placeholder)
                         with gr.Column():
                             out_musicgen = gr.Audio(label=biniou_lang_audio_generated_label, type="filepath", show_download_button=True, interactive=False)
                     with gr.Row():
@@ -6490,7 +6490,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             source_audio_musicgen_mel = gr.Audio(label="Source audio", source="upload", type="filepath")
                             source_type_musicgen_mel.change(fn=change_source_type_musicgen_mel, inputs=source_type_musicgen_mel, outputs=source_audio_musicgen_mel)
                         with gr.Column():
-                            prompt_musicgen_mel = gr.Textbox(label=biniou_lang_audio_prompt_label, lines=8, max_lines=8, placeholder=biniou_lang_audio_prompt_placeholder)
+                            prompt_musicgen_mel = gr.Textbox(label=biniou_lang_audio_prompt_label, lines=8, max_lines=8, show_copy_button=True, placeholder=biniou_lang_audio_prompt_placeholder)
                         with gr.Column():
                             out_musicgen_mel = gr.Audio(label=biniou_lang_audio_generated_label, type="filepath", show_download_button=True, interactive=False)
                     with gr.Row():
@@ -6623,9 +6623,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
-                                prompt_musicldm = gr.Textbox(label=biniou_lang_prompt_label, lines=2, max_lines=2, info="Describe the content of your output audio file", placeholder="Techno music with a strong, upbeat tempo and high melodic riffs, high quality, clear")
+                                prompt_musicldm = gr.Textbox(label=biniou_lang_prompt_label, lines=2, max_lines=2, show_copy_button=True, info="Describe the content of your output audio file", placeholder="Techno music with a strong, upbeat tempo and high melodic riffs, high quality, clear")
                             with gr.Row():
-                                negative_prompt_musicldm = gr.Textbox(label=biniou_lang_negprompt_label, info="Describe what you DO NOT want in your output audio file", lines=2, max_lines=2, placeholder="low quality, average quality")
+                                negative_prompt_musicldm = gr.Textbox(label=biniou_lang_negprompt_label, lines=2, max_lines=2, show_copy_button=True, info="Describe what you DO NOT want in your output audio file", placeholder="low quality, average quality")
                         with gr.Column():
                             out_musicldm = gr.Audio(label=biniou_lang_audio_generated_label, type="filepath", show_download_button=True, interactive=False)
                     with gr.Row():
@@ -6759,7 +6759,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 exec(fichier.read())
                     with gr.Row():
                         with gr.Column():
-                            prompt_audiogen = gr.Textbox(label="Describe your sound", lines=2, max_lines=2, placeholder="dog barking, sirens of an emergency vehicle, footsteps in a corridor")
+                            prompt_audiogen = gr.Textbox(label="Describe your sound", lines=2, max_lines=2, show_copy_button=True, placeholder="dog barking, sirens of an emergency vehicle, footsteps in a corridor")
                         with gr.Column():
                             out_audiogen = gr.Audio(label="Generated sound", type="filepath", show_download_button=True, interactive=False)
                     with gr.Row():
@@ -6988,7 +6988,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 exec(fichier.read())
                     with gr.Row():
                         with gr.Column():                    
-                            prompt_bark = gr.Textbox(label="Text to speech", lines=2, max_lines=2, placeholder="Type or past here what you want to hear ...")
+                            prompt_bark = gr.Textbox(label="Text to speech", lines=2, max_lines=2, show_copy_button=True, placeholder="Type or past here what you want to hear ...")
                         with gr.Column():
                             out_bark = gr.Audio(label="Generated speech", type="filepath", show_download_button=True, interactive=False)
                     with gr.Row():
@@ -7129,10 +7129,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_txt2vid_ms = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_prompt_label, info="Describe what you want in your video", placeholder="Darth vader is surfing on waves, photo realistic, best quality")
+                                    prompt_txt2vid_ms = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_prompt_label, info="Describe what you want in your video", placeholder="Darth vader is surfing on waves, photo realistic, best quality")
                             with gr.Row():
                                 with gr.Column():
-                                    negative_prompt_txt2vid_ms = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_negprompt_label, info="Describe what you DO NOT want in your video", placeholder="out of frame, ugly")
+                                    negative_prompt_txt2vid_ms = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_negprompt_label, info="Describe what you DO NOT want in your video", placeholder="out of frame, ugly")
                             with gr.Row():
                                 with gr.Column():
                                    output_type_txt2vid_ms = gr.Radio(choices=["mp4", "gif"], value="mp4", label=biniou_lang_output_type_label, info=biniou_lang_output_type_info)
@@ -7372,10 +7372,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_txt2vid_ze = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_prompt_label, info="Describe what you want in your video", placeholder="a panda is playing guitar on times square")
+                                    prompt_txt2vid_ze = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_prompt_label, info="Describe what you want in your video", placeholder="a panda is playing guitar on times square")
                             with gr.Row():
                                 with gr.Column():
-                                    negative_prompt_txt2vid_ze = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_negprompt_label, info="Describe what you DO NOT want in your video", placeholder="out of frame, ugly")
+                                    negative_prompt_txt2vid_ze = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_negprompt_label, info="Describe what you DO NOT want in your video", placeholder="out of frame, ugly")
                             with gr.Row():
                                 with gr.Column():
                                     output_type_txt2vid_ze = gr.Radio(choices=["mp4", "gif"], value="mp4", label=biniou_lang_output_type_label, info=biniou_lang_output_type_info)
@@ -7622,10 +7622,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_animatediff_lcm = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_prompt_label, info="Describe what you want in your video", placeholder="A space rocket with trails of smoke behind it launching into space from the desert, 4k, high resolution")
+                                    prompt_animatediff_lcm = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_prompt_label, info="Describe what you want in your video", placeholder="A space rocket with trails of smoke behind it launching into space from the desert, 4k, high resolution")
                             with gr.Row():
                                 with gr.Column():
-                                    negative_prompt_animatediff_lcm = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_negprompt_label, info="Describe what you DO NOT want in your video", placeholder="bad quality, worst quality, low resolution")
+                                    negative_prompt_animatediff_lcm = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_negprompt_label, info="Describe what you DO NOT want in your video", placeholder="bad quality, worst quality, low resolution")
                             with gr.Row():
                                 with gr.Column():
                                     output_type_animatediff_lcm = gr.Radio(choices=["mp4", "gif"], value="mp4", label=biniou_lang_output_type_label, info=biniou_lang_output_type_info)
@@ -8111,10 +8111,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_vid2vid_ze = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_prompt_label, info="Describe what you want to modify in your input video", placeholder="make it Van Gogh Starry Night style")
+                                    prompt_vid2vid_ze = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_prompt_label, info="Describe what you want to modify in your input video", placeholder="make it Van Gogh Starry Night style")
                             with gr.Row():
                                 with gr.Column():
-                                    negative_prompt_vid2vid_ze = gr.Textbox(lines=3, max_lines=3, label=biniou_lang_negprompt_label, info="Describe what you DO NOT want in your output video", placeholder="out of frame, bad quality, blurry, ugly, text, characters, logo")
+                                    negative_prompt_vid2vid_ze = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_negprompt_label, info="Describe what you DO NOT want in your output video", placeholder="out of frame, bad quality, blurry, ugly, text, characters, logo")
                             with gr.Row():
                                 with gr.Column():
                                     output_type_vid2vid_ze = gr.Radio(choices=["mp4", "gif"], value="mp4", label=biniou_lang_output_type_label, info=biniou_lang_output_type_info)
@@ -8309,7 +8309,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():                        
-                                    prompt_txt2shape = gr.Textbox(lines=12, max_lines=12, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder="a firecracker")
+                                    prompt_txt2shape = gr.Textbox(lines=12, max_lines=12, show_copy_button=True, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder="a firecracker")
                             with gr.Row():
                                 with gr.Column():
                                     output_type_txt2shape = gr.Radio(choices=["gif", "mesh"], value="gif", label=biniou_lang_output_type_label, info=biniou_lang_output_type_info)
