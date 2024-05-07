@@ -29,6 +29,7 @@ model_list_img2img_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
     "IDKiro/sdxs-512-dreamshaper",
     "IDKiro/sdxs-512-0.9",
+    "fluently/Fluently-XL-v4",
     "playgroundai/playground-v2-512px-base",
     "playgroundai/playground-v2-1024px-aesthetic",
     "playgroundai/playground-v2.5-1024px-aesthetic",
