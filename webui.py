@@ -1393,10 +1393,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 gr.Number(visible=False)
                         with gr.Row():
                             with gr.Column():
-                                prompt_template_llamacpp = gr.Textbox(label=biniou_lang_prompt_template_label, value=model_list_llamacpp[model_llamacpp.value][1], lines=4, max_lines=4, info=biniou_lang_prompt_template_info)
+                                prompt_template_llamacpp = gr.Textbox(label=biniou_lang_prompt_template_label, value=model_list_llamacpp[model_llamacpp.value][1], lines=4, max_lines=4, show_copy_button=True, info=biniou_lang_prompt_template_info)
                         with gr.Row():
                             with gr.Column():
-                                system_template_llamacpp = gr.Textbox(label=biniou_lang_system_template_label, value=model_list_llamacpp[model_llamacpp.value][2], lines=4, max_lines=4, info=biniou_lang_system_template_info)
+                                system_template_llamacpp = gr.Textbox(label=biniou_lang_system_template_label, value=model_list_llamacpp[model_llamacpp.value][2], lines=4, max_lines=4, show_copy_button=True, info=biniou_lang_system_template_info)
                                 model_llamacpp.change(fn=change_model_type_llamacpp, inputs=model_llamacpp, outputs=[prompt_template_llamacpp, system_template_llamacpp])
                                 force_prompt_template_llamacpp.change(fn=change_prompt_template_llamacpp, inputs=force_prompt_template_llamacpp, outputs=[prompt_template_llamacpp, system_template_llamacpp])
                         with gr.Row():
@@ -1630,10 +1630,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 top_k_llava = gr.Slider(0, 500, step=1, value=40, label=biniou_lang_top_k_label, info=biniou_lang_top_k_info)
                         with gr.Row():
                             with gr.Column():
-                                prompt_template_llava = gr.Textbox(label=biniou_lang_prompt_template_label, value=model_list_llava[model_llava.value][2], lines=4, max_lines=4, info="Place your custom prompt template here. Keep the {prompt} tag, that will be replaced by your prompt.")
+                                prompt_template_llava = gr.Textbox(label=biniou_lang_prompt_template_label, value=model_list_llava[model_llava.value][2], lines=4, max_lines=4, show_copy_button=True, info="Place your custom prompt template here. Keep the {prompt} tag, that will be replaced by your prompt.")
                         with gr.Row():
                             with gr.Column():
-                                system_template_llava = gr.Textbox(label=biniou_lang_system_template_label, value=model_list_llava[model_llava.value][3], lines=4, max_lines=4, info=biniou_lang_system_template_info, interactive=True)
+                                system_template_llava = gr.Textbox(label=biniou_lang_system_template_label, value=model_list_llava[model_llava.value][3], lines=4, max_lines=4, show_copy_button=True, info=biniou_lang_system_template_info, interactive=True)
                                 model_llava.change(fn=change_model_type_llava, inputs=model_llava, outputs=[prompt_template_llava, system_template_llava])
 #                                force_prompt_template_llava.change(fn=change_prompt_template_llava, inputs=force_prompt_template_llava, outputs=[prompt_tmplate_llava, system_template_llava])
                         with gr.Row():
