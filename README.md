@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-05-09** : 🔥 ***Support for ColorfulXL-Lightning*** 🔥 > Adding support for model  [ColorfulXL-Lightning](https://huggingface.co/ColorfulXL-Lightning) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero modules. This is a versatile SDXL model that only require 2, 4 or 8 steps inferences to produce nice results.
+
   * 🆕 **2024-05-07** : 🔥 ***Support for Fluently-XL-v4*** 🔥 > Adding support for model  [fluently/Fluently-XL-v4](https://huggingface.co/fluently/Fluently-XL-v4) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero modules. This model simply pretends to be the best SDXL model around. Best or not, it indeed produces highly qualitative contents. Really worth the try.
 
   * 🆕 **2024-05-05** : 🔥 ***Support for PixArt-Sigma*** 🔥 > Adding support for model  [PixArt-alpha/PixArt-Sigma-XL-2-1024-MS](https://huggingface.co/PixArt-alpha/PixArt-Sigma-XL-2-1024-MS) to PixArt-Alpha module. Please note that although the model card advertises a generation size up to 4K (which is the case), the outputs seems upscaled from a 1024 size.
@@ -28,8 +30,6 @@
     - FPS setting (for modules lacking it).
  
   * 🆕 **2024-05-01** : 🔥 ***Adding support for model aipicasso/emi-2*** 🔥 > Stable Diffusion, img2img, IP-Adapter, ControlNet, Photobooth and Text2Video-Zero can now use the Japanese anime-specialized model [aipicasso/emi-2](https://huggingface.co/aipicasso/emi-2).
-
-  * 🆕 **2024-04-29** : 🔥 ***Llava modules updates*** 🔥 > Adding support for models [xtuner/llava-llama-3-8b-v1_1-gguf](https://huggingface.co/xtuner/llava-llama-3-8b-v1_1-gguf) and [xtuner/llava-phi-3-mini-gguf](https://huggingface.co/xtuner/llava-phi-3-mini-gguf) to llava module and making llava-llama-3-8b-v1_1-gguf the default model. 
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
