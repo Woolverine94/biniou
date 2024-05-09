@@ -139,24 +139,24 @@ def send_to_module_inpaint(content, index, numtab, numtab_item):
     
 def send_to_module_text(content, index, numtab, numtab_item):
     index = int(index)
-    return content[index], gr.Tabs.update(selected=numtab), tabs_text.update(selected=numtab_item)    
-    
-def send_to_module_video(content, numtab, numtab_item) : 
+    return content[index], gr.Tabs.update(selected=numtab), tabs_text.update(selected=numtab_item)
+
+def send_to_module_video(content, numtab, numtab_item):
 	return content, gr.Tabs.update(selected=numtab), tabs_video.update(selected=numtab_item)
 
-def send_image_to_module_video(content, index, numtab, numtab_item) : 
+def send_image_to_module_video(content, index, numtab, numtab_item):
 	index = int(index)
 	return content[index], gr.Tabs.update(selected=numtab), tabs_video.update(selected=numtab_item)
 
-def send_to_module_3d(content, index, numtab, numtab_item) :
+def send_to_module_3d(content, index, numtab, numtab_item):
     index = int(index)
     return content[index], gr.Tabs.update(selected=numtab), tabs_3d.update(selected=numtab_item)
 
 def send_text_to_module_image (prompt, numtab, numtab_item):
     return prompt, gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item)
-    
+
 def send_audio_to_module_text(audio, numtab, numtab_item):
-    return audio, gr.Tabs.update(selected=numtab), tabs_text.update(selected=numtab_item)    
+    return audio, gr.Tabs.update(selected=numtab), tabs_text.update(selected=numtab_item)
 
 def send_text_to_module_text(prompt, numtab, numtab_item):
     return prompt, gr.Tabs.update(selected=numtab), tabs_text.update(selected=numtab_item)
@@ -166,13 +166,13 @@ def import_to_module(prompt, negative_prompt, numtab, numtab_item):
     return prompt, negative_prompt, gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item)
 
 def import_to_module_prompt_only(prompt, numtab, numtab_item):
-    return prompt, gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item) 
-    
+    return prompt, gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item)
+
 def import_to_module_audio(prompt, numtab, numtab_item):
-    return prompt, gr.Tabs.update(selected=numtab), tabs_audio.update(selected=numtab_item)    
-    
+    return prompt, gr.Tabs.update(selected=numtab), tabs_audio.update(selected=numtab_item)
+
 def import_to_module_video(prompt, negative_prompt, numtab, numtab_item):
-    return prompt, negative_prompt, gr.Tabs.update(selected=numtab), tabs_video.update(selected=numtab_item)   
+    return prompt, negative_prompt, gr.Tabs.update(selected=numtab), tabs_video.update(selected=numtab_item)
 
 def import_to_module_video_prompt_only(prompt, numtab, numtab_item):
     return prompt, gr.Tabs.update(selected=numtab), tabs_video.update(selected=numtab_item) 
@@ -181,15 +181,15 @@ def import_text_to_module_image(prompt, numtab, numtab_item):
     return prompt, gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item)
 
 def import_text_to_module_video(prompt, numtab, numtab_item):
-    return prompt, gr.Tabs.update(selected=numtab), tabs_video.update(selected=numtab_item)    
+    return prompt, gr.Tabs.update(selected=numtab), tabs_video.update(selected=numtab_item)
 
 ## fonctions Exports Inputs + Outputs
 def both_text_to_module_image (content, prompt, numtab, numtab_item):
     return content, prompt, gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item) 
 
 def both_text_to_module_inpaint_image (content, prompt, numtab, numtab_item):
-    return content, content, prompt, gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item) 
-   
+    return content, content, prompt, gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item)
+
 def both_to_module(prompt, negative_prompt, content, index, numtab, numtab_item):
     index = int(index)
     return prompt, negative_prompt, content[index], gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item)
@@ -201,19 +201,19 @@ def both_to_module_prompt_only(prompt, content, index, numtab, numtab_item):
 def both_to_module_inpaint(prompt, negative_prompt, content, index, numtab, numtab_item):
     index = int(index)
     return prompt, negative_prompt, content[index], content[index], gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item)
-    
+
 def both_to_module_inpaint_prompt_only(prompt, content, index, numtab, numtab_item):
     index = int(index)
-    return prompt, content[index], content[index], gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item)    
+    return prompt, content[index], content[index], gr.Tabs.update(selected=numtab), tabs_image.update(selected=numtab_item)
 
 def get_select_index(evt: gr.SelectData) :
     return evt.index
 
 ## Functions specific to llamacpp
-def show_download_llamacpp() :
+def show_download_llamacpp():
     return btn_download_file_llamacpp.update(visible=False), download_file_llamacpp.update(visible=True)
 
-def hide_download_llamacpp() :
+def hide_download_llamacpp():
     return btn_download_file_llamacpp.update(visible=True), download_file_llamacpp.update(visible=False)
 
 def change_model_type_llamacpp(model_llamacpp):
@@ -230,10 +230,10 @@ def change_prompt_template_llamacpp(prompt_template):
     return prompt_template_llamacpp.update(value=prompt_template_list_llamacpp[prompt_template][0]), system_template_llamacpp.update(value=prompt_template_list_llamacpp[prompt_template][1])
 
 ## Functions specific to llava
-def show_download_llava() :
+def show_download_llava():
     return btn_download_file_llava.update(visible=False), download_file_llava.update(visible=True)
 
-def hide_download_llava() :
+def hide_download_llava():
     return btn_download_file_llava.update(visible=True), download_file_llava.update(visible=False)
 
 # def change_model_type_llava(model_llava):
@@ -257,12 +257,12 @@ def change_source_type_whisper(source_type_whisper):
         return source_audio_whisper.update(source="upload")
     elif source_type_whisper == "micro" :
         return source_audio_whisper.update(source="microphone")
-        
+
 def change_output_type_whisper(output_type_whisper):
     if output_type_whisper == "transcribe" :
         return output_language_whisper.update(visible=False)
     elif output_type_whisper == "translate" :
-        return output_language_whisper.update(visible=True)        
+        return output_language_whisper.update(visible=True)
 
 def stop_recording_whisper(source_audio_whisper):
     return source_audio_whisper.update(source="upload"), source_audio_whisper
@@ -270,16 +270,16 @@ def stop_recording_whisper(source_audio_whisper):
 ## Functions specific to nllb
 
 ## Functions specific to txt2prompt
-def change_output_type_txt2prompt(output_type_txt2prompt) : 
-    if output_type_txt2prompt == "ChatGPT" :
+def change_output_type_txt2prompt(output_type_txt2prompt):
+    if output_type_txt2prompt == "ChatGPT":
         return model_txt2prompt.update(value=model_list_txt2prompt[0]), max_tokens_txt2prompt.update(value=128)
-    elif output_type_txt2prompt == "SD" :
-        return model_txt2prompt.update(value=model_list_txt2prompt[1]), max_tokens_txt2prompt.update(value=70) 
+    elif output_type_txt2prompt == "SD":
+        return model_txt2prompt.update(value=model_list_txt2prompt[1]), max_tokens_txt2prompt.update(value=70)
 
 ## Functions specific to Stable Diffusion 
 def zip_download_file_txt2img_sd(content):
     savename = zipper(content)
-    return savename, download_file_txt2img_sd.update(visible=True) 
+    return savename, download_file_txt2img_sd.update(visible=True)
 
 def hide_download_file_txt2img_sd():
     return download_file_txt2img_sd.update(visible=False)
@@ -391,7 +391,7 @@ def change_txtinv_txt2img_sd(model, txtinv, prompt, negative_prompt):
 ## Functions specific to Kandinsky 
 def zip_download_file_txt2img_kd(content):
     savename = zipper(content)
-    return savename, download_file_txt2img_kd.update(visible=True) 
+    return savename, download_file_txt2img_kd.update(visible=True)
 
 def hide_download_file_txt2img_kd():
     return download_file_txt2img_kd.update(visible=False)
@@ -405,13 +405,13 @@ def change_model_type_txt2img_kd(model_txt2img_kd):
 ## Functions specific to LCM
 def zip_download_file_txt2img_lcm(content):
     savename = zipper(content)
-    return savename, download_file_txt2img_lcm.update(visible=True) 
+    return savename, download_file_txt2img_lcm.update(visible=True)
 
 def hide_download_file_txt2img_lcm():
     return download_file_txt2img_lcm.update(visible=False)
-    
+
 def update_preview_txt2img_lcm(preview):
-    return out_txt2img_lcm.update(preview)     
+    return out_txt2img_lcm.update(preview)
 
 def change_model_type_txt2img_lcm(model_txt2img_lcm):
     if (model_txt2img_lcm == "latent-consistency/lcm-ssd-1b"):
@@ -506,7 +506,7 @@ def hide_download_file_txt2img_mjm():
 ## Functions specific to PixArt-Alpha
 def zip_download_file_txt2img_paa(content):
     savename = zipper(content)
-    return savename, download_file_txt2img_paa.update(visible=True) 
+    return savename, download_file_txt2img_paa.update(visible=True)
 
 def hide_download_file_txt2img_paa():
     return download_file_txt2img_paa.update(visible=False)
@@ -527,14 +527,14 @@ def change_model_type_txt2img_paa(model_txt2img_paa):
     else:
         return sampler_txt2img_paa.update(value="UniPC", interactive=True), width_txt2img_paa.update(value=biniou_global_sd15_width), height_txt2img_paa.update(value=biniou_global_sd15_height), guidance_scale_txt2img_paa.update(value=7.0), num_inference_step_txt2img_paa.update(value=15)
 
-## Functions specific to img2img 
+## Functions specific to img2img
 def zip_download_file_img2img(content):
     savename = zipper(content)
-    return savename, download_file_img2img.update(visible=True) 
+    return savename, download_file_img2img.update(visible=True)
 
 def hide_download_file_img2img():
-    return download_file_img2img.update(visible=False)        
-    
+    return download_file_img2img.update(visible=False)
+
 def change_source_type_img2img(source_type_img2img):
     if source_type_img2img == "image" :
         return {"source": "upload", "tool": "", "width" : "", "value": None, "__type__": "update"}
@@ -642,19 +642,19 @@ def change_txtinv_img2img(model, txtinv, prompt, negative_prompt):
         txtinv_negative_prompt_img2img = negative_prompt
     return prompt_img2img.update(value=txtinv_prompt_img2img), negative_prompt_img2img.update(value=txtinv_negative_prompt_img2img)
 
-## Functions specific to img2img_ip 
+## Functions specific to img2img_ip
 def zip_download_file_img2img_ip(content):
     savename = zipper(content)
-    return savename, download_file_img2img_ip.update(visible=True) 
+    return savename, download_file_img2img_ip.update(visible=True)
 
 def hide_download_file_img2img_ip():
-    return download_file_img2img_ip.update(visible=False)        
+    return download_file_img2img_ip.update(visible=False)
 
 def change_model_type_img2img_ip(model_img2img_ip, source_type):
 
     if  (not "TURBO" in model_img2img_ip.upper()) and (("XL" in model_img2img_ip.upper()) or ("ETRI-VILAB/KOALA-" in model_img2img_ip.upper()) or ("PLAYGROUNDAI/PLAYGROUND-V2" in model_img2img_ip.upper()) or (model_img2img_ip == "dataautogpt3/OpenDalleV1.1") or (model_img2img_ip == "dataautogpt3/ProteusV0.4") or (model_img2img_ip == "segmind/SSD-1B") or (model_img2img_ip == "segmind/Segmind-Vega")):
         is_xl_size: bool = True
-    else : 
+    else :
         is_xl_size: bool = False
 
     if (source_type == "composition") and not is_xl_size:
@@ -786,61 +786,61 @@ def change_source_type_img2img_ip(source_type):
     elif (source_type == "composition"):
         return img_img2img_ip.update(value=None, visible=False, interactive=False), denoising_strength_img2img_ip.update(value=1, interactive=False)
 
-## Functions specific to img2var 
+## Functions specific to img2var
 def zip_download_file_img2var(content):
     savename = zipper(content)
-    return savename, download_file_img2var.update(visible=True) 
+    return savename, download_file_img2var.update(visible=True)
 
 def hide_download_file_img2var():
-    return download_file_img2var.update(visible=False)        
+    return download_file_img2var.update(visible=False)
 
-## Functions specific to pix2pix 
+## Functions specific to pix2pix
 def zip_download_file_pix2pix(content):
     savename = zipper(content)
-    return savename, download_file_pix2pix.update(visible=True) 
+    return savename, download_file_pix2pix.update(visible=True)
 
 def hide_download_file_pix2pix():
-    return download_file_pix2pix.update(visible=False) 
+    return download_file_pix2pix.update(visible=False)
 
-## Functions specific to magicmix 
+## Functions specific to magicmix
 def zip_download_file_magicmix(content):
     savename = zipper(content)
-    return savename, download_file_magicmix.update(visible=True) 
+    return savename, download_file_magicmix.update(visible=True)
 
 def hide_download_file_magicmix():
-    return download_file_magicmix.update(visible=False) 
+    return download_file_magicmix.update(visible=False)
 
-## Functions specific to inpaint 
+## Functions specific to inpaint
 def zip_download_file_inpaint(content):
     savename = zipper(content)
-    return savename, download_file_inpaint.update(visible=True) 
+    return savename, download_file_inpaint.update(visible=True)
 
 def hide_download_file_inpaint():
-    return download_file_inpaint.update(visible=False) 
+    return download_file_inpaint.update(visible=False)
 
-## Functions specific to paintbyex 
+## Functions specific to paintbyex
 def zip_download_file_paintbyex(content):
     savename = zipper(content)
-    return savename, download_file_paintbyex.update(visible=True) 
+    return savename, download_file_paintbyex.update(visible=True)
 
 def hide_download_file_paintbyex():
-    return download_file_paintbyex.update(visible=False) 
+    return download_file_paintbyex.update(visible=False)
 
-## Functions specific to outpaint 
+## Functions specific to outpaint
 def zip_download_file_outpaint(content):
     savename = zipper(content)
-    return savename, download_file_outpaint.update(visible=True) 
+    return savename, download_file_outpaint.update(visible=True)
 
 def hide_download_file_outpaint():
-    return download_file_outpaint.update(visible=False) 
+    return download_file_outpaint.update(visible=False)
 
-## Functions specific to controlnet 
+## Functions specific to controlnet
 def zip_download_file_controlnet(content):
     savename = zipper(content)
-    return savename, download_file_controlnet.update(visible=True) 
+    return savename, download_file_controlnet.update(visible=True)
 
 def hide_download_file_controlnet():
-    return download_file_controlnet.update(visible=False) 
+    return download_file_controlnet.update(visible=False)
 
 def change_model_type_controlnet(model_controlnet):
     if (model_controlnet == "stabilityai/sdxl-turbo"):
@@ -945,10 +945,10 @@ def change_txtinv_controlnet(model, txtinv, prompt, negative_prompt):
 ## Functions specific to faceid_ip 
 def zip_download_file_faceid_ip(content):
     savename = zipper(content)
-    return savename, download_file_faceid_ip.update(visible=True) 
+    return savename, download_file_faceid_ip.update(visible=True)
 
 def hide_download_file_faceid_ip():
-    return download_file_faceid_ip.update(visible=False)        
+    return download_file_faceid_ip.update(visible=False)
 
 def change_model_type_faceid_ip(model_faceid_ip, prompt):
     if (model_faceid_ip == "stabilityai/sdxl-turbo"):
@@ -1070,10 +1070,10 @@ def change_txtinv_faceid_ip(model, txtinv, prompt, negative_prompt):
 ## Functions specific to faceswap 
 def zip_download_file_faceswap(content):
     savename = zipper(content)
-    return savename, download_file_faceswap.update(visible=True) 
+    return savename, download_file_faceswap.update(visible=True)
 
 def hide_download_file_faceswap():
-    return download_file_faceswap.update(visible=False) 
+    return download_file_faceswap.update(visible=False)
 
 ## Functions specific to Real ESRGAN
 
@@ -1082,7 +1082,6 @@ def hide_download_file_faceswap():
 ## Functions specific to MusicGen
 
 ## Functions specific to MusicGen Melody
-
 def change_source_type_musicgen_mel(source_type_musicgen_mel):
     if source_type_musicgen_mel == "audio" :
         return source_audio_musicgen_mel.update(source="upload")
@@ -1158,7 +1157,6 @@ def change_output_type_animatediff_lcm(output_type_animatediff_lcm):
         return out_animatediff_lcm.update(visible=False), gif_out_animatediff_lcm.update(visible=True), btn_animatediff_lcm.update(visible=False), btn_animatediff_lcm_gif.update(visible=True)
 
 ## Functions specific to Stable Video Diffusion
-
 def change_model_type_img2vid(model_img2vid):
     if (model_img2vid == "stabilityai/stable-video-diffusion-img2vid"):
         return num_frames_img2vid.update(value=14)
@@ -1172,7 +1170,6 @@ def change_output_type_img2vid(output_type_img2vid):
         return out_img2vid.update(visible=False), gif_out_img2vid.update(visible=True), btn_img2vid.update(visible=False), btn_img2vid_gif.update(visible=True)
 
 ## Functions specific to Video Instruct-Pix2Pix
-
 def change_output_type_vid2vid_ze(output_type_vid2vid_ze):
     if output_type_vid2vid_ze == "mp4" :
         return out_vid2vid_ze.update(visible=True), gif_out_vid2vid_ze.update(visible=False), btn_vid2vid_ze.update(visible=True), btn_vid2vid_ze_gif.update(visible=False)
@@ -1182,11 +1179,11 @@ def change_output_type_vid2vid_ze(output_type_vid2vid_ze):
 ## Functions specific to txt2shape
 def zip_download_file_txt2shape(content):
     savename = zipper(content)
-    return savename, download_file_txt2shape.update(visible=True) 
-    
+    return savename, download_file_txt2shape.update(visible=True)
+
 def zip_mesh_txt2shape(content):
     savename = zipper_file(content)
-    return savename, download_file_txt2shape.update(visible=True)     
+    return savename, download_file_txt2shape.update(visible=True)
 
 def hide_download_file_txt2shape():
     return download_file_txt2shape.update(visible=False)
@@ -1200,11 +1197,11 @@ def change_output_type_txt2shape(output_type_txt2shape, out_size_txt2shape, mesh
 ## Functions specific to img2shape
 def zip_download_file_img2shape(content):
     savename = zipper(content)
-    return savename, download_file_img2shape.update(visible=True) 
+    return savename, download_file_img2shape.update(visible=True)
 
 def zip_mesh_img2shape(content):
     savename = zipper_file(content)
-    return savename, download_file_img2shape.update(visible=True)     
+    return savename, download_file_img2shape.update(visible=True)
 
 def hide_download_file_img2shape():
     return download_file_img2shape.update(visible=False)
@@ -1244,27 +1241,27 @@ def biniou_global_settings_auth_switch(auth_value):
 def refresh_logfile():
     return logfile_biniou
         
-def show_download_console() :
+def show_download_console():
     return btn_download_file_console.update(visible=False), download_file_console.update(visible=True)
 
-def hide_download_console() :
+def hide_download_console():
     return btn_download_file_console.update(visible=True), download_file_console.update(visible=False)
 
 ## Functions specific to banner 
 
-def dict_to_url(url) :
+def dict_to_url(url):
     url_final = "./?"
     for key, value in url.items():
         url_final += "&"+ key+ "="+ value
     return url_final.replace("?&", "?")
 
-def url_params_theme(url) :
+def url_params_theme(url):
     url = eval(url)
-    if url.get('__theme') != None and url['__theme'] == "dark" :
+    if url.get('__theme') != None and url['__theme'] == "dark":
         del url['__theme']
         url_final = dict_to_url(url)
         return f"<a href='https://github.com/Woolverine94/biniou' target='_blank' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='48' height='48'/></p><span style='text-align: left; font-size: 32px; font-weight: bold; line-height:48px;'>biniou</span></a><span style='vertical-align: bottom; line-height:48px; font-size: 10px;'> ({biniou_global_version}) </span><span style='vertical-align: top; line-height:48px;'><button onclick=\"window.location.href='{url_final}';\" title='{biniou_lang_light_mode}'>☀️</button></span>", banner_biniou.update(visible=True)
-    elif url.get('__theme') == None :
+    elif url.get('__theme') == None:
         url['__theme'] = "dark"
         url_final = dict_to_url(url)
         return f"<a href='https://github.com/Woolverine94/biniou' target='_blank' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='48' height='48'/></p><span style='text-align: left; font-size: 32px; font-weight: bold; line-height:48px;'>biniou</span></a><span style='vertical-align: bottom; line-height:48px; font-size: 10px;'> ({biniou_global_version}) </span><span style='vertical-align: top; line-height:48px;'><button onclick=\"window.location.href='{url_final}';\" title='{biniou_lang_dark_mode}'>🌘</button></span>", banner_biniou.update(visible=True)
@@ -4249,7 +4246,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 guidance_scale_pix2pix = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
-                                image_guidance_scale_pix2pix = gr.Slider(0.0, 10.0, step=0.1, value=1.5, label=biniou_lang_tab_pix2pix_imgcfg_label, info=biniou_lang_tab_pix2pix_imgcfg_info)
+                                image_guidance_scale_pix2pix = gr.Slider(0.0, 10.0, step=0.1, value=1.5, label=biniou_lang_imgcfg_label, info=biniou_lang_tab_pix2pix_imgcfg_info)
                             with gr.Column():
                                 num_images_per_prompt_pix2pix = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info=biniou_lang_batch_size_image_info)
                             with gr.Column():
@@ -7031,7 +7028,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_txt2vid_ms}</br>
                                 <b>{biniou_lang_about_function}</b>Generate video from a prompt and a negative prompt using <a href='https://github.com/modelscope/modelscope' target='_blank'>Modelscope</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_prompt_neg}</br>
-                                <b>{biniou_lang_about_outputs}</b>Video</br>
+                                <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_video_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/cerspense/zeroscope_v2_576w' target='_blank'>cerspense/zeroscope_v2_576w</a>, 
                                 <a href='https://huggingface.co/camenduru/potat1' target='_blank'>camenduru/potat1</a>, 
@@ -7115,10 +7112,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_txt2vid_ms = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_prompt_label, info="Describe what you want in your video", placeholder="Darth vader is surfing on waves, photo realistic, best quality")
+                                    prompt_txt2vid_ms = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_prompt_label, info=biniou_lang_tab_video_prompt_info, placeholder=biniou_lang_tab_txt2vid_ms_prompt_placeholder)
                             with gr.Row():
                                 with gr.Column():
-                                    negative_prompt_txt2vid_ms = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_negprompt_label, info="Describe what you DO NOT want in your video", placeholder="out of frame, ugly")
+                                    negative_prompt_txt2vid_ms = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_negprompt_label, info=biniou_lang_tab_video_negprompt_info, placeholder=biniou_lang_tab_txt2vid_ms_negprompt_placeholder)
                             with gr.Row():
                                 with gr.Column():
                                    output_type_txt2vid_ms = gr.Radio(choices=["mp4", "gif"], value="mp4", label=biniou_lang_output_type_label, info=biniou_lang_output_type_info)
@@ -7234,7 +7231,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_txt2vid_ze}</br>
                                 <b>{biniou_lang_about_function}</b>Generate video from a prompt and a negative prompt using <a href='https://github.com/Picsart-AI-Research/Text2Video-Zero' target='_blank'>Text2Video-Zero</a> with <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a> Models</br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_prompt_neg}</br>
-                                <b>{biniou_lang_about_outputs}</b>Video</br>
+                                <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_video_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
                                 <a href='https://huggingface.co/playgroundai/playground-v2-512px-base' target='_blank'>playgroundai/playground-v2-512px-base</a>, 
@@ -7290,26 +7287,26 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 num_fps_txt2vid_ze = gr.Slider(1, 120, step=1, value=4, label=biniou_lang_video_fps_label, info=biniou_lang_video_fps_info)
                             with gr.Column():
-                                num_chunks_txt2vid_ze = gr.Slider(1, 32, step=1, value=1, label="Chunk size", info="Number of frames processed in a chunk. 1 = no chunks.")
+                                num_chunks_txt2vid_ze = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_tab_video_chunks_label, info=biniou_lang_tab_txt2vid_ze_chunks_info)
                         with gr.Row():
                             with gr.Column():
                                 width_txt2vid_ze = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=512, label=biniou_lang_video_width_label, info=biniou_lang_image_width_info)
                             with gr.Column():
                                 height_txt2vid_ze = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=512, label=biniou_lang_video_height_label, info=biniou_lang_image_height_info)
                             with gr.Column():
-                                num_videos_per_prompt_txt2vid_ze = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info ="Number of videos to generate in a single run", interactive=False)
+                                num_videos_per_prompt_txt2vid_ze = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info=biniou_lang_tab_video_batch_size_info, interactive=False)
                             with gr.Column():
-                                num_prompt_txt2vid_ze = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)                            
-                        with gr.Accordion("Advanced Settings", open=False):
+                                num_prompt_txt2vid_ze = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
+                        with gr.Accordion(biniou_lang_tab_txt2vid_ze_avd_settings, open=False):
                             with gr.Row():
                                 with gr.Column():
-                                    motion_field_strength_x_txt2vid_ze = gr.Slider(0, 50, step=1, value=12, label="Motion field strength x", info="Horizontal motion strength")
+                                    motion_field_strength_x_txt2vid_ze = gr.Slider(0, 50, step=1, value=12, label=biniou_lang_tab_txt2vid_ze_strengthx_label, info=biniou_lang_tab_txt2vid_ze_strengthx_info)
                                 with gr.Column():
-                                    motion_field_strength_y_txt2vid_ze = gr.Slider(0, 50, step=1, value=12, label="Motion field strength y", info="Vertical motion strength")
+                                    motion_field_strength_y_txt2vid_ze = gr.Slider(0, 50, step=1, value=12, label=biniou_lang_tab_txt2vid_ze_strengthy_label, info=biniou_lang_tab_txt2vid_ze_strengthy_info)
                                 with gr.Column():
-                                    timestep_t0_txt2vid_ze = gr.Slider(0, biniou_global_steps_max, step=1, value=7, label="Timestep t0", interactive=False)
+                                    timestep_t0_txt2vid_ze = gr.Slider(0, biniou_global_steps_max, step=1, value=7, label=biniou_lang_tab_txt2vid_ze_t0_label, interactive=False)
                                 with gr.Column():
-                                    timestep_t1_txt2vid_ze = gr.Slider(1, biniou_global_steps_max, step=1, value=8, label="Timestep t1", interactive=False)
+                                    timestep_t1_txt2vid_ze = gr.Slider(1, biniou_global_steps_max, step=1, value=8, label=biniou_lang_tab_txt2vid_ze_t1_label, interactive=False)
                                     num_inference_step_txt2vid_ze.change(set_timestep_vid_ze, inputs=[num_inference_step_txt2vid_ze, model_txt2vid_ze], outputs=[timestep_t0_txt2vid_ze, timestep_t1_txt2vid_ze])
                         with gr.Row():
                             with gr.Column():    
@@ -7358,10 +7355,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_txt2vid_ze = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_prompt_label, info="Describe what you want in your video", placeholder="a panda is playing guitar on times square")
+                                    prompt_txt2vid_ze = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_prompt_label, info=biniou_lang_tab_video_prompt_info, placeholder=biniou_lang_tab_txt2vid_ze_prompt_placeholder)
                             with gr.Row():
                                 with gr.Column():
-                                    negative_prompt_txt2vid_ze = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_negprompt_label, info="Describe what you DO NOT want in your video", placeholder="out of frame, ugly")
+                                    negative_prompt_txt2vid_ze = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_negprompt_label, info=biniou_lang_tab_video_negprompt_info, placeholder=biniou_lang_tab_txt2vid_ze_negprompt_placeholder)
                             with gr.Row():
                                 with gr.Column():
                                     output_type_txt2vid_ze = gr.Radio(choices=["mp4", "gif"], value="mp4", label=biniou_lang_output_type_label, info=biniou_lang_output_type_info)
@@ -7510,7 +7507,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_animatediff_lcm}</br>
                                 <b>{biniou_lang_about_function}</b>Generate video from a prompt and a negative prompt using <a href='https://animatelcm.github.io/' target='_blank'>AnimateLCM</a> or <a href='https://huggingface.co/ByteDance/AnimateDiff-Lightning' target='_blank'>ByteDance/AnimateDiff-Lightning</a> with <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a> Models</br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_prompt_neg}</br>
-                                <b>{biniou_lang_about_outputs}</b>Video</br>
+                                <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_video_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/emilianJR/epiCRealism' target='_blank'>emilianJR/epiCRealism</a>, 
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
@@ -7542,7 +7539,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_animatediff_lcm = gr.Dropdown(choices=model_list_animatediff_lcm, value=model_list_animatediff_lcm[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                model_adapters_animatediff_lcm = gr.Dropdown(choices=list(model_list_adapters_animatediff_lcm.keys()), value=list(model_list_adapters_animatediff_lcm.keys())[0], label="Adapter", info="Choose adapter to use for inference")
+                                model_adapters_animatediff_lcm = gr.Dropdown(choices=list(model_list_adapters_animatediff_lcm.keys()), value=list(model_list_adapters_animatediff_lcm.keys())[0], label=biniou_lang_tab_animatediff_adapter_label, info=biniou_lang_tab_animatediff_adapter_info)
                             with gr.Column():
                                 num_inference_step_animatediff_lcm = gr.Slider(1, biniou_global_steps_max, step=1, value=4, label=biniou_lang_steps_label, info=biniou_lang_video_steps_info)
                             with gr.Column():
@@ -7562,7 +7559,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 height_animatediff_lcm = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=biniou_global_sd15_height, label=biniou_lang_video_height_label, info=biniou_lang_image_height_info)
                             with gr.Column():
-                                num_videos_per_prompt_animatediff_lcm = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info ="Number of videos to generate in a single run", interactive=False)
+                                num_videos_per_prompt_animatediff_lcm = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info=biniou_lang_tab_video_batch_size_info, interactive=False)
                             with gr.Column():
                                 num_prompt_animatediff_lcm = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
@@ -7608,10 +7605,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_animatediff_lcm = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_prompt_label, info="Describe what you want in your video", placeholder="A space rocket with trails of smoke behind it launching into space from the desert, 4k, high resolution")
+                                    prompt_animatediff_lcm = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_prompt_label, info=biniou_lang_tab_video_prompt_info, placeholder=biniou_lang_tab_animatediff_prompt_placeholder)
                             with gr.Row():
                                 with gr.Column():
-                                    negative_prompt_animatediff_lcm = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_negprompt_label, info="Describe what you DO NOT want in your video", placeholder="bad quality, worst quality, low resolution")
+                                    negative_prompt_animatediff_lcm = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_negprompt_label, info=biniou_lang_tab_video_negprompt_info, placeholder=biniou_lang_tab_animatediff_negprompt_placeholder)
                             with gr.Row():
                                 with gr.Column():
                                     output_type_animatediff_lcm = gr.Radio(choices=["mp4", "gif"], value="mp4", label=biniou_lang_output_type_label, info=biniou_lang_output_type_info)
@@ -7746,8 +7743,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         animatediff_lcm_txt2img_sd_input = gr.Button(f"✍️ >> {biniou_lang_tab_txt2img_sd}")
                                         animatediff_lcm_txt2img_kd_input = gr.Button(f"✍️ >> {biniou_lang_tab_txt2img_kd}")
                                         animatediff_lcm_txt2img_lcm_input = gr.Button(f"✍️ >> {biniou_lang_tab_txt2img_lcm}")
-                                        animatediff_lcm_txt2img_mjm_input = gr.Button(f"✍️ >> {biniou_lang_tab_txt2img_mjm}") 
-                                        animatediff_lcm_txt2img_paa_input = gr.Button(f"✍️ >> {biniou_lang_tab_txt2img_paa}") 
+                                        animatediff_lcm_txt2img_mjm_input = gr.Button(f"✍️ >> {biniou_lang_tab_txt2img_mjm}")
+                                        animatediff_lcm_txt2img_paa_input = gr.Button(f"✍️ >> {biniou_lang_tab_txt2img_paa}")
                                         gr.HTML(value=biniou_lang_send_video_value)
                                         animatediff_lcm_txt2vid_ms_input = gr.Button(f"✍️ >> {biniou_lang_tab_txt2vid_ms}")
                                         animatediff_lcm_txt2vid_ze_input = gr.Button(f"✍️ >> {biniou_lang_tab_txt2vid_ze}")
@@ -7770,7 +7767,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_img2vid}</br>
                                 <b>{biniou_lang_about_function}</b>Generate video from an input image using <a href='https://stability.ai/news/stable-video-diffusion-open-ai-video-model' target='_blank'>Stable Video Diffusion</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_image}</br>
-                                <b>{biniou_lang_about_outputs}</b>Video</br>
+                                <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_video_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/stabilityai/stable-video-diffusion-img2vid' target='_blank'>stabilityai/stable-video-diffusion-img2vid</a>, 
                                 <a href='https://huggingface.co/stabilityai/stable-video-diffusion-img2vid-xt' target='_blank'>stabilityai/stable-video-diffusion-img2vid-xt</a></br>
@@ -7799,9 +7796,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 sampler_img2vid = gr.Dropdown(choices=list(SCHEDULER_MAPPING.keys()), value=list(SCHEDULER_MAPPING.keys())[5], label=biniou_lang_sampler_label, info=biniou_lang_sampler_info, interactive=False)
                         with gr.Row():
                             with gr.Column():
-                                min_guidance_scale_img2vid = gr.Slider(0.1, 20.0, step=0.1, value=1.0, label="Min guidance scale", info="CFG scale with first frame")
+                                min_guidance_scale_img2vid = gr.Slider(0.1, 20.0, step=0.1, value=1.0, label=biniou_lang_tab_animatediff_min_cfg_label, info=biniou_lang_tab_animatediff_min_cfg_info)
                             with gr.Column():
-                                max_guidance_scale_img2vid = gr.Slider(0.1, 20.0, step=0.1, value=3.0, label="Max guidance scale", info="CFG scale with last frame")
+                                max_guidance_scale_img2vid = gr.Slider(0.1, 20.0, step=0.1, value=3.0, label=biniou_lang_tab_animatediff_max_cfg_label, info=biniou_lang_tab_animatediff_max_cfg_info)
                             with gr.Column():
                                 seed_img2vid = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                         with gr.Row():
@@ -7810,22 +7807,22 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 num_fps_img2vid = gr.Slider(1, 120, step=1, value=7, label=biniou_lang_video_fps_label, info=biniou_lang_video_fps_info)
                             with gr.Column():
-                                decode_chunk_size_img2vid = gr.Slider(1, 32, step=1, value=7, label="Chunk size", info="Number of frames processed in a chunk")
+                                decode_chunk_size_img2vid = gr.Slider(1, 32, step=1, value=7, label=biniou_lang_tab_video_chunks_label, info=biniou_lang_tab_img2vid_chunks_info)
                         with gr.Row():
                             with gr.Column():
                                 width_img2vid = gr.Slider(128, biniou_global_width_max_img_create, step=64, value=biniou_global_sdxl_width, label=biniou_lang_video_width_label, info=biniou_lang_image_width_info)
                             with gr.Column():
                                 height_img2vid = gr.Slider(128, biniou_global_height_max_img_create, step=64, value=576, label=biniou_lang_video_height_label, info=biniou_lang_image_height_info)
                             with gr.Column():
-                                num_videos_per_prompt_img2vid = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info ="Number of videos to generate in a single run", interactive=False)
+                                num_videos_per_prompt_img2vid = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info=biniou_lang_tab_video_batch_size_info, interactive=False)
                             with gr.Column():
                                 num_prompt_img2vid = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
 #                       with gr.Accordion("Advanced Settings", open=False):
                         with gr.Row():
                             with gr.Column():
-                                motion_bucket_id_img2vid = gr.Slider(0, 256, step=1, value=127, label="Motion bucket ID", info="Higher value = more motion, lower value = less motion")
+                                motion_bucket_id_img2vid = gr.Slider(0, 256, step=1, value=127, label=biniou_lang_tab_img2vid_bucket_label, info=biniou_lang_tab_img2vid_bucket_info)
                             with gr.Column():
-                                noise_aug_strength_img2vid = gr.Slider(0.01, 1.0, step=0.01, value=0.02, label="Noise strength", info="Higher value = more motion")
+                                noise_aug_strength_img2vid = gr.Slider(0.01, 1.0, step=0.01, value=0.02, label=biniou_lang_tab_img2vid_noise_label, info=biniou_lang_tab_img2vid_noise_info)
                         with gr.Row():
                             with gr.Column():
                                 use_gfpgan_img2vid = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info, visible=False)
@@ -8001,8 +7998,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_vid2vid_ze}</br>
                                 <b>{biniou_lang_about_function}</b>Edit an input video with instructions from a prompt and a negative prompt using <a href='https://github.com/timothybrooks/instruct-pix2pix' target='_blank'>Instructpix2pix</a> and <a href='https://github.com/Picsart-AI-Research/Text2Video-Zero' target='_blank'>Text2Video-Zero</a></br>
-                                <b>{biniou_lang_about_inputs}</b>Input video, prompt, negative prompt</br>
-                                <b>{biniou_lang_about_outputs}</b>Video(s)</br>
+                                <b>{biniou_lang_about_inputs}</b>{biniou_lang_tab_vid2vid_ze_about_input_text}</br>
+                                <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_video_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/timbrooks/instruct-pix2pix' target='_blank'>timbrooks/instruct-pix2pix</a></br>
                                 """
@@ -8035,9 +8032,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 guidance_scale_vid2vid_ze = gr.Slider(0.0, 10.0, step=0.1, value=7.5, label=biniou_lang_cfgscale_label, info=biniou_lang_cfgscale_info)
                             with gr.Column():
-                                image_guidance_scale_vid2vid_ze = gr.Slider(0.0, 10.0, step=0.1, value=1.5, label="Img CFG Scale", info="Low values : more creativity. High values : more fidelity to the input video")
+                                image_guidance_scale_vid2vid_ze = gr.Slider(0.0, 10.0, step=0.1, value=1.5, label=biniou_lang_imgcfg_label, info=biniou_lang_tab_vid2vid_ze_imgcfg_info)
                             with gr.Column():
-                                num_images_per_prompt_vid2vid_ze = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info ="Number of videos to generate in a single run", interactive=False)
+                                num_images_per_prompt_vid2vid_ze = gr.Slider(1, biniou_global_batch_size_max, step=1, value=1, label=biniou_lang_batch_size_label, info=biniou_lang_tab_video_batch_size_info, interactive=False)
                             with gr.Column():
                                 num_prompt_vid2vid_ze = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
@@ -8049,7 +8046,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 seed_vid2vid_ze = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                         with gr.Row():
                             with gr.Column():
-                                num_frames_vid2vid_ze = gr.Slider(0, 1200, step=1, value=8, label=biniou_lang_video_length_label, info="Number of frames to process")
+                                num_frames_vid2vid_ze = gr.Slider(0, 1200, step=1, value=8, label=biniou_lang_video_length_label, info=biniou_lang_tab_vid2vid_ze_video_length_info)
                             with gr.Column():
                                 num_fps_vid2vid_ze = gr.Slider(1, 120, step=1, value=4, label=biniou_lang_video_fps_label, info=biniou_lang_video_fps_info)
                         with gr.Row():
@@ -8093,14 +8090,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 exec(fichier.read())
                     with gr.Row():
                         with gr.Column():
-                             vid_vid2vid_ze = gr.Video(label="Input video", height=400)
+                             vid_vid2vid_ze = gr.Video(label=biniou_lang_tab_vid2vid_ze_vid_label, height=400)
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():
-                                    prompt_vid2vid_ze = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_prompt_label, info="Describe what you want to modify in your input video", placeholder="make it Van Gogh Starry Night style")
+                                    prompt_vid2vid_ze = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_prompt_label, info=biniou_lang_tab_vid2vid_ze_prompt_info, placeholder=biniou_lang_tab_vid2vid_ze_prompt_placeholder)
                             with gr.Row():
                                 with gr.Column():
-                                    negative_prompt_vid2vid_ze = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_negprompt_label, info="Describe what you DO NOT want in your output video", placeholder="out of frame, bad quality, blurry, ugly, text, characters, logo")
+                                    negative_prompt_vid2vid_ze = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_negprompt_label, info=biniou_lang_tab_vid2vid_ze_negprompt_info, placeholder=biniou_lang_tab_vid2vid_ze_negprompt_placeholder)
                             with gr.Row():
                                 with gr.Column():
                                     output_type_vid2vid_ze = gr.Radio(choices=["mp4", "gif"], value="mp4", label=biniou_lang_output_type_label, info=biniou_lang_output_type_info)
@@ -8125,7 +8122,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             btn_vid2vid_ze_gif = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary", visible=False)
                         with gr.Column():                            
                             btn_vid2vid_ze_cancel = gr.Button(f"{biniou_lang_cancel} 🛑", variant="stop")
-                            btn_vid2vid_ze_cancel.click(fn=initiate_stop_vid2vid_ze, inputs=None, outputs=None)                              
+                            btn_vid2vid_ze_cancel.click(fn=initiate_stop_vid2vid_ze, inputs=None, outputs=None)
                         with gr.Column():
                             btn_vid2vid_ze_clear_input = gr.ClearButton(components=[vid_vid2vid_ze, prompt_vid2vid_ze, negative_prompt_vid2vid_ze], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
@@ -8223,7 +8220,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_txt2shape}</br>
                                 <b>{biniou_lang_about_function}</b>Generate 3d animated gif or 3d mesh object from a prompt using <a href='https://github.com/openai/shap-e' target='_blank'>Shap-E</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_prompt}</br>
-                                <b>{biniou_lang_about_outputs}</b>Animated gif or mesh object</br>
+                                <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_3d_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/openai/shap-e' target='_blank'>openai/shap-e</a>
                                 </br>
@@ -8295,7 +8292,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():                        
-                                    prompt_txt2shape = gr.Textbox(lines=12, max_lines=12, show_copy_button=True, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder="a firecracker")
+                                    prompt_txt2shape = gr.Textbox(lines=12, max_lines=12, show_copy_button=True, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_tab_txt2shape_prompt_placeholder)
                             with gr.Row():
                                 with gr.Column():
                                     output_type_txt2shape = gr.Radio(choices=["gif", "mesh"], value="gif", label=biniou_lang_output_type_label, info=biniou_lang_output_type_info)
@@ -8338,10 +8335,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Column():
                             btn_txt2shape_clear_input = gr.ClearButton(components=[prompt_txt2shape], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
-                            btn_txt2shape_clear_output = gr.ClearButton(components=[out_txt2shape, gs_out_txt2shape, mesh_out_txt2shape, gs_mesh_out_txt2shape], value=f"{biniou_lang_clear_outputs} 🧹")   
-                            btn_txt2shape_gif.click(fn=hide_download_file_txt2shape, inputs=None, outputs=download_file_txt2shape)   
+                            btn_txt2shape_clear_output = gr.ClearButton(components=[out_txt2shape, gs_out_txt2shape, mesh_out_txt2shape, gs_mesh_out_txt2shape], value=f"{biniou_lang_clear_outputs} 🧹")
+                            btn_txt2shape_gif.click(fn=hide_download_file_txt2shape, inputs=None, outputs=download_file_txt2shape)
                             btn_txt2shape_gif.click(
-                            fn=image_txt2shape, 
+                            fn=image_txt2shape,
                             inputs=[
                                 model_txt2shape,
                                 sampler_txt2shape,
@@ -8349,18 +8346,18 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 num_images_per_prompt_txt2shape,
                                 num_prompt_txt2shape,
                                 guidance_scale_txt2shape,
-                                num_inference_step_txt2shape, 
+                                num_inference_step_txt2shape,
                                 frame_size_txt2shape,
                                 seed_txt2shape,
-                                output_type_txt2shape, 
+                                output_type_txt2shape,
                                 nsfw_filter,
                                 ],
                                 outputs=[out_txt2shape, gs_out_txt2shape],
                                 show_progress="full",
                             )
-                            btn_txt2shape_mesh.click(fn=hide_download_file_txt2shape, inputs=None, outputs=download_file_txt2shape) 
+                            btn_txt2shape_mesh.click(fn=hide_download_file_txt2shape, inputs=None, outputs=download_file_txt2shape)
                             btn_txt2shape_mesh.click(
-                            fn=image_txt2shape, 
+                            fn=image_txt2shape,
                             inputs=[
                                 model_txt2shape,
                                 sampler_txt2shape,
@@ -8368,10 +8365,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 num_images_per_prompt_txt2shape,
                                 num_prompt_txt2shape,
                                 guidance_scale_txt2shape,
-                                num_inference_step_txt2shape, 
+                                num_inference_step_txt2shape,
                                 frame_size_txt2shape,
                                 seed_txt2shape,
-                                output_type_txt2shape, 
+                                output_type_txt2shape,
                                 nsfw_filter,
                                 ],
                                 outputs=[mesh_out_txt2shape, gs_mesh_out_txt2shape],
@@ -8426,7 +8423,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_img2shape}</br>
                                 <b>{biniou_lang_about_function}</b>Generate 3d animated gif or 3d mesh object from an imput image using <a href='https://github.com/openai/shap-e' target='_blank'>Shap-E</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_image}</br>
-                                <b>{biniou_lang_about_outputs}</b>Animated gif or mesh object</br>
+                                <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_3d_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/openai/shap-e-img2img' target='_blank'>openai/shap-e-img2img</a>
                                 </br>
@@ -8465,7 +8462,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 frame_size_img2shape = gr.Slider(0, biniou_global_width_max_img_create, step=8, value=64, label=biniou_lang_3d_frame_size_label, info=biniou_lang_3d_frame_size_info)
                             with gr.Column():
-                                seed_img2shape = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info, interactive=False) 
+                                seed_img2shape = gr.Slider(0, 10000000000, step=1, value=0, label=biniou_lang_seed_label, info=biniou_lang_seed_info, interactive=False)
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_img2shape = gr.Button(f"{biniou_lang_save_settings} 💾")
@@ -8473,10 +8470,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 module_name_img2shape = gr.Textbox(value="img2shape", visible=False, interactive=False)
                                 del_ini_btn_img2shape = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_ini_exist(module_name_img2shape.value) else False)
                                 save_ini_btn_img2shape.click(
-                                    fn=write_ini_img2shape, 
+                                    fn=write_ini_img2shape,
                                     inputs=[
-                                        module_name_img2shape, 
-                                        model_img2shape, 
+                                        module_name_img2shape,
+                                        model_img2shape,
                                         num_inference_step_img2shape,
                                         sampler_img2shape,
                                         guidance_scale_img2shape,
@@ -8497,7 +8494,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
-                                with gr.Column():                        
+                                with gr.Column():
                                     img_img2shape = gr.Image(label=biniou_lang_img_input_label, height=320, type="pil")
                             with gr.Row():
                                 with gr.Column():
@@ -8544,7 +8541,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             btn_img2shape_clear_output = gr.ClearButton(components=[out_img2shape, gs_out_img2shape, mesh_out_img2shape, gs_mesh_out_img2shape], value=f"{biniou_lang_clear_outputs} 🧹")
                             btn_img2shape_gif.click(fn=hide_download_file_img2shape, inputs=None, outputs=download_file_img2shape)
                             btn_img2shape_gif.click(
-                            fn=image_img2shape, 
+                            fn=image_img2shape,
                             inputs=[
                                 model_img2shape,
                                 sampler_img2shape,
@@ -8552,16 +8549,16 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 num_images_per_prompt_img2shape,
                                 num_prompt_img2shape,
                                 guidance_scale_img2shape,
-                                num_inference_step_img2shape, 
+                                num_inference_step_img2shape,
                                 frame_size_img2shape,
                                 seed_img2shape,
-                                output_type_img2shape, 
+                                output_type_img2shape,
                                 nsfw_filter,
                                 ],
                                 outputs=[out_img2shape, gs_out_img2shape],
                                 show_progress="full",
                             )
-                            btn_img2shape_mesh.click(fn=hide_download_file_img2shape, inputs=None, outputs=download_file_img2shape) 
+                            btn_img2shape_mesh.click(fn=hide_download_file_img2shape, inputs=None, outputs=download_file_img2shape)
                             btn_img2shape_mesh.click(
                             fn=image_img2shape,
                             inputs=[
@@ -8586,7 +8583,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     output_type_img2shape,
                                     out_size_img2shape,
                                     mesh_out_size_img2shape
-                                ], 
+                                ],
                                 outputs=[
                                     out_img2shape,
                                     mesh_out_img2shape,
@@ -8598,7 +8595,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     download_file_img2shape,
                                     frame_size_img2shape,
                                     ]
-                            ) 
+                            )
                     with gr.Accordion(biniou_lang_send_label, open=False):
                         with gr.Row():
                             with gr.Column():
