@@ -29,6 +29,7 @@ model_list_txt2img_sd_builtin = [
     "IDKiro/sdxs-512-dreamshaper",
     "IDKiro/sdxs-512-0.9",
     "fluently/Fluently-XL-v4",
+    "recoilme/ColorfulXL-Lightning",
     "playgroundai/playground-v2-512px-base",
     "playgroundai/playground-v2-1024px-aesthetic",
     "playgroundai/playground-v2.5-1024px-aesthetic",
