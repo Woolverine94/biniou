@@ -107,6 +107,7 @@
 * **Other features**
 
   - Zeroconf installation through one-click installers or Windows exe.
+  - User friendly : Everything required to run biniou is installed automatically, either at install time or at first use.
   - Easy management through a control panel directly inside webui : update, restart, shutdown, activate authentication, control network access or share your instance online with a single click.
   - Easy management of models through a simple interface.
   - Communication between modules : send an output as an input to another module
