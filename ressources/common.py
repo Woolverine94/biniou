@@ -413,6 +413,7 @@ def write_auth(*args):
 
 def write_settings_ini(
     module,
+    biniou_global_settings_lang_ui,
     biniou_global_settings_server_name,
     biniou_global_settings_server_port,
     biniou_global_settings_inbrowser,
@@ -435,7 +436,8 @@ def write_settings_ini(
     biniou_global_settings_img_exif,
 ):
     savename = f".ini/{module}.cfg"
-    content = f"biniou_global_server_name = {biniou_global_settings_server_name}\n\
+    content = f"biniou_global_lang_ui = \"{biniou_global_settings_lang_ui}\"\n\
+biniou_global_server_name = {biniou_global_settings_server_name}\n\
 biniou_global_server_port = {biniou_global_settings_server_port}\n\
 biniou_global_inbrowser = {biniou_global_settings_inbrowser}\n\
 biniou_global_auth = {biniou_global_settings_auth}\n\

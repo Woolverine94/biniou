@@ -73,6 +73,7 @@ def split_url_params(url_params) :
     else :         
         return "1", url_params, "1"
 
+biniou_global_lang_ui = "lang_EN"
 biniou_global_server_name = True
 biniou_global_server_port = 7860
 biniou_global_inbrowser = False
@@ -115,11 +116,9 @@ biniou_global_version = biniou_global_version.replace("\n", "")
 if biniou_global_version == "main":
     biniou_global_version = "dev"
 
-if test_lang_exist("lang_EN.cfg") :
-    with open("lang/lang_EN.cfg", "r", encoding="utf-8") as fichier:
+if test_lang_exist(f"{biniou_global_lang_ui}.cfg") :
+    with open(f"lang/{biniou_global_lang_ui}.cfg", "r", encoding="utf-8") as fichier:
         exec(fichier.read())
-
-
 
 ## Fonctions communes
 def dummy():
@@ -8460,22 +8459,26 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                  with gr.Column():
                                      gr.Number(visible=False)
                     with gr.Row():
-                         with gr.Accordion(biniou_lang_tab_webui_backend_title, open=True):
-                             with gr.Row():
-                                 with gr.Column():
-                                     llama_backend_ui = gr.Radio(choices=["none", "openblas", "cuda", "metal", "opencl/clblast", "rocm/hipblas", "vulkan", "kompute"], value=biniouUIControl.detect_llama_backend(), label=biniou_lang_tab_webui_backend_label, info=biniou_lang_tab_webui_backend_info)
-                             with gr.Row():
-                                 with gr.Column():
-                                     btn_llama_backend_ui = gr.Button(f"{biniou_lang_tab_webui_backend_btn_label} ⤵️", variant="primary")
-                                     btn_llama_backend_ui.click(fn=biniouUIControl.biniou_llama_backend, inputs=llama_backend_ui, outputs=llama_backend_ui)
-                                 with gr.Column():
-                                     gr.Number(visible=False)
-                                 with gr.Column():
-                                     gr.Number(visible=False)
-                                 with gr.Column():
-                                     gr.Number(visible=False)
+                        with gr.Accordion(biniou_lang_tab_webui_backend_title, open=True):
+                            with gr.Row():
+                                with gr.Column():
+                                    llama_backend_ui = gr.Radio(choices=["none", "openblas", "cuda", "metal", "opencl/clblast", "rocm/hipblas", "vulkan", "kompute"], value=biniouUIControl.detect_llama_backend(), label=biniou_lang_tab_webui_backend_label, info=biniou_lang_tab_webui_backend_info)
+                            with gr.Row():
+                                with gr.Column():
+                                    btn_llama_backend_ui = gr.Button(f"{biniou_lang_tab_webui_backend_btn_label} ⤵️", variant="primary")
+                                    btn_llama_backend_ui.click(fn=biniouUIControl.biniou_llama_backend, inputs=llama_backend_ui, outputs=llama_backend_ui)
+                                with gr.Column():
+                                    gr.Number(visible=False)
+                                with gr.Column():
+                                    gr.Number(visible=False)
+                                with gr.Column():
+                                    gr.Number(visible=False)
                     with gr.Row():
                         with gr.Accordion(biniou_lang_tab_webui_settings_title, open=True):
+                            with gr.Accordion(biniou_lang_tab_webui_settings_lang_title, open=True):
+                                with gr.Row():
+                                    with gr.Column():
+                                        biniou_global_settings_lang_ui = gr.Dropdown(choices=biniouUIControl.biniou_languages_list(), value=biniou_global_lang_ui, label=biniou_lang_tab_webui_settings_lang_label, info=biniou_lang_tab_webui_settings_lang_info, interactive=True)
                             with gr.Accordion(biniou_lang_tab_webui_settings_backend_title, open=True):
                                 with gr.Row():
                                     with gr.Column():
@@ -8537,6 +8540,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     save_ini_btn_settings.click(fn=write_settings_ini, 
                                         inputs=[
                                             module_name_settings,
+                                            biniou_global_settings_lang_ui,
                                             biniou_global_settings_server_name,
                                             biniou_global_settings_server_port,
                                             biniou_global_settings_inbrowser,

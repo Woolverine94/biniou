@@ -296,6 +296,15 @@ class biniouUIControl:
                 optimizer = "cuda"
         return optimizer
 
+    def biniou_languages_list():
+        model_path_biniou_lang = "./lang/"
+        model_list_biniou_lang = []
+        for filename in os.listdir(model_path_biniou_lang):
+            f = os.path.join(model_path_biniou_lang, filename)
+            if os.path.isfile(f) and (filename.endswith('.cfg')):
+                model_list_biniou_lang.append(filename.replace('.cfg', ''))
+        return model_list_biniou_lang
+
     def detect_llama_backend():
         filename = ".ini/llamacpp_backend.cfg"
         if os.path.isfile(filename):
