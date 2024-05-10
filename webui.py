@@ -1307,7 +1307,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_llamacpp}</br>
-                                <b>{biniou_lang_about_function}</b>Chat with an AI using <a href='https://github.com/abetlen/llama-cpp-python' target='_blank'>llama-cpp-python</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_llamacpp_about_desc} <a href='https://github.com/abetlen/llama-cpp-python' target='_blank'>llama-cpp-python</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_text}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -1343,10 +1343,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Type your request in the <b>Input</b> textbox field</br>
-                                - (optional) modify settings to use another model, change context size or modify maximum number of tokens generated.</br>
-                                - Click the <b>Generate</b> button to generate a response to your input, using the chatbot history to keep a context.</br>
-                                - Click the <b>Continue</b> button to complete the last reply.
+                                {biniou_lang_tab_llamacpp_about_instruct}
                                 </br>
                                 <b>{biniou_lang_about_models}</b></br>
                                 - {biniou_lang_tab_llamacpp_about_models_inst1}</br>
@@ -1568,7 +1565,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_llava}</br>
-                                <b>{biniou_lang_about_function}</b>Interrogate a chatbot about an input image using <a href='https://github.com/abetlen/llama-cpp-python' target='_blank'>llama-cpp-python</a>, <a href='https://llava-vl.github.io/' target='_blank'>Llava</a> and <a href='https://github.com/SkunkworksAI/BakLLaVA' target='_blank'>BakLLaVA</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_llava_about_desc}<a href='https://github.com/abetlen/llama-cpp-python' target='_blank'>llama-cpp-python</a>, <a href='https://llava-vl.github.io/' target='_blank'>Llava</a>, <a href='https://github.com/SkunkworksAI/BakLLaVA' target='_blank'>BakLLaVA</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_tab_llava_about_input_value}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -1585,11 +1582,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Upload or import an <b>Input image</b></br>
-                                - Type your request in the <b>Input</b> textbox field</br>
-                                - (optional) modify settings to use another model, change context size or modify maximum number of tokens generated.</br>
-                                - Click the <b>Generate</b> button to generate a response to your input, using the chatbot history to keep a context.</br>
-                                - Click the <b>Continue</b> button to complete the last reply.
+                                {biniou_lang_tab_llava_about_instruct}
                                 </br>
                                 <b>{biniou_lang_about_models}</b></br>
                                 - {biniou_lang_tab_llamacpp_about_models_inst1}
@@ -1807,7 +1800,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_img2txt_git}</br>
-                                <b>{biniou_lang_about_function}</b>Caption an image by a simple description of it using GIT</br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_img2txt_about_desc}</br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_tab_img2txt_about_input_text}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_img2txt_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b><a href='https://huggingface.co/microsoft/git-large-coco' target='_blank'>microsoft/git-large-coco</a></br>
@@ -1819,10 +1812,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Upload an input image by clicking on the <b>Input image</b> field</br>
-                                - (optional) modify settings to use another model, change min. and/or max. number of tokens generated.</br>
-                                - Click the <b>Generate button</b></br>
-                                - After generation, captions of the image are displayed in the Generated captions field
+                                {biniou_lang_tab_img2txt_about_instruct}
                                 </div>
                                 """
                             )
@@ -1944,7 +1934,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_whisper}</br>
-                                <b>{biniou_lang_about_function}</b>Transcribe/translate audio to text with <a href='https://openai.com/research/whisper' target='_blank'>whisper</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_whisper_about_desc}<a href='https://openai.com/research/whisper' target='_blank'>whisper</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_tab_whisper_about_input_text}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_whisper_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -1962,12 +1952,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Upload an input audio file by clicking on the <b>Source audio</b> field or select the <b>micro</b> input type and record your voice</br>
-                                - Select the source language of the audio</br>
-                                - Select the task to execute : transcribe in source language or translate to english</br>
-                                - (optional) modify settings to use another model, or generate SRT-formated subtitles</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, audio transcription is displayed in the <b>Output text</b> field
+                                {biniou_lang_tab_whisper_about_instruct}
                                 </div>
                                 """
                             )
@@ -2083,7 +2068,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_nllb}</br>
-                                <b>{biniou_lang_about_function}</b>Translate text with <a href='https://ai.meta.com/research/no-language-left-behind/' target='_blank'>nllb</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_nllb_about_desc}<a href='https://ai.meta.com/research/no-language-left-behind/' target='_blank'>nllb</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_text}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_nllb_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -2097,12 +2082,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Select an <b>input language</b></br>
-                                - Type or copy/paste the text to translate in the <b>source text</b> field</br>
-                                - Select an <b>output language</b></br>
-                                - (optional) modify settings to use another model, or reduce the maximum number of tokens in the output</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, translation is displayed in the <b>Output text</b> field
+                                {biniou_lang_tab_nllb_about_instruct}
                                 </div>
                                 """
                             )
@@ -2213,7 +2193,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_txt2prompt}</br>
-                                <b>{biniou_lang_about_function}</b>Create complex prompt from a simple instruction.</br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_txt2prompt_about_desc}</br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_prompt_label}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_txt2prompt_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -2228,10 +2208,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Define a <b>prompt</b></br>
-                                - Choose the type of output to produce : ChatGPT will produce a persona for the chatbot from your input, SD will generate a prompt usable for image and video modules</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, output is displayed in the <b>Output text</b> field. Send them to the desired module (chatbot or media modules).
+                                {biniou_lang_tab_txt2prompt_about_instruct}
                                 </div>
                                 """
                             )
@@ -2349,7 +2326,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_txt2img_sd}</br>
-                                <b>{biniou_lang_about_function}</b>Generate images from a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_image_about_desc}<a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_prompt_neg}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_image_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -2385,17 +2362,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - (optional) Modify the settings to use another model, generate several images in a single run or change dimensions of the outputs</br>
-                                - (optional) Select a LoRA model and set its weight</br>
-                                - Fill the <b>prompt</b> with what you want to see in your output image</br>
-                                - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output image</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
+                                {biniou_lang_tab_txt2img_sd_about_instruct}
                                 </br>
                                 <b>{biniou_lang_about_models}</b></br>
-                                - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or  <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors models in the directory ./biniou/models/Stable Diffusion. Restart Biniou to see them in the models list.</br>
+                                - {biniou_lang_tab_image_about_models_inst1}</br>
                                 <b>{biniou_lang_about_lora}</b></br>
-                                - {biniou_lang_tab_image_about_lora_inst1}
+                                - {biniou_lang_tab_image_about_lora_inst1}</br>
                                 </div>                                
                                 """
                             )
@@ -2614,7 +2586,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_txt2img_kd}</br>
-                                <b>{biniou_lang_about_function}</b>Generate images from a prompt and a negative prompt using <a href='https://github.com/ai-forever/Kandinsky-2' target='_blank'>Kandinsky</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_image_about_desc}<a href='https://github.com/ai-forever/Kandinsky-2' target='_blank'>Kandinsky</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_prompt_neg}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_image_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -2629,11 +2601,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Fill the <b>prompt</b> with what you want to see in your output image</br>
-                                - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output image</br>
-                                - (optional) Modify the settings to use another model, generate several images in a single run or change dimensions of the outputs</br>
-                                - Click the <b>generate</b> button</br>
-                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
+                                {biniou_lang_tab_txt2img_kd_about_instruct}</br>
                                 </div>
                                 """
                             )                                
@@ -2823,7 +2791,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_txt2img_lcm}</br>
-                                <b>{biniou_lang_about_function}</b>Generate images from a prompt using <a href='https://github.com/luosiallen/latent-consistency-model' target='_blank'>LCM (Latent Consistency Model)</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_txt2img_lcm_about_desc}<a href='https://github.com/luosiallen/latent-consistency-model' target='_blank'>LCM (Latent Consistency Model)</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_prompt}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_image_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -2842,11 +2810,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - (optional) Modify the settings to generate several images in a single run or change dimensions of the outputs</br>
-                                - (optional) Select a LoRA model and set its weight</br>
-                                - Fill the <b>prompt</b> with what you want to see in your output image</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.</br>
+                                {biniou_lang_tab_txt2img_lcm_about_instruct}
                                 <b>{biniou_lang_about_lora}</b></br>
                                 - {biniou_lang_tab_image_about_lora_inst1}</br>
                                 """
@@ -3058,7 +3022,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_txt2img_mjm}</br>
-                                <b>{biniou_lang_about_function}</b>Generate images from a prompt and a negative prompt using <a href='https://huggingface.co/openskyml/midjourney-mini' target='_blank'>Midjourney-mini</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_image_about_desc}<a href='https://huggingface.co/openskyml/midjourney-mini' target='_blank'>Midjourney-mini</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_prompt_neg}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_image_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -3072,11 +3036,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Fill the <b>prompt</b> with what you want to see in your output image</br>
-                                - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output image</br>
-                                - (optional) Modify the settings to generate several images in a single run or change dimensions of the outputs</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
+                                {biniou_lang_tab_txt2img_mjm_about_instruct}
                                 </br>
                                 """
                             )
@@ -3261,7 +3221,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_txt2img_paa}</br>
-                                <b>{biniou_lang_about_function}</b>Generate images from a prompt and a negative prompt using <a href='https://pixart-alpha.github.io/' target='_blank'>PixArt-Alpha</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_image_about_desc}<a href='https://pixart-alpha.github.io/' target='_blank'>PixArt-Alpha</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_prompt_neg}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_image_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -3280,11 +3240,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Fill the <b>prompt</b> with what you want to see in your output image</br>
-                                - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output image</br>
-                                - (optional) Modify the settings to use another model, generate several images in a single run or change dimensions of the outputs</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
+                                {biniou_lang_tab_txt2img_paa_about_instruct}
                                 </br>
                                 """
                             )                
@@ -3469,8 +3425,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_img2img}</br>
-                                <b>{biniou_lang_about_function}</b>Generate images variations of an input image, from a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
-                                You could use this module to refine an image produced by another module.</br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_img2img_about_desc}<a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
+                                {biniou_lang_tab_img2img_about_desc_com}</br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_img_prompt_neg}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_image_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -3505,14 +3461,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - (optional) Modify the settings to use another model, generate several images in a single run</br>
-                                - (optional) Select a LoRA model and set its weight</br>
-                                - Upload, import an image or draw a sketch as an <b>Input image</b></br>
-                                - Set the balance between the input image and the prompt (<b>denoising strength</b>) to a value between 0 and 1 : 0 will completely ignore the prompt, 1 will completely ignore the input image</br>                                
-                                - Fill the <b>prompt</b> with what you want to see in your output image</br>
-                                - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output image</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
+                                {biniou_lang_tab_img2img_about_instruct}
                                 </br>
                                 <b>{biniou_lang_about_models}</b></br>
                                 - {biniou_lang_tab_image_about_models_inst1}</br>
@@ -3740,8 +3689,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_img2img_ip}</br>
-                                <b>{biniou_lang_about_function}</b>Transform an input image, with a conditional IP-Adapter image, a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a>, <a href='https://ip-adapter.github.io/' target='_blank'>IP-Adapter</a> and <a href='https://huggingface.co/ostris/ip-composition-adapter' target='_blank'>ostris/ip-composition-adapter</a></br>
-                                <b>{biniou_lang_about_inputs}</b>Input image, conditional IP-Adapter image, prompt, negative prompt</br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_img2img_ip_about_desc}<a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a>, <a href='https://ip-adapter.github.io/' target='_blank'>IP-Adapter</a>, <a href='https://huggingface.co/ostris/ip-composition-adapter' target='_blank'>ostris/ip-composition-adapter</a></br>
+                                <b>{biniou_lang_about_inputs}</b>{biniou_lang_tab_img2img_ip_about_input_text}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_image_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
@@ -3768,16 +3717,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - (optional) Modify the settings to use another model or generate several images in a single run</br>
-                                - (optional) Select a LoRA model and set its weight</br>
-                                - Select the IP-Adapter type to use : standard (image to image + prompt) or composition (import composition into the output image)</br>
-                                - Upload or import an image as an <b>Input image</b> (if using standard IP-Adapter)</br>
-                                - Upload an image as an <b>IP-Adapter image</b></br>
-                                - Set the balance between the input image and the prompts (Ip-Adapter image, prompts, negative prompt) by choosing a <b>denoising strength</b> value between 0.01 and 1 : 0.01 will mostly ignore the prompts, 1 will completely ignore the input image</br>
-                                - Fill the <b>prompt</b> with what you want to see in your output image</br>
-                                - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output image</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.</br>
+                                {biniou_lang_tab_img2img_ip_about_instruct}
                                 <b>{biniou_lang_about_lora}</b></br>
                                 - {biniou_lang_tab_image_about_lora_inst1}</br>
                                 </br>
@@ -4032,7 +3972,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_img2var}</br>
-                                <b>{biniou_lang_about_function}</b>Generate variations of an input image using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_img2var_about_desc}<a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_image}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_image_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -4045,10 +3985,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Upload or import an image as an <b>Input image</b></br>
-                                - (optional) Modify the settings to generate several images in a single run</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
+                                {biniou_lang_tab_img2var_about_instruct}
                                 </br>
                                 """
                             )
@@ -4209,7 +4146,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_pix2pix}</br>
-                                <b>{biniou_lang_about_function}</b>Edit an input image with instructions from a prompt and a negative prompt using <a href='https://github.com/timothybrooks/instruct-pix2pix' target='_blank'>Instructpix2pix</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_pix2pix_about_desc}<a href='https://github.com/timothybrooks/instruct-pix2pix' target='_blank'>Instructpix2pix</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_img_prompt_neg}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_image_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -4224,13 +4161,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Upload or import an image using the <b>Input image</b> field</br>
-                                - Fill the <b>prompt</b> with the instructions for modifying your input image</br>
-                                - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output image</br>
-                                - (optional) Modify the settings to change image CFG scale or generate several images in a single run</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery</br></br>
-                                <b>Examples : </b><a href='https://www.timothybrooks.com/instruct-pix2pix/' target='_blank'>InstructPix2Pix : Learning to Follow Image Editing Instructions</a>
+                                {biniou_lang_tab_pix2pix_about_instruct}
+                                <b>{biniou_lang_about_examples}</b><a href='https://www.timothybrooks.com/instruct-pix2pix/' target='_blank'>InstructPix2Pix : Learning to Follow Image Editing Instructions</a>
                                 </div>
                                 """
                             )                
@@ -4421,7 +4353,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_magicmix}</br>
-                                <b>{biniou_lang_about_function}</b>Edit an input image with instructions from a prompt using <a href='https://magicmix.github.io/' target='_blank'>MagicMix</a> and <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_magicmix_about_desc}<a href='https://magicmix.github.io/' target='_blank'>MagicMix</a>, <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_tab_magicmix_about_input_img_prompt}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_image_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -4436,13 +4368,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Upload or import an image using the <b>Input image</b> field</br>
-                                - Set the <b>Mix Factor</b> field to create a balance between input image and prompt</br>
-                                - Fill the <b>prompt</b> with the instructions for modifying your input image. Use simple prompt instruction (e.g. "a dog")</br>
-                                - (optional) Modify the settings to generate several images in a single run or generate several images in a single run</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery</br></br>
-                                <b>Examples : </b><a href='https://magicmix.github.io/' target='_blank'>MagicMix: Semantic Mixing with Diffusion Models</a>
+                                {biniou_lang_tab_magicmix_about_instruct}
+                                <b>{biniou_lang_about_examples}</b><a href ='https://magicmix.github.io/' target='_blank'>MagicMix: Semantic Mixing with Diffusion Models</a>
                                 </div>
                                 """
                             )
@@ -4604,7 +4531,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_inpaint}</br>
-                                <b>{biniou_lang_about_function}</b>Inpaint the masked area of an input image, from a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_inpaint_about_desc}<a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_tab_inpaint_about_input_text}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_image_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -4619,14 +4546,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Upload or import an image using the <b>Input image</b> field</br>
-                                - Using the sketch tool of the <b>inpaint field</b>, mask the area to be modified</br>
-                                - Modify the <b>denoising strength of the inpainted area</b> : 0 will keep the original content, 1 will ignore it</br>
-                                - Fill <b>the prompt</b> with what you want to see in your WHOLE (not only the inpaint area) output image</br>
-                                - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output image</br>
-                                - (optional) Modify the settings to use another model or generate several images in a single run</br>
-                                - Click the <b>Generate button</b></br>
-                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
+                                {biniou_lang_tab_inpaint_about_instruct}
                                 </br>
                                 <b>{biniou_lang_about_models}</b></br>
                                 - {biniou_lang_tab_image_about_models_inst1}
@@ -4828,7 +4748,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_paintbyex}</br>
-                                <b>{biniou_lang_about_function}</b>Paint the masked area of an input image, from an example image using  <a href='https://github.com/Fantasy-Studio/Paint-by-Example' target='_blank'>Paint by example</a>  and <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_paintbyex_about_desc}<a href='https://github.com/Fantasy-Studio/Paint-by-Example' target='_blank'>Paint by example</a>, <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_tab_paintbyex_about_input_text}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_image_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -4841,12 +4761,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Upload or import an image using the <b>Input image</b> field</br>
-                                - Using the sketch tool of the <b>Input image field</b>, mask the area to be modified</br>
-                                - Upload or import an example image using the <b>Example image</b> field. This image will be used as an example on how to modify the masked area of the input image</br>
-                                - (optional) Modify the settings to generate several images in a single run</br>
-                                - Click the <b>Generate button</b></br>
-                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
+                                {biniou_lang_tab_paintbyex_about_instruct}
                                 </br>
                                 </div>
                                 """
@@ -5019,7 +4934,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_outpaint}</br>
-                                <b>{biniou_lang_about_function}</b>Outpaint an input image, by defining borders and using a prompt and a negative prompt, with <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_outpaint_about_desc}<a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_tab_outpaint_about_input_text}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_image_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -5034,15 +4949,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Upload or import an image using the <b>Input image</b> field</br>
-                                - Define the size in pixels of the borders to add for top, bottom, left and right sides 
-                                - Click the <b>Create mask</b> button to add borders to your image and generate a mask</br>
-                                - Modify the <b>denoising strength of the outpainted area</b> : 0 will keep the original content, 1 will ignore it</br>
-                                - Fill <b>the prompt</b> with what you want to see in your WHOLE (not only the outpaint area) output image</br>
-                                - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output image</br>
-                                - (optional) Modify the settings to use another model or generate several images in a single run</br>
-                                - Click the <b>Generate button</b></br>
-                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
+                                {biniou_lang_tab_outpaint_about_instruct}
                                 </br>
                                 <b>{biniou_lang_about_models}</b></br>
                                 - {biniou_lang_tab_image_about_models_inst1}
@@ -5260,7 +5167,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_controlnet}</br>
-                                <b>{biniou_lang_about_function}</b>Generate images from a prompt, a negative prompt and a control image using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a> and <a href='https://stablediffusionweb.com/ControlNet' target='_blank'>ControlNet</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_controlnet_about_desc}<a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a>, <a href='https://stablediffusionweb.com/ControlNet' target='_blank'>ControlNet</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_tab_controlnet_about_input_text}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_image_about_output_text}</br>
                                 <b>HF Stable Diffusion models pages : </b>
@@ -5301,19 +5208,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - (optional) Modify the settings to use another model, change the settings for ControlNet or adjust threshold on canny</br>
-                                - (optional) Select a LoRA model and set its weight</br>                                     
-                                - Select a <b>Source image</b> that will be used to generate the control image</br>
-                                - Select a <b>pre-processor</b> for the control image</br> 
-                                - Click the <b>Preview</b> button</br>
-                                - If the <b>Control image</b> generated suits your needs, continue. Else, you could modify the settings and generate a new one</br> 
-                                - You should not modifiy the value in the <b>ControlNet Model</b> field, as it is automatically selected from the used pre-processor</br>
-                                - Fill the <b>prompt</b> with what you want to see in your output image</br>
-                                - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output image</br>
-                                - Click the <b>Generate button</b></br>
-                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery</br>
+                                {biniou_lang_tab_controlnet_about_instruct}
                                 <b>{biniou_lang_about_models}</b></br>
-                                - You could place <a href='https://huggingface.co/' target='_blank'>huggingface.co</a> or <a href='https://www.civitai.com/' target='_blank'>civitai.com</a> Stable diffusion based safetensors models in the directory ./biniou/models/Stable Diffusion. Restart Biniou to see them in the models list.</br>
+                                - {biniou_lang_tab_image_about_models_inst1}</br>
                                 <b>{biniou_lang_about_lora}</b></br>
                                 - {biniou_lang_tab_image_about_lora_inst1}</br>
                                 </div>
@@ -5584,7 +5481,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_faceid_ip}</br>
-                                <b>{biniou_lang_about_function}</b>Generate portraits using the face taken from the input image, a prompt and a negative prompt using <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a>, <a href='https://huggingface.co/h94/IP-Adapter-FaceID' target='_blank'>IP-Adapter FaceID</a>, <a href='https://github.com/deepinsight/insightface' target='_blank'>Insight face</a> and <a href='https://photo-maker.github.io/' target='_blank'>Photomaker</a>.</br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_faceid_ip_about_desc}<a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a>, <a href='https://huggingface.co/h94/IP-Adapter-FaceID' target='_blank'>IP-Adapter FaceID</a>, <a href='https://github.com/deepinsight/insightface' target='_blank'>Insight face</a>, <a href='https://photo-maker.github.io/' target='_blank'>Photomaker</a>.</br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_img_prompt_neg}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_image_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -5608,14 +5505,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - (optional) Modify the settings to use another model, generate several images in a single run</br>
-                                - (optional) Select a LoRA model and set its weight</br>
-                                - Upload or import an image using the <b>Input image</b> field</br>
-                                - Set the the FaceID strength : lower values give more creativity to the portrait, higher values more fidelity to the input image.</br>
-                                - Fill the <b>prompt</b> with what you want to see in your output image</br>
-                                - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output image</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
+                                {biniou_lang_tab_faceid_ip_about_instruct}
                                 </br>
                                 <b>{biniou_lang_about_models}</b></br>
                                 - {biniou_lang_tab_image_about_models_inst1}</br>
@@ -5838,7 +5728,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_faceswap}</br>
-                                <b>{biniou_lang_about_function}</b>Swap faces between images (source -> target) using <a href='https://github.com/deepinsight/insightface' target='_blank'>Insight Face</a> et <a href='https://github.com/microsoft/onnxruntime' target='_blank'>Onnx runtime</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_faceswap_about_desc}<a href='https://github.com/deepinsight/insightface' target='_blank'>Insight Face</a>, <a href='https://github.com/microsoft/onnxruntime' target='_blank'>Onnx runtime</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_tab_faceswap_about_input_text}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_image_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -5851,13 +5741,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Upload a <b>Source image</b>. The face(s) in this image will replaces face(s) in the target image.</br>
-                                - Upload or import a <b>target image</b>. The face(s) in this image will be replaced with the source one(s)</br>
-                                - Set the <b>source index</b> list to choose which face(s) to extract from source image and in which order. From left to right and starting from 0, id comma separated list of faces number. For example, if there is 3 faces in a picture '0,2' will select the face on the left, then on the right, but not on the one in the middle. If set to 0, take only the first face from the left.</br>
-                                - Set the <b>target index</b> list to choose which face(s) to replace in target image and in which order. From left to right and starting from 0, id comma separated list of faces number. For example, if there is 3 faces in a picture '2,1' will select the faces on the right, then in the middle, but not the one on the left. The source index list is used to create a mapping between the faces to extract and to replace. If set to 0, replace only the first face from the left.</br>
-                                - (optional) Modify the settings to desactivate GFPGAN faces restoration</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, generated images are displayed in the gallery. Save them individually or create a downloadable zip of the whole gallery.
+                                {biniou_lang_tab_faceswap_about_instruct}
                                 </div>
                                 """
                             )
@@ -5994,7 +5878,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_resrgan}</br>
-                                <b>{biniou_lang_about_function}</b>Upscale x4 using <a href='https://github.com/xinntao/Real-ESRGAN' target='_blank'>Real ESRGAN</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_resrgan_about_desc}<a href='https://github.com/xinntao/Real-ESRGAN' target='_blank'>Real ESRGAN</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_image}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_resrgan_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -6007,10 +5891,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Upload or import an <b>Input image</b> </br>
-                                - (optional) Modify the settings to change scale factor or use another model</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, upscaled image is displayed in the gallery.
+                                {biniou_lang_tab_resrgan_about_instruct}
                                 </div>
                                 """
                             )
@@ -6129,7 +6010,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_gfpgan}</br>
-                                <b>{biniou_lang_about_function}</b>Restore and enhance faces in an image using <a href='https://github.com/TencentARC/GFPGAN' target='_blank'>GFPGAN</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_gfpgan_about_desc}<a href='https://github.com/TencentARC/GFPGAN' target='_blank'>GFPGAN</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_image}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_gfpgan_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -6142,10 +6023,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Upload or import an <b>Input image</b></br>
-                                - (optional) Modify the settings to use another variant of the GFPGAN model</br> 
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, enhanced image is displayed in the gallery
+                                {biniou_lang_tab_gfpgan_about_instruct}
                                 </div>
                                 """
                             )                     
@@ -6261,7 +6139,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_musicgen}</br>
-                                <b>{biniou_lang_about_function}</b>Generate music from a prompt, using <a href='https://github.com/facebookresearch/audiocraft' target='_blank'>MusicGen</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_musicgen_about_desc}<a href='https://github.com/facebookresearch/audiocraft' target='_blank'>MusicGen</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_prompt}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_audio_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -6276,10 +6154,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Fill the <b>prompt</b> by describing the music you want to generate</br>
-                                - (optional) Modify the settings to use another model or change audio duration</br>
-                                - Click the <b>Generate<b> button</br>
-                                - After generation, generated music is available to listen in the <b>Generated music<b> field.
+                                {biniou_lang_tab_musicgen_about_instruct}
                                 </div>
                                 """
                             )                           
@@ -6396,8 +6271,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_musicgen_mel}</br>
-                                <b>{biniou_lang_about_function}</b>Generate music from a prompt with guidance from an input audio, using <a href='https://github.com/facebookresearch/audiocraft' target='_blank'>MusicGen</a></br>
-                                <b>{biniou_lang_about_inputs}</b>Input prompt, Input audio</br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_musicgen_mel_about_desc}<a href='https://github.com/facebookresearch/audiocraft' target='_blank'>MusicGen</a></br>
+                                <b>{biniou_lang_about_inputs}</b>{biniou_lang_tab_musicgen_mel_about_input_text}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_audio_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/facebook/musicgen-melody' target='_blank'>facebook/musicgen-melody</a></br>
@@ -6409,12 +6284,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Select an audio source type (file or micro recording)</br>
-                                - Select an audio source by choosing a file or recording something</br>
-                                - Fill the <b>prompt</b> by describing the music you want to generate from the audio source</br>
-                                - (optional) Modify the settings to change audio duration or inferences parameters</br>
-                                - Click the <b>Generate<b> button</br>
-                                - After generation, generated music is available to listen in the <b>Generated music<b> field.
+                                {biniou_lang_tab_musicgen_mel_about_instruct}
                                 </div>
                                 """
                             )
@@ -6534,7 +6404,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_musicldm}</br>
-                                <b>{biniou_lang_about_function}</b>Generate music from a prompt and a negative prompt, using <a href='https://musicldm.github.io' target='_blank'>MusicLDM</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_musicldm_about_desc}<a href='https://musicldm.github.io' target='_blank'>MusicLDM</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_prompt_neg}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_audio_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -6548,11 +6418,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Fill the <b>prompt</b> by describing the music you want to generate</br>
-                                - Fill the <b>negative prompt</b> by describing what you DO NOT want to generate</br>
-                                - (optional) Modify the settings to use another model or change audio duration</br>
-                                - Click the <b>Generate<b> button</br>
-                                - After generation, generated music is available to listen in the <b>Generated music<b> field.
+                                {biniou_lang_tab_musicldm_about_instruct}
                                 </div>
                                 """
                             )
@@ -6585,7 +6451,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 save_ini_btn_musicldm.click(
                                     fn=write_ini_musicldm, 
                                     inputs=[
-                                        module_name_musicldm, 
+                                        module_name_musicldm,
                                         model_musicldm,
                                         num_inference_step_musicldm,
                                         sampler_musicldm,
@@ -6615,7 +6481,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Row():
                         with gr.Column():
                             btn_musicldm = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
-                        with gr.Column():                            
+                        with gr.Column():
                             btn_musicldm_cancel = gr.Button(f"{biniou_lang_cancel} 🛑", variant="stop")
                             btn_musicldm_cancel.click(fn=initiate_stop_musicldm, inputs=None, outputs=None)
                         with gr.Column():
@@ -6673,7 +6539,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_audiogen}</br>
-                                <b>{biniou_lang_about_function}</b>Generate sound from a prompt, using <a href='https://github.com/facebookresearch/audiocraft' target='_blank'>Audiogen</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_audiogen_about_desc}<a href='https://github.com/facebookresearch/audiocraft' target='_blank'>Audiogen</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_prompt_label}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_audiogen_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -6686,10 +6552,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Fill the <b>Prompt</b> by describing the sound you want to generate</br>
-                                - (optional) Modify the settings to change audio duration</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, generated sound is available to listen in the <b>Generated sound</b> field.
+                                {biniou_lang_tab_audiogen_about_instruct}
                                 </div>
                                 """
                             )                       
@@ -6800,7 +6663,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_harmonai}</br>
-                                <b>{biniou_lang_about_function}</b>Generate audio from a specific model using <a href='https://www.harmonai.org/' target='_blank'>Harmonai</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_harmonai_about_desc}<a href='https://www.harmonai.org/' target='_blank'>Harmonai</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_tab_harmonai_input_text}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_harmonai_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -6818,9 +6681,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - (optional) Modify the settings to change audio duration</br>
-                                - Click the <b>Generate<b> button</br>
-                                - After generation, generated audio is available to listen in the <b>Output<b> field.
+                                {biniou_lang_tab_harmonai_about_instruct}
                                 </div>
                                 """
                             )
@@ -6909,7 +6770,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_bark}</br>
-                                <b>{biniou_lang_about_function}</b>Generate high quality text-to-speech in several languages with <a href='https://github.com/suno-ai/bark' target='_blank'>Bark</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_bark_about_desc}<a href='https://github.com/suno-ai/bark' target='_blank'>Bark</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_prompt}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_bark_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -6923,21 +6784,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Fill the <b>prompt</b> with the text you want to hear</br>
-                                - (optional) Modify the settings to select a model and a voice</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, generated audio is available to listen in the <b>Generated speech</b> field.</br>
-                                <b>Tips : </b>You can add modifications to the generated voices, by adding the following in your prompts :</br>
-                                [laughter]</br>
-                                [laughs]</br>
-                                [sighs]</br>
-                                [music]</br>
-                                [gasps]</br>
-                                [clears throat]</br>
-                                — or ... for hesitations</br>
-                                ♪ for song lyrics</br>
-                                CAPITALIZATION for emphasis of a word</br>
-                                [MAN] and [WOMAN] to bias Bark toward male and female speakers, respectively</br>
+                                {biniou_lang_tab_bark_about_instruct}
                                 </div>
                                 """
                             )
@@ -7026,7 +6873,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_txt2vid_ms}</br>
-                                <b>{biniou_lang_about_function}</b>Generate video from a prompt and a negative prompt using <a href='https://github.com/modelscope/modelscope' target='_blank'>Modelscope</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_video_about_desc}<a href='https://github.com/modelscope/modelscope' target='_blank'>Modelscope</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_prompt_neg}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_video_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -7041,12 +6888,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Fill the <b>prompt</b> with what you want to see in your output video</br>
-                                - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output video</br>
-                                - (optional) Modify the settings to use another model, modify the number of frames to generate, or change dimensions of the outputs</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, generated video is displayed in the <b>Generated video</b> field.
-                                </br>
+                                {biniou_lang_tab_video_about_instruct}
                                 </div>
                                 """
                             )                
@@ -7229,7 +7071,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_txt2vid_ze}</br>
-                                <b>{biniou_lang_about_function}</b>Generate video from a prompt and a negative prompt using <a href='https://github.com/Picsart-AI-Research/Text2Video-Zero' target='_blank'>Text2Video-Zero</a> with <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a> Models</br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_video_about_desc}<a href='https://github.com/Picsart-AI-Research/Text2Video-Zero' target='_blank'>Text2Video-Zero</a>, <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a> Models</br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_prompt_neg}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_video_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -7258,12 +7100,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Fill the <b>prompt</b> with what you want to see in your output video</br>
-                                - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output video</br>
-                                - (optional) Modify the settings to use another model, modify the number of frames to generate, fps of the output video or change dimensions of the outputs</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, generated video is displayed in the <b>Generated video</b> field.
-                                </br>
+                                {biniou_lang_tab_video_about_instruct}
                                 <b>{biniou_lang_about_models}</b></br>
                                 - {biniou_lang_tab_image_about_models_inst1}
                                 </div>
@@ -7392,7 +7229,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             btn_txt2vid_ze_gif = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary", visible=False)
                         with gr.Column():                            
                             btn_txt2vid_ze_cancel = gr.Button(f"{biniou_lang_cancel} 🛑", variant="stop")
-                            btn_txt2vid_ze_cancel.click(fn=initiate_stop_txt2vid_ze, inputs=None, outputs=None)                              
+                            btn_txt2vid_ze_cancel.click(fn=initiate_stop_txt2vid_ze, inputs=None, outputs=None)
                         with gr.Column():
                             btn_txt2vid_ze_clear_input = gr.ClearButton(components=[prompt_txt2vid_ze, negative_prompt_txt2vid_ze], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
@@ -7505,7 +7342,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_animatediff_lcm}</br>
-                                <b>{biniou_lang_about_function}</b>Generate video from a prompt and a negative prompt using <a href='https://animatelcm.github.io/' target='_blank'>AnimateLCM</a> or <a href='https://huggingface.co/ByteDance/AnimateDiff-Lightning' target='_blank'>ByteDance/AnimateDiff-Lightning</a> with <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a> Models</br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_video_about_desc}<a href='https://animatelcm.github.io/' target='_blank'>AnimateLCM</a> / <a href='https://huggingface.co/ByteDance/AnimateDiff-Lightning' target='_blank'>ByteDance/AnimateDiff-Lightning</a>, <a href='https://stability.ai/stablediffusion' target='_blank'>Stable Diffusion</a> Models</br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_prompt_neg}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_video_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -7523,12 +7360,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - (optional) Modify the settings to use another model, modify the number of frames to generate or change dimensions of the outputs</br>
-                                - Fill the <b>prompt</b> with what you want to see in your output video</br>
-                                - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output video</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, generated video is displayed in the <b>Generated video</b> field.
-                                </br>
+                                {biniou_lang_tab_video_about_instruct}
                                 <b>{biniou_lang_about_models}</b></br>
                                 - {biniou_lang_tab_image_about_models_inst1}
                                 </div>
@@ -7765,7 +7597,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_img2vid}</br>
-                                <b>{biniou_lang_about_function}</b>Generate video from an input image using <a href='https://stability.ai/news/stable-video-diffusion-open-ai-video-model' target='_blank'>Stable Video Diffusion</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_img2vid_about_desc}<a href='https://stability.ai/news/stable-video-diffusion-open-ai-video-model' target='_blank'>Stable Video Diffusion</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_image}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_video_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -7779,10 +7611,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Upload or import an input image</br>
-                                - (optional) Modify the settings to use another model, modify the number of frames to generate, fps of the output video or change dimensions of the outputs</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, generated video is displayed in the <b>Generated video</b> field.
+                                {biniou_lang_tab_img2vid_about_instruct}
                                 </br>
                                 """
                             )
@@ -7997,7 +7826,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_vid2vid_ze}</br>
-                                <b>{biniou_lang_about_function}</b>Edit an input video with instructions from a prompt and a negative prompt using <a href='https://github.com/timothybrooks/instruct-pix2pix' target='_blank'>Instructpix2pix</a> and <a href='https://github.com/Picsart-AI-Research/Text2Video-Zero' target='_blank'>Text2Video-Zero</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_vid2vid_ze_about_desc}<a href='https://github.com/timothybrooks/instruct-pix2pix' target='_blank'>Instructpix2pix</a>, <a href='https://github.com/Picsart-AI-Research/Text2Video-Zero' target='_blank'>Text2Video-Zero</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_tab_vid2vid_ze_about_input_text}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_video_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -8010,13 +7839,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Upload or import a video using the <b>Input video</b> field</br>
-                                - Fill the <b>prompt</b> with the instructions for modifying your input video</br>
-                                - Fill the <b>negative prompt</b> with what you DO NOT want to see in your output video</br>
-                                - (optional) Modify the settings to change the number of frames to process (default=8) or the fps of the output</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, generated video is displayed in the Generated video field.</br></br>
-                                <b>Examples : </b><a href='https://www.timothybrooks.com/instruct-pix2pix/' target='_blank'>Instructpix2pix : Learning to Follow Image Editing Instructions</a>
+                                {biniou_lang_tab_vid2vid_ze_about_instruct}
+                                <b>{biniou_lang_about_examples}</b><a href='https://www.timothybrooks.com/instruct-pix2pix/' target='_blank'>Instructpix2pix : Learning to Follow Image Editing Instructions</a>
                                 </div>
                                 """
                             )                
@@ -8218,7 +8042,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_txt2shape}</br>
-                                <b>{biniou_lang_about_function}</b>Generate 3d animated gif or 3d mesh object from a prompt using <a href='https://github.com/openai/shap-e' target='_blank'>Shap-E</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_txt2shape_about_desc}<a href='https://github.com/openai/shap-e' target='_blank'>Shap-E</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_prompt}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_3d_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -8232,11 +8056,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Fill the <b>prompt</b> with what you want to see in your output</br>
-                                - Select the desired output type : animated Gif or 3D Model (mesh)</br> 
-                                - (optional) Modify the settings to generate several images in a single run or change dimensions of the outputs</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, generated images or 3D models are displayed in the output field. Save them individually or create a downloadable zip of the whole gallery.
+                                {biniou_lang_tab_txt2shape_about_instruct}
                                 </br>
                                 """
                             ) 
@@ -8334,7 +8154,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             btn_txt2shape_mesh = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary", visible=False) 
                         with gr.Column():
                             btn_txt2shape_clear_input = gr.ClearButton(components=[prompt_txt2shape], value=f"{biniou_lang_clear_inputs} 🧹")
-                        with gr.Column():                            
+                        with gr.Column():
                             btn_txt2shape_clear_output = gr.ClearButton(components=[out_txt2shape, gs_out_txt2shape, mesh_out_txt2shape, gs_mesh_out_txt2shape], value=f"{biniou_lang_clear_outputs} 🧹")
                             btn_txt2shape_gif.click(fn=hide_download_file_txt2shape, inputs=None, outputs=download_file_txt2shape)
                             btn_txt2shape_gif.click(
@@ -8374,7 +8194,6 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 outputs=[mesh_out_txt2shape, gs_mesh_out_txt2shape],
                                 show_progress="full",
                             )
-
                             output_type_txt2shape.change(
                                 fn=change_output_type_txt2shape,
                                 inputs=[
@@ -8421,7 +8240,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 f"""
                                 <h1 style='text-align: left;'>{biniou_lang_about_infos}</h1>
                                 <b>{biniou_lang_about_module}</b>{biniou_lang_tab_img2shape}</br>
-                                <b>{biniou_lang_about_function}</b>Generate 3d animated gif or 3d mesh object from an imput image using <a href='https://github.com/openai/shap-e' target='_blank'>Shap-E</a></br>
+                                <b>{biniou_lang_about_function}</b>{biniou_lang_tab_img2shape_about_desc}<a href='https://github.com/openai/shap-e' target='_blank'>Shap-E</a></br>
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_about_input_image}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_3d_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
@@ -8435,11 +8254,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                - Upload or import an image using the <b>Input image</b> field. To achieve good results, objects to create should be on a white backgrounds</br>
-                                - Select the desired output type : animated Gif or 3D Model (mesh)</br>
-                                - (optional) Modify the settings to generate several images in a single run or change dimensions of the outputs</br>
-                                - Click the <b>Generate</b> button</br>
-                                - After generation, generated images or 3D models are displayed in the output field. Save them individually or create a downloadable zip of the whole gallery.
+                                {biniou_lang_tab_img2shape_about_instruct}
                                 </br>
                                 """
                             )
@@ -9744,7 +9559,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
             with gr.Column():
                 gr.Number(visible=False)
 
-# Exécution de l'UI :
+# UI execution:
     demo.load(split_url_params, nsfw_filter, [nsfw_filter, url_params_current, safety_checker_ui_settings], _js=get_window_url_params)
     demo.load(read_logs, None, biniou_console_output, every=1)
 #    demo.load(fn=lambda: gr.Info('Biniou loading completed. Ready to work !'))
@@ -9767,4 +9582,4 @@ if __name__ == "__main__":
         inbrowser=biniou_global_inbrowser,
 #        inbrowser=True if len(sys.argv)>1 and sys.argv[1]=="--inbrowser" else biniou_global_inbrowser,
     )
-# Fin du fichier
+# EOF
