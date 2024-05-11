@@ -72,6 +72,7 @@ def music_harmonai(
         generator.append([torch.Generator(device_harmonai).manual_seed(final_seed + (k*batch_size_harmonai) + l ) for l in range(batch_size_harmonai)])
 
     final_seed = []
+    savename_array = []
     for i in range (batch_repeat_harmonai):
         audios = pipe_harmonai(
             audio_length_in_s=length_harmonai,
@@ -85,6 +86,7 @@ def music_harmonai(
             savename = name_seeded_audio(seed_id)
             scipy.io.wavfile.write(savename, pipe_harmonai.unet.config.sample_rate, audio.transpose())
             final_seed.append(seed_id)
+            savename_array.append(savename)
 
     print(f">>>[Harmonai 🔊 ]: generated {batch_repeat_harmonai} batch(es) of {batch_size_harmonai}")
     reporting_harmonai = f">>>[Harmonai 🔊 ]: "+\
@@ -93,7 +95,9 @@ def music_harmonai(
         f"Duration={length_harmonai} sec. | "+\
         f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
     print(reporting_harmonai) 
-    
+
+    metadata_writer_wav(reporting_harmonai, savename_array)
+
     del pipe_harmonai, generator, audios
     clean_ram()
 

@@ -116,7 +116,10 @@ biniou_global_version = biniou_global_version.replace("\n", "")
 if biniou_global_version == "main":
     biniou_global_version = "dev"
 
-if test_lang_exist(f"{biniou_global_lang_ui}.cfg") :
+with open(f"lang/lang_EN.cfg", "r", encoding="utf-8") as fichier:
+    exec(fichier.read())
+
+if test_lang_exist(f"{biniou_global_lang_ui}.cfg") and biniou_global_lang_ui != "lang_EN":
     with open(f"lang/{biniou_global_lang_ui}.cfg", "r", encoding="utf-8") as fichier:
         exec(fichier.read())
 

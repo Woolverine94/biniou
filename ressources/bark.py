@@ -76,6 +76,7 @@ def music_bark(
         pipe_bark.enable_cpu_offload()
     pipe_bark = pipe_bark.to_bettertransformer()
 
+    savename_array = []
     voice_preset = voice_preset_list_bark[voice_preset_bark]
     inputs = processor(prompt_bark, voice_preset=voice_preset)
     audio_array = pipe_bark.generate(**inputs, do_sample=True)
@@ -83,6 +84,8 @@ def music_bark(
     sample_rate = pipe_bark.generation_config.sample_rate
     savename = name_audio()
     write_wav(savename, sample_rate, audio_array)
+    savename_array.append(savename)
+
 
     print(f">>>[Bark 🗣️ ]: generated 1 audio file")
     reporting_bark = f">>>[Bark 🗣️ ]: "+\
@@ -90,9 +93,11 @@ def music_bark(
         f"Voice preset={voice_preset_bark} | "+\
         f"Prompt={prompt_bark}"
     print(reporting_bark) 
-   
-    del processor, pipe_bark, audio_array    
+
+    metadata_writer_wav(reporting_bark, savename_array)
+
+    del processor, pipe_bark, audio_array
     clean_ram()
 
-    print(f">>>[Bark 🗣️ ]: leaving module")    
+    print(f">>>[Bark 🗣️ ]: leaving module")
     return savename

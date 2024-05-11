@@ -71,11 +71,13 @@ def music_musicgen(
     )
     pipe_musicgen.set_custom_progress_callback(check_musicgen)
     prompt_musicgen_final = [f"{prompt_musicgen}"]
+    savename_array = []
     for i in range (num_batch_musicgen):
         wav = pipe_musicgen.generate(prompt_musicgen_final, progress=True)
         for idx, one_wav in enumerate(wav):
             savename, savename_final = name_idx_audio(idx)
             audio_write(savename, one_wav.cpu(), pipe_musicgen.sample_rate, strategy="loudness", loudness_compressor=True)
+            savename_array.append(savename_final)
 
     print(f">>>[MusicGen 🎶 ]: generated {num_batch_musicgen} batch(es) of 1")
     reporting_musicgen = f">>>[MusicGen 🎶 ]: "+\
@@ -88,9 +90,11 @@ def music_musicgen(
         f"Top_p={top_p_musicgen} | "+\
         f"Prompt={prompt_musicgen}"
     print(reporting_musicgen)
-            
+
+    metadata_writer_wav(reporting_musicgen, savename_array)
+
     del pipe_musicgen
-    clean_ram()      
+    clean_ram()
 
     print(f">>>[MusicGen 🎶 ]: leaving module")
-    return savename_final           
+    return savename_final

@@ -64,15 +64,16 @@ def music_audiogen(
         top_p=top_p_audiogen, 
         cfg_coef=cfg_coef_audiogen
     )
-    
+
     pipe_audiogen.set_custom_progress_callback(check_audiogen)
-    prompt_audiogen_final = [f"{prompt_audiogen}"] 
-    
+    prompt_audiogen_final = [f"{prompt_audiogen}"]
+    savename_array = []
     for i in range (num_batch_audiogen):
         wav = pipe_audiogen.generate(prompt_audiogen_final, progress=True)
         for idx, one_wav in enumerate(wav):
             savename, savename_final = name_idx_audio(idx)
             audio_write(savename, one_wav.cpu(), pipe_audiogen.sample_rate, strategy="loudness", loudness_compressor=True)
+            savename_array.append(savename_final)
 
     print(f">>>[AudioGen 🔊 ]: generated {num_batch_audiogen} batch(es) of 1")
     reporting_audiogen = f">>>[AudioGen 🔊 ]: "+\
@@ -85,6 +86,8 @@ def music_audiogen(
         f"Top_p={top_p_audiogen} | "+\
         f"Prompt={prompt_audiogen}"
     print(reporting_audiogen)
+
+    metadata_writer_wav(reporting_audiogen, savename_array)
 
     del pipe_audiogen
     clean_ram()

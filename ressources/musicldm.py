@@ -93,25 +93,25 @@ def music_musicldm(
     if negative_prompt_musicldm == "None":
         negative_prompt_musicldm = ""
 
-    final_audio=[]
+    final_audio = []
     final_seed = []
     for i in range (num_prompt_musicldm):
         audio = pipe_musicldm(
-            prompt=prompt_musicldm, 
-            negative_prompt=negative_prompt_musicldm, 
-            num_waveforms_per_prompt=num_audio_per_prompt_musicldm, 
-            guidance_scale=guidance_scale_musicldm, 
-            num_inference_steps=num_inference_step_musicldm, 
-            audio_length_in_s=audio_length_musicldm, 
-            generator=generator[i], 
-            callback=check_musicldm,              
+            prompt=prompt_musicldm,
+            negative_prompt=negative_prompt_musicldm,
+            num_waveforms_per_prompt=num_audio_per_prompt_musicldm,
+            guidance_scale=guidance_scale_musicldm,
+            num_inference_steps=num_inference_step_musicldm,
+            audio_length_in_s=audio_length_musicldm,
+            generator=generator[i],
+            callback=check_musicldm,
         ).audios
         
         for j in range(len(audio)):
             seed_id = random_seed + i*num_audio_per_prompt_musicldm + j if (seed_musicldm == 0) else seed_musicldm + i*num_audio_per_prompt_musicldm + j
             savename = name_seeded_audio(seed_id)
             scipy.io.wavfile.write(savename, rate=16000, data=audio[j])
-            final_audio.append(savename) 
+            final_audio.append(savename)
             final_seed.append(seed_id)
 
     print(f">>>[MusicLDM 🎶 ]: generated {num_prompt_musicldm} batch(es) of {num_audio_per_prompt_musicldm} audio")
@@ -124,11 +124,12 @@ def music_musicldm(
         f"Prompt={prompt_musicldm} | "+\
         f"Negative prompt={negative_prompt_musicldm} | "+\
         f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
-
     print(reporting_musicldm)
-            
+
+    metadata_writer_wav(reporting_musicldm, final_audio)
+
     del pipe_musicldm
-    clean_ram()      
+    clean_ram()
 
     print(f">>>[MusicLDM 🎶 ]: leaving module")
     return savename

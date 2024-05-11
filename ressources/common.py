@@ -20,6 +20,7 @@ from transformers import AutoFeatureExtractor
 from ressources.scheduler import *
 import exiv2
 import ffmpeg
+import music_tag
 
 device_torch = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -635,6 +636,12 @@ def metadata_writer_mp4(metadata, filename):
         ffmpeg.input(".tmp/tmp.mp4").output(filename_list[j], metadata=f"comment=biniou settings: {metadata}", map=0, c="copy").overwrite_output().run()
         os.remove(".tmp/tmp.mp4")
     return
+
+def metadata_writer_wav(metadata, filename):
+    for i in range(len(filename)):
+        f = music_tag.load_file(filename[i])
+        f['comment'] = f'{metadata}'
+        f.save()
 
 def schedulerer(pipe, scheduler):
     karras = False

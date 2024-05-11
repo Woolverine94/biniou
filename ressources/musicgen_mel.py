@@ -72,6 +72,7 @@ def music_musicgen_mel(
     melody_musicgen_mel, sr_musicgen_mel = torchaudio.load(source_audio_musicgen_mel)
     pipe_musicgen_mel.set_custom_progress_callback(check_musicgen_mel)
     prompt_musicgen_mel_final = [f"{prompt_musicgen_mel}"]
+    savename_array= []
     for i in range (num_batch_musicgen_mel):
         wav = pipe_musicgen_mel.generate_with_chroma(
             prompt_musicgen_mel_final, 
@@ -88,6 +89,7 @@ def music_musicgen_mel(
                 strategy="loudness", 
                 loudness_compressor=True
             )
+            savename_array.append(savename_final)
 
     print(f">>>[MusicGen Melody 🎶 ]: generated {num_batch_musicgen_mel} batch(es) of 1")
     reporting_musicgen_mel = f">>>[MusicGen Melody 🎶 ]: "+\
@@ -101,9 +103,11 @@ def music_musicgen_mel(
         f"Source audio type={source_type_musicgen_mel} | "+\
         f"Prompt={prompt_musicgen_mel}"
     print(reporting_musicgen_mel)
-            
+
+    metadata_writer_wav(reporting_musicgen_mel, savename_array)
+
     del pipe_musicgen_mel
-    clean_ram()      
+    clean_ram()
 
     print(f">>>[MusicGen Melody 🎶 ]: leaving module")
     return savename_final
