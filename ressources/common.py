@@ -640,7 +640,7 @@ def metadata_writer_mp4(metadata, filename):
 def metadata_writer_wav(metadata, filename):
     for i in range(len(filename)):
         f = music_tag.load_file(filename[i])
-        f['comment'] = f'{metadata}'
+        f['comment'] = f'biniou settings: {metadata}'
         f.save()
 
 def schedulerer(pipe, scheduler):
