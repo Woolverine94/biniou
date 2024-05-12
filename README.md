@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-05-12** : 🔥 ***Support for Fluently-XL-v3-Lightning*** 🔥 > Adding support for model  [fluently/Fluently-XL-v3-Lightning](https://huggingface.co/fluently/Fluently-XL-v3-Lightning) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero modules. This model is a Lightning (4-6 steps) variant from the Fluently model family.
+
   * 🆕 **2024-05-09** : 🔥 ***Support for ColorfulXL-Lightning*** 🔥 > Adding support for model  [ColorfulXL-Lightning](https://huggingface.co/ColorfulXL-Lightning) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero modules. This is a versatile SDXL model that only require 2, 4 or 8 steps inferences to produce nice results.
 
   * 🆕 **2024-05-07** : 🔥 ***Support for Fluently-XL-v4*** 🔥 > Adding support for model  [fluently/Fluently-XL-v4](https://huggingface.co/fluently/Fluently-XL-v4) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero modules. This model simply pretends to be the best SDXL model around. Best or not, it indeed produces highly qualitative contents. Really worth the try.
@@ -29,8 +31,6 @@
     - Generation settings are included in the metadatas of both files format.
     - FPS setting (for modules lacking it).
  
-  * 🆕 **2024-05-01** : 🔥 ***Adding support for model aipicasso/emi-2*** 🔥 > Stable Diffusion, img2img, IP-Adapter, ControlNet, Photobooth and Text2Video-Zero can now use the Japanese anime-specialized model [aipicasso/emi-2](https://huggingface.co/aipicasso/emi-2).
-
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
 ---
