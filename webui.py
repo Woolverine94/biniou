@@ -2335,6 +2335,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
                                 <a href='https://huggingface.co/IDKiro/sdxs-512-dreamshaper' target='_blank'>IDKiro/sdxs-512-dreamshaper</a>, 
                                 <a href='https://huggingface.co/IDKiro/sdxs-512-0.9' target='_blank'>IDKiro/sdxs-512-0.9</a>, 
+                                <a href='https://huggingface.co/fluently/Fluently-XL-v3-Lightning' target='_blank'>Fluently-XL-v3-Lightning</a>, 
                                 <a href='https://huggingface.co/fluently/Fluently-XL-v4' target='_blank'>fluently/Fluently-XL-v4</a>, 
                                 <a href='https://huggingface.co/recoilme/ColorfulXL-Lightning' target='_blank'>recoilme/ColorfulXL-Lightning</a>, 
                                 <a href='https://huggingface.co/playgroundai/playground-v2-512px-base' target='_blank'>playgroundai/playground-v2-512px-base</a>, 
@@ -3439,6 +3440,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
                                 <a href='https://huggingface.co/IDKiro/sdxs-512-dreamshaper' target='_blank'>IDKiro/sdxs-512-dreamshaper</a>, 
                                 <a href='https://huggingface.co/IDKiro/sdxs-512-0.9' target='_blank'>IDKiro/sdxs-512-0.9</a>, 
+                                <a href='https://huggingface.co/fluently/Fluently-XL-v3-Lightning' target='_blank'>Fluently-XL-v3-Lightning</a>, 
                                 <a href='https://huggingface.co/fluently/Fluently-XL-v4' target='_blank'>fluently/Fluently-XL-v4</a>, 
                                 <a href='https://huggingface.co/recoilme/ColorfulXL-Lightning' target='_blank'>recoilme/ColorfulXL-Lightning</a>, 
                                 <a href='https://huggingface.co/playgroundai/playground-v2-512px-base' target='_blank'>playgroundai/playground-v2-512px-base</a>, 
@@ -3704,6 +3706,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_image_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
+                                <a href='https://huggingface.co/fluently/Fluently-XL-v3-Lightning' target='_blank'>Fluently-XL-v3-Lightning</a>, 
                                 <a href='https://huggingface.co/fluently/Fluently-XL-v4' target='_blank'>fluently/Fluently-XL-v4</a>, 
                                 <a href='https://huggingface.co/recoilme/ColorfulXL-Lightning' target='_blank'>recoilme/ColorfulXL-Lightning</a>, 
                                 <a href='https://huggingface.co/playgroundai/playground-v2-512px-base' target='_blank'>playgroundai/playground-v2-512px-base</a>, 
@@ -5186,6 +5189,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_image_about_output_text}</br>
                                 <b>HF Stable Diffusion models pages : </b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
+                                <a href='https://huggingface.co/fluently/Fluently-XL-v3-Lightning' target='_blank'>Fluently-XL-v3-Lightning</a>, 
                                 <a href='https://huggingface.co/fluently/Fluently-XL-v4' target='_blank'>fluently/Fluently-XL-v4</a>, 
                                 <a href='https://huggingface.co/recoilme/ColorfulXL-Lightning' target='_blank'>recoilme/ColorfulXL-Lightning</a>, 
                                 <a href='https://huggingface.co/playgroundai/playground-v2-512px-base' target='_blank'>playgroundai/playground-v2-512px-base</a>, 
@@ -5215,10 +5219,20 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <a href='https://huggingface.co/lllyasviel/control_v11p_sd15_normalbae' target='_blank'>lllyasviel/control_v11p_sd15_normalbae</a>, 
                                 <a href='https://huggingface.co/lllyasviel/control_v11p_sd15_openpose' target='_blank'>lllyasviel/control_v11p_sd15_openpose</a>, 
                                 <a href='https://huggingface.co/lllyasviel/control_v11p_sd15_scribble' target='_blank'>lllyasviel/control_v11p_sd15_scribble</a>, 
-                                <a href='https://huggingface.co/lllyasviel/control_v11p_sd15_softedge' target='_blank'>lllyasviel/control_v11p_sd15_softedge</a>
+                                <a href='https://huggingface.co/lllyasviel/control_v11p_sd15_softedge' target='_blank'>lllyasviel/control_v11p_sd15_softedge</a>, 
+                                <a href='https://huggingface.co/Nacholmo/controlnet-qr-pattern-v2' target='_blank'>Nacholmo/controlnet-qr-pattern-v2</a>, 
+                                <a href='https://huggingface.co/monster-labs/control_v1p_sd15_qrcode_monster' target='_blank'>monster-labs/control_v1p_sd15_qrcode_monster</a>, 
+                                <a href='https://huggingface.co/TheMistoAI/MistoLine' target='_blank'>TheMistoAI/MistoLine</a>, 
+                                <a href='https://huggingface.co/patrickvonplaten/controlnet-depth-sdxl-1.0' target='_blank'>patrickvonplaten/controlnet-depth-sdxl-1.0</a>, 
+                                <a href='https://huggingface.co/thibaud/controlnet-openpose-sdxl-1.0' target='_blank'>thibaud/controlnet-openpose-sdxl-1.0</a>, 
+                                <a href='https://huggingface.co/SargeZT/controlnet-sd-xl-1.0-softedge-dexined' target='_blank'>SargeZT/controlnet-sd-xl-1.0-softedge-dexined</a>, 
+                                <a href='https://huggingface.co/Nacholmo/controlnet-qr-pattern-sdxl' target='_blank'>Nacholmo/controlnet-qr-pattern-sdxl</a>, 
+                                <a href='https://huggingface.co/monster-labs/control_v1p_sdxl_qrcode_monster' target='_blank'>monster-labs/control_v1p_sdxl_qrcode_monster</a>
                                 </br>
                                 """
 #                                <a href='https://huggingface.co/ckpt/anything-v4.5-vae-swapped' target='_blank'>ckpt/anything-v4.5-vae-swapped</a>, 
+#                                <a href='https://huggingface.co/patrickvonplaten/controlnet-canny-sdxl-1.0' target='_blank'>patrickvonplaten/controlnet-canny-sdxl-1.0</a>
+
                             )
                         with gr.Box():
                             gr.HTML(
@@ -5504,6 +5518,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_image_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
+                                <a href='https://huggingface.co/fluently/Fluently-XL-v3-Lightning' target='_blank'>Fluently-XL-v3-Lightning</a>, 
                                 <a href='https://huggingface.co/fluently/Fluently-XL-v4' target='_blank'>fluently/Fluently-XL-v4</a>, 
                                 <a href='https://huggingface.co/recoilme/ColorfulXL-Lightning' target='_blank'>recoilme/ColorfulXL-Lightning</a>, 
                                 <a href='https://huggingface.co/playgroundai/playground-v2-512px-base' target='_blank'>playgroundai/playground-v2-512px-base</a>, 
@@ -7098,6 +7113,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_video_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
+                                <a href='https://huggingface.co/fluently/Fluently-XL-v3-Lightning' target='_blank'>Fluently-XL-v3-Lightning</a>, 
                                 <a href='https://huggingface.co/fluently/Fluently-XL-v4' target='_blank'>fluently/Fluently-XL-v4</a>, 
                                 <a href='https://huggingface.co/recoilme/ColorfulXL-Lightning' target='_blank'>recoilme/ColorfulXL-Lightning</a>, 
                                 <a href='https://huggingface.co/playgroundai/playground-v2-512px-base' target='_blank'>playgroundai/playground-v2-512px-base</a>, 
