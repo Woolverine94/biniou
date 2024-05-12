@@ -71,7 +71,8 @@ variant_list_controlnet = [
     "lllyasviel/control_v11p_sd15_softedge",
     "Nacholmo/controlnet-qr-pattern-v2",
     "monster-labs/control_v1p_sd15_qrcode_monster",
-    "patrickvonplaten/controlnet-canny-sdxl-1.0",
+    "TheMistoAI/MistoLine",
+#    "patrickvonplaten/controlnet-canny-sdxl-1.0",
     "patrickvonplaten/controlnet-depth-sdxl-1.0",
     "thibaud/controlnet-openpose-sdxl-1.0",
     "SargeZT/controlnet-sd-xl-1.0-softedge-dexined",
@@ -277,6 +278,7 @@ def image_controlnet(
         variant_controlnet,
         cache_dir=model_path_base_controlnet,
         torch_dtype=model_arch,
+        variant="fp16" if variant_controlnet == "TheMistoAI/MistoLine" else None,
 #        use_safetensors=True,
         resume_download=True,
         local_files_only=True if offline_test() else None
