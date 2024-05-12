@@ -19,6 +19,7 @@ os.makedirs(model_path_txt2vid_ze, exist_ok=True)
 
 model_list_txt2vid_ze = [
     "SG161222/Realistic_Vision_V3.0_VAE",
+    "fluently/Fluently-XL-v3-Lightning",
     "fluently/Fluently-XL-v4",
     "recoilme/ColorfulXL-Lightning",
     "playgroundai/playground-v2-512px-base",
