@@ -278,7 +278,7 @@ def image_controlnet(
         variant_controlnet,
         cache_dir=model_path_base_controlnet,
         torch_dtype=model_arch,
-        variant="fp16" if variant_controlnet == "TheMistoAI/MistoLine" else None,
+#        variant="fp16" if variant_controlnet == "TheMistoAI/MistoLine" else None,
 #        use_safetensors=True,
         resume_download=True,
         local_files_only=True if offline_test() else None
