@@ -3514,6 +3514,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_img2img = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
                             with gr.Column():
                                 tkme_img2img = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)    
+                            with gr.Column():
+                                clipskip_img2img = gr.Slider(0, 12, step=1, value=biniou_global_clipskip, label=biniou_lang_clipskip_label, info=biniou_lang_clipskip_info)
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_img2img = gr.Button(f"{biniou_lang_save_settings} 💾")
@@ -3535,6 +3537,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         seed_img2img,
                                         use_gfpgan_img2img,
                                         tkme_img2img,
+                                        clipskip_img2img,
                                         ]
                                     )
                                 save_ini_btn_img2img.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
@@ -3640,6 +3643,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     use_gfpgan_img2img,
                                     nsfw_filter,
                                     tkme_img2img,
+                                    clipskip_img2img,
                                     lora_model_img2img,
                                     lora_weight_img2img,
                                     txtinv_img2img,

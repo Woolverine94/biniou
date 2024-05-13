@@ -93,6 +93,7 @@ def image_img2img(
     use_gfpgan_img2img, 
     nsfw_filter, 
     tkme_img2img,
+    clipskip_img2img,
     lora_model_img2img,
     lora_weight_img2img,
     txtinv_img2img,
@@ -102,6 +103,9 @@ def image_img2img(
     print(">>>[img2img 🖌️ ]: starting module")
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_img2img, device_img2img, nsfw_filter)
+
+    if clipskip_img2img == 0:
+       clipskip_img2img = None
 
     if ("turbo" in modelid_img2img):
         is_turbo_img2img: bool = True
@@ -323,7 +327,8 @@ def image_img2img(
                 guidance_scale=guidance_scale_img2img,
                 strength=denoising_strength_img2img,
                 num_inference_steps=num_inference_step_img2img,
-                generator = generator,
+                generator=generator,
+                clip_skip=clipskip_img2img,
                 callback_on_step_end=check_img2img,
                 callback_on_step_end_tensor_inputs=['latents'],
             ).images
@@ -350,6 +355,7 @@ def image_img2img(
         f"Size={width_img2img}x{height_img2img} | "+\
         f"GFPGAN={use_gfpgan_img2img} | "+\
         f"Token merging={tkme_img2img} | "+\
+        f"CLIP skip={clipskip_img2img} | "+\
         f"LoRA model={lora_model_img2img} | "+\
         f"LoRA weight={lora_weight_img2img} | "+\
         f"Textual inversion={txtinv_img2img} | "+\
