@@ -837,6 +837,7 @@ def write_ini_txt2img_sd(
     seed_txt2img_sd,
     use_gfpgan_txt2img_sd,
     tkme_txt2img_sd,
+    clipskip_txt2img_sd,
 ):
     savename = f".ini/{module}.ini"
     content = f"model_txt2img_sd.value = \"{model_txt2img_sd}\"\n\
@@ -849,7 +850,8 @@ width_txt2img_sd.value = {width_txt2img_sd}\n\
 height_txt2img_sd.value = {height_txt2img_sd}\n\
 seed_txt2img_sd.value = {seed_txt2img_sd}\n\
 use_gfpgan_txt2img_sd.value = {use_gfpgan_txt2img_sd}\n\
-tkme_txt2img_sd.value = {tkme_txt2img_sd}"
+tkme_txt2img_sd.value = {tkme_txt2img_sd}\n\
+clipskip_txt2img_sd.value = {clipskip_txt2img_sd}"
     with open(savename, 'w', encoding="utf-8") as savefile:
         savefile.write(content)
     return
