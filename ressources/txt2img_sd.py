@@ -90,7 +90,6 @@ def image_txt2img_sd(
     use_gfpgan_txt2img_sd, 
     nsfw_filter, 
     tkme_txt2img_sd,
-    clipskip_txt2img_sd,
     lora_model_txt2img_sd,
     lora_weight_txt2img_sd,
     txtinv_txt2img_sd,
@@ -101,9 +100,6 @@ def image_txt2img_sd(
 
     global pipe_txt2img_sd
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2img_sd, device_txt2img_sd, nsfw_filter)
-
-    if clipskip_txt2img_sd == 0:
-       clipskip_txt2img_sd = None
 
     if ("turbo" in modelid_txt2img_sd):
         is_turbo_txt2img_sd: bool = True
@@ -300,7 +296,7 @@ def image_txt2img_sd(
                 num_images_per_prompt=num_images_per_prompt_txt2img_sd,
                 num_inference_steps=num_inference_step_txt2img_sd,
                 guidance_scale=guidance_scale_txt2img_sd,
-                generator=generator[i],
+                generator = generator[i],
                 callback_on_step_end=check_txt2img_sd, 
                 callback_on_step_end_tensor_inputs=['latents'], 
             ).images
@@ -313,8 +309,7 @@ def image_txt2img_sd(
                 num_images_per_prompt=num_images_per_prompt_txt2img_sd,
                 num_inference_steps=num_inference_step_txt2img_sd,
                 guidance_scale=guidance_scale_txt2img_sd,
-                generator=generator[i],
-                clip_skip=clipskip_txt2img_sd,
+                generator = generator[i],
                 callback_on_step_end=check_txt2img_sd, 
                 callback_on_step_end_tensor_inputs=['latents'], 
             ).images
@@ -338,7 +333,6 @@ def image_txt2img_sd(
         f"Size={width_txt2img_sd}x{height_txt2img_sd} | "+\
         f"GFPGAN={use_gfpgan_txt2img_sd} | "+\
         f"Token merging={tkme_txt2img_sd} | "+\
-        f"CLIP skip={clipskip_txt2img_sd} | "+\
         f"LoRA model={lora_model_txt2img_sd} | "+\
         f"LoRA weight={lora_weight_txt2img_sd} | "+\
         f"Textual inversion={txtinv_txt2img_sd} | "+\
