@@ -1021,6 +1021,7 @@ def write_ini_img2img_ip(
     seed_img2img_ip,
     use_gfpgan_img2img_ip,
     tkme_img2img_ip,
+    clipskip_img2img_ip,
 ):
     savename = f".ini/{module}.ini"
     content = f"model_img2img_ip.value = \"{model_img2img_ip}\"\n\
@@ -1033,7 +1034,8 @@ width_img2img_ip.value = {width_img2img_ip}\n\
 height_img2img_ip.value = {height_img2img_ip}\n\
 seed_img2img_ip.value = {seed_img2img_ip}\n\
 use_gfpgan_img2img_ip.value = {use_gfpgan_img2img_ip}\n\
-tkme_img2img_ip.value = {tkme_img2img_ip}"
+tkme_img2img_ip.value = {tkme_img2img_ip}\n\
+clipskip_img2img_ip.value = {clipskip_img2img_ip}"
     with open(savename, 'w', encoding="utf-8") as savefile:
         savefile.write(content)
     return
@@ -1142,6 +1144,7 @@ def write_ini_inpaint(
     seed_inpaint,
     use_gfpgan_inpaint,
     tkme_inpaint,
+    clipskip_inpaint,
 ):
     savename = f".ini/{module}.ini"
     content = f"model_inpaint.value = \"{model_inpaint}\"\n\
@@ -1154,7 +1157,8 @@ width_inpaint.value = {width_inpaint}\n\
 height_inpaint.value = {height_inpaint}\n\
 seed_inpaint.value = {seed_inpaint}\n\
 use_gfpgan_inpaint.value = {use_gfpgan_inpaint}\n\
-tkme_inpaint.value = {tkme_inpaint}"
+tkme_inpaint.value = {tkme_inpaint}\n\
+clipskip_inpaint.value = {clipskip_inpaint.value}"
     with open(savename, 'w', encoding="utf-8") as savefile:
         savefile.write(content)
     return
@@ -1202,6 +1206,7 @@ def write_ini_outpaint(
     seed_outpaint,
     use_gfpgan_outpaint,
     tkme_outpaint,
+    clipskip_outpaint,
 ):
     savename = f".ini/{module}.ini"
     content = f"model_outpaint.value = \"{model_outpaint}\"\n\
@@ -1214,7 +1219,8 @@ width_outpaint.value = {width_outpaint}\n\
 height_outpaint.value = {height_outpaint}\n\
 seed_outpaint.value = {seed_outpaint}\n\
 use_gfpgan_outpaint.value = {use_gfpgan_outpaint}\n\
-tkme_outpaint.value = {tkme_outpaint}"
+tkme_outpaint.value = {tkme_outpaint}\n\
+clipskip_outpaint.value = {clipskip_outpaint}"
     with open(savename, 'w', encoding="utf-8") as savefile:
         savefile.write(content)
     return
@@ -1237,6 +1243,7 @@ def write_ini_controlnet(
     stop_controlnet,
     use_gfpgan_controlnet,
     tkme_controlnet,
+    clipskip_controlnet,
 ):
     savename = f".ini/{module}.ini"
     content = f"model_controlnet.value = \"{model_controlnet}\"\n\
@@ -1254,7 +1261,8 @@ strength_controlnet.value = {strength_controlnet}\n\
 start_controlnet.value = {start_controlnet}\n\
 stop_controlnet.value = {stop_controlnet}\n\
 use_gfpgan_controlnet.value = {use_gfpgan_controlnet}\n\
-tkme_controlnet.value = {tkme_controlnet}"
+tkme_controlnet.value = {tkme_controlnet}\n\
+clipskip_controlnet.value = {clipskip_controlnet}"
     with open(savename, 'w', encoding="utf-8") as savefile:
         savefile.write(content)
     return
@@ -1272,6 +1280,7 @@ def write_ini_faceid_ip(
     seed_faceid_ip,
     use_gfpgan_faceid_ip,
     tkme_faceid_ip,
+    clipskip_faceid_ip,
 ):
     savename = f".ini/{module}.ini"
     content = f"model_faceid_ip.value = \"{model_faceid_ip}\"\n\
@@ -1284,7 +1293,8 @@ width_faceid_ip.value = {width_faceid_ip}\n\
 height_faceid_ip.value = {height_faceid_ip}\n\
 seed_faceid_ip.value = {seed_faceid_ip}\n\
 use_gfpgan_faceid_ip.value = {use_gfpgan_faceid_ip}\n\
-tkme_faceid_ip.value = {tkme_faceid_ip}"
+tkme_faceid_ip.value = {tkme_faceid_ip}\n\
+clipskip_faceid_ip.value = {clipskip_faceid_ip}"
     with open(savename, 'w', encoding="utf-8") as savefile:
         savefile.write(content)
     return
@@ -1562,6 +1572,7 @@ def write_ini_animatediff_lcm(
     num_prompt_animatediff_lcm,
     use_gfpgan_animatediff_lcm,
     tkme_animatediff_lcm,
+    clipskip_animatediff_lcm,
 ):
     savename = f".ini/{module}.ini"
     content = f"model_animatediff_lcm.value = \"{model_animatediff_lcm}\"\n\
@@ -1577,7 +1588,8 @@ height_animatediff_lcm.value = {height_animatediff_lcm}\n\
 num_videos_per_prompt_animatediff_lcm.value = {num_videos_per_prompt_animatediff_lcm}\n\
 num_prompt_animatediff_lcm.value = {num_prompt_animatediff_lcm}\n\
 use_gfpgan_animatediff_lcm.value = {use_gfpgan_animatediff_lcm}\n\
-tkme_animatediff_lcm.value = {tkme_animatediff_lcm}"
+tkme_animatediff_lcm.value = {tkme_animatediff_lcm}\n\
+clipskip_animatediff_lcm.value = {clipskip_animatediff_lcm}"
     with open(savename, 'w', encoding="utf-8") as savefile:
         savefile.write(content)
     return

@@ -116,7 +116,8 @@ def image_faceid_ip(
     seed_faceid_ip, 
     use_gfpgan_faceid_ip, 
     nsfw_filter, 
-    tkme_faceid_ip,    
+    tkme_faceid_ip,
+    clipskip_faceid_ip,
     lora_model_faceid_ip,
     lora_weight_faceid_ip,
     txtinv_faceid_ip,
@@ -126,6 +127,9 @@ def image_faceid_ip(
     print(">>>[Photobooth 🖼️ ]: starting module")
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_faceid_ip, device_faceid_ip, nsfw_filter)
+
+    if clipskip_faceid_ip == 0:
+       clipskip_faceid_ip = None
 
     if ("turbo" in modelid_faceid_ip):
         is_turbo_faceid_ip: bool = True
@@ -373,7 +377,7 @@ def image_faceid_ip(
                 num_inference_steps=num_inference_step_faceid_ip,
                 height=height_faceid_ip,
                 width=width_faceid_ip,
-                generator = generator[i],
+                generator=generator[i],
                 callback_on_step_end=check_faceid_ip, 
                 callback_on_step_end_tensor_inputs=['latents'], 
             ).images
@@ -392,7 +396,7 @@ def image_faceid_ip(
                 num_inference_steps=num_inference_step_faceid_ip,
                 height=height_faceid_ip,
                 width=width_faceid_ip,
-                generator = generator[i],
+                generator=generator[i],
                 callback_on_step_end=check_faceid_ip, 
                 callback_on_step_end_tensor_inputs=['latents'], 
             ).images            
@@ -408,10 +412,11 @@ def image_faceid_ip(
                 num_inference_steps=num_inference_step_faceid_ip,
                 height=height_faceid_ip,
                 width=width_faceid_ip,
-                generator = generator[i],
-                callback_on_step_end=check_faceid_ip, 
-                callback_on_step_end_tensor_inputs=['latents'], 
-            ).images        
+                generator=generator[i],
+                clip_skip=clipskip_faceid_ip,
+                callback_on_step_end=check_faceid_ip,
+                callback_on_step_end_tensor_inputs=['latents'],
+            ).images
 
         for j in range(len(image)):
             seed_id = random_seed + i*num_images_per_prompt_faceid_ip + j if (seed_faceid_ip == 0) else seed_faceid_ip + i*num_images_per_prompt_faceid_ip + j
@@ -432,6 +437,7 @@ def image_faceid_ip(
         f"Size={width_faceid_ip}x{height_faceid_ip} | "+\
         f"GFPGAN={use_gfpgan_faceid_ip} | "+\
         f"Token merging={tkme_faceid_ip} | "+\
+        f"CLIP skip={clipskip_faceid_ip} | "+\
         f"LoRA model={lora_model_faceid_ip} | "+\
         f"LoRA weight={lora_weight_faceid_ip} | "+\
         f"Textual inversion={txtinv_faceid_ip} | "+\

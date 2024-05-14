@@ -82,12 +82,16 @@ def video_animatediff_lcm(
     nsfw_filter,
     use_gfpgan_animatediff_lcm,
     tkme_animatediff_lcm,
+    clipskip_animatediff_lcm,
     progress_animatediff_lcm=gr.Progress(track_tqdm=True)
     ):
 
     print(">>>[AnimateLCM 📼 ]: starting module")
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_animatediff_lcm, device_animatediff_lcm, nsfw_filter)
+
+    if clipskip_animatediff_lcm == 0:
+       clipskip_animatediff_lcm = None
 
     if (modelid_adapters_animatediff_lcm == "wangfuyun/AnimateLCM"):
         adapter_animatediff_lcm = MotionAdapter.from_pretrained(
@@ -186,7 +190,8 @@ def video_animatediff_lcm(
             guidance_scale=guidance_scale_animatediff_lcm,
             video_length=num_frames_animatediff_lcm,
             num_videos_per_prompt=num_videos_per_prompt_animatediff_lcm,
-            generator = generator[i],
+            generator=generator[i],
+            clip_skip=clipskip_animatediff_lcm,
             callback_on_step_end=check_animatediff_lcm,
             callback_on_step_end_tensor_inputs=['latents'],
         ).frames[0]
@@ -237,6 +242,7 @@ def video_animatediff_lcm(
         f"Size={width_animatediff_lcm}x{height_animatediff_lcm} | "+\
         f"GFPGAN={use_gfpgan_animatediff_lcm} | "+\
         f"Token merging={tkme_animatediff_lcm} | "+\
+        f"CLIP skip={clipskip_animatediff_lcm} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Prompt={prompt_animatediff_lcm} | "+\
         f"Negative prompt={negative_prompt_animatediff_lcm} | "+\

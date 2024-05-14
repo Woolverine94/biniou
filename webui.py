@@ -3776,6 +3776,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_img2img_ip = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
                             with gr.Column():
                                 tkme_img2img_ip = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
+                            with gr.Column():
+                                clipskip_img2img_ip = gr.Slider(0, 12, step=1, value=biniou_global_clipskip, label=biniou_lang_clipskip_label, info=biniou_lang_clipskip_info)
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_img2img_ip = gr.Button(f"{biniou_lang_save_settings} 💾")
@@ -3797,6 +3799,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         seed_img2img_ip,
                                         use_gfpgan_img2img_ip,
                                         tkme_img2img_ip,
+                                        clipskip_img2img_ip,
                                         ]
                                     )
                                 save_ini_btn_img2img_ip.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
@@ -3927,6 +3930,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     use_gfpgan_img2img_ip,
                                     nsfw_filter,
                                     tkme_img2img_ip,
+                                    clipskip_img2img_ip,
                                     lora_model_img2img_ip,
                                     lora_weight_img2img_ip,
                                     txtinv_img2img_ip,
@@ -4606,6 +4610,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_inpaint = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
                             with gr.Column():
                                 tkme_inpaint = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
+                            with gr.Column():
+                                clipskip_inpaint = gr.Slider(0, 12, step=1, value=biniou_global_clipskip, label=biniou_lang_clipskip_label, info=biniou_lang_clipskip_info)
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_inpaint = gr.Button(f"{biniou_lang_save_settings} 💾")
@@ -4627,6 +4633,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         seed_inpaint,
                                         use_gfpgan_inpaint,
                                         tkme_inpaint,
+                                        clipskip_inpaint,
                                         ]
                                     )
                                 save_ini_btn_inpaint.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
@@ -4704,6 +4711,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     use_gfpgan_inpaint,
                                     nsfw_filter,
                                     tkme_inpaint,
+                                    clipskip_inpaint,
                                 ],
                                 outputs=[out_inpaint, gs_out_inpaint], 
                                 show_progress="full",
@@ -5009,6 +5017,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_outpaint = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
                             with gr.Column():
                                 tkme_outpaint = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
+                            with gr.Column():
+                                clipskip_outpaint = gr.Slider(0, 12, step=1, value=biniou_global_clipskip, label=biniou_lang_clipskip_label, info=biniou_lang_clipskip_info)
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_outpaint = gr.Button(f"{biniou_lang_save_settings} 💾")
@@ -5030,6 +5040,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         seed_outpaint,
                                         use_gfpgan_outpaint,
                                         tkme_outpaint,
+                                        clipskip_outpaint,
                                         ]
                                     )
                                 save_ini_btn_outpaint.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
@@ -5129,6 +5140,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     use_gfpgan_outpaint,
                                     nsfw_filter,
                                     tkme_outpaint,
+                                    clipskip_outpaint,
                                 ],
                                 outputs=[out_outpaint, gs_out_outpaint], 
                                 show_progress="full",
@@ -5296,6 +5308,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_controlnet = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
                             with gr.Column():
                                 tkme_controlnet = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
+                            with gr.Column():
+                                clipskip_controlnet = gr.Slider(0, 12, step=1, value=biniou_global_clipskip, label=biniou_lang_clipskip_label, info=biniou_lang_clipskip_info)
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_controlnet = gr.Button(f"{biniou_lang_save_settings} 💾")
@@ -5322,6 +5336,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         stop_controlnet,
                                         use_gfpgan_controlnet,
                                         tkme_controlnet,
+                                        clipskip_controlnet,
                                         ]
                                     )
                                 save_ini_btn_controlnet.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
@@ -5449,6 +5464,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 img_preview_controlnet,
                                 nsfw_filter,
                                 tkme_controlnet,
+                                clipskip_controlnet,
                                 lora_model_controlnet,
                                 lora_weight_controlnet,
                                 txtinv_controlnet,
@@ -5587,6 +5603,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_faceid_ip = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
                             with gr.Column():
                                 tkme_faceid_ip = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
+                            with gr.Column():
+                                clipskip_faceid_ip = gr.Slider(0, 12, step=1, value=biniou_global_clipskip, label=biniou_lang_clipskip_label, info=biniou_lang_clipskip_info)
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_faceid_ip = gr.Button(f"{biniou_lang_save_settings} 💾")
@@ -5608,6 +5626,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         seed_faceid_ip,
                                         use_gfpgan_faceid_ip,
                                         tkme_faceid_ip,
+                                        clipskip_faceid_ip,
                                         ]
                                     )
                                 save_ini_btn_faceid_ip.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
@@ -5710,6 +5729,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     use_gfpgan_faceid_ip,
                                     nsfw_filter,
                                     tkme_faceid_ip,
+                                    clipskip_faceid_ip,
                                     lora_model_faceid_ip,
                                     lora_weight_faceid_ip,
                                     txtinv_faceid_ip,
@@ -7446,9 +7466,11 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 num_prompt_animatediff_lcm = gr.Slider(1, 32, step=1, value=1, label=biniou_lang_batch_count_label, info=biniou_lang_batch_count_info)
                         with gr.Row():
                             with gr.Column():
-                                use_gfpgan_animatediff_lcm = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info, visible=False)
+                                use_gfpgan_animatediff_lcm = gr.Checkbox(value=False, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info, interactive=False)
                             with gr.Column():
-                                tkme_animatediff_lcm = gr.Slider(0.0, 1.0, step=0.01, value=0, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info, visible=False)
+                                tkme_animatediff_lcm = gr.Slider(0.0, 1.0, step=0.01, value=0.0, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info, interactive=False)
+                            with gr.Column():
+                                clipskip_animatediff_lcm = gr.Slider(0, 12, step=1, value=biniou_global_clipskip, label=biniou_lang_clipskip_label, info=biniou_lang_clipskip_info)
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_animatediff_lcm = gr.Button(f"{biniou_lang_save_settings} 💾")
@@ -7473,6 +7495,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         num_prompt_animatediff_lcm,
                                         use_gfpgan_animatediff_lcm,
                                         tkme_animatediff_lcm,
+                                        clipskip_animatediff_lcm,
                                         ]
                                     )
                                 save_ini_btn_animatediff_lcm.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
@@ -7568,6 +7591,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     nsfw_filter,
                                     use_gfpgan_animatediff_lcm,
                                     tkme_animatediff_lcm,
+                                    clipskip_animatediff_lcm,
                                 ],
                                 outputs=out_animatediff_lcm,
                                 show_progress="full",
@@ -7593,6 +7617,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     nsfw_filter,
                                     use_gfpgan_animatediff_lcm,
                                     tkme_animatediff_lcm,
+                                    clipskip_animatediff_lcm,
                                 ],
                                 outputs=gif_out_animatediff_lcm,
                                 show_progress="full",

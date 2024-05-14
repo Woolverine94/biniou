@@ -95,7 +95,8 @@ def image_img2img_ip(
     seed_img2img_ip, 
     use_gfpgan_img2img_ip, 
     nsfw_filter, 
-    tkme_img2img_ip,    
+    tkme_img2img_ip,
+    clipskip_img2img_ip,
     lora_model_img2img_ip,
     lora_weight_img2img_ip,
     txtinv_img2img_ip,
@@ -105,7 +106,10 @@ def image_img2img_ip(
     print(">>>[IP-Adapter 🖌️ ]: starting module")
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_img2img_ip, device_img2img_ip, nsfw_filter)
-    
+
+    if clipskip_img2img_ip == 0:
+       clipskip_img2img_ip = None
+
     if ("turbo" in modelid_img2img_ip):
         is_turbo_img2img_ip: bool = True
     else :
@@ -575,7 +579,8 @@ def image_img2img_ip(
                     guidance_scale=guidance_scale_img2img_ip,
                     strength=denoising_strength_img2img_ip,
                     num_inference_steps=num_inference_step_img2img_ip,
-                    generator = generator,
+                    generator=generator,
+                    clip_skip=clipskip_img2img_ip,
                     callback_on_step_end=check_img2img_ip, 
                     callback_on_step_end_tensor_inputs=['latents'], 
                 ).images        
@@ -588,7 +593,8 @@ def image_img2img_ip(
                     guidance_scale=guidance_scale_img2img_ip,
                     strength=denoising_strength_img2img_ip,
                     num_inference_steps=num_inference_step_img2img_ip,
-                    generator = generator,
+                    generator=generator,
+                    clip_skip=clipskip_img2img_ip,
                     callback_on_step_end=check_img2img_ip, 
                     callback_on_step_end_tensor_inputs=['latents'], 
                 ).images        
@@ -610,6 +616,7 @@ def image_img2img_ip(
         f"Size={width_img2img_ip}x{height_img2img_ip} | "+\
         f"GFPGAN={use_gfpgan_img2img_ip} | "+\
         f"Token merging={tkme_img2img_ip} | "+\
+        f"CLIP skip={clipskip_img2img_ip} | "+\
         f"LoRA model={lora_model_img2img_ip} | "+\
         f"LoRA weight={lora_weight_img2img_ip} | "+\
         f"Textual inversion={txtinv_img2img_ip} | "+\

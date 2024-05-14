@@ -69,12 +69,16 @@ def image_inpaint(
     use_gfpgan_inpaint, 
     nsfw_filter, 
     tkme_inpaint,
+    clipskip_inpaint,
     progress_inpaint=gr.Progress(track_tqdm=True)
     ):
 
     print(">>>[inpaint 🖌️ ]: starting module")
-    
+
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_safety_checker, device_inpaint, nsfw_filter)
+
+    if clipskip_inpaint == 0:
+       clipskip_inpaint = None
 
     if ("XL" in modelid_inpaint.upper()):
         is_xl_inpaint: bool = True
@@ -194,7 +198,7 @@ def image_inpaint(
                 width=dim_size[0],
                 height=dim_size[1],
                 num_inference_steps=num_inference_step_inpaint,
-                generator = generator[i],
+                generator=generator[i],
                 callback_on_step_end=check_inpaint, 
                 callback_on_step_end_tensor_inputs=['latents'],
             ).images
@@ -210,7 +214,8 @@ def image_inpaint(
                 width=dim_size[0],
                 height=dim_size[1],
                 num_inference_steps=num_inference_step_inpaint,
-                generator = generator[i],
+                generator=generator[i],
+                clip_skip=clipskip_inpaint,
                 callback_on_step_end=check_inpaint, 
                 callback_on_step_end_tensor_inputs=['latents'],
             ).images
@@ -235,6 +240,7 @@ def image_inpaint(
         f"Size={dim_size[0]}x{dim_size[1]} | "+\
         f"GFPGAN={use_gfpgan_inpaint} | "+\
         f"Token merging={tkme_inpaint} | "+\
+        f"CLIP skip={clipskip_inpaint} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Denoising strength={denoising_strength_inpaint} | "+\
         f"Prompt={prompt_inpaint} | "+\

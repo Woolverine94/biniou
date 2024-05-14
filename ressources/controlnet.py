@@ -264,6 +264,7 @@ def image_controlnet(
     img_preview_controlnet,
     nsfw_filter, 
     tkme_controlnet,
+    clipskip_controlnet,
     lora_model_controlnet,
     lora_weight_controlnet,
     txtinv_controlnet,
@@ -273,6 +274,9 @@ def image_controlnet(
     print(">>>[ControlNet 🖼️ ]: starting module")
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_controlnet, device_controlnet, nsfw_filter)
+
+    if clipskip_controlnet == 0:
+       clipskip_controlnet = None
 
     controlnet = ControlNetModel.from_pretrained(
         variant_controlnet,
@@ -507,6 +511,7 @@ def image_controlnet(
                 control_guidance_start=start_controlnet,
                 control_guidance_end=stop_controlnet,
                 generator=generator[i],
+                clip_skip=clipskip_controlnet,
                 callback_on_step_end=check_controlnet,
                 callback_on_step_end_tensor_inputs=['latents'],
             ).images
@@ -533,6 +538,7 @@ def image_controlnet(
         f"Stop ControlNet={stop_controlnet} | "+\
         f"GFPGAN={use_gfpgan_controlnet} | "+\
         f"Token merging={tkme_controlnet} | "+\
+        f"CLIP skip={clipskip_controlnet} | "+\
         f"LoRA model={lora_model_controlnet} | "+\
         f"LoRA weight={lora_weight_controlnet} | "+\
         f"Textual inversion={txtinv_controlnet} | "+\
