@@ -71,10 +71,8 @@ def music_bark(
         )
     pipe_bark = pipe_bark.to(device_bark)
 
-#    pipe_bark = BetterTransformer.transform(pipe_bark, keep_original_model=False)
     if device_label_bark == "cuda" :
         pipe_bark.enable_cpu_offload()
-    pipe_bark = pipe_bark.to_bettertransformer()
 
     savename_array = []
     voice_preset = voice_preset_list_bark[voice_preset_bark]
