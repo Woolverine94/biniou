@@ -331,12 +331,12 @@ def check_image_fmt():
         extension = "png"
     return extension
 
-def check_image_exif():
+def check_metadata(value):
     if test_cfg_exist("settings"):
         with open(".ini/settings.cfg", "r", encoding="utf-8") as fichier:
             exec(fichier.read())
-    if ("biniou_global_img_exif" in locals() and locals()['biniou_global_img_exif'] != ""):
-        exif = locals()['biniou_global_img_exif']
+    if (value in locals() and locals()[value] != ""):
+        exif = locals()[value]
     else:
         exif = True
     return exif
@@ -436,6 +436,10 @@ def write_settings_ini(
     biniou_global_settings_clipskip,
     biniou_global_settings_img_fmt,
     biniou_global_settings_img_exif,
+    biniou_global_settings_gif_exif,
+    biniou_global_settings_mp4_metadatas,
+    biniou_global_settings_audio_metadatas,
+
 ):
     savename = f".ini/{module}.cfg"
     content = f"biniou_global_lang_ui = \"{biniou_global_settings_lang_ui}\"\n\
@@ -459,7 +463,10 @@ biniou_global_gfpgan = {biniou_global_settings_gfpgan}\n\
 biniou_global_tkme = {biniou_global_settings_tkme}\n\
 biniou_global_clipskip = {biniou_global_settings_clipskip}\n\
 biniou_global_img_fmt = \"{biniou_global_settings_img_fmt}\"\n\
-biniou_global_img_exif = {biniou_global_settings_img_exif}"
+biniou_global_img_exif = {biniou_global_settings_img_exif}\n\
+biniou_global_gif_exif = {biniou_global_settings_gif_exif}\n\
+biniou_global_mp4_metadatas = {biniou_global_settings_mp4_metadatas}\n\
+biniou_global_audio_metadatas = {biniou_global_settings_audio_metadatas}"
     with open(savename, 'w', encoding="utf-8") as savefile:
         savefile.write(content)
     return
@@ -600,7 +607,7 @@ def img_fmt_list():
     return IMAGES_FORMAT_LIST
 
 def exif_writer_png(exif_datas, filename):
-    if check_image_exif() == True:
+    if check_metadata("biniou_global_img_exif") == True:
         if (check_image_fmt() == "png"):
             datas = PngInfo()
             datas.add_text("UserComment", f"biniou settings: {exif_datas}")
@@ -619,31 +626,35 @@ def exif_writer_png(exif_datas, filename):
     return
 
 def metadata_writer_gif(metadata, filename, fps):
-    frametime = int((1000/fps))
-    for j in range(len(filename)):
-        os.rename(filename[j], ".tmp/tmp.gif")
-        with Image.open(".tmp/tmp.gif") as image:
-            image.save(filename[j], save_all=True, duration=frametime, comment=f"biniou settings: {metadata}")
-        os.remove(".tmp/tmp.gif")
+    if check_metadata("biniou_global_gif_exif") == True:
+        frametime = int((1000/fps))
+        for j in range(len(filename)):
+            os.rename(filename[j], ".tmp/tmp.gif")
+            with Image.open(".tmp/tmp.gif") as image:
+                image.save(filename[j], save_all=True, duration=frametime, comment=f"biniou settings: {metadata}")
+            os.remove(".tmp/tmp.gif")
     return
 
 def metadata_writer_mp4(metadata, filename):
-    if type(filename) is str:
-        filename_list = []
-        filename_list.append(filename)
-    else:
-        filename_list = filename
-    for j in range(len(filename_list)):
-        os.rename(filename_list[j], ".tmp/tmp.mp4")
-        ffmpeg.input(".tmp/tmp.mp4").output(filename_list[j], metadata=f"comment=biniou settings: {metadata}", map=0, c="copy").overwrite_output().run()
-        os.remove(".tmp/tmp.mp4")
+    if check_metadata("biniou_global_mp4_metadatas") == True:
+        if type(filename) is str:
+            filename_list = []
+            filename_list.append(filename)
+        else:
+            filename_list = filename
+        for j in range(len(filename_list)):
+            os.rename(filename_list[j], ".tmp/tmp.mp4")
+            ffmpeg.input(".tmp/tmp.mp4").output(filename_list[j], metadata=f"comment=biniou settings: {metadata}", map=0, c="copy").overwrite_output().run()
+            os.remove(".tmp/tmp.mp4")
     return
 
 def metadata_writer_wav(metadata, filename):
-    for i in range(len(filename)):
-        f = music_tag.load_file(filename[i])
-        f['comment'] = f'biniou settings: {metadata}'
-        f.save()
+    if check_metadata("biniou_global_audio_metadatas") == True:
+        for i in range(len(filename)):
+            f = music_tag.load_file(filename[i])
+            f['comment'] = f'biniou settings: {metadata}'
+            f.save()
+    return
 
 def schedulerer(pipe, scheduler):
     karras = False
