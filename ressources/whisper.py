@@ -123,7 +123,6 @@ def text_whisper(
         resume_download=True, 
         local_files_only=True if offline_test() else None
     )
-    model_whisper = model_whisper.to_bettertransformer()
 
     tokenizer_whisper = AutoTokenizer.from_pretrained(
         modelid_whisper,
@@ -184,6 +183,8 @@ def text_whisper(
         f"Source language={source_language_whisper} | "+\
         f"Output language={output_language_whisper}"
     print(reporting_whisper)
+
+    metadata_writer_txt(reporting_whisper, filename_whisper)
 
     del audio_whisper, model_whisper, tokenizer_whisper, feat_ex_whisper, pipe_whisper
     clean_ram()

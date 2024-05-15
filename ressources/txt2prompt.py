@@ -85,6 +85,8 @@ def text_txt2prompt(
         f"Initial seed={seed_txt2prompt}"
     print(reporting_txt2prompt)
 
+    metadata_writer_txt(reporting_txt2prompt, filename_txt2prompt)
+
     del pipe_txt2prompt
     clean_ram()
 

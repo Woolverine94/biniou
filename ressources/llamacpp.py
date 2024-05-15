@@ -185,6 +185,8 @@ def text_llamacpp(
         f"Seed={seed_llamacpp}"
     print(reporting_llamacpp) 
 
+    metadata_writer_txt(reporting_llamacpp, filename_llamacpp)
+
     del llm, output_llamacpp
     clean_ram()
 
@@ -261,9 +263,11 @@ def text_llamacpp_continue(
         f"Top_k={top_k_llamacpp} | "+\
         f"Seed={seed_llamacpp}"
     print(reporting_llamacpp) 
-   
+
+    metadata_writer_txt(reporting_llamacpp, filename_llamacpp)
+
     del llm, output_llamacpp
     clean_ram()
-    
+
     print(f">>>[Chatbot Llama-cpp 📝 ]: leaving module")
     return history_llamacpp, history_llamacpp[-1][1], filename_llamacpp

@@ -94,6 +94,7 @@ biniou_global_gfpgan = True
 biniou_global_tkme = 0.6
 biniou_global_clipskip = 0
 biniou_global_img_fmt = "png"
+biniou_global_text_metadatas = True
 biniou_global_img_exif = True
 biniou_global_gif_exif = True
 biniou_global_mp4_metadatas = True
@@ -8612,10 +8613,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         biniou_global_settings_img_fmt = gr.Dropdown(choices=img_fmt_list(), value=biniou_global_img_fmt, label=biniou_lang_tab_webui_settings_img_fmt_label, info=biniou_lang_tab_webui_settings_img_fmt_info, interactive=True)
                                 with gr.Row():
                                     with gr.Column():
+                                        biniou_global_settings_text_metadatas = gr.Checkbox(value=biniou_global_text_metadatas, label=biniou_lang_tab_webui_settings_text_metadatas_label, info=biniou_lang_tab_webui_settings_text_metadatas_info, interactive=True)
+                                    with gr.Column():
                                         biniou_global_settings_img_exif = gr.Checkbox(value=biniou_global_img_exif, label=biniou_lang_tab_webui_settings_exif_label, info=biniou_lang_tab_webui_settings_exif_info, interactive=True)
+                                with gr.Row():
                                     with gr.Column():
                                         biniou_global_settings_gif_exif = gr.Checkbox(value=biniou_global_gif_exif, label=biniou_lang_tab_webui_settings_gif_exif_label, info=biniou_lang_tab_webui_settings_gif_exif_info, interactive=True)
-                                with gr.Row():
                                     with gr.Column():
                                         biniou_global_settings_mp4_metadatas = gr.Checkbox(value=biniou_global_mp4_metadatas, label=biniou_lang_tab_webui_settings_mp4_metadatas_label, info=biniou_lang_tab_webui_settings_mp4_metadatas_info, interactive=True)
                                     with gr.Column():
@@ -8650,6 +8653,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                             biniou_global_settings_tkme,
                                             biniou_global_settings_clipskip,
                                             biniou_global_settings_img_fmt,
+                                            biniou_global_settings_text_metadatas,
                                             biniou_global_settings_img_exif,
                                             biniou_global_settings_gif_exif,
                                             biniou_global_settings_mp4_metadatas,

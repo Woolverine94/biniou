@@ -264,8 +264,7 @@ def text_nllb(
 
     automodel_nllb = AutoModelForSeq2SeqLM.from_pretrained(model_nllb).to(device_nllb)
     inputs_nllb = tokenizer_nllb(prompt_nllb, return_tensors="pt").to(device_nllb)
-    automodel_nllb = automodel_nllb.to_bettertransformer()
-                
+
     translated_tokens = automodel_nllb.generate(
         **inputs_nllb,
         forced_bos_token_id=tokenizer_nllb.lang_code_to_id[output_language_nllb],
@@ -283,6 +282,8 @@ def text_nllb(
         f"Output language={output_language_nllb} | "+\
         f"Prompt={prompt_nllb}"
     print(reporting_nllb)
+
+    metadata_writer_txt(reporting_nllb, filename_nllb)
 
     del model_nllb, tokenizer_nllb, automodel_nllb, inputs_nllb, translated_tokens
     clean_ram()

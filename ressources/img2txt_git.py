@@ -65,6 +65,8 @@ def text_img2txt_git(
         f"Diversity penalty={diversity_penalty_img2txt_git}"
     print(reporting_img2txt_git)
 
+    metadata_writer_txt(reporting_img2txt_git, filename_img2txt_git)
+
     del processor_img2txt_git, pipe_img2txt_git, inpipe_img2txt_git, ids_img2txt_git
     clean_ram()
 

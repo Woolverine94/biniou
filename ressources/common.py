@@ -435,6 +435,7 @@ def write_settings_ini(
     biniou_global_settings_tkme,
     biniou_global_settings_clipskip,
     biniou_global_settings_img_fmt,
+    biniou_global_settings_text_metadatas,
     biniou_global_settings_img_exif,
     biniou_global_settings_gif_exif,
     biniou_global_settings_mp4_metadatas,
@@ -463,6 +464,7 @@ biniou_global_gfpgan = {biniou_global_settings_gfpgan}\n\
 biniou_global_tkme = {biniou_global_settings_tkme}\n\
 biniou_global_clipskip = {biniou_global_settings_clipskip}\n\
 biniou_global_img_fmt = \"{biniou_global_settings_img_fmt}\"\n\
+biniou_global_text_metadatas = {biniou_global_settings_text_metadatas}\n\
 biniou_global_img_exif = {biniou_global_settings_img_exif}\n\
 biniou_global_gif_exif = {biniou_global_settings_gif_exif}\n\
 biniou_global_mp4_metadatas = {biniou_global_settings_mp4_metadatas}\n\
@@ -623,6 +625,12 @@ def exif_writer_png(exif_datas, filename):
                 image.writeMetadata()
     else:
         pass
+    return
+
+def metadata_writer_txt(metadata, filename):
+    if check_metadata("biniou_global_text_metadatas") == True:
+        with open(filename, "a", encoding="utf-8") as fichier:
+            fichier.write(f"\n\n---\n\nbiniou settings: {metadata}")
     return
 
 def metadata_writer_gif(metadata, filename, fps):

@@ -158,6 +158,8 @@ def text_llava(
         f"Seed={seed_llava}"
     print(reporting_llava) 
 
+    metadata_writer_txt(reporting_llava, filename_llava)
+
     del chat_handler_llava, llm, output_llava
     clean_ram()
 
@@ -223,9 +225,11 @@ def text_llava_continue(
         f"Top_k={top_k_llava} | "+\
         f"Seed={seed_llava}"
     print(reporting_llava) 
-   
+
+    metadata_writer_txt(reporting_llava, filename_llava)
+
     del llm, output_llava
     clean_ram()
-    
+
     print(f">>>[Llava 👁️ ]: leaving module")
     return history_llava, history_llava[-1][1], filename_llava
