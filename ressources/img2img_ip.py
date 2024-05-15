@@ -610,6 +610,7 @@ def image_img2img_ip(
     reporting_img2img_ip = f">>>[IP-Adapter 🖌️ ]: "+\
         f"Settings : Model={modelid_img2img_ip} | "+\
         f"XL model={is_xl_img2img_ip} | "+\
+        f"IP-Adapter type={source_type_img2img_ip} | "+\
         f"Sampler={sampler_img2img_ip} | "+\
         f"Steps={num_inference_step_img2img_ip} | "+\
         f"CFG scale={guidance_scale_img2img_ip} | "+\
@@ -621,7 +622,6 @@ def image_img2img_ip(
         f"LoRA weight={lora_weight_img2img_ip} | "+\
         f"Textual inversion={txtinv_img2img_ip} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
-        f"Ip-Adapter type={source_type_img2img_ip} | "+\
         f"Denoising strength={denoising_strength_img2img_ip} | "+\
         f"Prompt={prompt_img2img_ip} | "+\
         f"Negative prompt={negative_prompt_img2img_ip}"
