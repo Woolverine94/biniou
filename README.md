@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-05-16** : 🔥 ***Support for RunDiffusion/Juggernaut-XL-Lightning*** 🔥 > Adding support for model  [RunDiffusion/Juggernaut-XL-Lightning](https://huggingface.co/RunDiffusion/Juggernaut-XL-Lightning) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero modules. This model is a Lightning (4-6 steps) variant from the Juggernaut-XL model family.
+
   * 🆕 **2024-05-14** : 🔥 ***Adding CLIP skip setting*** 🔥 > Adding CLIP skip option to the settings panel of modules Stable Diffusion, img2img, IP-Adapter, inpaint, outpaint, ControlNet, Photobooth and AnimateDiff.
 
   * 🆕 **2024-05-12** : 🔥 ***Support for Fluently-XL-v3-Lightning*** 🔥 > Adding support for model  [fluently/Fluently-XL-v3-Lightning](https://huggingface.co/fluently/Fluently-XL-v3-Lightning) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero modules. This model is a Lightning (4-6 steps) variant from the Fluently model family.
@@ -24,8 +26,6 @@
   * 🆕 **2024-05-09** : 🔥 ***Support for ColorfulXL-Lightning*** 🔥 > Adding support for model  [ColorfulXL-Lightning](https://huggingface.co/ColorfulXL-Lightning) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero modules. This is a versatile SDXL model that only require 2, 4 or 8 steps inferences to produce nice results.
 
   * 🆕 **2024-05-07** : 🔥 ***Support for Fluently-XL-v4*** 🔥 > Adding support for model  [fluently/Fluently-XL-v4](https://huggingface.co/fluently/Fluently-XL-v4) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero modules. This model simply pretends to be the best SDXL model around. Best or not, it indeed produces highly qualitative contents. Really worth the try.
-
-  * 🆕 **2024-05-05** : 🔥 ***Support for PixArt-Sigma*** 🔥 > Adding support for model  [PixArt-alpha/PixArt-Sigma-XL-2-1024-MS](https://huggingface.co/PixArt-alpha/PixArt-Sigma-XL-2-1024-MS) to PixArt-Alpha module. Please note that although the model card advertises a generation size up to 4K (which is the case), the outputs seems upscaled from a 1024 size.
  
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
