@@ -31,6 +31,7 @@ for filename in os.listdir(model_path_img2img_ip):
 
 model_list_img2img_ip_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
+    "RunDiffusion/Juggernaut-XL-Lightning",
     "fluently/Fluently-XL-v3-Lightning",
     "fluently/Fluently-XL-v4",
     "recoilme/ColorfulXL-Lightning",
@@ -120,7 +121,7 @@ def image_img2img_ip(
     else :
         is_xl_img2img_ip: bool = False     
 
-    if ("dataautogpt3/ProteusV0.4" in modelid_img2img_ip):
+    if ("dataautogpt3/ProteusV0.4" in modelid_img2img_ip) or (modelid_img2img_ip == "RunDiffusion/Juggernaut-XL-Lightning"):
         is_bin_img2img_ip: bool = True
     else :
         is_bin_img2img_ip: bool = False

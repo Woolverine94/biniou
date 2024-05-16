@@ -29,6 +29,7 @@ model_list_img2img_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
     "IDKiro/sdxs-512-dreamshaper",
     "IDKiro/sdxs-512-0.9",
+    "RunDiffusion/Juggernaut-XL-Lightning",
     "fluently/Fluently-XL-v3-Lightning",
     "fluently/Fluently-XL-v4",
     "recoilme/ColorfulXL-Lightning",
@@ -117,7 +118,7 @@ def image_img2img(
     else :        
         is_xl_img2img: bool = False        
 
-    if ("dataautogpt3/ProteusV0.4" in modelid_img2img):
+    if ("dataautogpt3/ProteusV0.4" in modelid_img2img) or (modelid_img2img == "RunDiffusion/Juggernaut-XL-Lightning"):
         is_bin_img2img: bool = True
     else :
         is_bin_img2img: bool = False

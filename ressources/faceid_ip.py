@@ -44,6 +44,7 @@ model_list_faceid_ip = []
 
 model_list_faceid_ip_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
+    "RunDiffusion/Juggernaut-XL-Lightning",
     "fluently/Fluently-XL-v3-Lightning",
     "fluently/Fluently-XL-v4",
     "recoilme/ColorfulXL-Lightning",
@@ -141,7 +142,7 @@ def image_faceid_ip(
     else :
         is_xl_faceid_ip: bool = False
 
-    if ("dataautogpt3/ProteusV0.4" in modelid_faceid_ip):
+    if ("dataautogpt3/ProteusV0.4" in modelid_faceid_ip) or (modelid_faceid_ip == "RunDiffusion/Juggernaut-XL-Lightning"):
         is_bin_faceid_ip: bool = True
     else :
         is_bin_faceid_ip: bool = False

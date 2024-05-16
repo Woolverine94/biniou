@@ -28,6 +28,7 @@ model_list_txt2img_sd_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
     "IDKiro/sdxs-512-dreamshaper",
     "IDKiro/sdxs-512-0.9",
+    "RunDiffusion/Juggernaut-XL-Lightning",
     "fluently/Fluently-XL-v3-Lightning",
     "fluently/Fluently-XL-v4",
     "recoilme/ColorfulXL-Lightning",
@@ -115,7 +116,7 @@ def image_txt2img_sd(
     else :        
         is_xl_txt2img_sd: bool = False
 
-    if ("dataautogpt3/ProteusV0.4" in modelid_txt2img_sd):
+    if ("dataautogpt3/ProteusV0.4" in modelid_txt2img_sd) or (modelid_txt2img_sd == "RunDiffusion/Juggernaut-XL-Lightning"):
         is_bin_txt2img_sd: bool = True
     else :
         is_bin_txt2img_sd: bool = False
