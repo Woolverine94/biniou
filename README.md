@@ -17,6 +17,11 @@
 
 ## Updates
 
+  * 🆕 **2024-05-17** : 🔥 ***Adding WebUI translation feature and support for french language*** 🔥 > 
+
+    - You can now use biniou WebUI in French by setting the default language option to "lang_FR" in the Global settings panel (restart biniou and reload the  WebUI).
+    - Adding support for model [NousResearch/Hermes-2-Theta-Llama-3-8B-GGUF](https://huggingface.co/NousResearch/Hermes-2-Theta-Llama-3-8B-GGUF) to the Chatbot module.
+
   * 🆕 **2024-05-16** : 🔥 ***Support for RunDiffusion/Juggernaut-XL-Lightning*** 🔥 > Adding support for model  [RunDiffusion/Juggernaut-XL-Lightning](https://huggingface.co/RunDiffusion/Juggernaut-XL-Lightning) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero modules. This model is a Lightning (4-6 steps) variant from the Juggernaut-XL model family.
 
   * 🆕 **2024-05-14** : 🔥 ***Adding CLIP skip setting*** 🔥 > Adding CLIP skip option to the settings panel of modules Stable Diffusion, img2img, IP-Adapter, inpaint, outpaint, ControlNet, Photobooth and AnimateDiff.
@@ -25,8 +30,6 @@
 
   * 🆕 **2024-05-09** : 🔥 ***Support for ColorfulXL-Lightning*** 🔥 > Adding support for model  [ColorfulXL-Lightning](https://huggingface.co/ColorfulXL-Lightning) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero modules. This is a versatile SDXL model that only require 2, 4 or 8 steps inferences to produce nice results.
 
-  * 🆕 **2024-05-07** : 🔥 ***Support for Fluently-XL-v4*** 🔥 > Adding support for model  [fluently/Fluently-XL-v4](https://huggingface.co/fluently/Fluently-XL-v4) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero modules. This model simply pretends to be the best SDXL model around. Best or not, it indeed produces highly qualitative contents. Really worth the try.
- 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
 ---
@@ -104,6 +107,7 @@
 
   - Zeroconf installation through one-click installers or Windows exe.
   - User friendly : Everything required to run biniou is installed automatically, either at install time or at first use.
+  - WebUI in English or French.
   - Easy management through a control panel directly inside webui : update, restart, shutdown, activate authentication, control network access or share your instance online with a single click.
   - Easy management of models through a simple interface.
   - Communication between modules : send an output as an input to another module
