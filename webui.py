@@ -364,7 +364,7 @@ def change_lora_model_txt2img_sd(model, lora_model, prompt, steps, cfg_scale, sa
             biniou_internal_previous_steps_txt2img_sd = ""
             biniou_internal_previous_cfg_txt2img_sd = ""
             biniou_internal_previous_sampler_txt2img_sd = ""
-            return prompt_txt2img_sd.update(value=""), num_inference_step_txt2img_sd.update(), guidance_scale_txt2img_sd.update(), sampler_txt2img_sd.update()
+            return prompt_txt2img_sd.update(), num_inference_step_txt2img_sd.update(), guidance_scale_txt2img_sd.update(), sampler_txt2img_sd.update()
         else:
             var_steps = int(biniou_internal_previous_steps_txt2img_sd)
             var_cfg_scale = float(biniou_internal_previous_cfg_txt2img_sd)
@@ -462,14 +462,14 @@ def change_lora_model_txt2img_lcm(model, lora_model, prompt, steps, cfg_scale, s
         lora_prompt_txt2img_lcm = lora_prompt_txt2img_lcm.replace(lora_trigger, "")
         biniou_internal_previous_trigger_txt2img_lcm = lora_keyword
 
-    if (lora_model == "ByteDance/SDXL-Lightning") or (lora_model == "ByteDance/Hyper-SD"):
+    if (lora_model == "ByteDance/SDXL-Lightning") or (lora_model == "ByteDance/Hyper-SD") or ("H1T/TCD-SD" in lora_model.upper()):
         biniou_internal_previous_model_txt2img_lcm = model
         biniou_internal_previous_steps_txt2img_lcm = steps
         biniou_internal_previous_cfg_txt2img_lcm = cfg_scale
         biniou_internal_previous_sampler_txt2img_lcm = sampler
         if (lora_model == "ByteDance/SDXL-Lightning"):
             return prompt_txt2img_lcm.update(value=lora_prompt_txt2img_lcm), num_inference_step_txt2img_lcm.update(value=4), guidance_scale_txt2img_lcm.update(value=0.0), sampler_txt2img_lcm.update(value="LCM")
-        elif (lora_model == "ByteDance/Hyper-SD"):
+        elif (lora_model == "ByteDance/Hyper-SD") or ("H1T/TCD-SD" in lora_model.upper()):
             return prompt_txt2img_lcm.update(value=lora_prompt_txt2img_lcm), num_inference_step_txt2img_lcm.update(value=2), guidance_scale_txt2img_lcm.update(value=0.0), sampler_txt2img_lcm.update(value="TCD")
     else:
 
@@ -480,7 +480,7 @@ def change_lora_model_txt2img_lcm(model, lora_model, prompt, steps, cfg_scale, s
             biniou_internal_previous_steps_txt2img_lcm = ""
             biniou_internal_previous_cfg_txt2img_lcm = ""
             biniou_internal_previous_sampler_txt2img_lcm = ""
-            return prompt_txt2img_lcm.update(value=""), num_inference_step_txt2img_lcm.update(), guidance_scale_txt2img_lcm.update(), sampler_txt2img_lcm.update()
+            return prompt_txt2img_lcm.update(), num_inference_step_txt2img_lcm.update(), guidance_scale_txt2img_lcm.update(), sampler_txt2img_lcm.update()
         else:
             var_steps = int(biniou_internal_previous_steps_txt2img_lcm)
             var_cfg_scale = float(biniou_internal_previous_cfg_txt2img_lcm)
@@ -604,15 +604,15 @@ def change_lora_model_img2img(model, lora_model, prompt, steps, cfg_scale, sampl
         lora_prompt_img2img = lora_prompt_img2img.replace(lora_trigger, "")
         biniou_internal_previous_trigger_img2img = lora_keyword
 
-    if (lora_model == "ByteDance/SDXL-Lightning") or (lora_model == "ByteDance/Hyper-SD"):
+    if (lora_model == "ByteDance/SDXL-Lightning") or (lora_model == "ByteDance/Hyper-SD") or ("H1T/TCD-SD" in lora_model.upper()):
         biniou_internal_previous_model_img2img = model
         biniou_internal_previous_steps_img2img = steps
         biniou_internal_previous_cfg_img2img = cfg_scale
         biniou_internal_previous_sampler_img2img = sampler
         if (lora_model == "ByteDance/SDXL-Lightning"):
             return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=4), guidance_scale_img2img.update(value=0.0), sampler_img2img.update(value="LCM")
-        elif (lora_model == "ByteDance/Hyper-SD"):
-            return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), sampler_img2img.update(value="TCD")
+        elif (lora_model == "ByteDance/Hyper-SD") or ("H1T/TCD-SD" in lora_model.upper()):
+            return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=4), guidance_scale_img2img.update(value=0.0), sampler_img2img.update(value="TCD")
     else:
         if ((biniou_internal_previous_model_img2img == "") and (biniou_internal_previous_steps_img2img == "") and (biniou_internal_previous_cfg_img2img == "") and (biniou_internal_previous_sampler_img2img == "")):
             return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(), guidance_scale_img2img.update(), sampler_img2img.update()
@@ -621,7 +621,7 @@ def change_lora_model_img2img(model, lora_model, prompt, steps, cfg_scale, sampl
             biniou_internal_previous_steps_img2img = ""
             biniou_internal_previous_cfg_img2img = ""
             biniou_internal_previous_sampler_img2img = ""
-            return prompt_img2img.update(value=""), num_inference_step_img2img.update(), guidance_scale_img2img.update(), sampler_img2img.update()
+            return prompt_img2img.update(), num_inference_step_img2img.update(), guidance_scale_img2img.update(), sampler_img2img.update()
         else:
             var_steps = int(biniou_internal_previous_steps_img2img)
             var_cfg_scale = float(biniou_internal_previous_cfg_img2img)
@@ -742,14 +742,14 @@ def change_lora_model_img2img_ip(model, lora_model, prompt, steps, cfg_scale, sa
         lora_prompt_img2img_ip = lora_prompt_img2img_ip.replace(lora_trigger, "")
         biniou_internal_previous_trigger_img2img_ip = lora_keyword
 
-    if (lora_model == "ByteDance/SDXL-Lightning") or (lora_model == "ByteDance/Hyper-SD"):
+    if (lora_model == "ByteDance/SDXL-Lightning") or (lora_model == "ByteDance/Hyper-SD") or ("H1T/TCD-SD" in lora_model.upper()):
         biniou_internal_previous_model_img2img_ip = model
         biniou_internal_previous_steps_img2img_ip = steps
         biniou_internal_previous_cfg_img2img_ip = cfg_scale
         biniou_internal_previous_sampler_img2img_ip = sampler
         if (lora_model == "ByteDance/SDXL-Lightning"):
             return prompt_img2img_ip.update(value=lora_prompt_img2img_ip), num_inference_step_img2img_ip.update(value=4), guidance_scale_img2img_ip.update(value=0.0), sampler_img2img_ip.update(value="LCM")
-        elif (lora_model == "ByteDance/Hyper-SD"):
+        elif (lora_model == "ByteDance/Hyper-SD") or ("H1T/TCD-SD" in lora_model.upper()):
             return prompt_img2img_ip.update(value=lora_prompt_img2img_ip), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), sampler_img2img_ip.update(value="TCD")
     else:
         if ((biniou_internal_previous_model_img2img_ip == "") and (biniou_internal_previous_steps_img2img_ip == "") and (biniou_internal_previous_cfg_img2img_ip == "") and (biniou_internal_previous_sampler_img2img_ip == "")):
@@ -759,7 +759,7 @@ def change_lora_model_img2img_ip(model, lora_model, prompt, steps, cfg_scale, sa
             biniou_internal_previous_steps_img2img_ip = ""
             biniou_internal_previous_cfg_img2img_ip = ""
             biniou_internal_previous_sampler_img2img_ip = ""
-            return prompt_img2img_ip.update(value=""), num_inference_step_img2img_ip.update(), guidance_scale_img2img_ip.update(), sampler_img2img_ip.update()
+            return prompt_img2img_ip.update(), num_inference_step_img2img_ip.update(), guidance_scale_img2img_ip.update(), sampler_img2img_ip.update()
         else:
             var_steps = int(biniou_internal_previous_steps_img2img_ip)
             var_cfg_scale = float(biniou_internal_previous_cfg_img2img_ip)
@@ -903,14 +903,14 @@ def change_lora_model_controlnet(model, lora_model, prompt, steps, cfg_scale, sa
         lora_prompt_controlnet = lora_prompt_controlnet.replace(lora_trigger, "")
         biniou_internal_previous_trigger_controlnet = lora_keyword
 
-    if (lora_model == "ByteDance/SDXL-Lightning") or (lora_model == "ByteDance/Hyper-SD"):
+    if (lora_model == "ByteDance/SDXL-Lightning") or (lora_model == "ByteDance/Hyper-SD") or ("H1T/TCD-SD" in lora_model.upper()):
         biniou_internal_previous_model_controlnet = model
         biniou_internal_previous_steps_controlnet = steps
         biniou_internal_previous_cfg_controlnet = cfg_scale
         biniou_internal_previous_sampler_controlnet = sampler
         if (lora_model == "ByteDance/SDXL-Lightning"):
             return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=4), guidance_scale_controlnet.update(value=0.0), sampler_controlnet.update(value="LCM")
-        elif (lora_model == "ByteDance/Hyper-SD"):
+        elif (lora_model == "ByteDance/Hyper-SD") or ("H1T/TCD-SD" in lora_model.upper()):
             return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=2), guidance_scale_controlnet.update(value=0.0), sampler_controlnet.update(value="TCD")
 
     else:
@@ -921,7 +921,7 @@ def change_lora_model_controlnet(model, lora_model, prompt, steps, cfg_scale, sa
             biniou_internal_previous_steps_controlnet = ""
             biniou_internal_previous_cfg_controlnet = ""
             biniou_internal_previous_sampler_controlnet = ""
-            return prompt_controlnet.update(value=""), num_inference_step_controlnet.update(), guidance_scale_controlnet.update(), sampler_controlnet.update()
+            return prompt_controlnet.update(), num_inference_step_controlnet.update(), guidance_scale_controlnet.update(), sampler_controlnet.update()
         else:
             var_steps = int(biniou_internal_previous_steps_controlnet)
             var_cfg_scale = float(biniou_internal_previous_cfg_controlnet)
@@ -1029,14 +1029,14 @@ def change_lora_model_faceid_ip(model, lora_model, prompt, steps, cfg_scale, sam
         lora_prompt_faceid_ip = lora_prompt_faceid_ip.replace(lora_trigger, "")
         biniou_internal_previous_trigger_faceid_ip = lora_keyword
 
-    if (lora_model == "ByteDance/SDXL-Lightning") or (lora_model == "ByteDance/Hyper-SD"):
+    if (lora_model == "ByteDance/SDXL-Lightning") or (lora_model == "ByteDance/Hyper-SD") or ("H1T/TCD-SD" in lora_model.upper()):
         biniou_internal_previous_model_faceid_ip = model
         biniou_internal_previous_steps_faceid_ip = steps
         biniou_internal_previous_cfg_faceid_ip = cfg_scale
         biniou_internal_previous_sampler_faceid_ip = sampler
         if (lora_model == "ByteDance/SDXL-Lightning"):
             return prompt_faceid_ip.update(value=lora_prompt_faceid_ip), num_inference_step_faceid_ip.update(value=4), guidance_scale_faceid_ip.update(value=0.0), sampler_faceid_ip.update(value="LCM")
-        elif (lora_model == "ByteDance/Hyper-SD"):
+        elif (lora_model == "ByteDance/Hyper-SD") or ("H1T/TCD-SD" in lora_model.upper()):
             return prompt_faceid_ip.update(value=lora_prompt_faceid_ip), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), sampler_faceid_ip.update(value="TCD")
     else:
         if ((biniou_internal_previous_model_faceid_ip == "") and (biniou_internal_previous_steps_faceid_ip == "") and (biniou_internal_previous_cfg_faceid_ip == "") and (biniou_internal_previous_sampler_faceid_ip == "")):
@@ -1046,7 +1046,7 @@ def change_lora_model_faceid_ip(model, lora_model, prompt, steps, cfg_scale, sam
             biniou_internal_previous_steps_faceid_ip = ""
             biniou_internal_previous_cfg_faceid_ip = ""
             biniou_internal_previous_sampler_faceid_ip = ""
-            return prompt_faceid_ip.update(value=""), num_inference_step_faceid_ip.update(), guidance_scale_faceid_ip.update(), sampler_faceid_ip.update()
+            return prompt_faceid_ip.update(), num_inference_step_faceid_ip.update(), guidance_scale_faceid_ip.update(), sampler_faceid_ip.update()
         else:
             var_steps = int(biniou_internal_previous_steps_faceid_ip)
             var_cfg_scale = float(biniou_internal_previous_cfg_faceid_ip)
