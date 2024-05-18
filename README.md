@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-05-18** : 🔥 ***Support for TCD LoRA models*** 🔥 > Adding support for LoRA models [h1t/TCD-SD15-LoRA](https://huggingface.co/h1t/TCD-SD15-LoRA) and [h1t/TCD-SDXL-LoRA](https://huggingface.co/h1t/TCD-SDXL-LoRA) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet and Photobooth. These 2-8 steps LoRA models are similar to Hyper-SD.
+
   * 🆕 **2024-05-17** : 🔥 ***Adding WebUI translation feature and support for french language*** 🔥 > 
 
     - You can now use biniou WebUI in French by setting the default language option to "lang_FR" in the Global settings panel (restart biniou and reload the  WebUI).
@@ -27,8 +29,6 @@
   * 🆕 **2024-05-14** : 🔥 ***Adding CLIP skip setting*** 🔥 > Adding CLIP skip option to the settings panel of modules Stable Diffusion, img2img, IP-Adapter, inpaint, outpaint, ControlNet, Photobooth and AnimateDiff.
 
   * 🆕 **2024-05-12** : 🔥 ***Support for Fluently-XL-v3-Lightning*** 🔥 > Adding support for model  [fluently/Fluently-XL-v3-Lightning](https://huggingface.co/fluently/Fluently-XL-v3-Lightning) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero modules. This model is a Lightning (4-6 steps) variant from the Fluently model family.
-
-  * 🆕 **2024-05-09** : 🔥 ***Support for ColorfulXL-Lightning*** 🔥 > Adding support for model  [ColorfulXL-Lightning](https://huggingface.co/ColorfulXL-Lightning) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero modules. This is a versatile SDXL model that only require 2, 4 or 8 steps inferences to produce nice results.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
