@@ -229,9 +229,9 @@ def change_model_type_llamacpp(model_llamacpp):
     except KeyError as ke:
         test_model = None
     if (test_model != None):
-        return prompt_template_llamacpp.update(value=model_list_llamacpp[model_llamacpp][1]), system_template_llamacpp.update(value=model_list_llamacpp[model_llamacpp][2])
+        return prompt_template_llamacpp.update(value=model_list_llamacpp[model_llamacpp][1]), system_template_llamacpp.update(value=model_list_llamacpp[model_llamacpp][2]), quantization_llamacpp.update(value="")
     else:
-        return prompt_template_llamacpp.update(value="{prompt}"), system_template_llamacpp.update(value="")
+        return prompt_template_llamacpp.update(value="{prompt}"), system_template_llamacpp.update(value=""), quantization_llamacpp.update(value="")
 
 def change_prompt_template_llamacpp(prompt_template):
     return prompt_template_llamacpp.update(value=prompt_template_list_llamacpp[prompt_template][0]), system_template_llamacpp.update(value=prompt_template_list_llamacpp[prompt_template][1])
@@ -1363,6 +1363,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_llamacpp = gr.Dropdown(choices=list(model_list_llamacpp.keys()), value=list(model_list_llamacpp.keys())[0], label=biniou_lang_model_label, allow_custom_value=True, info=biniou_lang_tab_llamacpp_model_info)
                             with gr.Column():
+                                quantization_llamacpp = gr.Textbox(value="", label=biniou_lang_tab_llamacpp_quantization_label, info=biniou_lang_tab_llamacpp_quantization_info)
+                            with gr.Column():
                                 max_tokens_llamacpp = gr.Slider(0, 524288, step=16, value=1024, label=biniou_lang_maxtoken_label, info=biniou_lang_maxtoken_info)
                             with gr.Column():
                                 seed_llamacpp = gr.Slider(0, 10000000000, step=1, value=1337, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
@@ -1393,7 +1395,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Row():
                             with gr.Column():
                                 system_template_llamacpp = gr.Textbox(label=biniou_lang_system_template_label, value=model_list_llamacpp[model_llamacpp.value][2], lines=4, max_lines=4, show_copy_button=True, info=biniou_lang_system_template_info)
-                                model_llamacpp.change(fn=change_model_type_llamacpp, inputs=model_llamacpp, outputs=[prompt_template_llamacpp, system_template_llamacpp])
+                                model_llamacpp.change(fn=change_model_type_llamacpp, inputs=model_llamacpp, outputs=[prompt_template_llamacpp, system_template_llamacpp, quantization_llamacpp])
                                 force_prompt_template_llamacpp.change(fn=change_prompt_template_llamacpp, inputs=force_prompt_template_llamacpp, outputs=[prompt_template_llamacpp, system_template_llamacpp])
                         with gr.Row():
                             with gr.Column():
@@ -1406,6 +1408,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     inputs=[
                                         module_name_llamacpp,
                                         model_llamacpp,
+                                        quantization_llamacpp,
                                         max_tokens_llamacpp,
                                         seed_llamacpp,
                                         stream_llamacpp,
@@ -1459,6 +1462,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             fn=text_llamacpp,
                             inputs=[
                                 model_llamacpp,
+                                quantization_llamacpp,
                                 max_tokens_llamacpp,
                                 seed_llamacpp,
                                 stream_llamacpp,
@@ -1484,6 +1488,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             fn=text_llamacpp,
                             inputs=[
                                 model_llamacpp,
+                                quantization_llamacpp,
                                 max_tokens_llamacpp,
                                 seed_llamacpp,
                                 stream_llamacpp,
@@ -1509,6 +1514,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             fn=text_llamacpp_continue,
                             inputs=[
                                 model_llamacpp,
+                                quantization_llamacpp,
                                 max_tokens_llamacpp,
                                 seed_llamacpp,
                                 stream_llamacpp,

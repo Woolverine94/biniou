@@ -683,43 +683,11 @@ def schedulerer(pipe, scheduler):
 def nparse(string):
     return string.replace("\n", "\\n")
 
-def write_ini_llamacpp(
-    module,
-    model_llamacpp,
-    max_tokens_llamacpp,
-    seed_llamacpp,
-    stream_llamacpp,
-    n_ctx_llamacpp,
-    repeat_penalty_llamacpp,
-    temperature_llamacpp,
-    top_p_llamacpp,
-    top_k_llamacpp,
-    force_prompt_template_llamacpp,
-    prompt_template_llamacpp,
-    system_template_llamacpp,
-):
-    savename = f".ini/{module}.ini"
-    content = f"model_llamacpp.value = \"{model_llamacpp}\"\n\
-max_tokens_llamacpp.value = {max_tokens_llamacpp}\n\
-seed_llamacpp.value = {seed_llamacpp}\n\
-stream_llamacpp.value = {stream_llamacpp}\n\
-n_ctx_llamacpp.value = {n_ctx_llamacpp}\n\
-repeat_penalty_llamacpp.value = {repeat_penalty_llamacpp}\n\
-temperature_llamacpp.value = {temperature_llamacpp}\n\
-top_p_llamacpp.value = {top_p_llamacpp}\n\
-top_k_llamacpp.value = {top_k_llamacpp}\n\
-force_prompt_template_llamacpp.value = \"{force_prompt_template_llamacpp}\"\n\
-prompt_template_llamacpp.value = \"{nparse(prompt_template_llamacpp)}\"\n\
-system_template_llamacpp.value = \"{nparse(system_template_llamacpp)}\""
-    with open(savename, 'w', encoding="utf-8") as savefile:
-        savefile.write(content)
-    return
-
 ## Text modules default settings
-
 def write_ini_llamacpp(
     module,
     model_llamacpp,
+    quantization_llamacpp,
     max_tokens_llamacpp,
     seed_llamacpp,
     stream_llamacpp,
@@ -734,6 +702,7 @@ def write_ini_llamacpp(
 ):
     savename = f".ini/{module}.ini"
     content = f"model_llamacpp.value = \"{model_llamacpp}\"\n\
+quantization_llamacpp.value = \"{quantization_llamacpp}\"\n\
 max_tokens_llamacpp.value = {max_tokens_llamacpp}\n\
 seed_llamacpp.value = {seed_llamacpp}\n\
 stream_llamacpp.value = {stream_llamacpp}\n\
