@@ -17,7 +17,7 @@
 
 ## Updates
 
-  * 🆕 **2024-05-14** : 🔥 ***Adding quantization option to the Chatbot module*** 🔥 > With this new feature, you can now use any GGUF-compatible model from Huggingface. Paste the repo ID in the model field, paste the name of the quantized gguf file in the quantization field, force a prompt template corresponding to the model and ... enjoy !
+  * 🆕 **2024-05-19** : 🔥 ***Adding quantization option to the Chatbot module*** 🔥 > With this new feature, you can now use any GGUF-compatible model from Huggingface. Paste the repo ID in the model field, paste the name of the quantized gguf file in the quantization field, force a prompt template corresponding to the model and ... enjoy !
 
   * 🆕 **2024-05-18** : 🔥 ***Support for TCD LoRA models*** 🔥 > Adding support for LoRA models [h1t/TCD-SD15-LoRA](https://huggingface.co/h1t/TCD-SD15-LoRA) and [h1t/TCD-SDXL-LoRA](https://huggingface.co/h1t/TCD-SDXL-LoRA) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet and Photobooth. These 2-8 steps LoRA models are similar to Hyper-SD.
 
