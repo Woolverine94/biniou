@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-05-14** : 🔥 ***Adding quantization option to the Chatbot module*** 🔥 > With this new feature, you can now use any GGUF-compatible model from Huggingface. Paste the repo ID in the model field, paste the name of the quantized gguf file in the quantization field, force a prompt template corresponding to the model and ... enjoy !
+
   * 🆕 **2024-05-18** : 🔥 ***Support for TCD LoRA models*** 🔥 > Adding support for LoRA models [h1t/TCD-SD15-LoRA](https://huggingface.co/h1t/TCD-SD15-LoRA) and [h1t/TCD-SDXL-LoRA](https://huggingface.co/h1t/TCD-SDXL-LoRA) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet and Photobooth. These 2-8 steps LoRA models are similar to Hyper-SD.
 
   * 🆕 **2024-05-17** : 🔥 ***Adding WebUI translation feature and support for french language*** 🔥 > 
@@ -27,8 +29,6 @@
   * 🆕 **2024-05-16** : 🔥 ***Support for RunDiffusion/Juggernaut-XL-Lightning*** 🔥 > Adding support for model  [RunDiffusion/Juggernaut-XL-Lightning](https://huggingface.co/RunDiffusion/Juggernaut-XL-Lightning) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero modules. This model is a Lightning (4-6 steps) variant from the Juggernaut-XL model family.
 
   * 🆕 **2024-05-14** : 🔥 ***Adding CLIP skip setting*** 🔥 > Adding CLIP skip option to the settings panel of modules Stable Diffusion, img2img, IP-Adapter, inpaint, outpaint, ControlNet, Photobooth and AnimateDiff.
-
-  * 🆕 **2024-05-12** : 🔥 ***Support for Fluently-XL-v3-Lightning*** 🔥 > Adding support for model  [fluently/Fluently-XL-v3-Lightning](https://huggingface.co/fluently/Fluently-XL-v3-Lightning) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero modules. This model is a Lightning (4-6 steps) variant from the Fluently model family.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
