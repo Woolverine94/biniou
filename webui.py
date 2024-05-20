@@ -1319,13 +1319,15 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/NousResearch/Meta-Llama-3-8B-Instruct-GGUF' target='_blank'>NousResearch/Meta-Llama-3-8B-Instruct-GGUF</a>, 
+                                <a href='https://huggingface.co/NousResearch/Hermes-2-Theta-Llama-3-8B-GGUF' target='_blank'>NousResearch/Hermes-2-Theta-Llama-3-8B-GGUF</a>, 
+                                <a href='https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf' target='_blank'>microsoft/Phi-3-mini-4k-instruct-gguf</a>, 
                                 <a href='https://huggingface.co/TheBloke/openchat-3.5-0106-GGUF' target='_blank'>TheBloke/openchat-3.5-0106-GGUF</a>, 
                                 <a href='https://huggingface.co/LoneStriker/Starling-LM-7B-beta-GGUF' target='_blank'>LoneStriker/Starling-LM-7B-beta-GGUF</a>, 
                                 <a href='https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B-GGUF' target='_blank'>NousResearch/Hermes-2-Pro-Mistral-7B-GGUF</a>, 
                                 <a href='https://huggingface.co/Lewdiculous/Kunoichi-DPO-v2-7B-GGUF-Imatrix' target='_blank'>Lewdiculous/Kunoichi-DPO-v2-7B-GGUF-Imatrix</a>, 
                                 <a href='https://huggingface.co/dranger003/MambaHermes-3B-GGUF' target='_blank'>dranger003/MambaHermes-3B-GGUF</a>, 
-                                <a href='https://huggingface.co/sayhan/gemma-7b-it-GGUF-quantized' target='_blank'>sayhan/gemma-7b-it-GGUF-quantized</a>, 
-                                <a href='https://huggingface.co/mlabonne/gemma-2b-it-GGUF' target='_blank'>mlabonne/gemma-2b-it-GGUF</a>, 
+                                <a href='https://huggingface.co/bartowski/gemma-1.1-7b-it-GGUF' target='_blank'>bartowski/gemma-1.1-7b-it-GGUF</a>, 
+                                <a href='https://huggingface.co/bartowski/gemma-1.1-2b-it-GGUF' target='_blank'>bartowski/gemma-1.1-2b-it-GGUF</a>, 
                                 <a href='https://huggingface.co/mlabonne/AlphaMonarch-7B-GGUF' target='_blank'>mlabonne/AlphaMonarch-7B-GGUF</a>, 
                                 <a href='https://huggingface.co/mlabonne/NeuralBeagle14-7B-GGUF' target='_blank'>mlabonne/NeuralBeagle14-7B-GGUF</a>, 
                                 <a href='https://huggingface.co/TheBloke/SOLAR-10.7B-Instruct-v1.0-GGUF' target='_blank'>TheBloke/SOLAR-10.7B-Instruct-v1.0-GGUF</a>, 
@@ -1582,10 +1584,12 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>{biniou_lang_about_inputs}</b>{biniou_lang_tab_llava_about_input_value}</br>
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
+                                <a href='https://huggingface.co/xtuner/llava-llama-3-8b-v1_1-gguf' target='_blank'>xtuner/llava-llama-3-8b-v1_1-gguf</a>, 
+                                <a href='https://huggingface.co/xtuner/llava-phi-3-mini-gguf' target='_blank'>xtuner/llava-phi-3-mini-gguf</a>, 
                                 <a href='https://huggingface.co/mys/ggml_bakllava-1' target='_blank'>mys/ggml_bakllava-1</a>, 
                                 <a href='https://huggingface.co/cmp-nct/llava-1.6-gguf' target='_blank'>cmp-nct/llava-1.6-gguf</a>, 
                                 <a href='https://huggingface.co/mys/ggml_llava-v1.5-7b' target='_blank'>mys/ggml_llava-v1.5-7b</a>, 
-                                <a href='https://huggingface.co/mys/ggml_llava-v1.5-13b' target='_blank'>mys/ggml_llava-v1.5-13b</a>
+                                <a href='https://huggingface.co/mys/ggml_llava-v1.5-13b' target='_blank'>mys/ggml_llava-v1.5-13b</a>, 
                            </br>
                                 """
                             )
