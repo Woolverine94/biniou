@@ -44,6 +44,7 @@ model_list_faceid_ip = []
 
 model_list_faceid_ip_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
+    "sd-community/sdxl-flash",
     "RunDiffusion/Juggernaut-XL-Lightning",
     "fluently/Fluently-XL-v3-Lightning",
     "fluently/Fluently-XL-v4",

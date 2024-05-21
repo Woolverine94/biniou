@@ -31,6 +31,7 @@ for filename in os.listdir(model_path_img2img_ip):
 
 model_list_img2img_ip_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
+    "sd-community/sdxl-flash",
     "RunDiffusion/Juggernaut-XL-Lightning",
     "fluently/Fluently-XL-v3-Lightning",
     "fluently/Fluently-XL-v4",
