@@ -5277,17 +5277,16 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <a href='https://huggingface.co/lllyasviel/control_v11p_sd15_softedge' target='_blank'>lllyasviel/control_v11p_sd15_softedge</a>, 
                                 <a href='https://huggingface.co/Nacholmo/controlnet-qr-pattern-v2' target='_blank'>Nacholmo/controlnet-qr-pattern-v2</a>, 
                                 <a href='https://huggingface.co/monster-labs/control_v1p_sd15_qrcode_monster' target='_blank'>monster-labs/control_v1p_sd15_qrcode_monster</a>, 
-                                <a href='https://huggingface.co/TheMistoAI/MistoLine' target='_blank'>TheMistoAI/MistoLine</a>, 
+                                <a href='https://huggingface.co/patrickvonplaten/controlnet-canny-sdxl-1.0' target='_blank'>patrickvonplaten/controlnet-canny-sdxl-1.0</a>
                                 <a href='https://huggingface.co/patrickvonplaten/controlnet-depth-sdxl-1.0' target='_blank'>patrickvonplaten/controlnet-depth-sdxl-1.0</a>, 
                                 <a href='https://huggingface.co/thibaud/controlnet-openpose-sdxl-1.0' target='_blank'>thibaud/controlnet-openpose-sdxl-1.0</a>, 
                                 <a href='https://huggingface.co/SargeZT/controlnet-sd-xl-1.0-softedge-dexined' target='_blank'>SargeZT/controlnet-sd-xl-1.0-softedge-dexined</a>, 
                                 <a href='https://huggingface.co/Nacholmo/controlnet-qr-pattern-sdxl' target='_blank'>Nacholmo/controlnet-qr-pattern-sdxl</a>, 
                                 <a href='https://huggingface.co/monster-labs/control_v1p_sdxl_qrcode_monster' target='_blank'>monster-labs/control_v1p_sdxl_qrcode_monster</a>
+                                <a href='https://huggingface.co/TheMistoAI/MistoLine' target='_blank'>TheMistoAI/MistoLine</a>, 
                                 </br>
                                 """
 #                                <a href='https://huggingface.co/ckpt/anything-v4.5-vae-swapped' target='_blank'>ckpt/anything-v4.5-vae-swapped</a>, 
-#                                <a href='https://huggingface.co/patrickvonplaten/controlnet-canny-sdxl-1.0' target='_blank'>patrickvonplaten/controlnet-canny-sdxl-1.0</a>
-
                             )
                         with gr.Box():
                             gr.HTML(
@@ -5494,6 +5493,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 start_controlnet,
                                 stop_controlnet,
                                 use_gfpgan_controlnet,
+                                preprocessor_controlnet,
                                 variant_controlnet,
                                 img_preview_controlnet,
                                 nsfw_filter,

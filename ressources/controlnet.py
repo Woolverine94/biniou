@@ -73,13 +73,13 @@ variant_list_controlnet = [
     "lllyasviel/control_v11p_sd15_softedge",
     "Nacholmo/controlnet-qr-pattern-v2",
     "monster-labs/control_v1p_sd15_qrcode_monster",
-    "TheMistoAI/MistoLine",
-#    "patrickvonplaten/controlnet-canny-sdxl-1.0",
+    "patrickvonplaten/controlnet-canny-sdxl-1.0",
     "patrickvonplaten/controlnet-depth-sdxl-1.0",
     "thibaud/controlnet-openpose-sdxl-1.0",
     "SargeZT/controlnet-sd-xl-1.0-softedge-dexined",
     "Nacholmo/controlnet-qr-pattern-sdxl",
     "monster-labs/control_v1p_sdxl_qrcode_monster",
+    "TheMistoAI/MistoLine",
 ]
 
 preprocessor_list_controlnet = [
@@ -262,6 +262,7 @@ def image_controlnet(
     start_controlnet,
     stop_controlnet,
     use_gfpgan_controlnet,
+    preprocessor_controlnet,
     variant_controlnet,
     img_preview_controlnet,
     nsfw_filter, 
@@ -545,6 +546,7 @@ def image_controlnet(
         f"LoRA weight={lora_weight_controlnet} | "+\
         f"Textual inversion={txtinv_controlnet} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
+        f"Pre-processor={preprocessor_controlnet} | "+\
         f"ControlNet model={variant_controlnet} | "+\
         f"Prompt={prompt_controlnet} | "+\
         f"Negative prompt={negative_prompt_controlnet} | "+\
