@@ -265,6 +265,12 @@ class biniouUIControl:
     def __init__(self):
         return
 
+    def check_login_reader():
+        filename = ".ini/auth.cfg"
+        with open(filename, "r", encoding="utf-8") as fichier:
+            admin_user, admin_pass = fichier.readline().strip().split(":")
+        return admin_user, admin_pass
+
     def restart_program():
         print(f">>>[WebUI control 🧠 ]: Restarting biniou ...")
         os.execv(sys.executable, ['python'] + sys.argv)

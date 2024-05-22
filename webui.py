@@ -1237,21 +1237,33 @@ def change_output_type_img2shape(output_type_img2shape, out_size_img2shape, mesh
 
 ## Functions specific to Models cleaner
 def refresh_models_cleaner_list():
-    return gr.CheckboxGroup(choices=biniouModelsManager("./models").modelslister(), value=None, type="value", label="Installed models list", info="Select the models you want to delete and click \"{biniou_lang_tab_settings_delete_models}\" button. Restart biniou to re-synchronize models list.")
+    return gr.CheckboxGroup(choices=biniouModelsManager("./models").modelslister(), value=None, type="value", label=biniou_lang_tab_settings_list_label, info=biniou_lang_tab_cleaner_list_info)
 
 ## Functions specific to LoRA models manager
 def refresh_lora_models_manager_list_sd():
-    return gr.CheckboxGroup(choices=biniouLoraModelsManager("./models/lora/SD").modelslister(), value=None, type="value", label="Installed models list", info="Select the LoRA models you want to delete and click \"{biniou_lang_tab_settings_delete_models}\" button. Restart biniou to re-synchronize LoRA models list.")
+    return gr.CheckboxGroup(choices=biniouLoraModelsManager("./models/lora/SD").modelslister(), value=None, type="value", label=biniou_lang_tab_settings_list_label, info=biniou_lang_tab_lora_models_list_info)
 
 def refresh_lora_models_manager_list_sdxl():
-    return gr.CheckboxGroup(choices=biniouLoraModelsManager("./models/lora/SDXL").modelslister(), value=None, type="value", label="Installed models list", info="Select the LoRA models you want to delete and click \"{biniou_lang_tab_settings_delete_models}\" button. Restart biniou to re-synchronize LoRA models list.")
+    return gr.CheckboxGroup(choices=biniouLoraModelsManager("./models/lora/SDXL").modelslister(), value=None, type="value", label=biniou_lang_tab_settings_list_label, info=biniou_lang_tab_lora_models_list_info)
 
 ## Functions specific to Textual inversion manager
 def refresh_textinv_manager_list_sd():
-    return gr.CheckboxGroup(choices=biniouTextinvModelsManager("./models/TextualInversion/SD").modelslister(), value=None, type="value", label="Installed textual inversion list", info="Select the textual inversion you want to delete and click \"Delete selected textual inversion\" button. Restart biniou to re-synchronize textual inversion list.")
+    return gr.CheckboxGroup(choices=biniouTextinvModelsManager("./models/TextualInversion/SD").modelslister(), value=None, type="value", label=biniou_lang_tab_textinv_models_label, info=biniou_lang_tab_textinv_models_info)
 
 def refresh_textinv_manager_list_sdxl():
-    return gr.CheckboxGroup(choices=biniouTextinvModelsManager("./models/TextualInversion/SDXL").modelslister(), value=None, type="value", label="Installed textual inversion list", info="Select the textual inversion you want to delete and click \"Delete selected textual inversion\" button. Restart biniou to re-synchronize textual inversion list.")
+    return gr.CheckboxGroup(choices=biniouTextinvModelsManager("./models/TextualInversion/SDXL").modelslister(), value=None, type="value", label=biniou_lang_tab_textinv_models_label, info=biniou_lang_tab_textinv_models_info)
+
+## Authentication functions
+
+def biniou_settings_login(user, password):
+    admin_user, admin_pass = biniouUIControl.check_login_reader()
+    if (user == admin_user) and (password == admin_pass):
+        return acc_webui.update(visible=True), acc_models_cleaner.update(visible=True), acc_lora_models_manager.update(visible=True), acc_textinv_manager.update(visible=True), acc_sd_models_downloader.update(visible=True), acc_gguf_models_downloader.update(visible=True), biniou_login_user.update(value=""), biniou_login_pass.update(value="")
+    else:
+        return acc_webui.update(), acc_models_cleaner.update(), acc_lora_models_manager.update(), acc_textinv_manager.update(), acc_sd_models_downloader.update(), acc_gguf_models_downloader.update(), biniou_login_user.update(), biniou_login_pass.update()
+
+def biniou_settings_logout():
+    return acc_webui.update(visible=False), acc_models_cleaner.update(visible=False), acc_lora_models_manager.update(visible=False), acc_textinv_manager.update(visible=False), acc_sd_models_downloader.update(visible=False), acc_gguf_models_downloader.update(visible=False), biniou_login_user.update(""), biniou_login_pass.update("")
 
 ## Functions specific to Common settings
 def biniou_global_settings_auth_switch(auth_value):
@@ -8545,315 +8557,369 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
 # Global settings
         with gr.TabItem(f"{biniou_lang_tab_settings} ⚙️", id=6) as tab_settings:
             with gr.Tabs() as tabs_settings:
-# UI settings
-                with gr.TabItem(f"{biniou_lang_tab_webui} 🧠", id=61) as tab_models_cleaner:
+# Authentication
+                with gr.TabItem(f"{biniou_lang_tab_login} 🔐", id=60) as tab_login:
                     with gr.Row():
-                         with gr.Accordion(biniou_lang_tab_webui_system, open=True):
+                         with gr.Accordion(biniou_lang_tab_login_acc, open=True):
                              with gr.Row():
                                  with gr.Column():
-                                     btn_restart_ui_settings = gr.Button(f"{biniou_lang_tab_webui_restart} ↩️")
-                                     btn_restart_ui_settings.click(fn=biniouUIControl.restart_program)
+                                     biniou_login_user = gr.Textbox(value="", lines=1, max_lines=1, label=biniou_lang_tab_login_user_label, info=biniou_lang_tab_login_user_info)
                                  with gr.Column():
-                                     btn_reload_ui_settings = gr.Button(f"{biniou_lang_tab_webui_reload} ♻️")
-                                     btn_reload_ui_settings.click(fn=biniouUIControl.reload_ui, _js="window.location.reload()")
-                                 with gr.Column():
-                                     btn_close_ui_settings = gr.Button(f"{biniou_lang_tab_webui_shutdown} 🛑")
-                                     btn_close_ui_settings.click(fn=biniouUIControl.close_program)
-                                 with gr.Column():
-                                     gr.Number(visible=False)
-                    with gr.Row():
-                         with gr.Accordion(biniou_lang_tab_webui_update_title, open=True):
+                                     biniou_login_pass = gr.Textbox(value="", lines=1, max_lines=1, type="password", label=biniou_lang_tab_login_pass_label, info=biniou_lang_tab_login_pass_info)
                              with gr.Row():
                                  with gr.Column():
-                                     optimizer_update_ui = gr.Radio(choices=["cpu", "cuda", "rocm"], value=biniouUIControl.detect_optimizer(), label=biniou_lang_tab_webui_update_label, info=biniou_lang_tab_webui_update_info)
-                             with gr.Row():
+                                     btn_biniou_login = gr.Button(f"{biniou_lang_tab_login_btn_login} 🔑")
                                  with gr.Column():
-                                     btn_update_ui = gr.Button(f"{biniou_lang_tab_webui_update_btn_label} ⤵️", variant="primary")
-                                     btn_update_ui.click(fn=biniouUIControl.biniou_update, inputs=optimizer_update_ui, outputs=optimizer_update_ui)
+                                     btn_biniou_logout = gr.Button(f"{biniou_lang_tab_login_btn_logout} 🔓")
                                  with gr.Column():
-                                     gr.Number(visible=False)
-                                 with gr.Column():
-                                     gr.Number(visible=False)
-                                 with gr.Column():
-                                     gr.Number(visible=False)
-                    with gr.Row():
-                        with gr.Accordion(biniou_lang_tab_webui_backend_title, open=True):
-                            with gr.Row():
-                                with gr.Column():
-                                    llama_backend_ui = gr.Radio(choices=["none", "openblas", "cuda", "metal", "opencl/clblast", "rocm/hipblas", "vulkan", "kompute"], value=biniouUIControl.detect_llama_backend(), label=biniou_lang_tab_webui_backend_label, info=biniou_lang_tab_webui_backend_info)
-                            with gr.Row():
-                                with gr.Column():
-                                    btn_llama_backend_ui = gr.Button(f"{biniou_lang_tab_webui_backend_btn_label} ⤵️", variant="primary")
-                                    btn_llama_backend_ui.click(fn=biniouUIControl.biniou_llama_backend, inputs=llama_backend_ui, outputs=llama_backend_ui)
-                                with gr.Column():
-                                    gr.Number(visible=False)
-                                with gr.Column():
-                                    gr.Number(visible=False)
-                                with gr.Column():
-                                    gr.Number(visible=False)
-                    with gr.Row():
-                        with gr.Accordion(biniou_lang_tab_webui_settings_title, open=True):
-                            with gr.Accordion(biniou_lang_tab_webui_settings_lang_title, open=True):
-                                with gr.Row():
-                                    with gr.Column():
-                                        biniou_global_settings_lang_ui = gr.Dropdown(choices=biniouUIControl.biniou_languages_list(), value=biniou_global_lang_ui, label=biniou_lang_tab_webui_settings_lang_label, info=biniou_lang_tab_webui_settings_lang_info, interactive=True)
-                            with gr.Accordion(biniou_lang_tab_webui_settings_backend_title, open=True):
-                                with gr.Row():
-                                    with gr.Column():
-                                        biniou_global_settings_server_name = gr.Checkbox(value=biniou_global_server_name, label=biniou_lang_tab_webui_settings_server_name_label, info=biniou_lang_tab_webui_settings_server_name_info, interactive=True)
-                                    with gr.Column():
-                                        biniou_global_settings_server_port = gr.Slider(0, 65535, step=1, precision=0, value=biniou_global_server_port, label=biniou_lang_tab_webui_settings_server_port_label, info=biniou_lang_tab_webui_settings_server_port_info)
-                                    with gr.Column():
-                                        biniou_global_settings_inbrowser = gr.Checkbox(value=biniou_global_inbrowser, label=biniou_lang_tab_webui_settings_inbrowser_label, info=biniou_lang_tab_webui_settings_inbrowser_info, interactive=True)
-                                with gr.Row():
-                                    with gr.Column():
-                                        biniou_global_settings_auth = gr.Checkbox(value=biniou_global_auth, label=biniou_lang_tab_webui_settings_auth_label, info=biniou_lang_tab_webui_settings_auth_info, interactive=True)
-                                    with gr.Column():
-                                        biniou_global_settings_auth_message = gr.Textbox(value=biniou_global_auth_message, lines=1, max_lines=3, label=biniou_lang_tab_webui_settings_auth_msg_label, info=biniou_lang_tab_webui_settings_auth_msg_info, interactive=True if biniou_global_auth else False)
-                                    with gr.Column():
-                                        biniou_global_settings_share = gr.Checkbox(value=biniou_global_share, label=biniou_lang_tab_webui_settings_share_label, info=f"⚠️ {biniou_lang_tab_webui_settings_share_info}⚠️", interactive=True if biniou_global_auth else False)
-                                        biniou_global_settings_auth.change(biniou_global_settings_auth_switch, biniou_global_settings_auth, [biniou_global_settings_auth_message, biniou_global_settings_share])
-                            with gr.Accordion(biniou_lang_tab_webui_settings_image, open=True):
-                                with gr.Row():
-                                    with gr.Column():
-                                        biniou_global_settings_steps_max = gr.Slider(0, 512, step=1, value=biniou_global_steps_max, label=biniou_lang_tab_webui_settings_steps_max_label, info=biniou_lang_tab_webui_settings_steps_max_info, interactive=True)
-                                    with gr.Column():
-                                        biniou_global_settings_batch_size_max = gr.Slider(1, 512, step=1, value=biniou_global_batch_size_max, label=biniou_lang_tab_webui_settings_batch_size_label, info=biniou_lang_tab_webui_settings_batch_size_info, interactive=True)
-                                with gr.Row():
-                                    with gr.Column():
-                                        biniou_global_settings_width_max_img_create = gr.Slider(128, 16384, step=64, value=biniou_global_width_max_img_create, label=biniou_lang_tab_webui_settings_max_w_crea_label, info=biniou_lang_tab_webui_settings_max_w_crea_info, interactive=True)
-                                    with gr.Column():
-                                        biniou_global_settings_height_max_img_create = gr.Slider(128, 16384, step=64, value=biniou_global_height_max_img_create, label=biniou_lang_tab_webui_settings_max_h_crea_label, info=biniou_lang_tab_webui_settings_max_h_crea_info, interactive=True)
-                                with gr.Row():
-                                    with gr.Column():
-                                        biniou_global_settings_width_max_img_modify = gr.Slider(128, 16384, step=64, value=biniou_global_width_max_img_modify, label=biniou_lang_tab_webui_settings_max_w_mod_label, info=biniou_lang_tab_webui_settings_max_w_mod_info, interactive=True)
-                                    with gr.Column():
-                                        biniou_global_settings_height_max_img_modify = gr.Slider(128, 16384, step=64, value=biniou_global_height_max_img_modify, label=biniou_lang_tab_webui_settings_max_h_mod_label, info=biniou_lang_tab_webui_settings_max_h_mod_info, interactive=True)
-                                with gr.Row():
-                                    with gr.Column():
-                                        biniou_global_settings_sd15_width = gr.Slider(128, 16384, step=64, value=biniou_global_sd15_width, label=biniou_lang_tab_webui_settings_def_w_sd15_label, info=biniou_lang_tab_webui_settings_def_w_sd15_info, interactive=True)
-                                    with gr.Column():
-                                        biniou_global_settings_sd15_height = gr.Slider(128, 16384, step=64, value=biniou_global_sd15_height, label=biniou_lang_tab_webui_settings_def_h_sd15_label, info=biniou_lang_tab_webui_settings_def_h_sd15_info, interactive=True)
-                                with gr.Row():
-                                    with gr.Column():
-                                        biniou_global_settings_sdxl_width = gr.Slider(128, 16384, step=64, value=biniou_global_sdxl_width, label=biniou_lang_tab_webui_settings_def_w_sdxl_label, info=biniou_lang_tab_webui_settings_def_w_sdxl_info, interactive=True)
-                                    with gr.Column():
-                                        biniou_global_settings_sdxl_height = gr.Slider(128, 16384, step=64, value=biniou_global_sdxl_height, label=biniou_lang_tab_webui_settings_def_h_sdxl_label, info=biniou_lang_tab_webui_settings_def_h_sdxl_info, interactive=True)
-                                with gr.Row():
-                                    with gr.Column():
-                                        biniou_global_settings_gfpgan = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_tab_webui_settings_gfpgan_label, info=biniou_lang_tab_webui_settings_gfpgan_info, interactive=True)
-                                    with gr.Column():
-                                        biniou_global_settings_tkme = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tab_webui_settings_tkme_label, info=biniou_lang_tab_webui_settings_tkme_info, interactive=True)
-                                with gr.Row():
-                                    with gr.Column():
-                                        biniou_global_settings_clipskip = gr.Slider(0, 12, step=1, value=biniou_global_clipskip, label=biniou_lang_tab_webui_settings_clipskip_label, info=biniou_lang_tab_webui_settings_clipskip_info, interactive=True)
-                                    with gr.Column():
-                                        biniou_global_settings_img_fmt = gr.Dropdown(choices=img_fmt_list(), value=biniou_global_img_fmt, label=biniou_lang_tab_webui_settings_img_fmt_label, info=biniou_lang_tab_webui_settings_img_fmt_info, interactive=True)
-                                with gr.Row():
-                                    with gr.Column():
-                                        biniou_global_settings_text_metadatas = gr.Checkbox(value=biniou_global_text_metadatas, label=biniou_lang_tab_webui_settings_text_metadatas_label, info=biniou_lang_tab_webui_settings_text_metadatas_info, interactive=True)
-                                    with gr.Column():
-                                        biniou_global_settings_img_exif = gr.Checkbox(value=biniou_global_img_exif, label=biniou_lang_tab_webui_settings_exif_label, info=biniou_lang_tab_webui_settings_exif_info, interactive=True)
-                                with gr.Row():
-                                    with gr.Column():
-                                        biniou_global_settings_gif_exif = gr.Checkbox(value=biniou_global_gif_exif, label=biniou_lang_tab_webui_settings_gif_exif_label, info=biniou_lang_tab_webui_settings_gif_exif_info, interactive=True)
-                                    with gr.Column():
-                                        biniou_global_settings_mp4_metadatas = gr.Checkbox(value=biniou_global_mp4_metadatas, label=biniou_lang_tab_webui_settings_mp4_metadatas_label, info=biniou_lang_tab_webui_settings_mp4_metadatas_info, interactive=True)
-                                    with gr.Column():
-                                        biniou_global_settings_audio_metadatas = gr.Checkbox(value=biniou_global_audio_metadatas, label=biniou_lang_tab_webui_settings_audio_metadatas_label, info=biniou_lang_tab_webui_settings_audio_metadatas_info, interactive=True)
-                            with gr.Row():
-                                with gr.Column():
-                                    save_ini_btn_settings = gr.Button(f"{biniou_lang_save_settings} 💾")
-                                with gr.Column():
-                                    module_name_settings = gr.Textbox(value="settings", visible=False, interactive=False)
-                                    del_ini_btn_settings = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_cfg_exist(module_name_settings.value) else False)
-                                    save_ini_btn_settings.click(fn=write_settings_ini, 
-                                        inputs=[
-                                            module_name_settings,
-                                            biniou_global_settings_lang_ui,
-                                            biniou_global_settings_server_name,
-                                            biniou_global_settings_server_port,
-                                            biniou_global_settings_inbrowser,
-                                            biniou_global_settings_auth,
-                                            biniou_global_settings_auth_message,
-                                            biniou_global_settings_share,
-                                            biniou_global_settings_steps_max,
-                                            biniou_global_settings_batch_size_max,
-                                            biniou_global_settings_width_max_img_create,
-                                            biniou_global_settings_height_max_img_create,
-                                            biniou_global_settings_width_max_img_modify,
-                                            biniou_global_settings_height_max_img_modify,
-                                            biniou_global_settings_sd15_width,
-                                            biniou_global_settings_sd15_height,
-                                            biniou_global_settings_sdxl_width,
-                                            biniou_global_settings_sdxl_height,
-                                            biniou_global_settings_gfpgan,
-                                            biniou_global_settings_tkme,
-                                            biniou_global_settings_clipskip,
-                                            biniou_global_settings_img_fmt,
-                                            biniou_global_settings_text_metadatas,
-                                            biniou_global_settings_img_exif,
-                                            biniou_global_settings_gif_exif,
-                                            biniou_global_settings_mp4_metadatas,
-                                            biniou_global_settings_audio_metadatas,
-                                        ],
-                                        outputs=None
-                                    )
-                                    save_ini_btn_settings.click(fn=lambda: gr.Info(biniou_lang_tab_webui_settings_saved))
-                                    save_ini_btn_settings.click(fn=lambda: del_ini_btn_settings.update(interactive=True), outputs=del_ini_btn_settings)
-                                    del_ini_btn_settings.click(fn=lambda: del_cfg(module_name_settings.value))
-                                    del_ini_btn_settings.click(fn=lambda: gr.Info(biniou_lang_tab_webui_settings_deleted))
-                                    del_ini_btn_settings.click(fn=lambda: del_ini_btn_settings.update(interactive=False), outputs=del_ini_btn_settings)
-                    with gr.Row():
-                        with gr.Accordion(biniou_lang_tab_webui_nsfw_title, open=False):
-                            with gr.Row():
-                                with gr.Column():
-                                    safety_checker_ui_settings = gr.Checkbox(bool(int(nsfw_filter.value)), label=biniou_lang_tab_webui_nsfw_label, info=f"⚠️ {biniou_lang_tab_webui_nsfw_info} ⚠️", interactive=True)
-                                    safety_checker_ui_settings.change(fn=lambda x:int(x), inputs=safety_checker_ui_settings, outputs=nsfw_filter)
+                                     btn_biniou_login_clear_input = gr.ClearButton(components=[biniou_login_user, biniou_login_pass], value=f"{biniou_lang_clear_inputs} 🧹")
 
+# UI settings
+                with gr.TabItem(f"{biniou_lang_tab_webui} 🧠", id=61) as tab_webui:
+                    with gr.Accordion(biniou_lang_tab_webui, open=True, visible=False) as acc_webui:
+                        with gr.Row():
+                             with gr.Accordion(biniou_lang_tab_webui_system, open=True):
+                                 with gr.Row():
+                                     with gr.Column():
+                                         btn_restart_ui_settings = gr.Button(f"{biniou_lang_tab_webui_restart} ↩️")
+                                         btn_restart_ui_settings.click(fn=biniouUIControl.restart_program)
+                                     with gr.Column():
+                                         btn_reload_ui_settings = gr.Button(f"{biniou_lang_tab_webui_reload} ♻️")
+                                         btn_reload_ui_settings.click(fn=biniouUIControl.reload_ui, _js="window.location.reload()")
+                                     with gr.Column():
+                                         btn_close_ui_settings = gr.Button(f"{biniou_lang_tab_webui_shutdown} 🛑")
+                                         btn_close_ui_settings.click(fn=biniouUIControl.close_program)
+                                     with gr.Column():
+                                         gr.Number(visible=False)
+                        with gr.Row():
+                             with gr.Accordion(biniou_lang_tab_webui_update_title, open=True):
+                                 with gr.Row():
+                                     with gr.Column():
+                                         optimizer_update_ui = gr.Radio(choices=["cpu", "cuda", "rocm"], value=biniouUIControl.detect_optimizer(), label=biniou_lang_tab_webui_update_label, info=biniou_lang_tab_webui_update_info)
+                                 with gr.Row():
+                                     with gr.Column():
+                                         btn_update_ui = gr.Button(f"{biniou_lang_tab_webui_update_btn_label} ⤵️", variant="primary")
+                                         btn_update_ui.click(fn=biniouUIControl.biniou_update, inputs=optimizer_update_ui, outputs=optimizer_update_ui)
+                                     with gr.Column():
+                                         gr.Number(visible=False)
+                                     with gr.Column():
+                                         gr.Number(visible=False)
+                                     with gr.Column():
+                                         gr.Number(visible=False)
+                        with gr.Row():
+                            with gr.Accordion(biniou_lang_tab_webui_backend_title, open=True):
+                                with gr.Row():
+                                    with gr.Column():
+                                        llama_backend_ui = gr.Radio(choices=["none", "openblas", "cuda", "metal", "opencl/clblast", "rocm/hipblas", "vulkan", "kompute"], value=biniouUIControl.detect_llama_backend(), label=biniou_lang_tab_webui_backend_label, info=biniou_lang_tab_webui_backend_info)
+                                with gr.Row():
+                                    with gr.Column():
+                                        btn_llama_backend_ui = gr.Button(f"{biniou_lang_tab_webui_backend_btn_label} ⤵️", variant="primary")
+                                        btn_llama_backend_ui.click(fn=biniouUIControl.biniou_llama_backend, inputs=llama_backend_ui, outputs=llama_backend_ui)
+                                    with gr.Column():
+                                        gr.Number(visible=False)
+                                    with gr.Column():
+                                        gr.Number(visible=False)
+                                    with gr.Column():
+                                        gr.Number(visible=False)
+                        with gr.Row():
+                            with gr.Accordion(biniou_lang_tab_webui_settings_title, open=True):
+                                with gr.Accordion(biniou_lang_tab_webui_settings_lang_title, open=True):
+                                    with gr.Row():
+                                        with gr.Column():
+                                            biniou_global_settings_lang_ui = gr.Dropdown(choices=biniouUIControl.biniou_languages_list(), value=biniou_global_lang_ui, label=biniou_lang_tab_webui_settings_lang_label, info=biniou_lang_tab_webui_settings_lang_info, interactive=True)
+                                with gr.Accordion(biniou_lang_tab_webui_settings_backend_title, open=True):
+                                    with gr.Row():
+                                        with gr.Column():
+                                            biniou_global_settings_server_name = gr.Checkbox(value=biniou_global_server_name, label=biniou_lang_tab_webui_settings_server_name_label, info=biniou_lang_tab_webui_settings_server_name_info, interactive=True)
+                                        with gr.Column():
+                                            biniou_global_settings_server_port = gr.Slider(0, 65535, step=1, precision=0, value=biniou_global_server_port, label=biniou_lang_tab_webui_settings_server_port_label, info=biniou_lang_tab_webui_settings_server_port_info)
+                                        with gr.Column():
+                                            biniou_global_settings_inbrowser = gr.Checkbox(value=biniou_global_inbrowser, label=biniou_lang_tab_webui_settings_inbrowser_label, info=biniou_lang_tab_webui_settings_inbrowser_info, interactive=True)
+                                    with gr.Row():
+                                        with gr.Column():
+                                            biniou_global_settings_auth = gr.Checkbox(value=biniou_global_auth, label=biniou_lang_tab_webui_settings_auth_label, info=biniou_lang_tab_webui_settings_auth_info, interactive=True)
+                                        with gr.Column():
+                                            biniou_global_settings_auth_message = gr.Textbox(value=biniou_global_auth_message, lines=1, max_lines=3, label=biniou_lang_tab_webui_settings_auth_msg_label, info=biniou_lang_tab_webui_settings_auth_msg_info, interactive=True if biniou_global_auth else False)
+                                        with gr.Column():
+                                            biniou_global_settings_share = gr.Checkbox(value=biniou_global_share, label=biniou_lang_tab_webui_settings_share_label, info=f"⚠️ {biniou_lang_tab_webui_settings_share_info}⚠️", interactive=True if biniou_global_auth else False)
+                                            biniou_global_settings_auth.change(biniou_global_settings_auth_switch, biniou_global_settings_auth, [biniou_global_settings_auth_message, biniou_global_settings_share])
+                                with gr.Accordion(biniou_lang_tab_webui_settings_image, open=True):
+                                    with gr.Row():
+                                        with gr.Column():
+                                            biniou_global_settings_steps_max = gr.Slider(0, 512, step=1, value=biniou_global_steps_max, label=biniou_lang_tab_webui_settings_steps_max_label, info=biniou_lang_tab_webui_settings_steps_max_info, interactive=True)
+                                        with gr.Column():
+                                            biniou_global_settings_batch_size_max = gr.Slider(1, 512, step=1, value=biniou_global_batch_size_max, label=biniou_lang_tab_webui_settings_batch_size_label, info=biniou_lang_tab_webui_settings_batch_size_info, interactive=True)
+                                    with gr.Row():
+                                        with gr.Column():
+                                            biniou_global_settings_width_max_img_create = gr.Slider(128, 16384, step=64, value=biniou_global_width_max_img_create, label=biniou_lang_tab_webui_settings_max_w_crea_label, info=biniou_lang_tab_webui_settings_max_w_crea_info, interactive=True)
+                                        with gr.Column():
+                                            biniou_global_settings_height_max_img_create = gr.Slider(128, 16384, step=64, value=biniou_global_height_max_img_create, label=biniou_lang_tab_webui_settings_max_h_crea_label, info=biniou_lang_tab_webui_settings_max_h_crea_info, interactive=True)
+                                    with gr.Row():
+                                        with gr.Column():
+                                            biniou_global_settings_width_max_img_modify = gr.Slider(128, 16384, step=64, value=biniou_global_width_max_img_modify, label=biniou_lang_tab_webui_settings_max_w_mod_label, info=biniou_lang_tab_webui_settings_max_w_mod_info, interactive=True)
+                                        with gr.Column():
+                                            biniou_global_settings_height_max_img_modify = gr.Slider(128, 16384, step=64, value=biniou_global_height_max_img_modify, label=biniou_lang_tab_webui_settings_max_h_mod_label, info=biniou_lang_tab_webui_settings_max_h_mod_info, interactive=True)
+                                    with gr.Row():
+                                        with gr.Column():
+                                            biniou_global_settings_sd15_width = gr.Slider(128, 16384, step=64, value=biniou_global_sd15_width, label=biniou_lang_tab_webui_settings_def_w_sd15_label, info=biniou_lang_tab_webui_settings_def_w_sd15_info, interactive=True)
+                                        with gr.Column():
+                                            biniou_global_settings_sd15_height = gr.Slider(128, 16384, step=64, value=biniou_global_sd15_height, label=biniou_lang_tab_webui_settings_def_h_sd15_label, info=biniou_lang_tab_webui_settings_def_h_sd15_info, interactive=True)
+                                    with gr.Row():
+                                        with gr.Column():
+                                            biniou_global_settings_sdxl_width = gr.Slider(128, 16384, step=64, value=biniou_global_sdxl_width, label=biniou_lang_tab_webui_settings_def_w_sdxl_label, info=biniou_lang_tab_webui_settings_def_w_sdxl_info, interactive=True)
+                                        with gr.Column():
+                                            biniou_global_settings_sdxl_height = gr.Slider(128, 16384, step=64, value=biniou_global_sdxl_height, label=biniou_lang_tab_webui_settings_def_h_sdxl_label, info=biniou_lang_tab_webui_settings_def_h_sdxl_info, interactive=True)
+                                    with gr.Row():
+                                        with gr.Column():
+                                            biniou_global_settings_gfpgan = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_tab_webui_settings_gfpgan_label, info=biniou_lang_tab_webui_settings_gfpgan_info, interactive=True)
+                                        with gr.Column():
+                                            biniou_global_settings_tkme = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tab_webui_settings_tkme_label, info=biniou_lang_tab_webui_settings_tkme_info, interactive=True)
+                                    with gr.Row():
+                                        with gr.Column():
+                                            biniou_global_settings_clipskip = gr.Slider(0, 12, step=1, value=biniou_global_clipskip, label=biniou_lang_tab_webui_settings_clipskip_label, info=biniou_lang_tab_webui_settings_clipskip_info, interactive=True)
+                                        with gr.Column():
+                                            biniou_global_settings_img_fmt = gr.Dropdown(choices=img_fmt_list(), value=biniou_global_img_fmt, label=biniou_lang_tab_webui_settings_img_fmt_label, info=biniou_lang_tab_webui_settings_img_fmt_info, interactive=True)
+                                    with gr.Row():
+                                        with gr.Column():
+                                            biniou_global_settings_text_metadatas = gr.Checkbox(value=biniou_global_text_metadatas, label=biniou_lang_tab_webui_settings_text_metadatas_label, info=biniou_lang_tab_webui_settings_text_metadatas_info, interactive=True)
+                                        with gr.Column():
+                                            biniou_global_settings_img_exif = gr.Checkbox(value=biniou_global_img_exif, label=biniou_lang_tab_webui_settings_exif_label, info=biniou_lang_tab_webui_settings_exif_info, interactive=True)
+                                    with gr.Row():
+                                        with gr.Column():
+                                            biniou_global_settings_gif_exif = gr.Checkbox(value=biniou_global_gif_exif, label=biniou_lang_tab_webui_settings_gif_exif_label, info=biniou_lang_tab_webui_settings_gif_exif_info, interactive=True)
+                                        with gr.Column():
+                                            biniou_global_settings_mp4_metadatas = gr.Checkbox(value=biniou_global_mp4_metadatas, label=biniou_lang_tab_webui_settings_mp4_metadatas_label, info=biniou_lang_tab_webui_settings_mp4_metadatas_info, interactive=True)
+                                        with gr.Column():
+                                            biniou_global_settings_audio_metadatas = gr.Checkbox(value=biniou_global_audio_metadatas, label=biniou_lang_tab_webui_settings_audio_metadatas_label, info=biniou_lang_tab_webui_settings_audio_metadatas_info, interactive=True)
+                                with gr.Row():
+                                    with gr.Column():
+                                        save_ini_btn_settings = gr.Button(f"{biniou_lang_save_settings} 💾")
+                                    with gr.Column():
+                                        module_name_settings = gr.Textbox(value="settings", visible=False, interactive=False)
+                                        del_ini_btn_settings = gr.Button(f"{biniou_lang_delete_settings} 🗑️", interactive=True if test_cfg_exist(module_name_settings.value) else False)
+                                        save_ini_btn_settings.click(fn=write_settings_ini, 
+                                            inputs=[
+                                                module_name_settings,
+                                                biniou_global_settings_lang_ui,
+                                                biniou_global_settings_server_name,
+                                                biniou_global_settings_server_port,
+                                                biniou_global_settings_inbrowser,
+                                                biniou_global_settings_auth,
+                                                biniou_global_settings_auth_message,
+                                                biniou_global_settings_share,
+                                                biniou_global_settings_steps_max,
+                                                biniou_global_settings_batch_size_max,
+                                                biniou_global_settings_width_max_img_create,
+                                                biniou_global_settings_height_max_img_create,
+                                                biniou_global_settings_width_max_img_modify,
+                                                biniou_global_settings_height_max_img_modify,
+                                                biniou_global_settings_sd15_width,
+                                                biniou_global_settings_sd15_height,
+                                                biniou_global_settings_sdxl_width,
+                                                biniou_global_settings_sdxl_height,
+                                                biniou_global_settings_gfpgan,
+                                                biniou_global_settings_tkme,
+                                                biniou_global_settings_clipskip,
+                                                biniou_global_settings_img_fmt,
+                                                biniou_global_settings_text_metadatas,
+                                                biniou_global_settings_img_exif,
+                                                biniou_global_settings_gif_exif,
+                                                biniou_global_settings_mp4_metadatas,
+                                                biniou_global_settings_audio_metadatas,
+                                            ],
+                                            outputs=None
+                                        )
+                                        save_ini_btn_settings.click(fn=lambda: gr.Info(biniou_lang_tab_webui_settings_saved))
+                                        save_ini_btn_settings.click(fn=lambda: del_ini_btn_settings.update(interactive=True), outputs=del_ini_btn_settings)
+                                        del_ini_btn_settings.click(fn=lambda: del_cfg(module_name_settings.value))
+                                        del_ini_btn_settings.click(fn=lambda: gr.Info(biniou_lang_tab_webui_settings_deleted))
+                                        del_ini_btn_settings.click(fn=lambda: del_ini_btn_settings.update(interactive=False), outputs=del_ini_btn_settings)
+                        with gr.Row():
+                            with gr.Accordion(biniou_lang_tab_webui_nsfw_title, open=False):
+                                with gr.Row():
+                                    with gr.Column():
+                                        safety_checker_ui_settings = gr.Checkbox(bool(int(nsfw_filter.value)), label=biniou_lang_tab_webui_nsfw_label, info=f"⚠️ {biniou_lang_tab_webui_nsfw_info} ⚠️", interactive=True)
+                                        safety_checker_ui_settings.change(fn=lambda x:int(x), inputs=safety_checker_ui_settings, outputs=nsfw_filter)
 # Models cleaner
                 with gr.TabItem(f"{biniou_lang_tab_cleaner} 🧹", id=62) as tab_models_cleaner:
-                    with gr.Row():
-                        list_models_cleaner = gr.CheckboxGroup(choices=biniouModelsManager("./models").modelslister(), type="value", label=biniou_lang_tab_settings_list_label, info=biniou_lang_tab_cleaner_list_info)
-                    with gr.Row():
-                        with gr.Column():
-                            btn_models_cleaner = gr.Button(f"{biniou_lang_tab_settings_delete_models} 🧹", variant="primary")
-                            btn_models_cleaner.click(fn=biniouModelsManager("./models").modelsdeleter, inputs=[list_models_cleaner])
-                            btn_models_cleaner.click(fn=refresh_models_cleaner_list, outputs=list_models_cleaner)
-                        with gr.Column():
-                            btn_models_cleaner_refresh = gr.Button(f"{biniou_lang_tab_settings_refresh_models} ♻️")
-                            btn_models_cleaner_refresh.click(fn=refresh_models_cleaner_list, outputs=list_models_cleaner)
-                        with gr.Column():
-                            gr.Number(visible=False)
-                        with gr.Column():
-                            gr.Number(visible=False)
+                    with gr.Accordion(biniou_lang_tab_cleaner, open=True, visible=False) as acc_models_cleaner:
+                        with gr.Row():
+                            list_models_cleaner = gr.CheckboxGroup(choices=biniouModelsManager("./models").modelslister(), type="value", label=biniou_lang_tab_settings_list_label, info=biniou_lang_tab_cleaner_list_info)
+                        with gr.Row():
+                            with gr.Column():
+                                btn_models_cleaner = gr.Button(f"{biniou_lang_tab_settings_delete_models} 🧹", variant="primary")
+                                btn_models_cleaner.click(fn=biniouModelsManager("./models").modelsdeleter, inputs=[list_models_cleaner])
+                                btn_models_cleaner.click(fn=refresh_models_cleaner_list, outputs=list_models_cleaner)
+                            with gr.Column():
+                                btn_models_cleaner_refresh = gr.Button(f"{biniou_lang_tab_settings_refresh_models} ♻️")
+                                btn_models_cleaner_refresh.click(fn=refresh_models_cleaner_list, outputs=list_models_cleaner)
+                            with gr.Column():
+                                gr.Number(visible=False)
+                            with gr.Column():
+                                gr.Number(visible=False)
 # LoRA Models manager
                 with gr.TabItem(f"{biniou_lang_tab_lora_models} 🛠️", id=63) as tab_lora_models_manager:
-                    with gr.Row():
-                        with gr.Column():
-                            gr.HTML(f"""<span style='text-align: left; font-size: 24px; font-weight: bold; line-height:24px;'>{biniou_lang_tab_lora_sd15_models}</span>""")
-                            with gr.Row():
-                                list_lora_models_manager_sd = gr.CheckboxGroup(choices=biniouLoraModelsManager("./models/lora/SD").modelslister(), type="value", label=biniou_lang_tab_settings_list_label, info=biniou_lang_tab_lora_models_list_info)
-                            with gr.Row():
-                                with gr.Column():
-                                    btn_lora_models_manager_sd = gr.Button(f"{biniou_lang_tab_settings_delete_models} 🧹", variant="primary")
-                                    btn_lora_models_manager_sd.click(fn=biniouLoraModelsManager("./models/lora/SD").modelsdeleter, inputs=[list_lora_models_manager_sd])
-                                    btn_lora_models_manager_sd.click(fn=refresh_lora_models_manager_list_sd, outputs=list_lora_models_manager_sd)
-                                with gr.Column():
-                                    btn_lora_models_manager_refresh_sd = gr.Button(f"{biniou_lang_tab_settings_refresh_models} ♻️")
-                                    btn_lora_models_manager_refresh_sd.click(fn=refresh_lora_models_manager_list_sd, outputs=list_lora_models_manager_sd)
-                            with gr.Row():
-                                with gr.Column():
-                                    url_lora_models_manager_sd = gr.Textbox(value="", lines=1, max_lines=2, interactive=True, label=biniou_lang_tab_lora_models_url_label, info=biniou_lang_tab_lora_models_url_info)
-                            with gr.Row():
-                                with gr.Column():
-                                    btn_url_lora_models_manager_sd = gr.Button(f"{biniou_lang_tab_lora_models_down} 💾", variant="primary")
-                                    btn_url_lora_models_manager_sd.click(biniouLoraModelsManager("./models/lora/SD").modelsdownloader, inputs=url_lora_models_manager_sd, outputs=url_lora_models_manager_sd)
-                                with gr.Column():
-                                        gr.Number(visible=False)
-                        with gr.Column():
-                            gr.HTML(f"""<span style='text-align: left; font-size: 24px; font-weight: bold; line-height:24px;'>{biniou_lang_tab_lora_sdxl_models}</span>""")
-                            with gr.Row():
-                                list_lora_models_manager_sdxl = gr.CheckboxGroup(choices=biniouLoraModelsManager("./models/lora/SDXL").modelslister(), type="value", label=biniou_lang_tab_settings_list_label, info=biniou_lang_tab_lora_models_list_info)
-                            with gr.Row():
-                                with gr.Column():
-                                    btn_lora_models_manager_sdxl = gr.Button(f"{biniou_lang_tab_settings_delete_models} 🧹", variant="primary")
-                                    btn_lora_models_manager_sdxl.click(fn=biniouLoraModelsManager("./models/lora/SDXL").modelsdeleter, inputs=[list_lora_models_manager_sdxl])
-                                    btn_lora_models_manager_sdxl.click(fn=refresh_lora_models_manager_list_sdxl, outputs=list_lora_models_manager_sdxl)
-                                with gr.Column():
-                                    btn_lora_models_manager_refresh_sdxl = gr.Button(f"{biniou_lang_tab_settings_refresh_models} ♻️")
-                                    btn_lora_models_manager_refresh_sdxl.click(fn=refresh_lora_models_manager_list_sdxl, outputs=list_lora_models_manager_sdxl)
-                            with gr.Row():
-                                with gr.Column():
-                                    url_lora_models_manager_sdxl = gr.Textbox(value="", lines=1, max_lines=2, interactive=True, label=biniou_lang_tab_lora_models_url_label, info=biniou_lang_tab_lora_models_url_info)
-                            with gr.Row():
-                                with gr.Column():
-                                    btn_url_lora_models_manager_sdxl = gr.Button(f"{biniou_lang_tab_lora_models_down} 💾", variant="primary")
-                                    btn_url_lora_models_manager_sdxl.click(biniouLoraModelsManager("./models/lora/SDXL").modelsdownloader, inputs=url_lora_models_manager_sdxl, outputs=url_lora_models_manager_sdxl)
-                                with gr.Column():
+                    with gr.Accordion(biniou_lang_tab_lora_models, open=True, visible=False) as acc_lora_models_manager:
+                        with gr.Row():
+                            with gr.Column():
+                                gr.HTML(f"""<span style='text-align: left; font-size: 24px; font-weight: bold; line-height:24px;'>{biniou_lang_tab_lora_sd15_models}</span>""")
+                                with gr.Row():
+                                    list_lora_models_manager_sd = gr.CheckboxGroup(choices=biniouLoraModelsManager("./models/lora/SD").modelslister(), type="value", label=biniou_lang_tab_settings_list_label, info=biniou_lang_tab_lora_models_list_info)
+                                with gr.Row():
+                                    with gr.Column():
+                                        btn_lora_models_manager_sd = gr.Button(f"{biniou_lang_tab_settings_delete_models} 🧹", variant="primary")
+                                        btn_lora_models_manager_sd.click(fn=biniouLoraModelsManager("./models/lora/SD").modelsdeleter, inputs=[list_lora_models_manager_sd])
+                                        btn_lora_models_manager_sd.click(fn=refresh_lora_models_manager_list_sd, outputs=list_lora_models_manager_sd)
+                                    with gr.Column():
+                                        btn_lora_models_manager_refresh_sd = gr.Button(f"{biniou_lang_tab_settings_refresh_models} ♻️")
+                                        btn_lora_models_manager_refresh_sd.click(fn=refresh_lora_models_manager_list_sd, outputs=list_lora_models_manager_sd)
+                                with gr.Row():
+                                    with gr.Column():
+                                        url_lora_models_manager_sd = gr.Textbox(value="", lines=1, max_lines=2, interactive=True, label=biniou_lang_tab_lora_models_url_label, info=biniou_lang_tab_lora_models_url_info)
+                                with gr.Row():
+                                    with gr.Column():
+                                        btn_url_lora_models_manager_sd = gr.Button(f"{biniou_lang_tab_lora_models_down} 💾", variant="primary")
+                                        btn_url_lora_models_manager_sd.click(biniouLoraModelsManager("./models/lora/SD").modelsdownloader, inputs=url_lora_models_manager_sd, outputs=url_lora_models_manager_sd)
+                                    with gr.Column():
+                                            gr.Number(visible=False)
+                            with gr.Column():
+                                gr.HTML(f"""<span style='text-align: left; font-size: 24px; font-weight: bold; line-height:24px;'>{biniou_lang_tab_lora_sdxl_models}</span>""")
+                                with gr.Row():
+                                    list_lora_models_manager_sdxl = gr.CheckboxGroup(choices=biniouLoraModelsManager("./models/lora/SDXL").modelslister(), type="value", label=biniou_lang_tab_settings_list_label, info=biniou_lang_tab_lora_models_list_info)
+                                with gr.Row():
+                                    with gr.Column():
+                                        btn_lora_models_manager_sdxl = gr.Button(f"{biniou_lang_tab_settings_delete_models} 🧹", variant="primary")
+                                        btn_lora_models_manager_sdxl.click(fn=biniouLoraModelsManager("./models/lora/SDXL").modelsdeleter, inputs=[list_lora_models_manager_sdxl])
+                                        btn_lora_models_manager_sdxl.click(fn=refresh_lora_models_manager_list_sdxl, outputs=list_lora_models_manager_sdxl)
+                                    with gr.Column():
+                                        btn_lora_models_manager_refresh_sdxl = gr.Button(f"{biniou_lang_tab_settings_refresh_models} ♻️")
+                                        btn_lora_models_manager_refresh_sdxl.click(fn=refresh_lora_models_manager_list_sdxl, outputs=list_lora_models_manager_sdxl)
+                                with gr.Row():
+                                    with gr.Column():
+                                        url_lora_models_manager_sdxl = gr.Textbox(value="", lines=1, max_lines=2, interactive=True, label=biniou_lang_tab_lora_models_url_label, info=biniou_lang_tab_lora_models_url_info)
+                                with gr.Row():
+                                    with gr.Column():
+                                        btn_url_lora_models_manager_sdxl = gr.Button(f"{biniou_lang_tab_lora_models_down} 💾", variant="primary")
+                                        btn_url_lora_models_manager_sdxl.click(biniouLoraModelsManager("./models/lora/SDXL").modelsdownloader, inputs=url_lora_models_manager_sdxl, outputs=url_lora_models_manager_sdxl)
+                                    with gr.Column():
                                         gr.Number(visible=False)
 
 # Textual inversion Models manager
                 with gr.TabItem(f"{biniou_lang_tab_textinv} 🛠️", id=64) as tab_textinv_manager:
-                    with gr.Row():
-                        with gr.Column():
-                            gr.HTML(f"""<span style='text-align: left; font-size: 24px; font-weight: bold; line-height:24px;'>{biniou_lang_tab_textinv_sd15_models}</span>""")
-                            with gr.Row():
-                                list_textinv_manager_sd = gr.CheckboxGroup(choices=biniouTextinvModelsManager("./models/TextualInversion/SD").modelslister(), type="value", label=biniou_lang_tab_textinv_models_label, info=biniou_lang_tab_textinv_models_info)
-                            with gr.Row():
-                                with gr.Column():
-                                    btn_textinv_manager_sd = gr.Button(f"{biniou_lang_tab_textinv_delete_models} 🧹", variant="primary")
-                                    btn_textinv_manager_sd.click(fn=biniouTextinvModelsManager("./models/TextualInversion/SD").modelsdeleter, inputs=[list_textinv_manager_sd])
-                                    btn_textinv_manager_sd.click(fn=refresh_textinv_manager_list_sd, outputs=list_textinv_manager_sd)
-                                with gr.Column():
-                                    btn_textinv_manager_refresh_sd = gr.Button(f"{biniou_lang_tab_textinv_refresh_models} ♻️")
-                                    btn_textinv_manager_refresh_sd.click(fn=refresh_textinv_manager_list_sd, outputs=list_textinv_manager_sd)
-                            with gr.Row():
-                                with gr.Column():
-                                    url_textinv_manager_sd = gr.Textbox(value="", lines=1, max_lines=2, interactive=True, label=biniou_lang_tab_textinv_url_label, info=biniou_lang_tab_textinv_url_info)
-                            with gr.Row():
-                                with gr.Column():
-                                    btn_url_textinv_manager_sd = gr.Button(f"{biniou_lang_tab_textinv_down} 💾", variant="primary")
-                                    btn_url_textinv_manager_sd.click(biniouTextinvModelsManager("./models/TextualInversion/SD").modelsdownloader, inputs=url_textinv_manager_sd, outputs=url_textinv_manager_sd)
-                                with gr.Column():
-                                        gr.Number(visible=False)
-                        with gr.Column():
-                            gr.HTML(f"""<span style='text-align: left; font-size: 24px; font-weight: bold; line-height:24px;'>{biniou_lang_tab_textinv_sdxl_models}</span>""")
-                            with gr.Row():
-                                list_textinv_manager_sdxl = gr.CheckboxGroup(choices=biniouTextinvModelsManager("./models/TextualInversion/SDXL").modelslister(), type="value", label=biniou_lang_tab_textinv_models_label, info=biniou_lang_tab_textinv_models_info)
-                            with gr.Row():
-                                with gr.Column():
-                                    btn_textinv_manager_sdxl = gr.Button(f"{biniou_lang_tab_textinv_delete_models} 🧹", variant="primary")
-                                    btn_textinv_manager_sdxl.click(fn=biniouTextinvModelsManager("./models/TextualInversion/SDXL").modelsdeleter, inputs=[list_textinv_manager_sdxl])
-                                    btn_textinv_manager_sdxl.click(fn=refresh_textinv_manager_list_sdxl, outputs=list_textinv_manager_sdxl)
-                                with gr.Column():
-                                    btn_textinv_manager_refresh_sdxl = gr.Button(f"{biniou_lang_tab_textinv_refresh_models} ♻️")
-                                    btn_textinv_manager_refresh_sdxl.click(fn=refresh_textinv_manager_list_sdxl, outputs=list_textinv_manager_sdxl)
-                            with gr.Row():
-                                with gr.Column():
-                                    url_textinv_manager_sdxl = gr.Textbox(value="", lines=1, max_lines=2, interactive=True, label=biniou_lang_tab_textinv_url_label, info=biniou_lang_tab_textinv_url_info)
-                            with gr.Row():
-                                with gr.Column():
-                                    btn_url_textinv_manager_sdxl = gr.Button(f"{biniou_lang_tab_textinv_down} 💾", variant="primary")
-                                    btn_url_textinv_manager_sdxl.click(biniouTextinvModelsManager("./models/TextualInversion/SDXL").modelsdownloader, inputs=url_textinv_manager_sdxl, outputs=url_textinv_manager_sdxl)
-                                with gr.Column():
+                    with gr.Accordion(biniou_lang_tab_textinv, open=True, visible=False) as acc_textinv_manager:
+                        with gr.Row():
+                            with gr.Column():
+                                gr.HTML(f"""<span style='text-align: left; font-size: 24px; font-weight: bold; line-height:24px;'>{biniou_lang_tab_textinv_sd15_models}</span>""")
+                                with gr.Row():
+                                    list_textinv_manager_sd = gr.CheckboxGroup(choices=biniouTextinvModelsManager("./models/TextualInversion/SD").modelslister(), type="value", label=biniou_lang_tab_textinv_models_label, info=biniou_lang_tab_textinv_models_info)
+                                with gr.Row():
+                                    with gr.Column():
+                                        btn_textinv_manager_sd = gr.Button(f"{biniou_lang_tab_textinv_delete_models} 🧹", variant="primary")
+                                        btn_textinv_manager_sd.click(fn=biniouTextinvModelsManager("./models/TextualInversion/SD").modelsdeleter, inputs=[list_textinv_manager_sd])
+                                        btn_textinv_manager_sd.click(fn=refresh_textinv_manager_list_sd, outputs=list_textinv_manager_sd)
+                                    with gr.Column():
+                                        btn_textinv_manager_refresh_sd = gr.Button(f"{biniou_lang_tab_textinv_refresh_models} ♻️")
+                                        btn_textinv_manager_refresh_sd.click(fn=refresh_textinv_manager_list_sd, outputs=list_textinv_manager_sd)
+                                with gr.Row():
+                                    with gr.Column():
+                                        url_textinv_manager_sd = gr.Textbox(value="", lines=1, max_lines=2, interactive=True, label=biniou_lang_tab_textinv_url_label, info=biniou_lang_tab_textinv_url_info)
+                                with gr.Row():
+                                    with gr.Column():
+                                        btn_url_textinv_manager_sd = gr.Button(f"{biniou_lang_tab_textinv_down} 💾", variant="primary")
+                                        btn_url_textinv_manager_sd.click(biniouTextinvModelsManager("./models/TextualInversion/SD").modelsdownloader, inputs=url_textinv_manager_sd, outputs=url_textinv_manager_sd)
+                                    with gr.Column():
+                                            gr.Number(visible=False)
+                            with gr.Column():
+                                gr.HTML(f"""<span style='text-align: left; font-size: 24px; font-weight: bold; line-height:24px;'>{biniou_lang_tab_textinv_sdxl_models}</span>""")
+                                with gr.Row():
+                                    list_textinv_manager_sdxl = gr.CheckboxGroup(choices=biniouTextinvModelsManager("./models/TextualInversion/SDXL").modelslister(), type="value", label=biniou_lang_tab_textinv_models_label, info=biniou_lang_tab_textinv_models_info)
+                                with gr.Row():
+                                    with gr.Column():
+                                        btn_textinv_manager_sdxl = gr.Button(f"{biniou_lang_tab_textinv_delete_models} 🧹", variant="primary")
+                                        btn_textinv_manager_sdxl.click(fn=biniouTextinvModelsManager("./models/TextualInversion/SDXL").modelsdeleter, inputs=[list_textinv_manager_sdxl])
+                                        btn_textinv_manager_sdxl.click(fn=refresh_textinv_manager_list_sdxl, outputs=list_textinv_manager_sdxl)
+                                    with gr.Column():
+                                        btn_textinv_manager_refresh_sdxl = gr.Button(f"{biniou_lang_tab_textinv_refresh_models} ♻️")
+                                        btn_textinv_manager_refresh_sdxl.click(fn=refresh_textinv_manager_list_sdxl, outputs=list_textinv_manager_sdxl)
+                                with gr.Row():
+                                    with gr.Column():
+                                        url_textinv_manager_sdxl = gr.Textbox(value="", lines=1, max_lines=2, interactive=True, label=biniou_lang_tab_textinv_url_label, info=biniou_lang_tab_textinv_url_info)
+                                with gr.Row():
+                                    with gr.Column():
+                                        btn_url_textinv_manager_sdxl = gr.Button(f"{biniou_lang_tab_textinv_down} 💾", variant="primary")
+                                        btn_url_textinv_manager_sdxl.click(biniouTextinvModelsManager("./models/TextualInversion/SDXL").modelsdownloader, inputs=url_textinv_manager_sdxl, outputs=url_textinv_manager_sdxl)
+                                    with gr.Column():
                                         gr.Number(visible=False)
 
 # SD Models downloader
                 with gr.TabItem(f"{biniou_lang_tab_sd_models} 💾", id=65) as tab_sd_models_downloader:
-                    with gr.Row():
-                        with gr.Column():
-                            with gr.Row():
-                                with gr.Column():
-                                    url_sd_models_downloader = gr.Textbox(value="", lines=1, max_lines=2, interactive=True, label=biniou_lang_tab_sd_models_url_label, info=biniou_lang_tab_sd_models_url_info)
-                            with gr.Row():
-                                with gr.Column():
-                                    btn_url_sd_models_downloader = gr.Button(f"{biniou_lang_tab_sd_models_down} 💾", variant="primary")
-                                    btn_url_sd_models_downloader.click(biniouSDModelsDownloader("./models/Stable_Diffusion").modelsdownloader, inputs=url_sd_models_downloader, outputs=url_sd_models_downloader)
-                                with gr.Column():
-                                        gr.Number(visible=False)
-                                with gr.Column():
-                                        gr.Number(visible=False)
-                                with gr.Column():
-                                        gr.Number(visible=False)
+                    with gr.Accordion(biniou_lang_tab_sd_models, open=True, visible=False) as acc_sd_models_downloader:
+                        with gr.Row():
+                            with gr.Column():
+                                with gr.Row():
+                                    with gr.Column():
+                                        url_sd_models_downloader = gr.Textbox(value="", lines=1, max_lines=2, interactive=True, label=biniou_lang_tab_sd_models_url_label, info=biniou_lang_tab_sd_models_url_info)
+                                with gr.Row():
+                                    with gr.Column():
+                                        btn_url_sd_models_downloader = gr.Button(f"{biniou_lang_tab_sd_models_down} 💾", variant="primary")
+                                        btn_url_sd_models_downloader.click(biniouSDModelsDownloader("./models/Stable_Diffusion").modelsdownloader, inputs=url_sd_models_downloader, outputs=url_sd_models_downloader)
+                                    with gr.Column():
+                                            gr.Number(visible=False)
+                                    with gr.Column():
+                                            gr.Number(visible=False)
+                                    with gr.Column():
+                                            gr.Number(visible=False)
 
 # GGUF Models downloader
                 with gr.TabItem(f"{biniou_lang_tab_gguf_models} 💾", id=66) as tab_gguf_models_downloader:
-                    with gr.Row():
-                        with gr.Column():
-                            with gr.Row():
-                                with gr.Column():
-                                    url_gguf_models_downloader = gr.Textbox(value="", lines=1, max_lines=2, interactive=True, label=biniou_lang_tab_gguf_models_url_label, info=biniou_lang_tab_gguf_models_url_info)
-                            with gr.Row():
-                                with gr.Column():
-                                    btn_url_gguf_models_downloader = gr.Button(f"{biniou_lang_tab_gguf_models_down} 💾", variant="primary")
-                                    btn_url_gguf_models_downloader.click(biniouSDModelsDownloader("./models/llamacpp").modelsdownloader, inputs=url_gguf_models_downloader, outputs=url_gguf_models_downloader)
-                                with gr.Column():
-                                        gr.Number(visible=False)
-                                with gr.Column():
-                                        gr.Number(visible=False)
-                                with gr.Column():
-                                        gr.Number(visible=False)
+                    with gr.Accordion(biniou_lang_tab_gguf_models, open=True, visible=False) as acc_gguf_models_downloader:
+                        with gr.Row():
+                            with gr.Column():
+                                with gr.Row():
+                                    with gr.Column():
+                                        url_gguf_models_downloader = gr.Textbox(value="", lines=1, max_lines=2, interactive=True, label=biniou_lang_tab_gguf_models_url_label, info=biniou_lang_tab_gguf_models_url_info)
+                                with gr.Row():
+                                    with gr.Column():
+                                        btn_url_gguf_models_downloader = gr.Button(f"{biniou_lang_tab_gguf_models_down} 💾", variant="primary")
+                                        btn_url_gguf_models_downloader.click(biniouSDModelsDownloader("./models/llamacpp").modelsdownloader, inputs=url_gguf_models_downloader, outputs=url_gguf_models_downloader)
+                                    with gr.Column():
+                                            gr.Number(visible=False)
+                                    with gr.Column():
+                                            gr.Number(visible=False)
+                                    with gr.Column():
+                                            gr.Number(visible=False)
+                btn_biniou_login.click(
+                    fn=biniou_settings_login,
+                    inputs=[
+                        biniou_login_user,
+                        biniou_login_pass
+                    ],
+                    outputs=[
+                        acc_webui,
+                        acc_models_cleaner,
+                        acc_lora_models_manager,
+                        acc_textinv_manager,
+                        acc_sd_models_downloader,
+                        acc_gguf_models_downloader,
+                        biniou_login_user,
+                        biniou_login_pass,
+                    ]
+                )
+                btn_biniou_logout.click(
+                    fn=biniou_settings_logout,
+                    inputs=None,
+                    outputs=[
+                        acc_webui,
+                        acc_models_cleaner,
+                        acc_lora_models_manager,
+                        acc_textinv_manager,
+                        acc_sd_models_downloader,
+                        acc_gguf_models_downloader,
+                        biniou_login_user,
+                        biniou_login_pass,
+                    ]
+                )
+                btn_biniou_logout.click(fn=lambda: gr.Info(biniou_lang_tab_login_btn_logout_message))
 
     tab_text_num = gr.Number(value=tab_text.id, precision=0, visible=False)
     tab_image_num = gr.Number(value=tab_image.id, precision=0, visible=False)
