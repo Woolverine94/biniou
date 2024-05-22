@@ -1258,9 +1258,18 @@ def refresh_textinv_manager_list_sdxl():
 def biniou_settings_login(user, password):
     admin_user, admin_pass = biniouUIControl.check_login_reader()
     if (user == admin_user) and (password == admin_pass):
-        return acc_webui.update(visible=True), acc_models_cleaner.update(visible=True), acc_lora_models_manager.update(visible=True), acc_textinv_manager.update(visible=True), acc_sd_models_downloader.update(visible=True), acc_gguf_models_downloader.update(visible=True), biniou_login_user.update(value=""), biniou_login_pass.update(value="")
+        return acc_webui.update(visible=True), acc_models_cleaner.update(visible=True), acc_lora_models_manager.update(visible=True), acc_textinv_manager.update(visible=True), acc_sd_models_downloader.update(visible=True), acc_gguf_models_downloader.update(visible=True), biniou_login_user.update(value=""), biniou_login_pass.update(value=""), biniou_login_test.update(value="True")
     else:
-        return acc_webui.update(), acc_models_cleaner.update(), acc_lora_models_manager.update(), acc_textinv_manager.update(), acc_sd_models_downloader.update(), acc_gguf_models_downloader.update(), biniou_login_user.update(), biniou_login_pass.update()
+        return acc_webui.update(), acc_models_cleaner.update(), acc_lora_models_manager.update(), acc_textinv_manager.update(), acc_sd_models_downloader.update(), acc_gguf_models_downloader.update(), biniou_login_user.update(), biniou_login_pass.update(), biniou_login_test.update(value="False")
+
+def biniou_settings_login_test(test):
+    if test == "True":
+        return gr.Info(biniou_lang_tab_login_test_success)
+    elif test == "False":
+        return gr.Info(biniou_lang_tab_login_test_fail)
+
+def biniou_settings_login_test_clean():
+    return biniou_login_test.update(value="")
 
 def biniou_settings_logout():
     return acc_webui.update(visible=False), acc_models_cleaner.update(visible=False), acc_lora_models_manager.update(visible=False), acc_textinv_manager.update(visible=False), acc_sd_models_downloader.update(visible=False), acc_gguf_models_downloader.update(visible=False), biniou_login_user.update(""), biniou_login_pass.update("")
@@ -8573,7 +8582,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                      btn_biniou_logout = gr.Button(f"{biniou_lang_tab_login_btn_logout} 🔓")
                                  with gr.Column():
                                      btn_biniou_login_clear_input = gr.ClearButton(components=[biniou_login_user, biniou_login_pass], value=f"{biniou_lang_clear_inputs} 🧹")
-
+                                     biniou_login_test = gr.Textbox(value="", visible=False)
 # UI settings
                 with gr.TabItem(f"{biniou_lang_tab_webui} 🧠", id=61) as tab_webui:
                     with gr.Accordion(biniou_lang_tab_webui, open=True, visible=False) as acc_webui:
@@ -8585,7 +8594,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                          btn_restart_ui_settings.click(fn=biniouUIControl.restart_program)
                                      with gr.Column():
                                          btn_reload_ui_settings = gr.Button(f"{biniou_lang_tab_webui_reload} ♻️")
-                                         btn_reload_ui_settings.click(fn=biniouUIControl.reload_ui, _js="window.location.reload()")
+#                                         btn_reload_ui_settings.click(fn=biniouUIControl.reload_ui, _js="window.location.reload()")
+                                         btn_reload_ui_settings.click(fn=biniouUIControl.reload_ui, _js="location.replace(location.href)")
                                      with gr.Column():
                                          btn_close_ui_settings = gr.Button(f"{biniou_lang_tab_webui_shutdown} 🛑")
                                          btn_close_ui_settings.click(fn=biniouUIControl.close_program)
@@ -8903,6 +8913,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         acc_gguf_models_downloader,
                         biniou_login_user,
                         biniou_login_pass,
+                        biniou_login_test,
                     ]
                 )
                 btn_biniou_logout.click(
@@ -8920,6 +8931,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     ]
                 )
                 btn_biniou_logout.click(fn=lambda: gr.Info(biniou_lang_tab_login_btn_logout_message))
+                biniou_login_test.change(fn=biniou_settings_login_test, inputs=biniou_login_test)
+                biniou_login_test.change(fn=biniou_settings_login_test_clean, outputs=biniou_login_test)
 
     tab_text_num = gr.Number(value=tab_text.id, precision=0, visible=False)
     tab_image_num = gr.Number(value=tab_image.id, precision=0, visible=False)
