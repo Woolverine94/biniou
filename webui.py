@@ -2366,6 +2366,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
                                 <a href='https://huggingface.co/IDKiro/sdxs-512-dreamshaper' target='_blank'>IDKiro/sdxs-512-dreamshaper</a>, 
                                 <a href='https://huggingface.co/IDKiro/sdxs-512-0.9' target='_blank'>IDKiro/sdxs-512-0.9</a>, 
+                                <a href='https://huggingface.co/sd-community/sdxl-flash' target='_blank'>sd-community/sdxl-flash</a>, 
                                 <a href='https://huggingface.co/RunDiffusion/Juggernaut-XL-Lightning' target='_blank'>RunDiffusion/Juggernaut-XL-Lightning</a>, 
                                 <a href='https://huggingface.co/fluently/Fluently-XL-v3-Lightning' target='_blank'>Fluently-XL-v3-Lightning</a>, 
                                 <a href='https://huggingface.co/fluently/Fluently-XL-v4' target='_blank'>fluently/Fluently-XL-v4</a>, 
@@ -3476,6 +3477,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
                                 <a href='https://huggingface.co/IDKiro/sdxs-512-dreamshaper' target='_blank'>IDKiro/sdxs-512-dreamshaper</a>, 
                                 <a href='https://huggingface.co/IDKiro/sdxs-512-0.9' target='_blank'>IDKiro/sdxs-512-0.9</a>, 
+                                <a href='https://huggingface.co/sd-community/sdxl-flash' target='_blank'>sd-community/sdxl-flash</a>, 
                                 <a href='https://huggingface.co/RunDiffusion/Juggernaut-XL-Lightning' target='_blank'>RunDiffusion/Juggernaut-XL-Lightning</a>, 
                                 <a href='https://huggingface.co/fluently/Fluently-XL-v3-Lightning' target='_blank'>Fluently-XL-v3-Lightning</a>, 
                                 <a href='https://huggingface.co/fluently/Fluently-XL-v4' target='_blank'>fluently/Fluently-XL-v4</a>, 
@@ -3747,6 +3749,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_image_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
+                                <a href='https://huggingface.co/sd-community/sdxl-flash' target='_blank'>sd-community/sdxl-flash</a>, 
                                 <a href='https://huggingface.co/RunDiffusion/Juggernaut-XL-Lightning' target='_blank'>RunDiffusion/Juggernaut-XL-Lightning</a>, 
                                 <a href='https://huggingface.co/fluently/Fluently-XL-v3-Lightning' target='_blank'>Fluently-XL-v3-Lightning</a>, 
                                 <a href='https://huggingface.co/fluently/Fluently-XL-v4' target='_blank'>fluently/Fluently-XL-v4</a>, 
@@ -5243,6 +5246,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_image_about_output_text}</br>
                                 <b>HF Stable Diffusion models pages : </b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
+                                <a href='https://huggingface.co/sd-community/sdxl-flash' target='_blank'>sd-community/sdxl-flash</a>, 
                                 <a href='https://huggingface.co/RunDiffusion/Juggernaut-XL-Lightning' target='_blank'>RunDiffusion/Juggernaut-XL-Lightning</a>, 
                                 <a href='https://huggingface.co/fluently/Fluently-XL-v3-Lightning' target='_blank'>Fluently-XL-v3-Lightning</a>, 
                                 <a href='https://huggingface.co/fluently/Fluently-XL-v4' target='_blank'>fluently/Fluently-XL-v4</a>, 
@@ -5577,6 +5581,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_image_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
+                                <a href='https://huggingface.co/sd-community/sdxl-flash' target='_blank'>sd-community/sdxl-flash</a>, 
                                 <a href='https://huggingface.co/RunDiffusion/Juggernaut-XL-Lightning' target='_blank'>RunDiffusion/Juggernaut-XL-Lightning</a>, 
                                 <a href='https://huggingface.co/fluently/Fluently-XL-v3-Lightning' target='_blank'>Fluently-XL-v3-Lightning</a>, 
                                 <a href='https://huggingface.co/fluently/Fluently-XL-v4' target='_blank'>fluently/Fluently-XL-v4</a>, 
@@ -7177,6 +7182,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_tab_video_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/SG161222/Realistic_Vision_V3.0_VAE' target='_blank'>SG161222/Realistic_Vision_V3.0_VAE</a>, 
+                                <a href='https://huggingface.co/sd-community/sdxl-flash' target='_blank'>sd-community/sdxl-flash</a>, 
                                 <a href='https://huggingface.co/RunDiffusion/Juggernaut-XL-Lightning' target='_blank'>RunDiffusion/Juggernaut-XL-Lightning</a>, 
                                 <a href='https://huggingface.co/fluently/Fluently-XL-v3-Lightning' target='_blank'>Fluently-XL-v3-Lightning</a>, 
                                 <a href='https://huggingface.co/fluently/Fluently-XL-v4' target='_blank'>fluently/Fluently-XL-v4</a>, 
