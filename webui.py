@@ -5300,12 +5300,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <a href='https://huggingface.co/lllyasviel/control_v11p_sd15_openpose' target='_blank'>lllyasviel/control_v11p_sd15_openpose</a>, 
                                 <a href='https://huggingface.co/lllyasviel/control_v11p_sd15_scribble' target='_blank'>lllyasviel/control_v11p_sd15_scribble</a>, 
                                 <a href='https://huggingface.co/lllyasviel/control_v11p_sd15_softedge' target='_blank'>lllyasviel/control_v11p_sd15_softedge</a>, 
+                                <a href='https://huggingface.co/lllyasviel/control_v11f1e_sd15_tile' target='_blank'>lllyasviel/control_v11f1e_sd15_tile</a>, 
                                 <a href='https://huggingface.co/Nacholmo/controlnet-qr-pattern-v2' target='_blank'>Nacholmo/controlnet-qr-pattern-v2</a>, 
                                 <a href='https://huggingface.co/monster-labs/control_v1p_sd15_qrcode_monster' target='_blank'>monster-labs/control_v1p_sd15_qrcode_monster</a>, 
                                 <a href='https://huggingface.co/patrickvonplaten/controlnet-canny-sdxl-1.0' target='_blank'>patrickvonplaten/controlnet-canny-sdxl-1.0</a>
                                 <a href='https://huggingface.co/patrickvonplaten/controlnet-depth-sdxl-1.0' target='_blank'>patrickvonplaten/controlnet-depth-sdxl-1.0</a>, 
                                 <a href='https://huggingface.co/thibaud/controlnet-openpose-sdxl-1.0' target='_blank'>thibaud/controlnet-openpose-sdxl-1.0</a>, 
                                 <a href='https://huggingface.co/SargeZT/controlnet-sd-xl-1.0-softedge-dexined' target='_blank'>SargeZT/controlnet-sd-xl-1.0-softedge-dexined</a>, 
+                                <a href='https://huggingface.co/ValouF-pimento/ControlNet_SDXL_tile_upscale' target='_blank'>ValouF-pimento/ControlNet_SDXL_tile_upscale</a>, 
                                 <a href='https://huggingface.co/Nacholmo/controlnet-qr-pattern-sdxl' target='_blank'>Nacholmo/controlnet-qr-pattern-sdxl</a>, 
                                 <a href='https://huggingface.co/monster-labs/control_v1p_sdxl_qrcode_monster' target='_blank'>monster-labs/control_v1p_sdxl_qrcode_monster</a>
                                 <a href='https://huggingface.co/TheMistoAI/MistoLine' target='_blank'>TheMistoAI/MistoLine</a>, 
