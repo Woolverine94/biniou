@@ -1718,6 +1718,7 @@ def is_sdxl(model):
 ("PLAYGROUNDAI/PLAYGROUND-V2" in model.upper()) or \
 ("SSD-1B" in model.upper()) or \
 ("SEGMIND-VEGA" in model.upper()) or \
+(model == "RunDiffusion/Juggernaut-X-Hyper") or \
 (model == "aipicasso/emi-2") or \
 (model == "dataautogpt3/OpenDalleV1.1") or \
 (model == "dataautogpt3/ProteusV0.4")\
