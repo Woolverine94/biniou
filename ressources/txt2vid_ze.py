@@ -20,6 +20,7 @@ os.makedirs(model_path_txt2vid_ze, exist_ok=True)
 model_list_txt2vid_ze = [
     "SG161222/Realistic_Vision_V3.0_VAE",
     "sd-community/sdxl-flash",
+    "RunDiffusion/Juggernaut-X-Hyper",
     "RunDiffusion/Juggernaut-XL-Lightning",
     "fluently/Fluently-XL-v3-Lightning",
     "fluently/Fluently-XL-v4",
@@ -101,7 +102,7 @@ def video_txt2vid_ze(
     else :        
         is_xl_txt2vid_ze: bool = False
 
-    if ("dataautogpt3/ProteusV0.4" in modelid_txt2vid_ze) or (modelid_txt2vid_ze == "RunDiffusion/Juggernaut-XL-Lightning"):
+    if ("dataautogpt3/ProteusV0.4" in modelid_txt2vid_ze) or (modelid_txt2vid_ze == "RunDiffusion/Juggernaut-XL-Lightning") or (modelid_txt2vid_ze == "RunDiffusion/Juggernaut-X-Hyper"):
         is_bin_txt2vid_ze: bool = True
     else :
         is_bin_txt2vid_ze: bool = False

@@ -27,6 +27,7 @@ for filename in os.listdir(model_path_controlnet):
 model_list_controlnet_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
     "sd-community/sdxl-flash",
+    "RunDiffusion/Juggernaut-X-Hyper",
     "RunDiffusion/Juggernaut-XL-Lightning",
     "fluently/Fluently-XL-v3-Lightning",
     "fluently/Fluently-XL-v4",
@@ -323,7 +324,7 @@ def image_controlnet(
     else :        
         is_xl_controlnet: bool = False
 
-    if ("dataautogpt3/ProteusV0.4" in modelid_controlnet) or (modelid_controlnet == "RunDiffusion/Juggernaut-XL-Lightning"):
+    if ("dataautogpt3/ProteusV0.4" in modelid_controlnet) or (modelid_controlnet == "RunDiffusion/Juggernaut-XL-Lightning") or (modelid_controlnet == "RunDiffusion/Juggernaut-X-Hyper"):
         is_bin_controlnet: bool = True
     else :
         is_bin_controlnet: bool = False

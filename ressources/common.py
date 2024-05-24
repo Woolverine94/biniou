@@ -589,6 +589,8 @@ def check_steps_strength (steps, strength, model):
         steps = ceil(4/strength)
     elif (model == "thibaud/sdxl_dpo_turbo"):
         steps = ceil(4/strength)
+    elif (model == "RunDiffusion/Juggernaut-X-Hyper") or (model == "sd-community/sdxl-flash"):
+        steps = ceil(6/strength)
     else:
         if strength < 0.1:
             steps = ceil(1/strength)
