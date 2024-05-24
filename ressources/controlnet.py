@@ -149,7 +149,7 @@ def dispatch_controlnet_preview(
 
     img_source_controlnet = Image.open(img_source_controlnet)
     img_source_controlnet = np.array(img_source_controlnet)
-    if not 'qr' and not 'tile' in preprocessor_controlnet:
+    if not (('qr' in preprocessor_controlnet) or ('tile' in preprocessor_controlnet)):
         processor_controlnet = Processor(preprocessor_controlnet)
 
     match preprocessor_controlnet:
