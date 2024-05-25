@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-05-25** : 🔥 ***Support for Juggernaut-X-Hyper*** 🔥 > Adding support for model [RunDiffusion/Juggernaut-X-Hyper](https://huggingface.co/RunDiffusion/Juggernaut-X-Hyper) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero. This is a fast (5-6 steps) model based on Juggernaut.
+
   * 🆕 **2024-05-23** : 🔥 ***Support for ControlNet tile*** 🔥 > Adding support for models [lllyasviel/control_v11f1e_sd15_tile](https://huggingface.co/lllyasviel/control_v11f1e_sd15_tile) and [ValouF-pimento/ControlNet_SDXL_tile_upscale](https://huggingface.co/ValouF-pimento/ControlNet_SDXL_tile_upscale) to module ControlNet.
 
   * 🆕 **2024-05-21** : 🔥 ***Support for sdxl-flash*** 🔥 > Adding support for model [sd-community/sdxl-flash](https://huggingface.co/sd-community/sdxl-flash) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero. This 6-9 steps model is really qualitative, versatile and 40% faster than standard SDXL models.
@@ -24,11 +26,6 @@
   * 🆕 **2024-05-19** : 🔥 ***Adding quantization option to the Chatbot module*** 🔥 > With this new feature, you can now use any GGUF-compatible model from Huggingface. Paste the repo ID in the model field, paste the name of the quantized gguf file in the quantization field, force a prompt template corresponding to the model and ... enjoy !
 
   * 🆕 **2024-05-18** : 🔥 ***Support for TCD LoRA models*** 🔥 > Adding support for LoRA models [h1t/TCD-SD15-LoRA](https://huggingface.co/h1t/TCD-SD15-LoRA) and [h1t/TCD-SDXL-LoRA](https://huggingface.co/h1t/TCD-SDXL-LoRA) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet and Photobooth. These 2-8 steps LoRA models are similar to Hyper-SD.
-
-  * 🆕 **2024-05-17** : 🔥 ***Adding WebUI translation feature and support for french language*** 🔥 > 
-
-    - You can now use biniou WebUI in French by setting the default language option to "lang_FR" in the Global settings panel (restart biniou and reload the  WebUI).
-    - Adding support for model [NousResearch/Hermes-2-Theta-Llama-3-8B-GGUF](https://huggingface.co/NousResearch/Hermes-2-Theta-Llama-3-8B-GGUF) to the Chatbot module.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
