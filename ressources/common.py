@@ -1738,6 +1738,8 @@ def lora_model_list(model):
             "ByteDance/Hyper-SD":("Hyper-SDXL-1step-lora.safetensors", ""),
             "h1t/TCD-SDXL-LoRA":("pytorch_lora_weights.safetensors", ""),
             "ehristoforu/dalle-3-xl-v2":("dalle-3-xl-lora-v2.safetensors", ""),
+            "DoctorDiffusion/doctor-diffusion-s-claymation-style-lora":("DD-made-of-clay-XL-v2.safetensors", "made-of-clay"),
+            "DoctorDiffusion/doctor-diffusion-s-toy-xl-style-lora":("DD-toy-v2.safetensors", "toy"),
             "ostris/face-helper-sdxl-lora":("face_xl_v0_1.safetensors", ""),
             "artificialguybr/ps1redmond-ps1-game-graphics-lora-for-sdxl":("PS1Redmond-PS1Game-Playstation1Graphics.safetensors", "Playstation 1 Graphics, PS1 Game"),
             "ProomptEngineer/pe-old-school-cartoon-style":("PE_OldCartoonStyle.safetensors", "old school cartoon style"),
