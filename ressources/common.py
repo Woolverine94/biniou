@@ -149,7 +149,7 @@ def image_upload_event_inpaint(im):
         image_out = image_out.rotate(90, expand=True)
         rotation_img = 90
     dim = correct_size(image_out.size[0], image_out.size[1], 512)
-    image_out = image_out.convert("RGB").resize(dim)
+    image_out = image_out.convert("RGB").resize(dim, resample=Image.LANCZOS)
     return (image_out.size[0], image_out.size[1], image_out, rotation_img)
     
 def image_upload_event_inpaint_b(im):
@@ -187,7 +187,7 @@ def image_upload_event_inpaint_c(im, model):
         dim = correct_size(image_out.size[0], image_out.size[1], 1024)
     else:
         dim = correct_size(image_out.size[0], image_out.size[1], 512)
-    image_out = image_out.convert("RGB").resize(dim)
+    image_out = image_out.convert("RGB").resize(dim, resample=Image.LANCZOS)
     return (image_out.size[0], image_out.size[1], image_out, rotation_img)
 
 
@@ -201,8 +201,8 @@ def scale_image(im, size):
             imbis = re.sub('^data:image/.+;base64,', '', im["image"])
             image_out = Image.open(BytesIO(base64.b64decode(imbis)))
         if image_out.size[0] > max_size or image_out.size[1] > max_size :
-            dim = correct_size(image_out.size[0], image_out.size[1], max_size)            
-            image_out = image_out.convert("RGB").resize(dim)
+            dim = correct_size(image_out.size[0], image_out.size[1], max_size)
+            image_out = image_out.convert("RGB").resize(dim, resample=Image.LANCZOS)
         return (image_out.size[0], image_out.size[1], image_out)
     return (max_size, max_size, "")
 
@@ -215,8 +215,8 @@ def scale_image_any(im, size):
         else:
             imbis = re.sub('^data:image/.+;base64,', '', im["image"])
             image_out = Image.open(BytesIO(base64.b64decode(imbis)))
-        dim = correct_size(image_out.size[0], image_out.size[1], max_size)            
-        image_out = image_out.convert("RGB").resize(dim)
+        dim = correct_size(image_out.size[0], image_out.size[1], max_size)
+        image_out = image_out.convert("RGB").resize(dim, resample=Image.LANCZOS)
         return (image_out)
     return ""
 
