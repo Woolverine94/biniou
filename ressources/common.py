@@ -1737,6 +1737,7 @@ def lora_model_list(model):
         model_list_lora_builtin = {
             "ByteDance/SDXL-Lightning":("sdxl_lightning_4step_lora.safetensors", ""),
             "ByteDance/Hyper-SD":("Hyper-SDXL-1step-lora.safetensors", ""),
+            "openskyml/lcm-lora-sdxl-turbo":("lcm-lora-sdxl-turbo.safetensors", ""),
             "h1t/TCD-SDXL-LoRA":("pytorch_lora_weights.safetensors", ""),
             "ehristoforu/dalle-3-xl-v2":("dalle-3-xl-lora-v2.safetensors", ""),
             "DoctorDiffusion/doctor-diffusion-s-claymation-style-lora":("DD-made-of-clay-XL-v2.safetensors", "made-of-clay"),
