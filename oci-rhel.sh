@@ -22,7 +22,7 @@ else
 fi
 
 echo ">>>[biniou oci 🧠 ]: Cloning repository"
-git clone --branch 0.0.1 https://github.com/Woolverine94/biniou.git
+git clone --branch main https://github.com/Woolverine94/biniou.git
 echo ">>>[biniou oci 🧠 ]: Installing Virtual environment"
 cd ./biniou
 ENV_BINIOU_PYTHON_VER="python3.11" ./install.sh
