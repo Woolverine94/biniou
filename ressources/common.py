@@ -984,6 +984,7 @@ def write_ini_img2img(
     use_gfpgan_img2img,
     tkme_img2img,
     clipskip_img2img,
+    use_ays_img2img,
 ):
     savename = f".ini/{module}.ini"
     content = f"model_img2img.value = \"{model_img2img}\"\n\
@@ -997,7 +998,8 @@ height_img2img.value = {height_img2img}\n\
 seed_img2img.value = {seed_img2img}\n\
 use_gfpgan_img2img.value = {use_gfpgan_img2img}\n\
 tkme_img2img.value = {tkme_img2img}\n\
-clipskip_img2img.value = {clipskip_img2img}"
+clipskip_img2img.value = {clipskip_img2img}\n\
+use_ays_img2img.value = {use_ays_img2img}"
     with open(savename, 'w', encoding="utf-8") as savefile:
         savefile.write(content)
     return

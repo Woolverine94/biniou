@@ -564,6 +564,12 @@ def change_source_type_img2img(source_type_img2img):
     elif source_type_img2img == "sketch" :
         return {"source": "canvas", "tool": "color-sketch", "width" : 400, "height" : 400,  "__type__": "update"}
 
+def change_ays_img2img(use_ays):
+    if use_ays:
+        return num_inference_step_img2img.update(interactive=False), sampler_img2img.update(interactive=False)
+    else:
+        return num_inference_step_img2img.update(interactive=True), sampler_img2img.update(interactive=True)
+
 def change_model_type_img2img(model_img2img):
     if (model_img2img == "stabilityai/sdxl-turbo"):
         return sampler_img2img.update(value="Euler a"), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), txtinv_img2img.update(choices=list(txtinv_list(model_img2img).keys()), value=""), negative_prompt_img2img.update(interactive=False)
@@ -3613,6 +3619,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_img2img = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)    
                             with gr.Column():
                                 clipskip_img2img = gr.Slider(0, 12, step=1, value=biniou_global_clipskip, label=biniou_lang_clipskip_label, info=biniou_lang_clipskip_info)
+                            with gr.Column():
+                                use_ays_img2img = gr.Checkbox(value=biniou_global_ays, label=biniou_lang_tab_image_ays_label, info=biniou_lang_tab_image_ays_info)
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_img2img = gr.Button(f"{biniou_lang_save_settings} 💾")
@@ -3635,6 +3643,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         use_gfpgan_img2img,
                                         tkme_img2img,
                                         clipskip_img2img,
+                                        use_ays_img2img,
                                         ]
                                     )
                                 save_ini_btn_img2img.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
@@ -3689,6 +3698,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         lora_model_img2img.change(fn=change_lora_model_img2img, inputs=[model_img2img, lora_model_img2img, prompt_img2img, num_inference_step_img2img, guidance_scale_img2img, sampler_img2img], outputs=[prompt_img2img, num_inference_step_img2img, guidance_scale_img2img, sampler_img2img])
                         txtinv_img2img.change(fn=change_txtinv_img2img, inputs=[model_img2img, txtinv_img2img, prompt_img2img, negative_prompt_img2img], outputs=[prompt_img2img, negative_prompt_img2img])
                         denoising_strength_img2img.change(check_steps_strength, [num_inference_step_img2img, denoising_strength_img2img, model_img2img], [num_inference_step_img2img])
+                        use_ays_img2img.change(fn=change_ays_img2img, inputs=use_ays_img2img, outputs=[num_inference_step_img2img, sampler_img2img])
                         with gr.Column():
                             with gr.Row():
                                 with gr.Column():                            
@@ -3741,6 +3751,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     nsfw_filter,
                                     tkme_img2img,
                                     clipskip_img2img,
+                                    use_ays_img2img,
                                     lora_model_img2img,
                                     lora_weight_img2img,
                                     txtinv_img2img,

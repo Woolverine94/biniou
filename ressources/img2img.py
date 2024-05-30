@@ -10,6 +10,7 @@ import random
 from ressources.common import *
 from ressources.gfpgan import *
 import tomesd
+from diffusers.schedulers import AysSchedules
 
 device_label_img2img, model_arch = detect_device()
 device_img2img = torch.device(device_label_img2img)
@@ -98,6 +99,7 @@ def image_img2img(
     nsfw_filter, 
     tkme_img2img,
     clipskip_img2img,
+    use_ays_img2img,
     lora_model_img2img,
     lora_weight_img2img,
     txtinv_img2img,
@@ -125,6 +127,17 @@ def image_img2img(
         is_bin_img2img: bool = True
     else :
         is_bin_img2img: bool = False
+
+    if (num_inference_step_img2img >= 10) and use_ays_img2img:
+        if is_sdxl(modelid_img2img):
+            sampling_schedule_img2img = AysSchedules["StableDiffusionXLTimesteps"]
+            sampler_img2img = "DPM++ SDE"
+        else:
+            sampling_schedule_img2img = AysSchedules["StableDiffusionTimesteps"]
+            sampler_img2img = "Euler"
+        num_inference_step_img2img = 10
+    else:
+        sampling_schedule_img2img = None
 
     if (is_turbo_img2img == True):
         if modelid_img2img[0:9] == "./models/" :
@@ -301,6 +314,7 @@ def image_img2img(
                 guidance_scale=guidance_scale_img2img,
                 strength=denoising_strength_img2img,
                 num_inference_steps=num_inference_step_img2img,
+                timesteps=sampling_schedule_img2img,
                 generator = generator,
                 callback_on_step_end=check_img2img, 
                 callback_on_step_end_tensor_inputs=['latents'], 
@@ -318,6 +332,7 @@ def image_img2img(
                 guidance_scale=guidance_scale_img2img,
                 strength=denoising_strength_img2img,
                 num_inference_steps=num_inference_step_img2img,
+                timesteps=sampling_schedule_img2img,
                 generator = generator,
                 callback_on_step_end=check_img2img, 
                 callback_on_step_end_tensor_inputs=['latents'], 
@@ -331,6 +346,7 @@ def image_img2img(
                 guidance_scale=guidance_scale_img2img,
                 strength=denoising_strength_img2img,
                 num_inference_steps=num_inference_step_img2img,
+                timesteps=sampling_schedule_img2img,
                 generator=generator,
                 clip_skip=clipskip_img2img,
                 callback_on_step_end=check_img2img,
@@ -360,6 +376,7 @@ def image_img2img(
         f"GFPGAN={use_gfpgan_img2img} | "+\
         f"Token merging={tkme_img2img} | "+\
         f"CLIP skip={clipskip_img2img} | "+\
+        f"AYS={use_ays_img2img} | "+\
         f"LoRA model={lora_model_img2img} | "+\
         f"LoRA weight={lora_weight_img2img} | "+\
         f"Textual inversion={txtinv_img2img} | "+\
