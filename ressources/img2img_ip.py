@@ -12,6 +12,8 @@ import random
 from ressources.common import *
 from ressources.gfpgan import *
 import tomesd
+from diffusers.schedulers import AysSchedules
+from math import ceil
 
 device_label_img2img_ip, model_arch = detect_device()
 device_img2img_ip = torch.device(device_label_img2img_ip)
@@ -101,6 +103,7 @@ def image_img2img_ip(
     nsfw_filter, 
     tkme_img2img_ip,
     clipskip_img2img_ip,
+    use_ays_img2img_ip,
     lora_model_img2img_ip,
     lora_weight_img2img_ip,
     txtinv_img2img_ip,
@@ -128,6 +131,21 @@ def image_img2img_ip(
         is_bin_img2img_ip: bool = True
     else :
         is_bin_img2img_ip: bool = False
+
+    print(num_inference_step_img2img_ip)
+
+    if (num_inference_step_img2img_ip >= 10) and use_ays_img2img_ip:
+        if is_sdxl(modelid_img2img_ip):
+            sampling_schedule_img2img_ip = AysSchedules["StableDiffusionXLTimesteps"]
+            sampler_img2img_ip = "DPM++ SDE"
+        else:
+            sampling_schedule_img2img_ip = AysSchedules["StableDiffusionTimesteps"]
+            sampler_img2img_ip = "Euler"
+        num_inference_step_img2img_ip = 10
+    else:
+        sampling_schedule_img2img_ip = None
+
+    print(num_inference_step_img2img_ip)
 
     if which_os() == "win32" or source_type_img2img_ip == "composition":
         if (is_xl_img2img_ip == True):
@@ -519,6 +537,7 @@ def image_img2img_ip(
                     guidance_scale=guidance_scale_img2img_ip,
                     strength=denoising_strength_img2img_ip,
                     num_inference_steps=num_inference_step_img2img_ip,
+                    timesteps=sampling_schedule_img2img_ip,
                     generator = generator,
                     callback_on_step_end=check_img2img_ip, 
                     callback_on_step_end_tensor_inputs=['latents'], 
@@ -532,6 +551,7 @@ def image_img2img_ip(
                     guidance_scale=guidance_scale_img2img_ip,
                     strength=denoising_strength_img2img_ip,
                     num_inference_steps=num_inference_step_img2img_ip,
+                    timesteps=sampling_schedule_img2img_ip,
                     generator = generator,
                     callback_on_step_end=check_img2img_ip, 
                     callback_on_step_end_tensor_inputs=['latents'], 
@@ -551,6 +571,7 @@ def image_img2img_ip(
                     guidance_scale=guidance_scale_img2img_ip,
                     strength=denoising_strength_img2img_ip,
                     num_inference_steps=num_inference_step_img2img_ip,
+                    timesteps=sampling_schedule_img2img_ip,
                     generator = generator,
                     callback_on_step_end=check_img2img_ip, 
                     callback_on_step_end_tensor_inputs=['latents'], 
@@ -568,6 +589,7 @@ def image_img2img_ip(
                     guidance_scale=guidance_scale_img2img_ip,
                     strength=denoising_strength_img2img_ip,
                     num_inference_steps=num_inference_step_img2img_ip,
+                    timesteps=sampling_schedule_img2img_ip,
                     generator = generator,
                     callback_on_step_end=check_img2img_ip, 
                     callback_on_step_end_tensor_inputs=['latents'], 
@@ -583,6 +605,7 @@ def image_img2img_ip(
                     guidance_scale=guidance_scale_img2img_ip,
                     strength=denoising_strength_img2img_ip,
                     num_inference_steps=num_inference_step_img2img_ip,
+                    timesteps=sampling_schedule_img2img_ip,
                     generator=generator,
                     clip_skip=clipskip_img2img_ip,
                     callback_on_step_end=check_img2img_ip, 
@@ -597,6 +620,7 @@ def image_img2img_ip(
                     guidance_scale=guidance_scale_img2img_ip,
                     strength=denoising_strength_img2img_ip,
                     num_inference_steps=num_inference_step_img2img_ip,
+                    timesteps=sampling_schedule_img2img_ip,
                     generator=generator,
                     clip_skip=clipskip_img2img_ip,
                     callback_on_step_end=check_img2img_ip, 
@@ -622,6 +646,7 @@ def image_img2img_ip(
         f"GFPGAN={use_gfpgan_img2img_ip} | "+\
         f"Token merging={tkme_img2img_ip} | "+\
         f"CLIP skip={clipskip_img2img_ip} | "+\
+        f"AYS={use_ays_img2img_ip} | "+\
         f"LoRA model={lora_model_img2img_ip} | "+\
         f"LoRA weight={lora_weight_img2img_ip} | "+\
         f"Textual inversion={txtinv_img2img_ip} | "+\

@@ -1018,6 +1018,7 @@ def write_ini_img2img_ip(
     use_gfpgan_img2img_ip,
     tkme_img2img_ip,
     clipskip_img2img_ip,
+    use_ays_img2img_ip,
 ):
     savename = f".ini/{module}.ini"
     content = f"model_img2img_ip.value = \"{model_img2img_ip}\"\n\
@@ -1031,7 +1032,8 @@ height_img2img_ip.value = {height_img2img_ip}\n\
 seed_img2img_ip.value = {seed_img2img_ip}\n\
 use_gfpgan_img2img_ip.value = {use_gfpgan_img2img_ip}\n\
 tkme_img2img_ip.value = {tkme_img2img_ip}\n\
-clipskip_img2img_ip.value = {clipskip_img2img_ip}"
+clipskip_img2img_ip.value = {clipskip_img2img_ip}\n\
+use_ays_img2img_ip.value = {use_ays_img2img_ip}"
     with open(savename, 'w', encoding="utf-8") as savefile:
         savefile.write(content)
     return

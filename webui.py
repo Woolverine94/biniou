@@ -685,6 +685,12 @@ def zip_download_file_img2img_ip(content):
 def hide_download_file_img2img_ip():
     return download_file_img2img_ip.update(visible=False)
 
+def change_ays_img2img_ip(use_ays):
+    if use_ays:
+        return num_inference_step_img2img_ip.update(interactive=False), sampler_img2img_ip.update(interactive=False)
+    else:
+        return num_inference_step_img2img_ip.update(interactive=True), sampler_img2img_ip.update(interactive=True)
+
 def change_model_type_img2img_ip(model_img2img_ip, source_type):
 
     if  (not "TURBO" in model_img2img_ip.upper()) and (("XL" in model_img2img_ip.upper()) or ("ETRI-VILAB/KOALA-" in model_img2img_ip.upper()) or ("PLAYGROUNDAI/PLAYGROUND-V2" in model_img2img_ip.upper()) or (model_img2img_ip == "dataautogpt3/OpenDalleV1.1") or (model_img2img_ip == "dataautogpt3/ProteusV0.4") or (model_img2img_ip == "segmind/SSD-1B") or (model_img2img_ip == "segmind/Segmind-Vega")):
@@ -3888,6 +3894,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_img2img_ip = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
                             with gr.Column():
                                 clipskip_img2img_ip = gr.Slider(0, 12, step=1, value=biniou_global_clipskip, label=biniou_lang_clipskip_label, info=biniou_lang_clipskip_info)
+                            with gr.Column():
+                                use_ays_img2img_ip = gr.Checkbox(value=biniou_global_ays, label=biniou_lang_tab_image_ays_label, info=biniou_lang_tab_image_ays_info)
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_img2img_ip = gr.Button(f"{biniou_lang_save_settings} 💾")
@@ -3910,6 +3918,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         use_gfpgan_img2img_ip,
                                         tkme_img2img_ip,
                                         clipskip_img2img_ip,
+                                        use_ays_img2img_ip,
                                         ]
                                     )
                                 save_ini_btn_img2img_ip.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
@@ -3969,6 +3978,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         model_img2img_ip.change(image_upload_event, inputs=img_img2img_ip, outputs=[width_img2img_ip, height_img2img_ip])
                         lora_model_img2img_ip.change(fn=change_lora_model_img2img_ip, inputs=[model_img2img_ip, lora_model_img2img_ip, prompt_img2img_ip, num_inference_step_img2img_ip, guidance_scale_img2img_ip, sampler_img2img_ip], outputs=[prompt_img2img_ip, num_inference_step_img2img_ip, guidance_scale_img2img_ip, sampler_img2img_ip])
                         txtinv_img2img_ip.change(fn=change_txtinv_img2img_ip, inputs=[model_img2img_ip, txtinv_img2img_ip, prompt_img2img_ip, negative_prompt_img2img_ip], outputs=[prompt_img2img_ip, negative_prompt_img2img_ip])
+                        use_ays_img2img_ip.change(fn=change_ays_img2img_ip, inputs=use_ays_img2img_ip, outputs=[num_inference_step_img2img_ip, sampler_img2img_ip])
                         source_type_img2img_ip.change(change_source_type_img2img_ip, source_type_img2img_ip, [img_img2img_ip, denoising_strength_img2img_ip])
                         source_type_img2img_ip.change(
                             fn=change_model_type_img2img_ip,
@@ -4041,6 +4051,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     nsfw_filter,
                                     tkme_img2img_ip,
                                     clipskip_img2img_ip,
+                                    use_ays_img2img_ip,
                                     lora_model_img2img_ip,
                                     lora_weight_img2img_ip,
                                     txtinv_img2img_ip,
