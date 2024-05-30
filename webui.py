@@ -93,6 +93,7 @@ biniou_global_sdxl_height = 1024
 biniou_global_gfpgan = True
 biniou_global_tkme = 0.6
 biniou_global_clipskip = 0
+biniou_global_ays = False
 biniou_global_img_fmt = "png"
 biniou_global_text_metadatas = True
 biniou_global_img_exif = True
@@ -2498,7 +2499,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 clipskip_txt2img_sd = gr.Slider(0, 12, step=1, value=biniou_global_clipskip, label=biniou_lang_clipskip_label, info=biniou_lang_clipskip_info)
                             with gr.Column():
-                                use_ays_txt2img_sd = gr.Checkbox(value=False, label=biniou_lang_tab_image_ays_label, info=biniou_lang_tab_image_ays_info)
+                                use_ays_txt2img_sd = gr.Checkbox(value=biniou_global_ays, label=biniou_lang_tab_image_ays_label, info=biniou_lang_tab_image_ays_info)
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_txt2img_sd = gr.Button(f"{biniou_lang_save_settings} 💾")
@@ -8731,8 +8732,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         with gr.Column():
                                             biniou_global_settings_clipskip = gr.Slider(0, 12, step=1, value=biniou_global_clipskip, label=biniou_lang_tab_webui_settings_clipskip_label, info=biniou_lang_tab_webui_settings_clipskip_info, interactive=True)
                                         with gr.Column():
-                                            biniou_global_settings_img_fmt = gr.Dropdown(choices=img_fmt_list(), value=biniou_global_img_fmt, label=biniou_lang_tab_webui_settings_img_fmt_label, info=biniou_lang_tab_webui_settings_img_fmt_info, interactive=True)
+                                            biniou_global_settings_ays = gr.Checkbox(value=biniou_global_ays, label=biniou_lang_tab_webui_settings_ays_label, info=biniou_lang_tab_webui_settings_ays_info, interactive=True)
                                     with gr.Row():
+                                        with gr.Column():
+                                            biniou_global_settings_img_fmt = gr.Dropdown(choices=img_fmt_list(), value=biniou_global_img_fmt, label=biniou_lang_tab_webui_settings_img_fmt_label, info=biniou_lang_tab_webui_settings_img_fmt_info, interactive=True)
                                         with gr.Column():
                                             biniou_global_settings_text_metadatas = gr.Checkbox(value=biniou_global_text_metadatas, label=biniou_lang_tab_webui_settings_text_metadatas_label, info=biniou_lang_tab_webui_settings_text_metadatas_info, interactive=True)
                                         with gr.Column():
@@ -8773,6 +8776,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                                 biniou_global_settings_gfpgan,
                                                 biniou_global_settings_tkme,
                                                 biniou_global_settings_clipskip,
+                                                biniou_global_settings_ays,
                                                 biniou_global_settings_img_fmt,
                                                 biniou_global_settings_text_metadatas,
                                                 biniou_global_settings_img_exif,

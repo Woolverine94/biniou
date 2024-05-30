@@ -434,6 +434,7 @@ def write_settings_ini(
     biniou_global_settings_gfpgan,
     biniou_global_settings_tkme,
     biniou_global_settings_clipskip,
+    biniou_global_settings_ays,
     biniou_global_settings_img_fmt,
     biniou_global_settings_text_metadatas,
     biniou_global_settings_img_exif,
@@ -463,6 +464,7 @@ biniou_global_sdxl_height = {biniou_global_settings_sdxl_height}\n\
 biniou_global_gfpgan = {biniou_global_settings_gfpgan}\n\
 biniou_global_tkme = {biniou_global_settings_tkme}\n\
 biniou_global_clipskip = {biniou_global_settings_clipskip}\n\
+biniou_global_ays = {biniou_global_settings_ays}\n\
 biniou_global_img_fmt = \"{biniou_global_settings_img_fmt}\"\n\
 biniou_global_text_metadatas = {biniou_global_settings_text_metadatas}\n\
 biniou_global_img_exif = {biniou_global_settings_img_exif}\n\
