@@ -8,6 +8,7 @@ import torch
 import random
 from ressources.gfpgan import *
 import tomesd
+from diffusers.schedulers import AysSchedules
 
 # device_txt2img_sd = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 device_label_txt2img_sd, model_arch = detect_device()
@@ -95,6 +96,7 @@ def image_txt2img_sd(
     nsfw_filter, 
     tkme_txt2img_sd,
     clipskip_txt2img_sd,
+    use_ays_txt2img_sd,
     lora_model_txt2img_sd,
     lora_weight_txt2img_sd,
     txtinv_txt2img_sd,
@@ -123,6 +125,17 @@ def image_txt2img_sd(
         is_bin_txt2img_sd: bool = True
     else :
         is_bin_txt2img_sd: bool = False
+
+    if (num_inference_step_txt2img_sd >= 10) and use_ays_txt2img_sd:
+        if is_sdxl(modelid_txt2img_sd):
+            sampling_schedule_txt2img_sd = AysSchedules["StableDiffusionXLTimesteps"]
+            sampler_txt2img_sd = "DPM++ SDE"
+        else:
+            sampling_schedule_txt2img_sd = AysSchedules["StableDiffusionTimesteps"]
+            sampler_txt2img_sd = "Euler"
+        num_inference_step_txt2img_sd = 10
+    else:
+        sampling_schedule_txt2img_sd = None
 
     if (is_turbo_txt2img_sd == True) :
         if modelid_txt2img_sd[0:9] == "./models/" :
@@ -303,6 +316,7 @@ def image_txt2img_sd(
                 width=width_txt2img_sd,
                 num_images_per_prompt=num_images_per_prompt_txt2img_sd,
                 num_inference_steps=num_inference_step_txt2img_sd,
+                timesteps=sampling_schedule_txt2img_sd,
                 guidance_scale=guidance_scale_txt2img_sd,
                 generator=generator[i],
                 callback_on_step_end=check_txt2img_sd, 
@@ -316,6 +330,7 @@ def image_txt2img_sd(
                 width=width_txt2img_sd,
                 num_images_per_prompt=num_images_per_prompt_txt2img_sd,
                 num_inference_steps=num_inference_step_txt2img_sd,
+                timesteps=sampling_schedule_txt2img_sd,
                 guidance_scale=guidance_scale_txt2img_sd,
                 generator=generator[i],
                 clip_skip=clipskip_txt2img_sd,
@@ -343,6 +358,7 @@ def image_txt2img_sd(
         f"GFPGAN={use_gfpgan_txt2img_sd} | "+\
         f"Token merging={tkme_txt2img_sd} | "+\
         f"CLIP skip={clipskip_txt2img_sd} | "+\
+        f"AYS={use_ays_txt2img_sd} | "+\
         f"LoRA model={lora_model_txt2img_sd} | "+\
         f"LoRA weight={lora_weight_txt2img_sd} | "+\
         f"Textual inversion={txtinv_txt2img_sd} | "+\
