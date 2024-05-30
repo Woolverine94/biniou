@@ -889,6 +889,12 @@ def zip_download_file_controlnet(content):
 def hide_download_file_controlnet():
     return download_file_controlnet.update(visible=False)
 
+def change_ays_controlnet(use_ays):
+    if use_ays:
+        return num_inference_step_controlnet.update(interactive=False), sampler_controlnet.update(interactive=False)
+    else:
+        return num_inference_step_controlnet.update(interactive=True), sampler_controlnet.update(interactive=True)
+
 def change_model_type_controlnet(model_controlnet):
     if (model_controlnet == "stabilityai/sdxl-turbo"):
         return sampler_controlnet.update(value="Euler a"), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=1), guidance_scale_controlnet.update(value=0.0), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), txtinv_controlnet.update(choices=list(txtinv_list(model_controlnet).keys()), value=""), negative_prompt_controlnet.update(interactive=False), img_preview_controlnet.update(value=None), gs_img_preview_controlnet.update(value=None)
@@ -5434,6 +5440,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_controlnet = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
                             with gr.Column():
                                 clipskip_controlnet = gr.Slider(0, 12, step=1, value=biniou_global_clipskip, label=biniou_lang_clipskip_label, info=biniou_lang_clipskip_info)
+                            with gr.Column():
+                                use_ays_controlnet = gr.Checkbox(value=biniou_global_ays, label=biniou_lang_tab_image_ays_label, info=biniou_lang_tab_image_ays_info)
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_controlnet = gr.Button(f"{biniou_lang_save_settings} 💾")
@@ -5461,6 +5469,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         use_gfpgan_controlnet,
                                         tkme_controlnet,
                                         clipskip_controlnet,
+                                        use_ays_controlnet,
                                         ]
                                     )
                                 save_ini_btn_controlnet.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
@@ -5535,6 +5544,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             )
                             lora_model_controlnet.change(fn=change_lora_model_controlnet, inputs=[model_controlnet, lora_model_controlnet, prompt_controlnet, num_inference_step_controlnet, guidance_scale_controlnet, sampler_controlnet], outputs=[prompt_controlnet, num_inference_step_controlnet, guidance_scale_controlnet, sampler_controlnet])
                             txtinv_controlnet.change(fn=change_txtinv_controlnet, inputs=[model_controlnet, txtinv_controlnet, prompt_controlnet, negative_prompt_controlnet], outputs=[prompt_controlnet, negative_prompt_controlnet])
+                            use_ays_controlnet.change(fn=change_ays_controlnet, inputs=use_ays_controlnet, outputs=[num_inference_step_controlnet, sampler_controlnet])
                         with gr.Column():
                             out_controlnet = gr.Gallery(
                                 label=biniou_lang_image_gallery_label,
@@ -5590,6 +5600,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 nsfw_filter,
                                 tkme_controlnet,
                                 clipskip_controlnet,
+                                use_ays_controlnet,
                                 lora_model_controlnet,
                                 lora_weight_controlnet,
                                 txtinv_controlnet,

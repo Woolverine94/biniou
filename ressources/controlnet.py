@@ -10,6 +10,7 @@ import random
 from ressources.gfpgan import *
 from controlnet_aux.processor import Processor
 import tomesd
+from diffusers.schedulers import AysSchedules
 
 device_label_controlnet, model_arch = detect_device()
 device_controlnet = torch.device(device_label_controlnet)
@@ -287,6 +288,7 @@ def image_controlnet(
     nsfw_filter, 
     tkme_controlnet,
     clipskip_controlnet,
+    use_ays_controlnet,
     lora_model_controlnet,
     lora_weight_controlnet,
     txtinv_controlnet,
@@ -329,6 +331,17 @@ def image_controlnet(
         is_bin_controlnet: bool = True
     else :
         is_bin_controlnet: bool = False
+
+    if (num_inference_step_controlnet >= 10) and use_ays_controlnet:
+        if is_sdxl(modelid_controlnet):
+            sampling_schedule_controlnet = AysSchedules["StableDiffusionXLTimesteps"]
+            sampler_controlnet = "DPM++ SDE"
+        else:
+            sampling_schedule_controlnet = AysSchedules["StableDiffusionTimesteps"]
+            sampler_controlnet = "Euler"
+        num_inference_step_controlnet = 10
+    else:
+        sampling_schedule_controlnet = None
 
     if (is_xl_controlnet == True) :
         if modelid_controlnet[0:9] == "./models/" :
@@ -492,6 +505,7 @@ def image_controlnet(
                 width=width_controlnet,
                 num_images_per_prompt=num_images_per_prompt_controlnet,
                 num_inference_steps=num_inference_step_controlnet,
+                timesteps=sampling_schedule_controlnet,
                 guidance_scale=guidance_scale_controlnet,
                 controlnet_conditioning_scale=strength_controlnet,
                 control_guidance_start=start_controlnet,
@@ -511,6 +525,7 @@ def image_controlnet(
                 width=width_controlnet,
                 num_images_per_prompt=num_images_per_prompt_controlnet,
                 num_inference_steps=num_inference_step_controlnet,
+                timesteps=sampling_schedule_controlnet,
                 guidance_scale=guidance_scale_controlnet,
                 controlnet_conditioning_scale=strength_controlnet,
                 control_guidance_start=start_controlnet,
@@ -528,6 +543,7 @@ def image_controlnet(
                 width=width_controlnet,
                 num_images_per_prompt=num_images_per_prompt_controlnet,
                 num_inference_steps=num_inference_step_controlnet,
+                timesteps=sampling_schedule_controlnet,
                 guidance_scale=guidance_scale_controlnet,
                 controlnet_conditioning_scale=strength_controlnet,
                 control_guidance_start=start_controlnet,
@@ -561,6 +577,7 @@ def image_controlnet(
         f"GFPGAN={use_gfpgan_controlnet} | "+\
         f"Token merging={tkme_controlnet} | "+\
         f"CLIP skip={clipskip_controlnet} | "+\
+        f"AYS={use_ays_controlnet} | "+\
         f"LoRA model={lora_model_controlnet} | "+\
         f"LoRA weight={lora_weight_controlnet} | "+\
         f"Textual inversion={txtinv_controlnet} | "+\

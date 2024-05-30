@@ -1242,6 +1242,7 @@ def write_ini_controlnet(
     use_gfpgan_controlnet,
     tkme_controlnet,
     clipskip_controlnet,
+    use_ays_controlnet,
 ):
     savename = f".ini/{module}.ini"
     content = f"model_controlnet.value = \"{model_controlnet}\"\n\
@@ -1260,7 +1261,8 @@ start_controlnet.value = {start_controlnet}\n\
 stop_controlnet.value = {stop_controlnet}\n\
 use_gfpgan_controlnet.value = {use_gfpgan_controlnet}\n\
 tkme_controlnet.value = {tkme_controlnet}\n\
-clipskip_controlnet.value = {clipskip_controlnet}"
+clipskip_controlnet.value = {clipskip_controlnet}\n\
+use_ays_controlnet.value = {use_ays_controlnet}"
     with open(savename, 'w', encoding="utf-8") as savefile:
         savefile.write(content)
     return

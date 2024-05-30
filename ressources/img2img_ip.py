@@ -13,7 +13,6 @@ from ressources.common import *
 from ressources.gfpgan import *
 import tomesd
 from diffusers.schedulers import AysSchedules
-from math import ceil
 
 device_label_img2img_ip, model_arch = detect_device()
 device_img2img_ip = torch.device(device_label_img2img_ip)
