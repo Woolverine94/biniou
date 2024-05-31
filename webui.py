@@ -5391,7 +5391,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <h1 style='text-align: left;'>{biniou_lang_about_help}</h1>
                                 <div style='text-align: justified'>
                                 <b>{biniou_lang_about_usage}</b></br>
-                                {biniou_lang_tab_controlnet_about_instruct}
+                                {biniou_lang_tab_controlnet_about_instruct}</br>
                                 <b>{biniou_lang_about_models}</b></br>
                                 - {biniou_lang_tab_image_about_models_inst1}</br>
                                 <b>{biniou_lang_about_lora}</b></br>
