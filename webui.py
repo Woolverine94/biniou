@@ -526,6 +526,12 @@ def zip_download_file_txt2img_mjm(content):
 def hide_download_file_txt2img_mjm():
     return download_file_txt2img_mjm.update(visible=False)
 
+def change_ays_txt2img_mjm(use_ays):
+    if use_ays:
+        return num_inference_step_txt2img_mjm.update(interactive=False), sampler_txt2img_mjm.update(interactive=False)
+    else:
+        return num_inference_step_txt2img_mjm.update(interactive=True), sampler_txt2img_mjm.update(interactive=True)
+
 ## Functions specific to PixArt-Alpha
 def zip_download_file_txt2img_paa(content):
     savename = zipper(content)
@@ -3192,6 +3198,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_txt2img_mjm = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
                             with gr.Column():
                                 tkme_txt2img_mjm = gr.Slider(0.0, 1.0, step=0.01, value=0.0, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
+                            with gr.Column():
+                                use_ays_txt2img_mjm = gr.Checkbox(value=biniou_global_ays, label=biniou_lang_tab_image_ays_label, info=biniou_lang_tab_image_ays_info)
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_txt2img_mjm = gr.Button(f"{biniou_lang_save_settings} 💾")
@@ -3213,6 +3221,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         seed_txt2img_mjm,
                                         use_gfpgan_txt2img_mjm,
                                         tkme_txt2img_mjm,
+                                        use_ays_txt2img_mjm,
                                         ]
                                     )
                                 save_ini_btn_txt2img_mjm.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
@@ -3231,6 +3240,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Row():
                                 with gr.Column():
                                     negative_prompt_txt2img_mjm = gr.Textbox(lines=6, max_lines=6, show_copy_button=True, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
+                        use_ays_txt2img_mjm.change(fn=change_ays_txt2img_mjm, inputs=use_ays_txt2img_mjm, outputs=[num_inference_step_txt2img_mjm, sampler_txt2img_mjm])
                         with gr.Column(scale=2):
                             out_txt2img_mjm = gr.Gallery(
                                 label=biniou_lang_image_gallery_label,
@@ -3276,6 +3286,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_txt2img_mjm,
                                 nsfw_filter,
                                 tkme_txt2img_mjm,
+                                use_ays_txt2img_mjm,
                             ],
                                 outputs=[out_txt2img_mjm, gs_out_txt2img_mjm],
                                 show_progress="full",

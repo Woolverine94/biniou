@@ -923,6 +923,7 @@ def write_ini_txt2img_mjm(
     seed_txt2img_mjm,
     use_gfpgan_txt2img_mjm,
     tkme_txt2img_mjm,
+    use_ays_txt2img_mjm,
 ):
     savename = f".ini/{module}.ini"
     content = f"model_txt2img_mjm.value = \"{model_txt2img_mjm}\"\n\
@@ -935,7 +936,8 @@ width_txt2img_mjm.value = {width_txt2img_mjm}\n\
 height_txt2img_mjm.value = {height_txt2img_mjm}\n\
 seed_txt2img_mjm.value = {seed_txt2img_mjm}\n\
 use_gfpgan_txt2img_mjm.value = {use_gfpgan_txt2img_mjm}\n\
-tkme_txt2img_mjm.value = {tkme_txt2img_mjm}"
+tkme_txt2img_mjm.value = {tkme_txt2img_mjm}\n\
+use_ays_txt2img_mjm.value = {use_ays_txt2img_mjm}"
     with open(savename, 'w', encoding="utf-8") as savefile:
         savefile.write(content)
     return

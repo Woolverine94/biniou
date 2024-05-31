@@ -8,6 +8,7 @@ import torch
 import random
 from ressources.gfpgan import *
 import tomesd
+from diffusers.schedulers import AysSchedules
 
 device_label_txt2img_mjm, model_arch = detect_device()
 device_txt2img_mjm = torch.device(device_label_txt2img_mjm)
@@ -67,6 +68,7 @@ def image_txt2img_mjm(
     use_gfpgan_txt2img_mjm,
     nsfw_filter,
     tkme_txt2img_mjm,
+    use_ays_txt2img_mjm,
     progress_txt2img_mjm=gr.Progress(track_tqdm=True)
     ):
 
@@ -74,6 +76,17 @@ def image_txt2img_mjm(
     
 #    global pipe_txt2img_mjm
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2img_mjm_safetychecker, device_txt2img_mjm, nsfw_filter)
+
+    if (num_inference_step_txt2img_mjm >= 10) and use_ays_txt2img_mjm:
+        if is_sdxl(modelid_txt2img_mjm):
+            sampling_schedule_txt2img_mjm = AysSchedules["StableDiffusionXLTimesteps"]
+            sampler_txt2img_mjm = "DPM++ SDE"
+        else:
+            sampling_schedule_txt2img_mjm = AysSchedules["StableDiffusionTimesteps"]
+            sampler_txt2img_mjm = "DPM++ 2M SDE"
+        num_inference_step_txt2img_mjm = 10
+    else:
+        sampling_schedule_txt2img_mjm = None
 
     if modelid_txt2img_mjm[0:9] == "./models/" :
         pipe_txt2img_mjm = DiffusionPipeline.from_single_file(
@@ -136,6 +149,7 @@ def image_txt2img_mjm(
             width=width_txt2img_mjm,
             num_images_per_prompt=num_images_per_prompt_txt2img_mjm,
             num_inference_steps=num_inference_step_txt2img_mjm,
+            timesteps=sampling_schedule_txt2img_mjm,
             guidance_scale=guidance_scale_txt2img_mjm,
             generator = generator[i],
             callback_on_step_end=check_txt2img_mjm, 
@@ -160,6 +174,7 @@ def image_txt2img_mjm(
         f"Size={width_txt2img_mjm}x{height_txt2img_mjm} | "+\
         f"GFPGAN={use_gfpgan_txt2img_mjm} | "+\
         f"Token merging={tkme_txt2img_mjm} | "+\
+        f"AYS={use_ays_txt2img_mjm} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Prompt={prompt_txt2img_mjm} | "+\
         f"Negative prompt={negative_prompt_txt2img_mjm} | "+\
