@@ -68,6 +68,7 @@ def image_txt2img_mjm(
     use_gfpgan_txt2img_mjm,
     nsfw_filter,
     tkme_txt2img_mjm,
+    clipskip_txt2img_mjm,
     use_ays_txt2img_mjm,
     progress_txt2img_mjm=gr.Progress(track_tqdm=True)
     ):
@@ -76,6 +77,9 @@ def image_txt2img_mjm(
     
 #    global pipe_txt2img_mjm
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2img_mjm_safetychecker, device_txt2img_mjm, nsfw_filter)
+
+    if clipskip_txt2img_mjm == 0:
+       clipskip_txt2img_mjm = None
 
     if (num_inference_step_txt2img_mjm >= 10) and use_ays_txt2img_mjm:
         if is_sdxl(modelid_txt2img_mjm):
@@ -151,7 +155,8 @@ def image_txt2img_mjm(
             num_inference_steps=num_inference_step_txt2img_mjm,
             timesteps=sampling_schedule_txt2img_mjm,
             guidance_scale=guidance_scale_txt2img_mjm,
-            generator = generator[i],
+            generator=generator[i],
+            clip_skip=clipskip_txt2img_mjm,
             callback_on_step_end=check_txt2img_mjm, 
             callback_on_step_end_tensor_inputs=['latents'],
         ).images
@@ -174,6 +179,7 @@ def image_txt2img_mjm(
         f"Size={width_txt2img_mjm}x{height_txt2img_mjm} | "+\
         f"GFPGAN={use_gfpgan_txt2img_mjm} | "+\
         f"Token merging={tkme_txt2img_mjm} | "+\
+        f"CLIP skip={clipskip_txt2img_mjm} | "+\
         f"AYS={use_ays_txt2img_mjm} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Prompt={prompt_txt2img_mjm} | "+\

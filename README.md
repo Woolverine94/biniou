@@ -17,7 +17,7 @@
 
 ## Updates
 
-  * 🆕 **2024-05-31** : 🔥 ***Support for AYS optimization*** 🔥 > Adding support for [AYS](https://research.nvidia.com/labs/toronto-ai/AlignYourSteps/) (Align Your Steps) scheduler optimization, as a setting for modules Stable Diffusion, img2img, IP-Adapter and ControlNet. By selecting this option in the settings of each eligible module, you will enable the use of this Nvidia technology that will dramatically reduce the steps required for a qualitative result : every model (SD or SDXL) can now generate qualitative contents in only 10 steps. It don't have any effect on low-steps modules (<10) such as lighting or turbo ones.
+  * 🆕 **2024-05-31** : 🔥 ***Support for AYS optimization*** 🔥 > Adding support for [AYS](https://research.nvidia.com/labs/toronto-ai/AlignYourSteps/) (Align Your Steps) scheduler optimization, as a setting for modules Stable Diffusion, img2img, IP-Adapter and ControlNet. By selecting this option in the settings of each eligible module, you will enable the use of this Nvidia technology that will dramatically reduce the steps required for a qualitative result : every model (SD or SDXL) can now generate qualitative contents in only 10 steps. It don't have any effect on low-steps models (<10) such as lighting or turbo ones.
 
   * 🆕 **2024-05-28** : 🔥 ***Support for InterDiffusion-4.0*** 🔥 > Adding support for model [cutycat2000x/InterDiffusion-4.0](https://huggingface.co/cutycat2000x/InterDiffusion-4.0) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero.
 

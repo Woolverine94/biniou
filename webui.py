@@ -3199,6 +3199,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 tkme_txt2img_mjm = gr.Slider(0.0, 1.0, step=0.01, value=0.0, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
                             with gr.Column():
+                                clipskip_txt2img_mjm = gr.Slider(0, 12, step=1, value=biniou_global_clipskip, label=biniou_lang_clipskip_label, info=biniou_lang_clipskip_info)
+                            with gr.Column():
                                 use_ays_txt2img_mjm = gr.Checkbox(value=biniou_global_ays, label=biniou_lang_tab_image_ays_label, info=biniou_lang_tab_image_ays_info)
                         with gr.Row():
                             with gr.Column():
@@ -3221,6 +3223,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         seed_txt2img_mjm,
                                         use_gfpgan_txt2img_mjm,
                                         tkme_txt2img_mjm,
+                                        clipskip_txt2img_mjm,
                                         use_ays_txt2img_mjm,
                                         ]
                                     )
@@ -3286,6 +3289,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_txt2img_mjm,
                                 nsfw_filter,
                                 tkme_txt2img_mjm,
+                                clipskip_txt2img_mjm,
                                 use_ays_txt2img_mjm,
                             ],
                                 outputs=[out_txt2img_mjm, gs_out_txt2img_mjm],
