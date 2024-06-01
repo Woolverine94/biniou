@@ -12,6 +12,7 @@ import random
 from ressources.common import *
 from ressources.gfpgan import *
 import tomesd
+from diffusers.schedulers import AysSchedules
 
 device_label_outpaint, model_arch = detect_device()
 device_outpaint = torch.device(device_label_outpaint)
@@ -102,6 +103,7 @@ def image_outpaint(
     nsfw_filter, 
     tkme_outpaint,
     clipskip_outpaint,
+    use_ays_outpaint,
     progress_outpaint=gr.Progress(track_tqdm=True)
     ):
 
@@ -116,6 +118,17 @@ def image_outpaint(
         is_xl_outpaint: bool = True
     else :        
         is_xl_outpaint: bool = False
+
+    if (num_inference_step_outpaint >= 10) and use_ays_outpaint:
+        if is_sdxl(modelid_outpaint):
+            sampling_schedule_outpaint = AysSchedules["StableDiffusionXLTimesteps"]
+            sampler_outpaint = "DPM++ SDE"
+        else:
+            sampling_schedule_outpaint = AysSchedules["StableDiffusionTimesteps"]
+            sampler_outpaint = "Euler"
+        num_inference_step_outpaint = 10
+    else:
+        sampling_schedule_outpaint = None
 
     if (is_xl_outpaint == True):
         if modelid_outpaint[0:9] == "./models/" :
@@ -237,7 +250,9 @@ def image_outpaint(
                 width=dim_size[0],
                 height=dim_size[1],
                 num_inference_steps=num_inference_step_outpaint,
+                timesteps=sampling_schedule_outpaint,
                 generator=generator[i],
+                clip_skip=clipskip_outpaint,
                 callback_on_step_end=check_outpaint, 
                 callback_on_step_end_tensor_inputs=['latents'],
             ).images
@@ -253,6 +268,7 @@ def image_outpaint(
                 width=dim_size[0],
                 height=dim_size[1],
                 num_inference_steps=num_inference_step_outpaint,
+                timesteps=sampling_schedule_outpaint,
                 generator=generator[i],
                 clip_skip=clipskip_outpaint,
                 callback_on_step_end=check_outpaint, 
@@ -278,6 +294,7 @@ def image_outpaint(
         f"GFPGAN={use_gfpgan_outpaint} | "+\
         f"Token merging={tkme_outpaint} | "+\
         f"CLIP skip={clipskip_outpaint} | "+\
+        f"AYS={use_ays_outpaint} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Denoising strength={denoising_strength_outpaint} | "+\
         f"Prompt={prompt_outpaint} | "+\

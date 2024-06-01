@@ -29,9 +29,8 @@ for filename in os.listdir(model_path_inpaint):
 
 model_list_inpaint_builtin = [
     "Uminosachi/realisticVisionV30_v30VAE-inpainting",
-    "GraydientPlatformAPI/realvis4light-inpaint-xl",
-    "runwayml/stable-diffusion-inpainting",
     "diffusers/stable-diffusion-xl-1.0-inpainting-0.1",
+    "runwayml/stable-diffusion-inpainting",
 ]
 
 for k in range(len(model_list_inpaint_builtin)):

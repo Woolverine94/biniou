@@ -893,6 +893,12 @@ def zip_download_file_outpaint(content):
 def hide_download_file_outpaint():
     return download_file_outpaint.update(visible=False)
 
+def change_ays_outpaint(use_ays):
+    if use_ays:
+        return num_inference_step_outpaint.update(interactive=False), sampler_outpaint.update(interactive=False)
+    else:
+        return num_inference_step_outpaint.update(interactive=True), sampler_outpaint.update(interactive=True)
+
 ## Functions specific to controlnet
 def zip_download_file_controlnet(content):
     savename = zipper(content)
@@ -5172,6 +5178,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_outpaint = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
                             with gr.Column():
                                 clipskip_outpaint = gr.Slider(0, 12, step=1, value=biniou_global_clipskip, label=biniou_lang_clipskip_label, info=biniou_lang_clipskip_info)
+                            with gr.Column():
+                                use_ays_outpaint = gr.Checkbox(value=biniou_global_ays, label=biniou_lang_tab_image_ays_label, info=biniou_lang_tab_image_ays_info)
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_outpaint = gr.Button(f"{biniou_lang_save_settings} 💾")
@@ -5194,6 +5202,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         use_gfpgan_outpaint,
                                         tkme_outpaint,
                                         clipskip_outpaint,
+                                        use_ays_outpaint,
                                         ]
                                     )
                                 save_ini_btn_outpaint.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
@@ -5241,6 +5250,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     prompt_outpaint = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_image_prompt_placeholder)
                                 with gr.Column():
                                     negative_prompt_outpaint = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
+                            use_ays_outpaint.change(fn=change_ays_outpaint, inputs=use_ays_outpaint, outputs=[num_inference_step_outpaint, sampler_outpaint])
                         with gr.Column():
                             with gr.Row(): 
                                 with gr.Column():
@@ -5294,6 +5304,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     nsfw_filter,
                                     tkme_outpaint,
                                     clipskip_outpaint,
+                                    use_ays_outpaint,
                                 ],
                                 outputs=[out_outpaint, gs_out_outpaint], 
                                 show_progress="full",
