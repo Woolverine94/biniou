@@ -10,6 +10,7 @@ import random
 from ressources.common import *
 from ressources.gfpgan import *
 import tomesd
+from diffusers.schedulers import AysSchedules
 
 device_label_inpaint, model_arch = detect_device()
 device_inpaint = torch.device(device_label_inpaint)
@@ -28,8 +29,9 @@ for filename in os.listdir(model_path_inpaint):
 
 model_list_inpaint_builtin = [
     "Uminosachi/realisticVisionV30_v30VAE-inpainting",
-    "diffusers/stable-diffusion-xl-1.0-inpainting-0.1",
+    "GraydientPlatformAPI/realvis4light-inpaint-xl",
     "runwayml/stable-diffusion-inpainting",
+    "diffusers/stable-diffusion-xl-1.0-inpainting-0.1",
 ]
 
 for k in range(len(model_list_inpaint_builtin)):
@@ -70,6 +72,7 @@ def image_inpaint(
     nsfw_filter, 
     tkme_inpaint,
     clipskip_inpaint,
+    use_ays_inpaint,
     progress_inpaint=gr.Progress(track_tqdm=True)
     ):
 
@@ -84,6 +87,17 @@ def image_inpaint(
         is_xl_inpaint: bool = True
     else :        
         is_xl_inpaint: bool = False
+
+    if (num_inference_step_inpaint >= 10) and use_ays_inpaint:
+        if is_sdxl(modelid_inpaint):
+            sampling_schedule_inpaint = AysSchedules["StableDiffusionXLTimesteps"]
+            sampler_inpaint = "DPM++ SDE"
+        else:
+            sampling_schedule_inpaint = AysSchedules["StableDiffusionTimesteps"]
+            sampler_inpaint = "Euler"
+        num_inference_step_inpaint = 10
+    else:
+        sampling_schedule_inpaint = None
 
     if (is_xl_inpaint == True):
         if modelid_inpaint[0:9] == "./models/" :
@@ -198,7 +212,9 @@ def image_inpaint(
                 width=dim_size[0],
                 height=dim_size[1],
                 num_inference_steps=num_inference_step_inpaint,
+                timesteps=sampling_schedule_inpaint,
                 generator=generator[i],
+                clip_skip=clipskip_inpaint,
                 callback_on_step_end=check_inpaint, 
                 callback_on_step_end_tensor_inputs=['latents'],
             ).images
@@ -214,6 +230,7 @@ def image_inpaint(
                 width=dim_size[0],
                 height=dim_size[1],
                 num_inference_steps=num_inference_step_inpaint,
+                timesteps=sampling_schedule_inpaint,
                 generator=generator[i],
                 clip_skip=clipskip_inpaint,
                 callback_on_step_end=check_inpaint, 
@@ -241,6 +258,7 @@ def image_inpaint(
         f"GFPGAN={use_gfpgan_inpaint} | "+\
         f"Token merging={tkme_inpaint} | "+\
         f"CLIP skip={clipskip_inpaint} | "+\
+        f"AYS={use_ays_inpaint} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Denoising strength={denoising_strength_inpaint} | "+\
         f"Prompt={prompt_inpaint} | "+\

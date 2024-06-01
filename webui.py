@@ -871,6 +871,12 @@ def zip_download_file_inpaint(content):
 def hide_download_file_inpaint():
     return download_file_inpaint.update(visible=False)
 
+def change_ays_inpaint(use_ays):
+    if use_ays:
+        return num_inference_step_inpaint.update(interactive=False), sampler_inpaint.update(interactive=False)
+    else:
+        return num_inference_step_inpaint.update(interactive=True), sampler_inpaint.update(interactive=True)
+
 ## Functions specific to paintbyex
 def zip_download_file_paintbyex(content):
     savename = zipper(content)
@@ -4754,6 +4760,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_inpaint = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
                             with gr.Column():
                                 clipskip_inpaint = gr.Slider(0, 12, step=1, value=biniou_global_clipskip, label=biniou_lang_clipskip_label, info=biniou_lang_clipskip_info)
+                            with gr.Column():
+                                use_ays_inpaint = gr.Checkbox(value=biniou_global_ays, label=biniou_lang_tab_image_ays_label, info=biniou_lang_tab_image_ays_info)
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_inpaint = gr.Button(f"{biniou_lang_save_settings} 💾")
@@ -4776,6 +4784,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                         use_gfpgan_inpaint,
                                         tkme_inpaint,
                                         clipskip_inpaint,
+                                        use_ays_inpaint,
                                         ]
                                     )
                                 save_ini_btn_inpaint.click(fn=lambda: gr.Info(biniou_lang_save_settings_msg))
@@ -4802,6 +4811,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     prompt_inpaint = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_prompt_label, info=biniou_lang_image_prompt_info, placeholder=biniou_lang_image_prompt_placeholder)
                                 with gr.Column():
                                     negative_prompt_inpaint = gr.Textbox(lines=3, max_lines=3, show_copy_button=True, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_image_negprompt_placeholder)
+                            use_ays_inpaint.change(fn=change_ays_inpaint, inputs=use_ays_inpaint, outputs=[num_inference_step_inpaint, sampler_inpaint])
                         with gr.Column():
                             with gr.Row(): 
                                 with gr.Column():
@@ -4854,6 +4864,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     nsfw_filter,
                                     tkme_inpaint,
                                     clipskip_inpaint,
+                                    use_ays_inpaint,
                                 ],
                                 outputs=[out_inpaint, gs_out_inpaint], 
                                 show_progress="full",

@@ -1147,6 +1147,7 @@ def write_ini_inpaint(
     use_gfpgan_inpaint,
     tkme_inpaint,
     clipskip_inpaint,
+    use_ays_inpaint,
 ):
     savename = f".ini/{module}.ini"
     content = f"model_inpaint.value = \"{model_inpaint}\"\n\
@@ -1160,7 +1161,8 @@ height_inpaint.value = {height_inpaint}\n\
 seed_inpaint.value = {seed_inpaint}\n\
 use_gfpgan_inpaint.value = {use_gfpgan_inpaint}\n\
 tkme_inpaint.value = {tkme_inpaint}\n\
-clipskip_inpaint.value = {clipskip_inpaint.value}"
+clipskip_inpaint.value = {clipskip_inpaint.value}\n\
+use_ays_inpaint.value = {use_ays_inpaint.value}"
     with open(savename, 'w', encoding="utf-8") as savefile:
         savefile.write(content)
     return
