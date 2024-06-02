@@ -9,13 +9,15 @@
 <p align="justify">biniou is a self-hosted webui for several kinds of GenAI (generative artificial intelligence). You can generate multimedia contents with AI and use a chatbot on your own computer, even without dedicated GPU and starting from 8GB RAM. Can work offline (once deployed and required models downloaded).</p>
 
 <p align="center">
-<a href="#GNULinux">GNU/Linux</a> [ <a href="#OpenSUSE-Leap-155--OpenSUSE-Tumbleweed">OpenSUSE base</a> | <a href="#Rocky-93--Alma-93--CentOS-Stream-9">RHEL base</a> | <a href="#debian-12--ubuntu-22043--linux-mint-212">Debian base</a> ] • <a href="#windows-10--windows-11">Windows</a> • <a href="#macos-homebrew-install">macOS (experimental)</a> • <a href="#dockerfile">Docker</a></br>
+<a href="#GNULinux">GNU/Linux</a> [ <a href="#OpenSUSE-Leap-155--OpenSUSE-Tumbleweed">OpenSUSE base</a> | <a href="#Rocky-93--Alma-93--CentOS-Stream-9">RHEL base</a> | <a href="#debian-12--ubuntu-22043--ubuntu-2404--linux-mint-212">Debian base</a> ] • <a href="#windows-10--windows-11">Windows</a> • <a href="#macos-homebrew-install">macOS (experimental)</a> • <a href="#dockerfile">Docker</a></br>
 <a href="https://github.com/Woolverine94/biniou/wiki">Documentation ❓</a> | <a href="https://github.com/Woolverine94/biniou/wiki/Showroom">Showroom 🖼️</a>
 </p>
 
 ---
 
 ## Updates
+
+  * 🆕 **2024-06-02** : 🔥 ***Support for Ubuntu 24.04*** 🔥 > Adding support for Ubuntu 24.04 Noble Numbat installation through the Debian One-click installer (oci-debian.sh).
 
   * 🆕 **2024-05-31** : 🔥 ***Support for AYS optimization*** 🔥 > Adding support for [AYS](https://research.nvidia.com/labs/toronto-ai/AlignYourSteps/) (Align Your Steps) scheduler optimization, as a setting for modules Stable Diffusion, img2img, IP-Adapter and ControlNet. By selecting this option in the settings of each eligible module, you will enable the use of this Nvidia technology that will dramatically reduce the steps required for a qualitative result : every model (SD or SDXL) can now generate qualitative contents in only 10 steps. It don't have any effect on low-steps models (<10) such as lighting or turbo ones.
 
@@ -24,8 +26,6 @@
   * 🆕 **2024-05-25** : 🔥 ***Support for Juggernaut-X-Hyper*** 🔥 > Adding support for model [RunDiffusion/Juggernaut-X-Hyper](https://huggingface.co/RunDiffusion/Juggernaut-X-Hyper) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero. This is a fast (5-6 steps) model based on Juggernaut.
 
   * 🆕 **2024-05-23** : 🔥 ***Support for ControlNet tile*** 🔥 > Adding support for models [lllyasviel/control_v11f1e_sd15_tile](https://huggingface.co/lllyasviel/control_v11f1e_sd15_tile) and [ValouF-pimento/ControlNet_SDXL_tile_upscale](https://huggingface.co/ValouF-pimento/ControlNet_SDXL_tile_upscale) to module ControlNet.
-
-  * 🆕 **2024-05-21** : 🔥 ***Support for sdxl-flash*** 🔥 > Adding support for model [sd-community/sdxl-flash](https://huggingface.co/sd-community/sdxl-flash) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero. This 6-9 steps model is really qualitative, versatile and 40% faster than standard SDXL models.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
@@ -39,7 +39,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#GNULinux">GNU/Linux</a><br/> 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#OpenSUSE-Leap-155--OpenSUSE-Tumbleweed">OpenSUSE Leap 15.5 / OpenSUSE Tumbleweed</a><br/>  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Rocky-93--Alma-93--CentOS-Stream-9--Fedora-39">Rocky 9.3 / Alma 9.3 / CentOS Stream 9 / Fedora 39</a><br/>  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#debian-12--ubuntu-22043--linux-mint-212">Debian 12 / Ubuntu 22.04.3 / Linux Mint 21.2</a><br/>  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#debian-12--ubuntu-22043--ubuntu-2404--linux-mint-212">Debian 12 / Ubuntu 22.04.3 / Ubuntu 24.04 / Linux Mint 21.2</a><br/>  
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#windows-10--windows-11">Windows 10 / Windows 11</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#macos-homebrew-install">macOS Homebrew install</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#dockerfile">Dockerfile</a><br/>
@@ -146,7 +146,7 @@
 * **Operating system :**
   - a 64 bit OS :
     - Debian 12 
-    - Ubuntu 22.04.3 
+    - Ubuntu 22.04.3 / 24.04
     - Linux Mint 21.2
     - Rocky 9.3
     - Alma 9.3
@@ -185,7 +185,7 @@ sh <(curl https://raw.githubusercontent.com/Woolverine94/biniou/main/oci-opensus
 sh <(curl https://raw.githubusercontent.com/Woolverine94/biniou/main/oci-rhel.sh || wget -O - https://raw.githubusercontent.com/Woolverine94/biniou/main/oci-rhel.sh)
 ```
 
-#### Debian 12 / Ubuntu 22.04.3 / Linux Mint 21.2+
+#### Debian 12 / Ubuntu 22.04.3 / Ubuntu 24.04 / Linux Mint 21.2+
 
 ##### One-click installer : 
 
