@@ -35,6 +35,7 @@ model_list_img2img_builtin = [
     "cutycat2000x/InterDiffusion-4.0",
     "RunDiffusion/Juggernaut-XL-Lightning",
     "fluently/Fluently-XL-v3-Lightning",
+    "Corcelio/mobius",
     "fluently/Fluently-XL-v4",
     "recoilme/ColorfulXL-Lightning",
     "playgroundai/playground-v2-512px-base",
