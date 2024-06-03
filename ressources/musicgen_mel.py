@@ -20,6 +20,7 @@ modellist_musicgen_mel = [
     "facebook/musicgen-melody",
     "facebook/musicgen-stereo-melody-large",
     "facebook/musicgen-melody-large",
+    "nateraw/musicgen-songstarter-v0.2",
 ]
 
 # Bouton Cancel
