@@ -1757,6 +1757,7 @@ def lora_model_list(model):
             "ByteDance/SDXL-Lightning":("sdxl_lightning_4step_lora.safetensors", ""),
             "ByteDance/Hyper-SD":("Hyper-SDXL-1step-lora.safetensors", ""),
             "openskyml/lcm-lora-sdxl-turbo":("lcm-lora-sdxl-turbo.safetensors", ""),
+            "tianweiy/DMD2":("dmd2_sdxl_4step_lora.safetensors", ""),
             "h1t/TCD-SDXL-LoRA":("pytorch_lora_weights.safetensors", ""),
             "wangfuyun/PCM_Weights":("sdxl/pcm_sdxl_lcmlike_lora_converted.safetensors", ""),
             "ehristoforu/dalle-3-xl-v2":("dalle-3-xl-lora-v2.safetensors", ""),
