@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-06-05** : 🔥 ***Support for LoRA model tianweiy/DMD2*** 🔥 > Adding support for LoRA model [tianweiy/DMD2](https://huggingface.co/tianweiy/DMD2) to modules supporting LoRA settings. This 4 steps LoRA model is a very nice alternative to SDXL-Lightning and lcm-lora-sdxl-turbo and produces beautiful outputs. Available only for SDXL models.
+
   * 🆕 **2024-06-04** : 🔥 ***Support for LoRA model wangfuyun/PCM_Weights*** 🔥 > Adding support for LoRA model [wangfuyun/PCM_Weights](https://huggingface.co/wangfuyun/PCM_Weights) to modules supporting LoRA settings. Using this LoRA model will reduce by 80% inference times on SD 1.5 or SDXL models, by requiring only 2 steps to generate contents.
 
   * 🆕 **2024-06-03** : 🔥 ***Support for Mobius*** 🔥 > Adding support for model [Corcelio/mobius](https://huggingface.co/Corcelio/mobius) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero. This awesome SDXL-based model gives beautiful results with almost any prompts.
@@ -24,8 +26,6 @@
   * 🆕 **2024-06-02** : 🔥 ***Support for Ubuntu 24.04*** 🔥 > Adding support for Ubuntu 24.04 Noble Numbat installation through the [Debian One-click installer](#debian-12--ubuntu-22043--ubuntu-2404--linux-mint-212).
 
   * 🆕 **2024-05-31** : 🔥 ***Support for AYS optimization*** 🔥 > Adding support for [AYS](https://research.nvidia.com/labs/toronto-ai/AlignYourSteps/) (Align Your Steps) scheduler optimization, as a setting for modules Stable Diffusion, img2img, IP-Adapter and ControlNet. By selecting this option in the settings of each eligible module, you will enable the use of this Nvidia technology that will dramatically reduce the steps required for a qualitative result : every model (SD or SDXL) can now generate qualitative contents in only 10 steps. It don't have any effect on low-steps models (<10) such as lighting or turbo ones.
-
-  * 🆕 **2024-05-28** : 🔥 ***Support for InterDiffusion-4.0*** 🔥 > Adding support for model [cutycat2000x/InterDiffusion-4.0](https://huggingface.co/cutycat2000x/InterDiffusion-4.0) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
