@@ -146,6 +146,7 @@ def image_txt2img_sd(
                 torch_dtype=model_arch, 
                 use_safetensors=True if not is_bin_txt2img_sd else False,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
+                local_files_only=True if offline_test() else None
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex,
             )
@@ -169,6 +170,7 @@ def image_txt2img_sd(
                 torch_dtype=model_arch, 
                 use_safetensors=True if not is_bin_txt2img_sd else False,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
+                local_files_only=True if offline_test() else None
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex,
             )
@@ -192,6 +194,7 @@ def image_txt2img_sd(
                 torch_dtype=model_arch,                 
                 use_safetensors=True if not is_bin_txt2img_sd else False,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
+                local_files_only=True if offline_test() else None
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex,
             )
@@ -226,6 +229,7 @@ def image_txt2img_sd(
                 weight_name=model_list_lora_txt2img_sd[lora_model_txt2img_sd][0],
                 use_safetensors=True,
                 adapter_name="adapter1",
+#                local_files_only=True if offline_test() else None
             )
         else:
             if is_xl_txt2img_sd:
@@ -239,7 +243,7 @@ def image_txt2img_sd(
                 use_safetensors=True,
                 adapter_name="adapter1",
                 resume_download=True,
-                local_files_only=True if offline_test() else None
+#                local_files_only=True if offline_test() else None
             )
         pipe_txt2img_sd.fuse_lora(lora_scale=lora_weight_txt2img_sd)
 #        pipe_txt2img_sd.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_txt2img_sd)])
@@ -255,6 +259,7 @@ def image_txt2img_sd(
                 weight_name=weight_txt2img_sd,
                 use_safetensors=True,
                 token=token_txt2img_sd,
+                local_files_only=True if offline_test() else None
             )
         else:
             if is_xl_txt2img_sd:
