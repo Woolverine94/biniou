@@ -3,6 +3,7 @@
 import gradio as gr
 import os
 from diffusers import StableDiffusionPipeline, StableDiffusionXLPipeline, AutoPipelineForText2Image
+from huggingface_hub import hf_hub_download
 from compel import Compel, ReturnedEmbeddingsType
 import torch
 import random
@@ -229,21 +230,27 @@ def image_txt2img_sd(
                 weight_name=model_list_lora_txt2img_sd[lora_model_txt2img_sd][0],
                 use_safetensors=True,
                 adapter_name="adapter1",
-#                local_files_only=True if offline_test() else None
+                local_files_only=True if offline_test() else None
             )
         else:
             if is_xl_txt2img_sd:
                 lora_model_path = model_path_lora_sdxl
             else: 
                 lora_model_path = model_path_lora_sd
-            pipe_txt2img_sd.load_lora_weights(
-                lora_model_txt2img_sd,
-                weight_name=model_list_lora_txt2img_sd[lora_model_txt2img_sd][0],
+
+            local_lora_txt2img_sd = hf_hub_download(
+                repo_id=lora_model_txt2img_sd,
+                filename=model_list_lora_txt2img_sd[lora_model_txt2img_sd][0],
                 cache_dir=lora_model_path,
+                resume_download=True,
+                local_files_only=True if offline_test() else False,
+            )
+
+            pipe_txt2img_sd.load_lora_weights(
+                local_lora_txt2img_sd,
+                weight_name=model_list_lora_txt2img_sd[lora_model_txt2img_sd][0],
                 use_safetensors=True,
                 adapter_name="adapter1",
-                resume_download=True,
-#                local_files_only=True if offline_test() else None
             )
         pipe_txt2img_sd.fuse_lora(lora_scale=lora_weight_txt2img_sd)
 #        pipe_txt2img_sd.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_txt2img_sd)])
