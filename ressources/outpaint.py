@@ -33,6 +33,8 @@ model_list_outpaint_builtin = [
     "Uminosachi/realisticVisionV30_v30VAE-inpainting",
     "diffusers/stable-diffusion-xl-1.0-inpainting-0.1",
     "runwayml/stable-diffusion-inpainting",
+    "Lykon/dreamshaper-8-inpainting",
+    "Sanster/anything-4.0-inpainting",
 ]
 
 for k in range(len(model_list_outpaint_builtin)):
@@ -137,6 +139,7 @@ def image_outpaint(
                 torch_dtype=model_arch,
                 use_safetensors=True,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
+                local_files_only=True if offline_test() else None
 #                safety_checker=nsfw_filter_final,
 #                feature_extractor=feat_ex
             )
@@ -158,6 +161,7 @@ def image_outpaint(
                 torch_dtype=model_arch,
                 use_safetensors=True,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
+                local_files_only=True if offline_test() else None
 #                safety_checker=nsfw_filter_final,
 #                feature_extractor=feat_ex
             )
