@@ -240,6 +240,7 @@ def image_img2img_ip(
                     torch_dtype=model_arch,
                     use_safetensors=True if not is_bin_img2img_ip else False,
                     load_safety_checker=False if (nsfw_filter_final == None) else True,
+                    local_files_only=True if offline_test() else None
 #                    safety_checker=nsfw_filter_final, 
 #                    feature_extractor=feat_ex,
                 )
@@ -261,6 +262,7 @@ def image_img2img_ip(
                     torch_dtype=model_arch,
                     use_safetensors=True if not is_bin_img2img_ip else False,
                     load_safety_checker=False if (nsfw_filter_final == None) else True,
+                    local_files_only=True if offline_test() else None
 #                    safety_checker=nsfw_filter_final, 
 #                    feature_extractor=feat_ex,
                 )
@@ -284,6 +286,7 @@ def image_img2img_ip(
                     torch_dtype=model_arch,
                     use_safetensors=True if not is_bin_img2img_ip else False,
                     load_safety_checker=False if (nsfw_filter_final == None) else True,
+                    local_files_only=True if offline_test() else None
 #                    safety_checker=nsfw_filter_final, 
 #                    feature_extractor=feat_ex,
                 )
@@ -305,6 +308,7 @@ def image_img2img_ip(
                     torch_dtype=model_arch,
                     use_safetensors=True if not is_bin_img2img_ip else False,
                     load_safety_checker=False if (nsfw_filter_final == None) else True,
+                    local_files_only=True if offline_test() else None
 #                    safety_checker=nsfw_filter_final, 
 #                    feature_extractor=feat_ex,
                 )
@@ -421,26 +425,33 @@ def image_img2img_ip(
 
     if lora_model_img2img_ip != "":
         model_list_lora_img2img_ip = lora_model_list(modelid_img2img_ip)
-        if modelid_img2img_ip[0:9] == "./models/":
+        if lora_model_img2img_ip[0:9] == "./models/":
             pipe_img2img_ip.load_lora_weights(
                 os.path.dirname(lora_model_img2img_ip),
                 weight_name=model_list_lora_img2img_ip[lora_model_img2img_ip][0],
                 use_safetensors=True,
                 adapter_name="adapter1",
+                local_files_only=True if offline_test() else None,
             )
         else:
             if is_xl_img2img_ip:
                 lora_model_path = "./models/lora/SDXL"
             else: 
                 lora_model_path = "./models/lora/SD"
-            pipe_img2img_ip.load_lora_weights(
-                lora_model_img2img_ip,
-                weight_name=model_list_lora_img2img_ip[lora_model_img2img_ip][0],
+
+            local_lora_img2img_ip = hf_hub_download(
+                repo_id=lora_model_img2img_ip,
+                filename=model_list_lora_img2img_ip[lora_model_img2img_ip][0],
                 cache_dir=lora_model_path,
+                resume_download=True,
+                local_files_only=True if offline_test() else None,
+            )
+
+            pipe_img2img_ip.load_lora_weights(
+                local_lora_img2img_ip,
+                weight_name=model_list_lora_img2img_ip[lora_model_img2img_ip][0],
                 use_safetensors=True,
                 adapter_name="adapter1",
-                resume_download=True,
-                local_files_only=True if offline_test() else None
             )
         pipe_img2img_ip.fuse_lora(lora_scale=lora_weight_img2img_ip)
 #        pipe_img2img_ip.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_img2img_ip)])
@@ -449,13 +460,14 @@ def image_img2img_ip(
         model_list_txtinv_img2img_ip = txtinv_list(modelid_img2img_ip)
         weight_img2img_ip = model_list_txtinv_img2img_ip[txtinv_img2img_ip][0]
         token_img2img_ip =  model_list_txtinv_img2img_ip[txtinv_img2img_ip][1]
-        if modelid_img2img_ip[0:9] == "./models/":
+        if txtinv_img2img_ip[0:9] == "./models/":
             model_path_txtinv = "./models/TextualInversion"
             pipe_img2img_ip.load_textual_inversion(
                 txtinv_img2img_ip,
                 weight_name=weight_img2img_ip,
                 use_safetensors=True,
                 token=token_img2img_ip,
+                local_files_only=True if offline_test() else None,
             )
         else:
             if is_xl_img2img_ip:
@@ -469,7 +481,7 @@ def image_img2img_ip(
                 use_safetensors=True,
                 token=token_img2img_ip,
                 resume_download=True,
-                local_files_only=True if offline_test() else None
+                local_files_only=True if offline_test() else None,
             )
 
     if seed_img2img_ip == 0:

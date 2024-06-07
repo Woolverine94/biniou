@@ -5,6 +5,7 @@ import os
 import cv2
 import torch
 from diffusers import StableDiffusionControlNetPipeline, StableDiffusionXLControlNetPipeline, ControlNetModel
+from huggingface_hub import hf_hub_download
 from compel import Compel, ReturnedEmbeddingsType
 import random
 from ressources.gfpgan import *
@@ -352,6 +353,7 @@ def image_controlnet(
                 torch_dtype=model_arch,
                 use_safetensors=True if not is_bin_controlnet else False,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
+                local_files_only=True if offline_test() else None
 #                safety_checker=nsfw_filter_final,
 #                feature_extractor=feat_ex
             )
@@ -375,6 +377,7 @@ def image_controlnet(
                 torch_dtype=model_arch,
                 use_safetensors=True if not is_bin_controlnet else False,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
+                local_files_only=True if offline_test() else None
 #                safety_checker=nsfw_filter_final,
 #                feature_extractor=feat_ex
             )
@@ -402,26 +405,33 @@ def image_controlnet(
 
     if lora_model_controlnet != "":
         model_list_lora_controlnet = lora_model_list(modelid_controlnet)
-        if modelid_controlnet[0:9] == "./models/":
+        if lora_model_controlnet[0:9] == "./models/":
             pipe_controlnet.load_lora_weights(
                 os.path.dirname(lora_model_controlnet),
                 weight_name=model_list_lora_controlnet[lora_model_controlnet][0],
                 use_safetensors=True,
                 adapter_name="adapter1",
+                local_files_only=True if offline_test() else None,
             )
         else:
             if is_xl_controlnet:
                 lora_model_path = "./models/lora/SDXL"
             else: 
                 lora_model_path = "./models/lora/SD"
-            pipe_controlnet.load_lora_weights(
-                lora_model_controlnet,
-                weight_name=model_list_lora_controlnet[lora_model_controlnet][0],
+
+            local_lora_controlnet = hf_hub_download(
+                repo_id=lora_model_controlnet,
+                filename=model_list_lora_controlnet[lora_model_controlnet][0],
                 cache_dir=lora_model_path,
+                resume_download=True,
+                local_files_only=True if offline_test() else None,
+            )
+
+            pipe_controlnet.load_lora_weights(
+                local_lora_controlnet,
+                weight_name=model_list_lora_controlnet[lora_model_controlnet][0],
                 use_safetensors=True,
                 adapter_name="adapter1",
-                resume_download=True,
-                local_files_only=True if offline_test() else None
             )
         pipe_controlnet.fuse_lora(lora_scale=lora_weight_controlnet)
 #        pipe_controlnet.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_controlnet)])
@@ -430,13 +440,14 @@ def image_controlnet(
         model_list_txtinv_controlnet = txtinv_list(modelid_controlnet)
         weight_controlnet = model_list_txtinv_controlnet[txtinv_controlnet][0]
         token_controlnet =  model_list_txtinv_controlnet[txtinv_controlnet][1]
-        if modelid_controlnet[0:9] == "./models/":
+        if txtinv_controlnet[0:9] == "./models/":
             model_path_txtinv = "./models/TextualInversion"
             pipe_controlnet.load_textual_inversion(
                 txtinv_controlnet,
                 weight_name=weight_controlnet,
                 use_safetensors=True,
                 token=token_controlnet,
+                local_files_only=True if offline_test() else None,
             )
         else:
             if is_xl_controlnet:
@@ -450,7 +461,7 @@ def image_controlnet(
                 use_safetensors=True,
                 token=token_controlnet,
                 resume_download=True,
-                local_files_only=True if offline_test() else None
+                local_files_only=True if offline_test() else None,
             )
 
     if seed_controlnet == 0:

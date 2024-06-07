@@ -224,13 +224,13 @@ def image_txt2img_sd(
 
     if lora_model_txt2img_sd != "":
         model_list_lora_txt2img_sd = lora_model_list(modelid_txt2img_sd)
-        if modelid_txt2img_sd[0:9] == "./models/":
+        if lora_model_txt2img_sd[0:9] == "./models/":
             pipe_txt2img_sd.load_lora_weights(
                 os.path.dirname(lora_model_txt2img_sd),
                 weight_name=model_list_lora_txt2img_sd[lora_model_txt2img_sd][0],
                 use_safetensors=True,
                 adapter_name="adapter1",
-                local_files_only=True if offline_test() else None
+                local_files_only=True if offline_test() else None,
             )
         else:
             if is_xl_txt2img_sd:
@@ -243,7 +243,7 @@ def image_txt2img_sd(
                 filename=model_list_lora_txt2img_sd[lora_model_txt2img_sd][0],
                 cache_dir=lora_model_path,
                 resume_download=True,
-                local_files_only=True if offline_test() else False,
+                local_files_only=True if offline_test() else None,
             )
 
             pipe_txt2img_sd.load_lora_weights(
@@ -259,14 +259,14 @@ def image_txt2img_sd(
         model_list_txtinv_txt2img_sd = txtinv_list(modelid_txt2img_sd)
         weight_txt2img_sd = model_list_txtinv_txt2img_sd[txtinv_txt2img_sd][0]
         token_txt2img_sd =  model_list_txtinv_txt2img_sd[txtinv_txt2img_sd][1]
-        if modelid_txt2img_sd[0:9] == "./models/":
+        if txtinv_txt2img_sd[0:9] == "./models/":
             model_path_txtinv = "./models/TextualInversion"
             pipe_txt2img_sd.load_textual_inversion(
                 txtinv_txt2img_sd,
                 weight_name=weight_txt2img_sd,
                 use_safetensors=True,
                 token=token_txt2img_sd,
-                local_files_only=True if offline_test() else None
+                local_files_only=True if offline_test() else None,
             )
         else:
             if is_xl_txt2img_sd:
@@ -280,7 +280,7 @@ def image_txt2img_sd(
                 use_safetensors=True,
                 token=token_txt2img_sd,
                 resume_download=True,
-                local_files_only=True if offline_test() else None
+                local_files_only=True if offline_test() else None,
             )
 
     if seed_txt2img_sd == 0:

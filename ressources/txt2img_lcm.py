@@ -3,6 +3,7 @@
 import gradio as gr
 import os
 from diffusers import UNet2DConditionModel, DiffusionPipeline, AutoPipelineForText2Image
+from huggingface_hub import hf_hub_download
 from compel import Compel, ReturnedEmbeddingsType
 import torch
 import random
@@ -164,6 +165,7 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
                 torch_dtype=model_arch, 
                 use_safetensors=True, 
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
+                local_files_only=True if offline_test() else None
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex,
             )
@@ -190,26 +192,33 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
 
     if lora_model_txt2img_lcm != "":
         model_list_lora_txt2img_lcm = lora_model_list(modelid_txt2img_lcm)
-        if modelid_txt2img_lcm[0:9] == "./models/":
+        if lora_model_txt2img_lcm[0:9] == "./models/":
             pipe_txt2img_lcm.load_lora_weights(
                 os.path.dirname(lora_model_txt2img_lcm),
                 weight_name=model_list_lora_txt2img_lcm[lora_model_txt2img_lcm][0],
                 use_safetensors=True,
                 adapter_name="adapter1",
+                local_files_only=True if offline_test() else None
             )
         else:
             if is_xl_txt2img_lcm:
                 lora_model_path = "./models/lora/SDXL"
             else: 
                 lora_model_path = "./models/lora/SD"
-            pipe_txt2img_lcm.load_lora_weights(
-                lora_model_txt2img_lcm,
-                weight_name=model_list_lora_txt2img_lcm[lora_model_txt2img_lcm][0],
+
+            local_lora_txt2img_lcm = hf_hub_download(
+                repo_id=lora_model_txt2img_lcm,
+                filename=model_list_lora_txt2img_lcm[lora_model_txt2img_lcm][0],
                 cache_dir=lora_model_path,
+                resume_download=True,
+                local_files_only=True if offline_test() else None,
+            )
+
+            pipe_txt2img_lcm.load_lora_weights(
+                local_lora_txt2img_lcm,
+                weight_name=model_list_lora_txt2img_lcm[lora_model_txt2img_lcm][0],
                 use_safetensors=True,
                 adapter_name="adapter1",
-                resume_download=True,
-                local_files_only=True if offline_test() else None
             )
         pipe_txt2img_lcm.fuse_lora(lora_scale=lora_weight_txt2img_lcm)
 #            pipe_txt2img_lcm.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_txt2img_lcm)])
@@ -218,13 +227,14 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
         model_list_txtinv_txt2img_lcm = txtinv_list(modelid_txt2img_lcm)
         weight_txt2img_lcm = model_list_txtinv_txt2img_lcm[txtinv_txt2img_lcm][0]
         token_txt2img_lcm =  model_list_txtinv_txt2img_lcm[txtinv_txt2img_lcm][1]
-        if modelid_txt2img_lcm[0:9] == "./models/":
+        if txtinv_txt2img_lcm[0:9] == "./models/":
             model_path_txtinv = "./models/TextualInversion"
             pipe_txt2img_lcm.load_textual_inversion(
                 txtinv_txt2img_lcm,
                 weight_name=weight_txt2img_lcm,
                 use_safetensors=True,
                 token=token_txt2img_lcm,
+                local_files_only=True if offline_test() else None,
             )
         else:
             if is_xl_txt2img_lcm:
@@ -238,7 +248,7 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
                 use_safetensors=True,
                 token=token_txt2img_lcm,
                 resume_download=True,
-                local_files_only=True if offline_test() else None
+                local_files_only=True if offline_test() else None,
             )
 
     if seed_txt2img_lcm == 0:
