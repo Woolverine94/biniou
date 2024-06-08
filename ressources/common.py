@@ -1730,6 +1730,24 @@ seed_img2shape.value = {seed_img2shape}"
         savefile.write(content)
     return
 
+
+def is_fast_lora(model):
+    if (\
+(model == "ByteDance/SDXL-Lightning") or \
+(model == "ByteDance/Hyper-SD") or \
+(model == "openskyml/lcm-lora-sdxl-turbo") or \
+("H1T/TCD-SD" in model.upper()) or \
+(model == "wangfuyun/PCM_Weights") or \
+(model == "tianweiy/DMD2") or \
+(model == "jasperai/flash-sdxl") or \
+(model == "jasperai/flash-sd") or \
+(model == "sd-community/sdxl-flash-lora")
+):
+        is_fast_lora_value = True
+    else:
+        is_fast_lora_value = False
+    return is_fast_lora_value
+
 def is_sdxl(model):
     if (\
 ("XL" in model.upper()) or \
@@ -1760,6 +1778,8 @@ def lora_model_list(model):
             "tianweiy/DMD2":("dmd2_sdxl_4step_lora.safetensors", ""),
             "h1t/TCD-SDXL-LoRA":("pytorch_lora_weights.safetensors", ""),
             "wangfuyun/PCM_Weights":("sdxl/pcm_sdxl_lcmlike_lora_converted.safetensors", ""),
+            "jasperai/flash-sdxl":("pytorch_lora_weights.safetensors", ""),
+            "sd-community/sdxl-flash-lora":("sdxl-flash-lora.safetensors", "sdxl-flash-lora:0.55"),
             "ehristoforu/dalle-3-xl-v2":("dalle-3-xl-lora-v2.safetensors", ""),
             "DoctorDiffusion/doctor-diffusion-s-claymation-style-lora":("DD-made-of-clay-XL-v2.safetensors", "made-of-clay"),
             "DoctorDiffusion/doctor-diffusion-s-toy-xl-style-lora":("DD-toy-v2.safetensors", "toy"),
@@ -1795,6 +1815,7 @@ def lora_model_list(model):
             "ByteDance/Hyper-SD":("Hyper-SD15-1step-lora.safetensors", ""),
             "h1t/TCD-SD15-LoRA":("pytorch_lora_weights.safetensors", ""),
             "wangfuyun/PCM_Weights":("sd15/pcm_sd15_lcmlike_lora_converted.safetensors", ""),
+            "jasperai/flash-sd":("pytorch_lora_weights.safetensors", ""),
             "Kvikontent/midjourney-v6":("mj6-10.safetensors", ""),
             "Norod78/SD15-IllusionDiffusionPattern-LoRA":("SD15-IllusionDiffusionPattern-LoRA.safetensors","IllusionDiffusionPattern"),
 
