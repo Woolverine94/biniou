@@ -17,7 +17,10 @@
 
 ## Updates
 
-  * 🆕 **2024-06-08** : 🔥 ***New inpaint and outpaint models*** 🔥 > Adding support for models [Lykon/dreamshaper-8-inpainting](https://hf.co/Lykon/dreamshaper-8-inpainting), [Sanster/anything-4.0-inpainting](https://hf.co/Sanster/anything-4.0-inpainting) and updating default model to [Uminosachi/realisticVisionV51_v51VAE-inpainting](https://hf.co/Uminosachi/realisticVisionV51_v51VAE-inpainting) in inpaint and outpaint modules.
+  * 🆕 **2024-06-08** : 🔥 ***New inpaint/outpaint models and LoRA models*** 🔥 >
+
+     - Adding support for models [Lykon/dreamshaper-8-inpainting](https://hf.co/Lykon/dreamshaper-8-inpainting), [Sanster/anything-4.0-inpainting](https://hf.co/Sanster/anything-4.0-inpainting) and updating default model to [Uminosachi/realisticVisionV51_v51VAE-inpainting](https://hf.co/Uminosachi/realisticVisionV51_v51VAE-inpainting) in inpaint and outpaint modules.
+    - Adding support for LoRA models [jasperai/flash-sd](https://hf.co/jasperai/flash-sd), [jasperai/flash-sdxl](https://hf.co/jasperai/flash-sdxl) and [sd-community/sdxl-flash-lora](https://hf.co/sd-community/sdxl-flash-lora). With respectively 2,4 and 6 steps, the use of these LoRA models will greatly accelerate your inferences at the cost of a small loss of quality (nearly imperceptible for the latter one).
 
   * 🆕 **2024-06-05** : 🔥 ***Support for LoRA model tianweiy/DMD2*** 🔥 > Adding support for LoRA model [tianweiy/DMD2](https://huggingface.co/tianweiy/DMD2) to modules supporting LoRA settings. This 4 steps LoRA model is a very nice alternative to SDXL-Lightning and lcm-lora-sdxl-turbo and produces beautiful outputs. Available only for SDXL models.
 
