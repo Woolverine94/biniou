@@ -28,7 +28,7 @@ for filename in os.listdir(model_path_inpaint):
         model_list_inpaint.append(f)
 
 model_list_inpaint_builtin = [
-    "Uminosachi/realisticVisionV30_v30VAE-inpainting",
+    "Uminosachi/realisticVisionV51_v51VAE-inpainting",
     "diffusers/stable-diffusion-xl-1.0-inpainting-0.1",
     "runwayml/stable-diffusion-inpainting",
     "Lykon/dreamshaper-8-inpainting",
