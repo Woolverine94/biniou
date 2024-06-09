@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-06-09** : 🔥 ***Update of model Fluently-XL-v4*** 🔥 > Replacing model Fluently-XL-v4 by its final version, [Fluently-XL-Final](https://hf.co/Fluently-XL-Final).
+
   * 🆕 **2024-06-08** : 🔥 ***New inpaint/outpaint models and LoRA models*** 🔥 >
 
      - Adding support for models [Lykon/dreamshaper-8-inpainting](https://hf.co/Lykon/dreamshaper-8-inpainting), [Sanster/anything-4.0-inpainting](https://hf.co/Sanster/anything-4.0-inpainting) and updating default model to [Uminosachi/realisticVisionV51_v51VAE-inpainting](https://hf.co/Uminosachi/realisticVisionV51_v51VAE-inpainting) in inpaint and outpaint modules.
