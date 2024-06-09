@@ -27,6 +27,7 @@ for filename in os.listdir(model_path_txt2img_sd):
         model_list_txt2img_sd.append(f)
 
 model_list_txt2img_sd_builtin = [
+#    "rubbrband/realisticVisionV60B1_v51VAE",
     "SG161222/Realistic_Vision_V3.0_VAE",
     "IDKiro/sdxs-512-dreamshaper",
     "IDKiro/sdxs-512-0.9",
@@ -36,7 +37,7 @@ model_list_txt2img_sd_builtin = [
     "RunDiffusion/Juggernaut-XL-Lightning",
     "fluently/Fluently-XL-v3-Lightning",
     "Corcelio/mobius",
-    "fluently/Fluently-XL-v4",
+    "fluently/Fluently-XL-Final",
     "recoilme/ColorfulXL-Lightning",
     "playgroundai/playground-v2-512px-base",
     "playgroundai/playground-v2-1024px-aesthetic",

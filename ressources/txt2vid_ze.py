@@ -25,7 +25,7 @@ model_list_txt2vid_ze = [
     "RunDiffusion/Juggernaut-XL-Lightning",
     "fluently/Fluently-XL-v3-Lightning",
     "Corcelio/mobius",
-    "fluently/Fluently-XL-v4",
+    "fluently/Fluently-XL-Final",
     "recoilme/ColorfulXL-Lightning",
     "playgroundai/playground-v2-512px-base",
     "playgroundai/playground-v2-1024px-aesthetic",
