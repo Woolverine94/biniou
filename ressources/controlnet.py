@@ -35,6 +35,7 @@ model_list_controlnet_builtin = [
     "fluently/Fluently-XL-v3-Lightning",
     "Corcelio/mobius",
     "fluently/Fluently-XL-Final",
+    "SPO-Diffusion-Models/SPO-SDXL_4k-p_10ep",
     "recoilme/ColorfulXL-Lightning",
     "playgroundai/playground-v2-512px-base",
     "playgroundai/playground-v2-1024px-aesthetic",
