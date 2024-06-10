@@ -3,6 +3,7 @@
 import gradio as gr
 import os
 from diffusers import PixArtAlphaPipeline, Transformer2DModel, LCMScheduler, PixArtSigmaPipeline
+from peft import PeftModel
 import torch
 import random
 from ressources.gfpgan import *
@@ -28,7 +29,8 @@ model_list_txt2img_paa_builtin = [
     "PixArt-alpha/PixArt-Sigma-XL-2-1024-MS",
     "PixArt-alpha/PixArt-LCM-XL-2-1024-MS",
     "Luo-Yihong/yoso_pixart512",
-    "Luo-Yihong/yoso_pixart1024", 
+    "Luo-Yihong/yoso_pixart1024",
+    "jasperai/flash-pixart",
 ]
 
 for k in range(len(model_list_txt2img_paa_builtin)):
@@ -119,6 +121,50 @@ def image_txt2img_paa(
             )
         pipe_txt2img_paa.scheduler = LCMScheduler.from_config(pipe_txt2img_paa.scheduler.config)
         pipe_txt2img_paa.scheduler.config.prediction_type = "v_prediction"
+
+    elif (modelid_txt2img_paa == "jasperai/flash-pixart"):
+        transformerid_txt2img_paa = modelid_txt2img_paa
+        modelid_txt2img_paa = "PixArt-alpha/PixArt-XL-2-1024-MS"
+
+        transformer_txt2img_paa = Transformer2DModel.from_pretrained(
+            modelid_txt2img_paa,
+            subfolder="transformer",
+            cache_dir=model_path_txt2img_paa,
+            torch_dtype=model_arch,
+            use_safetensors=True,
+            resume_download=True,
+            local_files_only=True if offline_test() else None
+        )
+
+        transformer_txt2img_paa = PeftModel.from_pretrained(
+            transformer_txt2img_paa,
+            transformerid_txt2img_paa,
+        )
+
+        if modelid_txt2img_paa[0:9] == "./models/" :
+            pipe_txt2img_paa = PixArtAlphaPipeline.from_single_file(
+                modelid_txt2img_paa,
+                transformer=transformer_txt2img_paa,
+                torch_dtype=model_arch,
+                use_safetensors=True,
+                load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                safety_checker=nsfw_filter_final,
+#                feature_extractor=feat_ex,
+            )
+        else:
+            pipe_txt2img_paa = PixArtAlphaPipeline.from_pretrained(
+                modelid_txt2img_paa,
+                transformer=transformer_txt2img_paa,
+                cache_dir=model_path_txt2img_paa,
+                torch_dtype=model_arch,
+                use_safetensors=True,
+                safety_checker=nsfw_filter_final,
+                feature_extractor=feat_ex,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+        pipe_txt2img_paa.scheduler = LCMScheduler.from_config(pipe_txt2img_paa.scheduler.config)
+        pipe_txt2img_paa.scheduler.config.timestep_spacing = "trailing"
 
     elif ("PIXART-SIGMA-XL-2" in modelid_txt2img_paa.upper()):
         if modelid_txt2img_paa[0:9] == "./models/" :
