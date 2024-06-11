@@ -181,8 +181,6 @@ def image_img2img(
                 cache_dir=model_path_img2img, 
                 torch_dtype=model_arch,
                 use_safetensors=True if not is_bin_img2img else False,
-                safety_checker=nsfw_filter_final, 
-                feature_extractor=feat_ex,
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
@@ -368,9 +366,11 @@ def image_img2img(
             ).images
 
         for j in range(len(image)):
+            if is_xl_img2img:
+                image[j] = safety_checker_sdxl(model_path_img2img, image[j], nsfw_filter)
             savename = name_image()
             if use_gfpgan_img2img == True :
-                image[j] = image_gfpgan_mini(image[j])             
+                image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
             final_image.append(savename)
 
@@ -379,7 +379,7 @@ def image_img2img(
         image_input.save(savename_mask)
         final_image.append(savename_mask)
 
-    print(f">>>[img2img 🖌️ ]: generated {num_prompt_img2img} batch(es) of {num_images_per_prompt_img2img}")        
+    print(f">>>[img2img 🖌️ ]: generated {num_prompt_img2img} batch(es) of {num_images_per_prompt_img2img}")
     reporting_img2img = f">>>[img2img 🖌️ ]: "+\
         f"Settings : Model={modelid_img2img} | "+\
         f"XL model={is_xl_img2img} | "+\
