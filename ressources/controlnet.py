@@ -365,8 +365,6 @@ def image_controlnet(
                 cache_dir=model_path_controlnet,
                 torch_dtype=model_arch,
                 use_safetensors=True if not is_bin_controlnet else False,
-                safety_checker=nsfw_filter_final,
-                feature_extractor=feat_ex,
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
@@ -568,6 +566,8 @@ def image_controlnet(
             ).images
 
         for j in range(len(image)):
+            if is_xl_controlnet:
+                image[j] = safety_checker_sdxl(model_path_controlnet, image[j], nsfw_filter)
             seed_id = random_seed + i*num_images_per_prompt_controlnet + j if (seed_controlnet == 0) else seed_controlnet + i*num_images_per_prompt_controlnet + j
             savename = name_seeded_image(seed_id)
             if use_gfpgan_controlnet == True :
