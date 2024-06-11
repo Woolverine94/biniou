@@ -17,6 +17,7 @@ import psutil
 import requests as rq
 from diffusers.pipelines.stable_diffusion import StableDiffusionSafetyChecker
 from transformers import AutoFeatureExtractor
+import numpy as np
 from ressources.scheduler import *
 import exiv2
 import ffmpeg
@@ -275,7 +276,6 @@ def safety_checker_sd(model_path, device, nsfw_filter):
         safecheck = StableDiffusionSafetyChecker.from_pretrained(
             safety_checker_model, 
             cache_dir=model_path, 
-#            torch_dtype=torch.float32
             torch_dtype=model_arch,
             resume_download=True,
             local_files_only=True if offline_test() else None
@@ -283,12 +283,43 @@ def safety_checker_sd(model_path, device, nsfw_filter):
         feat_ex = AutoFeatureExtractor.from_pretrained(
             safety_checker_model, 
             cache_dir=model_path, 
-#            torch_dtype=torch.float32
             torch_dtype=model_arch,
             resume_download=True,
-            local_files_only=True if offline_test() else None            
+            local_files_only=True if offline_test() else None
             )
     return safecheck, feat_ex
+
+def safety_checker_sdxl(model_path, image, nsfw_filter):
+    if nsfw_filter == "0":
+        return image
+    elif nsfw_filter == "1":
+        device, model_arch = detect_device()
+        safecheck = StableDiffusionSafetyChecker.from_pretrained(
+            safety_checker_model,
+            cache_dir=model_path,
+            torch_dtype=model_arch,
+            resume_download=True,
+            local_files_only=True if offline_test() else None
+        ).to(device)
+
+        feat_ex = AutoFeatureExtractor.from_pretrained(
+            "openai/clip-vit-base-patch32",
+            cache_dir=model_path,
+            torch_dtype=model_arch,
+            resume_download=True,
+            local_files_only=True if offline_test() else None
+            )
+
+        safety_checker_input = feat_ex(image, return_tensors="pt").to(device)
+        image_np = np.array(image)
+
+        _, is_nsfw = safecheck(
+            images=image_np,
+            clip_input=safety_checker_input.pixel_values.to(device),
+        )
+        if is_nsfw[0]:
+            image = Image.new("RGB", (image.width, image.height), (0, 0, 0))
+        return image
 
 def offline_test():
     try:

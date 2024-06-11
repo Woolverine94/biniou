@@ -169,23 +169,17 @@ def image_txt2img_sd(
         if modelid_txt2img_sd[0:9] == "./models/" :
             pipe_txt2img_sd = StableDiffusionXLPipeline.from_single_file(
                 modelid_txt2img_sd, 
-#                torch_dtype=torch.float32, 
                 torch_dtype=model_arch, 
                 use_safetensors=True if not is_bin_txt2img_sd else False,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
                 local_files_only=True if offline_test() else None
-#                safety_checker=nsfw_filter_final, 
-#                feature_extractor=feat_ex,
             )
         else :        
             pipe_txt2img_sd = StableDiffusionXLPipeline.from_pretrained(
                 modelid_txt2img_sd, 
                 cache_dir=model_path_txt2img_sd, 
-#                torch_dtype=torch.float32, 
                 torch_dtype=model_arch, 
                 use_safetensors=True if not is_bin_txt2img_sd else False,
-                safety_checker=nsfw_filter_final, 
-                feature_extractor=feat_ex,
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
@@ -193,7 +187,6 @@ def image_txt2img_sd(
         if modelid_txt2img_sd[0:9] == "./models/" :
             pipe_txt2img_sd = StableDiffusionPipeline.from_single_file(
                 modelid_txt2img_sd, 
-#                torch_dtype=torch.float32, 
                 torch_dtype=model_arch,                 
                 use_safetensors=True if not is_bin_txt2img_sd else False,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
@@ -354,6 +347,8 @@ def image_txt2img_sd(
             ).images
         
         for j in range(len(image)):
+            if is_xl_txt2img_sd:
+                image[j] = safety_checker_sdxl(model_path_txt2img_sd, image[j], nsfw_filter)
             seed_id = random_seed + i*num_images_per_prompt_txt2img_sd + j if (seed_txt2img_sd == 0) else seed_txt2img_sd + i*num_images_per_prompt_txt2img_sd + j
             savename = name_seeded_image(seed_id)
             if use_gfpgan_txt2img_sd == True :
