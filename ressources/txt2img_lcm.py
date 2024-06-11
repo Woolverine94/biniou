@@ -104,11 +104,10 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
         unet_txt2img_lcm = UNet2DConditionModel.from_pretrained(
             modelid_txt2img_lcm, 
             cache_dir=model_path_txt2img_lcm, 
-#            torch_dtype=torch.float32, 
             torch_dtype=model_arch, 
             use_safetensors=True, 
-            safety_checker=nsfw_filter_final, 
-            feature_extractor=feat_ex,
+            safety_checker=None,
+            feature_extractor=None,
             resume_download=True,
             local_files_only=True if offline_test() else None
             )
@@ -116,11 +115,10 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
             modelid_SD_txt2img_lcm, 
             unet=unet_txt2img_lcm,
             cache_dir=model_path_SD_txt2img_lcm, 
-#            torch_dtype=torch.float32, 
             torch_dtype=model_arch, 
             use_safetensors=True, 
-            safety_checker=nsfw_filter_final, 
-            feature_extractor=feat_ex,
+            safety_checker=None,
+            feature_extractor=None,
             resume_download=True,
             local_files_only=True if offline_test() else None
         )
@@ -141,8 +139,8 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
 #            torch_dtype=torch.float32,
             torch_dtype=model_arch,
             use_safetensors=True,
-            safety_checker=nsfw_filter_final,
-            feature_extractor=feat_ex,
+            safety_checker=None,
+            feature_extractor=None,
             resume_download=True,
             local_files_only=True if offline_test() else None
         )
@@ -161,22 +159,20 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
         if modelid_txt2img_lcm[0:9] == "./models/" :
             pipe_txt2img_lcm = DiffusionPipeline.from_single_file(
                 modelid_txt2img_lcm, 
-#                torch_dtype=torch.float32, 
                 torch_dtype=model_arch, 
                 use_safetensors=True, 
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
-                local_files_only=True if offline_test() else None
-#                safety_checker=nsfw_filter_final, 
-#                feature_extractor=feat_ex,
+                local_files_only=True if offline_test() else None,
+#                safety_checker=None, 
+#                feature_extractor=None,
             )
         else:
             pipe_txt2img_lcm = DiffusionPipeline.from_pretrained(
                 modelid_txt2img_lcm, 
                 cache_dir=model_path_txt2img_lcm, 
-#                torch_dtype=torch.float32, 
                 torch_dtype=model_arch, 
                 use_safetensors=True, 
-                safety_checker=nsfw_filter_final, 
+                safety_checker=nsfw_filter_final,
                 feature_extractor=feat_ex,
                 resume_download=True,
                 local_files_only=True if offline_test() else None
@@ -310,6 +306,8 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
             ).images			
 
         for j in range(len(image)):
+            if is_xl_txt2img_lcm or (modelid_txt2img_lcm == "latent-consistency/lcm-lora-sdv1-5"):
+                image[j] = safety_checker_sdxl(model_path_txt2img_lcm_safetychecker, image[j], nsfw_filter)
             seed_id = random_seed + i*num_images_per_prompt_txt2img_lcm + j if (seed_txt2img_lcm == 0) else seed_txt2img_lcm + i*num_images_per_prompt_txt2img_lcm + j
             savename = name_seeded_image(seed_id)
             if use_gfpgan_txt2img_lcm == True :
