@@ -133,8 +133,6 @@ def image_img2img_ip(
     else :
         is_bin_img2img_ip: bool = False
 
-    print(num_inference_step_img2img_ip)
-
     if (num_inference_step_img2img_ip >= 10) and use_ays_img2img_ip:
         if is_sdxl(modelid_img2img_ip):
             sampling_schedule_img2img_ip = AysSchedules["StableDiffusionXLTimesteps"]
@@ -145,8 +143,6 @@ def image_img2img_ip(
         num_inference_step_img2img_ip = 10
     else:
         sampling_schedule_img2img_ip = None
-
-    print(num_inference_step_img2img_ip)
 
     if which_os() == "win32" or source_type_img2img_ip == "composition":
         if (is_xl_img2img_ip == True):
@@ -251,8 +247,6 @@ def image_img2img_ip(
                     cache_dir=model_path_img2img_ip,
                     torch_dtype=model_arch,
                     use_safetensors=True if not is_bin_img2img_ip else False,
-                    safety_checker=nsfw_filter_final,
-                    feature_extractor=feat_ex,
                     resume_download=True,
                     local_files_only=True if offline_test() else None
                 )
@@ -274,8 +268,6 @@ def image_img2img_ip(
                     torch_dtype=model_arch,
                     use_safetensors=True if not is_bin_img2img_ip else False,
                     image_encoder=image_encoder,
-                    safety_checker=nsfw_filter_final,
-                    feature_extractor=feat_ex,
                     resume_download=True,
                     local_files_only=True if offline_test() else None
                 )
@@ -641,9 +633,11 @@ def image_img2img_ip(
                 ).images        
 
         for j in range(len(image)):
+            if is_xl_img2img_ip:
+                image[j] = safety_checker_sdxl(model_path_img2img_ip, image[j], nsfw_filter)
             savename = name_image()
             if use_gfpgan_img2img_ip == True :
-                image[j] = image_gfpgan_mini(image[j])             
+                image[j] = image_gfpgan_mini(image[j])
             image[j].save(savename)
             final_image.append(savename)
 
