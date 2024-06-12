@@ -19,9 +19,9 @@ device_outpaint = torch.device(device_label_outpaint)
 
 # Gestion des modèles
 model_path_outpaint = "./models/inpaint/"
-model_path_safety_checker = "./models/Stable_Diffusion/"
+model_path_outpaint_safety_checker = "./models/Stable_Diffusion/"
 os.makedirs(model_path_outpaint, exist_ok=True)
-os.makedirs(model_path_safety_checker, exist_ok=True)
+os.makedirs(model_path_outpaint_safety_checker, exist_ok=True)
 model_list_outpaint = []
 
 for filename in os.listdir(model_path_outpaint):
@@ -111,7 +111,7 @@ def image_outpaint(
 
     print(">>>[outpaint 🖌️ ]: starting module") 
 
-    nsfw_filter_final, feat_ex = safety_checker_sd(model_path_safety_checker, device_outpaint, nsfw_filter)
+    nsfw_filter_final, feat_ex = safety_checker_sd(model_path_outpaint_safety_checker, device_outpaint, nsfw_filter)
 
     if clipskip_outpaint == 0:
        clipskip_outpaint = None
@@ -149,8 +149,6 @@ def image_outpaint(
                 cache_dir=model_path_outpaint, 
                 torch_dtype=model_arch,
                 use_safetensors=True, 
-                safety_checker=nsfw_filter_final, 
-                feature_extractor=feat_ex,
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
@@ -280,6 +278,8 @@ def image_outpaint(
             ).images
 
         for j in range(len(image)):
+            if is_xl_outpaint:
+                image[j] = safety_checker_sdxl(model_path_outpaint_safety_checker, image[j], nsfw_filter)
             seed_id = random_seed + i*num_images_per_prompt_outpaint + j if (seed_outpaint == 0) else seed_outpaint + i*num_images_per_prompt_outpaint + j
             savename = name_seeded_image(seed_id)
             if use_gfpgan_outpaint == True :
