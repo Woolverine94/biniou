@@ -1787,6 +1787,7 @@ def is_sdxl(model):
 ("PLAYGROUNDAI/PLAYGROUND-V2" in model.upper()) or \
 ("SSD-1B" in model.upper()) or \
 ("SEGMIND-VEGA" in model.upper()) or \
+(model == "ehristoforu/Visionix-alpha") or \
 (model == "Corcelio/mobius") or \
 (model == "cutycat2000x/InterDiffusion-4.0") or \
 (model == "RunDiffusion/Juggernaut-X-Hyper") or \

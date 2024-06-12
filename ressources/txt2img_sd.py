@@ -32,6 +32,7 @@ model_list_txt2img_sd_builtin = [
     "IDKiro/sdxs-512-dreamshaper",
     "IDKiro/sdxs-512-0.9",
     "sd-community/sdxl-flash",
+    "ehristoforu/Visionix-alpha",
     "RunDiffusion/Juggernaut-X-Hyper",
     "cutycat2000x/InterDiffusion-4.0",
     "RunDiffusion/Juggernaut-XL-Lightning",
