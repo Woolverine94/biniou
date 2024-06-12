@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-06-13** : 🔥 ***Support for Visionix-alpha*** 🔥 > Adding support for model [ehristoforu/Visionix-alpha](https://hf.co/ehristoforu/Visionix-alpha) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero. 
+
   * 🆕 **2024-06-10** : 🔥 ***Support for SPO-SDXL_4k-p_10ep*** 🔥 > Adding support for model [SPO-Diffusion-Models/SPO-SDXL_4k-p_10ep](https://hf.co/SPO-Diffusion-Models/SPO-SDXL_4k-p_10ep) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero.
 
   * 🆕 **2024-06-09** : 🔥 ***Update of model Fluently-XL-v4*** 🔥 > Replacing model Fluently-XL-v4 by its final version, [Fluently-XL-Final](https://hf.co/Fluently-XL-Final).
@@ -27,8 +29,6 @@
     - Adding support for LoRA models [jasperai/flash-sd](https://hf.co/jasperai/flash-sd), [jasperai/flash-sdxl](https://hf.co/jasperai/flash-sdxl) and [sd-community/sdxl-flash-lora](https://hf.co/sd-community/sdxl-flash-lora). With respectively 2,4 and 6 steps, the use of these LoRA models will greatly accelerate your inferences at the cost of a small loss of quality (nearly imperceptible for the latter one).
 
   * 🆕 **2024-06-05** : 🔥 ***Support for LoRA model tianweiy/DMD2*** 🔥 > Adding support for LoRA model [tianweiy/DMD2](https://huggingface.co/tianweiy/DMD2) to modules supporting LoRA settings. This 4 steps LoRA model is a very nice alternative to SDXL-Lightning and lcm-lora-sdxl-turbo and produces beautiful outputs. Available only for SDXL models.
-
-  * 🆕 **2024-06-04** : 🔥 ***Support for LoRA model wangfuyun/PCM_Weights*** 🔥 > Adding support for LoRA model [wangfuyun/PCM_Weights](https://huggingface.co/wangfuyun/PCM_Weights) to modules supporting LoRA settings. Using this LoRA model will reduce by 80% inference times on SD 1.5 or SDXL models, by requiring only 2 steps to generate contents.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
