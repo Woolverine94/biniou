@@ -18,6 +18,7 @@ from diffusers import (
     EDMDPMSolverMultistepScheduler,
     EDMEulerScheduler,
     TCDScheduler,
+    FlowMatchEulerDiscreteScheduler,
 )
 
 SCHEDULER_MAPPING = {
@@ -45,6 +46,7 @@ SCHEDULER_MAPPING = {
     "EDM DPM++ 2M": EDMDPMSolverMultistepScheduler,
     "EDM Euler": EDMEulerScheduler,
     "TCD": TCDScheduler,
+    "Flow Match Euler": FlowMatchEulerDiscreteScheduler,
 }
 
 SCHEDULER_MAPPING_MUSICLDM = {

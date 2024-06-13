@@ -1800,6 +1800,16 @@ def is_sdxl(model):
         is_sdxl_value = False
     return is_sdxl_value
 
+def is_sd3(model):
+    if (\
+(model == "v2ray/stable-diffusion-3-medium-diffusers")\
+):
+        is_sd3_value = True
+    else:
+        is_sd3_value = False
+    return is_sd3_value
+
+
 def lora_model_list(model):
     if is_sdxl(model):
         model_path_lora = "./models/lora/SDXL"

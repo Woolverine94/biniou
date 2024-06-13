@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-06-14** : 🔥🔥🔥 ***Support for Stable Diffusion 3 !!!*** 🔥🔥🔥 > Adding preliminary support for model [v2ray/stable-diffusion-3-medium-diffusers](https://hf.co/v2ray/stable-diffusion-3-medium-diffusers) to module Stable Diffusion. 
+
   * 🆕 **2024-06-13** : 🔥 ***Support for Visionix-alpha*** 🔥 > Adding support for model [ehristoforu/Visionix-alpha](https://hf.co/ehristoforu/Visionix-alpha) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero. 
 
   * 🆕 **2024-06-10** : 🔥 ***Support for SPO-SDXL_4k-p_10ep*** 🔥 > Adding support for model [SPO-Diffusion-Models/SPO-SDXL_4k-p_10ep](https://hf.co/SPO-Diffusion-Models/SPO-SDXL_4k-p_10ep) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero.
