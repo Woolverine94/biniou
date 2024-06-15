@@ -1823,6 +1823,7 @@ def lora_model_list(model):
             "jasperai/flash-sdxl":("pytorch_lora_weights.safetensors", ""),
             "sd-community/sdxl-flash-lora":("sdxl-flash-lora.safetensors", "sdxl-flash-lora:0.55"),
             "ehristoforu/dalle-3-xl-v2":("dalle-3-xl-lora-v2.safetensors", ""),
+            "alvdansen/BandW-Manga":("BW-000014.safetensors", ""),
             "DoctorDiffusion/doctor-diffusion-s-claymation-style-lora":("DD-made-of-clay-XL-v2.safetensors", "made-of-clay"),
             "DoctorDiffusion/doctor-diffusion-s-toy-xl-style-lora":("DD-toy-v2.safetensors", "toy"),
             "ostris/face-helper-sdxl-lora":("face_xl_v0_1.safetensors", ""),
