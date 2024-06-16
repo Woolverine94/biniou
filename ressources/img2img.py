@@ -4,7 +4,7 @@ import gradio as gr
 import os
 import PIL
 import torch
-from diffusers import StableDiffusionImg2ImgPipeline, StableDiffusionXLImg2ImgPipeline, AutoPipelineForImage2Image
+from diffusers import StableDiffusionImg2ImgPipeline, StableDiffusionXLImg2ImgPipeline, AutoPipelineForImage2Image, StableDiffusion3Img2ImgPipeline
 from huggingface_hub import hf_hub_download
 from compel import Compel, ReturnedEmbeddingsType
 import random
@@ -33,6 +33,7 @@ model_list_img2img_builtin = [
     "IDKiro/sdxs-512-0.9",
     "sd-community/sdxl-flash",
     "ehristoforu/Visionix-alpha",
+    "v2ray/stable-diffusion-3-medium-diffusers",
     "RunDiffusion/Juggernaut-X-Hyper",
     "cutycat2000x/InterDiffusion-4.0",
     "RunDiffusion/Juggernaut-XL-Lightning",
@@ -124,8 +125,13 @@ def image_img2img(
 
     if is_sdxl(modelid_img2img):
         is_xl_img2img: bool = True
-    else :        
-        is_xl_img2img: bool = False        
+    else :
+        is_xl_img2img: bool = False
+
+    if is_sd3(modelid_img2img):
+        is_sd3_img2img: bool = True
+    else :
+        is_sd3_img2img: bool = False
 
     if ("dataautogpt3/ProteusV0.4" in modelid_img2img) or (modelid_img2img == "RunDiffusion/Juggernaut-XL-Lightning") or (modelid_img2img == "RunDiffusion/Juggernaut-X-Hyper"):
         is_bin_img2img: bool = True
@@ -136,6 +142,8 @@ def image_img2img(
         if is_sdxl(modelid_img2img):
             sampling_schedule_img2img = AysSchedules["StableDiffusionXLTimesteps"]
             sampler_img2img = "DPM++ SDE"
+        elif is_sd3(modelid_img2img):
+            pass
         else:
             sampling_schedule_img2img = AysSchedules["StableDiffusionTimesteps"]
             sampler_img2img = "Euler"
@@ -185,6 +193,28 @@ def image_img2img(
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
+
+    elif (is_sd3_img2img == True):
+        if modelid_img2img[0:9] == "./models/" :
+            pipe_img2img = StableDiffusion3Img2ImgPipeline.from_single_file(
+                modelid_img2img,
+                torch_dtype=model_arch,
+                use_safetensors=True if not is_bin_img2img else False,
+                load_safety_checker=False if (nsfw_filter_final == None) else True,
+                local_files_only=True if offline_test() else None
+#                safety_checker=nsfw_filter_final,
+#                feature_extractor=feat_ex,
+            )
+        else :
+            pipe_img2img = StableDiffusion3Img2ImgPipeline.from_pretrained(
+                modelid_img2img,
+                cache_dir=model_path_img2img,
+                torch_dtype=model_arch,
+                use_safetensors=True if not is_bin_img2img else False,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+
     else :
         if modelid_img2img[0:9] == "./models/" :
             pipe_img2img = StableDiffusionImg2ImgPipeline.from_single_file(
@@ -210,7 +240,8 @@ def image_img2img(
 
     pipe_img2img = schedulerer(pipe_img2img, sampler_img2img)
     pipe_img2img.enable_attention_slicing("max")
-    tomesd.apply_patch(pipe_img2img, ratio=tkme_img2img)
+    if not is_sd3_img2img:
+        tomesd.apply_patch(pipe_img2img, ratio=tkme_img2img)
     if device_label_img2img == "cuda" :
         pipe_img2img.enable_sequential_cpu_offload()
     else : 
@@ -228,9 +259,11 @@ def image_img2img(
             )
         else:
             if is_xl_img2img:
-                lora_model_path = "./models/lora/SDXL"
+                lora_model_path = model_path_lora_sdxl
+            elif is_sd3_img2img:
+                lora_model_path = model_path_lora_sd3
             else: 
-                lora_model_path = "./models/lora/SD"
+                lora_model_path = model_path_lora_sd
 
             local_lora_img2img = hf_hub_download(
                 repo_id=lora_model_img2img,
@@ -285,7 +318,7 @@ def image_img2img(
 
     if source_type_img2img == "sketch" :
         dim_size=[512, 512]
-    elif (is_xl_img2img == True) and not (is_turbo_img2img == True) :
+    elif ((is_xl_img2img == True) or (is_sd3_img2img == True)) and not (is_turbo_img2img == True) :
         dim_size = correct_size(width_img2img, height_img2img, 1024)
     else :
         dim_size = correct_size(width_img2img, height_img2img, 512)
@@ -311,6 +344,8 @@ def image_img2img(
         conditioning, pooled = compel(prompt_img2img)
         neg_conditioning, neg_pooled = compel(negative_prompt_img2img)
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
+    elif (is_sd3_img2img == True):
+        pass
     else :
         compel = Compel(tokenizer=pipe_img2img.tokenizer, text_encoder=pipe_img2img.text_encoder, truncate_long_prompts=False, device=device_img2img)
         conditioning = compel.build_conditioning_tensor(prompt_img2img)
@@ -349,7 +384,25 @@ def image_img2img(
                 generator = generator,
                 callback_on_step_end=check_img2img, 
                 callback_on_step_end_tensor_inputs=['latents'], 
-            ).images            
+            ).images
+        elif (is_sd3_img2img == True):
+            image = pipe_img2img(
+                image=image_input,
+                prompt=prompt_img2img,
+                negative_prompt=negative_prompt_img2img,
+#                prompt_embeds=conditioning,
+#                pooled_prompt_embeds=pooled,
+#                negative_prompt_embeds=neg_conditioning,
+#                negative_pooled_prompt_embeds=neg_pooled,
+                num_images_per_prompt=num_images_per_prompt_img2img,
+                guidance_scale=guidance_scale_img2img,
+                strength=denoising_strength_img2img,
+                num_inference_steps=num_inference_step_img2img,
+                timesteps=sampling_schedule_img2img,
+                generator = generator,
+                callback_on_step_end=check_img2img,
+                callback_on_step_end_tensor_inputs=['latents'],
+            ).images
         else : 
             image = pipe_img2img(
                 image=image_input,
@@ -367,7 +420,7 @@ def image_img2img(
             ).images
 
         for j in range(len(image)):
-            if is_xl_img2img:
+            if is_xl_img2img or is_sd3_img2img:
                 image[j] = safety_checker_sdxl(model_path_img2img, image[j], nsfw_filter)
             savename = name_image()
             if use_gfpgan_img2img == True :
@@ -403,7 +456,10 @@ def image_img2img(
 
     exif_writer_png(reporting_img2img, final_image)
 
-    del nsfw_filter_final, feat_ex, pipe_img2img, generator, image_input, compel, conditioning, neg_conditioning, image
+    if is_sd3_img2img:
+        del nsfw_filter_final, feat_ex, pipe_img2img, generator, image_input, image
+    else:
+        del nsfw_filter_final, feat_ex, pipe_img2img, generator, image_input, compel, conditioning, neg_conditioning, image
     clean_ram()
 
     print(f">>>[img2img 🖌️ ]: leaving module")   
