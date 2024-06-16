@@ -278,7 +278,8 @@ def image_txt2img_sd(
                 use_safetensors=True,
                 adapter_name="adapter1",
             )
-        pipe_txt2img_sd.fuse_lora(lora_scale=lora_weight_txt2img_sd)
+        if not is_sd3_txt2img_sd:
+            pipe_txt2img_sd.fuse_lora(lora_scale=lora_weight_txt2img_sd)
 #        pipe_txt2img_sd.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_txt2img_sd)])
 
     if txtinv_txt2img_sd != "":

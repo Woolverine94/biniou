@@ -1857,6 +1857,7 @@ def lora_model_list(model):
         model_path_lora = model_path_lora_sd3
         model_list_lora_builtin = {
             "adbrasi/jujutsuKaisen-style-sd3":("pytorch_lora_weights.safetensors", "anime in jks style"),
+            "darknoon/symbols-sd3-lora":("pytorch_lora_weights.safetensors", "in the style of SF"),
     }
     else :        
         model_path_lora = model_path_lora_sd
