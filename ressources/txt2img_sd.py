@@ -259,6 +259,8 @@ def image_txt2img_sd(
         else:
             if is_xl_txt2img_sd:
                 lora_model_path = model_path_lora_sdxl
+            elif is_sd3_txt2img_sd:
+                lora_model_path = model_path_lora_sd3
             else: 
                 lora_model_path = model_path_lora_sd
 

@@ -27,10 +27,12 @@ device_torch = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 model_path_lora_sd = "./models/lora/SD"
 model_path_lora_sdxl = "./models/lora/SDXL"
+model_path_lora_sd3 = "./models/lora/SD3"
 model_path_txtinv_sd = "./models/TextualInversion/SD"
 model_path_txtinv_sdxl = "./models/TextualInversion/SDXL"
 os.makedirs(model_path_lora_sd, exist_ok=True)
 os.makedirs(model_path_lora_sdxl, exist_ok=True)
+os.makedirs(model_path_lora_sd3, exist_ok=True)
 os.makedirs(model_path_txtinv_sd, exist_ok=True)
 os.makedirs(model_path_txtinv_sdxl, exist_ok=True)
 
@@ -1809,10 +1811,9 @@ def is_sd3(model):
         is_sd3_value = False
     return is_sd3_value
 
-
 def lora_model_list(model):
     if is_sdxl(model):
-        model_path_lora = "./models/lora/SDXL"
+        model_path_lora = model_path_lora_sdxl
         model_list_lora_builtin = {
             "ByteDance/SDXL-Lightning":("sdxl_lightning_4step_lora.safetensors", ""),
             "ByteDance/Hyper-SD":("Hyper-SDXL-1step-lora.safetensors", ""),
@@ -1852,8 +1853,13 @@ def lora_model_list(model):
             "Norod78/SDXL-Caricaturized-Lora":("SDXL-Caricaturized-Lora.safetensors", "Caricaturized"),
             "Norod78/SDXL-StickerSheet-Lora":("SDXL-StickerSheet-Lora.safetensors", "StickerSheet"),
     }
+    elif is_sd3(model):
+        model_path_lora = model_path_lora_sd3
+        model_list_lora_builtin = {
+            "adbrasi/jujutsuKaisen-style-sd3":("pytorch_lora_weights.safetensors", "anime in jks style"),
+    }
     else :        
-        model_path_lora = "./models/lora/SD"
+        model_path_lora = model_path_lora_sd
         model_list_lora_builtin = {
             "ByteDance/Hyper-SD":("Hyper-SD15-1step-lora.safetensors", ""),
             "h1t/TCD-SD15-LoRA":("pytorch_lora_weights.safetensors", ""),
