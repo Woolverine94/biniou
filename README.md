@@ -17,7 +17,7 @@
 
 ## Updates
 
-  * 🆕 **2024-06-16** : 🔥 ***Adding SD3 support for LoRA and img2img*** 🔥 > Adding support for model [v2ray/stable-diffusion-3-medium-diffusers](https://hf.co/v2ray/stable-diffusion-3-medium-diffusers) to module img2img. Also adding experimental support for LoRA models with Stable Diffusion 3.
+  * 🆕 **2024-06-16** : 🔥 ***Support for SD3 to img2img and LoRA*** 🔥 > Adding support for model [v2ray/stable-diffusion-3-medium-diffusers](https://hf.co/v2ray/stable-diffusion-3-medium-diffusers) to module img2img. Also adding experimental support for LoRA models with Stable Diffusion 3 in module Stable Diffusion.
 
   * 🆕 **2024-06-14** : 🔥🔥🔥 ***Support for Stable Diffusion 3 !!!*** 🔥🔥🔥 > Adding preliminary support for model [v2ray/stable-diffusion-3-medium-diffusers](https://hf.co/v2ray/stable-diffusion-3-medium-diffusers) to module Stable Diffusion. 
 
