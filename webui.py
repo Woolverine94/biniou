@@ -1509,9 +1509,10 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>{biniou_lang_about_outputs}</b>{biniou_lang_about_output_text}</br>
                                 <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/NousResearch/Meta-Llama-3-8B-Instruct-GGUF' target='_blank'>NousResearch/Meta-Llama-3-8B-Instruct-GGUF</a>, 
+                                <a href='https://huggingface.co/Orenguteng/Llama-3-8B-Lexi-Uncensored-GGUF' target='_blank'>Orenguteng/Llama-3-8B-Lexi-Uncensored-GGUF</a>, 
                                 <a href='https://huggingface.co/NousResearch/Hermes-2-Theta-Llama-3-8B-GGUF' target='_blank'>NousResearch/Hermes-2-Theta-Llama-3-8B-GGUF</a>, 
                                 <a href='https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf' target='_blank'>microsoft/Phi-3-mini-4k-instruct-gguf</a>, 
-                                <a href='https://huggingface.co/TheBloke/openchat-3.5-0106-GGUF' target='_blank'>TheBloke/openchat-3.5-0106-GGUF</a>, 
+                                <a href='https://huggingface.co/bartowski/openchat-3.6-8b-20240522-GGUF' target='_blank'>bartowski/openchat-3.6-8b-20240522-GGUF</a>, 
                                 <a href='https://huggingface.co/LoneStriker/Starling-LM-7B-beta-GGUF' target='_blank'>LoneStriker/Starling-LM-7B-beta-GGUF</a>, 
                                 <a href='https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B-GGUF' target='_blank'>NousResearch/Hermes-2-Pro-Mistral-7B-GGUF</a>, 
                                 <a href='https://huggingface.co/Lewdiculous/Kunoichi-DPO-v2-7B-GGUF-Imatrix' target='_blank'>Lewdiculous/Kunoichi-DPO-v2-7B-GGUF-Imatrix</a>, 
