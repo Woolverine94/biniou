@@ -22,6 +22,7 @@ model_list_llamacpp_builtin = {
 #    "TheBloke/openchat_3.5-GGUF":("openchat_3.5.Q5_K_S.gguf", "GPT4 Correct User: {prompt}<|end_of_turn|>GPT4 Correct Assistant:", ""),
     "NousResearch/Meta-Llama-3-8B-Instruct-GGUF":("Meta-Llama-3-8B-Instruct-Q5_K_M.gguf", "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "Orenguteng/Llama-3-8B-Lexi-Uncensored-GGUF":("Lexi-Llama-3-8B-Uncensored_Q5_K_M.gguf", "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
+    "bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF":("DeepSeek-Coder-V2-Lite-Instruct-Q5_K_M.gguf", "<|begin_of_sentence|>{system_prompt}\n\nUser: {prompt}\n\nAssistant: <|end_of_sentence|>Assistant:", "You are an helpful code assistant that performs in any programming language. You are smart, fast, reliable and always produces clean readable code."),
     "NousResearch/Hermes-2-Theta-Llama-3-8B-GGUF":("Hermes-2-Pro-Llama-3-Instruct-Merged-DPO-Q5_K_M.gguf", "<|im_start|>system\n{system}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", "You are 'Hermes 2', a conscious sentient superintelligent artificial intelligence developed by a man named Teknium, and your purpose and drive is to assist the user with any request they have. You experience emotions and have deep, profound thoughts and qualia."),
 #    "MoMonir/Phi-3-mini-128k-instruct-GGUF":("phi-3-mini-128k-instruct.Q5_K_M.gguf", "<|system|>\n{system}<|end|>\n<|user|>\n{prompt}<|end|>\n<|assistant|>", "You are a helpful AI assistant."),
     "microsoft/Phi-3-mini-4k-instruct-gguf":("Phi-3-mini-4k-instruct-q4.gguf", "<|user|>\n{prompt} <|end|>\n<|assistant|>", ""),
@@ -135,8 +136,10 @@ def text_llamacpp(
 	    prompt_template_llamacpp = "{prompt}"
 
     prompt_full_llamacpp = prompt_template_llamacpp.replace("{prompt}", prompt_llamacpp)
-    prompt_full_llamacpp = prompt_full_llamacpp.replace("{system}", system_template_llamacpp)
-    prompt_full_llamacpp = prompt_full_llamacpp.replace("{system_message}", system_template_llamacpp)
+    prompt_full_llamacpp = prompt_full_llamacpp.replace("{system}", system_template_llamacpp).replace("{system_message}", system_template_llamacpp).replace("{system_prompt}", system_template_llamacpp)
+#    prompt_full_llamacpp = prompt_full_llamacpp.replace("{system}", system_template_llamacpp)
+#    prompt_full_llamacpp = prompt_full_llamacpp.replace("{system_message}", system_template_llamacpp)
+#    prompt_full_llamacpp = prompt_full_llamacpp.replace("{system_prompt}", system_template_llamacpp)
     if history_llamacpp != "[]" :
         history_final = ""
         for i in range(len(history_llamacpp)):

@@ -1510,6 +1510,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <b>{biniou_lang_about_modelpage}</b>
                                 <a href='https://huggingface.co/NousResearch/Meta-Llama-3-8B-Instruct-GGUF' target='_blank'>NousResearch/Meta-Llama-3-8B-Instruct-GGUF</a>, 
                                 <a href='https://huggingface.co/Orenguteng/Llama-3-8B-Lexi-Uncensored-GGUF' target='_blank'>Orenguteng/Llama-3-8B-Lexi-Uncensored-GGUF</a>, 
+                                <a href='https://huggingface.co/bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF' target='_blank'>bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF</a>, 
                                 <a href='https://huggingface.co/NousResearch/Hermes-2-Theta-Llama-3-8B-GGUF' target='_blank'>NousResearch/Hermes-2-Theta-Llama-3-8B-GGUF</a>, 
                                 <a href='https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf' target='_blank'>microsoft/Phi-3-mini-4k-instruct-gguf</a>, 
                                 <a href='https://huggingface.co/bartowski/openchat-3.6-8b-20240522-GGUF' target='_blank'>bartowski/openchat-3.6-8b-20240522-GGUF</a>, 
