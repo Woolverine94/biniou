@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-06-22** : 🔥 ***Support for DeepSeek-Coder-V2-Lite-Instruct*** 🔥 > Adding support for model [bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF](https://hf.co/bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF) to Chatbot module. This model is a very helpful code assistant that can fastly produces clean usable code in a lot of languages. Requires 16GB RAM, but really worth the try ! 
+
   * 🆕 **2024-06-16** : 🔥 ***Support for SD3 to img2img and LoRA*** 🔥 > Adding support for model [v2ray/stable-diffusion-3-medium-diffusers](https://hf.co/v2ray/stable-diffusion-3-medium-diffusers) to module img2img. Also adding experimental support for LoRA models with Stable Diffusion 3 in module Stable Diffusion.
 
   * 🆕 **2024-06-14** : 🔥🔥🔥 ***Support for Stable Diffusion 3 !!!*** 🔥🔥🔥 > Adding preliminary support for model [v2ray/stable-diffusion-3-medium-diffusers](https://hf.co/v2ray/stable-diffusion-3-medium-diffusers) to module Stable Diffusion. 
@@ -24,8 +26,6 @@
   * 🆕 **2024-06-13** : 🔥 ***Support for Visionix-alpha*** 🔥 > Adding support for model [ehristoforu/Visionix-alpha](https://hf.co/ehristoforu/Visionix-alpha) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero. 
 
   * 🆕 **2024-06-10** : 🔥 ***Support for SPO-SDXL_4k-p_10ep*** 🔥 > Adding support for model [SPO-Diffusion-Models/SPO-SDXL_4k-p_10ep](https://hf.co/SPO-Diffusion-Models/SPO-SDXL_4k-p_10ep) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero.
-
-  * 🆕 **2024-06-09** : 🔥 ***Update of model Fluently-XL-v4*** 🔥 > Replacing model Fluently-XL-v4 by its final version, [Fluently-XL-Final](https://hf.co/Fluently-XL-Final).
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
