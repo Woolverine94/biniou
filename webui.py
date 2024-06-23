@@ -3472,6 +3472,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 <a href='https://huggingface.co/PixArt-alpha/PixArt-LCM-XL-2-1024-MS' target='_blank'>PixArt-alpha/PixArt-LCM-XL-2-1024-MS</a>, 
                                 <a href='https://huggingface.co/Luo-Yihong/yoso_pixart512' target='_blank'>Luo-Yihong/yoso_pixart512</a>, 
                                 <a href='https://huggingface.co/Luo-Yihong/yoso_pixart1024' target='_blank'>Luo-Yihong/yoso_pixart1024</a>, 
+                                <a href='https://huggingface.co/jasperai/flash-pixart' target='_blank'>jasperai/flash-pixart</a>, 
                                 </br>
                                 """
                             )
