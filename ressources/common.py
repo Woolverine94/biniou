@@ -1824,6 +1824,7 @@ def lora_model_list(model):
             "wangfuyun/PCM_Weights":("sdxl/pcm_sdxl_lcmlike_lora_converted.safetensors", ""),
             "jasperai/flash-sdxl":("pytorch_lora_weights.safetensors", ""),
             "sd-community/sdxl-flash-lora":("sdxl-flash-lora.safetensors", "sdxl-flash-lora:0.55"),
+            "KingNish/Better-SDXL-Lora":("example-03.safetensors", ""),
             "ehristoforu/dalle-3-xl-v2":("dalle-3-xl-lora-v2.safetensors", ""),
             "alvdansen/BandW-Manga":("BW-000014.safetensors", ""),
             "DoctorDiffusion/doctor-diffusion-s-claymation-style-lora":("DD-made-of-clay-XL-v2.safetensors", "made-of-clay"),
