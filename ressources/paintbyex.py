@@ -82,6 +82,7 @@ def image_paintbyex(
             torch_dtype=model_arch,
 #            use_safetensors=True, 
             load_safety_checker=False if (nsfw_filter_final == None) else True,
+            local_files_only=True if offline_test() else None,
 #            safety_checker=nsfw_filter_final, 
 #            feature_extractor=feat_ex, 
         )

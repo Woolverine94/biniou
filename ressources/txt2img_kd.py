@@ -90,6 +90,7 @@ def image_txt2img_kd(
                 modelid_txt2img_kd,
                 torch_dtype=model_arch,
                 use_safetensors=True,
+                local_files_only=True if offline_test() else None,
             )
         else :
             pipe_txt2img_kd = AutoPipelineForText2Image.from_pretrained(
@@ -99,7 +100,7 @@ def image_txt2img_kd(
                 variant="fp16",
                 use_safetensors=True,
                 resume_download=True,
-                local_files_only=True if offline_test() else None
+                local_files_only=True if offline_test() else None,
             )
     else :
         if modelid_txt2img_kd[0:9] == "./models/" :
@@ -107,6 +108,7 @@ def image_txt2img_kd(
                 modelid_txt2img_kd,
                 torch_dtype=model_arch,
                 use_safetensors=True,
+                local_files_only=True if offline_test() else None,
             )
         else :
             pipe_txt2img_kd = AutoPipelineForText2Image.from_pretrained(
@@ -115,7 +117,7 @@ def image_txt2img_kd(
                 torch_dtype=model_arch,
                 use_safetensors=True,
                 resume_download=True,
-                local_files_only=True if offline_test() else None
+                local_files_only=True if offline_test() else None,
             )
 
     pipe_txt2img_kd = schedulerer(pipe_txt2img_kd, sampler_txt2img_kd)

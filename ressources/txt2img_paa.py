@@ -104,6 +104,7 @@ def image_txt2img_paa(
                 torch_dtype=model_arch,
                 use_safetensors=True, 
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
+                local_files_only=True if offline_test() else None,
     #            safety_checker=nsfw_filter_final, 
     #            feature_extractor=feat_ex,
             )
@@ -117,7 +118,7 @@ def image_txt2img_paa(
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
                 resume_download=True,
-                local_files_only=True if offline_test() else None
+                local_files_only=True if offline_test() else None,
             )
         pipe_txt2img_paa.scheduler = LCMScheduler.from_config(pipe_txt2img_paa.scheduler.config)
         pipe_txt2img_paa.scheduler.config.prediction_type = "v_prediction"
@@ -133,7 +134,7 @@ def image_txt2img_paa(
             torch_dtype=model_arch,
             use_safetensors=True,
             resume_download=True,
-            local_files_only=True if offline_test() else None
+            local_files_only=True if offline_test() else None,
         )
 
         transformer_txt2img_paa = PeftModel.from_pretrained(
@@ -148,6 +149,7 @@ def image_txt2img_paa(
                 torch_dtype=model_arch,
                 use_safetensors=True,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
+                local_files_only=True if offline_test() else None,
 #                safety_checker=nsfw_filter_final,
 #                feature_extractor=feat_ex,
             )
@@ -161,7 +163,7 @@ def image_txt2img_paa(
                 safety_checker=nsfw_filter_final,
                 feature_extractor=feat_ex,
                 resume_download=True,
-                local_files_only=True if offline_test() else None
+                local_files_only=True if offline_test() else None,
             )
         pipe_txt2img_paa.scheduler = LCMScheduler.from_config(pipe_txt2img_paa.scheduler.config)
         pipe_txt2img_paa.scheduler.config.timestep_spacing = "trailing"
@@ -173,6 +175,7 @@ def image_txt2img_paa(
                 torch_dtype=model_arch,
                 use_safetensors=True,
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
+                local_files_only=True if offline_test() else None,
     #            safety_checker=nsfw_filter_final,
     #            feature_extractor=feat_ex,
             )
@@ -185,7 +188,7 @@ def image_txt2img_paa(
                 safety_checker=nsfw_filter_final,
                 feature_extractor=feat_ex,
                 resume_download=True,
-                local_files_only=True if offline_test() else None
+                local_files_only=True if offline_test() else None,
             )
         pipe_txt2img_paa = schedulerer(pipe_txt2img_paa, sampler_txt2img_paa)
 
@@ -196,6 +199,7 @@ def image_txt2img_paa(
                 torch_dtype=model_arch,
                 use_safetensors=True, 
                 load_safety_checker=False if (nsfw_filter_final == None) else True,
+                local_files_only=True if offline_test() else None,
     #            safety_checker=nsfw_filter_final, 
     #            feature_extractor=feat_ex,
             )
@@ -208,7 +212,7 @@ def image_txt2img_paa(
                 safety_checker=nsfw_filter_final, 
                 feature_extractor=feat_ex,
                 resume_download=True,
-                local_files_only=True if offline_test() else None
+                local_files_only=True if offline_test() else None,
             )
         pipe_txt2img_paa = schedulerer(pipe_txt2img_paa, sampler_txt2img_paa)
 
