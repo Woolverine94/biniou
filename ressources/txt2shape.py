@@ -78,6 +78,7 @@ def image_txt2shape(
             load_safety_checker=False if (nsfw_filter_final == None) else True,
 #            safety_checker=nsfw_filter_final, 
 #            feature_extractor=feat_ex,
+            local_files_only=True if offline_test() else None,
         )
     else : 
         pipe_txt2shape = ShapEPipeline.from_pretrained(
@@ -88,7 +89,7 @@ def image_txt2shape(
             safety_checker=nsfw_filter_final, 
             feature_extractor=feat_ex,
             resume_download=True,
-            local_files_only=True if offline_test() else None
+            local_files_only=True if offline_test() else None,
         )
     
     pipe_txt2shape = schedulerer(pipe_txt2shape, sampler_txt2shape)
