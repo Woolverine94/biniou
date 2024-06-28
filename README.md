@@ -17,15 +17,15 @@
 
 ## Updates
 
+  * 🆕 **2024-06-28** : 🔥 ***Support for SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep*** 🔥 > Adding support for SD 1.5 model [SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep](https://hf.co/SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep) to Stable Diffusion-based modules.
+
   * 🆕 **2024-06-24** : 🔥 ***Support for KingNish/Better-SDXL-Lora*** 🔥 > Adding support for SDXL LoRA model [KingNish/Better-SDXL-Lora](https://hf.co/KingNish/Better-SDXL-Lora). This model that will enhance your SDXL outputs is particularly useful when used with low-steps (4-6 steps, eg : "Lightning" and "Flash" models).
 
-  * 🆕 **2024-06-22** : 🔥 ***Support for DeepSeek-Coder-V2-Lite-Instruct*** 🔥 > Adding support for model [bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF](https://hf.co/bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF) to Chatbot module. This model is a very helpful code assistant that can fastly produces clean usable code in a lot of languages. Requires 16GB RAM, but really worth the try ! 
+  * 🆕 **2024-06-22** : 🔥 ***Support for DeepSeek-Coder-V2-Lite-Instruct*** 🔥 > Adding support for model [bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF](https://hf.co/bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF) to Chatbot module. This model is a very helpful code assistant that can fastly produces clean usable code in a lot of languages. Requires 16GB RAM, but really worth the try !
 
   * 🆕 **2024-06-16** : 🔥 ***Support for SD3 to img2img and LoRA*** 🔥 > Adding support for model [v2ray/stable-diffusion-3-medium-diffusers](https://hf.co/v2ray/stable-diffusion-3-medium-diffusers) to module img2img. Also adding experimental support for LoRA models with Stable Diffusion 3 in module Stable Diffusion.
 
   * 🆕 **2024-06-14** : 🔥🔥🔥 ***Support for Stable Diffusion 3 !!!*** 🔥🔥🔥 > Adding preliminary support for model [v2ray/stable-diffusion-3-medium-diffusers](https://hf.co/v2ray/stable-diffusion-3-medium-diffusers) to module Stable Diffusion. 
-
-  * 🆕 **2024-06-13** : 🔥 ***Support for Visionix-alpha*** 🔥 > Adding support for model [ehristoforu/Visionix-alpha](https://hf.co/ehristoforu/Visionix-alpha) to modules Stable Diffusion, Img2img, IP-Adapter, Controlnet, Photobooth and Text2Video-Zero. 
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
