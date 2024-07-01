@@ -1860,6 +1860,7 @@ def lora_model_list(model):
         model_list_lora_builtin = {
 #            "jasperai/flash-sd3":("adapter_model.safetensors", ""),
             "adbrasi/jujutsuKaisen-style-sd3":("pytorch_lora_weights.safetensors", "anime in jks style"),
+            "linoyts/Yarn_art_SD3_LoRA":("pytorch_lora_weights.safetensors", "yarn art style"),
             "darknoon/symbols-sd3-lora":("pytorch_lora_weights.safetensors", "in the style of SF"),
     }
     else :        
