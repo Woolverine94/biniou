@@ -73,7 +73,7 @@ def split_url_params(url_params) :
     else :         
         return "1", url_params, "1"
 
-biniou_global_lang_ui = "lang_EN"
+biniou_global_lang_ui = "lang_en_US"
 biniou_global_server_name = True
 biniou_global_server_port = 7860
 biniou_global_inbrowser = False
@@ -122,10 +122,10 @@ biniou_global_version = biniou_global_version.replace("\n", "")
 if biniou_global_version == "main":
     biniou_global_version = "dev"
 
-with open(f"lang/lang_EN.cfg", "r", encoding="utf-8") as fichier:
+with open(f"lang/lang_en_US.cfg", "r", encoding="utf-8") as fichier:
     exec(fichier.read())
 
-if test_lang_exist(f"{biniou_global_lang_ui}.cfg") and biniou_global_lang_ui != "lang_EN":
+if test_lang_exist(f"{biniou_global_lang_ui}.cfg") and biniou_global_lang_ui != "lang_en_US":
     with open(f"lang/{biniou_global_lang_ui}.cfg", "r", encoding="utf-8") as fichier:
         exec(fichier.read())
 

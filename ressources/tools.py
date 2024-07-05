@@ -309,6 +309,7 @@ class biniouUIControl:
             f = os.path.join(model_path_biniou_lang, filename)
             if os.path.isfile(f) and (filename.endswith('.cfg')):
                 model_list_biniou_lang.append(filename.replace('.cfg', ''))
+        model_list_biniou_lang.sort()
         return model_list_biniou_lang
 
     def detect_llama_backend():
