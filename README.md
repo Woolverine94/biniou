@@ -17,6 +17,11 @@
 
 ## Updates
 
+  * 🆕 **2024-07-06** : 🔥 ***Support for Chinese (traditional) language*** 🔥 >
+    - Thanks to the work of [@ADSFAaron](https://github.com/ADSFAaron) that translate the WebUI to Chinese, biniou add lang_zh_TW to the list of its supported languages.
+    - Harmonizing the names of the existing languages files to fit naming standards. If you are using biniou in French, you'll have to re-configure languages settings or replace "lang_FR" by "lang_fr_FR" in file .ini/settings.cfg (sorry for this minor inconvenience).
+    - Finally, adding support for [arcee-ai/Arcee-Spark-GGUF](https://hf.co/arcee-ai/Arcee-Spark-GGUF) model to Chatbot module
+
   * 🆕 **2024-07-03** : 🔥 ***Support for bartowski/gemma-2-9b-it-GGUF*** 🔥 > Adding support for model [bartowski/gemma-2-9b-it-GGUF](https://hf.co/bartowski/gemma-2-9b-it-GGUF) to Chatbot module. This brand-new model in the Gemma family gives awesome results and format them in a very neat way.
 
   * 🆕 **2024-06-28** : 🔥 ***Support for SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep*** 🔥 > Adding support for SD 1.5 model [SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep](https://hf.co/SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep) to Stable Diffusion-based modules.
@@ -24,8 +29,6 @@
   * 🆕 **2024-06-24** : 🔥 ***Support for KingNish/Better-SDXL-Lora*** 🔥 > Adding support for SDXL LoRA model [KingNish/Better-SDXL-Lora](https://hf.co/KingNish/Better-SDXL-Lora). This model that will enhance your SDXL outputs is particularly useful when used with low-steps (4-6 steps, eg : "Lightning" and "Flash" models).
 
   * 🆕 **2024-06-22** : 🔥 ***Support for DeepSeek-Coder-V2-Lite-Instruct*** 🔥 > Adding support for model [bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF](https://hf.co/bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF) to Chatbot module. This model is a very helpful code assistant that can fastly produces clean usable code in a lot of languages. Requires 16GB RAM, but really worth the try !
-
-  * 🆕 **2024-06-16** : 🔥 ***Support for SD3 to img2img and LoRA*** 🔥 > Adding support for model [v2ray/stable-diffusion-3-medium-diffusers](https://hf.co/v2ray/stable-diffusion-3-medium-diffusers) to module img2img. Also adding experimental support for LoRA models with Stable Diffusion 3 in module Stable Diffusion.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
@@ -104,7 +107,7 @@
 
   - Zeroconf installation through one-click installers or Windows exe.
   - User friendly : Everything required to run biniou is installed automatically, either at install time or at first use.
-  - WebUI in English or French.
+  - WebUI in English, French, Chinese (traditional).
   - Easy management through a control panel directly inside webui : update, restart, shutdown, activate authentication, control network access or share your instance online with a single click.
   - Easy management of models through a simple interface.
   - Communication between modules : send an output as an input to another module
@@ -134,7 +137,7 @@
   - Internet access (required only for installation and models download) : unlimited bandwith optical fiber internet access
 
 * **Recommended hardware :**
-  - Massively multicore 64bit CPU
+  - Massively multicore 64bit CPU and/or a GPU compatible with CUDA or ROCm
   - 16GB+ RAM
   - Storage requirements :
     - for GNU/Linux : around 200GB for installation including all defaults models.
