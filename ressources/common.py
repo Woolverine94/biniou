@@ -1792,6 +1792,7 @@ def is_sdxl(model):
 ("SEGMIND-VEGA" in model.upper()) or \
 (model == "ehristoforu/Visionix-alpha") or \
 (model == "Corcelio/mobius") or \
+(model == "mann-e/Mann-E_Dreams") or \
 (model == "cutycat2000x/InterDiffusion-4.0") or \
 (model == "RunDiffusion/Juggernaut-X-Hyper") or \
 (model == "aipicasso/emi-2") or \
