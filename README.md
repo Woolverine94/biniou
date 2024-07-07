@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-07-07** : 🔥 ***Support for Mann-E_Dreams*** 🔥 > Adding support for model [mann-e/Mann-E_Dreams](https://hf.co/mann-e/Mann-E_Dreams) to Stable Diffusion module. This atypical (768x768) SDXL model can generate beautiful results in only 6-10 steps. 
+
   * 🆕 **2024-07-06** : 🔥 ***Support for Chinese (traditional) language*** 🔥 >
     - Thanks to the work of [@ADSFAaron](https://github.com/ADSFAaron) that translate the WebUI to Chinese, biniou add lang_zh_TW to the list of its supported languages.
     - Harmonizing the names of the existing languages files to fit naming standards. If you are using biniou in French, you'll have to re-configure languages settings or replace "lang_FR" by "lang_fr_FR" in file .ini/settings.cfg (sorry for this minor inconvenience).
@@ -27,8 +29,6 @@
   * 🆕 **2024-06-28** : 🔥 ***Support for SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep*** 🔥 > Adding support for SD 1.5 model [SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep](https://hf.co/SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep) to Stable Diffusion-based modules.
 
   * 🆕 **2024-06-24** : 🔥 ***Support for KingNish/Better-SDXL-Lora*** 🔥 > Adding support for SDXL LoRA model [KingNish/Better-SDXL-Lora](https://hf.co/KingNish/Better-SDXL-Lora). This model that will enhance your SDXL outputs is particularly useful when used with low-steps (4-6 steps, eg : "Lightning" and "Flash" models).
-
-  * 🆕 **2024-06-22** : 🔥 ***Support for DeepSeek-Coder-V2-Lite-Instruct*** 🔥 > Adding support for model [bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF](https://hf.co/bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF) to Chatbot module. This model is a very helpful code assistant that can fastly produces clean usable code in a lot of languages. Requires 16GB RAM, but really worth the try !
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
