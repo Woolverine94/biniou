@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-07-08** : 🔥 ***Support for Mann-E_Dreams*** 🔥 > Extending support for model [mann-e/Mann-E_Dreams](https://hf.co/mann-e/Mann-E_Dreams) to all Stable Diffusion-based modules.
+
   * 🆕 **2024-07-07** : 🔥 ***Support for Mann-E_Dreams*** 🔥 > Adding support for model [mann-e/Mann-E_Dreams](https://hf.co/mann-e/Mann-E_Dreams) to Stable Diffusion module. This atypical (768x768) SDXL model can generate beautiful results in only 6-10 steps. 
 
   * 🆕 **2024-07-06** : 🔥 ***Support for Chinese (traditional) language*** 🔥 >
@@ -27,8 +29,6 @@
   * 🆕 **2024-07-03** : 🔥 ***Support for bartowski/gemma-2-9b-it-GGUF*** 🔥 > Adding support for model [bartowski/gemma-2-9b-it-GGUF](https://hf.co/bartowski/gemma-2-9b-it-GGUF) to Chatbot module. This brand-new model in the Gemma family gives awesome results and format them in a very neat way.
 
   * 🆕 **2024-06-28** : 🔥 ***Support for SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep*** 🔥 > Adding support for SD 1.5 model [SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep](https://hf.co/SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep) to Stable Diffusion-based modules.
-
-  * 🆕 **2024-06-24** : 🔥 ***Support for KingNish/Better-SDXL-Lora*** 🔥 > Adding support for SDXL LoRA model [KingNish/Better-SDXL-Lora](https://hf.co/KingNish/Better-SDXL-Lora). This model that will enhance your SDXL outputs is particularly useful when used with low-steps (4-6 steps, eg : "Lightning" and "Flash" models).
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
