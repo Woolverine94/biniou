@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-07-09** : 🔥 ***Support for Mann-E__Turbo*** 🔥 > Add support for LoRA model [mann-e/Mann-E_Turbo](https://hf.co/mann-e/Mann-E_Turbo) to all eligible modules. Using this 6-10 steps LoRA model, you can use Mann-E in combination with any other SDXL model.
+
   * 🆕 **2024-07-08** : 🔥 ***Support for Mann-E_Dreams*** 🔥 > Extending support for model [mann-e/Mann-E_Dreams](https://hf.co/mann-e/Mann-E_Dreams) to all Stable Diffusion-based modules.
 
   * 🆕 **2024-07-07** : 🔥 ***Support for Mann-E_Dreams*** 🔥 > Adding support for model [mann-e/Mann-E_Dreams](https://hf.co/mann-e/Mann-E_Dreams) to Stable Diffusion module. This atypical (768x768) SDXL model can generate beautiful results in only 6-10 steps. 
@@ -27,8 +29,6 @@
     - Finally, adding support for [arcee-ai/Arcee-Spark-GGUF](https://hf.co/arcee-ai/Arcee-Spark-GGUF) model to Chatbot module
 
   * 🆕 **2024-07-03** : 🔥 ***Support for bartowski/gemma-2-9b-it-GGUF*** 🔥 > Adding support for model [bartowski/gemma-2-9b-it-GGUF](https://hf.co/bartowski/gemma-2-9b-it-GGUF) to Chatbot module. This brand-new model in the Gemma family gives awesome results and format them in a very neat way.
-
-  * 🆕 **2024-06-28** : 🔥 ***Support for SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep*** 🔥 > Adding support for SD 1.5 model [SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep](https://hf.co/SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep) to Stable Diffusion-based modules.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
