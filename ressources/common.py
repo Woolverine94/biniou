@@ -1775,6 +1775,7 @@ def is_fast_lora(model):
 (model == "jasperai/flash-sdxl") or \
 (model == "jasperai/flash-sd") or \
 (model == "sd-community/sdxl-flash-lora") or \
+(model == "mann-e/Mann-E_Turbo") or \
 (model == "jasperai/flash-sd3")
 ):
         is_fast_lora_value = True
@@ -1825,6 +1826,7 @@ def lora_model_list(model):
             "wangfuyun/PCM_Weights":("sdxl/pcm_sdxl_lcmlike_lora_converted.safetensors", ""),
             "jasperai/flash-sdxl":("pytorch_lora_weights.safetensors", ""),
             "sd-community/sdxl-flash-lora":("sdxl-flash-lora.safetensors", "sdxl-flash-lora:0.55"),
+            "mann-e/Mann-E_Turbo":("manne_turbo.safetensors", ""),
             "KingNish/Better-SDXL-Lora":("example-03.safetensors", ""),
             "ehristoforu/dalle-3-xl-v2":("dalle-3-xl-lora-v2.safetensors", ""),
             "alvdansen/BandW-Manga":("BW-000014.safetensors", ""),

@@ -385,6 +385,8 @@ def change_lora_model_txt2img_sd(model, lora_model, prompt, steps, cfg_scale, sa
             return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(value=2), guidance_scale_txt2img_sd.update(value=0.0), sampler_txt2img_sd.update(value="LCM")
         elif (lora_model == "sd-community/sdxl-flash-lora"):
             return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(value=6), guidance_scale_txt2img_sd.update(value=3.0), sampler_txt2img_sd.update(value="DPM++ SDE")
+        elif (lora_model == "mann-e/Mann-E_Turbo"):
+            return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(value=6), guidance_scale_txt2img_sd.update(value=3.0), sampler_txt2img_sd.update(value="DPM++ SDE Karras")
         elif (lora_model == "jasperai/flash-sd3"):
             return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(value=4), guidance_scale_txt2img_sd.update(value=0.0), sampler_txt2img_sd.update(value="Flow Match Euler")
     else:
@@ -514,6 +516,8 @@ def change_lora_model_txt2img_lcm(model, lora_model, prompt, steps, cfg_scale, s
             return prompt_txt2img_lcm.update(value=lora_prompt_txt2img_lcm), num_inference_step_txt2img_lcm.update(value=2), guidance_scale_txt2img_lcm.update(value=0.0), sampler_txt2img_lcm.update(value="LCM")
         elif (lora_model == "sd-community/sdxl-flash-lora"):
             return prompt_txt2img_lcm.update(value=lora_prompt_txt2img_lcm), num_inference_step_txt2img_lcm.update(value=6), guidance_scale_txt2img_lcm.update(value=3.0), sampler_txt2img_lcm.update(value="DPM++ SDE")
+        elif (lora_model == "mann-e/Mann-E_Turbo"):
+            return prompt_txt2img_lcm.update(value=lora_prompt_txt2img_lcm), num_inference_step_txt2img_lcm.update(value=6), guidance_scale_txt2img_lcm.update(value=3.0), sampler_txt2img_lcm.update(value="DPM++ SDE Karras")
     else:
         if ((biniou_internal_previous_model_txt2img_lcm == "") and (biniou_internal_previous_steps_txt2img_lcm == "") and (biniou_internal_previous_cfg_txt2img_lcm == "") and (biniou_internal_previous_sampler_txt2img_lcm == "")):
             return prompt_txt2img_lcm.update(value=lora_prompt_txt2img_lcm), num_inference_step_txt2img_lcm.update(), guidance_scale_txt2img_lcm.update(), sampler_txt2img_lcm.update()
@@ -691,6 +695,8 @@ def change_lora_model_img2img(model, lora_model, prompt, steps, cfg_scale, sampl
             return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), sampler_img2img.update(value="LCM")
         elif (lora_model == "sd-community/sdxl-flash-lora"):
             return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=6), guidance_scale_img2img.update(value=3.0), sampler_img2img.update(value="DPM++ SDE")
+        elif (lora_model == "mann-e/Mann-E_Turbo"):
+            return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=6), guidance_scale_img2img.update(value=3.0), sampler_img2img.update(value="DPM++ SDE Karras")
     else:
         if ((biniou_internal_previous_model_img2img == "") and (biniou_internal_previous_steps_img2img == "") and (biniou_internal_previous_cfg_img2img == "") and (biniou_internal_previous_sampler_img2img == "")):
             return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(), guidance_scale_img2img.update(), sampler_img2img.update()
@@ -855,6 +861,8 @@ def change_lora_model_img2img_ip(model, lora_model, prompt, steps, cfg_scale, sa
             return prompt_img2img_ip.update(value=lora_prompt_img2img_ip), num_inference_step_img2img_ip.update(value=2), guidance_scale_img2img_ip.update(value=0.0), sampler_img2img_ip.update(value="LCM")
         elif (lora_model == "sd-community/sdxl-flash-lora"):
             return prompt_img2img_ip.update(value=lora_prompt_img2img_ip), num_inference_step_img2img_ip.update(value=6), guidance_scale_img2img_ip.update(value=3.0), sampler_img2img_ip.update(value="DPM++ SDE")
+        elif (lora_model == "mann-e/Mann-E_Turbo"):
+            return prompt_img2img_ip.update(value=lora_prompt_img2img_ip), num_inference_step_img2img_ip.update(value=6), guidance_scale_img2img_ip.update(value=3.0), sampler_img2img_ip.update(value="DPM++ SDE Karras")
     else:
         if ((biniou_internal_previous_model_img2img_ip == "") and (biniou_internal_previous_steps_img2img_ip == "") and (biniou_internal_previous_cfg_img2img_ip == "") and (biniou_internal_previous_sampler_img2img_ip == "")):
             return prompt_img2img_ip.update(value=lora_prompt_img2img_ip), num_inference_step_img2img_ip.update(), guidance_scale_img2img_ip.update(), sampler_img2img_ip.update()
@@ -1054,6 +1062,8 @@ def change_lora_model_controlnet(model, lora_model, prompt, steps, cfg_scale, sa
             return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=2), guidance_scale_controlnet.update(value=0.0), sampler_controlnet.update(value="LCM")
         elif (lora_model == "sd-community/sdxl-flash-lora"):
             return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=6), guidance_scale_controlnet.update(value=3.0), sampler_controlnet.update(value="DPM++ SDE")
+        elif (lora_model == "mann-e/Mann-E_Turbo"):
+            return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=6), guidance_scale_controlnet.update(value=3.0), sampler_controlnet.update(value="DPM++ SDE Karras")
     else:
         if ((biniou_internal_previous_model_controlnet == "") and (biniou_internal_previous_steps_controlnet == "") and (biniou_internal_previous_cfg_controlnet == "") and (biniou_internal_previous_sampler_controlnet == "")):
             return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(), guidance_scale_controlnet.update(), sampler_controlnet.update()
@@ -1215,6 +1225,8 @@ def change_lora_model_faceid_ip(model, lora_model, prompt, steps, cfg_scale, sam
             return prompt_faceid_ip.update(value=lora_prompt_faceid_ip), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=1.0), sampler_faceid_ip.update(value="LCM")
         elif (lora_model == "sd-community/sdxl-flash-lora"):
             return prompt_faceid_ip.update(value=lora_prompt_faceid_ip), num_inference_step_faceid_ip.update(value=6), guidance_scale_faceid_ip.update(value=3.0), sampler_faceid_ip.update(value="DPM++ SDE")
+        elif (lora_model == "mann-e/Mann-E_Turbo"):
+            return prompt_faceid_ip.update(value=lora_prompt_faceid_ip), num_inference_step_faceid_ip.update(value=6), guidance_scale_faceid_ip.update(value=3.0), sampler_faceid_ip.update(value="DPM++ SDE Karras")
     else:
         if ((biniou_internal_previous_model_faceid_ip == "") and (biniou_internal_previous_steps_faceid_ip == "") and (biniou_internal_previous_cfg_faceid_ip == "") and (biniou_internal_previous_sampler_faceid_ip == "")):
             return prompt_faceid_ip.update(value=lora_prompt_faceid_ip), num_inference_step_faceid_ip.update(), guidance_scale_faceid_ip.update(), sampler_faceid_ip.update()
