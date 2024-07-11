@@ -1829,6 +1829,7 @@ def lora_model_list(model):
             "mann-e/Mann-E_Turbo":("manne_turbo.safetensors", ""),
             "KingNish/Better-SDXL-Lora":("example-03.safetensors", ""),
             "ehristoforu/dalle-3-xl-v2":("dalle-3-xl-lora-v2.safetensors", ""),
+            "KappaNeuro/studio-ghibli-style":("Studio Ghibli Style.safetensors", "Studio Ghibli Style - "),
             "alvdansen/BandW-Manga":("BW-000014.safetensors", ""),
             "DoctorDiffusion/doctor-diffusion-s-claymation-style-lora":("DD-made-of-clay-XL-v2.safetensors", "made-of-clay"),
             "DoctorDiffusion/doctor-diffusion-s-toy-xl-style-lora":("DD-toy-v2.safetensors", "toy"),
