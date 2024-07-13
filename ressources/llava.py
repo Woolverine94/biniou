@@ -31,6 +31,7 @@ model_list_llava_builtin = {
     "cmp-nct/llava-1.6-gguf":("ggml-mistral-7b-q_5_k.gguf", "mmproj-mistral7b-f16.gguf", "{prompt}", ""),
     "mys/ggml_llava-v1.5-7b":("ggml-model-q5_k.gguf", "mmproj-model-f16.gguf", "{prompt}", ""),
     "mys/ggml_llava-v1.5-13b":("ggml-model-q5_k.gguf", "mmproj-model-f16.gguf", "{prompt}", ""),
+    "bee-kake/nanollava-1.5-gguf":("nanollava-text-model-f16.gguf", "nanollava-mmproj-f16.gguf", "{prompt}", ""),
 }
 
 model_list_llava.update(model_list_llava_builtin)
