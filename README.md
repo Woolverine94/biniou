@@ -17,6 +17,12 @@
 
 ## Updates
 
+
+  * 🆕 **2024-07-13** : 🔥 ***Updates of model list in several modules*** 🔥 >
+    - Add support for SDXL LoRA [KappaNeuro/studio-ghibli-style](https://hf.co/KappaNeuro/studio-ghibli-style) to all eligible modules.
+    - Add support for [bartowski/internlm2_5-7b-chat-1m-GGUF](https://hf.co/bartowski/internlm2_5-7b-chat-1m-GGUF) and [bartowski/codegeex4-all-9b-GGUF](https://hf.co/bartowski/codegeex4-all-9b-GGUF) to Chatbot module.
+    - Add support for [bee-kake/nanollava-1.5-gguf](https://hf.co/bee-kake/nanollava-1.5-gguf) to Llava module.
+
   * 🆕 **2024-07-09** : 🔥 ***Support for Mann-E__Turbo*** 🔥 > Add support for LoRA model [mann-e/Mann-E_Turbo](https://hf.co/mann-e/Mann-E_Turbo) to all eligible modules. Using this 6-10 steps LoRA model, you can use Mann-E in combination with any other SDXL model.
 
   * 🆕 **2024-07-08** : 🔥 ***Support for Mann-E_Dreams*** 🔥 > Extending support for model [mann-e/Mann-E_Dreams](https://hf.co/mann-e/Mann-E_Dreams) to all Stable Diffusion-based modules.
@@ -27,8 +33,6 @@
     - Thanks to the work of [@ADSFAaron](https://github.com/ADSFAaron) that translate the WebUI to Chinese, biniou add lang_zh_TW to the list of its supported languages.
     - Harmonizing the names of the existing languages files to fit naming standards. If you are using biniou in French, you'll have to re-configure languages settings or replace "lang_FR" by "lang_fr_FR" in file .ini/settings.cfg (sorry for this minor inconvenience).
     - Finally, adding support for [arcee-ai/Arcee-Spark-GGUF](https://hf.co/arcee-ai/Arcee-Spark-GGUF) model to Chatbot module
-
-  * 🆕 **2024-07-03** : 🔥 ***Support for bartowski/gemma-2-9b-it-GGUF*** 🔥 > Adding support for model [bartowski/gemma-2-9b-it-GGUF](https://hf.co/bartowski/gemma-2-9b-it-GGUF) to Chatbot module. This brand-new model in the Gemma family gives awesome results and format them in a very neat way.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
