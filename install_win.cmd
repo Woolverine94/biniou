@@ -1,9 +1,9 @@
 REM **************************************************
 REM *** DOWNLOADING AND INSTALLING PREREQUISITES : ***
 REM **************************************************
-set URL_GIT="https://github.com/git-for-windows/git/releases/download/v2.42.0.windows.2/Git-2.42.0.2-64-bit.exe"
-set URL_OPENSSL="https://download.firedaemon.com/FireDaemon-OpenSSL/FireDaemon-OpenSSL-x64-3.1.3.exe"
-set URL_PYTHON="https://www.python.org/ftp/python/3.11.5/python-3.11.5-amd64.exe"
+set URL_GIT="https://github.com/git-for-windows/git/releases/download/v2.45.2.windows.1/Git-2.45.2-64-bit.exe"
+set URL_OPENSSL="https://download.firedaemon.com/FireDaemon-OpenSSL/FireDaemon-OpenSSL-x64-3.3.1.exe"
+set URL_PYTHON="https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.exe"
 set URL_VSBT="https://aka.ms/vs/17/release/vs_BuildTools.exe"
 set URL_FFMPEG="https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip"
 set URL_VCREDIST="https://aka.ms/vs/17/release/vc_redist.x64.exe"
@@ -13,7 +13,7 @@ set WIN11_SDK="Microsoft.VisualStudio.Component.Windows11SDK.22621"
 curl -o "%tmp%\wget.exe" "https://eternallybored.org/misc/wget/1.21.4/64/wget.exe"
 %tmp%\wget -O "%tmp%\vs_BuildTools.exe" %URL_VSBT%
 %tmp%\wget -O "%tmp%\git.exe" %URL_GIT%
-%tmp%\wget -O "%tmp%\openssl.exe" %URL_OPENSSL%
+%tmp%\wget -O "%tmp%\openssl.exe" %URL_OPENSSL% --no-check-certificate
 %tmp%\wget -O "%tmp%\python.exe" %URL_PYTHON% --no-check-certificate
 %tmp%\wget -O "%tmp%\ffmpeg-master-latest-win64-gpl.zip" %URL_FFMPEG%
 %tmp%\wget -O "%tmp%\vcredist.exe" %URL_VCREDIST%
