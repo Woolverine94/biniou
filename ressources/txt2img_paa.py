@@ -27,6 +27,7 @@ model_list_txt2img_paa_builtin = [
     "PixArt-alpha/PixArt-XL-2-512x512",
     "PixArt-alpha/PixArt-XL-2-1024-MS",
     "PixArt-alpha/PixArt-Sigma-XL-2-1024-MS",
+    "dataautogpt3/PixArt-Sigma-900M",
     "PixArt-alpha/PixArt-LCM-XL-2-1024-MS",
     "Luo-Yihong/yoso_pixart512",
     "Luo-Yihong/yoso_pixart1024",
@@ -168,7 +169,7 @@ def image_txt2img_paa(
         pipe_txt2img_paa.scheduler = LCMScheduler.from_config(pipe_txt2img_paa.scheduler.config)
         pipe_txt2img_paa.scheduler.config.timestep_spacing = "trailing"
 
-    elif ("PIXART-SIGMA-XL-2" in modelid_txt2img_paa.upper()):
+    elif ("PIXART-SIGMA" in modelid_txt2img_paa.upper()):
         if modelid_txt2img_paa[0:9] == "./models/" :
             pipe_txt2img_paa = PixArtSigmaPipeline.from_single_file(
                 modelid_txt2img_paa,
