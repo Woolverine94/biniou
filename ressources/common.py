@@ -1783,6 +1783,18 @@ def is_fast_lora(model):
         is_fast_lora_value = False
     return is_fast_lora_value
 
+def is_bin(model):
+    if (\
+("dataautogpt3/ProteusV0.4" in model) or \
+(model == "RunDiffusion/Juggernaut-XL-Lightning") or \
+(model == "RunDiffusion/Juggernaut-X-Hyper") or \
+(model == "sd-dreambooth-library/dndcoverart-v1")\
+):
+        is_bin_value = True
+    else :
+        is_bin_value = False
+    return is_bin_value
+
 def is_sdxl(model):
     if (\
 ("XL" in model.upper()) or \

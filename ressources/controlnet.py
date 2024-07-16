@@ -333,7 +333,7 @@ def image_controlnet(
     else :        
         is_xl_controlnet: bool = False
 
-    if ("dataautogpt3/ProteusV0.4" in modelid_controlnet) or (modelid_controlnet == "RunDiffusion/Juggernaut-XL-Lightning") or (modelid_controlnet == "RunDiffusion/Juggernaut-X-Hyper"):
+    if is_bin(modelid_controlnet):
         is_bin_controlnet: bool = True
     else :
         is_bin_controlnet: bool = False

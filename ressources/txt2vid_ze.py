@@ -108,7 +108,7 @@ def video_txt2vid_ze(
     else :        
         is_xl_txt2vid_ze: bool = False
 
-    if ("dataautogpt3/ProteusV0.4" in modelid_txt2vid_ze) or (modelid_txt2vid_ze == "RunDiffusion/Juggernaut-XL-Lightning") or (modelid_txt2vid_ze == "RunDiffusion/Juggernaut-X-Hyper"):
+    if is_bin(modelid_txt2vid_ze):
         is_bin_txt2vid_ze: bool = True
     else :
         is_bin_txt2vid_ze: bool = False

@@ -135,7 +135,7 @@ def image_img2img(
     else :
         is_sd3_img2img: bool = False
 
-    if ("dataautogpt3/ProteusV0.4" in modelid_img2img) or (modelid_img2img == "RunDiffusion/Juggernaut-XL-Lightning") or (modelid_img2img == "RunDiffusion/Juggernaut-X-Hyper"):
+    if is_bin(modelid_img2img):
         is_bin_img2img: bool = True
     else :
         is_bin_img2img: bool = False

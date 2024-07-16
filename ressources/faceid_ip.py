@@ -150,7 +150,7 @@ def image_faceid_ip(
     else :
         is_xl_faceid_ip: bool = False
 
-    if ("dataautogpt3/ProteusV0.4" in modelid_faceid_ip) or (modelid_faceid_ip == "RunDiffusion/Juggernaut-XL-Lightning") or (modelid_faceid_ip == "RunDiffusion/Juggernaut-X-Hyper"):
+    if is_bin(modelid_faceid_ip):
         is_bin_faceid_ip: bool = True
     else :
         is_bin_faceid_ip: bool = False

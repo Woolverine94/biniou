@@ -134,7 +134,7 @@ def image_txt2img_sd(
     else :        
         is_sd3_txt2img_sd: bool = False
 
-    if ("dataautogpt3/ProteusV0.4" in modelid_txt2img_sd) or (modelid_txt2img_sd == "RunDiffusion/Juggernaut-XL-Lightning") or (modelid_txt2img_sd == "RunDiffusion/Juggernaut-X-Hyper"):
+    if is_bin(modelid_txt2img_sd):
         is_bin_txt2img_sd: bool = True
     else :
         is_bin_txt2img_sd: bool = False
