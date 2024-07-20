@@ -17,6 +17,11 @@
 
 ## Updates
 
+  * 🆕 **2024-07-21** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for SDXL LoRA models [alvdansen/frosting_lane_redux](https://hf.co/alvdansen/frosting_lane_redux), [alvdansen/popartanime](https://hf.co/alvdansen/popartanime), [twn39/blindbox-popmart-xl](https://hf.co/twn39/blindbox-popmart-xl), [Senetor/Voxel_style-2](https://hf.co/Senetor/Voxel_style-2), [lordjia/lelo-lego-lora-for-xl-sd1-5](https://hf.co/lordjia/lelo-lego-lora-for-xl-sd1-5) to all eligible modules.
+    - Add support for [dataautogpt3/PixArt-Sigma-900M](https://hf.co/dataautogpt3/PixArt-Sigma-900M) model to PixArt-Alpha module.
+    - Add support for [bartowski/llama-3-sqlcoder-8b-GGUF](https://hf.co/bartowski/llama-3-sqlcoder-8b-GGUF) and [bartowski/Qwen2-Wukong-7B-GGUF](https://hf.co/bartowski/Qwen2-Wukong-7B-GGUF) to Chatbot module.
+    - Add support for Linux Mint 22 to Debian One-Click installer (oci-debian.sh).
 
   * 🆕 **2024-07-13** : 🔥 ***Updates of model list in several modules*** 🔥 >
     - Add support for SDXL LoRA [KappaNeuro/studio-ghibli-style](https://hf.co/KappaNeuro/studio-ghibli-style) to all eligible modules.
@@ -154,7 +159,7 @@
   - a 64 bit OS :
     - Debian 12 
     - Ubuntu 22.04.3 / 24.04
-    - Linux Mint 21.2
+    - Linux Mint 21.2+ / 22
     - Rocky 9.3
     - Alma 9.3
     - CentOS Stream 9
