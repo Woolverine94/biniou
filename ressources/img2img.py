@@ -36,6 +36,7 @@ model_list_img2img_builtin = [
     "mann-e/Mann-E_Dreams",
     "ehristoforu/Visionix-alpha",
     "v2ray/stable-diffusion-3-medium-diffusers",
+    "ptx0/sd3-reality-mix",
     "RunDiffusion/Juggernaut-X-Hyper",
     "cutycat2000x/InterDiffusion-4.0",
     "RunDiffusion/Juggernaut-XL-Lightning",

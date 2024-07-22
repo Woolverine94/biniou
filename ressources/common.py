@@ -1819,7 +1819,8 @@ def is_sdxl(model):
 
 def is_sd3(model):
     if (\
-(model == "v2ray/stable-diffusion-3-medium-diffusers")\
+(model == "v2ray/stable-diffusion-3-medium-diffusers") or \
+(model == "ptx0/sd3-reality-mix")\
 ):
         is_sd3_value = True
     else:
