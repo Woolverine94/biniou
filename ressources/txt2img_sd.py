@@ -29,6 +29,7 @@ for filename in os.listdir(model_path_txt2img_sd):
 model_list_txt2img_sd_builtin = [
 #    "rubbrband/realisticVisionV60B1_v51VAE",
     "SG161222/Realistic_Vision_V3.0_VAE",
+    "digiplay/majicMIX_realistic_v7",
     "SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep",
     "IDKiro/sdxs-512-dreamshaper",
     "IDKiro/sdxs-512-0.9",
