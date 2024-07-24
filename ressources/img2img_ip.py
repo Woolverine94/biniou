@@ -32,6 +32,7 @@ for filename in os.listdir(model_path_img2img_ip):
 
 model_list_img2img_ip_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
+    "digiplay/majicMIX_realistic_v7",
     "SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep",
     "sd-community/sdxl-flash",
     "mann-e/Mann-E_Dreams",
