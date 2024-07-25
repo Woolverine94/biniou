@@ -183,7 +183,7 @@ def image_img2img(
                 modelid_img2img, 
                 torch_dtype=model_arch,
                 use_safetensors=True if not is_bin_img2img else False,
-                load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                load_safety_checker=False if (nsfw_filter_final == None) else True,
                 local_files_only=True if offline_test() else None
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex,
@@ -204,7 +204,7 @@ def image_img2img(
                 modelid_img2img,
                 torch_dtype=model_arch,
                 use_safetensors=True if not is_bin_img2img else False,
-                load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                load_safety_checker=False if (nsfw_filter_final == None) else True,
                 local_files_only=True if offline_test() else None
 #                safety_checker=nsfw_filter_final,
 #                feature_extractor=feat_ex,

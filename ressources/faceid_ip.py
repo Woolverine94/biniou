@@ -195,7 +195,7 @@ def image_faceid_ip(
                 modelid_faceid_ip, 
                 torch_dtype=model_arch,
                 use_safetensors=True if not is_bin_faceid_ip else False,
-                load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                load_safety_checker=False if (nsfw_filter_final == None) else True,
                 local_files_only=True if offline_test() else None
             )
         else :        
