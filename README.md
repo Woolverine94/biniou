@@ -17,6 +17,12 @@
 
 ## Updates
 
+  * 🆕 **2024-07-27** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for [bartowski/Mistral-Nemo-Instruct-2407-GGUF](https://hf.co/bartowski/Mistral-Nemo-Instruct-2407-GGUF) to Chatbot module. This 12B parameters model will require at least 16GB RAM, but can use a 128k context window and gives absolutely awesome results for such a small model. You should definitely give it a try !
+    - Add support for [digiplay/majicMIX_realistic_v7](https://hf.co/digiplay/majicMIX_realistic_v7) model to Stable Diffusion-based module.
+    - Update of dataautogpt3/ProteusV0.4 model to [dataautogpt3/ProteusV0.5](https://hf.co/dataautogpt3/ProteusV0.4) for Stable Diffusion-based module.
+    - Various bugfixes.
+
   * 🆕 **2024-07-22** : 🔥 ***Support for ptx0/sd3-reality-mix*** 🔥 > Adding support for model [ptx0/sd3-reality-mix](https://hf.co/ptx0/sd3-reality-mix) to Stable Diffusion and Img2img modules. This model is finetuned from Stable Diffusion 3 medium and handle images sizes 512x512, 1024x1024, 1280x768, 960x1152.
 
   * 🆕 **2024-07-21** : 🔥 ***This week's updates*** 🔥 >
@@ -31,8 +37,6 @@
     - Add support for [bee-kake/nanollava-1.5-gguf](https://hf.co/bee-kake/nanollava-1.5-gguf) to Llava module.
 
   * 🆕 **2024-07-09** : 🔥 ***Support for Mann-E__Turbo*** 🔥 > Add support for LoRA model [mann-e/Mann-E_Turbo](https://hf.co/mann-e/Mann-E_Turbo) to all eligible modules. Using this 6-10 steps LoRA model, you can use Mann-E in combination with any other SDXL model.
-
-  * 🆕 **2024-07-08** : 🔥 ***Support for Mann-E_Dreams*** 🔥 > Extending support for model [mann-e/Mann-E_Dreams](https://hf.co/mann-e/Mann-E_Dreams) to all Stable Diffusion-based modules.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
