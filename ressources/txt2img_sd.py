@@ -57,7 +57,7 @@ model_list_txt2img_sd_builtin = [
     "aipicasso/emi-2",
     "IDEA-CCNL/Taiyi-Stable-Diffusion-XL-3.5B",
     "dataautogpt3/OpenDalleV1.1",
-    "dataautogpt3/ProteusV0.4",
+    "dataautogpt3/ProteusV0.5",
     "dataautogpt3/ProteusV0.4-Lightning",
     "etri-vilab/koala-1b",
     "etri-vilab/koala-700m",

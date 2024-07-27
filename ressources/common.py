@@ -1810,7 +1810,8 @@ def is_sdxl(model):
 (model == "RunDiffusion/Juggernaut-X-Hyper") or \
 (model == "aipicasso/emi-2") or \
 (model == "dataautogpt3/OpenDalleV1.1") or \
-(model == "dataautogpt3/ProteusV0.4")\
+(model == "dataautogpt3/ProteusV0.4") or \
+(model == "dataautogpt3/ProteusV0.5")\
 ):
         is_sdxl_value = True
     else:

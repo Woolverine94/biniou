@@ -56,7 +56,7 @@ model_list_img2img_ip_builtin = [
     "cagliostrolab/animagine-xl-3.1",
     "aipicasso/emi-2",
     "dataautogpt3/OpenDalleV1.1",
-    "dataautogpt3/ProteusV0.4",
+    "dataautogpt3/ProteusV0.5",
     "dataautogpt3/ProteusV0.4-Lightning",
     "digiplay/AbsoluteReality_v1.8.1",
 #    "segmind/Segmind-Vega",
