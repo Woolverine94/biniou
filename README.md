@@ -20,7 +20,7 @@
   * 🆕 **2024-07-27** : 🔥 ***This week's updates*** 🔥 >
     - Add support for [bartowski/Mistral-Nemo-Instruct-2407-GGUF](https://hf.co/bartowski/Mistral-Nemo-Instruct-2407-GGUF) to Chatbot module. This 12B parameters model will require at least 16GB RAM, but can use a 128k context window and gives absolutely awesome results for such a small model. You should definitely give it a try !
     - Add support for [digiplay/majicMIX_realistic_v7](https://hf.co/digiplay/majicMIX_realistic_v7) model to Stable Diffusion-based module.
-    - Update of dataautogpt3/ProteusV0.4 model to [dataautogpt3/ProteusV0.5](https://hf.co/dataautogpt3/ProteusV0.4) for Stable Diffusion-based module.
+    - Update of dataautogpt3/ProteusV0.4 model to [dataautogpt3/ProteusV0.5](https://hf.co/dataautogpt3/ProteusV0.5) for Stable Diffusion-based module.
     - Various bugfixes.
 
   * 🆕 **2024-07-22** : 🔥 ***Support for ptx0/sd3-reality-mix*** 🔥 > Adding support for model [ptx0/sd3-reality-mix](https://hf.co/ptx0/sd3-reality-mix) to Stable Diffusion and Img2img modules. This model is finetuned from Stable Diffusion 3 medium and handle images sizes 512x512, 1024x1024, 1280x768, 960x1152.
