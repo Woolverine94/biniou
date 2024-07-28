@@ -21,6 +21,6 @@ tomesd
 ffmpeg-python
 trimesh
 peft
-git+https://github.com/TencentARC/PhotoMaker.git@1e78aa6514c11a84ef1be27b56c7c72d6c70f8fc
+git+https://github.com/TencentARC/PhotoMaker.git@e5b728c2b297dc28ef35fbe4930cf8ab2fa969ea
 exiv2
 music-tag

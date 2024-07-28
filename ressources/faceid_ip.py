@@ -7,7 +7,8 @@ import cv2
 # from insightface.app import FaceAnalysis
 import torch
 from diffusers import StableDiffusionPipeline, StableDiffusionXLPipeline, AutoPipelineForText2Image
-from photomaker import PhotoMakerStableDiffusionXLPipeline
+from photomaker import PhotoMakerStableDiffusionXLPipeline, FaceAnalysis2, analyze_faces
+import numpy as np
 from huggingface_hub import snapshot_download, hf_hub_download
 from compel import Compel, ReturnedEmbeddingsType
 import random
@@ -109,6 +110,21 @@ def check_faceid_ip(pipe, step_index, timestep, callback_kwargs):
 #     faceid_embeds = torch.from_numpy(faces[0].normed_embedding).unsqueeze(0)
 #     return faceid_embeds
 
+def face_analyser(input_id_images):
+    face_detector = FaceAnalysis2(providers=['CUDAExecutionProvider', 'CPUExecutionProvider'], allowed_modules=['detection', 'recognition'])
+    face_detector.prepare(ctx_id=0, det_size=(640, 640))
+    id_embed_list = []
+    for img in input_id_images:
+        img = np.array(img)
+        img = img[:, :, ::-1]
+        faces = analyze_faces(face_detector, img)
+        if len(faces) > 0:
+            id_embed_list.append(torch.from_numpy((faces[0]['embedding'])))
+    if len(id_embed_list) == 0:
+        raise ValueError(f"No face detected in input image pool")
+    id_embeds = torch.stack(id_embed_list)
+    return id_embeds
+
 @metrics_decoration
 def image_faceid_ip(
     modelid_faceid_ip, 
@@ -178,9 +194,9 @@ def image_faceid_ip(
             )
         pipe_faceid_ip = schedulerer(pipe_faceid_ip, sampler_faceid_ip)
         pipe_faceid_ip.load_photomaker_adapter(
-            "TencentARC/PhotoMaker",
+            "TencentARC/PhotoMaker-V2",
             subfolder="",
-            weight_name="photomaker-v1.bin",
+            weight_name="photomaker-v2.bin",
             cache_dir=model_path_ipa_faceid_ip,
             trigger_word="img",
             use_safetensors=True,
@@ -209,9 +225,9 @@ def image_faceid_ip(
             )
         pipe_faceid_ip = schedulerer(pipe_faceid_ip, sampler_faceid_ip)
         pipe_faceid_ip.load_photomaker_adapter(
-            "TencentARC/PhotoMaker",
+            "TencentARC/PhotoMaker-V2",
             subfolder="",
-            weight_name="photomaker-v1.bin",
+            weight_name="photomaker-v2.bin",
             cache_dir=model_path_ipa_faceid_ip,
             trigger_word="img",
             use_safetensors=True,
@@ -382,6 +398,7 @@ def image_faceid_ip(
         input_id_images_faceid_ip = []
         input_id_images_faceid_ip.append(PIL.Image.open(img_faceid_ip))
         start_merge_step_faceid_ip = round(num_inference_step_faceid_ip - (num_inference_step_faceid_ip*denoising_strength_faceid_ip))
+        id_embeds_faceid_ip = face_analyser(input_id_images_faceid_ip)
 
     final_image = []
     final_seed = []
@@ -403,6 +420,7 @@ def image_faceid_ip(
         elif (is_xl_faceid_ip == True) :
             image = pipe_faceid_ip(
                 input_id_images=input_id_images_faceid_ip,
+                id_embeds=id_embeds_faceid_ip,
                 prompt=prompt_faceid_ip,
                 negative_prompt=negative_prompt_faceid_ip,
 #                prompt_embeds=conditioning,
