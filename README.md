@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-07-28** : 🔥 ***Support for PhotoMaker V2*** 🔥 > Update of Photobooth module to enable use of [TencentARC/PhotoMaker-V2](https://hf.co/TencentARC/PhotoMaker-V2) in replacement of PhotoMaker.
+
   * 🆕 **2024-07-27** : 🔥 ***This week's updates*** 🔥 >
     - Add support for [bartowski/Mistral-Nemo-Instruct-2407-GGUF](https://hf.co/bartowski/Mistral-Nemo-Instruct-2407-GGUF) to Chatbot module. This 12B parameters model will require at least 16GB RAM, but can use a 128k context window and gives absolutely awesome results for such a small model. You should definitely give it a try !
     - Add support for [digiplay/majicMIX_realistic_v7](https://hf.co/digiplay/majicMIX_realistic_v7) model to Stable Diffusion-based module.
@@ -35,8 +37,6 @@
     - Add support for SDXL LoRA [KappaNeuro/studio-ghibli-style](https://hf.co/KappaNeuro/studio-ghibli-style) to all eligible modules.
     - Add support for [bartowski/internlm2_5-7b-chat-1m-GGUF](https://hf.co/bartowski/internlm2_5-7b-chat-1m-GGUF) and [bartowski/codegeex4-all-9b-GGUF](https://hf.co/bartowski/codegeex4-all-9b-GGUF) to Chatbot module.
     - Add support for [bee-kake/nanollava-1.5-gguf](https://hf.co/bee-kake/nanollava-1.5-gguf) to Llava module.
-
-  * 🆕 **2024-07-09** : 🔥 ***Support for Mann-E__Turbo*** 🔥 > Add support for LoRA model [mann-e/Mann-E_Turbo](https://hf.co/mann-e/Mann-E_Turbo) to all eligible modules. Using this 6-10 steps LoRA model, you can use Mann-E in combination with any other SDXL model.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
