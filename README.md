@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-07-29** : 🔥 ***Support for controlnet-union-sdxl-1.0*** 🔥 > Introducing [xinsir/controlnet-union-sdxl-1.0](https://hf.co/xinsir/controlnet-union-sdxl-1.0) as default ControlNet model for all pre-processors -excepting depth, open-pose with faces and lineart-coarse - with SDXL models. This awesome model can handle all ControlNet pre-processors, but few gives strange results in biniou. You can still use the previous ControlNet models or force the use of ControlNet Union by choosing them in the "ControlNet model" dropdown menu AFTER generating preview.
+
   * 🆕 **2024-07-28** : 🔥 ***Support for PhotoMaker V2*** 🔥 > Update of Photobooth module to enable use of [TencentARC/PhotoMaker-V2](https://hf.co/TencentARC/PhotoMaker-V2) in replacement of PhotoMaker.
 
   * 🆕 **2024-07-27** : 🔥 ***This week's updates*** 🔥 >
@@ -32,11 +34,6 @@
     - Add support for [dataautogpt3/PixArt-Sigma-900M](https://hf.co/dataautogpt3/PixArt-Sigma-900M) model to PixArt-Alpha module.
     - Add support for [bartowski/llama-3-sqlcoder-8b-GGUF](https://hf.co/bartowski/llama-3-sqlcoder-8b-GGUF) and [bartowski/Qwen2-Wukong-7B-GGUF](https://hf.co/bartowski/Qwen2-Wukong-7B-GGUF) to Chatbot module.
     - Add support for Linux Mint 22 to Debian One-Click installer (oci-debian.sh).
-
-  * 🆕 **2024-07-13** : 🔥 ***Updates of model list in several modules*** 🔥 >
-    - Add support for SDXL LoRA [KappaNeuro/studio-ghibli-style](https://hf.co/KappaNeuro/studio-ghibli-style) to all eligible modules.
-    - Add support for [bartowski/internlm2_5-7b-chat-1m-GGUF](https://hf.co/bartowski/internlm2_5-7b-chat-1m-GGUF) and [bartowski/codegeex4-all-9b-GGUF](https://hf.co/bartowski/codegeex4-all-9b-GGUF) to Chatbot module.
-    - Add support for [bee-kake/nanollava-1.5-gguf](https://hf.co/bee-kake/nanollava-1.5-gguf) to Llava module.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
