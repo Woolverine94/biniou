@@ -1843,6 +1843,7 @@ def lora_model_list(model):
             "mann-e/Mann-E_Turbo":("manne_turbo.safetensors", ""),
             "KingNish/Better-SDXL-Lora":("example-03.safetensors", ""),
             "ehristoforu/dalle-3-xl-v2":("dalle-3-xl-lora-v2.safetensors", ""),
+            "thwri/dark-gothic-fantasy-xl":("dark_gothic_fantasy_xl_3.01.safetensors", "dark fantasy, dark gothic fantasy"),
             "twn39/blindbox-popmart-xl":("blindbox_popmart_xl.safetensors", "popmart, blindbox"),
             "Senetor/Voxel_style-2":("ral-vxl.safetensors", "ral-vxl"),
             "lordjia/lelo-lego-lora-for-xl-sd1-5":("Lego_XL_v2.1.safetensors", "LEGO Creator"),
