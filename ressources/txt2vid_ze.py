@@ -22,6 +22,7 @@ model_list_txt2vid_ze = [
     "digiplay/majicMIX_realistic_v7",
     "SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep",
     "sd-community/sdxl-flash",
+    "dataautogpt3/PrometheusV1",
     "mann-e/Mann-E_Dreams",
     "ehristoforu/Visionix-alpha",
     "RunDiffusion/Juggernaut-X-Hyper",

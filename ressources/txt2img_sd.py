@@ -34,6 +34,7 @@ model_list_txt2img_sd_builtin = [
     "IDKiro/sdxs-512-dreamshaper",
     "IDKiro/sdxs-512-0.9",
     "sd-community/sdxl-flash",
+    "dataautogpt3/PrometheusV1",
     "mann-e/Mann-E_Dreams",
     "ehristoforu/Visionix-alpha",
     "v2ray/stable-diffusion-3-medium-diffusers",
