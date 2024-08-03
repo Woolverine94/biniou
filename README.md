@@ -17,6 +17,11 @@
 
 ## Updates
 
+  * 🆕 **2024-08-03** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for [bartowski/Meta-Llama-3.1-8B-Instruct-GGUF](https://hf.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF) to Chatbot module. It needs further testings, but this model should become the default model for biniou chatbot.
+    - Add support for LoRA models [thwri/dark-gothic-fantasy-xl](https://hf.co/thwri/dark-gothic-fantasy-xl), [itsVilen/Mspaint](https://hf.co/itsVilen/Mspaint) and [nerijs/pixel-art-xl](https://hf.co/nerijs/pixel-art-xl) to all eligible modules.
+    - Add support for [dataautogpt3/PrometheusV1](https://hf.co/dataautogpt3/PrometheusV1) to Stable Diffusion-based module.
+
   * 🆕 **2024-07-29** : 🔥 ***Support for controlnet-union-sdxl-1.0*** 🔥 > Introducing [xinsir/controlnet-union-sdxl-1.0](https://hf.co/xinsir/controlnet-union-sdxl-1.0) as default ControlNet model for all pre-processors -excepting depth, open-pose with faces and lineart-coarse - with SDXL models. This awesome model can handle all ControlNet pre-processors, but few gives strange results in biniou. You can still use the previous ControlNet models or force the use of ControlNet Union by choosing them in the "ControlNet model" dropdown menu AFTER generating preview.
 
   * 🆕 **2024-07-28** : 🔥 ***Support for PhotoMaker V2*** 🔥 > Update of Photobooth module to enable use of [TencentARC/PhotoMaker-V2](https://hf.co/TencentARC/PhotoMaker-V2) in replacement of PhotoMaker.
