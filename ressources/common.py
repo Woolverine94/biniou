@@ -1845,6 +1845,7 @@ def lora_model_list(model):
             "KingNish/Better-SDXL-Lora":("example-03.safetensors", ""),
             "ehristoforu/dalle-3-xl-v2":("dalle-3-xl-lora-v2.safetensors", ""),
             "thwri/dark-gothic-fantasy-xl":("dark_gothic_fantasy_xl_3.01.safetensors", "dark fantasy, dark gothic fantasy"),
+            "nerijs/pixel-art-xl":("pixel-art-xl.safetensors", "pixel, pixel art"),
             "itsVilen/Mspaint":("SDXL_MSPaint_Portrait.safetensors", "MSPaint portrait, MSPaint drawing"),
             "twn39/blindbox-popmart-xl":("blindbox_popmart_xl.safetensors", "popmart, blindbox"),
             "Senetor/Voxel_style-2":("ral-vxl.safetensors", "ral-vxl"),
