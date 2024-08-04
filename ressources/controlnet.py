@@ -4,7 +4,8 @@ import gradio as gr
 import os
 import cv2
 import torch
-from diffusers import StableDiffusionControlNetPipeline, StableDiffusionXLControlNetPipeline, ControlNetModel
+from diffusers import StableDiffusionControlNetPipeline, StableDiffusionXLControlNetPipeline, ControlNetModel, StableDiffusion3ControlNetPipeline
+from diffusers.models import SD3ControlNetModel, SD3MultiControlNetModel
 from huggingface_hub import hf_hub_download
 from compel import Compel, ReturnedEmbeddingsType
 import random
@@ -34,6 +35,8 @@ model_list_controlnet_builtin = [
     "dataautogpt3/PrometheusV1",
     "mann-e/Mann-E_Dreams",
     "ehristoforu/Visionix-alpha",
+    "v2ray/stable-diffusion-3-medium-diffusers",
+    "ptx0/sd3-reality-mix",
     "RunDiffusion/Juggernaut-X-Hyper",
     "cutycat2000x/InterDiffusion-4.0",
     "RunDiffusion/Juggernaut-XL-Lightning",
@@ -94,6 +97,9 @@ variant_list_controlnet = [
     "monster-labs/control_v1p_sdxl_qrcode_monster",
     "TheMistoAI/MistoLine",
     "xinsir/controlnet-union-sdxl-1.0",
+    "InstantX/SD3-Controlnet-Canny",
+    "InstantX/SD3-Controlnet-Pose",
+    "InstantX/SD3-Controlnet-Tile",
 ]
 
 preprocessor_list_controlnet = [
@@ -159,6 +165,11 @@ def dispatch_controlnet_preview(
     else :
         is_xl_controlnet: bool = False
 
+    if is_sd3(modelid_controlnet):
+        is_sd3_controlnet: bool = True
+    else :
+        is_sd3_controlnet: bool = False
+
     img_source_controlnet = Image.open(img_source_controlnet)
     img_source_controlnet = np.array(img_source_controlnet)
     if not (('qr' in preprocessor_controlnet) or ('tile' in preprocessor_controlnet)):
@@ -169,7 +180,13 @@ def dispatch_controlnet_preview(
         case "canny":
             result = canny_controlnet(img_source_controlnet, low_threshold_controlnet, high_threshold_controlnet)
 #            return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[0]
-            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[0]
+            if is_xl_controlnet:
+                return result, result, variant_list_controlnet[20]
+            elif is_sd3_controlnet:
+                return result, result, variant_list_controlnet[21]
+            else:
+                return result, result, variant_list_controlnet[0]
+#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[0]
 # 02
         case "depth_leres":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
@@ -194,28 +211,51 @@ def dispatch_controlnet_preview(
         case "lineart_anime":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
 #            return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[2]
-            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[2]
+            if is_xl_controlnet:
+                return result, result, variant_list_controlnet[20]
+            elif is_sd3_controlnet:
+                return result, result, variant_list_controlnet[21]
+            else:
+                return result, result, variant_list_controlnet[2]
+#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[2]
 # 06
         case "lineart_coarse":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[3]
+#            return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[3]
+            if is_xl_controlnet:
+                return result, result, variant_list_controlnet[12]
+            elif is_sd3_controlnet:
+                return result, result, variant_list_controlnet[21]
+            else:
+                return result, result, variant_list_controlnet[3]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[3]
 # 07
         case "lineart_realistic":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
 #            return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[3]
-            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[3]
+            if is_xl_controlnet:
+                return result, result, variant_list_controlnet[20]
+            elif is_sd3_controlnet:
+                return result, result, variant_list_controlnet[21]
+            else:
+                return result, result, variant_list_controlnet[3]
+#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[3]
 # 08
         case "mlsd":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
 #            return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[4]
-            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[4]
+            if is_xl_controlnet:
+                return result, result, variant_list_controlnet[20]
+            elif is_sd3_controlnet:
+                return result, result, variant_list_controlnet[21]
+            else:
+                return result, result, variant_list_controlnet[4]
+#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[4]
 # 09
         case "normal_bae":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
 #            return result, result, variant_list_controlnet[13] if is_xl_controlnet else variant_list_controlnet[5]
             return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[5]
-
 #         case "normal_midas":
 #             result = processor_controlnet(img_source_controlnet, to_pil=True)
 # #            return result, result, variant_list_controlnet[13] if is_xl_controlnet else variant_list_controlnet[5]
@@ -224,27 +264,58 @@ def dispatch_controlnet_preview(
         case "openpose":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
 #            return result, result, variant_list_controlnet[14] if is_xl_controlnet else variant_list_controlnet[6]
-            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
+            if is_xl_controlnet:
+                return result, result, variant_list_controlnet[20]
+            elif is_sd3_controlnet:
+                return result, result, variant_list_controlnet[22]
+            else:
+                return result, result, variant_list_controlnet[6]
+#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
 # 11
         case "openpose_face":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[14] if is_xl_controlnet else variant_list_controlnet[6]
+#            return result, result, variant_list_controlnet[14] if is_xl_controlnet else variant_list_controlnet[6]
+            if is_xl_controlnet:
+                return result, result, variant_list_controlnet[14]
+            elif is_sd3_controlnet:
+                return result, result, variant_list_controlnet[22]
+            else:
+                return result, result, variant_list_controlnet[6]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
 # 12
         case "openpose_faceonly":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[14] if is_xl_controlnet else variant_list_controlnet[6]
+#            return result, result, variant_list_controlnet[14] if is_xl_controlnet else variant_list_controlnet[6]
+            if is_xl_controlnet:
+                return result, result, variant_list_controlnet[14]
+            elif is_sd3_controlnet:
+                return result, result, variant_list_controlnet[22]
+            else:
+                return result, result, variant_list_controlnet[6]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
 # 13
         case "openpose_full":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[14] if is_xl_controlnet else variant_list_controlnet[6]
+#            return result, result, variant_list_controlnet[14] if is_xl_controlnet else variant_list_controlnet[6]
+            if is_xl_controlnet:
+                return result, result, variant_list_controlnet[14]
+            elif is_sd3_controlnet:
+                return result, result, variant_list_controlnet[22]
+            else:
+                return result, result, variant_list_controlnet[6]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
 # 14
         case "openpose_hand":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
 #            return result, result, variant_list_controlnet[14] if is_xl_controlnet else variant_list_controlnet[6]
-            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
+            if is_xl_controlnet:
+                return result, result, variant_list_controlnet[20]
+            elif is_sd3_controlnet:
+                return result, result, variant_list_controlnet[22]
+            else:
+                return result, result, variant_list_controlnet[6]
+#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
+
 # 15
         case "scribble_hed":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
@@ -279,7 +350,13 @@ def dispatch_controlnet_preview(
         case "tile":
             result = tile_controlnet(img_source_controlnet, is_xl_controlnet, modelid_controlnet)
 #            return result, result, variant_list_controlnet[16] if is_xl_controlnet else variant_list_controlnet[9]
-            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[9]
+            if is_xl_controlnet:
+                return result, result, variant_list_controlnet[20]
+            elif is_sd3_controlnet:
+                return result, result, variant_list_controlnet[23]
+            else:
+                return result, result, variant_list_controlnet[9]
+#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[9]
 # 22
         case "qr":
             result = qr_controlnet(img_source_controlnet, 0)
@@ -365,21 +442,6 @@ def image_controlnet(
     if clipskip_controlnet == 0:
        clipskip_controlnet = None
 
-    controlnet = ControlNetModel.from_pretrained(
-        variant_controlnet,
-        cache_dir=model_path_base_controlnet,
-        torch_dtype=model_arch,
-        variant="fp16" if (variant_controlnet == "TheMistoAI/MistoLine" or variant_controlnet == "ValouF-pimento/ControlNet_SDXL_tile_upscale") else None,
-#        use_safetensors=True,
-        resume_download=True,
-        local_files_only=True if offline_test() else None
-        )
-
-#    img_preview_controlnet = Image.open(img_preview_controlnet)
-    strength_controlnet = float(strength_controlnet)
-    start_controlnet = float(start_controlnet)
-    stop_controlnet = float(stop_controlnet)
-
     if ("turbo" in modelid_controlnet):
         is_turbo_controlnet: bool = True
     else :
@@ -387,13 +449,44 @@ def image_controlnet(
 
     if is_sdxl(modelid_controlnet):
         is_xl_controlnet: bool = True
-    else :        
+    else :
         is_xl_controlnet: bool = False
+
+    if is_sd3(modelid_controlnet):
+        is_sd3_controlnet: bool = True
+    else :
+        is_sd3_controlnet: bool = False
 
     if is_bin(modelid_controlnet):
         is_bin_controlnet: bool = True
     else :
         is_bin_controlnet: bool = False
+
+    if is_sd3_controlnet:
+        controlnet = SD3ControlNetModel.from_pretrained(
+            variant_controlnet,
+            cache_dir=model_path_base_controlnet,
+            torch_dtype=model_arch,
+#            variant="fp16" if (variant_controlnet == "TheMistoAI/MistoLine" or variant_controlnet == "ValouF-pimento/ControlNet_SDXL_tile_upscale") else None,
+    #        use_safetensors=True,
+            resume_download=True,
+            local_files_only=True if offline_test() else None
+            )
+    else:
+        controlnet = ControlNetModel.from_pretrained(
+            variant_controlnet,
+            cache_dir=model_path_base_controlnet,
+            torch_dtype=model_arch,
+            variant="fp16" if (variant_controlnet == "TheMistoAI/MistoLine" or variant_controlnet == "ValouF-pimento/ControlNet_SDXL_tile_upscale") else None,
+    #        use_safetensors=True,
+            resume_download=True,
+            local_files_only=True if offline_test() else None
+            )
+
+#    img_preview_controlnet = Image.open(img_preview_controlnet)
+    strength_controlnet = float(strength_controlnet)
+    start_controlnet = float(start_controlnet)
+    stop_controlnet = float(stop_controlnet)
 
     if (num_inference_step_controlnet >= 10) and use_ays_controlnet:
         if is_sdxl(modelid_controlnet):
@@ -420,6 +513,28 @@ def image_controlnet(
             )
         else :
             pipe_controlnet = StableDiffusionXLControlNetPipeline.from_pretrained(
+                modelid_controlnet,
+                controlnet=controlnet,
+                cache_dir=model_path_controlnet,
+                torch_dtype=model_arch,
+                use_safetensors=True if not is_bin_controlnet else False,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+    elif (is_sd3_controlnet == True) :
+        if modelid_controlnet[0:9] == "./models/" :
+            pipe_controlnet = StableDiffusion3ControlNetPipeline.from_single_file(
+                modelid_controlnet,
+                controlnet=controlnet,
+                torch_dtype=model_arch,
+                use_safetensors=True if not is_bin_controlnet else False,
+#                load_safety_checker=False if (nsfw_filter_final == None) else True,
+                local_files_only=True if offline_test() else None
+#                safety_checker=nsfw_filter_final,
+#                feature_extractor=feat_ex
+            )
+        else :
+            pipe_controlnet = StableDiffusion3ControlNetPipeline.from_pretrained(
                 modelid_controlnet,
                 controlnet=controlnet,
                 cache_dir=model_path_controlnet,
@@ -455,12 +570,14 @@ def image_controlnet(
    
     pipe_controlnet = schedulerer(pipe_controlnet, sampler_controlnet)
     pipe_controlnet.enable_attention_slicing("max")
-    tomesd.apply_patch(pipe_controlnet, ratio=tkme_controlnet)
+    if not is_sd3_controlnet:
+        tomesd.apply_patch(pipe_controlnet, ratio=tkme_controlnet)
     if device_label_controlnet == "cuda" :
         pipe_controlnet.enable_sequential_cpu_offload()
     else : 
         pipe_controlnet = pipe_controlnet.to(device_controlnet)
-    pipe_controlnet.enable_vae_slicing()
+    if not is_sd3_controlnet:
+        pipe_controlnet.enable_vae_slicing()
 
     if lora_model_controlnet != "":
         model_list_lora_controlnet = lora_model_list(modelid_controlnet)
@@ -492,7 +609,8 @@ def image_controlnet(
                 use_safetensors=True,
                 adapter_name="adapter1",
             )
-        pipe_controlnet.fuse_lora(lora_scale=lora_weight_controlnet)
+        if not is_sd3_controlnet:
+            pipe_controlnet.fuse_lora(lora_scale=lora_weight_controlnet)
 #        pipe_controlnet.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_controlnet)])
 
     if txtinv_controlnet != "":
@@ -532,7 +650,7 @@ def image_controlnet(
     for k in range(num_prompt_controlnet):
         generator.append([torch.Generator(device_controlnet).manual_seed(final_seed + (k*num_images_per_prompt_controlnet) + l ) for l in range(num_images_per_prompt_controlnet)])
 
-    if (is_xl_controlnet == True) and not (is_turbo_controlnet == True):
+    if ((is_xl_controlnet == True) or (is_sd3_controlnet == True)) and not (is_turbo_controlnet == True):
         dim_size = correct_size(width_controlnet, height_controlnet, 1024)
     else :
         dim_size = correct_size(width_controlnet, height_controlnet, 512)
@@ -559,6 +677,8 @@ def image_controlnet(
         conditioning, pooled = compel(prompt_controlnet)
         neg_conditioning, neg_pooled = compel(negative_prompt_controlnet)
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
+    elif (is_sd3_controlnet == True):
+        pass
     else : 
         compel = Compel(tokenizer=pipe_controlnet.tokenizer, text_encoder=pipe_controlnet.text_encoder, truncate_long_prompts=False, device=device_controlnet)
         conditioning = compel.build_conditioning_tensor(prompt_controlnet)
@@ -605,10 +725,28 @@ def image_controlnet(
                 callback_on_step_end=check_controlnet,
                 callback_on_step_end_tensor_inputs=['latents'],
             ).images
+        elif (is_sd3_controlnet == True) : 
+            image = pipe_controlnet(
+                prompt=prompt_controlnet,
+                negative_prompt=negative_prompt_controlnet,
+                control_image=image_input,
+                height=height_controlnet,
+                width=width_controlnet,
+                num_images_per_prompt=num_images_per_prompt_controlnet,
+                num_inference_steps=num_inference_step_controlnet,
+                timesteps=sampling_schedule_controlnet,
+                guidance_scale=guidance_scale_controlnet,
+                controlnet_conditioning_scale=strength_controlnet,
+                control_guidance_start=start_controlnet,
+                control_guidance_end=stop_controlnet,                
+                generator=generator[i],
+                callback_on_step_end=check_controlnet,
+                callback_on_step_end_tensor_inputs=['latents'],
+            ).images
         else :            
             image = pipe_controlnet(
                 prompt_embeds=conditioning,
-                negative_prompt_embeds=neg_conditioning,
+                negative_prompt=neg_conditioning,
                 image=image_input,
                 height=height_controlnet,
                 width=width_controlnet,
@@ -668,7 +806,7 @@ def image_controlnet(
 
     exif_writer_png(reporting_controlnet, final_image)
 
-    del nsfw_filter_final, feat_ex, controlnet, img_preview_controlnet, pipe_controlnet, generator, image_input, compel, conditioning, neg_conditioning, image
+    del nsfw_filter_final, feat_ex, controlnet, img_preview_controlnet, pipe_controlnet, generator, image_input, image
     clean_ram()
 
     print(f">>>[ControlNet 🖼️ ]: leaving module")
