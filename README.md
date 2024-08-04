@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-08-04** : 🔥 ***Support for SD3 ControlNet*** 🔥 > Add support for Stable Diffusion 3 ControlNet in ControlNet module. It currently only support canny, lineart, openpose and tile pre-processors. Other models will be added as soon as available.
+
   * 🆕 **2024-08-03** : 🔥 ***This week's updates*** 🔥 >
     - Add support for [bartowski/Meta-Llama-3.1-8B-Instruct-GGUF](https://hf.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF) to Chatbot module. It needs further testings, but this model should become the default model for biniou chatbot.
     - Add support for LoRA models [thwri/dark-gothic-fantasy-xl](https://hf.co/thwri/dark-gothic-fantasy-xl), [itsVilen/Mspaint](https://hf.co/itsVilen/Mspaint) and [nerijs/pixel-art-xl](https://hf.co/nerijs/pixel-art-xl) to all eligible modules.
@@ -31,14 +33,6 @@
     - Add support for [digiplay/majicMIX_realistic_v7](https://hf.co/digiplay/majicMIX_realistic_v7) model to Stable Diffusion-based module.
     - Update of dataautogpt3/ProteusV0.4 model to [dataautogpt3/ProteusV0.5](https://hf.co/dataautogpt3/ProteusV0.5) for Stable Diffusion-based module.
     - Various bugfixes.
-
-  * 🆕 **2024-07-22** : 🔥 ***Support for ptx0/sd3-reality-mix*** 🔥 > Adding support for model [ptx0/sd3-reality-mix](https://hf.co/ptx0/sd3-reality-mix) to Stable Diffusion and Img2img modules. This model is finetuned from Stable Diffusion 3 medium and handle images sizes 512x512, 1024x1024, 1280x768, 960x1152.
-
-  * 🆕 **2024-07-21** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for SDXL LoRA models [alvdansen/frosting_lane_redux](https://hf.co/alvdansen/frosting_lane_redux), [alvdansen/popartanime](https://hf.co/alvdansen/popartanime), [twn39/blindbox-popmart-xl](https://hf.co/twn39/blindbox-popmart-xl), [Senetor/Voxel_style-2](https://hf.co/Senetor/Voxel_style-2), [lordjia/lelo-lego-lora-for-xl-sd1-5](https://hf.co/lordjia/lelo-lego-lora-for-xl-sd1-5) to all eligible modules.
-    - Add support for [dataautogpt3/PixArt-Sigma-900M](https://hf.co/dataautogpt3/PixArt-Sigma-900M) model to PixArt-Alpha module.
-    - Add support for [bartowski/llama-3-sqlcoder-8b-GGUF](https://hf.co/bartowski/llama-3-sqlcoder-8b-GGUF) and [bartowski/Qwen2-Wukong-7B-GGUF](https://hf.co/bartowski/Qwen2-Wukong-7B-GGUF) to Chatbot module.
-    - Add support for Linux Mint 22 to Debian One-Click installer (oci-debian.sh).
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
