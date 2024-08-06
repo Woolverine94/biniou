@@ -746,7 +746,7 @@ def image_controlnet(
         else :            
             image = pipe_controlnet(
                 prompt_embeds=conditioning,
-                negative_prompt=neg_conditioning,
+                negative_prompt_embeds=neg_conditioning,
                 image=image_input,
                 height=height_controlnet,
                 width=width_controlnet,
