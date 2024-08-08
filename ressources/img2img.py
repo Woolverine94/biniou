@@ -37,6 +37,7 @@ model_list_img2img_builtin = [
     "sd-community/sdxl-flash",
     "dataautogpt3/PrometheusV1",
     "mann-e/Mann-E_Dreams",
+    "mann-e/Mann-E_Art",
     "ehristoforu/Visionix-alpha",
     "v2ray/stable-diffusion-3-medium-diffusers",
     "ptx0/sd3-reality-mix",

@@ -25,6 +25,7 @@ model_list_txt2vid_ze = [
     "sd-community/sdxl-flash",
     "dataautogpt3/PrometheusV1",
     "mann-e/Mann-E_Dreams",
+    "mann-e/Mann-E_Art",
     "ehristoforu/Visionix-alpha",
     "RunDiffusion/Juggernaut-X-Hyper",
     "cutycat2000x/InterDiffusion-4.0",

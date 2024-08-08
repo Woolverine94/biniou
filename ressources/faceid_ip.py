@@ -51,6 +51,7 @@ model_list_faceid_ip_builtin = [
     "sd-community/sdxl-flash",
     "dataautogpt3/PrometheusV1",
     "mann-e/Mann-E_Dreams",
+    "mann-e/Mann-E_Art",
     "ehristoforu/Visionix-alpha",
     "RunDiffusion/Juggernaut-X-Hyper",
     "cutycat2000x/InterDiffusion-4.0",
