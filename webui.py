@@ -299,6 +299,7 @@ def change_ays_txt2img_sd(use_ays):
         return num_inference_step_txt2img_sd.update(interactive=True), sampler_txt2img_sd.update(interactive=True)
 
 def change_model_type_txt2img_sd(model_txt2img_sd):
+    model_txt2img_sd = model_cleaner(model_txt2img_sd)
     if (model_txt2img_sd == "stabilityai/sdxl-turbo"):
         return sampler_txt2img_sd.update(value="Euler a"), width_txt2img_sd.update(value=biniou_global_sd15_width), height_txt2img_sd.update(value=biniou_global_sd15_height), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=False)
     elif (model_txt2img_sd == "thibaud/sdxl_dpo_turbo"):

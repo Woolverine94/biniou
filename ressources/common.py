@@ -1830,7 +1830,22 @@ def is_sd3(model):
         is_sd3_value = False
     return is_sd3_value
 
+def model_cleaner(model):
+    model_replacement = {
+        "-[ 👍 🚀 Fast SD15 ]-": "IDKiro/sdxs-512-0.9",
+        "-[ 👍 🇯🇵 Anime SD15 ]-": "gsdf/Counterfeit-V2.5",
+        "-[ 👍 SD15 ]-": "SG161222/Realistic_Vision_V3.0_VAE",
+        "-[ 👌 🚀 Fast SDXL ]-": "sd-community/sdxl-flash",
+        "-[ 👌 🇯🇵 Anime SDXL ]-": "cagliostrolab/animagine-xl-3.1",
+        "-[ 👌 🐢 SDXL ]-": "fluently/Fluently-XL-Final",
+        "-[ 👏 🐢 SD3 ]-": "v2ray/stable-diffusion-3-medium-diffusers",
+    }
+    for clean_model_key, clean_model_value in model_replacement.items():
+        model = model.replace(clean_model_key, clean_model_value)
+    return model
+
 def lora_model_list(model):
+    model = model_cleaner(model)
     if is_sdxl(model):
         model_path_lora = model_path_lora_sdxl
         model_list_lora_builtin = {
@@ -1918,6 +1933,7 @@ def lora_model_list(model):
     return model_list_lora
 
 def txtinv_list(model):
+    model_cleaner(model)
     if is_sdxl(model):
         model_path_txtinv = "./models/TextualInversion/SDXL"
         model_list_txtinv_builtin = {
