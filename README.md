@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-08-04** : 🔥 ***Add categories to Stable Diffusion module*** 🔥 > As the number of image models never stops growing in biniou, it was the right time to classify them by categories, to help you find the best model to fit your needs. Please note that if you select a category instead of a model, the default model for this category will automatically be used. Default model is always the one following the category in the model list. This concept will be extended soon to all modules requiring it (Chatbot, img2img, controlnet, ...).
+
   * 🆕 **2024-08-04** : 🔥 ***Support for SD3 ControlNet*** 🔥 > Add support for Stable Diffusion 3 ControlNet in ControlNet module. It currently only support canny, lineart, openpose and tile pre-processors. Other models will be added as soon as available.
 
   * 🆕 **2024-08-03** : 🔥 ***This week's updates*** 🔥 >
@@ -27,12 +29,6 @@
   * 🆕 **2024-07-29** : 🔥 ***Support for controlnet-union-sdxl-1.0*** 🔥 > Introducing [xinsir/controlnet-union-sdxl-1.0](https://hf.co/xinsir/controlnet-union-sdxl-1.0) as default ControlNet model for all pre-processors -excepting depth, open-pose with faces and lineart-coarse - with SDXL models. This awesome model can handle all ControlNet pre-processors, but few gives strange results in biniou. You can still use the previous ControlNet models or force the use of ControlNet Union by choosing them in the "ControlNet model" dropdown menu AFTER generating preview.
 
   * 🆕 **2024-07-28** : 🔥 ***Support for PhotoMaker V2*** 🔥 > Update of Photobooth module to enable use of [TencentARC/PhotoMaker-V2](https://hf.co/TencentARC/PhotoMaker-V2) in replacement of PhotoMaker.
-
-  * 🆕 **2024-07-27** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for [bartowski/Mistral-Nemo-Instruct-2407-GGUF](https://hf.co/bartowski/Mistral-Nemo-Instruct-2407-GGUF) to Chatbot module. This 12B parameters model will require at least 16GB RAM, but can use a 128k context window and gives absolutely awesome results for such a small model. You should definitely give it a try !
-    - Add support for [digiplay/majicMIX_realistic_v7](https://hf.co/digiplay/majicMIX_realistic_v7) model to Stable Diffusion-based module.
-    - Update of dataautogpt3/ProteusV0.4 model to [dataautogpt3/ProteusV0.5](https://hf.co/dataautogpt3/ProteusV0.5) for Stable Diffusion-based module.
-    - Various bugfixes.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
