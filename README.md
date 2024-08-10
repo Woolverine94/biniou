@@ -117,6 +117,7 @@
   - Powered by [🤗 Huggingface](https://huggingface.co/) and [gradio](https://www.gradio.app/)
   - Cross platform : GNU/Linux, Windows 10/11 and macOS(experimental, via homebrew)
   - Convenient Dockerfile for cloud instances
+  - Generation settings saved as metadatas in each content.
   - Support for CUDA (see [CUDA support](#cuda-support))
   - Experimental support for ROCm (see [here](https://github.com/Woolverine94/biniou/wiki/Experimental-features#rocm-support-under-gnulinux))
   - Support for Stable Diffusion SD-1.5, SD-2.1, SD-Turbo, SDXL, SDXL-Turbo, SDXL-Lightning, Hyper-SD, Stable Diffusion 3, LCM, VegaRT, Segmind, Playground-v2, Koala, Pixart-Alpha, Pixart-Sigma, Kandinsky and compatible models, through built-in model list or standalone .safetensors files
