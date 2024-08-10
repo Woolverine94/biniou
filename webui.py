@@ -299,7 +299,7 @@ def change_ays_txt2img_sd(use_ays):
         return num_inference_step_txt2img_sd.update(interactive=True), sampler_txt2img_sd.update(interactive=True)
 
 def change_model_type_txt2img_sd(model_txt2img_sd):
-    model_txt2img_sd = model_cleaner(model_txt2img_sd)
+    model_txt2img_sd = model_cleaner_sd(model_txt2img_sd)
     if (model_txt2img_sd == "stabilityai/sdxl-turbo"):
         return sampler_txt2img_sd.update(value="Euler a"), width_txt2img_sd.update(value=biniou_global_sd15_width), height_txt2img_sd.update(value=biniou_global_sd15_height), num_inference_step_txt2img_sd.update(value=1), guidance_scale_txt2img_sd.update(value=0.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=False)
     elif (model_txt2img_sd == "thibaud/sdxl_dpo_turbo"):
@@ -610,6 +610,7 @@ def change_ays_img2img(use_ays):
         return num_inference_step_img2img.update(interactive=True), sampler_img2img.update(interactive=True)
 
 def change_model_type_img2img(model_img2img):
+    model_img2img = model_cleaner_sd(model_img2img)
     if (model_img2img == "stabilityai/sdxl-turbo"):
         return sampler_img2img.update(value="Euler a"), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=2), guidance_scale_img2img.update(value=0.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), txtinv_img2img.update(choices=list(txtinv_list(model_img2img).keys()), value="", interactive=True), negative_prompt_img2img.update(interactive=False)
     elif (model_img2img == "thibaud/sdxl_dpo_turbo"):
@@ -641,7 +642,7 @@ def change_model_type_img2img(model_img2img):
     elif (model_img2img == "playgroundai/playground-v2-512px-base"):
         return sampler_img2img.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=3.0), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=False), txtinv_img2img.update(choices=list(txtinv_list(model_img2img).keys()), value="", interactive=True), negative_prompt_img2img.update(interactive=True)
     elif is_sd3(model_img2img):
-        return sampler_img2img.update(value="Flow Match Euler"), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=False), txtinv_img2img.update(choices=list(txtinv_list(model_img2img).keys()), value="", interactive=False), negative_prompt_img2img.update(interactive=True)
+        return sampler_img2img.update(value="Flow Match Euler"), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), txtinv_img2img.update(choices=list(txtinv_list(model_img2img).keys()), value="", interactive=False), negative_prompt_img2img.update(interactive=True)
     elif is_sdxl(model_img2img):
         return sampler_img2img.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), txtinv_img2img.update(choices=list(txtinv_list(model_img2img).keys()), value="", interactive=True), negative_prompt_img2img.update(interactive=True)
     else:
@@ -749,7 +750,7 @@ def change_ays_img2img_ip(use_ays):
         return num_inference_step_img2img_ip.update(interactive=True), sampler_img2img_ip.update(interactive=True)
 
 def change_model_type_img2img_ip(model_img2img_ip, source_type):
-
+    model_img2img_ip = model_cleaner_sd(model_img2img_ip)
     if is_sdxl(model_img2img_ip):
         is_xl_size: bool = True
     else :
@@ -800,6 +801,8 @@ def change_model_type_img2img_ip(model_img2img_ip, source_type):
         return sampler_img2img_ip.update(value="EDM DPM++ 2M"), width_img2img_ip.update(width_value, interactive=interaction), height_img2img_ip.update(height_value, interactive=interaction), num_inference_step_img2img_ip.update(value=15), guidance_scale_img2img_ip.update(value=3 if source_type == "composition" else 3.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=False), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True), source_type_img2img_ip.update(interactive=True)
     elif (model_img2img_ip == "playgroundai/playground-v2-512px-base"):
         return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(width_value, interactive=interaction), height_img2img_ip.update(height_value, interactive=interaction), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=3 if source_type == "composition" else 3.0), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=False), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True), source_type_img2img_ip.update(interactive=True)
+    elif is_sd3(model_img2img_ip):
+        return sampler_img2img_ip.update("Flow Match Euler"), width_img2img_ip.update(width_value, interactive=interaction), height_img2img_ip.update(height_value, interactive=interaction), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=3 if source_type == "composition" else 7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value="", interactive=False), negative_prompt_img2img_ip.update(interactive=True), source_type_img2img_ip.update(interactive=True)
     elif is_sdxl(model_img2img_ip):
         return sampler_img2img_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img_ip.update(width_value, interactive=interaction), height_img2img_ip.update(height_value, interactive=interaction), num_inference_step_img2img_ip.update(value=10), guidance_scale_img2img_ip.update(value=3 if source_type == "composition" else 7.5), lora_model_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip).keys()), value="", interactive=True), txtinv_img2img_ip.update(choices=list(txtinv_list(model_img2img_ip).keys()), value=""), negative_prompt_img2img_ip.update(interactive=True), source_type_img2img_ip.update(interactive=True)
     else:
@@ -981,6 +984,7 @@ def change_ays_controlnet(use_ays):
         return num_inference_step_controlnet.update(interactive=True), sampler_controlnet.update(interactive=True)
 
 def change_model_type_controlnet(model_controlnet):
+    model_controlnet = model_cleaner_sd(model_controlnet)
     if (model_controlnet == "stabilityai/sdxl-turbo"):
         return sampler_controlnet.update(value="Euler a"), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=1), guidance_scale_controlnet.update(value=0.0), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), txtinv_controlnet.update(choices=list(txtinv_list(model_controlnet).keys()), value=""), negative_prompt_controlnet.update(interactive=False), img_preview_controlnet.update(value=None), gs_img_preview_controlnet.update(value=None)
     elif (model_controlnet == "thibaud/sdxl_dpo_turbo"):
@@ -1112,6 +1116,7 @@ def hide_download_file_faceid_ip():
     return download_file_faceid_ip.update(visible=False)
 
 def change_model_type_faceid_ip(model_faceid_ip, prompt):
+    model_faceid_ip = model_cleaner_sd(model_faceid_ip)
     if (model_faceid_ip == "stabilityai/sdxl-turbo"):
         return sampler_faceid_ip.update(value="Euler a"), width_faceid_ip.update(), height_faceid_ip.update(), num_inference_step_faceid_ip.update(value=2), guidance_scale_faceid_ip.update(value=0.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=False), prompt_faceid_ip.update()
 #    elif (model_faceid_ip == "thibaud/sdxl_dpo_turbo"):
@@ -1306,6 +1311,7 @@ def change_output_type_txt2vid_ms(output_type_txt2vid_ms):
 ## Functions specific to Text2Video-Zero
 
 def change_model_type_txt2vid_ze(model_txt2vid_ze):
+    model_txt2vid_ze = model_cleaner_sd(model_txt2vid_ze)
     if (model_txt2vid_ze == "stabilityai/sdxl-turbo"):
         return sampler_txt2vid_ze.update(value="Euler a"), width_txt2vid_ze.update(value=biniou_global_sd15_width), height_txt2vid_ze.update(value=biniou_global_sd15_height), num_inference_step_txt2vid_ze.update(value=2), guidance_scale_txt2vid_ze.update(value=0.0), negative_prompt_txt2vid_ze.update(interactive=False)
     elif ("ETRI-VILAB/KOALA-" in model_txt2vid_ze.upper()):

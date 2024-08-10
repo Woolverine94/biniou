@@ -169,7 +169,7 @@ def image_txt2img_sd(
 
     print(">>>[Stable Diffusion 🖼️ ]: starting module")
 
-    modelid_txt2img_sd = model_cleaner(modelid_txt2img_sd)
+    modelid_txt2img_sd = model_cleaner_sd(modelid_txt2img_sd)
 
     global pipe_txt2img_sd
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2img_sd, device_txt2img_sd, nsfw_filter)

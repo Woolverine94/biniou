@@ -614,6 +614,7 @@ def convert_seconds_to_timestamp(seconds):
     return total
 
 def check_steps_strength (steps, strength, model):
+    model = model_cleaner_sd(model)
     if strength == 0:
         strength = 0.01
 
@@ -1830,7 +1831,7 @@ def is_sd3(model):
         is_sd3_value = False
     return is_sd3_value
 
-def model_cleaner(model):
+def model_cleaner_sd(model):
     model_replacement = {
         "-[ 👍 🚀 Fast SD15 ]-": "IDKiro/sdxs-512-0.9",
         "-[ 👍 🇯🇵 Anime SD15 ]-": "gsdf/Counterfeit-V2.5",
@@ -1845,7 +1846,7 @@ def model_cleaner(model):
     return model
 
 def lora_model_list(model):
-    model = model_cleaner(model)
+    model = model_cleaner_sd(model)
     if is_sdxl(model):
         model_path_lora = model_path_lora_sdxl
         model_list_lora_builtin = {
@@ -1933,7 +1934,7 @@ def lora_model_list(model):
     return model_list_lora
 
 def txtinv_list(model):
-    model_cleaner(model)
+    model = model_cleaner_sd(model)
     if is_sdxl(model):
         model_path_txtinv = "./models/TextualInversion/SDXL"
         model_list_txtinv_builtin = {
