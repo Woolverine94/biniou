@@ -17,7 +17,12 @@
 
 ## Updates
 
-  * 🆕 **2024-08-04** : 🔥 ***Add categories to Stable Diffusion module*** 🔥 > As the number of image models never stops growing in biniou, it was the right time to classify them by categories, to help you find the best model to fit your needs. Please note that if you select a category instead of a model, the default model for this category will automatically be used. Default model is always the one following the category in the model list. This concept will be extended soon to all modules requiring it (Chatbot, img2img, controlnet, ...).
+  * 🆕 **2024-08-10** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for [cognitivecomputations/dolphin-2.9.3-mistral-nemo-12b-gguf](https://hf.co/cognitivecomputations/dolphin-2.9.3-mistral-nemo-12b-gguf) to Chatbot module. 
+    - Add support for SD 1.5 model [SG161222/Paragon_V1.0](https://hf.co/SG161222/Paragon_V1.0) and SDXL Models [mann-e/Mann-E_Art](https://hf.co/mann-e/Mann-E_Art), [etri-vilab/koala-lightning-700m](https://hf.co/etri-vilab/koala-lightning-700m) and [etri-vilab/koala-lightning-1b](https://hf.co/etri-vilab/koala-lightning-1b) to Stable Diffusion-based module.
+    - Add support for models categories to all Stable Diffusion-based modules.
+
+  * 🆕 **2024-08-09** : 🔥 ***Add categories to Stable Diffusion module*** 🔥 > As the number of image models never stops growing in biniou, it was the right time to classify them by categories, to help you find the best model to fit your needs. Please note that if you select a category instead of a model, the default model for this category will automatically be used. Default model is always the one following the category in the model list. This concept will be extended soon to all modules requiring it (Chatbot, img2img, controlnet, ...).
 
   * 🆕 **2024-08-04** : 🔥 ***Support for SD3 ControlNet*** 🔥 > Add support for Stable Diffusion 3 ControlNet in ControlNet module. It currently only support canny, lineart, openpose and tile pre-processors. Other models will be added as soon as available.
 
@@ -27,8 +32,6 @@
     - Add support for [dataautogpt3/PrometheusV1](https://hf.co/dataautogpt3/PrometheusV1) to Stable Diffusion-based module.
 
   * 🆕 **2024-07-29** : 🔥 ***Support for controlnet-union-sdxl-1.0*** 🔥 > Introducing [xinsir/controlnet-union-sdxl-1.0](https://hf.co/xinsir/controlnet-union-sdxl-1.0) as default ControlNet model for all pre-processors -excepting depth, open-pose with faces and lineart-coarse - with SDXL models. This awesome model can handle all ControlNet pre-processors, but few gives strange results in biniou. You can still use the previous ControlNet models or force the use of ControlNet Union by choosing them in the "ControlNet model" dropdown menu AFTER generating preview.
-
-  * 🆕 **2024-07-28** : 🔥 ***Support for PhotoMaker V2*** 🔥 > Update of Photobooth module to enable use of [TencentARC/PhotoMaker-V2](https://hf.co/TencentARC/PhotoMaker-V2) in replacement of PhotoMaker.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
