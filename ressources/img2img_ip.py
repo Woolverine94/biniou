@@ -160,6 +160,8 @@ def image_img2img_ip(
 
     modelid_img2img_ip = model_cleaner_sd(modelid_img2img_ip)
 
+    lora_model_img2img_ip = model_cleaner_lora(lora_model_img2img_ip)
+
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_img2img_ip, device_img2img_ip, nsfw_filter)
 
     if clipskip_img2img_ip == 0:

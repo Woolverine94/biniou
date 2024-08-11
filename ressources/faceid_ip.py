@@ -193,6 +193,8 @@ def image_faceid_ip(
 
     modelid_faceid_ip = model_cleaner_sd(modelid_faceid_ip)
 
+    lora_model_faceid_ip = model_cleaner_lora(lora_model_faceid_ip)
+
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_faceid_ip, device_faceid_ip, nsfw_filter)
 
     if clipskip_faceid_ip == 0:

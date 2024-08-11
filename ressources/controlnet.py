@@ -486,6 +486,8 @@ def image_controlnet(
 
     modelid_controlnet = model_cleaner_sd(modelid_controlnet)
 
+    lora_model_controlnet = model_cleaner_lora(lora_model_controlnet)
+
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_controlnet, device_controlnet, nsfw_filter)
 
     if clipskip_controlnet == 0:

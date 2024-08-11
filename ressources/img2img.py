@@ -171,6 +171,8 @@ def image_img2img(
 
     modelid_img2img = model_cleaner_sd(modelid_img2img)
 
+    lora_model_img2img = model_cleaner_lora(lora_model_img2img)
+
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_img2img, device_img2img, nsfw_filter)
 
     if clipskip_img2img == 0:

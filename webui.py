@@ -349,6 +349,7 @@ def change_lora_model_txt2img_sd(model, lora_model, prompt, steps, cfg_scale, sa
     global biniou_internal_previous_cfg_txt2img_sd
     global biniou_internal_previous_trigger_txt2img_sd
     global biniou_internal_previous_sampler_txt2img_sd
+    lora_model = model_cleaner_lora(lora_model)
     lora_keyword = lora_model_list(model)[lora_model][1]
 
     if lora_model != "":
@@ -480,6 +481,7 @@ def change_lora_model_txt2img_lcm(model, lora_model, prompt, steps, cfg_scale, s
     global biniou_internal_previous_cfg_txt2img_lcm
     global biniou_internal_previous_trigger_txt2img_lcm
     global biniou_internal_previous_sampler_txt2img_lcm
+    lora_model = model_cleaner_lora(lora_model)
     lora_keyword = lora_model_list(model)[lora_model][1]
 
     if lora_model != "":
@@ -660,6 +662,7 @@ def change_lora_model_img2img(model, lora_model, prompt, steps, cfg_scale, sampl
     global biniou_internal_previous_cfg_img2img
     global biniou_internal_previous_trigger_img2img
     global biniou_internal_previous_sampler_img2img
+    lora_model = model_cleaner_lora(lora_model)
     lora_keyword = lora_model_list(model)[lora_model][1]
 
     if lora_model != "":
@@ -828,6 +831,7 @@ def change_lora_model_img2img_ip(model, lora_model, prompt, steps, cfg_scale, sa
     global biniou_internal_previous_cfg_img2img_ip
     global biniou_internal_previous_trigger_img2img_ip
     global biniou_internal_previous_sampler_img2img_ip
+    lora_model = model_cleaner_lora(lora_model)
     lora_keyword = lora_model_list(model)[lora_model][1]
 
     if lora_model != "":
@@ -1032,6 +1036,7 @@ def change_lora_model_controlnet(model, lora_model, prompt, steps, cfg_scale, sa
     global biniou_internal_previous_cfg_controlnet
     global biniou_internal_previous_trigger_controlnet
     global biniou_internal_previous_sampler_controlnet
+    lora_model = model_cleaner_lora(lora_model)
     lora_keyword = lora_model_list(model)[lora_model][1]
 
     if lora_model != "":
@@ -1196,6 +1201,7 @@ def change_lora_model_faceid_ip(model, lora_model, prompt, steps, cfg_scale, sam
     global biniou_internal_previous_cfg_faceid_ip
     global biniou_internal_previous_trigger_faceid_ip
     global biniou_internal_previous_sampler_faceid_ip
+    lora_model = model_cleaner_lora(lora_model)
     lora_keyword = lora_model_list(model)[lora_model][1]
 
     if lora_model != "":

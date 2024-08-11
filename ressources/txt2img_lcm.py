@@ -87,6 +87,8 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
     
     print(">>>[LCM 🖼️ ]: starting module")
     
+    lora_model_txt2img_lcm = model_cleaner_lora(lora_model_txt2img_lcm)
+    
     global pipe_txt2img_lcm
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2img_lcm_safetychecker, device_txt2img_lcm, nsfw_filter)
 
