@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-08-11** : 🔥 ***Add categories to Chatbot module and LoRA models*** 🔥 > Following previous updates, adding models categories to the Chatbot module models list, and to the LoRA models list, for each eligible modules.
+
   * 🆕 **2024-08-10** : 🔥 ***This week's updates*** 🔥 >
     - Add support for [cognitivecomputations/dolphin-2.9.3-mistral-nemo-12b-gguf](https://hf.co/cognitivecomputations/dolphin-2.9.3-mistral-nemo-12b-gguf) to Chatbot module. 
     - Add support for SD 1.5 model [SG161222/Paragon_V1.0](https://hf.co/SG161222/Paragon_V1.0) and SDXL Models [mann-e/Mann-E_Art](https://hf.co/mann-e/Mann-E_Art), [etri-vilab/koala-lightning-700m](https://hf.co/etri-vilab/koala-lightning-700m) and [etri-vilab/koala-lightning-1b](https://hf.co/etri-vilab/koala-lightning-1b) to Stable Diffusion-based module.
@@ -30,8 +32,6 @@
     - Add support for [bartowski/Meta-Llama-3.1-8B-Instruct-GGUF](https://hf.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF) to Chatbot module. It needs further testings, but this model should become the default model for biniou chatbot.
     - Add support for LoRA models [thwri/dark-gothic-fantasy-xl](https://hf.co/thwri/dark-gothic-fantasy-xl), [itsVilen/Mspaint](https://hf.co/itsVilen/Mspaint) and [nerijs/pixel-art-xl](https://hf.co/nerijs/pixel-art-xl) to all eligible modules.
     - Add support for [dataautogpt3/PrometheusV1](https://hf.co/dataautogpt3/PrometheusV1) to Stable Diffusion-based module.
-
-  * 🆕 **2024-07-29** : 🔥 ***Support for controlnet-union-sdxl-1.0*** 🔥 > Introducing [xinsir/controlnet-union-sdxl-1.0](https://hf.co/xinsir/controlnet-union-sdxl-1.0) as default ControlNet model for all pre-processors -excepting depth, open-pose with faces and lineart-coarse - with SDXL models. This awesome model can handle all ControlNet pre-processors, but few gives strange results in biniou. You can still use the previous ControlNet models or force the use of ControlNet Union by choosing them in the "ControlNet model" dropdown menu AFTER generating preview.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
