@@ -1845,6 +1845,19 @@ def model_cleaner_sd(model):
         model = model.replace(clean_model_key, clean_model_value)
     return model
 
+def model_cleaner_llamacpp(model):
+    model_replacement = {
+        "-[ 👌 Standard ]-": "NousResearch/Meta-Llama-3-8B-Instruct-GGUF",
+        "-[ 👍 🚀 Tiny ]-":	"bartowski/Phi-3.1-mini-4k-instruct-GGUF",
+        "-[ 👏 🐢 High-end ]-":	"bartowski/Mistral-Nemo-Instruct-2407-GGUF",
+        "-[ 🧑‍💻 Code ]-": "bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF",
+        "-[ 🧑‍⚕️ Specialized ]-": "AdityaXPV/Llama-3-8b-Instruct-law-sage-v0.1-GGUF",
+        "-[ 📜 Legacy ]-": "TheBloke/SOLAR-10.7B-Instruct-v1.0-GGUF",
+    }
+    for clean_model_key, clean_model_value in model_replacement.items():
+        model = model.replace(clean_model_key, clean_model_value)
+    return model
+
 def lora_model_list(model):
     model = model_cleaner_sd(model)
     if is_sdxl(model):
