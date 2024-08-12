@@ -1784,6 +1784,15 @@ def is_fast_lora(model):
         is_fast_lora_value = False
     return is_fast_lora_value
 
+def is_fp16(model):
+    if (\
+(model == "yodayo-ai/clandestine-xl-1.0")\
+):
+        is_fp16_value = True
+    else :
+        is_fp16_value = False
+    return is_fp16_value
+
 def is_bin(model):
     if (\
 ("dataautogpt3/ProteusV0.4" in model) or \
