@@ -1152,7 +1152,7 @@ def change_model_type_faceid_ip(model_faceid_ip, prompt):
             photomaker_prompt_faceid_ip = " img "+ prompt
         else:
             photomaker_prompt_faceid_ip = prompt
-        return sampler_faceid_ip.update(value="UniPC"), width_faceid_ip.update(value=biniou_global_sdxl_width), height_faceid_ip.update(value=biniou_global_sdxl_height), num_inference_step_faceid_ip.update(value=10), guidance_scale_faceid_ip.update(value=3.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True), prompt_faceid_ip.update(value=photomaker_prompt_faceid_ip)
+        return sampler_faceid_ip.update(value="UniPC"), width_faceid_ip.update(value=biniou_global_sdxl_width), height_faceid_ip.update(value=biniou_global_sdxl_height), num_inference_step_faceid_ip.update(value=15), guidance_scale_faceid_ip.update(value=3.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True), prompt_faceid_ip.update(value=photomaker_prompt_faceid_ip)
     elif (model_faceid_ip  == "mann-e/Mann-E_Dreams") or (model_faceid_ip  == "mann-e/Mann-E_Art") :
         if not ((" img " in prompt) or (" img," in prompt) or (" img:" in prompt)):
             photomaker_prompt_faceid_ip = " img "+ prompt
