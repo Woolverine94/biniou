@@ -84,6 +84,7 @@ model_list_img2img_builtin = [
     "stabilityai/sd-turbo",
     "-[ 👍 🇯🇵 Anime SD15 ]-",
     "gsdf/Counterfeit-V2.5",
+    "xyn-ai/anything-v4.0",
     "nitrosocke/Ghibli-Diffusion",
     "-[ 👌 🐢 SDXL ]-",
     "fluently/Fluently-XL-Final",

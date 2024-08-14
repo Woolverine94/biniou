@@ -1798,6 +1798,7 @@ def is_bin(model):
 ("dataautogpt3/ProteusV0.4" in model) or \
 (model == "RunDiffusion/Juggernaut-XL-Lightning") or \
 (model == "RunDiffusion/Juggernaut-X-Hyper") or \
+(model == "nitrosocke/classic-anim-diffusion") or \
 (model == "sd-dreambooth-library/dndcoverart-v1")\
 ):
         is_bin_value = True
