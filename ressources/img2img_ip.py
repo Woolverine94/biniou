@@ -73,6 +73,7 @@ model_list_img2img_ip_builtin = [
 
     "-[ 👍 SD15 ]-",
     "SG161222/Realistic_Vision_V3.0_VAE",
+    "fluently/Fluently-epic",
     "SG161222/Paragon_V1.0",
     "digiplay/AbsoluteReality_v1.8.1",
     "digiplay/majicMIX_realistic_v7",
@@ -80,6 +81,7 @@ model_list_img2img_ip_builtin = [
     "runwayml/stable-diffusion-v1-5",
     "-[ 👍 🇯🇵 Anime SD15 ]-",
     "gsdf/Counterfeit-V2.5",
+    "fluently/Fluently-anime",
     "xyn-ai/anything-v4.0",
     "nitrosocke/Ghibli-Diffusion",
     "-[ 👌 🐢 SDXL ]-",
