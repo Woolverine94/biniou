@@ -113,6 +113,7 @@ model_list_txt2img_sd_builtin = [
     "-[ 👌 🚀 Fast SDXL ]-",
     "sd-community/sdxl-flash",
     "fluently/Fluently-XL-v3-Lightning",
+    "GraydientPlatformAPI/epicrealism-lightning-xl",
     "RunDiffusion/Juggernaut-XL-Lightning",
     "RunDiffusion/Juggernaut-X-Hyper",
     "SG161222/RealVisXL_V4.0_Lightning",
