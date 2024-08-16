@@ -109,6 +109,7 @@ model_list_controlnet_builtin = [
     "stabilityai/sdxl-turbo",
     "-[ 👌 🇯🇵 Anime SDXL ]-",
     "cagliostrolab/animagine-xl-3.1",
+    "yodayo-ai/clandestine-xl-1.0",
     "aipicasso/emi-2",
     "-[ 👏 🐢 SD3 ]-",
     "v2ray/stable-diffusion-3-medium-diffusers",

@@ -120,6 +120,7 @@ model_list_faceid_ip_builtin = [
     "recoilme/ColorfulXL-Lightning",
     "-[ 👌 🇯🇵 Anime SDXL ]-",
     "cagliostrolab/animagine-xl-3.1",
+    "yodayo-ai/clandestine-xl-1.0",
     "aipicasso/emi-2",
 ]
 
