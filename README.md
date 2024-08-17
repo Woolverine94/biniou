@@ -17,6 +17,11 @@
 
 ## Updates
 
+  * 🆕 **2024-08-17** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for [bartowski/gemma-2-2b-it-abliterated-GGUF](https://hf.co/bartowski/gemma-2-2b-it-abliterated-GGUF), [bartowski/Qwen2-Math-7B-Instruct-GGUF](https://hf.co/bartowski/Qwen2-Math-7B-Instruct-GGUF) and [bartowski/Peach-9B-8k-Roleplay-GGUF](https://hf.co/bartowski/Peach-9B-8k-Roleplay-GGUF) to Chatbot module.
+    - Add support for SD 1.5 model [xyn-ai/anything-v4.0](https://hf.co/xyn-ai/anything-v4.0), [fluently/Fluently-anime](https://hf.co/fluently/Fluently-anime), [fluently/Fluently-epic](https://hf.co/fluently/Fluently-epic) and SDXL Models [yodayo-ai/clandestine-xl-1.0](https://hf.co/yodayo-ai/clandestine-xl-1.0), [GraydientPlatformAPI/epicrealism-lightning-xl](https://hf.co/GraydientPlatformAPI/epicrealism-lightning-xl) to Stable Diffusion-based module.
+    - Bugfixes for Photobooth module.
+
   * 🆕 **2024-08-11** : 🔥 ***Add categories to Chatbot module and LoRA models*** 🔥 > Following previous updates, adding models categories to the Chatbot module models list, and to the LoRA models list, for each eligible modules.
 
   * 🆕 **2024-08-10** : 🔥 ***This week's updates*** 🔥 >
@@ -27,11 +32,6 @@
   * 🆕 **2024-08-09** : 🔥 ***Add categories to Stable Diffusion module*** 🔥 > As the number of image models never stops growing in biniou, it was the right time to classify them by categories, to help you find the best model to fit your needs. Please note that if you select a category instead of a model, the default model for this category will automatically be used. Default model is always the one following the category in the model list. This concept will be extended soon to all modules requiring it (Chatbot, img2img, controlnet, ...).
 
   * 🆕 **2024-08-04** : 🔥 ***Support for SD3 ControlNet*** 🔥 > Add support for Stable Diffusion 3 ControlNet in ControlNet module. It currently only support canny, lineart, openpose and tile pre-processors. Other models will be added as soon as available.
-
-  * 🆕 **2024-08-03** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for [bartowski/Meta-Llama-3.1-8B-Instruct-GGUF](https://hf.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF) to Chatbot module. It needs further testings, but this model should become the default model for biniou chatbot.
-    - Add support for LoRA models [thwri/dark-gothic-fantasy-xl](https://hf.co/thwri/dark-gothic-fantasy-xl), [itsVilen/Mspaint](https://hf.co/itsVilen/Mspaint) and [nerijs/pixel-art-xl](https://hf.co/nerijs/pixel-art-xl) to all eligible modules.
-    - Add support for [dataautogpt3/PrometheusV1](https://hf.co/dataautogpt3/PrometheusV1) to Stable Diffusion-based module.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
