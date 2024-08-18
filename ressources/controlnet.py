@@ -413,23 +413,23 @@ def dispatch_controlnet_preview(
 # 22
         case "qr":
             result = qr_controlnet(img_source_controlnet, 0)
-#            return result, result, variant_list_controlnet[17] if is_xl_controlnet else variant_list_controlnet[10]
-            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[10]
+            return result, result, variant_list_controlnet[17] if is_xl_controlnet else variant_list_controlnet[10]
+#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[10]
 # 23
         case "qr_invert":
             result = qr_controlnet(img_source_controlnet, 1)
-#            return result, result, variant_list_controlnet[17] if is_xl_controlnet else variant_list_controlnet[10]
-            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[10]
+            return result, result, variant_list_controlnet[17] if is_xl_controlnet else variant_list_controlnet[10]
+#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[10]
 # 24
         case "qr_monster":
             result = qr_controlnet(img_source_controlnet, 0)
-#            return result, result, variant_list_controlnet[18] if is_xl_controlnet else variant_list_controlnet[11]
-            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[11]
+            return result, result, variant_list_controlnet[18] if is_xl_controlnet else variant_list_controlnet[11]
+#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[11]
 # 25
         case "qr_monster_invert":
             result = qr_controlnet(img_source_controlnet, 1)
-#            return result, result, variant_list_controlnet[18] if is_xl_controlnet else variant_list_controlnet[11]
-            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[11]
+            return result, result, variant_list_controlnet[18] if is_xl_controlnet else variant_list_controlnet[11]
+#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[11]
 
 def canny_controlnet(image, low_threshold, high_threshold):
     image = cv2.Canny(image, low_threshold, high_threshold)
