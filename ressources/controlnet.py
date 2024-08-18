@@ -146,6 +146,7 @@ variant_list_controlnet = [
     "Nacholmo/controlnet-qr-pattern-sdxl",
     "monster-labs/control_v1p_sdxl_qrcode_monster",
     "TheMistoAI/MistoLine",
+    "brad-twinkl/controlnet-union-sdxl-1.0-promax",
     "xinsir/controlnet-union-sdxl-1.0",
     "InstantX/SD3-Controlnet-Canny",
     "InstantX/SD3-Controlnet-Pose",
@@ -235,7 +236,7 @@ def dispatch_controlnet_preview(
             if is_xl_controlnet:
                 return result, result, variant_list_controlnet[20]
             elif is_sd3_controlnet:
-                return result, result, variant_list_controlnet[21]
+                return result, result, variant_list_controlnet[22]
             else:
                 return result, result, variant_list_controlnet[0]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[0]
@@ -266,7 +267,7 @@ def dispatch_controlnet_preview(
             if is_xl_controlnet:
                 return result, result, variant_list_controlnet[20]
             elif is_sd3_controlnet:
-                return result, result, variant_list_controlnet[21]
+                return result, result, variant_list_controlnet[22]
             else:
                 return result, result, variant_list_controlnet[2]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[2]
@@ -277,7 +278,7 @@ def dispatch_controlnet_preview(
             if is_xl_controlnet:
                 return result, result, variant_list_controlnet[12]
             elif is_sd3_controlnet:
-                return result, result, variant_list_controlnet[21]
+                return result, result, variant_list_controlnet[22]
             else:
                 return result, result, variant_list_controlnet[3]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[3]
@@ -288,7 +289,7 @@ def dispatch_controlnet_preview(
             if is_xl_controlnet:
                 return result, result, variant_list_controlnet[20]
             elif is_sd3_controlnet:
-                return result, result, variant_list_controlnet[21]
+                return result, result, variant_list_controlnet[22]
             else:
                 return result, result, variant_list_controlnet[3]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[3]
@@ -299,7 +300,7 @@ def dispatch_controlnet_preview(
             if is_xl_controlnet:
                 return result, result, variant_list_controlnet[20]
             elif is_sd3_controlnet:
-                return result, result, variant_list_controlnet[21]
+                return result, result, variant_list_controlnet[22]
             else:
                 return result, result, variant_list_controlnet[4]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[4]
@@ -319,7 +320,7 @@ def dispatch_controlnet_preview(
             if is_xl_controlnet:
                 return result, result, variant_list_controlnet[20]
             elif is_sd3_controlnet:
-                return result, result, variant_list_controlnet[22]
+                return result, result, variant_list_controlnet[23]
             else:
                 return result, result, variant_list_controlnet[6]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
@@ -330,7 +331,7 @@ def dispatch_controlnet_preview(
             if is_xl_controlnet:
                 return result, result, variant_list_controlnet[14]
             elif is_sd3_controlnet:
-                return result, result, variant_list_controlnet[22]
+                return result, result, variant_list_controlnet[23]
             else:
                 return result, result, variant_list_controlnet[6]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
@@ -341,7 +342,7 @@ def dispatch_controlnet_preview(
             if is_xl_controlnet:
                 return result, result, variant_list_controlnet[14]
             elif is_sd3_controlnet:
-                return result, result, variant_list_controlnet[22]
+                return result, result, variant_list_controlnet[23]
             else:
                 return result, result, variant_list_controlnet[6]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
@@ -352,7 +353,7 @@ def dispatch_controlnet_preview(
             if is_xl_controlnet:
                 return result, result, variant_list_controlnet[14]
             elif is_sd3_controlnet:
-                return result, result, variant_list_controlnet[22]
+                return result, result, variant_list_controlnet[23]
             else:
                 return result, result, variant_list_controlnet[6]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
@@ -363,7 +364,7 @@ def dispatch_controlnet_preview(
             if is_xl_controlnet:
                 return result, result, variant_list_controlnet[20]
             elif is_sd3_controlnet:
-                return result, result, variant_list_controlnet[22]
+                return result, result, variant_list_controlnet[23]
             else:
                 return result, result, variant_list_controlnet[6]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
@@ -405,7 +406,7 @@ def dispatch_controlnet_preview(
             if is_xl_controlnet:
                 return result, result, variant_list_controlnet[20]
             elif is_sd3_controlnet:
-                return result, result, variant_list_controlnet[23]
+                return result, result, variant_list_controlnet[24]
             else:
                 return result, result, variant_list_controlnet[9]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[9]
