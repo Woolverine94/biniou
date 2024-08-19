@@ -89,6 +89,7 @@ model_list_llamacpp_builtin = {
     "-[ 👍 🚀 Tiny ]-":("Phi-3.1-mini-4k-instruct-Q5_K_M.gguf", "<|system|> {system_prompt}<|end|><|user|> {prompt}<|end|><|assistant|>", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "bartowski/Phi-3.1-mini-4k-instruct-GGUF":("Phi-3.1-mini-4k-instruct-Q5_K_M.gguf", "<|system|> {system_prompt}<|end|><|user|> {prompt}<|end|><|assistant|>", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "bartowski/gemma-2-2b-it-abliterated-GGUF":("gemma-2-2b-it-abliterated-Q5_K_M.gguf", "<bos><start_of_turn>user\n{prompt}<end_of_turn>\n<start_of_turn>model\n<end_of_turn>\n<start_of_turn>model", ""),
+    "bartowski/2B_or_not_2B-GGUF":("2B_or_not_2B-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "dranger003/MambaHermes-3B-GGUF":("ggml-mambahermes-3b-q5_k.gguf", "{system}\n\n### Instruction:\n{prompt}\n\n### Response:", "Below is an instruction that describes a task. Write a response that appropriately completes the request."),
     "bartowski/gemma-1.1-2b-it-GGUF":("gemma-1.1-2b-it-Q5_K_S.gguf", "<start_of_turn>user\n{prompt}<end_of_turn>\n<start_of_turn>model", ""),
     "TheBloke/phi-2-GGUF":("phi-2.Q8_0.gguf", "Instruct: {prompt}\nOutput:", ""),
