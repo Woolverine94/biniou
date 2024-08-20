@@ -111,6 +111,7 @@ model_list_img2img_builtin = [
     "sd-community/sdxl-flash",
     "fluently/Fluently-XL-v3-Lightning",
     "GraydientPlatformAPI/epicrealism-lightning-xl",
+    "Lykon/dreamshaper-xl-lightning",
     "RunDiffusion/Juggernaut-XL-Lightning",
     "RunDiffusion/Juggernaut-X-Hyper",
     "SG161222/RealVisXL_V4.0_Lightning",
