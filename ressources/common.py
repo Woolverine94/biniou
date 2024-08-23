@@ -1954,6 +1954,7 @@ def lora_model_list(model):
             "nerijs/pixel-art-xl":("pixel-art-xl.safetensors", "pixel, pixel art"),
             "artificialguybr/ps1redmond-ps1-game-graphics-lora-for-sdxl":("PS1Redmond-PS1Game-Playstation1Graphics.safetensors", "Playstation 1 Graphics, PS1 Game"),
             "SvenN/sdxl-emoji":("lora.safetensors", "emoji"),
+            "artificialguybr/IconsRedmond-IconsLoraForSDXL":("IconsRedmond.safetensors", "icredm"),
             "Norod78/SDXL-YarnArtStyle-LoRA":("SDXL_Yarn_Art_Style.safetensors", "Yarn art style"),
             "KappaNeuro/director-tim-burton-style":("Director Tim Burton style.safetensors", "Director Tim Burton style - "),
             "thwri/dark-gothic-fantasy-xl":("dark_gothic_fantasy_xl_3.01.safetensors", "dark fantasy, dark gothic fantasy"),
@@ -2006,6 +2007,7 @@ def lora_model_list(model):
             "h1t/TCD-SD15-LoRA":("pytorch_lora_weights.safetensors", ""),
             "wangfuyun/PCM_Weights":("sd15/pcm_sd15_lcmlike_lora_converted.safetensors", ""),
             "jasperai/flash-sd":("pytorch_lora_weights.safetensors", ""),
+            "artificialguybr/icons-redmond-1-5v-app-icons-lora-for-sd-liberteredmond-sd-1-5":("IconsRedmond15V-Icons.safetensors", "icons, ios icon app, icons app"),
             "Kvikontent/midjourney-v6":("mj6-10.safetensors", ""),
             "Norod78/SD15-IllusionDiffusionPattern-LoRA":("SD15-IllusionDiffusionPattern-LoRA.safetensors","IllusionDiffusionPattern"),
 
