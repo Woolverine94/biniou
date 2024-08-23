@@ -1963,6 +1963,7 @@ def lora_model_list(model):
             "itsVilen/Mspaint":("SDXL_MSPaint_Portrait.safetensors", "MSPaint portrait, MSPaint drawing"),
             "alvdansen/popartanime":("Pop_Art_Illustration-000012.safetensors", "daiton style"),
             "alvdansen/frosting_lane_redux":("araminta_k_frosting_lane_redux.safetensors", ""),
+            "DoctorDiffusion/doctor-diffusion-s-tarot-card-crafter":("DD-trtcrd-v4.safetensors", "trtcrd artstyle"),
             "-[ 👌 🪧 Posters ]-":("SDXL-Caricaturized-Lora.safetensors", "Caricaturized"),
             "Norod78/SDXL-Caricaturized-Lora":("SDXL-Caricaturized-Lora.safetensors", "Caricaturized"),
             "artificialguybr/movie-poster-redmond-for-sd-xl-create-movie-poster-images":("MoviePosterRedmond-MoviePoster-MoviePosterRedAF.safetensors", "Movie Poster, MoviePosterAF"),
