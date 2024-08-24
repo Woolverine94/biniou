@@ -988,6 +988,12 @@ def change_ays_controlnet(use_ays):
     else:
         return num_inference_step_controlnet.update(interactive=True), sampler_controlnet.update(interactive=True)
 
+def change_preview_controlnet(input_value):
+    return gs_variant_controlnet.update(value=input_value)
+
+def change_preview_gs_controlnet(input_value):
+    return variant_controlnet.update(value=input_value)
+
 def change_model_type_controlnet(model_controlnet):
     model_controlnet = model_cleaner_sd(model_controlnet)
     if (model_controlnet == "stabilityai/sdxl-turbo"):
@@ -5705,7 +5711,8 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Column():
                                     variant_controlnet = gr.Dropdown(choices=variant_list_controlnet, value=variant_list_controlnet[0], label=biniou_lang_tab_controlnet_variant_label, info=biniou_lang_tab_controlnet_variant_info)
                                     gs_variant_controlnet = gr.Textbox(visible=False)
-                                    gs_variant_controlnet.change(fn=in_and_out, inputs=gs_variant_controlnet, outputs=variant_controlnet)
+                                    variant_controlnet.change(fn=change_preview_controlnet, inputs=variant_controlnet, outputs=gs_variant_controlnet)
+                                    gs_variant_controlnet.change(fn=change_preview_gs_controlnet, inputs=gs_variant_controlnet, outputs=variant_controlnet)
                                     scale_preview_controlnet = gr.Number(value=2048, visible=False)
                                     img_preview_controlnet.upload(fn=scale_image, inputs=[img_preview_controlnet, scale_preview_controlnet], outputs=[width_controlnet, height_controlnet, img_preview_controlnet])
                                     gs_img_preview_controlnet.change(image_upload_event_inpaint_b, inputs=gs_img_preview_controlnet, outputs=[width_controlnet, height_controlnet], preprocess=False)
