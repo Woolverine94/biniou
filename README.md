@@ -17,6 +17,13 @@
 
 ## Updates
 
+  * 🆕 **2024-08-24** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for [mlabonne/Hermes-3-Llama-3.1-8B-lorablated-GGUF](https://hf.co/mlabonne/Hermes-3-Llama-3.1-8B-lorablated-GGUF), [bartowski/2B_or_not_2B-GGUF](https://hf.co/bartowski/2B_or_not_2B-GGUF), [mradermacher/Bio-Medical-Llama-3.1-8B-GGUF](https://hf.co/mradermacher/Bio-Medical-Llama-3.1-8B-GGUF) and [bartowski/Phi-3.5-mini-instruct-GGUF](https://hf.co/bartowski/Phi-3.5-mini-instruct-GGUF) to Chatbot module.
+    - Add support for ControlNet model [brad-twinkl/controlnet-union-sdxl-1.0-promax](https://hf.co/brad-twinkl/controlnet-union-sdxl-1.0-promax) to ControlNet module.
+    - Add support for fast SDXL Models [Lykon/dreamshaper-xl-lightning](https://hf.co/Lykon/dreamshaper-xl-lightning) to Stable Diffusion-based module.
+    - Add support for SD 1.5 LoRA Model [artificialguybr/icons-redmond-1-5v-app-icons-lora-for-sd-liberteredmond-sd-1-5](https://hf.co/artificialguybr/icons-redmond-1-5v-app-icons-lora-for-sd-liberteredmond-sd-1-5) and SDXL LoRA models [DoctorDiffusion/doctor-diffusion-s-tarot-card-crafter](https://hf.co/DoctorDiffusion/doctor-diffusion-s-tarot-card-crafter) and [artificialguybr/IconsRedmond-IconsLoraForSDXL](https://hf.co/artificialguybr/IconsRedmond-IconsLoraForSDXL) to Stable Diffusion-based module.
+    - Bugfix for ControlNet module.
+
   * 🆕 **2024-08-17** : 🔥 ***This week's updates*** 🔥 >
     - Add support for [bartowski/gemma-2-2b-it-abliterated-GGUF](https://hf.co/bartowski/gemma-2-2b-it-abliterated-GGUF), [bartowski/Qwen2-Math-7B-Instruct-GGUF](https://hf.co/bartowski/Qwen2-Math-7B-Instruct-GGUF) and [bartowski/Peach-9B-8k-Roleplay-GGUF](https://hf.co/bartowski/Peach-9B-8k-Roleplay-GGUF) to Chatbot module.
     - Add support for SD 1.5 model [xyn-ai/anything-v4.0](https://hf.co/xyn-ai/anything-v4.0), [fluently/Fluently-anime](https://hf.co/fluently/Fluently-anime), [fluently/Fluently-epic](https://hf.co/fluently/Fluently-epic) and SDXL Models [yodayo-ai/clandestine-xl-1.0](https://hf.co/yodayo-ai/clandestine-xl-1.0), [GraydientPlatformAPI/epicrealism-lightning-xl](https://hf.co/GraydientPlatformAPI/epicrealism-lightning-xl) to Stable Diffusion-based module.
@@ -30,8 +37,6 @@
     - Add support for models categories to all Stable Diffusion-based modules.
 
   * 🆕 **2024-08-09** : 🔥 ***Add categories to Stable Diffusion module*** 🔥 > As the number of image models never stops growing in biniou, it was the right time to classify them by categories, to help you find the best model to fit your needs. Please note that if you select a category instead of a model, the default model for this category will automatically be used. Default model is always the one following the category in the model list. This concept will be extended soon to all modules requiring it (Chatbot, img2img, controlnet, ...).
-
-  * 🆕 **2024-08-04** : 🔥 ***Support for SD3 ControlNet*** 🔥 > Add support for Stable Diffusion 3 ControlNet in ControlNet module. It currently only support canny, lineart, openpose and tile pre-processors. Other models will be added as soon as available.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
