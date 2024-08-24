@@ -113,6 +113,7 @@ model_list_img2img_ip_builtin = [
     "-[ 👌 🇯🇵 Anime SDXL ]-",
     "cagliostrolab/animagine-xl-3.1",
     "yodayo-ai/clandestine-xl-1.0",
+    "stablediffusionapi/anime-journey-v2",
     "aipicasso/emi-2",
 ]
 

@@ -1821,6 +1821,7 @@ def is_sdxl(model):
 (model == "cutycat2000x/InterDiffusion-4.0") or \
 (model == "RunDiffusion/Juggernaut-X-Hyper") or \
 (model == "aipicasso/emi-2") or \
+(model == "stablediffusionapi/anime-journey-v2") or \
 (model == "dataautogpt3/OpenDalleV1.1") or \
 (model == "dataautogpt3/ProteusV0.4") or \
 (model == "dataautogpt3/ProteusV0.5") or \
