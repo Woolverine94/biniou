@@ -2,7 +2,7 @@ gradio==3.50.2
 transformers
 sentencepiece
 accelerate
-diffusers==0.29.2
+diffusers==0.30.0
 compel
 scipy
 opencv-python
@@ -21,6 +21,6 @@ tomesd
 ffmpeg-python
 trimesh
 peft
-git+https://github.com/TencentARC/PhotoMaker.git@e5b728c2b297dc28ef35fbe4930cf8ab2fa969ea
+git+https://github.com/TencentARC/PhotoMaker.git@ec35a8716ea790a404cb7e1ba282a320454906d1
 exiv2
 music-tag
