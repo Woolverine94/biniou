@@ -367,6 +367,8 @@ def change_lora_model_txt2img_sd(model, lora_model, prompt, steps, cfg_scale, sa
         lora_prompt_txt2img_sd = lora_prompt_txt2img_sd.replace(lora_trigger, "")
         biniou_internal_previous_trigger_txt2img_sd = lora_keyword
 
+    lora_prompt_txt2img_sd = lora_prompt_txt2img_sd.replace(lora_keyword+ ", "+ lora_keyword+ ", ", lora_keyword+ ", ")
+
     if is_fast_lora(lora_model):
         biniou_internal_previous_model_txt2img_sd = model
         biniou_internal_previous_steps_txt2img_sd = steps
@@ -498,6 +500,8 @@ def change_lora_model_txt2img_lcm(model, lora_model, prompt, steps, cfg_scale, s
         lora_trigger = biniou_internal_previous_trigger_txt2img_lcm+ ", "
         lora_prompt_txt2img_lcm = lora_prompt_txt2img_lcm.replace(lora_trigger, "")
         biniou_internal_previous_trigger_txt2img_lcm = lora_keyword
+
+    lora_prompt_txt2img_lcm = lora_prompt_txt2img_lcm.replace(lora_keyword+ ", "+ lora_keyword+ ", ", lora_keyword+ ", ")
 
     if is_fast_lora(lora_model):
         biniou_internal_previous_model_txt2img_lcm = model
@@ -680,6 +684,8 @@ def change_lora_model_img2img(model, lora_model, prompt, steps, cfg_scale, sampl
         lora_prompt_img2img = lora_prompt_img2img.replace(lora_trigger, "")
         biniou_internal_previous_trigger_img2img = lora_keyword
 
+    lora_prompt_img2img = lora_prompt_img2img.replace(lora_keyword+ ", "+ lora_keyword+ ", ", lora_keyword+ ", ")
+
     if is_fast_lora(lora_model):
         biniou_internal_previous_model_img2img = model
         biniou_internal_previous_steps_img2img = steps
@@ -848,6 +854,8 @@ def change_lora_model_img2img_ip(model, lora_model, prompt, steps, cfg_scale, sa
         lora_trigger = biniou_internal_previous_trigger_img2img_ip+ ", "
         lora_prompt_img2img_ip = lora_prompt_img2img_ip.replace(lora_trigger, "")
         biniou_internal_previous_trigger_img2img_ip = lora_keyword
+
+    lora_prompt_img2img_ip = lora_prompt_img2img_ip.replace(lora_keyword+ ", "+ lora_keyword+ ", ", lora_keyword+ ", ")
 
     if is_fast_lora(lora_model):
         biniou_internal_previous_model_img2img_ip = model
@@ -1060,6 +1068,8 @@ def change_lora_model_controlnet(model, lora_model, prompt, steps, cfg_scale, sa
         lora_prompt_controlnet = lora_prompt_controlnet.replace(lora_trigger, "")
         biniou_internal_previous_trigger_controlnet = lora_keyword
 
+    lora_prompt_controlnet = lora_prompt_controlnet.replace(lora_keyword+ ", "+ lora_keyword+ ", ", lora_keyword+ ", ")
+
     if is_fast_lora(lora_model):
         biniou_internal_previous_model_controlnet = model
         biniou_internal_previous_steps_controlnet = steps
@@ -1224,6 +1234,8 @@ def change_lora_model_faceid_ip(model, lora_model, prompt, steps, cfg_scale, sam
         lora_trigger = biniou_internal_previous_trigger_faceid_ip+ ", "
         lora_prompt_faceid_ip = lora_prompt_faceid_ip.replace(lora_trigger, "")
         biniou_internal_previous_trigger_faceid_ip = lora_keyword
+
+    lora_prompt_faceid_ip = lora_prompt_faceid_ip.replace(lora_keyword+ ", "+ lora_keyword+ ", ", lora_keyword+ ", ")
 
     if is_fast_lora(lora_model):
         biniou_internal_previous_model_faceid_ip = model
