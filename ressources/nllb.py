@@ -267,7 +267,7 @@ def text_nllb(
 
     translated_tokens = automodel_nllb.generate(
         **inputs_nllb,
-        forced_bos_token_id=tokenizer_nllb.lang_code_to_id[output_language_nllb],
+        forced_bos_token_id=tokenizer_nllb.convert_tokens_to_ids(output_language_nllb),
         max_new_tokens=max_tokens_nllb, 
     )
 
