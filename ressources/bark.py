@@ -76,7 +76,7 @@ def music_bark(
 
     savename_array = []
     voice_preset = voice_preset_list_bark[voice_preset_bark]
-    inputs = processor(prompt_bark, voice_preset=voice_preset)
+    inputs = processor(prompt_bark, voice_preset=voice_preset).to(device_bark)
     audio_array = pipe_bark.generate(**inputs, do_sample=True)
     audio_array = audio_array.cpu().numpy().squeeze()
     sample_rate = pipe_bark.generation_config.sample_rate
