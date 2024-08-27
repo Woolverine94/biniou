@@ -255,7 +255,7 @@ Windows installation has more prerequisites than GNU/Linux one, and requires fol
 ***<p align=left>OR</p>***
   - **Download and execute**  : [install_win.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win.cmd) *(right-click on the link and select "Save Target/Link as ..." to download)*<br/>
 
-All the installation is automated, but Windows UAC will ask you confirmation for each software installed during the "prerequisites" phase. You can avoid this by running the choosen installer as administrator.
+All the installation is automated, but Windows UAC will ask you confirmation for each software installed during the "prerequisites" phase. You can avoid this by running the chosen installer as administrator.
 
 ### macOS Homebrew install
 
