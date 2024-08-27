@@ -57,6 +57,7 @@ model_list_txt2vid_ze = [
 
     "-[ 👍 SD15 ]-",
     "SG161222/Realistic_Vision_V3.0_VAE",
+    "Yntec/VisionVision",
     "fluently/Fluently-epic",
     "SG161222/Paragon_V1.0",
     "digiplay/AbsoluteReality_v1.8.1",
