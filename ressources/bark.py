@@ -81,7 +81,7 @@ def music_bark(
     audio_array = audio_array.cpu().numpy().squeeze()
     sample_rate = pipe_bark.generation_config.sample_rate
     savename = name_audio()
-    write_wav(savename, sample_rate, audio_array)
+    write_wav(savename, sample_rate, audio_array.astype(np.float32))
     savename_array.append(savename)
 
 
