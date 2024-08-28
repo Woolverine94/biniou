@@ -1,3 +1,13 @@
+REM ******************************************************
+REM *** DEFINING INSTALL PATH FOR BINIOU DIRECTORY : *****
+REM *** ONLY USE ABSOLUTE PATH, WITHOUT TRAILING SLASH ***
+REM ******************************************************
+set DEFAULT_BINIOU_DIR="%userprofile%"
+
+if not exist "%DEFAULT_BINIOU_DIR%" (
+  md "%DEFAULT_BINIOU_DIR%"
+)
+
 REM **************************************************
 REM *** DOWNLOADING AND INSTALLING PREREQUISITES : ***
 REM **************************************************
@@ -28,23 +38,23 @@ start /wait powershell -command "Expand-Archive %tmp%\ffmpeg-master-latest-win64
 REM ****************************
 REM *** CLONING REPOSITORY : ***
 REM ****************************
-cd "%userprofile%"
+cd "%DEFAULT_BINIOU_DIR%"
 set path=%path%;%ProgramW6432%\Git\cmd;
 git clone --branch main https://github.com/Woolverine94/biniou.git
-git config --global --add safe.directory "%HOMEDRIVE%/Users/%username%/biniou"
-cd "%userprofile%\biniou"
+git config --global --add safe.directory "%DEFAULT_BINIOU_DIR%/biniou"
+cd "%DEFAULT_BINIOU_DIR%\biniou"
 
 REM ******************************
 REM *** CREATING DIRECTORIES : ***
 REM ******************************
-mkdir "%userprofile%\biniou\outputs"
-mkdir "%userprofile%\biniou\ssl"
-mkdir "%userprofile%\biniou\models\Audiocraft"
+mkdir "%DEFAULT_BINIOU_DIR%\biniou\outputs"
+mkdir "%DEFAULT_BINIOU_DIR%\biniou\ssl"
+mkdir "%DEFAULT_BINIOU_DIR%\biniou\models\Audiocraft"
 
 REM ***********************************************
 REM *** INSTALLING PYTHON VIRTUAL ENVIRONMENT : ***
 REM ***********************************************
-"%ProgramW6432%\FireDaemon OpenSSL 3\bin\openssl.exe" req -x509 -newkey rsa:4096 -keyout "%userprofile%\biniou\ssl\key.pem" -out "%userprofile%\biniou\ssl\cert.pem" -sha256 -days 3650 -nodes -subj "/C=FR/ST=Paris/L=Paris/O=Biniou/OU=/CN="
+"%ProgramW6432%\FireDaemon OpenSSL 3\bin\openssl.exe" req -x509 -newkey rsa:4096 -keyout "%DEFAULT_BINIOU_DIR%\biniou\ssl\key.pem" -out "%DEFAULT_BINIOU_DIR%\biniou\ssl\cert.pem" -sha256 -days 3650 -nodes -subj "/C=FR/ST=Paris/L=Paris/O=Biniou/OU=/CN="
 "%userprofile%\AppData\Local\Programs\Python\Python311\python.exe" -m pip install --upgrade pip
 "%userprofile%\AppData\Local\Programs\Python\Python311\Scripts\pip" install virtualenv
 "%userprofile%\AppData\Local\Programs\Python\Python311\python.exe" -m venv env
@@ -54,5 +64,5 @@ pip install wheel
 pip install torch==2.1.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 pip install llama-cpp-python
 pip install -r requirements.txt
-echo "Installation finished ! You could now launch biniou by double-clicking %userprofile%\biniou\webui.cmd"
+echo "Installation finished ! You could now launch biniou by double-clicking %DEFAULT_BINIOU_DIR%\biniou\webui.cmd"
 pause
