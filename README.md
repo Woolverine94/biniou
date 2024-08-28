@@ -237,7 +237,7 @@ apt install google-perftools
 
 Windows installation has more prerequisites than GNU/Linux one, and requires following softwares (which will be installed automatically) : 
   - Git 
-  - Python 
+  - Python 3.11 (and specifically 3.11 version)
   - OpenSSL
   - Visual Studio Build tools
   - Windows 10/11 SDK
@@ -255,7 +255,17 @@ Windows installation has more prerequisites than GNU/Linux one, and requires fol
 ***<p align=left>OR</p>***
   - **Download and execute**  : [install_win.cmd](https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win.cmd) *(right-click on the link and select "Save Target/Link as ..." to download)*<br/>
 
-All the installation is automated, but Windows UAC will ask you confirmation for each software installed during the "prerequisites" phase. You can avoid this by running the choosen installer as administrator.
+All the installation is automated, but Windows UAC will ask you confirmation for each software installed during the "prerequisites" phase. You can avoid this by running the chosen installer as administrator.
+
+⚠️ Since commit [8d2537b](https://github.com/Woolverine94/biniou/commit/8d2537b2de823e522602174ca23ab40e94b6c4d2) Windows users can now define a custom path for biniou directory, when installing with `install_win.cmd` ⚠️
+
+Proceed as follow :
+  - Download and edit install_win.cmd
+  - Modify `set DEFAULT_BINIOU_DIR="%userprofile%"` to `set DEFAULT_BINIOU_DIR="E:\datas\somedir"` (for example)
+  - Only use absolute path (e.g.: `E:\datas\somedir` and not `.\datas\somedir`)
+  - Don't had a trailing slash (e.g.: `E:\datas\somedir` and not `E:\datas\somedir\` )
+  - Don't add a "biniou" suffix to your path (e.g.: `E:\datas\somedir\biniou`), as the biniou directory will be created by the git clone command
+  - Save and launch install_win.cmd
 
 ### macOS Homebrew install
 
