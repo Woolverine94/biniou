@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usrbin/env bash
 if [ -f ".ini/llamacpp_backend.cfg" ]
   then 
     LLAMACPP_ARGS="$(cat .ini/llamacpp_backend.cfg)"
