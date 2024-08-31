@@ -118,6 +118,7 @@ model_list_img2img_builtin = [
     "SG161222/RealVisXL_V4.0_Lightning",
     "dataautogpt3/ProteusV0.4-Lightning",
     "recoilme/ColorfulXL-Lightning",
+    "GraydientPlatformAPI/lustify-lightning",
     "thibaud/sdxl_dpo_turbo",
     "stabilityai/sdxl-turbo",
     "-[ 👌 🇯🇵 Anime SDXL ]-",

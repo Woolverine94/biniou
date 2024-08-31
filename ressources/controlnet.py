@@ -108,6 +108,7 @@ model_list_controlnet_builtin = [
     "RunDiffusion/Juggernaut-X-Hyper",
     "SG161222/RealVisXL_V4.0_Lightning",
     "recoilme/ColorfulXL-Lightning",
+    "GraydientPlatformAPI/lustify-lightning",
     "thibaud/sdxl_dpo_turbo",
     "stabilityai/sdxl-turbo",
     "-[ 👌 🇯🇵 Anime SDXL ]-",

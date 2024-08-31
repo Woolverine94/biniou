@@ -121,6 +121,7 @@ model_list_faceid_ip_builtin = [
     "SG161222/RealVisXL_V4.0_Lightning",
     "dataautogpt3/ProteusV0.4-Lightning",
     "recoilme/ColorfulXL-Lightning",
+    "GraydientPlatformAPI/lustify-lightning",
     "-[ 👌 🇯🇵 Anime SDXL ]-",
     "cagliostrolab/animagine-xl-3.1",
     "yodayo-ai/clandestine-xl-1.0",

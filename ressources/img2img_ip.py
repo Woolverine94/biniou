@@ -110,6 +110,7 @@ model_list_img2img_ip_builtin = [
     "SG161222/RealVisXL_V4.0_Lightning",
     "dataautogpt3/ProteusV0.4-Lightning",
     "recoilme/ColorfulXL-Lightning",
+    "GraydientPlatformAPI/lustify-lightning",
     "stabilityai/sdxl-turbo",
     "-[ 👌 🇯🇵 Anime SDXL ]-",
     "cagliostrolab/animagine-xl-3.1",
