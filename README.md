@@ -17,6 +17,13 @@
 
 ## Updates
 
+  * 🆕 **2024-08-31** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for [model bartowski/Llama-3.1-Storm-8B-GGUF](https://hf.co/bartowski/Llama-3.1-Storm-8B-GGUF) and [bartowski/xLAM-7b-r-GGUF](https://hf.co/bartowski/xLAM-7b-r-GGUF) to Chatbot module.
+    - Add support for SD 1.5 model [Yntec/VisionVision](https://hf.co/Yntec/VisionVision), SDXL anime model [stablediffusionapi/anime-journey-v2](https://hf.co/stablediffusionapi/anime-journey-v2) and fast SDXL Model [GraydientPlatformAPI/lustify-lightning](https://hf.co/GraydientPlatformAPI/lustify-lightning) to Stable Diffusion-based module.
+    - Add support for SDXL LoRA models [goofyai/disney_style_xl](https://hf.co/goofyai/disney_style_xl), [goofyai/cyborg_style_xl](https://hf.co/goofyai/cyborg_style_xl) and [goofyai/Leonardo_Ai_Style_Illustration](https://hf.co/goofyai/Leonardo_Ai_Style_Illustration) to Stable Diffusion-based module.
+    - Add support for custom install path in install_win.cmd. 
+    - Bugfixes and typofix to various modules : thanks to [@trolley813](https://github.com/trolley813), [@vincent0408](https://github.com/vincent0408) and [@eltociear](https://github.com/@eltociear).
+
   * 🆕 **2024-08-24** : 🔥 ***This week's updates*** 🔥 >
     - Add support for [mlabonne/Hermes-3-Llama-3.1-8B-lorablated-GGUF](https://hf.co/mlabonne/Hermes-3-Llama-3.1-8B-lorablated-GGUF), [bartowski/2B_or_not_2B-GGUF](https://hf.co/bartowski/2B_or_not_2B-GGUF), [mradermacher/Bio-Medical-Llama-3.1-8B-GGUF](https://hf.co/mradermacher/Bio-Medical-Llama-3.1-8B-GGUF) and [bartowski/Phi-3.5-mini-instruct-GGUF](https://hf.co/bartowski/Phi-3.5-mini-instruct-GGUF) to Chatbot module.
     - Add support for ControlNet model [brad-twinkl/controlnet-union-sdxl-1.0-promax](https://hf.co/brad-twinkl/controlnet-union-sdxl-1.0-promax) to ControlNet module.
@@ -35,8 +42,6 @@
     - Add support for [cognitivecomputations/dolphin-2.9.3-mistral-nemo-12b-gguf](https://hf.co/cognitivecomputations/dolphin-2.9.3-mistral-nemo-12b-gguf) to Chatbot module. 
     - Add support for SD 1.5 model [SG161222/Paragon_V1.0](https://hf.co/SG161222/Paragon_V1.0) and SDXL Models [mann-e/Mann-E_Art](https://hf.co/mann-e/Mann-E_Art), [etri-vilab/koala-lightning-700m](https://hf.co/etri-vilab/koala-lightning-700m) and [etri-vilab/koala-lightning-1b](https://hf.co/etri-vilab/koala-lightning-1b) to Stable Diffusion-based module.
     - Add support for models categories to all Stable Diffusion-based modules.
-
-  * 🆕 **2024-08-09** : 🔥 ***Add categories to Stable Diffusion module*** 🔥 > As the number of image models never stops growing in biniou, it was the right time to classify them by categories, to help you find the best model to fit your needs. Please note that if you select a category instead of a model, the default model for this category will automatically be used. Default model is always the one following the category in the model list. This concept will be extended soon to all modules requiring it (Chatbot, img2img, controlnet, ...).
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
