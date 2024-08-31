@@ -9,7 +9,7 @@
 <p align="justify">biniou is a self-hosted webui for several kinds of GenAI (generative artificial intelligence). You can generate multimedia contents with AI and use a chatbot on your own computer, even without dedicated GPU and starting from 8GB RAM. Can work offline (once deployed and required models downloaded).</p>
 
 <p align="center">
-<a href="#GNULinux">GNU/Linux</a> [ <a href="#OpenSUSE-Leap-155--OpenSUSE-Tumbleweed">OpenSUSE base</a> | <a href="#Rocky-93--Alma-93--CentOS-Stream-9">RHEL base</a> | <a href="#debian-12--ubuntu-22043--ubuntu-2404--linux-mint-212">Debian base</a> ] • <a href="#windows-10--windows-11">Windows</a> • <a href="#macos-homebrew-install">macOS (experimental)</a> • <a href="#dockerfile">Docker</a></br>
+<a href="#GNULinux">GNU/Linux</a> [ <a href="#OpenSUSE-Leap-155--OpenSUSE-Tumbleweed">OpenSUSE base</a> | <a href="#Rocky-93--Alma-93--CentOS-Stream-9">RHEL base</a> | <a href="#debian-12--ubuntu-22043--ubuntu-2404--linux-mint-212">Debian base</a> ] • <a href="#windows-10--windows-11">Windows</a> • <a href="#macos-intel-homebrew-install">macOS Intel (experimental)</a> • <a href="#dockerfile">Docker</a></br>
 <a href="https://github.com/Woolverine94/biniou/wiki">Documentation ❓</a> | <a href="https://github.com/Woolverine94/biniou/wiki/Showroom">Showroom 🖼️</a>
 </p>
 
@@ -141,7 +141,7 @@
 
 ## Prerequisites
 * **Minimal hardware :**
-  - 64bit CPU
+  - 64bit CPU (AMD64 architecture ONLY)
   - 8GB RAM
   - Storage requirements :
     - for GNU/Linux : at least 20GB for installation without models.
@@ -151,7 +151,7 @@
   - Internet access (required only for installation and models download) : unlimited bandwith optical fiber internet access
 
 * **Recommended hardware :**
-  - Massively multicore 64bit CPU and/or a GPU compatible with CUDA or ROCm
+  - Massively multicore 64bit CPU (AMD64 architecture ONLY) and a GPU compatible with CUDA or ROCm
   - 16GB+ RAM
   - Storage requirements :
     - for GNU/Linux : around 200GB for installation including all defaults models.
@@ -272,9 +272,9 @@ Proceed as follow :
   - Don't add a "biniou" suffix to your path (e.g.: `E:\datas\somedir\biniou`), as the biniou directory will be created by the git clone command
   - Save and launch install_win.cmd
 
-### macOS Homebrew install
+### macOS Intel Homebrew install
 
-⚠️ Homebrew install is ***theoretically*** compatible with macOS, but has not been tested. Use at your own risk. Any feedback on this procedure through discussions or an issue ticket will be really appreciated. ⚠️
+⚠️ Homebrew install is ***theoretically*** compatible with macOS Intel, but has not been tested. Use at your own risk. Also note that biniou is currently incompatible with Apple silicon. Any feedback on this procedure through discussions or an issue ticket will be really appreciated. ⚠️
 
   1. **Install** [Homebrew](https://brew.sh/) for your operating system
  
