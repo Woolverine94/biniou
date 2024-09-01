@@ -1768,6 +1768,7 @@ seed_img2shape.value = {seed_img2shape}"
 def is_fast_lora(model):
     if (\
 (model == "ByteDance/SDXL-Lightning") or \
+(model == "GraydientPlatformAPI/lightning-faster-lora") or \
 (model == "ByteDance/Hyper-SD") or \
 (model == "openskyml/lcm-lora-sdxl-turbo") or \
 ("H1T/TCD-SD" in model.upper()) or \
@@ -1946,6 +1947,7 @@ def lora_model_list(model):
             "openskyml/lcm-lora-sdxl-turbo":("lcm-lora-sdxl-turbo.safetensors", ""),
             "ByteDance/Hyper-SD":("Hyper-SDXL-1step-lora.safetensors", ""),
             "h1t/TCD-SDXL-LoRA":("pytorch_lora_weights.safetensors", ""),
+            "GraydientPlatformAPI/lightning-faster-lora":("PAseer-SDXL-AcceleratorLighting.safetensors", ""),
             "-[ 👏 🔎 Enhancement ]-":("example-03.safetensors", ""),
             "KingNish/Better-SDXL-Lora":("example-03.safetensors", ""),
             "ehristoforu/dalle-3-xl-v2":("dalle-3-xl-lora-v2.safetensors", ""),
