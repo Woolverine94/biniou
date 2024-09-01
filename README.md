@@ -276,6 +276,8 @@ Proceed as follow :
 
 ⚠️ Homebrew install is ***theoretically*** compatible with macOS Intel, but has not been tested. Use at your own risk. Also note that biniou is currently incompatible with Apple silicon. Any feedback on this procedure through discussions or an issue ticket will be really appreciated. ⚠️
 
+⚠️ <u>Update 01/09/2024:</u> Thanks to [@lepicodon](https://github.com/lepicodon), there's a workaround for Apple Silicon's users : you can install biniou in a virtual machine using OrbStack. See [this comment](https://github.com/Woolverine94/biniou/issues/42#issuecomment-2323325835) for explainations. ⚠️ 
+
   1. **Install** [Homebrew](https://brew.sh/) for your operating system
  
   2. **Install** required homebrew "bottles" : 
