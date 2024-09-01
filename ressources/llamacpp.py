@@ -5,6 +5,8 @@ import gradio as gr
 import os
 from huggingface_hub import snapshot_download, hf_hub_download
 from ressources.common import *
+from ressources.tools import biniouUIControl
+import multiprocessing
 
 # Gestion des modèles
 model_path_llamacpp = "./models/llamacpp/"
@@ -223,7 +225,11 @@ def text_llamacpp(
     else :
         prompt_final_llamacpp = prompt_full_llamacpp
 
-    llm = Llama(model_path=modelid_llamacpp,  seed=seed_llamacpp, n_ctx=n_ctx_llamacpp)
+    if (biniouUIControl.detect_llama_backend() == "cuda"):
+        llm = Llama(model_path=modelid_llamacpp, seed=seed_llamacpp, n_gpu_layers=-1, n_threads=multiprocessing.cpu_count(), n_threads_batch=multiprocessing.cpu_count(), n_ctx=n_ctx_llamacpp)
+    else:
+        llm = Llama(model_path=modelid_llamacpp, seed=seed_llamacpp, n_ctx=n_ctx_llamacpp)
+
     output_llamacpp = llm(
         f"{prompt_final_llamacpp}", 
         max_tokens=max_tokens_llamacpp, 
@@ -306,7 +312,11 @@ def text_llamacpp_continue(
             history_final += history_llamacpp[i][1]+ "\n"
         history_final = history_final.rstrip()
 
-    llm = Llama(model_path=modelid_llamacpp, seed=seed_llamacpp, n_ctx=n_ctx_llamacpp)
+    if (biniouUIControl.detect_llama_backend() == "cuda"):
+        llm = Llama(model_path=modelid_llamacpp, seed=seed_llamacpp, n_gpu_layers=-1, n_threads=multiprocessing.cpu_count(), n_threads_batch=multiprocessing.cpu_count(), n_ctx=n_ctx_llamacpp)
+    else:
+        llm = Llama(model_path=modelid_llamacpp, seed=seed_llamacpp, n_ctx=n_ctx_llamacpp)
+
     output_llamacpp = llm.create_completion(
         f"{history_final}", 
         max_tokens=max_tokens_llamacpp, 
