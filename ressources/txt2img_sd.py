@@ -102,6 +102,7 @@ model_list_txt2img_sd_builtin = [
     "IDEA-CCNL/Taiyi-Stable-Diffusion-XL-3.5B",
     "etri-vilab/koala-lightning-700m",
     "etri-vilab/koala-lightning-1b",
+    "GraydientPlatformAPI/flashback-xl",
     "dataautogpt3/ProteusV0.5",
     "dataautogpt3/PrometheusV1",
     "dataautogpt3/OpenDalleV1.1",

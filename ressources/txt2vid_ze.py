@@ -79,6 +79,7 @@ model_list_txt2vid_ze = [
     "SPO-Diffusion-Models/SPO-SDXL_4k-p_10ep",
     "etri-vilab/koala-lightning-700m",
     "etri-vilab/koala-lightning-1b",
+    "GraydientPlatformAPI/flashback-xl",
     "dataautogpt3/ProteusV0.5",
     "dataautogpt3/PrometheusV1",
     "dataautogpt3/OpenDalleV1.1",

@@ -105,6 +105,7 @@ model_list_faceid_ip_builtin = [
     "ehristoforu/Visionix-alpha",
     "cutycat2000x/InterDiffusion-4.0",
     "SPO-Diffusion-Models/SPO-SDXL_4k-p_10ep",
+    "GraydientPlatformAPI/flashback-xl",
     "dataautogpt3/PrometheusV1",
     "SG161222/RealVisXL_V3.0",
     "playgroundai/playground-v2-512px-base",

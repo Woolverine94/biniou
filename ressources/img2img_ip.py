@@ -93,6 +93,7 @@ model_list_img2img_ip_builtin = [
     "ehristoforu/Visionix-alpha",
     "cutycat2000x/InterDiffusion-4.0",
     "SPO-Diffusion-Models/SPO-SDXL_4k-p_10ep",
+    "GraydientPlatformAPI/flashback-xl",
     "dataautogpt3/ProteusV0.5",
     "dataautogpt3/PrometheusV1",
     "dataautogpt3/OpenDalleV1.1",
