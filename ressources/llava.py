@@ -7,6 +7,8 @@ from llama_cpp.llama_chat_format import Llava15ChatHandler
 from PIL import Image
 from huggingface_hub import snapshot_download, hf_hub_download
 from ressources.common import *
+from ressources.tools import biniouUIControl
+import multiprocessing
 
 device_label_llava, model_arch = detect_device()
 device_llava = torch.device(device_label_llava)
@@ -105,13 +107,10 @@ def text_llava(
 
     chat_handler_llava = Llava15ChatHandler(clip_model_path=modelid_mmproj_llava)
 
-    llm = Llama(
-              model_path=modelid_llava,
-              seed=seed_llava,
-              n_ctx=n_ctx_llava,
-              chat_handler=chat_handler_llava,
-              logits_all=True,
-    )
+    if (biniouUIControl.detect_llama_backend() == "cuda"):
+        llm = Llama(model_path=modelid_llava, seed=seed_llava, n_gpu_layers=-1, n_threads=multiprocessing.cpu_count(), n_threads_batch=multiprocessing.cpu_count(), n_ctx=n_ctx_llava, chat_handler=chat_handler_llava, logits_all=True)
+    else:
+        llm = Llama(model_path=modelid_llava, seed=seed_llava, n_ctx=n_ctx_llava, chat_handler=chat_handler_llava, logits_all=True)
 
     if system_template_llava == "":
         system_template_llava = "You are an assistant who perfectly describes images."
@@ -193,7 +192,11 @@ def text_llava_continue(
             history_final += history_llava[i][1]+ "\n"
         history_final = history_final.rstrip()
 
-    llm = Llama(model_path=modelid_llava, seed=seed_llava, n_ctx=n_ctx_llava)
+    if (biniouUIControl.detect_llama_backend() == "cuda"):
+        llm = Llama(model_path=modelid_llava, seed=seed_llava, n_gpu_layers=-1, n_threads=multiprocessing.cpu_count(), n_threads_batch=multiprocessing.cpu_count(), n_ctx=n_ctx_llava)
+    else:
+        llm = Llama(model_path=modelid_llava, seed=seed_llava, n_ctx=n_ctx_llava)
+
     output_llava = llm.create_completion(
         f"{history_final}", 
         max_tokens=max_tokens_llava, 
