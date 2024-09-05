@@ -173,6 +173,14 @@ def image_txt2img_sd(
     use_ays_txt2img_sd,
     lora_model_txt2img_sd,
     lora_weight_txt2img_sd,
+    lora_model2_txt2img_sd,
+    lora_weight2_txt2img_sd,
+    lora_model3_txt2img_sd,
+    lora_weight3_txt2img_sd,
+    lora_model4_txt2img_sd,
+    lora_weight4_txt2img_sd,
+    lora_model5_txt2img_sd,
+    lora_weight5_txt2img_sd,
     txtinv_txt2img_sd,
     progress_txt2img_sd=gr.Progress(track_tqdm=True)
     ):
@@ -181,6 +189,29 @@ def image_txt2img_sd(
 
     modelid_txt2img_sd = model_cleaner_sd(modelid_txt2img_sd)
     lora_model_txt2img_sd = model_cleaner_lora(lora_model_txt2img_sd)
+    lora_model2_txt2img_sd = model_cleaner_lora(lora_model2_txt2img_sd)
+    lora_model3_txt2img_sd = model_cleaner_lora(lora_model3_txt2img_sd)
+    lora_model4_txt2img_sd = model_cleaner_lora(lora_model4_txt2img_sd)
+    lora_model5_txt2img_sd = model_cleaner_lora(lora_model5_txt2img_sd)
+
+    lora_array = []
+    lora_weight_array = []
+
+    if lora_model_txt2img_sd != "":
+        lora_array.append(f"{lora_model_txt2img_sd}")
+        lora_weight_array.append(float(lora_weight_txt2img_sd))
+    if lora_model2_txt2img_sd != "":
+        lora_array.append(f"{lora_model2_txt2img_sd}")
+        lora_weight_array.append(float(lora_weight2_txt2img_sd))
+    if lora_model3_txt2img_sd != "":
+        lora_array.append(f"{lora_model3_txt2img_sd}")
+        lora_weight_array.append(float(lora_weight3_txt2img_sd))
+    if lora_model4_txt2img_sd != "":
+        lora_array.append(f"{lora_model4_txt2img_sd}")
+        lora_weight_array.append(float(lora_weight4_txt2img_sd))
+    if lora_model5_txt2img_sd != "":
+        lora_array.append(f"{lora_model5_txt2img_sd}")
+        lora_weight_array.append(float(lora_weight5_txt2img_sd))
 
     global pipe_txt2img_sd
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2img_sd, device_txt2img_sd, nsfw_filter)
@@ -317,41 +348,46 @@ def image_txt2img_sd(
     if not is_sd3_txt2img_sd:
         pipe_txt2img_sd.enable_vae_slicing()
 
-    if lora_model_txt2img_sd != "":
-        model_list_lora_txt2img_sd = lora_model_list(modelid_txt2img_sd)
-        if lora_model_txt2img_sd[0:9] == "./models/":
-            pipe_txt2img_sd.load_lora_weights(
-                os.path.dirname(lora_model_txt2img_sd),
-                weight_name=model_list_lora_txt2img_sd[lora_model_txt2img_sd][0],
-                use_safetensors=True,
-                adapter_name="adapter1",
-                local_files_only=True if offline_test() else None,
-            )
-        else:
-            if is_xl_txt2img_sd:
-                lora_model_path = model_path_lora_sdxl
-            elif is_sd3_txt2img_sd:
-                lora_model_path = model_path_lora_sd3
-            else: 
-                lora_model_path = model_path_lora_sd
+    adapters_list = []
 
-            local_lora_txt2img_sd = hf_hub_download(
-                repo_id=lora_model_txt2img_sd,
-                filename=model_list_lora_txt2img_sd[lora_model_txt2img_sd][0],
-                cache_dir=lora_model_path,
-                resume_download=True,
-                local_files_only=True if offline_test() else None,
-            )
+    if len(lora_array) != 0:
+        for e in range(len(lora_array)):
+            model_list_lora_txt2img_sd = lora_model_list(modelid_txt2img_sd)
+            if lora_array[e][0:9] == "./models/":
+                pipe_txt2img_sd.load_lora_weights(
+                    os.path.dirname(lora_array[e]),
+                    weight_name=model_list_lora_txt2img_sd[lora_array[e]][0],
+                    use_safetensors=True,
+                    adapter_name=f"adapter{e}",
+                    local_files_only=True if offline_test() else None,
+                )
+            else:
+                if is_xl_txt2img_sd:
+                    lora_model_path = model_path_lora_sdxl
+                elif is_sd3_txt2img_sd:
+                    lora_model_path = model_path_lora_sd3
+                else: 
+                    lora_model_path = model_path_lora_sd
 
-            pipe_txt2img_sd.load_lora_weights(
-                local_lora_txt2img_sd,
-                weight_name=model_list_lora_txt2img_sd[lora_model_txt2img_sd][0],
-                use_safetensors=True,
-                adapter_name="adapter1",
-            )
-        if not is_sd3_txt2img_sd:
-            pipe_txt2img_sd.fuse_lora(lora_scale=lora_weight_txt2img_sd)
-#        pipe_txt2img_sd.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_txt2img_sd)])
+                local_lora_txt2img_sd = hf_hub_download(
+                    repo_id=lora_array[e],
+                    filename=model_list_lora_txt2img_sd[lora_array[e]][0],
+                    cache_dir=lora_model_path,
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None,
+                )
+
+                pipe_txt2img_sd.load_lora_weights(
+                    lora_array[e],
+                    weight_name=model_list_lora_txt2img_sd[lora_array[e]][0],
+                    use_safetensors=True,
+                    adapter_name=f"adapter{e}",
+                )
+            adapters_list.append(f"adapter{e}")
+
+#    if not is_sd3_txt2img_sd:
+#       pipe_txt2img_sd.set_adapters(adapters_list, adapter_weights=lora_weight_array)
+        pipe_txt2img_sd.set_adapters(adapters_list, adapter_weights=lora_weight_array)
 
     if txtinv_txt2img_sd != "":
         model_list_txtinv_txt2img_sd = txtinv_list(modelid_txt2img_sd)
@@ -488,8 +524,8 @@ def image_txt2img_sd(
         f"Token merging={tkme_txt2img_sd} | "+\
         f"CLIP skip={clipskip_txt2img_sd} | "+\
         f"AYS={use_ays_txt2img_sd} | "+\
-        f"LoRA model={lora_model_txt2img_sd} | "+\
-        f"LoRA weight={lora_weight_txt2img_sd} | "+\
+        f"LoRA model={lora_array} | "+\
+        f"LoRA weight={lora_weight_array} | "+\
         f"Textual inversion={txtinv_txt2img_sd} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Prompt={prompt_txt2img_sd} | "+\

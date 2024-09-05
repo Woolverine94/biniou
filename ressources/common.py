@@ -1883,11 +1883,15 @@ def model_cleaner_lora(model):
         model = model.replace(clean_model_key, clean_model_value)
     return model
 
-def lora_model_list(model):
+def lora_model_list(model, *args):
+    secondary_lora = False
+    for idx, data in enumerate(args):
+        if bool(data):
+            secondary_lora = True
     model = model_cleaner_sd(model)
     if is_sdxl(model):
         model_path_lora = model_path_lora_sdxl
-        model_list_lora_builtin = {
+        model_list_lora_builtin_fast = {
 #            "ByteDance/SDXL-Lightning":("sdxl_lightning_4step_lora.safetensors", ""),
 #            "ByteDance/Hyper-SD":("Hyper-SDXL-1step-lora.safetensors", ""),
 #            "openskyml/lcm-lora-sdxl-turbo":("lcm-lora-sdxl-turbo.safetensors", ""),
@@ -1948,6 +1952,8 @@ def lora_model_list(model):
             "ByteDance/Hyper-SD":("Hyper-SDXL-1step-lora.safetensors", ""),
             "h1t/TCD-SDXL-LoRA":("pytorch_lora_weights.safetensors", ""),
             "GraydientPlatformAPI/lightning-faster-lora":("PAseer-SDXL-AcceleratorLighting.safetensors", ""),
+        }
+        model_list_lora_builtin = {
             "-[ 👏 🔎 Enhancement ]-":("example-03.safetensors", ""),
             "KingNish/Better-SDXL-Lora":("example-03.safetensors", ""),
             "ehristoforu/dalle-3-xl-v2":("dalle-3-xl-lora-v2.safetensors", ""),
@@ -1997,26 +2003,30 @@ def lora_model_list(model):
             "Norod78/SDXL-simpstyle-Lora-v2":("SDXL-Simpstyle-Lora-v2-r16.safetensors", "simpstyle"),
             "ProomptEngineer/pe-old-school-cartoon-style":("PE_OldCartoonStyle.safetensors", "old school cartoon style"),
             "Pclanglais/Mickey-1928":("pytorch_lora_weights.safetensors", "Mickey|Minnie|Pete"),
-    }
+        }
     elif is_sd3(model):
         model_path_lora = model_path_lora_sd3
+        model_list_lora_builtin_fast = {
+        }
         model_list_lora_builtin = {
 #            "jasperai/flash-sd3":("adapter_model.safetensors", ""),
             "adbrasi/jujutsuKaisen-style-sd3":("pytorch_lora_weights.safetensors", "anime in jks style"),
             "linoyts/Yarn_art_SD3_LoRA":("pytorch_lora_weights.safetensors", "yarn art style"),
-            "darknoon/symbols-sd3-lora":("pytorch_lora_weights.safetensors", "in the style of SF"),
+            "gdvstd/dessin-style-sketch-sd3-lora":("pytorch_lora_weights.safetensors", "sks sketch"),
+#            "darknoon/symbols-sd3-lora":("pytorch_lora_weights.safetensors", "in the style of SF"),
     }
     else :        
         model_path_lora = model_path_lora_sd
-        model_list_lora_builtin = {
+        model_list_lora_builtin_fast = {
             "ByteDance/Hyper-SD":("Hyper-SD15-1step-lora.safetensors", ""),
             "h1t/TCD-SD15-LoRA":("pytorch_lora_weights.safetensors", ""),
             "wangfuyun/PCM_Weights":("sd15/pcm_sd15_lcmlike_lora_converted.safetensors", ""),
             "jasperai/flash-sd":("pytorch_lora_weights.safetensors", ""),
+        }
+        model_list_lora_builtin = {
             "artificialguybr/icons-redmond-1-5v-app-icons-lora-for-sd-liberteredmond-sd-1-5":("IconsRedmond15V-Icons.safetensors", "icons, ios icon app, icons app"),
             "Kvikontent/midjourney-v6":("mj6-10.safetensors", ""),
             "Norod78/SD15-IllusionDiffusionPattern-LoRA":("SD15-IllusionDiffusionPattern-LoRA.safetensors","IllusionDiffusionPattern"),
-
         }
 
     os.makedirs(model_path_lora, exist_ok=True)
@@ -2030,7 +2040,10 @@ def lora_model_list(model):
             final_f = {f:(f.split("/")[-1], "")}
             model_list_lora.update(final_f)
 
+    if secondary_lora == False:
+        model_list_lora.update(model_list_lora_builtin_fast)
     model_list_lora.update(model_list_lora_builtin)
+
     return model_list_lora
 
 def txtinv_list(model):
