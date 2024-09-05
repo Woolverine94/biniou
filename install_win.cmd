@@ -22,10 +22,10 @@ set WIN11_SDK="Microsoft.VisualStudio.Component.Windows11SDK.22621"
 
 curl -o "%tmp%\wget.exe" "https://eternallybored.org/misc/wget/1.21.4/64/wget.exe"
 %tmp%\wget -O "%tmp%\vs_BuildTools.exe" %URL_VSBT%
-%tmp%\wget -O "%tmp%\git.exe" %URL_GIT%
+%tmp%\wget -O "%tmp%\git.exe" %URL_GIT% --no-check-certificate
 %tmp%\wget -O "%tmp%\openssl.exe" %URL_OPENSSL% --no-check-certificate
 %tmp%\wget -O "%tmp%\python.exe" %URL_PYTHON% --no-check-certificate
-%tmp%\wget -O "%tmp%\ffmpeg-master-latest-win64-gpl.zip" %URL_FFMPEG%
+%tmp%\wget -O "%tmp%\ffmpeg-master-latest-win64-gpl.zip" %URL_FFMPEG% --no-check-certificate
 %tmp%\wget -O "%tmp%\vcredist.exe" %URL_VCREDIST%
 
 start /wait %tmp%\vs_BuildTools.exe --add %WIN10_SDK% --add %WIN11_SDK% --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --passive --wait
@@ -34,6 +34,7 @@ start /wait %tmp%\openssl.exe /passive
 start /wait %tmp%\python.exe /passive
 start /wait %tmp%\vcredist.exe  /q /norestart
 start /wait powershell -command "Expand-Archive %tmp%\ffmpeg-master-latest-win64-gpl.zip %userprofile%\AppData\Local\Programs\ffmpeg -Force"
+setx path "%path%;%userprofile%\AppData\Local\Programs\ffmpeg\ffmpeg-master-latest-win64-gpl\bin"
 
 REM ****************************
 REM *** CLONING REPOSITORY : ***
@@ -62,7 +63,7 @@ call venv.cmd
 python.exe -m pip install --upgrade pip
 pip install wheel
 pip install torch==2.1.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-pip install llama-cpp-python
+pip install llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
 pip install -r requirements.txt
 echo "Installation finished ! You could now launch biniou by double-clicking %DEFAULT_BINIOU_DIR%\biniou\webui.cmd"
 pause
