@@ -116,7 +116,7 @@ model_list_img2img_builtin = [
     "Lykon/dreamshaper-xl-lightning",
     "RunDiffusion/Juggernaut-XL-Lightning",
     "RunDiffusion/Juggernaut-X-Hyper",
-    "SG161222/RealVisXL_V4.0_Lightning",
+    "SG161222/RealVisXL_V5.0_Lightning",
     "dataautogpt3/ProteusV0.4-Lightning",
     "recoilme/ColorfulXL-Lightning",
     "GraydientPlatformAPI/lustify-lightning",
