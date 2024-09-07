@@ -20,13 +20,12 @@ set URL_VCREDIST="https://aka.ms/vs/17/release/vc_redist.x64.exe"
 set WIN10_SDK="Microsoft.VisualStudio.Component.Windows10SDK.20348"
 set WIN11_SDK="Microsoft.VisualStudio.Component.Windows11SDK.22621"
 
-curl -o "%tmp%\wget.exe" "https://eternallybored.org/misc/wget/1.21.4/64/wget.exe"
-%tmp%\wget -O "%tmp%\vs_BuildTools.exe" %URL_VSBT%
-%tmp%\wget -O "%tmp%\git.exe" %URL_GIT% --no-check-certificate
-%tmp%\wget -O "%tmp%\openssl.exe" %URL_OPENSSL% --no-check-certificate
-%tmp%\wget -O "%tmp%\python.exe" %URL_PYTHON% --no-check-certificate
-%tmp%\wget -O "%tmp%\ffmpeg-master-latest-win64-gpl.zip" %URL_FFMPEG% --no-check-certificate
-%tmp%\wget -O "%tmp%\vcredist.exe" %URL_VCREDIST%
+powershell -command "(New-Object System.Net.WebClient).DownloadFile(\"%URL_VSBT%\", \"%tmp%\vs_BuildTools.exe\")"
+powershell -command "(New-Object System.Net.WebClient).DownloadFile(\"%URL_GIT%\", \"%tmp%\git.exe\")"
+powershell -command "(New-Object System.Net.WebClient).DownloadFile(\"%URL_OPENSSL%\", \"%tmp%\openssl.exe\")"
+powershell -command "(New-Object System.Net.WebClient).DownloadFile(\"%URL_PYTHON%\", \"%tmp%\python.exe\")"
+powershell -command "(New-Object System.Net.WebClient).DownloadFile(\"%URL_FFMPEG%\", \"%tmp%\ffmpeg-master-latest-win64-gpl.zip\")"
+powershell -command "(New-Object System.Net.WebClient).DownloadFile(\"%URL_VCREDIST%\", \"%tmp%\vcredist.exe\")"
 
 start /wait %tmp%\vs_BuildTools.exe --add %WIN10_SDK% --add %WIN11_SDK% --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --passive --wait
 start /wait %tmp%\git.exe /silent
@@ -34,7 +33,6 @@ start /wait %tmp%\openssl.exe /passive
 start /wait %tmp%\python.exe /passive
 start /wait %tmp%\vcredist.exe  /q /norestart
 start /wait powershell -command "Expand-Archive %tmp%\ffmpeg-master-latest-win64-gpl.zip %userprofile%\AppData\Local\Programs\ffmpeg -Force"
-setx path "%path%;%userprofile%\AppData\Local\Programs\ffmpeg\ffmpeg-master-latest-win64-gpl\bin"
 
 REM ****************************
 REM *** CLONING REPOSITORY : ***
