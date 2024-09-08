@@ -425,7 +425,6 @@ def image_faceid_ip(
 #    if not is_sd3_faceid_ip:
 #       pipe_faceid_ip.set_adapters(adapters_list, adapter_weights=lora_weight_array)
         pipe_faceid_ip.set_adapters(adapters_list, adapter_weights=lora_weight_array)
-    print(adapters_list, lora_weight_array)
 
     if txtinv_faceid_ip != "":
         model_list_txtinv_faceid_ip = txtinv_list(modelid_faceid_ip)
@@ -565,6 +564,9 @@ def image_faceid_ip(
             final_image.append(savename)
             final_seed.append(seed_id)
 
+    if is_xl_faceid_ip:
+        lora_array.insert(0, "PhotomakerV2")
+
     print(f">>>[Photobooth 🖼️ ]: generated {num_prompt_faceid_ip} batch(es) of {num_images_per_prompt_faceid_ip}")
     reporting_faceid_ip = f">>>[Photobooth 🖼️ ]: "+\
         f"Settings : Model={modelid_faceid_ip} | "+\
@@ -576,7 +578,7 @@ def image_faceid_ip(
         f"GFPGAN={use_gfpgan_faceid_ip} | "+\
         f"Token merging={tkme_faceid_ip} | "+\
         f"CLIP skip={clipskip_faceid_ip} | "+\
-        f"LoRA model={adapters_list} | "+\
+        f"LoRA model={lora_array} | "+\
         f"LoRA weight={lora_weight_array} | "+\
         f"Textual inversion={txtinv_faceid_ip} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
