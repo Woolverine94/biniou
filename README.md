@@ -17,7 +17,11 @@
 
 ## Updates
 
-  * 🆕 **2024-09-06** : 🔥 ***This week's updates*** 🔥 >
+  * 🆕 **2024-09-08** : 🔥 ***New Windows installer and Multi-LoRA for Photobooth module*** 🔥 >
+    - Thanks to the contributions of [@natlamir](https://github.com/natlamir), Windows users now have access to a faster and more reliable Windows installer. It works both for the executable and .cmd installers. 
+    - Multi-LoRAs models are now supported for Photobooth module. You can now add up to 5 LoRAs models to your generation settings.
+
+  * 🆕 **2024-09-07** : 🔥 ***This week's updates*** 🔥 >
     - Update of Tiny model [bartowski/Phi-3.5-mini-instruct-GGUF](https://hf.co/bartowski/Phi-3.5-mini-instruct-GGUF) to [Phi-3.5-mini-instruct_Uncensored-GGUF](https://hf.co/Phi-3.5-mini-instruct_Uncensored-GGUF) for Chatbot module.
     - Update for SDXL family model RealvisXL to [SG161222/RealVisXL_V5.0](https://hf.co/SG161222/RealVisXL_V5.0) and fast SDXL Model [SG161222/RealVisXL_V5.0_Lightning](https://hf.co/SG161222/RealVisXL_V5.0_Lightning) to Stable Diffusion-based module.
     - Add support for SDXL model [GraydientPlatformAPI/flashback-xl](https://hf.co/GraydientPlatformAPI/flashback-xl) to Stable Diffusion-based module.
