@@ -195,6 +195,14 @@ def image_faceid_ip(
     clipskip_faceid_ip,
     lora_model_faceid_ip,
     lora_weight_faceid_ip,
+    lora_model2_faceid_ip,
+    lora_weight2_faceid_ip,
+    lora_model3_faceid_ip,
+    lora_weight3_faceid_ip,
+    lora_model4_faceid_ip,
+    lora_weight4_faceid_ip,
+    lora_model5_faceid_ip,
+    lora_weight5_faceid_ip,
     txtinv_faceid_ip,
     progress_faceid_ip=gr.Progress(track_tqdm=True)
     ):
@@ -204,6 +212,30 @@ def image_faceid_ip(
     modelid_faceid_ip = model_cleaner_sd(modelid_faceid_ip)
 
     lora_model_faceid_ip = model_cleaner_lora(lora_model_faceid_ip)
+    lora_model2_faceid_ip = model_cleaner_lora(lora_model2_faceid_ip)
+    lora_model3_faceid_ip = model_cleaner_lora(lora_model3_faceid_ip)
+    lora_model4_faceid_ip = model_cleaner_lora(lora_model4_faceid_ip)
+    lora_model5_faceid_ip = model_cleaner_lora(lora_model5_faceid_ip)
+
+    lora_array = []
+    lora_weight_array = []
+    adapters_list = []
+
+    if lora_model_faceid_ip != "":
+        lora_array.append(f"{lora_model_faceid_ip}")
+        lora_weight_array.append(float(lora_weight_faceid_ip))
+    if lora_model2_faceid_ip != "":
+        lora_array.append(f"{lora_model2_faceid_ip}")
+        lora_weight_array.append(float(lora_weight2_faceid_ip))
+    if lora_model3_faceid_ip != "":
+        lora_array.append(f"{lora_model3_faceid_ip}")
+        lora_weight_array.append(float(lora_weight3_faceid_ip))
+    if lora_model4_faceid_ip != "":
+        lora_array.append(f"{lora_model4_faceid_ip}")
+        lora_weight_array.append(float(lora_weight4_faceid_ip))
+    if lora_model5_faceid_ip != "":
+        lora_array.append(f"{lora_model5_faceid_ip}")
+        lora_weight_array.append(float(lora_weight5_faceid_ip))
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_faceid_ip, device_faceid_ip, nsfw_filter)
 
@@ -219,6 +251,11 @@ def image_faceid_ip(
         is_xl_faceid_ip: bool = True
     else :
         is_xl_faceid_ip: bool = False
+
+    if is_sd3(modelid_faceid_ip):
+        is_sd3_faceid_ip: bool = True
+    else :
+        is_sd3_faceid_ip: bool = False
 
     if is_bin(modelid_faceid_ip):
         is_bin_faceid_ip: bool = True
@@ -257,7 +294,8 @@ def image_faceid_ip(
             local_files_only=True if offline_test() else None
         )
         pipe_faceid_ip.id_encoder.to(device_faceid_ip)
-        pipe_faceid_ip.fuse_lora()
+        adapters_list.append("photomaker")
+        lora_weight_array.insert(0, float(denoising_strength_faceid_ip))
     elif (is_xl_faceid_ip == True) and (is_turbo_faceid_ip == False) :
         if modelid_faceid_ip[0:9] == "./models/" :
             pipe_faceid_ip = PhotoMakerStableDiffusionXLPipeline.from_single_file(
@@ -288,7 +326,8 @@ def image_faceid_ip(
             local_files_only=True if offline_test() else None
         )
         pipe_faceid_ip.id_encoder.to(device_faceid_ip)
-        pipe_faceid_ip.fuse_lora()
+        adapters_list.append("photomaker")
+        lora_weight_array.insert(0, float(denoising_strength_faceid_ip))
     else :
         if modelid_faceid_ip[0:9] == "./models/" :
             pipe_faceid_ip = StableDiffusionPipeline.from_single_file(
@@ -348,38 +387,45 @@ def image_faceid_ip(
     else : 
         pipe_faceid_ip = pipe_faceid_ip.to(device_faceid_ip)
 
-    if lora_model_faceid_ip != "":
-        model_list_lora_faceid_ip = lora_model_list(modelid_faceid_ip)
-        if lora_model_faceid_ip[0:9] == "./models/":
-            pipe_faceid_ip.load_lora_weights(
-                os.path.dirname(lora_model_faceid_ip),
-                weight_name=model_list_lora_faceid_ip[lora_model_faceid_ip][0],
-                use_safetensors=True,
-                adapter_name="adapter1",
-                local_files_only=True if offline_test() else None,
-            )
-        else:
-            if is_xl_faceid_ip:
-                lora_model_path = "./models/lora/SDXL"
-            else: 
-                lora_model_path = "./models/lora/SD"
+    if len(lora_array) != 0:
+        for e in range(len(lora_array)):
+            model_list_lora_faceid_ip = lora_model_list(modelid_faceid_ip)
+            if lora_array[e][0:9] == "./models/":
+                pipe_faceid_ip.load_lora_weights(
+                    os.path.dirname(lora_array[e]),
+                    weight_name=model_list_lora_faceid_ip[lora_array[e]][0],
+                    use_safetensors=True,
+                    adapter_name=f"adapter{e}",
+                    local_files_only=True if offline_test() else None,
+                )
+            else:
+                if is_xl_faceid_ip:
+                    lora_model_path = model_path_lora_sdxl
+                elif is_sd3_faceid_ip:
+                    lora_model_path = model_path_lora_sd3
+                else: 
+                    lora_model_path = model_path_lora_sd
 
-            local_lora_faceid_ip = hf_hub_download(
-                repo_id=lora_model_faceid_ip,
-                filename=model_list_lora_faceid_ip[lora_model_faceid_ip][0],
-                cache_dir=lora_model_path,
-                resume_download=True,
-                local_files_only=True if offline_test() else None,
-            )
+                local_lora_faceid_ip = hf_hub_download(
+                    repo_id=lora_array[e],
+                    filename=model_list_lora_faceid_ip[lora_array[e]][0],
+                    cache_dir=lora_model_path,
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None,
+                )
 
-            pipe_faceid_ip.load_lora_weights(
-                local_lora_faceid_ip,
-                weight_name=model_list_lora_faceid_ip[lora_model_faceid_ip][0],
-                use_safetensors=True,
-                adapter_name="adapter1",
-            )
-        pipe_faceid_ip.fuse_lora(lora_scale=lora_weight_faceid_ip)
-#        pipe_faceid_ip.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_faceid_ip)])
+                pipe_faceid_ip.load_lora_weights(
+                    lora_array[e],
+                    weight_name=model_list_lora_faceid_ip[lora_array[e]][0],
+                    use_safetensors=True,
+                    adapter_name=f"adapter{e}",
+                )
+            adapters_list.append(f"adapter{e}")
+
+#    if not is_sd3_faceid_ip:
+#       pipe_faceid_ip.set_adapters(adapters_list, adapter_weights=lora_weight_array)
+        pipe_faceid_ip.set_adapters(adapters_list, adapter_weights=lora_weight_array)
+    print(adapters_list, lora_weight_array)
 
     if txtinv_faceid_ip != "":
         model_list_txtinv_faceid_ip = txtinv_list(modelid_faceid_ip)
@@ -530,8 +576,8 @@ def image_faceid_ip(
         f"GFPGAN={use_gfpgan_faceid_ip} | "+\
         f"Token merging={tkme_faceid_ip} | "+\
         f"CLIP skip={clipskip_faceid_ip} | "+\
-        f"LoRA model={lora_model_faceid_ip} | "+\
-        f"LoRA weight={lora_weight_faceid_ip} | "+\
+        f"LoRA model={adapters_list} | "+\
+        f"LoRA weight={lora_weight_array} | "+\
         f"Textual inversion={txtinv_faceid_ip} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Denoising strength={denoising_strength_faceid_ip} | "+\

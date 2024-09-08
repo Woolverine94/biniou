@@ -1333,6 +1333,19 @@ def change_model_type_faceid_ip(model_faceid_ip, prompt):
     else:
         return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(value=biniou_global_sd15_width), height_faceid_ip.update(value=biniou_global_sd15_height), num_inference_step_faceid_ip.update(value=35), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True), prompt_faceid_ip.update()
 
+def change_model_type_faceid_ip_alternate2(model_faceid_ip):
+    return lora_model2_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip, True).keys()), value="", interactive=True)
+
+def change_model_type_faceid_ip_alternate3(model_faceid_ip):
+    return lora_model3_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip, True).keys()), value="", interactive=True)
+
+def change_model_type_faceid_ip_alternate4(model_faceid_ip):
+    return lora_model4_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip, True).keys()), value="", interactive=True)
+
+def change_model_type_faceid_ip_alternate5(model_faceid_ip):
+    return lora_model5_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip, True).keys()), value="", interactive=True)
+
+
 biniou_internal_previous_model_faceid_ip = ""
 biniou_internal_previous_steps_faceid_ip = ""
 biniou_internal_previous_cfg_faceid_ip = ""
@@ -1405,6 +1418,102 @@ def change_lora_model_faceid_ip(model, lora_model, prompt, steps, cfg_scale, sam
             biniou_internal_previous_cfg_faceid_ip = ""
             biniou_internal_previous_sampler_faceid_ip = ""
             return prompt_faceid_ip.update(value=lora_prompt_faceid_ip), num_inference_step_faceid_ip.update(value=var_steps), guidance_scale_faceid_ip.update(value=var_cfg_scale), sampler_faceid_ip.update(value=var_sampler)
+
+biniou_internal_previous_trigger2_faceid_ip = ""
+def change_lora_model2_faceid_ip(model, lora_model, prompt):
+    global biniou_internal_previous_trigger2_faceid_ip
+    lora_keyword = lora_model_list(model)[lora_model][1]
+
+    if lora_model != "":
+        if lora_keyword != "":
+            lora_prompt_faceid_ip = lora_keyword+ ", "+ prompt
+        else:
+            lora_prompt_faceid_ip = prompt
+    else:
+        lora_prompt_faceid_ip = prompt
+
+    if (biniou_internal_previous_trigger2_faceid_ip == ""):
+        biniou_internal_previous_trigger2_faceid_ip = lora_keyword
+    else:
+        lora_trigger = biniou_internal_previous_trigger2_faceid_ip+ ", "
+        lora_prompt_faceid_ip = lora_prompt_faceid_ip.replace(lora_trigger, "")
+        biniou_internal_previous_trigger2_faceid_ip = lora_keyword
+
+    lora_prompt_faceid_ip = lora_prompt_faceid_ip.replace(lora_keyword+ ", "+ lora_keyword+ ", ", lora_keyword+ ", ")
+
+    return prompt_faceid_ip.update(value=lora_prompt_faceid_ip)
+
+biniou_internal_previous_trigger3_faceid_ip = ""
+def change_lora_model3_faceid_ip(model, lora_model, prompt):
+    global biniou_internal_previous_trigger3_faceid_ip
+    lora_keyword = lora_model_list(model)[lora_model][1]
+
+    if lora_model != "":
+        if lora_keyword != "":
+            lora_prompt_faceid_ip = lora_keyword+ ", "+ prompt
+        else:
+            lora_prompt_faceid_ip = prompt
+    else:
+        lora_prompt_faceid_ip = prompt
+
+    if (biniou_internal_previous_trigger3_faceid_ip == ""):
+        biniou_internal_previous_trigger3_faceid_ip = lora_keyword
+    else:
+        lora_trigger = biniou_internal_previous_trigger3_faceid_ip+ ", "
+        lora_prompt_faceid_ip = lora_prompt_faceid_ip.replace(lora_trigger, "")
+        biniou_internal_previous_trigger3_faceid_ip = lora_keyword
+
+    lora_prompt_faceid_ip = lora_prompt_faceid_ip.replace(lora_keyword+ ", "+ lora_keyword+ ", ", lora_keyword+ ", ")
+
+    return prompt_faceid_ip.update(value=lora_prompt_faceid_ip)
+
+biniou_internal_previous_trigger4_faceid_ip = ""
+def change_lora_model4_faceid_ip(model, lora_model, prompt):
+    global biniou_internal_previous_trigger4_faceid_ip
+    lora_keyword = lora_model_list(model)[lora_model][1]
+
+    if lora_model != "":
+        if lora_keyword != "":
+            lora_prompt_faceid_ip = lora_keyword+ ", "+ prompt
+        else:
+            lora_prompt_faceid_ip = prompt
+    else:
+        lora_prompt_faceid_ip = prompt
+
+    if (biniou_internal_previous_trigger4_faceid_ip == ""):
+        biniou_internal_previous_trigger4_faceid_ip = lora_keyword
+    else:
+        lora_trigger = biniou_internal_previous_trigger4_faceid_ip+ ", "
+        lora_prompt_faceid_ip = lora_prompt_faceid_ip.replace(lora_trigger, "")
+        biniou_internal_previous_trigger4_faceid_ip = lora_keyword
+
+    lora_prompt_faceid_ip = lora_prompt_faceid_ip.replace(lora_keyword+ ", "+ lora_keyword+ ", ", lora_keyword+ ", ")
+
+    return prompt_faceid_ip.update(value=lora_prompt_faceid_ip)
+
+biniou_internal_previous_trigger5_faceid_ip = ""
+def change_lora_model5_faceid_ip(model, lora_model, prompt):
+    global biniou_internal_previous_trigger5_faceid_ip
+    lora_keyword = lora_model_list(model)[lora_model][1]
+
+    if lora_model != "":
+        if lora_keyword != "":
+            lora_prompt_faceid_ip = lora_keyword+ ", "+ prompt
+        else:
+            lora_prompt_faceid_ip = prompt
+    else:
+        lora_prompt_faceid_ip = prompt
+
+    if (biniou_internal_previous_trigger5_faceid_ip == ""):
+        biniou_internal_previous_trigger5_faceid_ip = lora_keyword
+    else:
+        lora_trigger = biniou_internal_previous_trigger5_faceid_ip+ ", "
+        lora_prompt_faceid_ip = lora_prompt_faceid_ip.replace(lora_trigger, "")
+        biniou_internal_previous_trigger5_faceid_ip = lora_keyword
+
+    lora_prompt_faceid_ip = lora_prompt_faceid_ip.replace(lora_keyword+ ", "+ lora_keyword+ ", ", lora_keyword+ ", ")
+
+    return prompt_faceid_ip.update(value=lora_prompt_faceid_ip)
 
 def change_txtinv_faceid_ip(model, txtinv, prompt, negative_prompt):
     if txtinv != "":
@@ -6168,6 +6277,25 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     lora_model_faceid_ip = gr.Dropdown(choices=list(lora_model_list(model_faceid_ip.value).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info)
                                 with gr.Column():
                                     lora_weight_faceid_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info)
+                            with gr.Row():
+                                with gr.Column():
+                                    lora_model2_faceid_ip = gr.Dropdown(choices=list(lora_model_list(model_faceid_ip.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
+                                with gr.Column():
+                                    lora_weight2_faceid_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                with gr.Column():
+                                    lora_model3_faceid_ip = gr.Dropdown(choices=list(lora_model_list(model_faceid_ip.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
+                                with gr.Column():
+                                    lora_weight3_faceid_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                            with gr.Row():
+                                with gr.Column():
+                                    lora_model4_faceid_ip = gr.Dropdown(choices=list(lora_model_list(model_faceid_ip.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
+                                with gr.Column():
+                                    lora_weight4_faceid_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                with gr.Column():
+                                    lora_model5_faceid_ip = gr.Dropdown(choices=list(lora_model_list(model_faceid_ip.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
+                                with gr.Column():
+                                    lora_weight5_faceid_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+
                         with gr.Accordion(biniou_lang_textinv_label, open=True):
                             with gr.Row():
                                 with gr.Column():
@@ -6202,7 +6330,15 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 prompt_faceid_ip,
                             ]
                         )
+                        model_faceid_ip.change(fn=change_model_type_faceid_ip_alternate2, inputs=[model_faceid_ip],outputs=[lora_model2_faceid_ip])
+                        model_faceid_ip.change(fn=change_model_type_faceid_ip_alternate3, inputs=[model_faceid_ip],outputs=[lora_model3_faceid_ip])
+                        model_faceid_ip.change(fn=change_model_type_faceid_ip_alternate4, inputs=[model_faceid_ip],outputs=[lora_model4_faceid_ip])
+                        model_faceid_ip.change(fn=change_model_type_faceid_ip_alternate5, inputs=[model_faceid_ip],outputs=[lora_model5_faceid_ip])
                         lora_model_faceid_ip.change(fn=change_lora_model_faceid_ip, inputs=[model_faceid_ip, lora_model_faceid_ip, prompt_faceid_ip, num_inference_step_faceid_ip, guidance_scale_faceid_ip, sampler_faceid_ip], outputs=[prompt_faceid_ip, num_inference_step_faceid_ip, guidance_scale_faceid_ip, sampler_faceid_ip])
+                        lora_model2_faceid_ip.change(fn=change_lora_model2_faceid_ip, inputs=[model_faceid_ip, lora_model2_faceid_ip, prompt_faceid_ip], outputs=[prompt_faceid_ip])
+                        lora_model3_faceid_ip.change(fn=change_lora_model3_faceid_ip, inputs=[model_faceid_ip, lora_model3_faceid_ip, prompt_faceid_ip], outputs=[prompt_faceid_ip])
+                        lora_model4_faceid_ip.change(fn=change_lora_model4_faceid_ip, inputs=[model_faceid_ip, lora_model4_faceid_ip, prompt_faceid_ip], outputs=[prompt_faceid_ip])
+                        lora_model5_faceid_ip.change(fn=change_lora_model5_faceid_ip, inputs=[model_faceid_ip, lora_model5_faceid_ip, prompt_faceid_ip], outputs=[prompt_faceid_ip])
                         txtinv_faceid_ip.change(fn=change_txtinv_faceid_ip, inputs=[model_faceid_ip, txtinv_faceid_ip, prompt_faceid_ip, negative_prompt_faceid_ip], outputs=[prompt_faceid_ip, negative_prompt_faceid_ip])
                         with gr.Column():
                             with gr.Row():
@@ -6257,6 +6393,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     clipskip_faceid_ip,
                                     lora_model_faceid_ip,
                                     lora_weight_faceid_ip,
+                                    lora_model2_faceid_ip,
+                                    lora_weight2_faceid_ip,
+                                    lora_model3_faceid_ip,
+                                    lora_weight3_faceid_ip,
+                                    lora_model4_faceid_ip,
+                                    lora_weight4_faceid_ip,
+                                    lora_model5_faceid_ip,
+                                    lora_weight5_faceid_ip,
                                     txtinv_faceid_ip,
                                 ],
                                 outputs=[out_faceid_ip, gs_out_faceid_ip],
