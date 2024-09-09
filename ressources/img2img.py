@@ -173,6 +173,14 @@ def image_img2img(
     use_ays_img2img,
     lora_model_img2img,
     lora_weight_img2img,
+    lora_model2_img2img,
+    lora_weight2_img2img,
+    lora_model3_img2img,
+    lora_weight3_img2img,
+    lora_model4_img2img,
+    lora_weight4_img2img,
+    lora_model5_img2img,
+    lora_weight5_img2img,
     txtinv_img2img,
     progress_img2img=gr.Progress(track_tqdm=True)
     ):
@@ -182,6 +190,29 @@ def image_img2img(
     modelid_img2img = model_cleaner_sd(modelid_img2img)
 
     lora_model_img2img = model_cleaner_lora(lora_model_img2img)
+    lora_model2_img2img = model_cleaner_lora(lora_model2_img2img)
+    lora_model3_img2img = model_cleaner_lora(lora_model3_img2img)
+    lora_model4_img2img = model_cleaner_lora(lora_model4_img2img)
+    lora_model5_img2img = model_cleaner_lora(lora_model5_img2img)
+
+    lora_array = []
+    lora_weight_array = []
+
+    if lora_model_img2img != "":
+        lora_array.append(f"{lora_model_img2img}")
+        lora_weight_array.append(float(lora_weight_img2img))
+    if lora_model2_img2img != "":
+        lora_array.append(f"{lora_model2_img2img}")
+        lora_weight_array.append(float(lora_weight2_img2img))
+    if lora_model3_img2img != "":
+        lora_array.append(f"{lora_model3_img2img}")
+        lora_weight_array.append(float(lora_weight3_img2img))
+    if lora_model4_img2img != "":
+        lora_array.append(f"{lora_model4_img2img}")
+        lora_weight_array.append(float(lora_weight4_img2img))
+    if lora_model5_img2img != "":
+        lora_array.append(f"{lora_model5_img2img}")
+        lora_weight_array.append(float(lora_weight5_img2img))
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_img2img, device_img2img, nsfw_filter)
 
@@ -317,40 +348,46 @@ def image_img2img(
     else : 
         pipe_img2img = pipe_img2img.to(device_img2img)
 
-    if lora_model_img2img != "":
-        model_list_lora_img2img = lora_model_list(modelid_img2img)
-        if lora_model_img2img[0:9] == "./models/":
-            pipe_img2img.load_lora_weights(
-                os.path.dirname(lora_model_img2img),
-                weight_name=model_list_lora_img2img[lora_model_img2img][0],
-                use_safetensors=True,
-                adapter_name="adapter1",
-                local_files_only=True if offline_test() else None
-            )
-        else:
-            if is_xl_img2img:
-                lora_model_path = model_path_lora_sdxl
-            elif is_sd3_img2img:
-                lora_model_path = model_path_lora_sd3
-            else: 
-                lora_model_path = model_path_lora_sd
+    adapters_list = []
 
-            local_lora_img2img = hf_hub_download(
-                repo_id=lora_model_img2img,
-                filename=model_list_lora_img2img[lora_model_img2img][0],
-                cache_dir=lora_model_path,
-                resume_download=True,
-                local_files_only=True if offline_test() else None,
-            )
+    if len(lora_array) != 0:
+        for e in range(len(lora_array)):
+            model_list_lora_img2img = lora_model_list(modelid_img2img)
+            if lora_array[e][0:9] == "./models/":
+                pipe_img2img.load_lora_weights(
+                    os.path.dirname(lora_array[e]),
+                    weight_name=model_list_lora_img2img[lora_array[e]][0],
+                    use_safetensors=True,
+                    adapter_name=f"adapter{e}",
+                    local_files_only=True if offline_test() else None,
+                )
+            else:
+                if is_xl_img2img:
+                    lora_model_path = model_path_lora_sdxl
+                elif is_sd3_img2img:
+                    lora_model_path = model_path_lora_sd3
+                else: 
+                    lora_model_path = model_path_lora_sd
 
-            pipe_img2img.load_lora_weights(
-                local_lora_img2img,
-                weight_name=model_list_lora_img2img[lora_model_img2img][0],
-                use_safetensors=True,
-                adapter_name="adapter1",
-            )
-        pipe_img2img.fuse_lora(lora_scale=lora_weight_img2img)
-#        pipe_img2img.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_img2img)])
+                local_lora_img2img = hf_hub_download(
+                    repo_id=lora_array[e],
+                    filename=model_list_lora_img2img[lora_array[e]][0],
+                    cache_dir=lora_model_path,
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None,
+                )
+
+                pipe_img2img.load_lora_weights(
+                    lora_array[e],
+                    weight_name=model_list_lora_img2img[lora_array[e]][0],
+                    use_safetensors=True,
+                    adapter_name=f"adapter{e}",
+                )
+            adapters_list.append(f"adapter{e}")
+
+#    if not is_sd3_img2img:
+#       pipe_img2img.set_adapters(adapters_list, adapter_weights=lora_weight_array)
+        pipe_img2img.set_adapters(adapters_list, adapter_weights=lora_weight_array)
 
     if txtinv_img2img != "":
         model_list_txtinv_img2img = txtinv_list(modelid_img2img)
@@ -515,8 +552,8 @@ def image_img2img(
         f"Token merging={tkme_img2img} | "+\
         f"CLIP skip={clipskip_img2img} | "+\
         f"AYS={use_ays_img2img} | "+\
-        f"LoRA model={lora_model_img2img} | "+\
-        f"LoRA weight={lora_weight_img2img} | "+\
+        f"LoRA model={lora_array} | "+\
+        f"LoRA weight={lora_weight_array} | "+\
         f"Textual inversion={txtinv_img2img} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Denoising strength={denoising_strength_img2img} | "+\
