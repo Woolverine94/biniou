@@ -380,6 +380,7 @@ def image_txt2img_sd(
                 pipe_txt2img_sd.load_lora_weights(
                     lora_array[e],
                     weight_name=model_list_lora_txt2img_sd[lora_array[e]][0],
+                    cache_dir=lora_model_path,
                     use_safetensors=True,
                     adapter_name=f"adapter{e}",
                 )
