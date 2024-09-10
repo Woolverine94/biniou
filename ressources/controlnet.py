@@ -489,6 +489,14 @@ def image_controlnet(
     use_ays_controlnet,
     lora_model_controlnet,
     lora_weight_controlnet,
+    lora_model2_controlnet,
+    lora_weight2_controlnet,
+    lora_model3_controlnet,
+    lora_weight3_controlnet,
+    lora_model4_controlnet,
+    lora_weight4_controlnet,
+    lora_model5_controlnet,
+    lora_weight5_controlnet,
     txtinv_controlnet,
     progress_controlnet=gr.Progress(track_tqdm=True)
     ):
@@ -498,6 +506,30 @@ def image_controlnet(
     modelid_controlnet = model_cleaner_sd(modelid_controlnet)
 
     lora_model_controlnet = model_cleaner_lora(lora_model_controlnet)
+    lora_model_controlnet = model_cleaner_lora(lora_model_controlnet)
+    lora_model2_controlnet = model_cleaner_lora(lora_model2_controlnet)
+    lora_model3_controlnet = model_cleaner_lora(lora_model3_controlnet)
+    lora_model4_controlnet = model_cleaner_lora(lora_model4_controlnet)
+    lora_model5_controlnet = model_cleaner_lora(lora_model5_controlnet)
+
+    lora_array = []
+    lora_weight_array = []
+
+    if lora_model_controlnet != "":
+        lora_array.append(f"{lora_model_controlnet}")
+        lora_weight_array.append(float(lora_weight_controlnet))
+    if lora_model2_controlnet != "":
+        lora_array.append(f"{lora_model2_controlnet}")
+        lora_weight_array.append(float(lora_weight2_controlnet))
+    if lora_model3_controlnet != "":
+        lora_array.append(f"{lora_model3_controlnet}")
+        lora_weight_array.append(float(lora_weight3_controlnet))
+    if lora_model4_controlnet != "":
+        lora_array.append(f"{lora_model4_controlnet}")
+        lora_weight_array.append(float(lora_weight4_controlnet))
+    if lora_model5_controlnet != "":
+        lora_array.append(f"{lora_model5_controlnet}")
+        lora_weight_array.append(float(lora_weight5_controlnet))
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_controlnet, device_controlnet, nsfw_filter)
 
@@ -641,39 +673,43 @@ def image_controlnet(
     if not is_sd3_controlnet:
         pipe_controlnet.enable_vae_slicing()
 
-    if lora_model_controlnet != "":
-        model_list_lora_controlnet = lora_model_list(modelid_controlnet)
-        if lora_model_controlnet[0:9] == "./models/":
-            pipe_controlnet.load_lora_weights(
-                os.path.dirname(lora_model_controlnet),
-                weight_name=model_list_lora_controlnet[lora_model_controlnet][0],
-                use_safetensors=True,
-                adapter_name="adapter1",
-                local_files_only=True if offline_test() else None,
-            )
-        else:
-            if is_xl_controlnet:
-                lora_model_path = "./models/lora/SDXL"
-            else: 
-                lora_model_path = "./models/lora/SD"
+    adapters_list = []
 
-            local_lora_controlnet = hf_hub_download(
-                repo_id=lora_model_controlnet,
-                filename=model_list_lora_controlnet[lora_model_controlnet][0],
-                cache_dir=lora_model_path,
-                resume_download=True,
-                local_files_only=True if offline_test() else None,
-            )
+    if len(lora_array) != 0:
+        for e in range(len(lora_array)):
+            model_list_lora_controlnet = lora_model_list(modelid_controlnet)
+            if lora_array[e][0:9] == "./models/":
+                pipe_controlnet.load_lora_weights(
+                    os.path.dirname(lora_array[e]),
+                    weight_name=model_list_lora_controlnet[lora_array[e]][0],
+                    use_safetensors=True,
+                    adapter_name=f"adapter{e}",
+                    local_files_only=True if offline_test() else None,
+                )
+            else:
+                if is_xl_controlnet:
+                    lora_model_path = model_path_lora_sdxl
+                elif is_sd3_controlnet:
+                    lora_model_path = model_path_lora_sd3
+                else: 
+                    lora_model_path = model_path_lora_sd
 
-            pipe_controlnet.load_lora_weights(
-                local_lora_controlnet,
-                weight_name=model_list_lora_controlnet[lora_model_controlnet][0],
-                use_safetensors=True,
-                adapter_name="adapter1",
-            )
-        if not is_sd3_controlnet:
-            pipe_controlnet.fuse_lora(lora_scale=lora_weight_controlnet)
-#        pipe_controlnet.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_controlnet)])
+                local_lora_controlnet = hf_hub_download(
+                    repo_id=lora_array[e],
+                    filename=model_list_lora_controlnet[lora_array[e]][0],
+                    cache_dir=lora_model_path,
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None,
+                )
+
+                pipe_controlnet.load_lora_weights(
+                    lora_array[e],
+                    weight_name=model_list_lora_controlnet[lora_array[e]][0],
+                    use_safetensors=True,
+                    adapter_name=f"adapter{e}",
+                )
+            adapters_list.append(f"adapter{e}")
+        pipe_controlnet.set_adapters(adapters_list, adapter_weights=lora_weight_array)
 
     if txtinv_controlnet != "":
         model_list_txtinv_controlnet = txtinv_list(modelid_controlnet)
@@ -851,8 +887,8 @@ def image_controlnet(
         f"Token merging={tkme_controlnet} | "+\
         f"CLIP skip={clipskip_controlnet} | "+\
         f"AYS={use_ays_controlnet} | "+\
-        f"LoRA model={lora_model_controlnet} | "+\
-        f"LoRA weight={lora_weight_controlnet} | "+\
+        f"LoRA model={lora_array} | "+\
+        f"LoRA weight={lora_weight_array} | "+\
         f"Textual inversion={txtinv_controlnet} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Pre-processor={preprocessor_controlnet} | "+\

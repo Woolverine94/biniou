@@ -1274,6 +1274,18 @@ def change_model_type_controlnet(model_controlnet):
     else:
         return sampler_controlnet.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=7.5), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), txtinv_controlnet.update(choices=list(txtinv_list(model_controlnet).keys()), value=""), negative_prompt_controlnet.update(interactive=True), img_preview_controlnet.update(value=None), gs_img_preview_controlnet.update(value=None)
 
+def change_model_type_controlnet_alternate2(model_controlnet):
+    return lora_model2_controlnet.update(choices=list(lora_model_list(model_controlnet, True).keys()), value="", interactive=True)
+
+def change_model_type_controlnet_alternate3(model_controlnet):
+    return lora_model3_controlnet.update(choices=list(lora_model_list(model_controlnet, True).keys()), value="", interactive=True)
+
+def change_model_type_controlnet_alternate4(model_controlnet):
+    return lora_model4_controlnet.update(choices=list(lora_model_list(model_controlnet, True).keys()), value="", interactive=True)
+
+def change_model_type_controlnet_alternate5(model_controlnet):
+    return lora_model5_controlnet.update(choices=list(lora_model_list(model_controlnet, True).keys()), value="", interactive=True)
+
 biniou_internal_previous_model_controlnet = ""
 biniou_internal_previous_steps_controlnet = ""
 biniou_internal_previous_cfg_controlnet = ""
@@ -1346,6 +1358,102 @@ def change_lora_model_controlnet(model, lora_model, prompt, steps, cfg_scale, sa
             biniou_internal_previous_cfg_controlnet = ""
             biniou_internal_previous_sampler_controlnet = ""
             return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=var_steps), guidance_scale_controlnet.update(value=var_cfg_scale), sampler_controlnet.update(value=var_sampler)
+
+biniou_internal_previous_trigger2_controlnet = ""
+def change_lora_model2_controlnet(model, lora_model, prompt):
+    global biniou_internal_previous_trigger2_controlnet
+    lora_keyword = lora_model_list(model)[lora_model][1]
+
+    if lora_model != "":
+        if lora_keyword != "":
+            lora_prompt_controlnet = lora_keyword+ ", "+ prompt
+        else:
+            lora_prompt_controlnet = prompt
+    else:
+        lora_prompt_controlnet = prompt
+
+    if (biniou_internal_previous_trigger2_controlnet == ""):
+        biniou_internal_previous_trigger2_controlnet = lora_keyword
+    else:
+        lora_trigger = biniou_internal_previous_trigger2_controlnet+ ", "
+        lora_prompt_controlnet = lora_prompt_controlnet.replace(lora_trigger, "")
+        biniou_internal_previous_trigger2_controlnet = lora_keyword
+
+    lora_prompt_controlnet = lora_prompt_controlnet.replace(lora_keyword+ ", "+ lora_keyword+ ", ", lora_keyword+ ", ")
+
+    return prompt_controlnet.update(value=lora_prompt_controlnet)
+
+biniou_internal_previous_trigger3_controlnet = ""
+def change_lora_model3_controlnet(model, lora_model, prompt):
+    global biniou_internal_previous_trigger3_controlnet
+    lora_keyword = lora_model_list(model)[lora_model][1]
+
+    if lora_model != "":
+        if lora_keyword != "":
+            lora_prompt_controlnet = lora_keyword+ ", "+ prompt
+        else:
+            lora_prompt_controlnet = prompt
+    else:
+        lora_prompt_controlnet = prompt
+
+    if (biniou_internal_previous_trigger3_controlnet == ""):
+        biniou_internal_previous_trigger3_controlnet = lora_keyword
+    else:
+        lora_trigger = biniou_internal_previous_trigger3_controlnet+ ", "
+        lora_prompt_controlnet = lora_prompt_controlnet.replace(lora_trigger, "")
+        biniou_internal_previous_trigger3_controlnet = lora_keyword
+
+    lora_prompt_controlnet = lora_prompt_controlnet.replace(lora_keyword+ ", "+ lora_keyword+ ", ", lora_keyword+ ", ")
+
+    return prompt_controlnet.update(value=lora_prompt_controlnet)
+
+biniou_internal_previous_trigger4_controlnet = ""
+def change_lora_model4_controlnet(model, lora_model, prompt):
+    global biniou_internal_previous_trigger4_controlnet
+    lora_keyword = lora_model_list(model)[lora_model][1]
+
+    if lora_model != "":
+        if lora_keyword != "":
+            lora_prompt_controlnet = lora_keyword+ ", "+ prompt
+        else:
+            lora_prompt_controlnet = prompt
+    else:
+        lora_prompt_controlnet = prompt
+
+    if (biniou_internal_previous_trigger4_controlnet == ""):
+        biniou_internal_previous_trigger4_controlnet = lora_keyword
+    else:
+        lora_trigger = biniou_internal_previous_trigger4_controlnet+ ", "
+        lora_prompt_controlnet = lora_prompt_controlnet.replace(lora_trigger, "")
+        biniou_internal_previous_trigger4_controlnet = lora_keyword
+
+    lora_prompt_controlnet = lora_prompt_controlnet.replace(lora_keyword+ ", "+ lora_keyword+ ", ", lora_keyword+ ", ")
+
+    return prompt_controlnet.update(value=lora_prompt_controlnet)
+
+biniou_internal_previous_trigger5_controlnet = ""
+def change_lora_model5_controlnet(model, lora_model, prompt):
+    global biniou_internal_previous_trigger5_controlnet
+    lora_keyword = lora_model_list(model)[lora_model][1]
+
+    if lora_model != "":
+        if lora_keyword != "":
+            lora_prompt_controlnet = lora_keyword+ ", "+ prompt
+        else:
+            lora_prompt_controlnet = prompt
+    else:
+        lora_prompt_controlnet = prompt
+
+    if (biniou_internal_previous_trigger5_controlnet == ""):
+        biniou_internal_previous_trigger5_controlnet = lora_keyword
+    else:
+        lora_trigger = biniou_internal_previous_trigger5_controlnet+ ", "
+        lora_prompt_controlnet = lora_prompt_controlnet.replace(lora_trigger, "")
+        biniou_internal_previous_trigger5_controlnet = lora_keyword
+
+    lora_prompt_controlnet = lora_prompt_controlnet.replace(lora_keyword+ ", "+ lora_keyword+ ", ", lora_keyword+ ", ")
+
+    return prompt_controlnet.update(value=lora_prompt_controlnet)
 
 def change_txtinv_controlnet(model, txtinv, prompt, negative_prompt):
     if txtinv != "":
@@ -6117,6 +6225,24 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     lora_model_controlnet = gr.Dropdown(choices=list(lora_model_list(model_controlnet.value).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info)
                                 with gr.Column():
                                     lora_weight_controlnet = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info)
+                            with gr.Row():
+                                with gr.Column():
+                                    lora_model2_controlnet = gr.Dropdown(choices=list(lora_model_list(model_controlnet.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
+                                with gr.Column():
+                                    lora_weight2_controlnet = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                with gr.Column():
+                                    lora_model3_controlnet = gr.Dropdown(choices=list(lora_model_list(model_controlnet.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
+                                with gr.Column():
+                                    lora_weight3_controlnet = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                            with gr.Row():
+                                with gr.Column():
+                                    lora_model4_controlnet = gr.Dropdown(choices=list(lora_model_list(model_controlnet.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
+                                with gr.Column():
+                                    lora_weight4_controlnet = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                with gr.Column():
+                                    lora_model5_controlnet = gr.Dropdown(choices=list(lora_model_list(model_controlnet.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
+                                with gr.Column():
+                                    lora_weight5_controlnet = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                         with gr.Accordion(biniou_lang_textinv_label, open=True):
                             with gr.Row():
                                 with gr.Column():
@@ -6174,7 +6300,15 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     gs_img_preview_controlnet,
                                 ]
                             )
+                            model_controlnet.change(fn=change_model_type_controlnet_alternate2, inputs=[model_controlnet],outputs=[lora_model2_controlnet])
+                            model_controlnet.change(fn=change_model_type_controlnet_alternate3, inputs=[model_controlnet],outputs=[lora_model3_controlnet])
+                            model_controlnet.change(fn=change_model_type_controlnet_alternate4, inputs=[model_controlnet],outputs=[lora_model4_controlnet])
+                            model_controlnet.change(fn=change_model_type_controlnet_alternate5, inputs=[model_controlnet],outputs=[lora_model5_controlnet])
                             lora_model_controlnet.change(fn=change_lora_model_controlnet, inputs=[model_controlnet, lora_model_controlnet, prompt_controlnet, num_inference_step_controlnet, guidance_scale_controlnet, sampler_controlnet], outputs=[prompt_controlnet, num_inference_step_controlnet, guidance_scale_controlnet, sampler_controlnet])
+                            lora_model2_controlnet.change(fn=change_lora_model2_controlnet, inputs=[model_controlnet, lora_model2_controlnet, prompt_controlnet], outputs=[prompt_controlnet])
+                            lora_model3_controlnet.change(fn=change_lora_model3_controlnet, inputs=[model_controlnet, lora_model3_controlnet, prompt_controlnet], outputs=[prompt_controlnet])
+                            lora_model4_controlnet.change(fn=change_lora_model4_controlnet, inputs=[model_controlnet, lora_model4_controlnet, prompt_controlnet], outputs=[prompt_controlnet])
+                            lora_model5_controlnet.change(fn=change_lora_model5_controlnet, inputs=[model_controlnet, lora_model5_controlnet, prompt_controlnet], outputs=[prompt_controlnet])
                             txtinv_controlnet.change(fn=change_txtinv_controlnet, inputs=[model_controlnet, txtinv_controlnet, prompt_controlnet, negative_prompt_controlnet], outputs=[prompt_controlnet, negative_prompt_controlnet])
                             use_ays_controlnet.change(fn=change_ays_controlnet, inputs=use_ays_controlnet, outputs=[num_inference_step_controlnet, sampler_controlnet])
                         with gr.Column():
@@ -6235,6 +6369,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_ays_controlnet,
                                 lora_model_controlnet,
                                 lora_weight_controlnet,
+                                lora_model2_controlnet,
+                                lora_weight2_controlnet,
+                                lora_model3_controlnet,
+                                lora_weight3_controlnet,
+                                lora_model4_controlnet,
+                                lora_weight4_controlnet,
+                                lora_model5_controlnet,
+                                lora_weight5_controlnet,
                                 txtinv_controlnet,
                             ],
                                 outputs=[out_controlnet, gs_out_controlnet],
