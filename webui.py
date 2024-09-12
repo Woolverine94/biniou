@@ -1057,6 +1057,18 @@ def change_model_type_img2img_ip(model_img2img_ip, source_type):
             negative_prompt_img2img_ip.update(interactive=True), \
             source_type_img2img_ip.update(interactive=True)
 
+def change_model_type_img2img_ip_alternate2(model_img2img_ip):
+    return lora_model2_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip, True).keys()), value="", interactive=True)
+
+def change_model_type_img2img_ip_alternate3(model_img2img_ip):
+    return lora_model3_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip, True).keys()), value="", interactive=True)
+
+def change_model_type_img2img_ip_alternate4(model_img2img_ip):
+    return lora_model4_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip, True).keys()), value="", interactive=True)
+
+def change_model_type_img2img_ip_alternate5(model_img2img_ip):
+    return lora_model5_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip, True).keys()), value="", interactive=True)
+
 biniou_internal_previous_model_img2img_ip = ""
 biniou_internal_previous_steps_img2img_ip = ""
 biniou_internal_previous_cfg_img2img_ip = ""
@@ -1129,6 +1141,102 @@ def change_lora_model_img2img_ip(model, lora_model, prompt, steps, cfg_scale, sa
             biniou_internal_previous_cfg_img2img_ip = ""
             biniou_internal_previous_sampler_img2img_ip = ""
             return prompt_img2img_ip.update(value=lora_prompt_img2img_ip), num_inference_step_img2img_ip.update(value=var_steps), guidance_scale_img2img_ip.update(value=var_cfg_scale), sampler_img2img_ip.update(value=var_sampler)
+
+biniou_internal_previous_trigger2_img2img_ip = ""
+def change_lora_model2_img2img_ip(model, lora_model, prompt):
+    global biniou_internal_previous_trigger2_img2img_ip
+    lora_keyword = lora_model_list(model)[lora_model][1]
+
+    if lora_model != "":
+        if lora_keyword != "":
+            lora_prompt_img2img_ip = lora_keyword+ ", "+ prompt
+        else:
+            lora_prompt_img2img_ip = prompt
+    else:
+        lora_prompt_img2img_ip = prompt
+
+    if (biniou_internal_previous_trigger2_img2img_ip == ""):
+        biniou_internal_previous_trigger2_img2img_ip = lora_keyword
+    else:
+        lora_trigger = biniou_internal_previous_trigger2_img2img_ip+ ", "
+        lora_prompt_img2img_ip = lora_prompt_img2img_ip.replace(lora_trigger, "")
+        biniou_internal_previous_trigger2_img2img_ip = lora_keyword
+
+    lora_prompt_img2img_ip = lora_prompt_img2img_ip.replace(lora_keyword+ ", "+ lora_keyword+ ", ", lora_keyword+ ", ")
+
+    return prompt_img2img_ip.update(value=lora_prompt_img2img_ip)
+
+biniou_internal_previous_trigger3_img2img_ip = ""
+def change_lora_model3_img2img_ip(model, lora_model, prompt):
+    global biniou_internal_previous_trigger3_img2img_ip
+    lora_keyword = lora_model_list(model)[lora_model][1]
+
+    if lora_model != "":
+        if lora_keyword != "":
+            lora_prompt_img2img_ip = lora_keyword+ ", "+ prompt
+        else:
+            lora_prompt_img2img_ip = prompt
+    else:
+        lora_prompt_img2img_ip = prompt
+
+    if (biniou_internal_previous_trigger3_img2img_ip == ""):
+        biniou_internal_previous_trigger3_img2img_ip = lora_keyword
+    else:
+        lora_trigger = biniou_internal_previous_trigger3_img2img_ip+ ", "
+        lora_prompt_img2img_ip = lora_prompt_img2img_ip.replace(lora_trigger, "")
+        biniou_internal_previous_trigger3_img2img_ip = lora_keyword
+
+    lora_prompt_img2img_ip = lora_prompt_img2img_ip.replace(lora_keyword+ ", "+ lora_keyword+ ", ", lora_keyword+ ", ")
+
+    return prompt_img2img_ip.update(value=lora_prompt_img2img_ip)
+
+biniou_internal_previous_trigger4_img2img_ip = ""
+def change_lora_model4_img2img_ip(model, lora_model, prompt):
+    global biniou_internal_previous_trigger4_img2img_ip
+    lora_keyword = lora_model_list(model)[lora_model][1]
+
+    if lora_model != "":
+        if lora_keyword != "":
+            lora_prompt_img2img_ip = lora_keyword+ ", "+ prompt
+        else:
+            lora_prompt_img2img_ip = prompt
+    else:
+        lora_prompt_img2img_ip = prompt
+
+    if (biniou_internal_previous_trigger4_img2img_ip == ""):
+        biniou_internal_previous_trigger4_img2img_ip = lora_keyword
+    else:
+        lora_trigger = biniou_internal_previous_trigger4_img2img_ip+ ", "
+        lora_prompt_img2img_ip = lora_prompt_img2img_ip.replace(lora_trigger, "")
+        biniou_internal_previous_trigger4_img2img_ip = lora_keyword
+
+    lora_prompt_img2img_ip = lora_prompt_img2img_ip.replace(lora_keyword+ ", "+ lora_keyword+ ", ", lora_keyword+ ", ")
+
+    return prompt_img2img_ip.update(value=lora_prompt_img2img_ip)
+
+biniou_internal_previous_trigger5_img2img_ip = ""
+def change_lora_model5_img2img_ip(model, lora_model, prompt):
+    global biniou_internal_previous_trigger5_img2img_ip
+    lora_keyword = lora_model_list(model)[lora_model][1]
+
+    if lora_model != "":
+        if lora_keyword != "":
+            lora_prompt_img2img_ip = lora_keyword+ ", "+ prompt
+        else:
+            lora_prompt_img2img_ip = prompt
+    else:
+        lora_prompt_img2img_ip = prompt
+
+    if (biniou_internal_previous_trigger5_img2img_ip == ""):
+        biniou_internal_previous_trigger5_img2img_ip = lora_keyword
+    else:
+        lora_trigger = biniou_internal_previous_trigger5_img2img_ip+ ", "
+        lora_prompt_img2img_ip = lora_prompt_img2img_ip.replace(lora_trigger, "")
+        biniou_internal_previous_trigger5_img2img_ip = lora_keyword
+
+    lora_prompt_img2img_ip = lora_prompt_img2img_ip.replace(lora_keyword+ ", "+ lora_keyword+ ", ", lora_keyword+ ", ")
+
+    return prompt_img2img_ip.update(value=lora_prompt_img2img_ip)
 
 def change_txtinv_img2img_ip(model, txtinv, prompt, negative_prompt):
     if txtinv != "":
@@ -4664,6 +4772,24 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     lora_model_img2img_ip = gr.Dropdown(choices=list(lora_model_list(model_img2img_ip.value).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info)
                                 with gr.Column():
                                     lora_weight_img2img_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info)
+                            with gr.Row():
+                                with gr.Column():
+                                    lora_model2_img2img_ip = gr.Dropdown(choices=list(lora_model_list(model_img2img_ip.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
+                                with gr.Column():
+                                    lora_weight2_img2img_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                with gr.Column():
+                                    lora_model3_img2img_ip = gr.Dropdown(choices=list(lora_model_list(model_img2img_ip.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
+                                with gr.Column():
+                                    lora_weight3_img2img_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                            with gr.Row():
+                                with gr.Column():
+                                    lora_model4_img2img_ip = gr.Dropdown(choices=list(lora_model_list(model_img2img_ip.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
+                                with gr.Column():
+                                    lora_weight4_img2img_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                with gr.Column():
+                                    lora_model5_img2img_ip = gr.Dropdown(choices=list(lora_model_list(model_img2img_ip.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
+                                with gr.Column():
+                                    lora_weight5_img2img_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                         with gr.Accordion(biniou_lang_textinv_label, open=True):
                             with gr.Row():
                                 with gr.Column():
@@ -4704,8 +4830,16 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 source_type_img2img_ip
                             ]
                         )
+                        model_img2img_ip.change(fn=change_model_type_img2img_ip_alternate2, inputs=[model_img2img_ip],outputs=[lora_model2_img2img_ip])
+                        model_img2img_ip.change(fn=change_model_type_img2img_ip_alternate3, inputs=[model_img2img_ip],outputs=[lora_model3_img2img_ip])
+                        model_img2img_ip.change(fn=change_model_type_img2img_ip_alternate4, inputs=[model_img2img_ip],outputs=[lora_model4_img2img_ip])
+                        model_img2img_ip.change(fn=change_model_type_img2img_ip_alternate5, inputs=[model_img2img_ip],outputs=[lora_model5_img2img_ip])
                         model_img2img_ip.change(image_upload_event, inputs=img_img2img_ip, outputs=[width_img2img_ip, height_img2img_ip])
                         lora_model_img2img_ip.change(fn=change_lora_model_img2img_ip, inputs=[model_img2img_ip, lora_model_img2img_ip, prompt_img2img_ip, num_inference_step_img2img_ip, guidance_scale_img2img_ip, sampler_img2img_ip], outputs=[prompt_img2img_ip, num_inference_step_img2img_ip, guidance_scale_img2img_ip, sampler_img2img_ip])
+                        lora_model2_img2img_ip.change(fn=change_lora_model2_img2img_ip, inputs=[model_img2img_ip, lora_model2_img2img_ip, prompt_img2img_ip], outputs=[prompt_img2img_ip])
+                        lora_model3_img2img_ip.change(fn=change_lora_model3_img2img_ip, inputs=[model_img2img_ip, lora_model3_img2img_ip, prompt_img2img_ip], outputs=[prompt_img2img_ip])
+                        lora_model4_img2img_ip.change(fn=change_lora_model4_img2img_ip, inputs=[model_img2img_ip, lora_model4_img2img_ip, prompt_img2img_ip], outputs=[prompt_img2img_ip])
+                        lora_model5_img2img_ip.change(fn=change_lora_model5_img2img_ip, inputs=[model_img2img_ip, lora_model5_img2img_ip, prompt_img2img_ip], outputs=[prompt_img2img_ip])
                         txtinv_img2img_ip.change(fn=change_txtinv_img2img_ip, inputs=[model_img2img_ip, txtinv_img2img_ip, prompt_img2img_ip, negative_prompt_img2img_ip], outputs=[prompt_img2img_ip, negative_prompt_img2img_ip])
                         use_ays_img2img_ip.change(fn=change_ays_img2img_ip, inputs=use_ays_img2img_ip, outputs=[num_inference_step_img2img_ip, sampler_img2img_ip])
                         source_type_img2img_ip.change(change_source_type_img2img_ip, source_type_img2img_ip, [img_img2img_ip, denoising_strength_img2img_ip])
@@ -4783,6 +4917,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                     use_ays_img2img_ip,
                                     lora_model_img2img_ip,
                                     lora_weight_img2img_ip,
+                                    lora_model2_img2img_ip,
+                                    lora_weight2_img2img_ip,
+                                    lora_model3_img2img_ip,
+                                    lora_weight3_img2img_ip,
+                                    lora_model4_img2img_ip,
+                                    lora_weight4_img2img_ip,
+                                    lora_model5_img2img_ip,
+                                    lora_weight5_img2img_ip,
                                     txtinv_img2img_ip,
                                 ],
                                 outputs=[out_img2img_ip, gs_out_img2img_ip],

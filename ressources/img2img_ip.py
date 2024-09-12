@@ -162,6 +162,14 @@ def image_img2img_ip(
     use_ays_img2img_ip,
     lora_model_img2img_ip,
     lora_weight_img2img_ip,
+    lora_model2_img2img_ip,
+    lora_weight2_img2img_ip,
+    lora_model3_img2img_ip,
+    lora_weight3_img2img_ip,
+    lora_model4_img2img_ip,
+    lora_weight4_img2img_ip,
+    lora_model5_img2img_ip,
+    lora_weight5_img2img_ip,
     txtinv_img2img_ip,
     progress_img2img_ip=gr.Progress(track_tqdm=True)
     ):
@@ -171,6 +179,30 @@ def image_img2img_ip(
     modelid_img2img_ip = model_cleaner_sd(modelid_img2img_ip)
 
     lora_model_img2img_ip = model_cleaner_lora(lora_model_img2img_ip)
+    lora_model2_img2img_ip = model_cleaner_lora(lora_model2_img2img_ip)
+    lora_model3_img2img_ip = model_cleaner_lora(lora_model3_img2img_ip)
+    lora_model4_img2img_ip = model_cleaner_lora(lora_model4_img2img_ip)
+    lora_model5_img2img_ip = model_cleaner_lora(lora_model5_img2img_ip)
+
+    lora_array = []
+    lora_weight_array = []
+    adapters_list = []
+
+    if lora_model_img2img_ip != "":
+        lora_array.append(f"{lora_model_img2img_ip}")
+        lora_weight_array.append(float(lora_weight_img2img_ip))
+    if lora_model2_img2img_ip != "":
+        lora_array.append(f"{lora_model2_img2img_ip}")
+        lora_weight_array.append(float(lora_weight2_img2img_ip))
+    if lora_model3_img2img_ip != "":
+        lora_array.append(f"{lora_model3_img2img_ip}")
+        lora_weight_array.append(float(lora_weight3_img2img_ip))
+    if lora_model4_img2img_ip != "":
+        lora_array.append(f"{lora_model4_img2img_ip}")
+        lora_weight_array.append(float(lora_weight4_img2img_ip))
+    if lora_model5_img2img_ip != "":
+        lora_array.append(f"{lora_model5_img2img_ip}")
+        lora_weight_array.append(float(lora_weight5_img2img_ip))
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_img2img_ip, device_img2img_ip, nsfw_filter)
 
@@ -186,6 +218,11 @@ def image_img2img_ip(
         is_xl_img2img_ip: bool = True
     else :
         is_xl_img2img_ip: bool = False     
+
+    if is_sd3(modelid_img2img_ip):
+        is_sd3_img2img_ip: bool = True
+    else :
+        is_sd3_img2img_ip: bool = False
 
     if is_bin(modelid_img2img_ip):
         is_bin_img2img_ip: bool = True
@@ -384,42 +421,55 @@ def image_img2img_ip(
                     model_path_ipa_img2img_ip,
                     subfolder="sdxl_models",
                     weight_name="ip-adapter_sdxl.safetensors",
+                    adapter_name="IP Adapter",
                     torch_dtype=model_arch,
                     use_safetensors=True,
                     resume_download=True,
                     local_files_only=True if offline_test() else None
                 )
+                adapters_list.append("IP Adapter")
+                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
             elif (source_type_img2img_ip == "composition"):
                 pipe_img2img_ip.load_ip_adapter(
                     model_path_ipa_img2img_ip,
                     subfolder="sdxl_models",
                     weight_name="ip_plus_composition_sdxl.safetensors",
+                    adapter_name="Composition",
                     torch_dtype=model_arch,
                     use_safetensors=True, 
                     resume_download=True,
                     local_files_only=True if offline_test() else None
                 )
+                adapters_list.append("Composition")
+                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
         else:
             if (source_type_img2img_ip == "standard"):
                 pipe_img2img_ip.load_ip_adapter(
                     model_path_ipa_img2img_ip,
                     subfolder="models",
                     weight_name="ip-adapter_sd15.safetensors",
+                    adapter_name="IP Adapter",
                     torch_dtype=model_arch,
                     use_safetensors=True, 
                     resume_download=True,
                     local_files_only=True if offline_test() else None
                 )
+                adapters_list.append("IP Adapter")
+                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
             elif (source_type_img2img_ip == "composition"):
                 pipe_img2img_ip.load_ip_adapter(
                     model_path_ipa_img2img_ip,
                     subfolder="models",
                     weight_name="ip_plus_composition_sd15.safetensors",
+                    adapter_name="Composition",
                     torch_dtype=model_arch,
                     use_safetensors=True, 
                     resume_download=True,
                     local_files_only=True if offline_test() else None
                 )
+                adapters_list.append("Composition")
+                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
+
     else:
         if (is_xl_img2img_ip == True):
             if (source_type_img2img_ip == "standard"):
@@ -428,21 +478,27 @@ def image_img2img_ip(
                     cache_dir=model_path_ipa_img2img_ip,
                     subfolder="sdxl_models",
                     weight_name="ip-adapter_sdxl.safetensors",
+                    adapter_name="IP Adapter",
                     torch_dtype=model_arch,
                     use_safetensors=True,
                     resume_download=True,
                     local_files_only=True if offline_test() else None
                 )
+                adapters_list.append("IP Adapter")
+                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
             elif (source_type_img2img_ip == "composition"):
                 pipe_img2img_ip.load_ip_adapter(
                     model_path_ipa_img2img_ip,
                     subfolder="sdxl_models",
                     weight_name="ip_plus_composition_sdxl.safetensors",
+                    adapter_name="Composition",
                     torch_dtype=model_arch,
                     use_safetensors=True, 
                     resume_download=True,
                     local_files_only=True if offline_test() else None
                 )
+                adapters_list.append("Composition")
+                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
         else:
             if (source_type_img2img_ip == "standard"):
                 pipe_img2img_ip.load_ip_adapter(
@@ -450,21 +506,28 @@ def image_img2img_ip(
                     cache_dir=model_path_ipa_img2img_ip,
                     subfolder="models",
                     weight_name="ip-adapter_sd15.safetensors",
+                    adapter_name="IP Adapter",
                     torch_dtype=model_arch,
                     use_safetensors=True, 
                     resume_download=True,
                     local_files_only=True if offline_test() else None
                 )
+                adapters_list.append("IP Adapter")
+                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
             elif (source_type_img2img_ip == "composition"):
                 pipe_img2img_ip.load_ip_adapter(
                     model_path_ipa_img2img_ip,
                     subfolder="models",
                     weight_name="ip_plus_composition_sd15.safetensors",
+                    adapter_name="Composition",
                     torch_dtype=model_arch,
                     use_safetensors=True, 
                     resume_download=True,
                     local_files_only=True if offline_test() else None
                 )
+                adapters_list.append("Composition")
+                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
+
 
 #    pipe_img2img_ip.set_ip_adapter_scale(denoising_strength_img2img_ip)    
     pipe_img2img_ip = schedulerer(pipe_img2img_ip, sampler_img2img_ip)
@@ -475,38 +538,44 @@ def image_img2img_ip(
     else :
         pipe_img2img_ip = pipe_img2img_ip.to(device_img2img_ip)
 
-    if lora_model_img2img_ip != "":
-        model_list_lora_img2img_ip = lora_model_list(modelid_img2img_ip)
-        if lora_model_img2img_ip[0:9] == "./models/":
-            pipe_img2img_ip.load_lora_weights(
-                os.path.dirname(lora_model_img2img_ip),
-                weight_name=model_list_lora_img2img_ip[lora_model_img2img_ip][0],
-                use_safetensors=True,
-                adapter_name="adapter1",
-                local_files_only=True if offline_test() else None,
-            )
-        else:
-            if is_xl_img2img_ip:
-                lora_model_path = "./models/lora/SDXL"
-            else: 
-                lora_model_path = "./models/lora/SD"
+    if len(lora_array) != 0:
+        for e in range(len(lora_array)):
+            model_list_lora_img2img_ip = lora_model_list(modelid_img2img_ip)
+            if lora_array[e][0:9] == "./models/":
+                pipe_img2img_ip.load_lora_weights(
+                    os.path.dirname(lora_array[e]),
+                    weight_name=model_list_lora_img2img_ip[lora_array[e]][0],
+                    use_safetensors=True,
+                    adapter_name=f"adapter{e}",
+                    local_files_only=True if offline_test() else None,
+                )
+            else:
+                if is_xl_img2img_ip:
+                    lora_model_path = model_path_lora_sdxl
+                elif is_sd3_img2img_ip:
+                    lora_model_path = model_path_lora_sd3
+                else: 
+                    lora_model_path = model_path_lora_sd
 
-            local_lora_img2img_ip = hf_hub_download(
-                repo_id=lora_model_img2img_ip,
-                filename=model_list_lora_img2img_ip[lora_model_img2img_ip][0],
-                cache_dir=lora_model_path,
-                resume_download=True,
-                local_files_only=True if offline_test() else None,
-            )
+                local_lora_img2img_ip = hf_hub_download(
+                    repo_id=lora_array[e],
+                    filename=model_list_lora_img2img_ip[lora_array[e]][0],
+                    cache_dir=lora_model_path,
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None,
+                )
 
-            pipe_img2img_ip.load_lora_weights(
-                local_lora_img2img_ip,
-                weight_name=model_list_lora_img2img_ip[lora_model_img2img_ip][0],
-                use_safetensors=True,
-                adapter_name="adapter1",
-            )
-        pipe_img2img_ip.fuse_lora(lora_scale=lora_weight_img2img_ip)
-#        pipe_img2img_ip.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_img2img_ip)])
+                pipe_img2img_ip.load_lora_weights(
+                    lora_array[e],
+                    weight_name=model_list_lora_img2img_ip[lora_array[e]][0],
+                    cache_dir=lora_model_path,
+                    use_safetensors=True,
+                    adapter_name=f"adapter{e}",
+                )
+            adapters_list.append(f"adapter{e}")
+
+        pipe_img2img_ip.set_adapters(adapters_list, adapter_weights=lora_weight_array)
+    print(adapters_list, lora_weight_array)
 
     if txtinv_img2img_ip != "":
         model_list_txtinv_img2img_ip = txtinv_list(modelid_img2img_ip)
@@ -713,8 +782,8 @@ def image_img2img_ip(
         f"Token merging={tkme_img2img_ip} | "+\
         f"CLIP skip={clipskip_img2img_ip} | "+\
         f"AYS={use_ays_img2img_ip} | "+\
-        f"LoRA model={lora_model_img2img_ip} | "+\
-        f"LoRA weight={lora_weight_img2img_ip} | "+\
+        f"LoRA model={adapters_list} | "+\
+        f"LoRA weight={lora_weight_array} | "+\
         f"Textual inversion={txtinv_img2img_ip} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Denoising strength={denoising_strength_img2img_ip} | "+\
