@@ -81,7 +81,7 @@ def image_paintbyex(
             modelid_paintbyex, 
             torch_dtype=model_arch,
 #            use_safetensors=True, 
-            load_safety_checker=False if (nsfw_filter_final == None) else True,
+#            load_safety_checker=False if (nsfw_filter_final == None) else True,
             local_files_only=True if offline_test() else None,
 #            safety_checker=nsfw_filter_final, 
 #            feature_extractor=feat_ex, 
@@ -139,10 +139,12 @@ def image_paintbyex(
             height=dim_size[1],
             num_inference_steps=num_inference_step_paintbyex,
             generator = generator[i],
-            callback = check_paintbyex,              
+            callback = check_paintbyex,
         ).images
 
         for j in range(len(image)):
+            if (modelid_paintbyex[0:9] == "./models/"):
+                image[j] = safety_checker_sdxl(model_path_safety_checker, image[j], nsfw_filter)
             seed_id = random_seed + i*num_images_per_prompt_paintbyex + j if (seed_paintbyex == 0) else seed_paintbyex + i*num_images_per_prompt_paintbyex + j
             savename = name_seeded_image(seed_id)
             if use_gfpgan_paintbyex == True :

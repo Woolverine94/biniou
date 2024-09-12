@@ -106,7 +106,7 @@ def image_inpaint(
                 modelid_inpaint, 
                 torch_dtype=model_arch,
                 use_safetensors=True, 
-                load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                load_safety_checker=False if (nsfw_filter_final == None) else True,
                 local_files_only=True if offline_test() else None
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex
@@ -126,7 +126,7 @@ def image_inpaint(
                 modelid_inpaint, 
                 torch_dtype=model_arch,
                 use_safetensors=True, 
-                load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                load_safety_checker=False if (nsfw_filter_final == None) else True,
                 local_files_only=True if offline_test() else None
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex
@@ -239,7 +239,7 @@ def image_inpaint(
             ).images
 
         for j in range(len(image)):
-            if is_xl_inpaint:
+            if is_xl_inpaint or (modelid_inpaint[0:9] == "./models/"):
                 image[j] = safety_checker_sdxl(model_path_inpaint_safety_checker, image[j], nsfw_filter)
             seed_id = random_seed + i*num_images_per_prompt_inpaint + j if (seed_inpaint == 0) else seed_inpaint + i*num_images_per_prompt_inpaint + j
             savename = name_seeded_image(seed_id)

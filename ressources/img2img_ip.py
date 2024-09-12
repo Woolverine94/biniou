@@ -374,7 +374,7 @@ def image_img2img_ip(
                     modelid_img2img_ip,
                     torch_dtype=model_arch,
                     use_safetensors=True if not is_bin_img2img_ip else False,
-                    load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                    load_safety_checker=False if (nsfw_filter_final == None) else True,
                     local_files_only=True if offline_test() else None
 #                    safety_checker=nsfw_filter_final, 
 #                    feature_extractor=feat_ex,
@@ -396,7 +396,7 @@ def image_img2img_ip(
                     modelid_img2img_ip,
                     torch_dtype=model_arch,
                     use_safetensors=True if not is_bin_img2img_ip else False,
-                    load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                    load_safety_checker=False if (nsfw_filter_final == None) else True,
                     local_files_only=True if offline_test() else None
 #                    safety_checker=nsfw_filter_final, 
 #                    feature_extractor=feat_ex,
@@ -761,7 +761,7 @@ def image_img2img_ip(
                 ).images        
 
         for j in range(len(image)):
-            if is_xl_img2img_ip:
+            if is_xl_img2img_ip or (modelid_img2img_ip[0:9] == "./models/"):
                 image[j] = safety_checker_sdxl(model_path_img2img_ip, image[j], nsfw_filter)
             savename = name_image()
             if use_gfpgan_img2img_ip == True :

@@ -138,7 +138,7 @@ def image_outpaint(
                 modelid_outpaint, 
                 torch_dtype=model_arch,
                 use_safetensors=True,
-                load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                load_safety_checker=False if (nsfw_filter_final == None) else True,
                 local_files_only=True if offline_test() else None
 #                safety_checker=nsfw_filter_final,
 #                feature_extractor=feat_ex
@@ -158,7 +158,7 @@ def image_outpaint(
                 modelid_outpaint, 
                 torch_dtype=model_arch,
                 use_safetensors=True,
-                load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                load_safety_checker=False if (nsfw_filter_final == None) else True,
                 local_files_only=True if offline_test() else None
 #                safety_checker=nsfw_filter_final,
 #                feature_extractor=feat_ex
@@ -278,7 +278,7 @@ def image_outpaint(
             ).images
 
         for j in range(len(image)):
-            if is_xl_outpaint:
+            if is_xl_outpaint or (modelid_outpaint[0:9] == "./models/"):
                 image[j] = safety_checker_sdxl(model_path_outpaint_safety_checker, image[j], nsfw_filter)
             seed_id = random_seed + i*num_images_per_prompt_outpaint + j if (seed_outpaint == 0) else seed_outpaint + i*num_images_per_prompt_outpaint + j
             savename = name_seeded_image(seed_id)

@@ -83,7 +83,7 @@ def image_magicmix(
 #            torch_dtype=torch.float32, 
             torch_dtype=model_arch,
             use_safetensors=True, 
-            load_safety_checker=False if (nsfw_filter_final == None) else True,
+#            load_safety_checker=False if (nsfw_filter_final == None) else True,
             local_files_only=True if offline_test() else None,
 #            safety_checker=nsfw_filter_final, 
 #            feature_extractor=feat_ex
@@ -141,6 +141,8 @@ def image_magicmix(
             steps=num_inference_step_magicmix,
             guidance_scale=guidance_scale_magicmix,
         )
+        if (modelid_magicmix[0:9] == "./models/"):
+            image = safety_checker_sdxl(model_path_magicmix, image, nsfw_filter)
         seed_id = random_seed + i if (seed_magicmix == 0) else seed_magicmix + i
         savename = name_seeded_image(seed_id)
         if use_gfpgan_magicmix == True :

@@ -268,7 +268,7 @@ def image_faceid_ip(
                 modelid_faceid_ip, 
                 torch_dtype=model_arch,
                 use_safetensors=True if not is_bin_faceid_ip else False,
-                load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                load_safety_checker=False if (nsfw_filter_final == None) else True,
                 local_files_only=True if offline_test() else None
             )
         else :        
@@ -334,7 +334,7 @@ def image_faceid_ip(
                 modelid_faceid_ip, 
                 torch_dtype=model_arch,
                 use_safetensors=True if not is_bin_faceid_ip else False,
-                load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                load_safety_checker=False if (nsfw_filter_final == None) else True,
                 local_files_only=True if offline_test() else None
 #                safety_checker=nsfw_filter_final, 
 #                feature_extractor=feat_ex,
@@ -555,7 +555,7 @@ def image_faceid_ip(
             ).images
 
         for j in range(len(image)):
-            if is_xl_faceid_ip:
+            if is_xl_faceid_ip or (modelid_faceid_ip[0:9] == "./models/"):
                 image[j] = safety_checker_sdxl(model_path_faceid_ip, image[j], nsfw_filter)
             seed_id = random_seed + i*num_images_per_prompt_faceid_ip + j if (seed_faceid_ip == 0) else seed_faceid_ip + i*num_images_per_prompt_faceid_ip + j
             savename = name_seeded_image(seed_id)
