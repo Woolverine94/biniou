@@ -100,6 +100,7 @@ model_list_faceid_ip_builtin = [
     "-[ 👌 🐢 SDXL ]-",
     "fluently/Fluently-XL-Final",
     "Corcelio/mobius",
+    "misri/juggernautXL_juggXIByRundiffusion",
     "mann-e/Mann-E_Dreams",
     "mann-e/Mann-E_Art",
     "ehristoforu/Visionix-alpha",
