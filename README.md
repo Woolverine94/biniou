@@ -50,13 +50,6 @@
     - Add support for SD 1.5 LoRA Model [artificialguybr/icons-redmond-1-5v-app-icons-lora-for-sd-liberteredmond-sd-1-5](https://hf.co/artificialguybr/icons-redmond-1-5v-app-icons-lora-for-sd-liberteredmond-sd-1-5) and SDXL LoRA models [DoctorDiffusion/doctor-diffusion-s-tarot-card-crafter](https://hf.co/DoctorDiffusion/doctor-diffusion-s-tarot-card-crafter) and [artificialguybr/IconsRedmond-IconsLoraForSDXL](https://hf.co/artificialguybr/IconsRedmond-IconsLoraForSDXL) to Stable Diffusion-based module.
     - Bugfix for ControlNet module.
 
-  * 🆕 **2024-08-17** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for [bartowski/gemma-2-2b-it-abliterated-GGUF](https://hf.co/bartowski/gemma-2-2b-it-abliterated-GGUF), [bartowski/Qwen2-Math-7B-Instruct-GGUF](https://hf.co/bartowski/Qwen2-Math-7B-Instruct-GGUF) and [bartowski/Peach-9B-8k-Roleplay-GGUF](https://hf.co/bartowski/Peach-9B-8k-Roleplay-GGUF) to Chatbot module.
-    - Add support for SD 1.5 model [xyn-ai/anything-v4.0](https://hf.co/xyn-ai/anything-v4.0), [fluently/Fluently-anime](https://hf.co/fluently/Fluently-anime), [fluently/Fluently-epic](https://hf.co/fluently/Fluently-epic) and SDXL Models [yodayo-ai/clandestine-xl-1.0](https://hf.co/yodayo-ai/clandestine-xl-1.0), [GraydientPlatformAPI/epicrealism-lightning-xl](https://hf.co/GraydientPlatformAPI/epicrealism-lightning-xl) to Stable Diffusion-based module.
-    - Bugfixes for Photobooth module.
-
-  * 🆕 **2024-08-11** : 🔥 ***Add categories to Chatbot module and LoRA models*** 🔥 > Following previous updates, adding models categories to the Chatbot module models list, and to the LoRA models list, for each eligible modules.
-
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
 ---
