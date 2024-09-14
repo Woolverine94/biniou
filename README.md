@@ -17,6 +17,12 @@
 
 ## Updates
 
+  * 🆕 **2024-09-14** : 🔥 ***This week's updates*** 🔥 >
+    - Support for Chatbot models [mradermacher/reflection-llama-3.1-8B-Solshine-Full-GGUF](https://hf.co/mradermacher/reflection-llama-3.1-8B-Solshine-Full-GGUF) and [bartowski/Nemotron-Mini-4B-Instruct-GGUF](https://hf.co/bartowski/Nemotron-Mini-4B-Instruct-GGUF) to Chatbot module.
+    - Support for SDXL model [misri/juggernautXL_juggXIByRundiffusion](https://hf.co/misri/juggernautXL_juggXIByRundiffusion) to Stable Diffusion-based module.
+    - Add support for multiple LoRAs (up to 5) to Img2img, IP-Adapter and ControlNet modules.
+    - Bugfixes for metadatas in Photobooth module, incorret LoRA models cache dir location and immutable safety checker with local safetensors models in image modules.
+
   * 🆕 **2024-09-08** : 🔥 ***New Windows installer and Multi-LoRA for Photobooth module*** 🔥 >
     - Thanks to the contributions of [@natlamir](https://github.com/natlamir), Windows users now have access to a faster and more reliable Windows installer. It works both for the executable and .cmd installers. 
     - Multi-LoRAs models are now supported for Photobooth module. You can now add up to 5 LoRAs models to your generation settings.
