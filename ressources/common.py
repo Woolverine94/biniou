@@ -1843,6 +1843,20 @@ def is_sd3(model):
         is_sd3_value = False
     return is_sd3_value
 
+def is_noloras(model):
+    if (\
+("IDKIRO/SDXS-512" in model.upper()) or \
+(model == "stabilityai/sd-turbo") or \
+("ETRI-VILAB/KOALA-" in model.upper()) or \
+("SSD-1B" in model.upper()) or \
+("SEGMIND-VEGA" in model.upper()) or \
+("PLAYGROUNDAI/PLAYGROUND-V2" in model.upper())\
+):
+        is_noloras_value = True
+    else:
+        is_noloras_value = False
+    return is_noloras_value
+
 def model_cleaner_sd(model):
     model_replacement = {
         "-[ 👍 🚀 Fast SD15 ]-": "IDKiro/sdxs-512-0.9",

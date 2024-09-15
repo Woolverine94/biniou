@@ -343,16 +343,32 @@ def change_model_type_txt2img_sd(model_txt2img_sd):
         return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=biniou_global_sd15_width), height_txt2img_sd.update(value=biniou_global_sd15_height), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=True)
 
 def change_model_type_txt2img_sd_alternate2(model_txt2img_sd):
-    return lora_model2_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd, True).keys()), value="", interactive=True)
+    if is_noloras(model_txt2img_sd):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model2_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd, True).keys()), value="", interactive=lora_interaction)
 
 def change_model_type_txt2img_sd_alternate3(model_txt2img_sd):
-    return lora_model3_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd, True).keys()), value="", interactive=True)
+    if is_noloras(model_txt2img_sd):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model3_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd, True).keys()), value="", interactive=lora_interaction)
 
 def change_model_type_txt2img_sd_alternate4(model_txt2img_sd):
-    return lora_model4_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd, True).keys()), value="", interactive=True)
+    if is_noloras(model_txt2img_sd):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model4_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd, True).keys()), value="", interactive=lora_interaction)
 
 def change_model_type_txt2img_sd_alternate5(model_txt2img_sd):
-    return lora_model5_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd, True).keys()), value="", interactive=True)
+    if is_noloras(model_txt2img_sd):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model5_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd, True).keys()), value="", interactive=lora_interaction)
 
 biniou_internal_previous_model_txt2img_sd = ""
 biniou_internal_previous_steps_txt2img_sd = ""
@@ -588,16 +604,32 @@ def change_model_type_txt2img_lcm(model_txt2img_lcm):
         return width_txt2img_lcm.update(value=biniou_global_sd15_width), height_txt2img_lcm.update(value=biniou_global_sd15_height), guidance_scale_txt2img_lcm.update(value=8.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
 
 def change_model_type_txt2img_lcm_alternate2(model_txt2img_lcm):
-    return lora_model2_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm, True).keys()), value="", interactive=True)
+    if is_noloras(model_txt2img_lcm):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model2_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm, True).keys()), value="", interactive=lora_interaction)
 
 def change_model_type_txt2img_lcm_alternate3(model_txt2img_lcm):
-    return lora_model3_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm, True).keys()), value="", interactive=True)
+    if is_noloras(model_txt2img_lcm):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model3_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm, True).keys()), value="", interactive=lora_interaction)
 
 def change_model_type_txt2img_lcm_alternate4(model_txt2img_lcm):
-    return lora_model4_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm, True).keys()), value="", interactive=True)
+    if is_noloras(model_txt2img_lcm):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model4_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm, True).keys()), value="", interactive=lora_interaction)
 
 def change_model_type_txt2img_lcm_alternate5(model_txt2img_lcm):
-    return lora_model5_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm, True).keys()), value="", interactive=True)
+    if is_noloras(model_txt2img_lcm):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model5_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm, True).keys()), value="", interactive=lora_interaction)
 
 biniou_internal_previous_model_txt2img_lcm = ""
 biniou_internal_previous_steps_txt2img_lcm = ""
@@ -883,16 +915,32 @@ def change_model_type_img2img(model_img2img):
         return sampler_img2img.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), txtinv_img2img.update(choices=list(txtinv_list(model_img2img).keys()), value="", interactive=True), negative_prompt_img2img.update(interactive=True)
 
 def change_model_type_img2img_alternate2(model_img2img):
-    return lora_model2_img2img.update(choices=list(lora_model_list(model_img2img, True).keys()), value="", interactive=True)
+    if is_noloras(model_img2img):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model2_img2img.update(choices=list(lora_model_list(model_img2img, True).keys()), value="", interactive=lora_interaction)
 
 def change_model_type_img2img_alternate3(model_img2img):
-    return lora_model3_img2img.update(choices=list(lora_model_list(model_img2img, True).keys()), value="", interactive=True)
+    if is_noloras(model_img2img):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model3_img2img.update(choices=list(lora_model_list(model_img2img, True).keys()), value="", interactive=lora_interaction)
 
 def change_model_type_img2img_alternate4(model_img2img):
-    return lora_model4_img2img.update(choices=list(lora_model_list(model_img2img, True).keys()), value="", interactive=True)
+    if is_noloras(model_img2img):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model4_img2img.update(choices=list(lora_model_list(model_img2img, True).keys()), value="", interactive=lora_interaction)
 
 def change_model_type_img2img_alternate5(model_img2img):
-    return lora_model5_img2img.update(choices=list(lora_model_list(model_img2img, True).keys()), value="", interactive=True)
+    if is_noloras(model_img2img):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model5_img2img.update(choices=list(lora_model_list(model_img2img, True).keys()), value="", interactive=lora_interaction)
 
 biniou_internal_previous_model_img2img = ""
 biniou_internal_previous_steps_img2img = ""
@@ -1166,16 +1214,32 @@ def change_model_type_img2img_ip(model_img2img_ip, source_type):
             source_type_img2img_ip.update(interactive=True)
 
 def change_model_type_img2img_ip_alternate2(model_img2img_ip):
-    return lora_model2_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip, True).keys()), value="", interactive=True)
+    if is_noloras(model_img2img_ip):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model2_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip, True).keys()), value="", interactive=lora_interaction)
 
 def change_model_type_img2img_ip_alternate3(model_img2img_ip):
-    return lora_model3_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip, True).keys()), value="", interactive=True)
+    if is_noloras(model_img2img_ip):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model3_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip, True).keys()), value="", interactive=lora_interaction)
 
 def change_model_type_img2img_ip_alternate4(model_img2img_ip):
-    return lora_model4_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip, True).keys()), value="", interactive=True)
+    if is_noloras(model_img2img_ip):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model4_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip, True).keys()), value="", interactive=lora_interaction)
 
 def change_model_type_img2img_ip_alternate5(model_img2img_ip):
-    return lora_model5_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip, True).keys()), value="", interactive=True)
+    if is_noloras(model_img2img_ip):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model5_img2img_ip.update(choices=list(lora_model_list(model_img2img_ip, True).keys()), value="", interactive=lora_interaction)
 
 biniou_internal_previous_model_img2img_ip = ""
 biniou_internal_previous_steps_img2img_ip = ""
@@ -1491,16 +1555,32 @@ def change_model_type_controlnet(model_controlnet):
         return sampler_controlnet.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=7.5), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), txtinv_controlnet.update(choices=list(txtinv_list(model_controlnet).keys()), value=""), negative_prompt_controlnet.update(interactive=True), img_preview_controlnet.update(value=None), gs_img_preview_controlnet.update(value=None)
 
 def change_model_type_controlnet_alternate2(model_controlnet):
-    return lora_model2_controlnet.update(choices=list(lora_model_list(model_controlnet, True).keys()), value="", interactive=True)
+    if is_noloras(model_controlnet):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model2_controlnet.update(choices=list(lora_model_list(model_controlnet, True).keys()), value="", interactive=lora_interaction)
 
 def change_model_type_controlnet_alternate3(model_controlnet):
-    return lora_model3_controlnet.update(choices=list(lora_model_list(model_controlnet, True).keys()), value="", interactive=True)
+    if is_noloras(model_controlnet):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model3_controlnet.update(choices=list(lora_model_list(model_controlnet, True).keys()), value="", interactive=lora_interaction)
 
 def change_model_type_controlnet_alternate4(model_controlnet):
-    return lora_model4_controlnet.update(choices=list(lora_model_list(model_controlnet, True).keys()), value="", interactive=True)
+    if is_noloras(model_controlnet):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model4_controlnet.update(choices=list(lora_model_list(model_controlnet, True).keys()), value="", interactive=lora_interaction)
 
 def change_model_type_controlnet_alternate5(model_controlnet):
-    return lora_model5_controlnet.update(choices=list(lora_model_list(model_controlnet, True).keys()), value="", interactive=True)
+    if is_noloras(model_controlnet):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model5_controlnet.update(choices=list(lora_model_list(model_controlnet, True).keys()), value="", interactive=lora_interaction)
 
 biniou_internal_previous_model_controlnet = ""
 biniou_internal_previous_steps_controlnet = ""
@@ -1766,17 +1846,32 @@ def change_model_type_faceid_ip(model_faceid_ip, prompt):
         return sampler_faceid_ip.update(value="DDIM"), width_faceid_ip.update(value=biniou_global_sd15_width), height_faceid_ip.update(value=biniou_global_sd15_height), num_inference_step_faceid_ip.update(value=35), guidance_scale_faceid_ip.update(value=7.5), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True), prompt_faceid_ip.update()
 
 def change_model_type_faceid_ip_alternate2(model_faceid_ip):
-    return lora_model2_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip, True).keys()), value="", interactive=True)
+    if is_noloras(model_faceid_ip):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model2_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip, True).keys()), value="", interactive=lora_interaction)
 
 def change_model_type_faceid_ip_alternate3(model_faceid_ip):
-    return lora_model3_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip, True).keys()), value="", interactive=True)
+    if is_noloras(model_faceid_ip):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model3_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip, True).keys()), value="", interactive=lora_interaction)
 
 def change_model_type_faceid_ip_alternate4(model_faceid_ip):
-    return lora_model4_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip, True).keys()), value="", interactive=True)
+    if is_noloras(model_faceid_ip):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model4_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip, True).keys()), value="", interactive=lora_interaction)
 
 def change_model_type_faceid_ip_alternate5(model_faceid_ip):
-    return lora_model5_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip, True).keys()), value="", interactive=True)
-
+    if is_noloras(model_faceid_ip):
+         lora_interaction = False
+    else:
+         lora_interaction = True
+    return lora_model5_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip, True).keys()), value="", interactive=lora_interaction)
 
 biniou_internal_previous_model_faceid_ip = ""
 biniou_internal_previous_steps_faceid_ip = ""
