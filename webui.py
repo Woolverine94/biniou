@@ -577,7 +577,7 @@ def change_model_type_txt2img_lcm(model_txt2img_lcm):
     if (model_txt2img_lcm == "latent-consistency/lcm-ssd-1b"):
         return width_txt2img_lcm.update(value=biniou_global_sdxl_width), height_txt2img_lcm.update(value=biniou_global_sdxl_height), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=False), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
     elif (model_txt2img_lcm == "latent-consistency/lcm-sdxl"):
-        return width_txt2img_lcm.update(value=biniou_global_sdxl_width), height_txt2img_lcm.update(value=biniou_global_sdxl_height), guidance_scale_txt2img_lcm.update(value=8.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=False), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
+        return width_txt2img_lcm.update(value=biniou_global_sdxl_width), height_txt2img_lcm.update(value=biniou_global_sdxl_height), guidance_scale_txt2img_lcm.update(value=8.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
     elif (model_txt2img_lcm == "latent-consistency/lcm-lora-sdxl"):
         return width_txt2img_lcm.update(value=biniou_global_sdxl_width), height_txt2img_lcm.update(value=biniou_global_sdxl_height), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
     elif (model_txt2img_lcm == "latent-consistency/lcm-lora-sdv1-5"):
@@ -586,6 +586,18 @@ def change_model_type_txt2img_lcm(model_txt2img_lcm):
         return width_txt2img_lcm.update(value=biniou_global_sdxl_width), height_txt2img_lcm.update(value=biniou_global_sdxl_height), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=False), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
     else:
         return width_txt2img_lcm.update(value=biniou_global_sd15_width), height_txt2img_lcm.update(value=biniou_global_sd15_height), guidance_scale_txt2img_lcm.update(value=8.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
+
+def change_model_type_txt2img_lcm_alternate2(model_txt2img_lcm):
+    return lora_model2_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm, True).keys()), value="", interactive=True)
+
+def change_model_type_txt2img_lcm_alternate3(model_txt2img_lcm):
+    return lora_model3_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm, True).keys()), value="", interactive=True)
+
+def change_model_type_txt2img_lcm_alternate4(model_txt2img_lcm):
+    return lora_model4_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm, True).keys()), value="", interactive=True)
+
+def change_model_type_txt2img_lcm_alternate5(model_txt2img_lcm):
+    return lora_model5_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm, True).keys()), value="", interactive=True)
 
 biniou_internal_previous_model_txt2img_lcm = ""
 biniou_internal_previous_steps_txt2img_lcm = ""
@@ -659,6 +671,102 @@ def change_lora_model_txt2img_lcm(model, lora_model, prompt, steps, cfg_scale, s
             biniou_internal_previous_cfg_txt2img_lcm = ""
             biniou_internal_previous_sampler_txt2img_lcm = ""
             return prompt_txt2img_lcm.update(value=lora_prompt_txt2img_lcm), num_inference_step_txt2img_lcm.update(value=var_steps), guidance_scale_txt2img_lcm.update(value=var_cfg_scale), sampler_txt2img_lcm.update(value=var_sampler)
+
+biniou_internal_previous_trigger2_txt2img_lcm = ""
+def change_lora_model2_txt2img_lcm(model, lora_model, prompt):
+    global biniou_internal_previous_trigger2_txt2img_lcm
+    lora_keyword = lora_model_list(model)[lora_model][1]
+
+    if lora_model != "":
+        if lora_keyword != "":
+            lora_prompt_txt2img_lcm = lora_keyword+ ", "+ prompt
+        else:
+            lora_prompt_txt2img_lcm = prompt
+    else:
+        lora_prompt_txt2img_lcm = prompt
+
+    if (biniou_internal_previous_trigger2_txt2img_lcm == ""):
+        biniou_internal_previous_trigger2_txt2img_lcm = lora_keyword
+    else:
+        lora_trigger = biniou_internal_previous_trigger2_txt2img_lcm+ ", "
+        lora_prompt_txt2img_lcm = lora_prompt_txt2img_lcm.replace(lora_trigger, "")
+        biniou_internal_previous_trigger2_txt2img_lcm = lora_keyword
+
+    lora_prompt_txt2img_lcm = lora_prompt_txt2img_lcm.replace(lora_keyword+ ", "+ lora_keyword+ ", ", lora_keyword+ ", ")
+
+    return prompt_txt2img_lcm.update(value=lora_prompt_txt2img_lcm)
+
+biniou_internal_previous_trigger3_txt2img_lcm = ""
+def change_lora_model3_txt2img_lcm(model, lora_model, prompt):
+    global biniou_internal_previous_trigger3_txt2img_lcm
+    lora_keyword = lora_model_list(model)[lora_model][1]
+
+    if lora_model != "":
+        if lora_keyword != "":
+            lora_prompt_txt2img_lcm = lora_keyword+ ", "+ prompt
+        else:
+            lora_prompt_txt2img_lcm = prompt
+    else:
+        lora_prompt_txt2img_lcm = prompt
+
+    if (biniou_internal_previous_trigger3_txt2img_lcm == ""):
+        biniou_internal_previous_trigger3_txt2img_lcm = lora_keyword
+    else:
+        lora_trigger = biniou_internal_previous_trigger3_txt2img_lcm+ ", "
+        lora_prompt_txt2img_lcm = lora_prompt_txt2img_lcm.replace(lora_trigger, "")
+        biniou_internal_previous_trigger3_txt2img_lcm = lora_keyword
+
+    lora_prompt_txt2img_lcm = lora_prompt_txt2img_lcm.replace(lora_keyword+ ", "+ lora_keyword+ ", ", lora_keyword+ ", ")
+
+    return prompt_txt2img_lcm.update(value=lora_prompt_txt2img_lcm)
+
+biniou_internal_previous_trigger4_txt2img_lcm = ""
+def change_lora_model4_txt2img_lcm(model, lora_model, prompt):
+    global biniou_internal_previous_trigger4_txt2img_lcm
+    lora_keyword = lora_model_list(model)[lora_model][1]
+
+    if lora_model != "":
+        if lora_keyword != "":
+            lora_prompt_txt2img_lcm = lora_keyword+ ", "+ prompt
+        else:
+            lora_prompt_txt2img_lcm = prompt
+    else:
+        lora_prompt_txt2img_lcm = prompt
+
+    if (biniou_internal_previous_trigger4_txt2img_lcm == ""):
+        biniou_internal_previous_trigger4_txt2img_lcm = lora_keyword
+    else:
+        lora_trigger = biniou_internal_previous_trigger4_txt2img_lcm+ ", "
+        lora_prompt_txt2img_lcm = lora_prompt_txt2img_lcm.replace(lora_trigger, "")
+        biniou_internal_previous_trigger4_txt2img_lcm = lora_keyword
+
+    lora_prompt_txt2img_lcm = lora_prompt_txt2img_lcm.replace(lora_keyword+ ", "+ lora_keyword+ ", ", lora_keyword+ ", ")
+
+    return prompt_txt2img_lcm.update(value=lora_prompt_txt2img_lcm)
+
+biniou_internal_previous_trigger5_txt2img_lcm = ""
+def change_lora_model5_txt2img_lcm(model, lora_model, prompt):
+    global biniou_internal_previous_trigger5_txt2img_lcm
+    lora_keyword = lora_model_list(model)[lora_model][1]
+
+    if lora_model != "":
+        if lora_keyword != "":
+            lora_prompt_txt2img_lcm = lora_keyword+ ", "+ prompt
+        else:
+            lora_prompt_txt2img_lcm = prompt
+    else:
+        lora_prompt_txt2img_lcm = prompt
+
+    if (biniou_internal_previous_trigger5_txt2img_lcm == ""):
+        biniou_internal_previous_trigger5_txt2img_lcm = lora_keyword
+    else:
+        lora_trigger = biniou_internal_previous_trigger5_txt2img_lcm+ ", "
+        lora_prompt_txt2img_lcm = lora_prompt_txt2img_lcm.replace(lora_trigger, "")
+        biniou_internal_previous_trigger5_txt2img_lcm = lora_keyword
+
+    lora_prompt_txt2img_lcm = lora_prompt_txt2img_lcm.replace(lora_keyword+ ", "+ lora_keyword+ ", ", lora_keyword+ ", ")
+
+    return prompt_txt2img_lcm.update(value=lora_prompt_txt2img_lcm)
 
 def change_txtinv_txt2img_lcm(model, txtinv, prompt):
     if txtinv != "":
@@ -3778,9 +3886,27 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         with gr.Accordion(biniou_lang_lora_label, open=True):
                             with gr.Row():
                                 with gr.Column():
-                                    lora_model_txt2img_lcm = gr.Dropdown(choices=list(lora_model_list(model_txt2img_lcm.value).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info)
+                                    lora_model_txt2img_lcm = gr.Dropdown(choices=list(lora_model_list(model_txt2img_lcm.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info)
                                 with gr.Column():
                                     lora_weight_txt2img_lcm = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info)
+                            with gr.Row():
+                                with gr.Column():
+                                    lora_model2_txt2img_lcm = gr.Dropdown(choices=list(lora_model_list(model_txt2img_lcm.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
+                                with gr.Column():
+                                    lora_weight2_txt2img_lcm = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                with gr.Column():
+                                    lora_model3_txt2img_lcm = gr.Dropdown(choices=list(lora_model_list(model_txt2img_lcm.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
+                                with gr.Column():
+                                    lora_weight3_txt2img_lcm = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                            with gr.Row():
+                                with gr.Column():
+                                    lora_model4_txt2img_lcm = gr.Dropdown(choices=list(lora_model_list(model_txt2img_lcm.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
+                                with gr.Column():
+                                    lora_weight4_txt2img_lcm = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                with gr.Column():
+                                    lora_model5_txt2img_lcm = gr.Dropdown(choices=list(lora_model_list(model_txt2img_lcm.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
+                                with gr.Column():
+                                    lora_weight5_txt2img_lcm = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                         with gr.Accordion(biniou_lang_textinv_label, open=True):
                             with gr.Row():
                                 with gr.Column():
@@ -3801,7 +3927,15 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 txtinv_txt2img_lcm,
                             ]
                         )
+                        model_txt2img_lcm.change(fn=change_model_type_txt2img_lcm_alternate2, inputs=[model_txt2img_lcm],outputs=[lora_model2_txt2img_lcm])
+                        model_txt2img_lcm.change(fn=change_model_type_txt2img_lcm_alternate3, inputs=[model_txt2img_lcm],outputs=[lora_model3_txt2img_lcm])
+                        model_txt2img_lcm.change(fn=change_model_type_txt2img_lcm_alternate4, inputs=[model_txt2img_lcm],outputs=[lora_model4_txt2img_lcm])
+                        model_txt2img_lcm.change(fn=change_model_type_txt2img_lcm_alternate5, inputs=[model_txt2img_lcm],outputs=[lora_model5_txt2img_lcm])
                         lora_model_txt2img_lcm.change(fn=change_lora_model_txt2img_lcm, inputs=[model_txt2img_lcm, lora_model_txt2img_lcm, prompt_txt2img_lcm, num_inference_step_txt2img_lcm, guidance_scale_txt2img_lcm, sampler_txt2img_lcm], outputs=[prompt_txt2img_lcm, num_inference_step_txt2img_lcm, guidance_scale_txt2img_lcm, sampler_txt2img_lcm])
+                        lora_model2_txt2img_lcm.change(fn=change_lora_model2_txt2img_lcm, inputs=[model_txt2img_lcm, lora_model2_txt2img_lcm, prompt_txt2img_lcm], outputs=[prompt_txt2img_lcm])
+                        lora_model3_txt2img_lcm.change(fn=change_lora_model3_txt2img_lcm, inputs=[model_txt2img_lcm, lora_model3_txt2img_lcm, prompt_txt2img_lcm], outputs=[prompt_txt2img_lcm])
+                        lora_model4_txt2img_lcm.change(fn=change_lora_model4_txt2img_lcm, inputs=[model_txt2img_lcm, lora_model4_txt2img_lcm, prompt_txt2img_lcm], outputs=[prompt_txt2img_lcm])
+                        lora_model5_txt2img_lcm.change(fn=change_lora_model5_txt2img_lcm, inputs=[model_txt2img_lcm, lora_model5_txt2img_lcm, prompt_txt2img_lcm], outputs=[prompt_txt2img_lcm])
                         txtinv_txt2img_lcm.change(fn=change_txtinv_txt2img_lcm, inputs=[model_txt2img_lcm, txtinv_txt2img_lcm, prompt_txt2img_lcm], outputs=[prompt_txt2img_lcm])
                         with gr.Column(scale=2):
                             out_txt2img_lcm = gr.Gallery(
@@ -3850,6 +3984,14 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 tkme_txt2img_lcm,
                                 lora_model_txt2img_lcm,
                                 lora_weight_txt2img_lcm,
+                                lora_model2_txt2img_lcm,
+                                lora_weight2_txt2img_lcm,
+                                lora_model3_txt2img_lcm,
+                                lora_weight3_txt2img_lcm,
+                                lora_model4_txt2img_lcm,
+                                lora_weight4_txt2img_lcm,
+                                lora_model5_txt2img_lcm,
+                                lora_weight5_txt2img_lcm,
                                 txtinv_txt2img_lcm,
                             ],
                                 outputs=[out_txt2img_lcm, gs_out_txt2img_lcm],

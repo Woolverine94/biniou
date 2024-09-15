@@ -574,9 +574,7 @@ def image_img2img_ip(
                     adapter_name=f"adapter{e}",
                 )
             adapters_list.append(f"adapter{e}")
-
         pipe_img2img_ip.set_adapters(adapters_list, adapter_weights=lora_weight_array)
-    print(adapters_list, lora_weight_array)
 
     if txtinv_img2img_ip != "":
         model_list_txtinv_img2img_ip = txtinv_list(modelid_img2img_ip)

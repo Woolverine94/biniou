@@ -81,6 +81,14 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
     tkme_txt2img_lcm,
     lora_model_txt2img_lcm,
     lora_weight_txt2img_lcm,
+    lora_model2_txt2img_lcm,
+    lora_weight2_txt2img_lcm,
+    lora_model3_txt2img_lcm,
+    lora_weight3_txt2img_lcm,
+    lora_model4_txt2img_lcm,
+    lora_weight4_txt2img_lcm,
+    lora_model5_txt2img_lcm,
+    lora_weight5_txt2img_lcm,
     txtinv_txt2img_lcm,
     progress_txt2img_lcm=gr.Progress(track_tqdm=True)
     ):
@@ -88,7 +96,31 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
     print(">>>[LCM 🖼️ ]: starting module")
     
     lora_model_txt2img_lcm = model_cleaner_lora(lora_model_txt2img_lcm)
-    
+    lora_model2_txt2img_lcm = model_cleaner_lora(lora_model2_txt2img_lcm)
+    lora_model3_txt2img_lcm = model_cleaner_lora(lora_model3_txt2img_lcm)
+    lora_model4_txt2img_lcm = model_cleaner_lora(lora_model4_txt2img_lcm)
+    lora_model5_txt2img_lcm = model_cleaner_lora(lora_model5_txt2img_lcm)
+
+    lora_array = []
+    lora_weight_array = []
+    adapters_list = []
+
+    if lora_model_txt2img_lcm != "":
+        lora_array.append(f"{lora_model_txt2img_lcm}")
+        lora_weight_array.append(float(lora_weight_txt2img_lcm))
+    if lora_model2_txt2img_lcm != "":
+        lora_array.append(f"{lora_model2_txt2img_lcm}")
+        lora_weight_array.append(float(lora_weight2_txt2img_lcm))
+    if lora_model3_txt2img_lcm != "":
+        lora_array.append(f"{lora_model3_txt2img_lcm}")
+        lora_weight_array.append(float(lora_weight3_txt2img_lcm))
+    if lora_model4_txt2img_lcm != "":
+        lora_array.append(f"{lora_model4_txt2img_lcm}")
+        lora_weight_array.append(float(lora_weight4_txt2img_lcm))
+    if lora_model5_txt2img_lcm != "":
+        lora_array.append(f"{lora_model5_txt2img_lcm}")
+        lora_weight_array.append(float(lora_weight5_txt2img_lcm))
+
     global pipe_txt2img_lcm
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2img_lcm_safetychecker, device_txt2img_lcm, nsfw_filter)
 
@@ -96,7 +128,12 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
         is_xl_txt2img_lcm: bool = True
     else :        
         is_xl_txt2img_lcm: bool = False
-        
+
+    if is_sd3(modelid_txt2img_lcm):
+        is_sd3_txt2img_lcm: bool = True
+    else :
+        is_sd3_txt2img_lcm: bool = False
+
     if (modelid_txt2img_lcm == "latent-consistency/lcm-ssd-1b") or (modelid_txt2img_lcm == "latent-consistency/lcm-sdxl"):
         model_path_SD_txt2img_lcm = "./models/Stable_Diffusion"
         if (modelid_txt2img_lcm == "latent-consistency/lcm-ssd-1b"):
@@ -152,18 +189,20 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
             modelid_txt2img_lcm,
             weight_name=model_lora_txt2img_lcm,
             cache_dir=model_path_txt2img_lcm,
+            adapter_name=modelid_txt2img_lcm,
             use_safetensors=True,
             resume_download=True,
             local_files_only=True if offline_test() else None
         )
-        pipe_txt2img_lcm.fuse_lora()
+        adapters_list.append(modelid_txt2img_lcm)
+        lora_weight_array.insert(0, 1.0)
     else : 
         if modelid_txt2img_lcm[0:9] == "./models/" :
             pipe_txt2img_lcm = DiffusionPipeline.from_single_file(
                 modelid_txt2img_lcm, 
                 torch_dtype=model_arch, 
                 use_safetensors=True, 
-                load_safety_checker=False if (nsfw_filter_final == None) else True,
+#                load_safety_checker=False if (nsfw_filter_final == None) else True,
                 local_files_only=True if offline_test() else None,
 #                safety_checker=None, 
 #                feature_extractor=None,
@@ -188,38 +227,41 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
         pipe_txt2img_lcm = pipe_txt2img_lcm.to(device_txt2img_lcm)
     pipe_txt2img_lcm.enable_vae_slicing()
 
-    if lora_model_txt2img_lcm != "":
-        model_list_lora_txt2img_lcm = lora_model_list(modelid_txt2img_lcm)
-        if lora_model_txt2img_lcm[0:9] == "./models/":
-            pipe_txt2img_lcm.load_lora_weights(
-                os.path.dirname(lora_model_txt2img_lcm),
-                weight_name=model_list_lora_txt2img_lcm[lora_model_txt2img_lcm][0],
-                use_safetensors=True,
-                adapter_name="adapter1",
-                local_files_only=True if offline_test() else None
-            )
-        else:
-            if is_xl_txt2img_lcm:
-                lora_model_path = "./models/lora/SDXL"
-            else: 
-                lora_model_path = "./models/lora/SD"
+    if len(lora_array) != 0:
+        for e in range(len(lora_array)):
+            model_list_lora_txt2img_lcm = lora_model_list(modelid_txt2img_lcm)
+            if lora_array[e][0:9] == "./models/":
+                pipe_txt2img_lcm.load_lora_weights(
+                    os.path.dirname(lora_array[e]),
+                    weight_name=model_list_lora_txt2img_lcm[lora_array[e]][0],
+                    use_safetensors=True,
+                    adapter_name=f"adapter{e}",
+                    local_files_only=True if offline_test() else None,
+                )
+            else:
+                if is_xl_txt2img_lcm:
+                    lora_model_path = model_path_lora_sdxl
+                elif is_sd3_txt2img_lcm:
+                    lora_model_path = model_path_lora_sd3
+                else: 
+                    lora_model_path = model_path_lora_sd
 
-            local_lora_txt2img_lcm = hf_hub_download(
-                repo_id=lora_model_txt2img_lcm,
-                filename=model_list_lora_txt2img_lcm[lora_model_txt2img_lcm][0],
-                cache_dir=lora_model_path,
-                resume_download=True,
-                local_files_only=True if offline_test() else None,
-            )
-
-            pipe_txt2img_lcm.load_lora_weights(
-                local_lora_txt2img_lcm,
-                weight_name=model_list_lora_txt2img_lcm[lora_model_txt2img_lcm][0],
-                use_safetensors=True,
-                adapter_name="adapter1",
-            )
-        pipe_txt2img_lcm.fuse_lora(lora_scale=lora_weight_txt2img_lcm)
-#            pipe_txt2img_lcm.set_adapters(["adapter1"], adapter_weights=[float(lora_weight_txt2img_lcm)])
+                local_lora_txt2img_lcm = hf_hub_download(
+                    repo_id=lora_array[e],
+                    filename=model_list_lora_txt2img_lcm[lora_array[e]][0],
+                    cache_dir=lora_model_path,
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None,
+                )
+                pipe_txt2img_lcm.load_lora_weights(
+                    lora_array[e],
+                    weight_name=model_list_lora_txt2img_lcm[lora_array[e]][0],
+                    cache_dir=lora_model_path,
+                    use_safetensors=True,
+                    adapter_name=f"adapter{e}",
+                )
+            adapters_list.append(f"adapter{e}")
+        pipe_txt2img_lcm.set_adapters(adapters_list, adapter_weights=lora_weight_array)
 
     if txtinv_txt2img_lcm != "":
         model_list_txtinv_txt2img_lcm = txtinv_list(modelid_txt2img_lcm)
@@ -308,7 +350,7 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
             ).images			
 
         for j in range(len(image)):
-            if is_xl_txt2img_lcm or (modelid_txt2img_lcm == "latent-consistency/lcm-lora-sdv1-5"):
+            if is_xl_txt2img_lcm or (modelid_txt2img_lcm == "latent-consistency/lcm-lora-sdv1-5") or (modelid_txt2img_lcm[0:9] == "./models/"):
                 image[j] = safety_checker_sdxl(model_path_txt2img_lcm_safetychecker, image[j], nsfw_filter)
             seed_id = random_seed + i*num_images_per_prompt_txt2img_lcm + j if (seed_txt2img_lcm == 0) else seed_txt2img_lcm + i*num_images_per_prompt_txt2img_lcm + j
             savename = name_seeded_image(seed_id)
@@ -318,6 +360,9 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
             final_image.append(savename)
             final_seed.append(seed_id)
 
+    if (modelid_txt2img_lcm == "segmind/Segmind-VegaRT") or (modelid_txt2img_lcm == "latent-consistency/lcm-lora-sdv1-5") or (modelid_txt2img_lcm == "latent-consistency/lcm-lora-sdxl"):
+        lora_array.insert(0, modelid_txt2img_lcm)
+
     print(f">>>[LCM 🖼️ ]: generated {num_prompt_txt2img_lcm} batch(es) of {num_images_per_prompt_txt2img_lcm}")
     reporting_txt2img_lcm = f">>>[LCM 🖼️ ]: "+\
         f"Settings : Model={modelid_txt2img_lcm} | "+\
@@ -325,8 +370,8 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
         f"CFG scale={guidance_scale_txt2img_lcm} | "+\
         f"Size={width_txt2img_lcm}x{height_txt2img_lcm} | "+\
         f"GFPGAN={use_gfpgan_txt2img_lcm} | "+\
-        f"LoRA model={lora_model_txt2img_lcm} | "+\
-        f"LoRA weight={lora_weight_txt2img_lcm} | "+\
+        f"LoRA model={lora_array} | "+\
+        f"LoRA weight={lora_weight_array} | "+\
         f"Textual inversion={txtinv_txt2img_lcm} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\
         f"Prompt={prompt_txt2img_lcm} | "+\
