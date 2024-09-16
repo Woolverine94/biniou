@@ -1977,6 +1977,7 @@ def lora_model_list(model, *args):
             "goofyai/disney_style_xl":("disney_style_xl.safetensors", "disney style"),
             "goofyai/cyborg_style_xl":("cyborg_style_xl-off.safetensors", "cyborg style, cyborg, android"),
             "goofyai/Leonardo_Ai_Style_Illustration":("leonardo_illustration.safetensors", "leonardo style, illustration, vector art"),
+            "GraydientPlatformAPI/spiderman-sdxl":("Spider-Man.safetensors", "Spider-Man"),
             "nerijs/pixel-art-xl":("pixel-art-xl.safetensors", "pixel, pixel art"),
             "artificialguybr/ps1redmond-ps1-game-graphics-lora-for-sdxl":("PS1Redmond-PS1Game-Playstation1Graphics.safetensors", "Playstation 1 Graphics, PS1 Game"),
             "SvenN/sdxl-emoji":("lora.safetensors", "emoji"),
