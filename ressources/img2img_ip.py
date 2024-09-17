@@ -116,6 +116,7 @@ model_list_img2img_ip_builtin = [
     "stabilityai/sdxl-turbo",
     "-[ 👌 🇯🇵 Anime SDXL ]-",
     "cagliostrolab/animagine-xl-3.1",
+    "GraydientPlatformAPI/sanae-xl",
     "yodayo-ai/clandestine-xl-1.0",
     "stablediffusionapi/anime-journey-v2",
     "aipicasso/emi-2",
