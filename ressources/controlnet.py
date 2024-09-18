@@ -111,6 +111,7 @@ model_list_controlnet_builtin = [
     "SG161222/RealVisXL_V5.0_Lightning",
     "recoilme/ColorfulXL-Lightning",
     "GraydientPlatformAPI/lustify-lightning",
+    "John6666/comradeship-xl-v9a-spo-dpo-flash-sdxl",
     "thibaud/sdxl_dpo_turbo",
     "stabilityai/sdxl-turbo",
     "-[ 👌 🇯🇵 Anime SDXL ]-",
