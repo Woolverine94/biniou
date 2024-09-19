@@ -125,6 +125,7 @@ model_list_faceid_ip_builtin = [
     "recoilme/ColorfulXL-Lightning",
     "GraydientPlatformAPI/lustify-lightning",
     "John6666/comradeship-xl-v9a-spo-dpo-flash-sdxl",
+    "stablediffusionapi/dream-diffusion-lightning",
     "-[ 👌 🇯🇵 Anime SDXL ]-",
     "cagliostrolab/animagine-xl-3.1",
     "GraydientPlatformAPI/sanae-xl",

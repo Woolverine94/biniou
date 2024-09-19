@@ -114,6 +114,7 @@ model_list_img2img_ip_builtin = [
     "recoilme/ColorfulXL-Lightning",
     "GraydientPlatformAPI/lustify-lightning",
     "John6666/comradeship-xl-v9a-spo-dpo-flash-sdxl",
+    "stablediffusionapi/dream-diffusion-lightning",
     "stabilityai/sdxl-turbo",
     "-[ 👌 🇯🇵 Anime SDXL ]-",
     "cagliostrolab/animagine-xl-3.1",
