@@ -203,6 +203,8 @@ def image_img2img(
     lora_weight_array = []
 
     if lora_model_img2img != "":
+        if is_sd3(modelid_img2img) and lora_model_img2img == "ByteDance/Hyper-SD":
+            lora_weight_img2img = 0.12
         lora_array.append(f"{lora_model_img2img}")
         lora_weight_array.append(float(lora_weight_img2img))
     if lora_model2_img2img != "":

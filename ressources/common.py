@@ -1778,7 +1778,7 @@ def is_fast_lora(model):
 (model == "jasperai/flash-sd") or \
 (model == "sd-community/sdxl-flash-lora") or \
 (model == "mann-e/Mann-E_Turbo") or \
-(model == "jasperai/flash-sd3")
+(model == "jasperai/flash-sd3")\
 ):
         is_fast_lora_value = True
     else:
@@ -2023,9 +2023,10 @@ def lora_model_list(model, *args):
     elif is_sd3(model):
         model_path_lora = model_path_lora_sd3
         model_list_lora_builtin_fast = {
+#            "jasperai/flash-sd3":("adapter_model.safetensors", ""),
+            "ByteDance/Hyper-SD":("Hyper-SD3-4steps-CFG-lora.safetensors", ""),
         }
         model_list_lora_builtin = {
-#            "jasperai/flash-sd3":("adapter_model.safetensors", ""),
             "adbrasi/jujutsuKaisen-style-sd3":("pytorch_lora_weights.safetensors", "anime in jks style"),
             "linoyts/Yarn_art_SD3_LoRA":("pytorch_lora_weights.safetensors", "yarn art style"),
             "gdvstd/dessin-style-sketch-sd3-lora":("pytorch_lora_weights.safetensors", "sks sketch"),

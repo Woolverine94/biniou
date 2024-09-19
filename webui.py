@@ -408,9 +408,7 @@ def change_lora_model_txt2img_sd(model, lora_model, prompt, steps, cfg_scale, sa
         biniou_internal_previous_sampler_txt2img_sd = sampler
         if (lora_model == "ByteDance/SDXL-Lightning") or (lora_model == "GraydientPlatformAPI/lightning-faster-lora"):
             return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(value=4), guidance_scale_txt2img_sd.update(value=0.0), sampler_txt2img_sd.update(value="LCM")
-        elif (lora_model == "ByteDance/Hyper-SD") or ("H1T/TCD-SD" in lora_model.upper()):
-            return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(value=2), guidance_scale_txt2img_sd.update(value=0.0), sampler_txt2img_sd.update(value="TCD")
-        elif (lora_model == "ByteDance/Hyper-SD") or ("H1T/TCD-SD" in lora_model.upper()):
+        elif ((lora_model == "ByteDance/Hyper-SD") or ("H1T/TCD-SD" in lora_model.upper())) and not is_sd3(model):
             return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(value=2), guidance_scale_txt2img_sd.update(value=0.0), sampler_txt2img_sd.update(value="TCD")
         elif (lora_model == "openskyml/lcm-lora-sdxl-turbo"):
             return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(value=4), guidance_scale_txt2img_sd.update(value=0.0), sampler_txt2img_sd.update(value="LCM")
@@ -428,6 +426,8 @@ def change_lora_model_txt2img_sd(model, lora_model, prompt, steps, cfg_scale, sa
             return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(value=6), guidance_scale_txt2img_sd.update(value=3.0), sampler_txt2img_sd.update(value="DPM++ SDE Karras")
         elif (lora_model == "jasperai/flash-sd3"):
             return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(value=4), guidance_scale_txt2img_sd.update(value=0.0), sampler_txt2img_sd.update(value="Flow Match Euler")
+        elif (lora_model == "ByteDance/Hyper-SD") and is_sd3(model):
+            return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(value=4), guidance_scale_txt2img_sd.update(value=3.0), sampler_txt2img_sd.update(value="Flow Match Euler")
     else:
         if ((biniou_internal_previous_model_txt2img_sd == "") and (biniou_internal_previous_steps_txt2img_sd == "") and (biniou_internal_previous_cfg_txt2img_sd == "") and (biniou_internal_previous_sampler_txt2img_sd == "")):
             return prompt_txt2img_sd.update(value=lora_prompt_txt2img_sd), num_inference_step_txt2img_sd.update(), guidance_scale_txt2img_sd.update(), sampler_txt2img_sd.update()
@@ -980,7 +980,7 @@ def change_lora_model_img2img(model, lora_model, prompt, steps, cfg_scale, sampl
         biniou_internal_previous_sampler_img2img = sampler
         if (lora_model == "ByteDance/SDXL-Lightning") or (lora_model == "GraydientPlatformAPI/lightning-faster-lora"):
             return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=4), guidance_scale_img2img.update(value=0.0), sampler_img2img.update(value="LCM")
-        elif (lora_model == "ByteDance/Hyper-SD") or ("H1T/TCD-SD" in lora_model.upper()):
+        elif ((lora_model == "ByteDance/Hyper-SD") or ("H1T/TCD-SD" in lora_model.upper())) and not is_sd3(model):
             return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=4), guidance_scale_img2img.update(value=0.0), sampler_img2img.update(value="TCD")
         elif (lora_model == "openskyml/lcm-lora-sdxl-turbo"):
             return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=4), guidance_scale_img2img.update(value=0.0), sampler_img2img.update(value="LCM")
@@ -996,6 +996,8 @@ def change_lora_model_img2img(model, lora_model, prompt, steps, cfg_scale, sampl
             return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=6), guidance_scale_img2img.update(value=3.0), sampler_img2img.update(value="DPM++ SDE")
         elif (lora_model == "mann-e/Mann-E_Turbo"):
             return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=6), guidance_scale_img2img.update(value=3.0), sampler_img2img.update(value="DPM++ SDE Karras")
+        elif (lora_model == "ByteDance/Hyper-SD") and is_sd3(model):
+            return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=4), guidance_scale_img2img.update(value=3.0), sampler_img2img.update(value="Flow Match Euler")
     else:
         if ((biniou_internal_previous_model_img2img == "") and (biniou_internal_previous_steps_img2img == "") and (biniou_internal_previous_cfg_img2img == "") and (biniou_internal_previous_sampler_img2img == "")):
             return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(), guidance_scale_img2img.update(), sampler_img2img.update()
@@ -1620,7 +1622,7 @@ def change_lora_model_controlnet(model, lora_model, prompt, steps, cfg_scale, sa
         biniou_internal_previous_sampler_controlnet = sampler
         if (lora_model == "ByteDance/SDXL-Lightning") or (lora_model == "GraydientPlatformAPI/lightning-faster-lora"):
             return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=4), guidance_scale_controlnet.update(value=0.0), sampler_controlnet.update(value="LCM")
-        elif (lora_model == "ByteDance/Hyper-SD") or ("H1T/TCD-SD" in lora_model.upper()):
+        elif ((lora_model == "ByteDance/Hyper-SD") or ("H1T/TCD-SD" in lora_model.upper())) and not is_sd3(model):
             return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=2), guidance_scale_controlnet.update(value=0.0), sampler_controlnet.update(value="TCD")
         elif (lora_model == "openskyml/lcm-lora-sdxl-turbo"):
             return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=4), guidance_scale_controlnet.update(value=0.0), sampler_controlnet.update(value="LCM")
@@ -1636,6 +1638,8 @@ def change_lora_model_controlnet(model, lora_model, prompt, steps, cfg_scale, sa
             return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=6), guidance_scale_controlnet.update(value=3.0), sampler_controlnet.update(value="DPM++ SDE")
         elif (lora_model == "mann-e/Mann-E_Turbo"):
             return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=6), guidance_scale_controlnet.update(value=3.0), sampler_controlnet.update(value="DPM++ SDE Karras")
+        elif (lora_model == "ByteDance/Hyper-SD") and is_sd3(model):
+            return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=4), guidance_scale_controlnet.update(value=3.0), sampler_controlnet.update(value="Flow Match Euler")
     else:
         if ((biniou_internal_previous_model_controlnet == "") and (biniou_internal_previous_steps_controlnet == "") and (biniou_internal_previous_cfg_controlnet == "") and (biniou_internal_previous_sampler_controlnet == "")):
             return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(), guidance_scale_controlnet.update(), sampler_controlnet.update()
