@@ -17,6 +17,14 @@
 
 ## Updates
 
+  * 🆕 **2024-09-21** : 🔥 ***This week's updates*** 🔥 >
+    - Support for High-end Chatbot model [bartowski/Mistral-Small-Instruct-2409-GGUF](https://hf.co/bartowski/Mistral-Small-Instruct-2409-GGUF).
+    - Support for SDXL Fast models [stablediffusionapi/dream-diffusion-lightning](https://hf.co/stablediffusionapi/dream-diffusion-lightning), [John6666/comradeship-xl-v9a-spo-dpo-flash-sdxl](https://hf.co/John6666/comradeship-xl-v9a-spo-dpo-flash-sdxl) and SDXL anime model [GraydientPlatformAPI/sanae-xl](https://hf.co/GraydientPlatformAPI/sanae-xl) to Stable Diffusion-based module.
+    - Support for SD3 Fast LoRA model [ByteDance/Hyper-SD](https://hf.co/ByteDance/Hyper-SD). You can now generate images with SD3 using only 4 steps insetad of 20 !
+    - Support for SDXL LoRA model [GraydientPlatformAPI/spiderman-sdxl](https://hf.co/GraydientPlatformAPI/spiderman-sdxl)
+    - Add support for multiple LoRAs (up to 5) to LCM module. All eligibles modules can now use multiple LoRAs
+    - Bugfix in multi LoRAs for incompatible LoRA models.
+
   * 🆕 **2024-09-14** : 🔥 ***This week's updates*** 🔥 >
     - Support for Chatbot models [mradermacher/reflection-llama-3.1-8B-Solshine-Full-GGUF](https://hf.co/mradermacher/reflection-llama-3.1-8B-Solshine-Full-GGUF) and [bartowski/Nemotron-Mini-4B-Instruct-GGUF](https://hf.co/bartowski/Nemotron-Mini-4B-Instruct-GGUF) to Chatbot module.
     - Support for SDXL model [misri/juggernautXL_juggXIByRundiffusion](https://hf.co/misri/juggernautXL_juggXIByRundiffusion) to Stable Diffusion-based module.
@@ -42,13 +50,6 @@
     - Add support for SDXL LoRA models [goofyai/disney_style_xl](https://hf.co/goofyai/disney_style_xl), [goofyai/cyborg_style_xl](https://hf.co/goofyai/cyborg_style_xl) and [goofyai/Leonardo_Ai_Style_Illustration](https://hf.co/goofyai/Leonardo_Ai_Style_Illustration) to Stable Diffusion-based module.
     - Add support for custom install path in install_win.cmd. 
     - Bugfixes and typofix to various modules : thanks to [@trolley813](https://github.com/trolley813), [@vincent0408](https://github.com/vincent0408) and [@eltociear](https://github.com/eltociear).
-
-  * 🆕 **2024-08-24** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for [mlabonne/Hermes-3-Llama-3.1-8B-lorablated-GGUF](https://hf.co/mlabonne/Hermes-3-Llama-3.1-8B-lorablated-GGUF), [bartowski/2B_or_not_2B-GGUF](https://hf.co/bartowski/2B_or_not_2B-GGUF), [mradermacher/Bio-Medical-Llama-3.1-8B-GGUF](https://hf.co/mradermacher/Bio-Medical-Llama-3.1-8B-GGUF) and [bartowski/Phi-3.5-mini-instruct-GGUF](https://hf.co/bartowski/Phi-3.5-mini-instruct-GGUF) to Chatbot module.
-    - Add support for ControlNet model [brad-twinkl/controlnet-union-sdxl-1.0-promax](https://hf.co/brad-twinkl/controlnet-union-sdxl-1.0-promax) to ControlNet module.
-    - Add support for fast SDXL Models [Lykon/dreamshaper-xl-lightning](https://hf.co/Lykon/dreamshaper-xl-lightning) to Stable Diffusion-based module.
-    - Add support for SD 1.5 LoRA Model [artificialguybr/icons-redmond-1-5v-app-icons-lora-for-sd-liberteredmond-sd-1-5](https://hf.co/artificialguybr/icons-redmond-1-5v-app-icons-lora-for-sd-liberteredmond-sd-1-5) and SDXL LoRA models [DoctorDiffusion/doctor-diffusion-s-tarot-card-crafter](https://hf.co/DoctorDiffusion/doctor-diffusion-s-tarot-card-crafter) and [artificialguybr/IconsRedmond-IconsLoraForSDXL](https://hf.co/artificialguybr/IconsRedmond-IconsLoraForSDXL) to Stable Diffusion-based module.
-    - Bugfix for ControlNet module.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
