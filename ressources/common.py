@@ -1766,6 +1766,7 @@ seed_img2shape.value = {seed_img2shape}"
 
 
 def is_fast_lora(model):
+    model = model_cleaner_sd(model)
     if (\
 (model == "ByteDance/SDXL-Lightning") or \
 (model == "GraydientPlatformAPI/lightning-faster-lora") or \
@@ -1786,6 +1787,7 @@ def is_fast_lora(model):
     return is_fast_lora_value
 
 def is_fp16(model):
+    model = model_cleaner_sd(model)
     if (\
 (model == "yodayo-ai/clandestine-xl-1.0")\
 ):
@@ -1795,6 +1797,7 @@ def is_fp16(model):
     return is_fp16_value
 
 def is_bin(model):
+    model = model_cleaner_sd(model)
     if (\
 ("dataautogpt3/ProteusV0.4" in model) or \
 (model == "RunDiffusion/Juggernaut-XL-Lightning") or \
@@ -1809,6 +1812,7 @@ def is_bin(model):
     return is_bin_value
 
 def is_sdxl(model):
+    model = model_cleaner_sd(model)
     if (\
 ("XL" in model.upper()) or \
 ("LIGHTNING" in model.upper()) or \
@@ -1835,6 +1839,7 @@ def is_sdxl(model):
     return is_sdxl_value
 
 def is_sd3(model):
+    model = model_cleaner_sd(model)
     if (\
 (model == "v2ray/stable-diffusion-3-medium-diffusers") or \
 (model == "ptx0/sd3-reality-mix")\
@@ -1845,6 +1850,7 @@ def is_sd3(model):
     return is_sd3_value
 
 def is_noloras(model):
+    model = model_cleaner_sd(model)
     if (\
 ("IDKIRO/SDXS-512" in model.upper()) or \
 (model == "stabilityai/sd-turbo") or \
@@ -1887,7 +1893,11 @@ def model_cleaner_llamacpp(model):
 
 def model_cleaner_lora(model):
     model_replacement = {
-        "-[ 👍 🚀 Fast LoRA ]-": "ByteDance/SDXL-Lightning",
+        "-[ 👍 🚀 Fast SD15 LoRA ]-": "ByteDance/Hyper-SD",
+        "-[ 👍 🚀 Fast SDXL LoRA ]-": "ByteDance/SDXL-Lightning",
+        "-[ 👍 🚀 Fast SD3 LoRA ]-": "ByteDance/Hyper-SD",
+        "-[ 👍 SD15 LoRAs ]-": "Kvikontent/midjourney-v6",
+        "-[ 👏 🐢 SD3 LoRAs ]-": "adbrasi/jujutsuKaisen-style-sd3",
         "-[ 👏 🔎 Enhancement ]-": "KingNish/Better-SDXL-Lora",
         "-[ 👌 🎨 Style ]-": "goofyai/3d_render_style_xl",
         "-[ 👌 🪧 Posters ]-": "Norod78/SDXL-Caricaturized-Lora",
@@ -1956,7 +1966,7 @@ def lora_model_list(model, *args):
 #            "Norod78/SDXL-Caricaturized-Lora":("SDXL-Caricaturized-Lora.safetensors", "Caricaturized"),
 #            "Norod78/SDXL-StickerSheet-Lora":("SDXL-StickerSheet-Lora.safetensors", "StickerSheet"),
 
-            "-[ 👍 🚀 Fast LoRA ]-":("sdxl_lightning_4step_lora.safetensors", ""),
+            "-[ 👍 🚀 Fast SDXL LoRA ]-":("sdxl_lightning_4step_lora.safetensors", ""),
             "ByteDance/SDXL-Lightning":("sdxl_lightning_4step_lora.safetensors", ""),
             "tianweiy/DMD2":("dmd2_sdxl_4step_lora.safetensors", ""),
             "wangfuyun/PCM_Weights":("sdxl/pcm_sdxl_lcmlike_lora_converted.safetensors", ""),
@@ -2019,47 +2029,56 @@ def lora_model_list(model, *args):
             "Norod78/SDXL-simpstyle-Lora-v2":("SDXL-Simpstyle-Lora-v2-r16.safetensors", "simpstyle"),
             "ProomptEngineer/pe-old-school-cartoon-style":("PE_OldCartoonStyle.safetensors", "old school cartoon style"),
             "Pclanglais/Mickey-1928":("pytorch_lora_weights.safetensors", "Mickey|Minnie|Pete"),
+            "-[ 🏠 Local models ]-":("", ""),
         }
     elif is_sd3(model):
         model_path_lora = model_path_lora_sd3
         model_list_lora_builtin_fast = {
+            "-[ 👍 🚀 Fast SD3 LoRA ]-":("Hyper-SD3-4steps-CFG-lora.safetensors", ""),
 #            "jasperai/flash-sd3":("adapter_model.safetensors", ""),
             "ByteDance/Hyper-SD":("Hyper-SD3-4steps-CFG-lora.safetensors", ""),
+            "":("", ""),
         }
         model_list_lora_builtin = {
+            "-[ 👏 🐢 SD3 LoRAs ]-":("pytorch_lora_weights.safetensors", "anime in jks style"),
             "adbrasi/jujutsuKaisen-style-sd3":("pytorch_lora_weights.safetensors", "anime in jks style"),
             "linoyts/Yarn_art_SD3_LoRA":("pytorch_lora_weights.safetensors", "yarn art style"),
             "gdvstd/dessin-style-sketch-sd3-lora":("pytorch_lora_weights.safetensors", "sks sketch"),
 #            "darknoon/symbols-sd3-lora":("pytorch_lora_weights.safetensors", "in the style of SF"),
+            "-[ 🏠 Local models ]-":("", ""),
     }
     else :        
         model_path_lora = model_path_lora_sd
         model_list_lora_builtin_fast = {
+            "-[ 👍 🚀 Fast SD15 LoRA ]-":("Hyper-SD15-1step-lora.safetensors", ""),
             "ByteDance/Hyper-SD":("Hyper-SD15-1step-lora.safetensors", ""),
             "h1t/TCD-SD15-LoRA":("pytorch_lora_weights.safetensors", ""),
             "wangfuyun/PCM_Weights":("sd15/pcm_sd15_lcmlike_lora_converted.safetensors", ""),
             "jasperai/flash-sd":("pytorch_lora_weights.safetensors", ""),
         }
         model_list_lora_builtin = {
-            "artificialguybr/icons-redmond-1-5v-app-icons-lora-for-sd-liberteredmond-sd-1-5":("IconsRedmond15V-Icons.safetensors", "icons, ios icon app, icons app"),
+            "-[ 👍 SD15 LoRAs ]-":("mj6-10.safetensors", ""),
             "Kvikontent/midjourney-v6":("mj6-10.safetensors", ""),
+            "artificialguybr/icons-redmond-1-5v-app-icons-lora-for-sd-liberteredmond-sd-1-5":("IconsRedmond15V-Icons.safetensors", "icons, ios icon app, icons app"),
             "Norod78/SD15-IllusionDiffusionPattern-LoRA":("SD15-IllusionDiffusionPattern-LoRA.safetensors","IllusionDiffusionPattern"),
+            "-[ 🏠 Local models ]-":("", ""),
         }
 
     os.makedirs(model_path_lora, exist_ok=True)
     model_list_lora = {
         "":("", ""),
     }
-    
+    model_list_lora_local = {}
     for filename in os.listdir(model_path_lora):
         f = os.path.join(model_path_lora, filename)
         if os.path.isfile(f) and filename.endswith('.safetensors') :
             final_f = {f:(f.split("/")[-1], "")}
-            model_list_lora.update(final_f)
+            model_list_lora_local.update(final_f)
 
     if secondary_lora == False:
         model_list_lora.update(model_list_lora_builtin_fast)
     model_list_lora.update(model_list_lora_builtin)
+    model_list_lora.update(model_list_lora_local)
 
     return model_list_lora
 
@@ -2083,12 +2102,13 @@ def txtinv_list(model):
         "":("", ""),
     }
 
+    model_list_txtinv_local = {}
     for filename in os.listdir(model_path_txtinv):
         f = os.path.join(model_path_txtinv, filename)
         if os.path.isfile(f) and filename.endswith('.safetensors'):
             final_f = {f:(f.split("/")[-1], "")}
-            model_list_txtinv.update(final_f)
+            model_list_txtinv_local.update(final_f)
 
     model_list_txtinv.update(model_list_txtinv_builtin)
+    model_list_txtinv.update(model_list_txtinv_local)
     return model_list_txtinv
-
