@@ -1974,7 +1974,8 @@ def lora_model_list(model, *args):
             "sd-community/sdxl-flash-lora":("sdxl-flash-lora.safetensors", "sdxl-flash-lora:0.55"),
             "jasperai/flash-sdxl":("pytorch_lora_weights.safetensors", ""),
             "openskyml/lcm-lora-sdxl-turbo":("lcm-lora-sdxl-turbo.safetensors", ""),
-            "ByteDance/Hyper-SD":("Hyper-SDXL-1step-lora.safetensors", ""),
+            "ByteDance/Hyper-SD":("Hyper-SDXL-2steps-lora.safetensors", ""),
+#            "ByteDance/Hyper-SD":("Hyper-SDXL-1step-lora.safetensors", ""),
             "h1t/TCD-SDXL-LoRA":("pytorch_lora_weights.safetensors", ""),
             "GraydientPlatformAPI/lightning-faster-lora":("PAseer-SDXL-AcceleratorLighting.safetensors", ""),
         }
