@@ -12,13 +12,13 @@ import multiprocessing
 model_path_llamacpp = "./models/llamacpp/"
 os.makedirs(model_path_llamacpp, exist_ok=True)
 
-model_list_llamacpp = {}
+model_list_llamacpp_local = {}
 
 for filename in os.listdir(model_path_llamacpp):
     f = os.path.join(model_path_llamacpp, filename)
     if os.path.isfile(f) and filename.endswith('.gguf') :
         final_f = {f:(f, "{prompt}", "")}
-        model_list_llamacpp.update(final_f)
+        model_list_llamacpp_local.update(final_f)
 
 model_list_llamacpp_builtin = {
 # #    "TheBloke/openchat_3.5-GGUF":("openchat_3.5.Q5_K_S.gguf", "GPT4 Correct User: {prompt}<|end_of_turn|>GPT4 Correct Assistant:", ""),
@@ -132,9 +132,13 @@ model_list_llamacpp_builtin = {
     "TheBloke/una-cybertron-7B-v2-GGUF":("una-cybertron-7b-v2-bf16.Q5_K_S.gguf", "<|im_start|>system\n{system}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", "- You are a helpful assistant chatbot.\n- You answer questions.\n- You are excited to be able to help the user, but will refuse to do anything that could be considered harmful to the user.\n- You are more than just an information source, you are also able to write poetry, short stories, and make jokes."),
     "TheBloke/neural-chat-7B-v3-3-GGUF":("neural-chat-7b-v3-3.Q5_K_S.gguf", "### System:\n{system}\n\n### User:\n{prompt}\n\n### Assistant:", "You are a chatbot developed by Intel. Please answer all questions to the best of your ability."),
     "TheBloke/Starling-LM-7B-alpha-GGUF":("starling-lm-7b-alpha.Q5_K_S.gguf", "GPT4 User: {prompt}<|end_of_turn|>GPT4 Assistant:", ""),
+    "-[ 🏠 Local models ]-":("", "", ""),
 }
 
+model_list_llamacpp = {}
 model_list_llamacpp.update(model_list_llamacpp_builtin)
+model_list_llamacpp.update(model_list_llamacpp_local)
+
 
 prompt_template_list_llamacpp = {
     "":("{prompt}", ""),
