@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2024-09-22** : 🔥 ***Enhancement of models lists for some modules*** 🔥 > Handling of locals models (manually downloaded .safetensors and .gguf models) is now modified for Stable Diffusion-based modules, Chatbot and LoRAs models. These models are now listed at the bottom of models lists, in the "Local models" category, instead of being at the top of these lists.
+
   * 🆕 **2024-09-21** : 🔥 ***This week's updates*** 🔥 >
     - Support for High-end Chatbot model [bartowski/Mistral-Small-Instruct-2409-GGUF](https://hf.co/bartowski/Mistral-Small-Instruct-2409-GGUF).
     - Support for SDXL Fast models [stablediffusionapi/dream-diffusion-lightning](https://hf.co/stablediffusionapi/dream-diffusion-lightning), [John6666/comradeship-xl-v9a-spo-dpo-flash-sdxl](https://hf.co/John6666/comradeship-xl-v9a-spo-dpo-flash-sdxl) and SDXL anime model [GraydientPlatformAPI/sanae-xl](https://hf.co/GraydientPlatformAPI/sanae-xl) to Stable Diffusion-based module.
