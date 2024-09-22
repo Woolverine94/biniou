@@ -20,12 +20,12 @@ device_controlnet = torch.device(device_label_controlnet)
 # Gestion des modèles
 model_path_controlnet = "./models/Stable_Diffusion/"
 os.makedirs(model_path_controlnet, exist_ok=True)
-model_list_controlnet = []
+model_list_controlnet_local = []
 
 for filename in os.listdir(model_path_controlnet):
     f = os.path.join(model_path_controlnet, filename)
     if os.path.isfile(f) and (filename.endswith('.ckpt') or filename.endswith('.safetensors')):
-        model_list_controlnet.append(f)
+        model_list_controlnet_local.append(f)
 
 model_list_controlnet_builtin = [
 #     "SG161222/Realistic_Vision_V3.0_VAE",
@@ -124,10 +124,13 @@ model_list_controlnet_builtin = [
     "-[ 👏 🐢 SD3 ]-",
     "v2ray/stable-diffusion-3-medium-diffusers",
     "ptx0/sd3-reality-mix",
+    "-[ 🏠 Local models ]-",
 ]
 
-for k in range(len(model_list_controlnet_builtin)):
-    model_list_controlnet.append(model_list_controlnet_builtin[k])
+model_list_controlnet = model_list_controlnet_builtin
+
+for k in range(len(model_list_controlnet_local)):
+    model_list_controlnet.append(model_list_controlnet_local[k])
 
 model_path_base_controlnet = "./models/controlnet"
 os.makedirs(model_path_base_controlnet, exist_ok=True)

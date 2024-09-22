@@ -20,12 +20,12 @@ device_img2img = torch.device(device_label_img2img)
 model_path_img2img = "./models/Stable_Diffusion/"
 os.makedirs(model_path_img2img, exist_ok=True)
 
-model_list_img2img = []
+model_list_img2img_local = []
 
 for filename in os.listdir(model_path_img2img):
     f = os.path.join(model_path_img2img, filename)
     if os.path.isfile(f) and (filename.endswith('.ckpt') or filename.endswith('.safetensors')):
-        model_list_img2img.append(f)
+        model_list_img2img_local.append(f)
 
 model_list_img2img_builtin = [
 #    "SG161222/Realistic_Vision_V3.0_VAE",
@@ -134,10 +134,13 @@ model_list_img2img_builtin = [
     "-[ 👏 🐢 SD3 ]-",
     "v2ray/stable-diffusion-3-medium-diffusers",
     "ptx0/sd3-reality-mix",
+    "-[ 🏠 Local models ]-",
 ]
 
-for k in range(len(model_list_img2img_builtin)):
-    model_list_img2img.append(model_list_img2img_builtin[k])
+model_list_img2img = model_list_img2img_builtin
+
+for k in range(len(model_list_img2img_local)):
+    model_list_img2img.append(model_list_img2img_local[k])
 
 # Bouton Cancel
 stop_img2img = False

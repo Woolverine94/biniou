@@ -23,12 +23,12 @@ model_path_ipa_img2img_ip = "./models/Ip-Adapters"
 os.makedirs(model_path_img2img_ip, exist_ok=True)
 os.makedirs(model_path_ipa_img2img_ip, exist_ok=True)
 
-model_list_img2img_ip = []
+model_list_img2img_ip_local = []
 
 for filename in os.listdir(model_path_img2img_ip):
     f = os.path.join(model_path_img2img_ip, filename)
     if os.path.isfile(f) and (filename.endswith('.ckpt') or filename.endswith('.safetensors')):
-        model_list_img2img_ip.append(f)
+        model_list_img2img_ip_local.append(f)
 
 model_list_img2img_ip_builtin = [
 #     "SG161222/Realistic_Vision_V3.0_VAE",
@@ -122,10 +122,13 @@ model_list_img2img_ip_builtin = [
     "yodayo-ai/clandestine-xl-1.0",
     "stablediffusionapi/anime-journey-v2",
     "aipicasso/emi-2",
+    "-[ 🏠 Local models ]-",
 ]
 
-for k in range(len(model_list_img2img_ip_builtin)):
-    model_list_img2img_ip.append(model_list_img2img_ip_builtin[k])
+model_list_img2img_ip = model_list_img2img_ip_builtin
+
+for k in range(len(model_list_img2img_ip_local)):
+    model_list_img2img_ip.append(model_list_img2img_ip_local[k])
 
 # Bouton Cancel
 stop_img2img_ip = False
