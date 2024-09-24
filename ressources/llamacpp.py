@@ -105,6 +105,7 @@ model_list_llamacpp_builtin = {
     "-[ 👏 🐢 High-end ]-":("Mistral-Nemo-Instruct-2407-Q5_K_M.gguf", "<s>[INST] {prompt}[/INST] </s>", ""),
     "bartowski/Mistral-Nemo-Instruct-2407-GGUF":("Mistral-Nemo-Instruct-2407-Q5_K_M.gguf", "<s>[INST] {prompt}[/INST] </s>", ""),
     "bartowski/Mistral-Small-Instruct-2409-GGUF":("Mistral-Small-Instruct-2409-Q5_K_M.gguf", "<s>[INST] {prompt}[/INST]", ""),
+    "bartowski/Qwen2.5-14B-Instruct-GGUF":("Qwen2.5-14B-Instruct-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "cognitivecomputations/dolphin-2.9.3-mistral-nemo-12b-gguf":("dolphin-2.9.3-mistral-nemo-12b.Q5_K_M.gguf", "<|im_start|>system\n{system}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "TheBloke/mixtralnt-4x7b-test-GGUF":("mixtralnt-4x7b-test.Q5_K_M.gguf", "{prompt}", ""),
     "TheBloke/Mixtral_7Bx2_MoE-GGUF":("mixtral_7bx2_moe.Q5_K_M.gguf", "{prompt}", ""),
