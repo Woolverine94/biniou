@@ -107,6 +107,7 @@ model_list_txt2img_sd_builtin = [
     "dataautogpt3/ProteusV0.5",
     "dataautogpt3/PrometheusV1",
     "dataautogpt3/OpenDalleV1.1",
+    "Chan-Y/Stable-Flash-Lightning",
     "segmind/SSD-1B",
     "segmind/Segmind-Vega",
     "playgroundai/playground-v2-512px-base",

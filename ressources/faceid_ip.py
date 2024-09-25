@@ -109,6 +109,7 @@ model_list_faceid_ip_builtin = [
     "GraydientPlatformAPI/flashback-xl",
     "dataautogpt3/PrometheusV1",
     "SG161222/RealVisXL_V5.0",
+    "Chan-Y/Stable-Flash-Lightning",
     "playgroundai/playground-v2-512px-base",
     "playgroundai/playground-v2-1024px-aesthetic",
     "playgroundai/playground-v2.5-1024px-aesthetic",
