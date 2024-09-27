@@ -17,7 +17,7 @@
 
 ## Updates
 
-  * 🆕 **2024-09-21** : 🔥 ***This week's updates*** 🔥 >
+  * 🆕 **2024-09-28** : 🔥 ***This week's updates*** 🔥 >
     - Support for Chatbot Code model [bartowski/Qwen2.5-Coder-7B-Instruct-GGUF](https://hf.co/bartowski/Qwen2.5-Coder-7B-Instruct-GGUF), High-end model [bartowski/Qwen2.5-14B-Instruct-GGUF](https://hf.co/bartowski/Qwen2.5-14B-Instruct-GGUF), and Tiny model [bartowski/Llama-3.2-3B-Instruct-GGUF](https://hf.co/bartowski/Llama-3.2-3B-Instruct-GGUF).
     - Support for SDXL model [Chan-Y/Stable-Flash-Lightning](https://hf.co/Chan-Y/Stable-Flash-Lightning) to Stable Diffusion-based modules.
     - Support for SD 1.5 model [digiplay/PerfectDeliberate_v5](https://hf.co/digiplay/PerfectDeliberate_v5) to Stable Diffusion-based modules.
