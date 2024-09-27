@@ -79,6 +79,7 @@ model_list_img2img_builtin = [
     "digiplay/AbsoluteReality_v1.8.1",
     "digiplay/majicMIX_realistic_v7",
     "SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep",
+    "digiplay/PerfectDeliberate_v5",
     "runwayml/stable-diffusion-v1-5",
     "-[ 👍 🚀 Fast SD15 ]-",
     "IDKiro/sdxs-512-0.9",
