@@ -17,6 +17,12 @@
 
 ## Updates
 
+  * 🆕 **2024-09-21** : 🔥 ***This week's updates*** 🔥 >
+    - Support for Chatbot Code model [bartowski/Qwen2.5-Coder-7B-Instruct-GGUF](https://hf.co/bartowski/Qwen2.5-Coder-7B-Instruct-GGUF), High-end model [bartowski/Qwen2.5-14B-Instruct-GGUF](https://hf.co/bartowski/Qwen2.5-14B-Instruct-GGUF), and Tiny model [bartowski/Llama-3.2-3B-Instruct-GGUF](https://hf.co/bartowski/Llama-3.2-3B-Instruct-GGUF).
+    - Support for SDXL model [Chan-Y/Stable-Flash-Lightning](https://hf.co/Chan-Y/Stable-Flash-Lightning) to Stable Diffusion-based modules.
+    - Support for SD 1.5 model [digiplay/PerfectDeliberate_v5](https://hf.co/digiplay/PerfectDeliberate_v5) to Stable Diffusion-based modules.
+    - Change of default SDXL LoRA model variant for [ByteDance/Hyper-SD](https://hf.co/ByteDance/Hyper-SD).
+
   * 🆕 **2024-09-22** : 🔥 ***Enhancement of models lists for some modules*** 🔥 > Handling of locals models (manually downloaded .safetensors and .gguf models) is now modified for Stable Diffusion-based modules, Chatbot and LoRAs models. These models are now listed at the bottom of models lists, in the "Local models" category, instead of being at the top of these lists.
 
   * 🆕 **2024-09-21** : 🔥 ***This week's updates*** 🔥 >
@@ -36,22 +42,6 @@
   * 🆕 **2024-09-08** : 🔥 ***New Windows installer and Multi-LoRA for Photobooth module*** 🔥 >
     - Thanks to the contributions of [@natlamir](https://github.com/natlamir), Windows users now have access to a faster and more reliable Windows installer. It works both for the executable and .cmd installers. 
     - Multi-LoRAs models are now supported for Photobooth module. You can now add up to 5 LoRAs models to your generation settings.
-
-  * 🆕 **2024-09-07** : 🔥 ***This week's updates*** 🔥 >
-    - Update of Tiny model [bartowski/Phi-3.5-mini-instruct-GGUF](https://hf.co/bartowski/Phi-3.5-mini-instruct-GGUF) to [Phi-3.5-mini-instruct_Uncensored-GGUF](https://hf.co/Phi-3.5-mini-instruct_Uncensored-GGUF) for Chatbot module.
-    - Update for SDXL family model RealvisXL to [SG161222/RealVisXL_V5.0](https://hf.co/SG161222/RealVisXL_V5.0) and fast SDXL Model [SG161222/RealVisXL_V5.0_Lightning](https://hf.co/SG161222/RealVisXL_V5.0_Lightning) to Stable Diffusion-based module.
-    - Add support for SDXL model [GraydientPlatformAPI/flashback-xl](https://hf.co/GraydientPlatformAPI/flashback-xl) to Stable Diffusion-based module.
-    - Add support for Fast SDXL LoRA models [GraydientPlatformAPI/lightning-faster-lora](https://hf.co/GraydientPlatformAPI/lightning-faster-lora) to Stable Diffusion-based module.
-    - Add support for multiple LoRA (up to 5 !) in the Stable Diffusion module. It will be extended to others eligibles modules after further testing. Please note that only the first LoRA model list display Fast LoRA models, as there's no reason to use several of them.
-    - Bugfixes for CUDA optimization in Chatbot and llava modules thanks to [@natlamir](https://github.com/natlamir).
-    - Workaround for installation of biniou on Apple silicon thanks to [@lepicodon](https://github.com/lepicodon).
-
-  * 🆕 **2024-08-31** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for [model bartowski/Llama-3.1-Storm-8B-GGUF](https://hf.co/bartowski/Llama-3.1-Storm-8B-GGUF) and [bartowski/xLAM-7b-r-GGUF](https://hf.co/bartowski/xLAM-7b-r-GGUF) to Chatbot module.
-    - Add support for SD 1.5 model [Yntec/VisionVision](https://hf.co/Yntec/VisionVision), SDXL anime model [stablediffusionapi/anime-journey-v2](https://hf.co/stablediffusionapi/anime-journey-v2) and fast SDXL Model [GraydientPlatformAPI/lustify-lightning](https://hf.co/GraydientPlatformAPI/lustify-lightning) to Stable Diffusion-based module.
-    - Add support for SDXL LoRA models [goofyai/disney_style_xl](https://hf.co/goofyai/disney_style_xl), [goofyai/cyborg_style_xl](https://hf.co/goofyai/cyborg_style_xl) and [goofyai/Leonardo_Ai_Style_Illustration](https://hf.co/goofyai/Leonardo_Ai_Style_Illustration) to Stable Diffusion-based module.
-    - Add support for custom install path in install_win.cmd. 
-    - Bugfixes and typofix to various modules : thanks to [@trolley813](https://github.com/trolley813), [@vincent0408](https://github.com/vincent0408) and [@eltociear](https://github.com/eltociear).
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
