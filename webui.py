@@ -1454,6 +1454,12 @@ def zip_download_file_pix2pix(content):
     savename = zipper(content)
     return savename, download_file_pix2pix.update(visible=True)
 
+def change_model_type_pix2pix(model_pix2pix):
+    if model_pix2pix == "diffusers/sdxl-instructpix2pix-768":
+        return sampler_pix2pix.update(value=list(SCHEDULER_MAPPING.keys())[0], interactive=True), width_pix2pix.update(), height_pix2pix.update(), guidance_scale_pix2pix.update(value=3.0), image_guidance_scale_pix2pix.update(value=1.5), num_inference_step_pix2pix.update(value=10)
+    else:
+        return sampler_pix2pix.update(value=list(SCHEDULER_MAPPING.keys())[0], interactive=True), width_pix2pix.update(), height_pix2pix.update(), guidance_scale_pix2pix.update(value=7.0), image_guidance_scale_pix2pix.update(value=1.5), num_inference_step_pix2pix.update(value=10)
+
 def hide_download_file_pix2pix():
     return download_file_pix2pix.update(visible=False)
 
@@ -5474,6 +5480,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 use_gfpgan_pix2pix = gr.Checkbox(value=biniou_global_gfpgan, label=biniou_lang_gfpgan_label, info=biniou_lang_gfpgan_info)
                             with gr.Column():
                                 tkme_pix2pix = gr.Slider(0.0, 1.0, step=0.01, value=biniou_global_tkme, label=biniou_lang_tkme_label, info=biniou_lang_tkme_info)
+                        model_pix2pix.change(fn=change_model_type_pix2pix, inputs=model_pix2pix, outputs=[sampler_pix2pix, width_pix2pix, height_pix2pix, guidance_scale_pix2pix, image_guidance_scale_pix2pix, num_inference_step_pix2pix])
                         with gr.Row():
                             with gr.Column():
                                 save_ini_btn_pix2pix = gr.Button(f"{biniou_lang_save_settings} 💾")
