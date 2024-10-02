@@ -103,6 +103,7 @@ model_list_txt2vid_ze = [
     "GraydientPlatformAPI/lustify-lightning",
     "John6666/comradeship-xl-v9a-spo-dpo-flash-sdxl",
     "stablediffusionapi/dream-diffusion-lightning",
+    "John6666/jib-mix-realistic-xl-v15-maximus-sdxl",
     "stabilityai/sdxl-turbo",
     "-[ 👌 🇯🇵 Anime SDXL ]-",
     "cagliostrolab/animagine-xl-3.1",

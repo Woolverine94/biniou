@@ -128,6 +128,7 @@ model_list_txt2img_sd_builtin = [
     "GraydientPlatformAPI/lustify-lightning",
     "John6666/comradeship-xl-v9a-spo-dpo-flash-sdxl",
     "stablediffusionapi/dream-diffusion-lightning",
+    "John6666/jib-mix-realistic-xl-v15-maximus-sdxl",
     "thibaud/sdxl_dpo_turbo",
     "stabilityai/sdxl-turbo",
     "-[ 👌 🇯🇵 Anime SDXL ]-",
