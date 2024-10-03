@@ -26,11 +26,13 @@ for filename in os.listdir(model_path_whisper):
 
 model_list_whisper_builtin = {
     "openai/whisper-tiny": "model.safetensors",
-    "openai/whisper-base": "model.safetensors",        
+    "openai/whisper-base": "model.safetensors",
     "openai/whisper-medium": "model.safetensors",
     "openai/whisper-large": "model.safetensors",
-    "openai/whisper-large-v3": "model.safetensors", 
-    "distil-whisper/distil-large-v2": "model.safetensors", 
+    "openai/whisper-large-v3": "model.safetensors",
+    "distil-whisper/distil-large-v2": "model.safetensors",
+    "distil-whisper/distil-large-v3": "model.safetensors",
+    "openai/whisper-large-v3-turbo": "model.safetensors",
 }
 
 model_list_whisper.update(model_list_whisper_builtin)
