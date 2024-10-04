@@ -2045,6 +2045,7 @@ def lora_model_list(model, *args):
             "adbrasi/jujutsuKaisen-style-sd3":("pytorch_lora_weights.safetensors", "anime in jks style"),
             "linoyts/Yarn_art_SD3_LoRA":("pytorch_lora_weights.safetensors", "yarn art style"),
             "gdvstd/dessin-style-sketch-sd3-lora":("pytorch_lora_weights.safetensors", "sks sketch"),
+            "nerijs/pixel-art-medium-128-v0.1":("pixel-art-medium-128-v0.1.safetensors", "pixel art style"),
 #            "darknoon/symbols-sd3-lora":("pytorch_lora_weights.safetensors", "in the style of SF"),
             "-[ 🏠 Local models ]-":("", ""),
     }
