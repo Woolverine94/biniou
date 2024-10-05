@@ -17,6 +17,13 @@
 
 ## Updates
 
+  * 🆕 **2024-10-05** : 🔥 ***This week's updates*** 🔥 >
+    - Support for Chatbot specialized model [bartowski/Llama-3.1-WhiteRabbitNeo-2-8B-GGUF](https://hf.co/bartowski/Llama-3.1-WhiteRabbitNeo-2-8B-GGUF), model [bartowski/OLMoE-1B-7B-0924-Instruct-GGUF](https://hf.co/bartowski/OLMoE-1B-7B-0924-Instruct-GGUF), and update of model [Orenguteng/Llama-3.1-8B-Lexi-Uncensored-V2-GGUF](https://hf.co/Orenguteng/Llama-3.1-8B-Lexi-Uncensored-V2-GGUF).
+    - Add support for SDXL model [OnomaAIResearch/Illustrious-xl-early-release-v0](https://hf.co/OnomaAIResearch/Illustrious-xl-early-release-v0) and fast SDXL model [John6666/jib-mix-realistic-xl-v15-maximus-sdxl](https://hf.co/John6666/jib-mix-realistic-xl-v15-maximus-sdxl) to Stable Diffusion-based modules.
+    - Add support for SDXL model [diffusers/sdxl-instructpix2pix-768](https://hf.co/diffusers/sdxl-instructpix2pix-768) to Instruct pix2pix module.
+    - Add support for Whisper models [distil-whisper/distil-large-v3](https://hf.co/distil-whisper/distil-large-v3) and [openai/whisper-large-v3-turbo](https://hf.co/openai/whisper-large-v3-turbo) to Whisper module.
+    - Support for SDXL LoRA model [nerijs/pixel-art-medium-128-v0.1](https://hf.co/nerijs/pixel-art-medium-128-v0.1).
+
   * 🆕 **2024-09-28** : 🔥 ***This week's updates*** 🔥 >
     - Support for Chatbot Code model [bartowski/Qwen2.5-Coder-7B-Instruct-GGUF](https://hf.co/bartowski/Qwen2.5-Coder-7B-Instruct-GGUF), High-end model [bartowski/Qwen2.5-14B-Instruct-GGUF](https://hf.co/bartowski/Qwen2.5-14B-Instruct-GGUF), and Tiny model [bartowski/Llama-3.2-3B-Instruct-GGUF](https://hf.co/bartowski/Llama-3.2-3B-Instruct-GGUF).
     - Support for SDXL model [Chan-Y/Stable-Flash-Lightning](https://hf.co/Chan-Y/Stable-Flash-Lightning) to Stable Diffusion-based modules.
@@ -38,10 +45,6 @@
     - Support for SDXL model [misri/juggernautXL_juggXIByRundiffusion](https://hf.co/misri/juggernautXL_juggXIByRundiffusion) to Stable Diffusion-based module.
     - Add support for multiple LoRAs (up to 5) to Img2img, IP-Adapter and ControlNet modules.
     - Bugfixes for metadatas in Photobooth module, incorret LoRA models cache dir location and immutable safety checker with local safetensors models in image modules.
-
-  * 🆕 **2024-09-08** : 🔥 ***New Windows installer and Multi-LoRA for Photobooth module*** 🔥 >
-    - Thanks to the contributions of [@natlamir](https://github.com/natlamir), Windows users now have access to a faster and more reliable Windows installer. It works both for the executable and .cmd installers. 
-    - Multi-LoRAs models are now supported for Photobooth module. You can now add up to 5 LoRAs models to your generation settings.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
