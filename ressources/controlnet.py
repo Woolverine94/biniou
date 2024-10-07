@@ -97,6 +97,7 @@ model_list_controlnet_builtin = [
     "dataautogpt3/PrometheusV1",
     "dataautogpt3/OpenDalleV1.1",
     "Chan-Y/Stable-Flash-Lightning",
+    "stablediffusionapi/protovision-xl-high-fidel",
     "segmind/SSD-1B",
     "segmind/Segmind-Vega",
     "playgroundai/playground-v2-512px-base",
