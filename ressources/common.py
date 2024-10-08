@@ -2026,6 +2026,7 @@ def lora_model_list(model, *args):
             "ostris/super-cereal-sdxl-lora":("cereal_box_sdxl_v1.safetensors", ""),
             "-[ 👌 🇯🇵 Anime ]-":("Studio Ghibli Style.safetensors", "Studio Ghibli Style - "),
             "KappaNeuro/studio-ghibli-style":("Studio Ghibli Style.safetensors", "Studio Ghibli Style - "),
+            "mnemic/MinionStyleXL-SDXL-LoRA":("MinionStyleXL.safetensors", "MinionStyle"),
             "Norod78/SDXL-JojosoStyle-Lora-v2":("SDXL-JojosoStyle-Lora-v2-r16.safetensors", "JojoSostyle"),
             "alvdansen/BandW-Manga":("BW-000014.safetensors", ""),
             "Norod78/SDXL-simpstyle-Lora-v2":("SDXL-Simpstyle-Lora-v2-r16.safetensors", "simpstyle"),
@@ -2064,6 +2065,7 @@ def lora_model_list(model, *args):
             "Kvikontent/midjourney-v6":("mj6-10.safetensors", ""),
             "artificialguybr/icons-redmond-1-5v-app-icons-lora-for-sd-liberteredmond-sd-1-5":("IconsRedmond15V-Icons.safetensors", "icons, ios icon app, icons app"),
             "Norod78/SD15-IllusionDiffusionPattern-LoRA":("SD15-IllusionDiffusionPattern-LoRA.safetensors","IllusionDiffusionPattern"),
+            "mnemic/MinionStyle-SD1.5-LoRA":("MinionStyle.safetensors", "MinionStyle"),
             "-[ 🏠 Local models ]-":("", ""),
         }
 
