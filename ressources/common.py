@@ -2024,6 +2024,7 @@ def lora_model_list(model, *args):
             "DoctorDiffusion/doctor-diffusion-s-xray-xl-lora":("DD-xray-v1.safetensors", "xray"),
             "ostris/ikea-instructions-lora-sdxl":("ikea_instructions_xl_v1_5.safetensors", ""),
             "ostris/super-cereal-sdxl-lora":("cereal_box_sdxl_v1.safetensors", ""),
+            "TheLastBen/Papercut_SDXL":("papercut.safetensors", "papercut - "),
             "-[ 👌 🇯🇵 Anime ]-":("Studio Ghibli Style.safetensors", "Studio Ghibli Style - "),
             "KappaNeuro/studio-ghibli-style":("Studio Ghibli Style.safetensors", "Studio Ghibli Style - "),
             "mnemic/MinionStyleXL-SDXL-LoRA":("MinionStyleXL.safetensors", "MinionStyle"),
