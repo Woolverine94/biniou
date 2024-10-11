@@ -121,6 +121,7 @@ model_list_controlnet_builtin = [
     "stabilityai/sdxl-turbo",
     "-[ 👌 🇯🇵 Anime SDXL ]-",
     "cagliostrolab/animagine-xl-3.1",
+    "GraydientPlatformAPI/geekpower-cellshade-xl",
     "OnomaAIResearch/Illustrious-xl-early-release-v0",
     "GraydientPlatformAPI/sanae-xl",
     "yodayo-ai/clandestine-xl-1.0",
