@@ -1,5 +1,5 @@
 gradio==3.50.2
-transformers
+transformers==4.44.2
 sentencepiece
 accelerate
 diffusers==0.30.0
