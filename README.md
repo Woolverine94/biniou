@@ -17,6 +17,13 @@
 
 ## Updates
 
+  * 🆕 **2024-10-12** : 🔥 ***This week's updates*** 🔥 >
+    - Introducing a new "Sliders" category in LoRA models lists, for both SDXL and SD 1.5. Also modifying LoRA weight sliders to support negatives values.
+    - Support for Chatbot model [bartowski/Tiger-Gemma-9B-v3-GGUF](https://hf.co/bartowski/Tiger-Gemma-9B-v3-GGUF).
+    - Add support for SDXL models [stablediffusionapi/protovision-xl-high-fidel](https://hf.co/stablediffusionapi/protovision-xl-high-fidel) and Anime SDXL model [GraydientPlatformAPI/geekpower-cellshade-xl](https://hf.co/GraydientPlatformAPI/geekpower-cellshade-xl) to Stable Diffusion-based modules.
+    - Add support for SDXL LoRA models [IcelosAI/Spacephoto_LORA_XL_Base](https://hf.co/IcelosAI/Spacephoto_LORA_XL_Base), [TheLastBen/Papercut_SDXL](https://hf.co/TheLastBen/Papercut_SDXL), [mnemic/MinionStyleXL-SDXL-LoRA](https://hf.co/mnemic/MinionStyleXL-SDXL-LoRA) and SD 1.5 LoRA model [mnemic/MinionStyle-SD1.5-LoRA](https://hf.co/mnemic/MinionStyle-SD1.5-LoRA).
+    - Bugfix for a critical error at startup introduced by the latest Transformers update.
+
   * 🆕 **2024-10-05** : 🔥 ***This week's updates*** 🔥 >
     - Support for Chatbot specialized model [bartowski/Llama-3.1-WhiteRabbitNeo-2-8B-GGUF](https://hf.co/bartowski/Llama-3.1-WhiteRabbitNeo-2-8B-GGUF), model [bartowski/OLMoE-1B-7B-0924-Instruct-GGUF](https://hf.co/bartowski/OLMoE-1B-7B-0924-Instruct-GGUF), and update of model [Orenguteng/Llama-3.1-8B-Lexi-Uncensored-V2-GGUF](https://hf.co/Orenguteng/Llama-3.1-8B-Lexi-Uncensored-V2-GGUF).
     - Add support for SDXL model [OnomaAIResearch/Illustrious-xl-early-release-v0](https://hf.co/OnomaAIResearch/Illustrious-xl-early-release-v0) and fast SDXL model [John6666/jib-mix-realistic-xl-v15-maximus-sdxl](https://hf.co/John6666/jib-mix-realistic-xl-v15-maximus-sdxl) to Stable Diffusion-based modules.
