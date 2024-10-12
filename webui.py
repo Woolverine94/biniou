@@ -3538,25 +3538,25 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Column():
                                     lora_model_txt2img_sd = gr.Dropdown(choices=list(lora_model_list(model_txt2img_sd.value).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info)
                                 with gr.Column():
-                                    lora_weight_txt2img_sd = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info)
+                                    lora_weight_txt2img_sd = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info)
                             with gr.Row():
                                 with gr.Column():
                                     lora_model2_txt2img_sd = gr.Dropdown(choices=list(lora_model_list(model_txt2img_sd.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight2_txt2img_sd = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight2_txt2img_sd = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                                 with gr.Column():
                                     lora_model3_txt2img_sd = gr.Dropdown(choices=list(lora_model_list(model_txt2img_sd.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight3_txt2img_sd = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight3_txt2img_sd = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                             with gr.Row():
                                 with gr.Column():
                                     lora_model4_txt2img_sd = gr.Dropdown(choices=list(lora_model_list(model_txt2img_sd.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight4_txt2img_sd = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight4_txt2img_sd = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                                 with gr.Column():
                                     lora_model5_txt2img_sd = gr.Dropdown(choices=list(lora_model_list(model_txt2img_sd.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight5_txt2img_sd = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight5_txt2img_sd = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                         with gr.Accordion(biniou_lang_textinv_label, open=True):
                             with gr.Row():
                                 with gr.Column():
@@ -4025,25 +4025,25 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Column():
                                     lora_model_txt2img_lcm = gr.Dropdown(choices=list(lora_model_list(model_txt2img_lcm.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info)
                                 with gr.Column():
-                                    lora_weight_txt2img_lcm = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info)
+                                    lora_weight_txt2img_lcm = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info)
                             with gr.Row():
                                 with gr.Column():
                                     lora_model2_txt2img_lcm = gr.Dropdown(choices=list(lora_model_list(model_txt2img_lcm.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight2_txt2img_lcm = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight2_txt2img_lcm = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                                 with gr.Column():
                                     lora_model3_txt2img_lcm = gr.Dropdown(choices=list(lora_model_list(model_txt2img_lcm.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight3_txt2img_lcm = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight3_txt2img_lcm = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                             with gr.Row():
                                 with gr.Column():
                                     lora_model4_txt2img_lcm = gr.Dropdown(choices=list(lora_model_list(model_txt2img_lcm.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight4_txt2img_lcm = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight4_txt2img_lcm = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                                 with gr.Column():
                                     lora_model5_txt2img_lcm = gr.Dropdown(choices=list(lora_model_list(model_txt2img_lcm.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight5_txt2img_lcm = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight5_txt2img_lcm = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                         with gr.Accordion(biniou_lang_textinv_label, open=True):
                             with gr.Row():
                                 with gr.Column():
@@ -4741,25 +4741,25 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Column():
                                     lora_model_img2img = gr.Dropdown(choices=list(lora_model_list(model_img2img.value).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info)
                                 with gr.Column():
-                                    lora_weight_img2img = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info)
+                                    lora_weight_img2img = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info)
                             with gr.Row():
                                 with gr.Column():
                                     lora_model2_img2img = gr.Dropdown(choices=list(lora_model_list(model_img2img.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight2_img2img = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight2_img2img = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                                 with gr.Column():
                                     lora_model3_img2img = gr.Dropdown(choices=list(lora_model_list(model_img2img.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight3_img2img = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight3_img2img = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                             with gr.Row():
                                 with gr.Column():
                                     lora_model4_img2img = gr.Dropdown(choices=list(lora_model_list(model_img2img.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight4_img2img = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight4_img2img = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                                 with gr.Column():
                                     lora_model5_img2img = gr.Dropdown(choices=list(lora_model_list(model_img2img.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight5_img2img = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight5_img2img = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                         with gr.Accordion(biniou_lang_textinv_label, open=True):
                             with gr.Row():
                                 with gr.Column():
@@ -5050,25 +5050,25 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Column():
                                     lora_model_img2img_ip = gr.Dropdown(choices=list(lora_model_list(model_img2img_ip.value).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info)
                                 with gr.Column():
-                                    lora_weight_img2img_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info)
+                                    lora_weight_img2img_ip = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info)
                             with gr.Row():
                                 with gr.Column():
                                     lora_model2_img2img_ip = gr.Dropdown(choices=list(lora_model_list(model_img2img_ip.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight2_img2img_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight2_img2img_ip = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                                 with gr.Column():
                                     lora_model3_img2img_ip = gr.Dropdown(choices=list(lora_model_list(model_img2img_ip.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight3_img2img_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight3_img2img_ip = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                             with gr.Row():
                                 with gr.Column():
                                     lora_model4_img2img_ip = gr.Dropdown(choices=list(lora_model_list(model_img2img_ip.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight4_img2img_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight4_img2img_ip = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                                 with gr.Column():
                                     lora_model5_img2img_ip = gr.Dropdown(choices=list(lora_model_list(model_img2img_ip.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight5_img2img_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight5_img2img_ip = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                         with gr.Accordion(biniou_lang_textinv_label, open=True):
                             with gr.Row():
                                 with gr.Column():
@@ -6646,25 +6646,25 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Column():
                                     lora_model_controlnet = gr.Dropdown(choices=list(lora_model_list(model_controlnet.value).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info)
                                 with gr.Column():
-                                    lora_weight_controlnet = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info)
+                                    lora_weight_controlnet = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info)
                             with gr.Row():
                                 with gr.Column():
                                     lora_model2_controlnet = gr.Dropdown(choices=list(lora_model_list(model_controlnet.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight2_controlnet = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight2_controlnet = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                                 with gr.Column():
                                     lora_model3_controlnet = gr.Dropdown(choices=list(lora_model_list(model_controlnet.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight3_controlnet = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight3_controlnet = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                             with gr.Row():
                                 with gr.Column():
                                     lora_model4_controlnet = gr.Dropdown(choices=list(lora_model_list(model_controlnet.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight4_controlnet = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight4_controlnet = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                                 with gr.Column():
                                     lora_model5_controlnet = gr.Dropdown(choices=list(lora_model_list(model_controlnet.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight5_controlnet = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight5_controlnet = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                         with gr.Accordion(biniou_lang_textinv_label, open=True):
                             with gr.Row():
                                 with gr.Column():
@@ -6982,25 +6982,25 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                                 with gr.Column():
                                     lora_model_faceid_ip = gr.Dropdown(choices=list(lora_model_list(model_faceid_ip.value).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info)
                                 with gr.Column():
-                                    lora_weight_faceid_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info)
+                                    lora_weight_faceid_ip = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info)
                             with gr.Row():
                                 with gr.Column():
                                     lora_model2_faceid_ip = gr.Dropdown(choices=list(lora_model_list(model_faceid_ip.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight2_faceid_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight2_faceid_ip = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                                 with gr.Column():
                                     lora_model3_faceid_ip = gr.Dropdown(choices=list(lora_model_list(model_faceid_ip.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight3_faceid_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight3_faceid_ip = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                             with gr.Row():
                                 with gr.Column():
                                     lora_model4_faceid_ip = gr.Dropdown(choices=list(lora_model_list(model_faceid_ip.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight4_faceid_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight4_faceid_ip = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
                                 with gr.Column():
                                     lora_model5_faceid_ip = gr.Dropdown(choices=list(lora_model_list(model_faceid_ip.value, True).keys()), value="", label=biniou_lang_lora_label, info=biniou_lang_lora_info, interactive=True)
                                 with gr.Column():
-                                    lora_weight5_faceid_ip = gr.Slider(0.0, 2.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
+                                    lora_weight5_faceid_ip = gr.Slider(-5.0, 5.0, step=0.01, value=1.0, label=biniou_lang_lora_weight_label, info=biniou_lang_lora_weight_info, interactive=True)
 
                         with gr.Accordion(biniou_lang_textinv_label, open=True):
                             with gr.Row():
