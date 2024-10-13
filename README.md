@@ -42,7 +42,7 @@
   * 🆕 **2024-09-21** : 🔥 ***This week's updates*** 🔥 >
     - Support for High-end Chatbot model [bartowski/Mistral-Small-Instruct-2409-GGUF](https://hf.co/bartowski/Mistral-Small-Instruct-2409-GGUF).
     - Support for SDXL Fast models [stablediffusionapi/dream-diffusion-lightning](https://hf.co/stablediffusionapi/dream-diffusion-lightning), [John6666/comradeship-xl-v9a-spo-dpo-flash-sdxl](https://hf.co/John6666/comradeship-xl-v9a-spo-dpo-flash-sdxl) and SDXL anime model [GraydientPlatformAPI/sanae-xl](https://hf.co/GraydientPlatformAPI/sanae-xl) to Stable Diffusion-based module.
-    - Support for SD3 Fast LoRA model [ByteDance/Hyper-SD](https://hf.co/ByteDance/Hyper-SD). You can now generate images with SD3 using only 4 steps insetad of 20 !
+    - Support for SD3 Fast LoRA model [ByteDance/Hyper-SD](https://hf.co/ByteDance/Hyper-SD). You can now generate images with SD3 using only 4 steps instead of 20 !
     - Support for SDXL LoRA model [GraydientPlatformAPI/spiderman-sdxl](https://hf.co/GraydientPlatformAPI/spiderman-sdxl)
     - Add support for multiple LoRAs (up to 5) to LCM module. All eligibles modules can now use multiple LoRAs
     - Bugfix in multi LoRAs for incompatible LoRA models.
@@ -51,7 +51,7 @@
     - Support for Chatbot models [mradermacher/reflection-llama-3.1-8B-Solshine-Full-GGUF](https://hf.co/mradermacher/reflection-llama-3.1-8B-Solshine-Full-GGUF) and [bartowski/Nemotron-Mini-4B-Instruct-GGUF](https://hf.co/bartowski/Nemotron-Mini-4B-Instruct-GGUF) to Chatbot module.
     - Support for SDXL model [misri/juggernautXL_juggXIByRundiffusion](https://hf.co/misri/juggernautXL_juggXIByRundiffusion) to Stable Diffusion-based module.
     - Add support for multiple LoRAs (up to 5) to Img2img, IP-Adapter and ControlNet modules.
-    - Bugfixes for metadatas in Photobooth module, incorret LoRA models cache dir location and immutable safety checker with local safetensors models in image modules.
+    - Bugfixes for metadatas in Photobooth module, incorrect LoRA models cache dir location and immutable safety checker with local safetensors models in image modules.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
@@ -158,7 +158,7 @@
     - for Windows : at least 30GB for installation without models.
     - for macOS : at least ??GB for installation without models.
   - Storage type : HDD
-  - Internet access (required only for installation and models download) : unlimited bandwith optical fiber internet access
+  - Internet access (required only for installation and models download) : unlimited bandwidth optical fiber internet access
 
 * **Recommended hardware :**
   - Massively multicore 64bit CPU (AMD64 architecture ONLY) and a GPU compatible with CUDA or ROCm
@@ -168,7 +168,7 @@
     - for Windows : around 200GB for installation including all defaults models.
     - for macOS : around ??GB for installation including all defaults models.
   - Storage type : SSD Nvme
-  - Internet access (required only for installation and models download) : unlimited bandwith optical fiber internet access
+  - Internet access (required only for installation and models download) : unlimited bandwidth optical fiber internet access
 
 * **Operating system :**
   - a 64 bit OS :
@@ -286,7 +286,7 @@ Proceed as follow :
 
 ⚠️ Homebrew install is ***theoretically*** compatible with macOS Intel, but has not been tested. Use at your own risk. Also note that biniou is currently incompatible with Apple silicon. Any feedback on this procedure through discussions or an issue ticket will be really appreciated. ⚠️
 
-⚠️ <u>Update 01/09/2024:</u> Thanks to [@lepicodon](https://github.com/lepicodon), there's a workaround for Apple Silicon's users : you can install biniou in a virtual machine using OrbStack. See [this comment](https://github.com/Woolverine94/biniou/issues/42#issuecomment-2323325835) for explainations. ⚠️ 
+⚠️ <u>Update 01/09/2024:</u> Thanks to [@lepicodon](https://github.com/lepicodon), there's a workaround for Apple Silicon's users : you can install biniou in a virtual machine using OrbStack. See [this comment](https://github.com/Woolverine94/biniou/issues/42#issuecomment-2323325835) for explanations. ⚠️ 
 
   1. **Install** [Homebrew](https://brew.sh/) for your operating system
  
@@ -357,7 +357,7 @@ biniou:latest
 
 ## CUDA support
 
-biniou is natively cpu-only, to ensure compatibility with a wide range of hardware, but you can easily activate CUDA support through Nvidia CUDA (if you have a functionnal CUDA 12.1 environment) or AMD ROCm (if you have a functionnal ROCm 5.6 environment) by selecting the type of optimization to activate (CPU, CUDA or ROCm for Linux), in the WebUI control module.
+biniou is natively cpu-only, to ensure compatibility with a wide range of hardware, but you can easily activate CUDA support through Nvidia CUDA (if you have a functional CUDA 12.1 environment) or AMD ROCm (if you have a functional ROCm 5.6 environment) by selecting the type of optimization to activate (CPU, CUDA or ROCm for Linux), in the WebUI control module.
 
 Currently, all modules except Chatbot, Llava and faceswap modules, could benefits from CUDA optimization.
 
@@ -415,7 +415,7 @@ You can also access biniou from any device (including smartphones) on the same L
 
 This application uses the following softwares and technologies :
 
-- [🤗 Huggingface](https://huggingface.co/) : Diffusers and Transformers libraries and almost all the generatives models.
+- [🤗 Huggingface](https://huggingface.co/) : Diffusers and Transformers libraries and almost all the generative models.
 - [Gradio](https://www.gradio.app/) : webUI
 - [llama-cpp-python](https://github.com/abetlen/llama-cpp-python) : python bindings for llama-cpp
 - [Llava](https://llava-vl.github.io/)
