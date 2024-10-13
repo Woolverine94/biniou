@@ -1988,6 +1988,7 @@ def lora_model_list(model, *args):
             "ostris/face-helper-sdxl-lora":("face_xl_v0_1.safetensors", ""),
             "-[ 👏 🎚️ Sliders SDXL ]-":("extremely detailed.safetensors", "extremely detailed"),
             "ntc-ai/SDXL-LoRA-slider.extremely-detailed":("extremely detailed.safetensors", "extremely detailed"),
+            "LyliaEngine/add-detail-xl":("add-detail-xl.safetensors", ""),
             "ostris/photorealistic-slider-sdxl-lora":("sdxl_photorealistic_slider_v1-0.safetensors", "more realistic"),
             "ntc-ai/SDXL-LoRA-slider.2000s-indie-comic-art-style":("2000s indie comic art style.safetensors", "2000s indie comic art style"),
             "ntc-ai/SDXL-LoRA-slider.psychedelic-trip":("psychedelic trip.safetensors", "psychedelic trip"),
