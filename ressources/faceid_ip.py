@@ -133,6 +133,7 @@ model_list_faceid_ip_builtin = [
     "-[ 👌 🇯🇵 Anime SDXL ]-",
     "cagliostrolab/animagine-xl-3.1",
     "GraydientPlatformAPI/geekpower-cellshade-xl",
+    "Bakanayatsu/ponyDiffusion-V6-XL-Turbo-DPO",
     "OnomaAIResearch/Illustrious-xl-early-release-v0",
     "GraydientPlatformAPI/sanae-xl",
     "yodayo-ai/clandestine-xl-1.0",
