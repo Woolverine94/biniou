@@ -1992,6 +1992,8 @@ def lora_model_list(model, *args):
             "ostris/photorealistic-slider-sdxl-lora":("sdxl_photorealistic_slider_v1-0.safetensors", "more realistic"),
             "ntc-ai/SDXL-LoRA-slider.2000s-indie-comic-art-style":("2000s indie comic art style.safetensors", "2000s indie comic art style"),
             "ntc-ai/SDXL-LoRA-slider.psychedelic-trip":("psychedelic trip.safetensors", "psychedelic trip"),
+            "ntc-ai/SDXL-LoRA-slider.pixar-style":("pixar-style.safetensors", "pixar-style"),
+            "ntc-ai/SDXL-LoRA-slider.Studio-Ghibli-style":("Studio Ghibli style.safetensors", "Studio Ghibli style"),
             "-[ 👌 🎨 Style ]-":("3d_render_style_xl.safetensors", "3d style, 3d render"),
             "goofyai/3d_render_style_xl":("3d_render_style_xl.safetensors", "3d style, 3d render"),
             "goofyai/disney_style_xl":("disney_style_xl.safetensors", "disney style"),
