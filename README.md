@@ -44,7 +44,7 @@
     - Support for SDXL Fast models [stablediffusionapi/dream-diffusion-lightning](https://hf.co/stablediffusionapi/dream-diffusion-lightning), [John6666/comradeship-xl-v9a-spo-dpo-flash-sdxl](https://hf.co/John6666/comradeship-xl-v9a-spo-dpo-flash-sdxl) and SDXL anime model [GraydientPlatformAPI/sanae-xl](https://hf.co/GraydientPlatformAPI/sanae-xl) to Stable Diffusion-based module.
     - Support for SD3 Fast LoRA model [ByteDance/Hyper-SD](https://hf.co/ByteDance/Hyper-SD). You can now generate images with SD3 using only 4 steps instead of 20 !
     - Support for SDXL LoRA model [GraydientPlatformAPI/spiderman-sdxl](https://hf.co/GraydientPlatformAPI/spiderman-sdxl)
-    - Add support for multiple LoRAs (up to 5) to LCM module. All eligibles modules can now use multiple LoRAs
+    - Add support for multiple LoRAs (up to 5) to LCM module. All eligible modules can now use multiple LoRAs
     - Bugfix in multi LoRAs for incompatible LoRA models.
 
   * 🆕 **2024-09-14** : 🔥 ***This week's updates*** 🔥 >
