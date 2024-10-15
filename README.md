@@ -5,8 +5,7 @@
 </p>
 </h1>
 
-
-<p align="justify">biniou is a self-hosted webui for several kinds of GenAI (generative artificial intelligence). You can generate multimedia contents with AI and use a chatbot on your own computer, even without dedicated GPU and starting from 8GB RAM. Can work offline (once deployed and required models downloaded).</p>
+<p align="justify">biniou is a self-hosted web UI for various types of GenAI (generative artificial intelligence). You can generate multimedia content with AI and use a chatbot on your own computer, even without a dedicated GPU and starting from 8GB RAM. It can work offline (once deployed and the required models are downloaded).</p>
 
 <p align="center">
 <a href="#GNULinux">GNU/Linux</a> [ <a href="#OpenSUSE-Leap-155--OpenSUSE-Tumbleweed">OpenSUSE base</a> | <a href="#Rocky-93--Alma-93--CentOS-Stream-9">RHEL base</a> | <a href="#debian-12--ubuntu-22043--ubuntu-2404--linux-mint-212">Debian base</a> ] • <a href="#windows-10--windows-11">Windows</a> • <a href="#macos-intel-homebrew-install">macOS Intel (experimental)</a> • <a href="#dockerfile">Docker</a></br>
@@ -18,7 +17,7 @@
 ## Updates
 
   * 🆕 **2024-10-12** : 🔥 ***This week's updates*** 🔥 >
-    - Introducing a new "Sliders" category in LoRA models lists, for both SDXL and SD 1.5. Also modifying LoRA weight sliders to support negatives values.
+    - Introducing a new "Sliders" category in LoRA models lists, for both SDXL and SD 1.5. Also modifying LoRA weight sliders to support negative values.
     - Support for Chatbot model [bartowski/Tiger-Gemma-9B-v3-GGUF](https://hf.co/bartowski/Tiger-Gemma-9B-v3-GGUF).
     - Add support for SDXL models [stablediffusionapi/protovision-xl-high-fidel](https://hf.co/stablediffusionapi/protovision-xl-high-fidel) and Anime SDXL model [GraydientPlatformAPI/geekpower-cellshade-xl](https://hf.co/GraydientPlatformAPI/geekpower-cellshade-xl) to Stable Diffusion-based modules.
     - Add support for SDXL LoRA models [IcelosAI/Spacephoto_LORA_XL_Base](https://hf.co/IcelosAI/Spacephoto_LORA_XL_Base), [TheLastBen/Papercut_SDXL](https://hf.co/TheLastBen/Papercut_SDXL), [mnemic/MinionStyleXL-SDXL-LoRA](https://hf.co/mnemic/MinionStyleXL-SDXL-LoRA) and SD 1.5 LoRA model [mnemic/MinionStyle-SD1.5-LoRA](https://hf.co/mnemic/MinionStyle-SD1.5-LoRA).
@@ -37,23 +36,26 @@
     - Support for SD 1.5 model [digiplay/PerfectDeliberate_v5](https://hf.co/digiplay/PerfectDeliberate_v5) to Stable Diffusion-based modules.
     - Change of default SDXL LoRA model variant for [ByteDance/Hyper-SD](https://hf.co/ByteDance/Hyper-SD).
 
-  * 🆕 **2024-09-22** : 🔥 ***Enhancement of models lists for some modules*** 🔥 > Handling of locals models (manually downloaded .safetensors and .gguf models) is now modified for Stable Diffusion-based modules, Chatbot and LoRAs models. These models are now listed at the bottom of models lists, in the "Local models" category, instead of being at the top of these lists.
+  * 🆕 **2024-09-22** : 🔥 ***Enhancement of models lists for some modules*** 🔥 > Handling of local models (manually downloaded .safetensors and .gguf models) is now modified for Stable Diffusion-based modules, Chatbot, and LoRA models. These models are now listed at the bottom of models lists, in the "Local models" category, instead of being at the top of these lists.
 
   * 🆕 **2024-09-21** : 🔥 ***This week's updates*** 🔥 >
     - Support for High-end Chatbot model [bartowski/Mistral-Small-Instruct-2409-GGUF](https://hf.co/bartowski/Mistral-Small-Instruct-2409-GGUF).
-    - Support for SDXL Fast models [stablediffusionapi/dream-diffusion-lightning](https://hf.co/stablediffusionapi/dream-diffusion-lightning), [John6666/comradeship-xl-v9a-spo-dpo-flash-sdxl](https://hf.co/John6666/comradeship-xl-v9a-spo-dpo-flash-sdxl) and SDXL anime model [GraydientPlatformAPI/sanae-xl](https://hf.co/GraydientPlatformAPI/sanae-xl) to Stable Diffusion-based module.
-    - Support for SD3 Fast LoRA model [ByteDance/Hyper-SD](https://hf.co/ByteDance/Hyper-SD). You can now generate images with SD3 using only 4 steps instead of 20 !
-    - Support for SDXL LoRA model [GraydientPlatformAPI/spiderman-sdxl](https://hf.co/GraydientPlatformAPI/spiderman-sdxl)
-    - Add support for multiple LoRAs (up to 5) to LCM module. All eligible modules can now use multiple LoRAs
+    - Support for SDXL Fast models [stablediffusionapi/dream-diffusion-lightning](https://hf.co/stablediffusionapi/dream-diffusion-lightning), [John6666/comradeship-xl-v9a-spo-dpo-flash-sdxl](https://hf.co/John6666/comradeship-xl-v9a-spo-dpo-flash-sdxl), and SDXL anime model [GraydientPlatformAPI/sanae-xl](https://hf.co/GraydientPlatformAPI/sanae-xl) to Stable Diffusion-based module.
+    - Support for SD3 Fast LoRA model [ByteDance/Hyper-SD](https://hf.co/ByteDance/Hyper-SD). You can now generate images with SD3 using only 4 steps instead of 20!
+    - Support for SDXL LoRA model [GraydientPlatformAPI/spiderman-sdxl](https://hf.co/GraydientPlatformAPI/spiderman-sdxl).
+    - Add support for multiple LoRAs (up to 5) to LCM module. All eligible modules can now use multiple LoRAs.
     - Bugfix in multi LoRAs for incompatible LoRA models.
 
   * 🆕 **2024-09-14** : 🔥 ***This week's updates*** 🔥 >
     - Support for Chatbot models [mradermacher/reflection-llama-3.1-8B-Solshine-Full-GGUF](https://hf.co/mradermacher/reflection-llama-3.1-8B-Solshine-Full-GGUF) and [bartowski/Nemotron-Mini-4B-Instruct-GGUF](https://hf.co/bartowski/Nemotron-Mini-4B-Instruct-GGUF) to Chatbot module.
     - Support for SDXL model [misri/juggernautXL_juggXIByRundiffusion](https://hf.co/misri/juggernautXL_juggXIByRundiffusion) to Stable Diffusion-based module.
-    - Add support for multiple LoRAs (up to 5) to Img2img, IP-Adapter and ControlNet modules.
-    - Bugfixes for metadatas in Photobooth module, incorrect LoRA models cache dir location and immutable safety checker with local safetensors models in image modules.
+    - Add support for multiple LoRAs (up to 5) to Img2img, IP-Adapter, and ControlNet modules.
+    -
 
-[List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
+ Add support for SDXL LoRA model [Roborace/Hyper-A](https://hf.co/Roborace/Hyper-A).
+    - Bugfix for potentially hanging the app when loading invalid LoRA models.
+
+> [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
 ---
 
