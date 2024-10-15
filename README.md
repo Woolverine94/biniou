@@ -13,7 +13,9 @@
 <a href="https://github.com/Woolverine94/biniou/wiki">Documentation ❓</a> | <a href="https://github.com/Woolverine94/biniou/wiki/Showroom">Showroom 🖼️</a>
 </p>
 
-<div style="text-align: center; font-size: 18px; border-style: solid; border-size:1px; border-color: red;">Please note that PR for typos, mispelled words, grammar in documentation/README.md and code not significantly contributing to the project, won't be taken into account anymore and will be closed immediately, as there's way too much of them.<br /><br />I'm bad at writing a fluent and correct English : deal with it ! </div>
+---
+
+<p align="center" style="font-size: 18px; font-style: italic">⚠️ To anyone who wants to contribute to this project : please note that PR for typos, grammar, mispelled words in documentation/README.md and code not significantly contributing to the project won't be taken into account anymore and will be rejected as there's way too much of them. ⚠️<br /><br />I'm bad at writing a fluent and correct English : deal with it ! </p>
 
 ---
 
