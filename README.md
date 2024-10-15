@@ -13,6 +13,8 @@
 <a href="https://github.com/Woolverine94/biniou/wiki">Documentation ❓</a> | <a href="https://github.com/Woolverine94/biniou/wiki/Showroom">Showroom 🖼️</a>
 </p>
 
+<div style="text-align: center; font-size: 18px; border-style: solid; border-size:1px; border-color: red;">Please note that PR for typos, mispelled words, grammar in documentation/README.md and code not significantly contributing to the project, won't be taken into account anymore and will be closed immediately, as there's way too much of them.<br /><br />I'm bad at writing a fluent and correct English : deal with it ! </div>
+
 ---
 
 ## Updates
@@ -278,7 +280,7 @@ Proceed as follow :
   - Download and edit install_win.cmd
   - Modify `set DEFAULT_BINIOU_DIR="%userprofile%"` to `set DEFAULT_BINIOU_DIR="E:\datas\somedir"` (for example)
   - Only use absolute path (e.g.: `E:\datas\somedir` and not `.\datas\somedir`)
-  - Don't have a trailing slash (e.g.: `E:\datas\somedir` and not `E:\datas\somedir\` )
+  - Don't add a trailing slash (e.g.: `E:\datas\somedir` and not `E:\datas\somedir\` )
   - Don't add a "biniou" suffix to your path (e.g.: `E:\datas\somedir\biniou`), as the biniou directory will be created by the git clone command
   - Save and launch install_win.cmd
 
