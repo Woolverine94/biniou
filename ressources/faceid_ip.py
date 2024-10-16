@@ -366,18 +366,6 @@ def image_faceid_ip(
                 local_files_only=True if offline_test() else None
             )
         pipe_faceid_ip = schedulerer(pipe_faceid_ip, sampler_faceid_ip)
-
-    if (is_xl_faceid_ip == True):
-#        pipe_faceid_ip.load_ip_adapter_face_id(
-#            "h94/IP-Adapter-FaceID",
-#            cache_dir=model_path_ipa_faceid_ip,
-#            weight_name="ip-adapter-faceid_sdxl.bin",
-#            resume_download=True,
-#            local_files_only=True if offline_test() else None
-#        )
-        pass
-    else:
-#        pipe_faceid_ip.load_ip_adapter_face_id(
         pipe_faceid_ip.load_ip_adapter(
             "h94/IP-Adapter",
             cache_dir=model_path_ipa_faceid_ip,
@@ -387,8 +375,25 @@ def image_faceid_ip(
             resume_download=True,
             local_files_only=True if offline_test() else None
         )
+#        pipe_faceid_ip.id_encoder.to(device_faceid_ip)
+        adapters_list.append("IP-Adapter plus face")
+        lora_weight_array.insert(0, float(denoising_strength_faceid_ip))
+
+#    if (is_xl_faceid_ip == True):
+#        pipe_faceid_ip.load_ip_adapter_face_id(
+#            "h94/IP-Adapter-FaceID",
+#            cache_dir=model_path_ipa_faceid_ip,
+#            weight_name="ip-adapter-faceid_sdxl.bin",
+#            resume_download=True,
+#            local_files_only=True if offline_test() else None
+#        )
+#        pass
+#    else:
+#        pass
+#        pipe_faceid_ip.load_ip_adapter_face_id(
 
     pipe_faceid_ip.set_ip_adapter_scale(denoising_strength_faceid_ip)
+
 #    pipe_faceid_ip = schedulerer(pipe_faceid_ip, sampler_faceid_ip)
 #    pipe_faceid_ip.enable_attention_slicing("max")
 
