@@ -112,6 +112,7 @@ model_list_faceid_ip_builtin = [
     "SG161222/RealVisXL_V5.0",
     "Chan-Y/Stable-Flash-Lightning",
     "stablediffusionapi/protovision-xl-high-fidel",
+    "comin/IterComp",
     "playgroundai/playground-v2-512px-base",
     "playgroundai/playground-v2-1024px-aesthetic",
     "playgroundai/playground-v2.5-1024px-aesthetic",

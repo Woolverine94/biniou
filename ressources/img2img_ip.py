@@ -101,6 +101,7 @@ model_list_img2img_ip_builtin = [
     "dataautogpt3/OpenDalleV1.1",
     "Chan-Y/Stable-Flash-Lightning",
     "stablediffusionapi/protovision-xl-high-fidel",
+    "comin/IterComp",
     "playgroundai/playground-v2-512px-base",
     "playgroundai/playground-v2-1024px-aesthetic",
     "playgroundai/playground-v2.5-1024px-aesthetic",
