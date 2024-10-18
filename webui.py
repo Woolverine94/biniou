@@ -7602,8 +7602,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_musicgen= gr.Dropdown(choices="", value="", label=biniou_lang_model_label, info=biniou_lang_model_info)
-#                                model_musicgen= gr.Dropdown(choices=modellist_musicgen, value=modellist_musicgen[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
+                                model_musicgen= gr.Dropdown(choices=modellist_musicgen, value=modellist_musicgen[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
                                 duration_musicgen = gr.Slider(1, 160, step=1, value=5, label=biniou_lang_audio_length_label)
                             with gr.Column():
@@ -7658,27 +7657,27 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             btn_musicgen = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():
                             btn_musicgen_cancel = gr.Button(f"{biniou_lang_cancel} 🛑", variant="stop")
-#                            btn_musicgen_cancel.click(fn=initiate_stop_musicgen, inputs=None, outputs=None)
+                            btn_musicgen_cancel.click(fn=initiate_stop_musicgen, inputs=None, outputs=None)
                         with gr.Column():
                             btn_musicgen_clear_input = gr.ClearButton(components=prompt_musicgen, value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
                             btn_musicgen_clear_output = gr.ClearButton(components=out_musicgen, value=f"{biniou_lang_clear_outputs} 🧹")
-#                        btn_musicgen.click(
-#                            fn=music_musicgen,
-#                            inputs=[
-#                                prompt_musicgen,
-#                                model_musicgen,
-#                                duration_musicgen,
-#                                num_batch_musicgen,
-#                                temperature_musicgen,
-#                                top_k_musicgen,
-#                                top_p_musicgen,
-#                                use_sampling_musicgen,
-#                                cfg_coef_musicgen,
-#                            ], 
-#                            outputs=out_musicgen,
-#                            show_progress="full",
-#                        )
+                        btn_musicgen.click(
+                            fn=music_musicgen,
+                            inputs=[
+                                prompt_musicgen,
+                                model_musicgen,
+                                duration_musicgen,
+                                num_batch_musicgen,
+                                temperature_musicgen,
+                                top_k_musicgen,
+                                top_p_musicgen,
+                                use_sampling_musicgen,
+                                cfg_coef_musicgen,
+                            ], 
+                            outputs=out_musicgen,
+                            show_progress="full",
+                        )
                     with gr.Accordion(biniou_lang_send_label, open=False):
                         with gr.Row():
                             with gr.Column():
@@ -7733,8 +7732,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_musicgen_mel= gr.Dropdown(choices="", value="", label=biniou_lang_model_label, info=biniou_lang_model_info)
-#                                model_musicgen_mel= gr.Dropdown(choices=modellist_musicgen_mel, value=modellist_musicgen_mel[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
+                                model_musicgen_mel= gr.Dropdown(choices=modellist_musicgen_mel, value=modellist_musicgen_mel[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
                                 duration_musicgen_mel = gr.Slider(1, 160, step=1, value=5, label=biniou_lang_audio_length_label)
                             with gr.Column():
@@ -7795,29 +7793,29 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             btn_musicgen_mel = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():
                             btn_musicgen_mel_cancel = gr.Button(f"{biniou_lang_cancel} 🛑", variant="stop")
-#                            btn_musicgen_mel_cancel.click(fn=initiate_stop_musicgen_mel, inputs=None, outputs=None)
+                            btn_musicgen_mel_cancel.click(fn=initiate_stop_musicgen_mel, inputs=None, outputs=None)
                         with gr.Column():
                             btn_musicgen_mel_clear_input = gr.ClearButton(components=[prompt_musicgen_mel, source_audio_musicgen_mel], value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():
                             btn_musicgen_mel_clear_output = gr.ClearButton(components=out_musicgen_mel, value=f"{biniou_lang_clear_outputs} 🧹")
-#                        btn_musicgen_mel.click(
-#                            fn=music_musicgen_mel,
-#                            inputs=[
-#                                prompt_musicgen_mel,
-#                                model_musicgen_mel,
-#                                duration_musicgen_mel,
-#                                num_batch_musicgen_mel,
-#                                temperature_musicgen_mel,
-#                                top_k_musicgen_mel,
-#                                top_p_musicgen_mel,
-#                                use_sampling_musicgen_mel,
-#                                cfg_coef_musicgen_mel,
-#                                source_audio_musicgen_mel,
-#                                source_type_musicgen_mel,
-#                            ],
-#                            outputs=out_musicgen_mel,
-#                            show_progress="full",
-#                        )
+                        btn_musicgen_mel.click(
+                            fn=music_musicgen_mel,
+                            inputs=[
+                                prompt_musicgen_mel,
+                                model_musicgen_mel,
+                                duration_musicgen_mel,
+                                num_batch_musicgen_mel,
+                                temperature_musicgen_mel,
+                                top_k_musicgen_mel,
+                                top_p_musicgen_mel,
+                                use_sampling_musicgen_mel,
+                                cfg_coef_musicgen_mel,
+                                source_audio_musicgen_mel,
+                                source_type_musicgen_mel,
+                            ],
+                            outputs=out_musicgen_mel,
+                            show_progress="full",
+                        )
                     with gr.Accordion(biniou_lang_send_label, open=False):
                         with gr.Row():
                             with gr.Column():
@@ -8002,8 +8000,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                     with gr.Accordion(biniou_lang_settings, open=False):
                         with gr.Row():
                             with gr.Column():
-                                model_audiogen= gr.Dropdown(choices="", value="", label=biniou_lang_model_label, info=biniou_lang_model_info)
-#                                model_audiogen= gr.Dropdown(choices=modellist_audiogen, value=modellist_audiogen[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
+                                model_audiogen= gr.Dropdown(choices=modellist_audiogen, value=modellist_audiogen[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():    
                                 duration_audiogen = gr.Slider(1, 160, step=1, value=5, label=biniou_lang_audio_length_label)
                             with gr.Column():
@@ -8057,27 +8054,27 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             btn_audiogen = gr.Button(f"{biniou_lang_generate} 🚀", variant="primary")
                         with gr.Column():                            
                             btn_audiogen_cancel = gr.Button(f"{biniou_lang_cancel} 🛑", variant="stop")
-#                            btn_audiogen_cancel.click(fn=initiate_stop_audiogen, inputs=None, outputs=None)
+                            btn_audiogen_cancel.click(fn=initiate_stop_audiogen, inputs=None, outputs=None)
                         with gr.Column():
                             btn_audiogen_clear_input = gr.ClearButton(components=prompt_audiogen, value=f"{biniou_lang_clear_inputs} 🧹")
                         with gr.Column():                            
                             btn_audiogen_clear_output = gr.ClearButton(components=out_audiogen, value=f"{biniou_lang_clear_outputs} 🧹")
-#                        btn_audiogen.click(
-#                            fn=music_audiogen,
-#                            inputs=[
-#                                prompt_audiogen,
-#                                model_audiogen,
-#                                duration_audiogen,
-#                                num_batch_audiogen,
-#                                temperature_audiogen,
-#                                top_k_audiogen,
-#                                top_p_audiogen,
-#                                use_sampling_audiogen,
-#                                cfg_coef_audiogen,
-#                            ],
-#                            outputs=out_audiogen,
-#                            show_progress="full",
-#                        )
+                        btn_audiogen.click(
+                            fn=music_audiogen,
+                            inputs=[
+                                prompt_audiogen,
+                                model_audiogen,
+                                duration_audiogen,
+                                num_batch_audiogen,
+                                temperature_audiogen,
+                                top_k_audiogen,
+                                top_p_audiogen,
+                                use_sampling_audiogen,
+                                cfg_coef_audiogen,
+                            ],
+                            outputs=out_audiogen,
+                            show_progress="full",
+                        )
                     with gr.Accordion(biniou_lang_send_label, open=False):
                         with gr.Row():
                             with gr.Column():

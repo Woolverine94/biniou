@@ -23,10 +23,10 @@ from .faceid_ip import *
 from .faceswapper import *
 from .r_esrgan import *
 from .gfpgan import *
-# from .musicgen import *
-# from .musicgen_mel import *
+from .musicgen import *
+from .musicgen_mel import *
 from .musicldm import *
-# from .audiogen import *
+from .audiogen import *
 from .harmonai import *
 from .bark import *
 from .txt2vid_ms import *
