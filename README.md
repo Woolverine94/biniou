@@ -21,6 +21,9 @@
 
 ## Updates
 
+  * 🆕 **2024-10-18** : 🔥 ***Disabling audiocraft-based modules*** 🔥 >
+I had to disable audiocraft as it was breaking the installer -but not the updater- by introducing a "pip's dependencies hell" (see this [issue](https://github.com/facebookresearch/audiocraft/issues/493)). I'll try my best to fix it, but it's unlikely that audiocraft will be reintroduced in biniou. Consequently, Musicgen, Musicgen Melody and Audiogen modules are not usable anymore.
+
   * 🆕 **2024-10-12** : 🔥 ***This week's updates*** 🔥 >
     - Introducing a new "Sliders" category in LoRA models lists, for both SDXL and SD 1.5. Also modifying LoRA weight sliders to support negative values.
     - Support for Chatbot model [bartowski/Tiger-Gemma-9B-v3-GGUF](https://hf.co/bartowski/Tiger-Gemma-9B-v3-GGUF).
@@ -42,20 +45,6 @@
     - Change of default SDXL LoRA model variant for [ByteDance/Hyper-SD](https://hf.co/ByteDance/Hyper-SD).
 
   * 🆕 **2024-09-22** : 🔥 ***Enhancement of models lists for some modules*** 🔥 > Handling of local models (manually downloaded .safetensors and .gguf models) is now modified for Stable Diffusion-based modules, Chatbot and LoRAs models. These models are now listed at the bottom of models lists, in the "Local models" category, instead of being at the top of these lists.
-
-  * 🆕 **2024-09-21** : 🔥 ***This week's updates*** 🔥 >
-    - Support for High-end Chatbot model [bartowski/Mistral-Small-Instruct-2409-GGUF](https://hf.co/bartowski/Mistral-Small-Instruct-2409-GGUF).
-    - Support for SDXL Fast models [stablediffusionapi/dream-diffusion-lightning](https://hf.co/stablediffusionapi/dream-diffusion-lightning), [John6666/comradeship-xl-v9a-spo-dpo-flash-sdxl](https://hf.co/John6666/comradeship-xl-v9a-spo-dpo-flash-sdxl) and SDXL anime model [GraydientPlatformAPI/sanae-xl](https://hf.co/GraydientPlatformAPI/sanae-xl) to Stable Diffusion-based module.
-    - Support for SD3 Fast LoRA model [ByteDance/Hyper-SD](https://hf.co/ByteDance/Hyper-SD). You can now generate images with SD3 using only 4 steps instead of 20 !
-    - Support for SDXL LoRA model [GraydientPlatformAPI/spiderman-sdxl](https://hf.co/GraydientPlatformAPI/spiderman-sdxl)
-    - Add support for multiple LoRAs (up to 5) to LCM module. All eligible modules can now use multiple LoRAs
-    - Bugfix in multi LoRAs for incompatible LoRA models.
-
-  * 🆕 **2024-09-14** : 🔥 ***This week's updates*** 🔥 >
-    - Support for Chatbot models [mradermacher/reflection-llama-3.1-8B-Solshine-Full-GGUF](https://hf.co/mradermacher/reflection-llama-3.1-8B-Solshine-Full-GGUF) and [bartowski/Nemotron-Mini-4B-Instruct-GGUF](https://hf.co/bartowski/Nemotron-Mini-4B-Instruct-GGUF) to Chatbot module.
-    - Support for SDXL model [misri/juggernautXL_juggXIByRundiffusion](https://hf.co/misri/juggernautXL_juggXIByRundiffusion) to Stable Diffusion-based module.
-    - Add support for multiple LoRAs (up to 5) to Img2img, IP-Adapter and ControlNet modules.
-    - Bugfixes for metadatas in Photobooth module, incorrect LoRA models cache dir location and immutable safety checker with local safetensors models in image modules.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
