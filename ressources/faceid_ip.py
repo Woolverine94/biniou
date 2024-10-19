@@ -108,6 +108,7 @@ model_list_faceid_ip_builtin = [
     "cutycat2000x/InterDiffusion-4.0",
     "SPO-Diffusion-Models/SPO-SDXL_4k-p_10ep",
     "GraydientPlatformAPI/flashback-xl",
+    "dataautogpt3/Proteus-v0.6",
     "dataautogpt3/PrometheusV1",
     "SG161222/RealVisXL_V5.0",
     "Chan-Y/Stable-Flash-Lightning",

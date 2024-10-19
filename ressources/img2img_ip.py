@@ -97,6 +97,7 @@ model_list_img2img_ip_builtin = [
     "SPO-Diffusion-Models/SPO-SDXL_4k-p_10ep",
     "GraydientPlatformAPI/flashback-xl",
     "dataautogpt3/ProteusV0.5",
+    "dataautogpt3/Proteus-v0.6",
     "dataautogpt3/PrometheusV1",
     "dataautogpt3/OpenDalleV1.1",
     "Chan-Y/Stable-Flash-Lightning",

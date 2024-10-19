@@ -106,6 +106,7 @@ model_list_txt2img_sd_builtin = [
     "etri-vilab/koala-lightning-1b",
     "GraydientPlatformAPI/flashback-xl",
     "dataautogpt3/ProteusV0.5",
+    "dataautogpt3/Proteus-v0.6",
     "dataautogpt3/PrometheusV1",
     "dataautogpt3/OpenDalleV1.1",
     "Chan-Y/Stable-Flash-Lightning",
