@@ -21,6 +21,11 @@
 
 ## Updates
 
+  * 🆕 **2024-10-19** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for SDXL anime model [Bakanayatsu/ponyDiffusion-V6-XL-Turbo-DPO](https://hf.co/Bakanayatsu/ponyDiffusion-V6-XL-Turbo-DPO) and SDXL model [comin/IterComp](https://hf.co/comin/IterComp).
+    - Add support for SDXL "Sliders" LoRA models [LyliaEngine/add-detail-xl](https://hf.co/LyliaEngine/add-detail-xl), [ntc-ai/SDXL-LoRA-slider.pixar-style](https://hf.co/ntc-ai/SDXL-LoRA-slider.pixar-style) and [ntc-ai/SDXL-LoRA-slider.Studio-Ghibli-style](https://hf.co/ntc-ai/SDXL-LoRA-slider.Studio-Ghibli-style).
+    - Code enhancement for Photobooth module.
+    - Bugfixes for critical errors in install scripts.
 
   * 🆕 **2024-10-19** : 🔥 ***Installer bugfix and re-enabling audiocraft*** 🔥 >
 Audiocraft is usable again, bugfix for dependencies hell at installation time and bugfix for huggingface_hub error at startup.
@@ -41,14 +46,6 @@ I had to disable audiocraft as it was breaking the installer -but not the update
     - Add support for SDXL model [diffusers/sdxl-instructpix2pix-768](https://hf.co/diffusers/sdxl-instructpix2pix-768) to Instruct pix2pix module.
     - Add support for Whisper models [distil-whisper/distil-large-v3](https://hf.co/distil-whisper/distil-large-v3) and [openai/whisper-large-v3-turbo](https://hf.co/openai/whisper-large-v3-turbo) to Whisper module.
     - Support for SDXL LoRA model [nerijs/pixel-art-medium-128-v0.1](https://hf.co/nerijs/pixel-art-medium-128-v0.1).
-
-  * 🆕 **2024-09-28** : 🔥 ***This week's updates*** 🔥 >
-    - Support for Chatbot Code model [bartowski/Qwen2.5-Coder-7B-Instruct-GGUF](https://hf.co/bartowski/Qwen2.5-Coder-7B-Instruct-GGUF), High-end model [bartowski/Qwen2.5-14B-Instruct-GGUF](https://hf.co/bartowski/Qwen2.5-14B-Instruct-GGUF), and Tiny model [bartowski/Llama-3.2-3B-Instruct-GGUF](https://hf.co/bartowski/Llama-3.2-3B-Instruct-GGUF).
-    - Support for SDXL model [Chan-Y/Stable-Flash-Lightning](https://hf.co/Chan-Y/Stable-Flash-Lightning) to Stable Diffusion-based modules.
-    - Support for SD 1.5 model [digiplay/PerfectDeliberate_v5](https://hf.co/digiplay/PerfectDeliberate_v5) to Stable Diffusion-based modules.
-    - Change of default SDXL LoRA model variant for [ByteDance/Hyper-SD](https://hf.co/ByteDance/Hyper-SD).
-
-  * 🆕 **2024-09-22** : 🔥 ***Enhancement of models lists for some modules*** 🔥 > Handling of local models (manually downloaded .safetensors and .gguf models) is now modified for Stable Diffusion-based modules, Chatbot and LoRAs models. These models are now listed at the bottom of models lists, in the "Local models" category, instead of being at the top of these lists.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
