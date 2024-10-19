@@ -21,6 +21,10 @@
 
 ## Updates
 
+
+  * 🆕 **2024-10-19** : 🔥 ***Installer bugfix and re-enabling audiocraft*** 🔥 >
+Audiocraft is usable again, bugfix for dependencies hell at installation time and bugfix for huggingface_hub error at startup.
+
   * 🆕 **2024-10-18** : 🔥 ***Disabling audiocraft-based modules*** 🔥 >
 I had to disable audiocraft as it was breaking the installer -but not the updater- by introducing a "pip's dependencies hell" (see this [issue](https://github.com/facebookresearch/audiocraft/issues/493)). I'll try my best to fix it, but it's unlikely that audiocraft will be reintroduced in biniou. Consequently, Musicgen, Musicgen Melody and Audiogen modules are not usable anymore.
 
