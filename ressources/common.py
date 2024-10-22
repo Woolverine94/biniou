@@ -2016,6 +2016,7 @@ def lora_model_list(model, *args):
             "alvdansen/popartanime":("Pop_Art_Illustration-000012.safetensors", "daiton style"),
             "alvdansen/frosting_lane_redux":("araminta_k_frosting_lane_redux.safetensors", ""),
             "IcelosAI/Spacephoto_LORA_XL_Base":("spacephoto-10.safetensors", "spacephoto"),
+            "KappaNeuro/moebius-jean-giraud-style":("Moebius (Jean Giraud) Style.safetensors", "Moebius (Jean Giraud) Style - "),
             "-[ 👌 🪧 Posters ]-":("SDXL-Caricaturized-Lora.safetensors", "Caricaturized"),
             "Norod78/SDXL-Caricaturized-Lora":("SDXL-Caricaturized-Lora.safetensors", "Caricaturized"),
             "artificialguybr/movie-poster-redmond-for-sd-xl-create-movie-poster-images":("MoviePosterRedmond-MoviePoster-MoviePosterRedAF.safetensors", "Movie Poster, MoviePosterAF"),
