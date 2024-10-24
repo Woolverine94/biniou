@@ -21,6 +21,8 @@
 
 ## Updates
 
+  * 🆕 **2024-10-24** : 🔥 ***Support for StableDiffusion-3.5-Large-Turbo*** 🔥 > The next update add support for the latest family of Stable Diffusion models. Please note that this monster will require at least 64GB RAM for CPU-only inference, which is pretty slow, but highly qualitative. Next update should  (finally) bring support for Flux ! 😀 
+
   * 🆕 **2024-10-19** : 🔥 ***This week's updates*** 🔥 >
     - Add support for SDXL anime model [Bakanayatsu/ponyDiffusion-V6-XL-Turbo-DPO](https://hf.co/Bakanayatsu/ponyDiffusion-V6-XL-Turbo-DPO) and SDXL model [comin/IterComp](https://hf.co/comin/IterComp).
     - Add support for SDXL "Sliders" LoRA models [LyliaEngine/add-detail-xl](https://hf.co/LyliaEngine/add-detail-xl), [ntc-ai/SDXL-LoRA-slider.pixar-style](https://hf.co/ntc-ai/SDXL-LoRA-slider.pixar-style) and [ntc-ai/SDXL-LoRA-slider.Studio-Ghibli-style](https://hf.co/ntc-ai/SDXL-LoRA-slider.Studio-Ghibli-style).
