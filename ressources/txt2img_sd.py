@@ -146,6 +146,8 @@ model_list_txt2img_sd_builtin = [
     "-[ 👏 🐢 SD3 ]-",
     "v2ray/stable-diffusion-3-medium-diffusers",
     "ptx0/sd3-reality-mix",
+    "-[ 👏 🐢 SD3.5 ]-",
+    "adamo1139/stable-diffusion-3.5-large-turbo-ungated",
     "-[ 🏠 Local models ]-",
 ]
 
@@ -252,6 +254,11 @@ def image_txt2img_sd(
     else :        
         is_sd3_txt2img_sd: bool = False
 
+    if is_sd35(modelid_txt2img_sd):
+        is_sd35_txt2img_sd: bool = True
+    else :        
+        is_sd35_txt2img_sd: bool = False
+
     if is_bin(modelid_txt2img_sd):
         is_bin_txt2img_sd: bool = True
     else :
@@ -312,10 +319,12 @@ def image_txt2img_sd(
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
-    elif (is_sd3_txt2img_sd == True) :
+    elif (is_sd3_txt2img_sd == True) or (is_sd35_txt2img_sd == True):
         if modelid_txt2img_sd[0:9] == "./models/" :
             pipe_txt2img_sd = StableDiffusion3Pipeline.from_single_file(
                 modelid_txt2img_sd, 
+                text_encoder_3=None,
+                tokenizer_3=None,
                 torch_dtype=model_arch, 
                 use_safetensors=True if not is_bin_txt2img_sd else False,
 #                load_safety_checker=False if (nsfw_filter_final == None) else True,
@@ -323,7 +332,9 @@ def image_txt2img_sd(
             )
         else :        
             pipe_txt2img_sd = StableDiffusion3Pipeline.from_pretrained(
-                modelid_txt2img_sd, 
+                modelid_txt2img_sd,
+                text_encoder_3=None,
+                tokenizer_3=None,
                 cache_dir=model_path_txt2img_sd, 
                 torch_dtype=model_arch, 
                 use_safetensors=True if not is_bin_txt2img_sd else False,
@@ -357,13 +368,13 @@ def image_txt2img_sd(
     pipe_txt2img_sd = schedulerer(pipe_txt2img_sd, sampler_txt2img_sd)
 #    if lora_model_txt2img_sd == "":
     pipe_txt2img_sd.enable_attention_slicing("max")
-    if not is_sd3_txt2img_sd:
+    if not is_sd3_txt2img_sd and not is_sd35_txt2img_sd:
         tomesd.apply_patch(pipe_txt2img_sd, ratio=tkme_txt2img_sd)
     if device_label_txt2img_sd == "cuda" :
         pipe_txt2img_sd.enable_sequential_cpu_offload()
-    else : 
+    else: 
         pipe_txt2img_sd = pipe_txt2img_sd.to(device_txt2img_sd)
-    if not is_sd3_txt2img_sd:
+    if not is_sd3_txt2img_sd and not is_sd35_txt2img_sd:
         pipe_txt2img_sd.enable_vae_slicing()
 
     adapters_list = []
@@ -384,6 +395,8 @@ def image_txt2img_sd(
                     lora_model_path = model_path_lora_sdxl
                 elif is_sd3_txt2img_sd:
                     lora_model_path = model_path_lora_sd3
+                elif is_sd35_txt2img_sd:
+                    lora_model_path = model_path_lora_sd35
                 else: 
                     lora_model_path = model_path_lora_sd
 
@@ -461,7 +474,7 @@ def image_txt2img_sd(
         conditioning, pooled = compel(prompt_txt2img_sd)
         neg_conditioning, neg_pooled = compel(negative_prompt_txt2img_sd)
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
-    elif (is_sd3_txt2img_sd == True):
+    elif is_sd3_txt2img_sd or is_sd35_txt2img_sd:
         pass
     else :
         compel = Compel(tokenizer=pipe_txt2img_sd.tokenizer, text_encoder=pipe_txt2img_sd.text_encoder, truncate_long_prompts=False, device=device_txt2img_sd)
@@ -488,7 +501,7 @@ def image_txt2img_sd(
                 callback_on_step_end=check_txt2img_sd, 
                 callback_on_step_end_tensor_inputs=['latents'], 
             ).images
-        elif (is_sd3_txt2img_sd == True):
+        elif is_sd3_txt2img_sd or is_sd35_txt2img_sd:
             image = pipe_txt2img_sd(
                 prompt=prompt_txt2img_sd,
                 negative_prompt=negative_prompt_txt2img_sd,
@@ -519,7 +532,7 @@ def image_txt2img_sd(
             ).images
         
         for j in range(len(image)):
-            if is_xl_txt2img_sd or is_sd3_txt2img_sd or (modelid_txt2img_sd[0:9] == "./models/"):
+            if is_xl_txt2img_sd or is_sd3_txt2img_sd  or is_sd35_txt2img_sd or (modelid_txt2img_sd[0:9] == "./models/"):
                 image[j] = safety_checker_sdxl(model_path_txt2img_sd, image[j], nsfw_filter)
             seed_id = random_seed + i*num_images_per_prompt_txt2img_sd + j if (seed_txt2img_sd == 0) else seed_txt2img_sd + i*num_images_per_prompt_txt2img_sd + j
             savename = name_seeded_image(seed_id)
@@ -548,11 +561,11 @@ def image_txt2img_sd(
         f"Prompt={prompt_txt2img_sd} | "+\
         f"Negative prompt={negative_prompt_txt2img_sd} | "+\
         f"Seed List="+ ', '.join([f"{final_seed[m]}" for m in range(len(final_seed))])
-    print(reporting_txt2img_sd) 
+    print(reporting_txt2img_sd)
 
     exif_writer_png(reporting_txt2img_sd, final_image)
     
-    if is_sd3_txt2img_sd:
+    if is_sd3_txt2img_sd or is_sd35_txt2img_sd:
         del nsfw_filter_final, feat_ex, pipe_txt2img_sd, generator, image
     else:
         del nsfw_filter_final, feat_ex, pipe_txt2img_sd, generator, compel, conditioning, neg_conditioning, image

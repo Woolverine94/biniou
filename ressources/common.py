@@ -28,6 +28,7 @@ device_torch = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model_path_lora_sd = "./models/lora/SD"
 model_path_lora_sdxl = "./models/lora/SDXL"
 model_path_lora_sd3 = "./models/lora/SD3"
+model_path_lora_sd35 = "./models/lora/SD35"
 model_path_txtinv_sd = "./models/TextualInversion/SD"
 model_path_txtinv_sdxl = "./models/TextualInversion/SDXL"
 os.makedirs(model_path_lora_sd, exist_ok=True)
@@ -1851,6 +1852,17 @@ def is_sd3(model):
         is_sd3_value = False
     return is_sd3_value
 
+def is_sd35(model):
+    model = model_cleaner_sd(model)
+    if (\
+(model == "adamo1139/stable-diffusion-3.5-large-turbo-ungated")\
+
+):
+        is_sd35_value = True
+    else:
+        is_sd35_value = False
+    return is_sd35_value
+
 def is_noloras(model):
     model = model_cleaner_sd(model)
     if (\
@@ -1875,6 +1887,7 @@ def model_cleaner_sd(model):
         "-[ 👌 🇯🇵 Anime SDXL ]-": "cagliostrolab/animagine-xl-3.1",
         "-[ 👌 🐢 SDXL ]-": "fluently/Fluently-XL-Final",
         "-[ 👏 🐢 SD3 ]-": "v2ray/stable-diffusion-3-medium-diffusers",
+        "-[ 👏 🐢 SD3.5 ]-": "adamo1139/stable-diffusion-3.5-large-turbo-ungated",
     }
     for clean_model_key, clean_model_value in model_replacement.items():
         model = model.replace(clean_model_key, clean_model_value)
@@ -1902,6 +1915,7 @@ def model_cleaner_lora(model):
         "-[ 👏 🎚️ Sliders SD15 ]-": "color_temperature_slider_v1.safetensors",
         "-[ 👍 SD15 LoRAs ]-": "Kvikontent/midjourney-v6",
         "-[ 👏 🐢 SD3 LoRAs ]-": "adbrasi/jujutsuKaisen-style-sd3",
+        "-[ 👏 🐢 SD3.5 LoRAs ]-": "TDN-M/vietnamese-paint-art",
         "-[ 👏 🔎 Enhancement ]-": "KingNish/Better-SDXL-Lora",
         "-[ 👌 🎨 Style ]-": "goofyai/3d_render_style_xl",
         "-[ 👌 🪧 Posters ]-": "Norod78/SDXL-Caricaturized-Lora",
@@ -2065,7 +2079,18 @@ def lora_model_list(model, *args):
 #            "darknoon/symbols-sd3-lora":("pytorch_lora_weights.safetensors", "in the style of SF"),
             "-[ 🏠 Local models ]-":("", ""),
     }
-    else :        
+    elif is_sd35(model):
+        model_path_lora = model_path_lora_sd3
+        model_list_lora_builtin_fast = {
+            "":("", ""),
+        }
+        model_list_lora_builtin = {
+            "-[ 👏 🐢 SD3.5 LoRAs ]-":("vietnamese-painting-art.safetensors", "viet-art"),
+            "TDN-M/vietnamese-paint-art":("vietnamese-painting-art.safetensors", "viet-art"),
+            "Shakker-Labs/SD3.5-LoRA-Chinese-Line-Art":("SD35-lora-Chinese-Line-Art.safetensors", "Chinese line art"),
+            "-[ 🏠 Local models ]-":("", ""),
+    }
+    else :
         model_path_lora = model_path_lora_sd
         model_list_lora_builtin_fast = {
             "-[ 👍 🚀 Fast SD15 LoRA ]-":("Hyper-SD15-1step-lora.safetensors", ""),
