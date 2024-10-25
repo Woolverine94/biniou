@@ -21,7 +21,9 @@
 
 ## Updates
 
-  * 🆕 **2024-10-24** : 🔥 ***Support for StableDiffusion-3.5-Large-Turbo*** 🔥 > The last update add support for the latest family of Stable Diffusion models : 3.5 Large. Only the turbo flavor is currently supported. Please note that this monster will require at least 64GB RAM for CPU-only inference, and would be  very slow, but highly qualitative. Next update should  (finally) bring support for Flux ! 😀
+  * 🆕 **2024-10-25** : 🔥 ***Support for Freepik/flux.1-lite-8B-alpha*** 🔥 > Finally ! biniou is now supporting a Flux model \o/ !!! Like SD 3.5, it will require a lot of RAM (64GB) for CPU-only inference, and would be incredibly slow, but gives awesome results. Support of LoRA models for Flux is also added by this update, and I definitely recommend to use the 8-steps HyperSD LoRA model to accelerate your inferences.
+
+  * 🆕 **2024-10-24** : 🔥 ***Support for StableDiffusion-3.5-Large-Turbo*** 🔥 > The last update add support for the latest family of Stable Diffusion models : 3.5 Large. Only the turbo flavor is currently supported. Please note that this monster will require at least 64GB RAM for CPU-only inference, and would be very slow, but highly qualitative. Next update should  (finally) bring support for Flux ! 😀
 
   * 🆕 **2024-10-19** : 🔥 ***This week's updates*** 🔥 >
     - Add support for SDXL anime model [Bakanayatsu/ponyDiffusion-V6-XL-Turbo-DPO](https://hf.co/Bakanayatsu/ponyDiffusion-V6-XL-Turbo-DPO) and SDXL model [comin/IterComp](https://hf.co/comin/IterComp).
@@ -34,20 +36,6 @@ Audiocraft is usable again, bugfix for dependencies hell at installation time an
 
   * 🆕 **2024-10-18** : 🔥 ***Disabling audiocraft-based modules*** 🔥 >
 I had to disable audiocraft as it was breaking the installer -but not the updater- by introducing a "pip's dependencies hell" (see this [issue](https://github.com/facebookresearch/audiocraft/issues/493)). I'll try my best to fix it, but it's unlikely that audiocraft will be reintroduced in biniou. Consequently, Musicgen, Musicgen Melody and Audiogen modules are not usable anymore.
-
-  * 🆕 **2024-10-12** : 🔥 ***This week's updates*** 🔥 >
-    - Introducing a new "Sliders" category in LoRA models lists, for both SDXL and SD 1.5. Also modifying LoRA weight sliders to support negative values.
-    - Support for Chatbot model [bartowski/Tiger-Gemma-9B-v3-GGUF](https://hf.co/bartowski/Tiger-Gemma-9B-v3-GGUF).
-    - Add support for SDXL models [stablediffusionapi/protovision-xl-high-fidel](https://hf.co/stablediffusionapi/protovision-xl-high-fidel) and Anime SDXL model [GraydientPlatformAPI/geekpower-cellshade-xl](https://hf.co/GraydientPlatformAPI/geekpower-cellshade-xl) to Stable Diffusion-based modules.
-    - Add support for SDXL LoRA models [IcelosAI/Spacephoto_LORA_XL_Base](https://hf.co/IcelosAI/Spacephoto_LORA_XL_Base), [TheLastBen/Papercut_SDXL](https://hf.co/TheLastBen/Papercut_SDXL), [mnemic/MinionStyleXL-SDXL-LoRA](https://hf.co/mnemic/MinionStyleXL-SDXL-LoRA) and SD 1.5 LoRA model [mnemic/MinionStyle-SD1.5-LoRA](https://hf.co/mnemic/MinionStyle-SD1.5-LoRA).
-    - Bugfix for a critical error at startup introduced by the latest Transformers update.
-
-  * 🆕 **2024-10-05** : 🔥 ***This week's updates*** 🔥 >
-    - Support for Chatbot specialized model [bartowski/Llama-3.1-WhiteRabbitNeo-2-8B-GGUF](https://hf.co/bartowski/Llama-3.1-WhiteRabbitNeo-2-8B-GGUF), model [bartowski/OLMoE-1B-7B-0924-Instruct-GGUF](https://hf.co/bartowski/OLMoE-1B-7B-0924-Instruct-GGUF), and update of model [Orenguteng/Llama-3.1-8B-Lexi-Uncensored-V2-GGUF](https://hf.co/Orenguteng/Llama-3.1-8B-Lexi-Uncensored-V2-GGUF).
-    - Add support for SDXL model [OnomaAIResearch/Illustrious-xl-early-release-v0](https://hf.co/OnomaAIResearch/Illustrious-xl-early-release-v0) and fast SDXL model [John6666/jib-mix-realistic-xl-v15-maximus-sdxl](https://hf.co/John6666/jib-mix-realistic-xl-v15-maximus-sdxl) to Stable Diffusion-based modules.
-    - Add support for SDXL model [diffusers/sdxl-instructpix2pix-768](https://hf.co/diffusers/sdxl-instructpix2pix-768) to Instruct pix2pix module.
-    - Add support for Whisper models [distil-whisper/distil-large-v3](https://hf.co/distil-whisper/distil-large-v3) and [openai/whisper-large-v3-turbo](https://hf.co/openai/whisper-large-v3-turbo) to Whisper module.
-    - Support for SDXL LoRA model [nerijs/pixel-art-medium-128-v0.1](https://hf.co/nerijs/pixel-art-medium-128-v0.1).
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
