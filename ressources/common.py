@@ -29,11 +29,14 @@ model_path_lora_sd = "./models/lora/SD"
 model_path_lora_sdxl = "./models/lora/SDXL"
 model_path_lora_sd3 = "./models/lora/SD3"
 model_path_lora_sd35 = "./models/lora/SD35"
+model_path_lora_flux = "./models/lora/flux"
 model_path_txtinv_sd = "./models/TextualInversion/SD"
 model_path_txtinv_sdxl = "./models/TextualInversion/SDXL"
 os.makedirs(model_path_lora_sd, exist_ok=True)
 os.makedirs(model_path_lora_sdxl, exist_ok=True)
 os.makedirs(model_path_lora_sd3, exist_ok=True)
+os.makedirs(model_path_lora_sd35, exist_ok=True)
+os.makedirs(model_path_lora_flux, exist_ok=True)
 os.makedirs(model_path_txtinv_sd, exist_ok=True)
 os.makedirs(model_path_txtinv_sdxl, exist_ok=True)
 
@@ -1856,12 +1859,21 @@ def is_sd35(model):
     model = model_cleaner_sd(model)
     if (\
 (model == "adamo1139/stable-diffusion-3.5-large-turbo-ungated")\
-
 ):
         is_sd35_value = True
     else:
         is_sd35_value = False
     return is_sd35_value
+
+def is_flux(model):
+    model = model_cleaner_sd(model)
+    if (\
+(model == "Freepik/flux.1-lite-8B-alpha")\
+):
+        is_flux_value = True
+    else:
+        is_flux_value = False
+    return is_flux_value
 
 def is_noloras(model):
     model = model_cleaner_sd(model)
@@ -1888,6 +1900,7 @@ def model_cleaner_sd(model):
         "-[ 👌 🐢 SDXL ]-": "fluently/Fluently-XL-Final",
         "-[ 👏 🐢 SD3 ]-": "v2ray/stable-diffusion-3-medium-diffusers",
         "-[ 👏 🐢 SD3.5 ]-": "adamo1139/stable-diffusion-3.5-large-turbo-ungated",
+        "-[ 🏆 🐢 Flux ]-": "Freepik/flux.1-lite-8B-alpha",
     }
     for clean_model_key, clean_model_value in model_replacement.items():
         model = model.replace(clean_model_key, clean_model_value)
@@ -1911,11 +1924,13 @@ def model_cleaner_lora(model):
         "-[ 👍 🚀 Fast SD15 LoRA ]-": "ByteDance/Hyper-SD",
         "-[ 👍 🚀 Fast SDXL LoRA ]-": "ByteDance/SDXL-Lightning",
         "-[ 👍 🚀 Fast SD3 LoRA ]-": "ByteDance/Hyper-SD",
+        "-[ 👍 🚀 Fast Flux LoRA ]-": "ByteDance/Hyper-SD",
         "-[ 👏 🎚️ Sliders SDXL ]-": "ntc-ai/SDXL-LoRA-slider.extremely-detailed",
         "-[ 👏 🎚️ Sliders SD15 ]-": "color_temperature_slider_v1.safetensors",
         "-[ 👍 SD15 LoRAs ]-": "Kvikontent/midjourney-v6",
         "-[ 👏 🐢 SD3 LoRAs ]-": "adbrasi/jujutsuKaisen-style-sd3",
         "-[ 👏 🐢 SD3.5 LoRAs ]-": "TDN-M/vietnamese-paint-art",
+        "-[ 🏆 🐢 Flux LoRAs ]-": "alvdansen/pola-photo-flux",
         "-[ 👏 🔎 Enhancement ]-": "KingNish/Better-SDXL-Lora",
         "-[ 👌 🎨 Style ]-": "goofyai/3d_render_style_xl",
         "-[ 👌 🪧 Posters ]-": "Norod78/SDXL-Caricaturized-Lora",
@@ -2090,6 +2105,21 @@ def lora_model_list(model, *args):
             "Shakker-Labs/SD3.5-LoRA-Chinese-Line-Art":("SD35-lora-Chinese-Line-Art.safetensors", "Chinese line art"),
             "-[ 🏠 Local models ]-":("", ""),
     }
+
+    elif is_flux(model):
+        model_path_lora = model_path_lora_flux
+        model_list_lora_builtin_fast = {
+            "-[ 👍 🚀 Fast Flux LoRA ]-":("Hyper-FLUX.1-dev-8steps-lora.safetensors", ""),
+            "ByteDance/Hyper-SD":("Hyper-FLUX.1-dev-8steps-lora.safetensors", ""),
+        }
+        model_list_lora_builtin = {
+            "-[ 🏆 🐢 Flux LoRAs ]-":("pola_photo_araminta_k.safetensors", "polaroid style"),
+            "alvdansen/pola-photo-flux":("pola_photo_araminta_k.safetensors", "polaroid style"),
+            "Purz/vhs-box":("purz-vhs_box.safetensors", "vhs_box"),
+            "-[ 🏠 Local models ]-":("", ""),
+    }
+
+
     else :
         model_path_lora = model_path_lora_sd
         model_list_lora_builtin_fast = {

@@ -2,7 +2,7 @@
 # txt2img_sd.py
 import gradio as gr
 import os
-from diffusers import StableDiffusionPipeline, StableDiffusionXLPipeline, AutoPipelineForText2Image, StableDiffusion3Pipeline
+from diffusers import StableDiffusionPipeline, StableDiffusionXLPipeline, AutoPipelineForText2Image, StableDiffusion3Pipeline, FluxPipeline
 from huggingface_hub import hf_hub_download
 from compel import Compel, ReturnedEmbeddingsType
 import torch
@@ -18,6 +18,8 @@ device_txt2img_sd = torch.device(device_label_txt2img_sd)
 # Gestion des modèles
 model_path_txt2img_sd = "./models/Stable_Diffusion/"
 os.makedirs(model_path_txt2img_sd, exist_ok=True)
+model_path_flux_txt2img_sd = "./models/Flux/"
+os.makedirs(model_path_flux_txt2img_sd, exist_ok=True)
 
 model_list_txt2img_sd_local = []
 
@@ -148,6 +150,8 @@ model_list_txt2img_sd_builtin = [
     "ptx0/sd3-reality-mix",
     "-[ 👏 🐢 SD3.5 ]-",
     "adamo1139/stable-diffusion-3.5-large-turbo-ungated",
+    "-[ 🏆 🐢 Flux ]-",
+    "Freepik/flux.1-lite-8B-alpha",
     "-[ 🏠 Local models ]-",
 ]
 
@@ -216,7 +220,7 @@ def image_txt2img_sd(
     lora_weight_array = []
 
     if lora_model_txt2img_sd != "":
-        if is_sd3(modelid_txt2img_sd) and lora_model_txt2img_sd == "ByteDance/Hyper-SD":
+        if (is_sd3(modelid_txt2img_sd) or is_flux(modelid_txt2img_sd)) and lora_model_txt2img_sd == "ByteDance/Hyper-SD":
             lora_weight_txt2img_sd = 0.12
         lora_array.append(f"{lora_model_txt2img_sd}")
         lora_weight_array.append(float(lora_weight_txt2img_sd))
@@ -263,6 +267,11 @@ def image_txt2img_sd(
         is_bin_txt2img_sd: bool = True
     else :
         is_bin_txt2img_sd: bool = False
+
+    if is_flux(modelid_txt2img_sd):
+        is_flux_txt2img_sd: bool = True
+    else :        
+        is_flux_txt2img_sd: bool = False
 
     if (num_inference_step_txt2img_sd >= 10) and use_ays_txt2img_sd:
         if is_sdxl(modelid_txt2img_sd):
@@ -330,13 +339,31 @@ def image_txt2img_sd(
 #                load_safety_checker=False if (nsfw_filter_final == None) else True,
                 local_files_only=True if offline_test() else None
             )
-        else :        
+        else :
             pipe_txt2img_sd = StableDiffusion3Pipeline.from_pretrained(
                 modelid_txt2img_sd,
                 text_encoder_3=None,
                 tokenizer_3=None,
                 cache_dir=model_path_txt2img_sd, 
                 torch_dtype=model_arch, 
+                use_safetensors=True if not is_bin_txt2img_sd else False,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+    elif (is_flux_txt2img_sd == True):
+        if modelid_txt2img_sd[0:9] == "./models/" :
+            pipe_txt2img_sd = FluxPipeline.from_single_file(
+                modelid_txt2img_sd, 
+                torch_dtype=model_arch, 
+                use_safetensors=True if not is_bin_txt2img_sd else False,
+#                load_safety_checker=False if (nsfw_filter_final == None) else True,
+                local_files_only=True if offline_test() else None
+            )
+        else :
+            pipe_txt2img_sd = FluxPipeline.from_pretrained(
+                modelid_txt2img_sd,
+                cache_dir=model_path_flux_txt2img_sd,
+                torch_dtype=model_arch,
                 use_safetensors=True if not is_bin_txt2img_sd else False,
                 resume_download=True,
                 local_files_only=True if offline_test() else None
@@ -368,7 +395,7 @@ def image_txt2img_sd(
     pipe_txt2img_sd = schedulerer(pipe_txt2img_sd, sampler_txt2img_sd)
 #    if lora_model_txt2img_sd == "":
     pipe_txt2img_sd.enable_attention_slicing("max")
-    if not is_sd3_txt2img_sd and not is_sd35_txt2img_sd:
+    if not is_sd3_txt2img_sd and not is_sd35_txt2img_sd and not is_flux_txt2img_sd:
         tomesd.apply_patch(pipe_txt2img_sd, ratio=tkme_txt2img_sd)
     if device_label_txt2img_sd == "cuda" :
         pipe_txt2img_sd.enable_sequential_cpu_offload()
@@ -397,6 +424,8 @@ def image_txt2img_sd(
                     lora_model_path = model_path_lora_sd3
                 elif is_sd35_txt2img_sd:
                     lora_model_path = model_path_lora_sd35
+                elif is_flux_txt2img_sd:
+                    lora_model_path = model_path_lora_flux
                 else: 
                     lora_model_path = model_path_lora_sd
 
@@ -515,6 +544,21 @@ def image_txt2img_sd(
                 callback_on_step_end=check_txt2img_sd,
                 callback_on_step_end_tensor_inputs=['latents'],
             ).images
+        elif is_flux_txt2img_sd:
+            image = pipe_txt2img_sd(
+                prompt=prompt_txt2img_sd,
+#                negative_prompt=negative_prompt_txt2img_sd,
+                height=height_txt2img_sd,
+                width=width_txt2img_sd,
+                max_sequence_length=512,
+                num_images_per_prompt=num_images_per_prompt_txt2img_sd,
+                num_inference_steps=num_inference_step_txt2img_sd,
+                timesteps=sampling_schedule_txt2img_sd,
+                guidance_scale=guidance_scale_txt2img_sd,
+                generator=generator[i],
+                callback_on_step_end=check_txt2img_sd,
+                callback_on_step_end_tensor_inputs=['latents'],
+            ).images
         else:
             image = pipe_txt2img_sd(
                 prompt_embeds=conditioning,
@@ -532,7 +576,7 @@ def image_txt2img_sd(
             ).images
         
         for j in range(len(image)):
-            if is_xl_txt2img_sd or is_sd3_txt2img_sd  or is_sd35_txt2img_sd or (modelid_txt2img_sd[0:9] == "./models/"):
+            if is_xl_txt2img_sd or is_sd3_txt2img_sd  or is_sd35_txt2img_sd or is_flux_txt2img_sd or (modelid_txt2img_sd[0:9] == "./models/"):
                 image[j] = safety_checker_sdxl(model_path_txt2img_sd, image[j], nsfw_filter)
             seed_id = random_seed + i*num_images_per_prompt_txt2img_sd + j if (seed_txt2img_sd == 0) else seed_txt2img_sd + i*num_images_per_prompt_txt2img_sd + j
             savename = name_seeded_image(seed_id)
@@ -567,6 +611,8 @@ def image_txt2img_sd(
     
     if is_sd3_txt2img_sd or is_sd35_txt2img_sd:
         del nsfw_filter_final, feat_ex, pipe_txt2img_sd, generator, image
+    elif is_flux_txt2img_sd:
+        del nsfw_filter_final, feat_ex, pipe_txt2img_sd, generator, compel, conditioning, image
     else:
         del nsfw_filter_final, feat_ex, pipe_txt2img_sd, generator, compel, conditioning, neg_conditioning, image
     clean_ram()
