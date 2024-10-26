@@ -2116,6 +2116,8 @@ def lora_model_list(model, *args):
             "-[ 🏆 🐢 Flux LoRAs ]-":("pola_photo_araminta_k.safetensors", "polaroid style"),
             "alvdansen/pola-photo-flux":("pola_photo_araminta_k.safetensors", "polaroid style"),
             "Purz/vhs-box":("purz-vhs_box.safetensors", "vhs_box"),
+            "multimodalart/flux-tarot-v1":("flux_tarot_v1_lora.safetensors", "in the style of TOK a trtcrd tarot style"),
+            "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
