@@ -260,7 +260,7 @@ def image_txt2img_sd(
 
     if is_sd35(modelid_txt2img_sd):
         is_sd35_txt2img_sd: bool = True
-    else :        
+    else :
         is_sd35_txt2img_sd: bool = False
 
     if is_bin(modelid_txt2img_sd):
@@ -550,7 +550,6 @@ def image_txt2img_sd(
 #                negative_prompt=negative_prompt_txt2img_sd,
                 height=height_txt2img_sd,
                 width=width_txt2img_sd,
-                max_sequence_length=512,
                 num_images_per_prompt=num_images_per_prompt_txt2img_sd,
                 num_inference_steps=num_inference_step_txt2img_sd,
                 timesteps=sampling_schedule_txt2img_sd,
