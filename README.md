@@ -21,6 +21,12 @@
 
 ## Updates
 
+  * 🆕 **2024-10-26** : 🔥 ***This week's updates*** 🔥 >
+    - As previously announced, Flux model [Freepik/flux.1-lite-8B-alpha](https://hf.co/Freepik/flux.1-lite-8B-alpha) and SD 3.5 model [adamo1139/stable-diffusion-3.5-large-turbo-ungated](https://hf.co/adamo1139/stable-diffusion-3.5-large-turbo-ungated) are now supported by Stable Diffusion module. Support will be extended to all eligible modules. Also add support for LoRAs on these models. 
+    - Add support for SDXL model [dataautogpt3/Proteus-v0.6](https://hf.co/dataautogpt3/Proteus-v0.6) to all Stable Diffusion-based modules.
+    - Add support for Chatbot models [anthracite-org/magnum-v4-9b-gguf](https://hf.co/anthracite-org/magnum-v4-9b-gguf) and [bartowski/Ministral-8B-Instruct-2410-GGUF](https://hf.co/bartowski/Ministral-8B-Instruct-2410-GGUF).
+    - Add support for SDXL LoRA model [KappaNeuro/moebius-jean-giraud-style](https://hf.co/KappaNeuro/moebius-jean-giraud-style).
+
   * 🆕 **2024-10-25** : 🔥 ***Support for Freepik/flux.1-lite-8B-alpha*** 🔥 > Finally ! biniou is now supporting a Flux model \o/ !!! Like SD 3.5, it will require a lot of RAM (64GB) for CPU-only inference, and would be incredibly slow, but gives awesome results. Support of LoRA models for Flux is also added by this update, and I definitely recommend to use the 8-steps HyperSD LoRA model to accelerate your inferences.
 
   * 🆕 **2024-10-24** : 🔥 ***Support for StableDiffusion-3.5-Large-Turbo*** 🔥 > The last update add support for the latest family of Stable Diffusion models : 3.5 Large. Only the turbo flavor is currently supported. Please note that this monster will require at least 64GB RAM for CPU-only inference, and would be very slow, but highly qualitative. Next update should  (finally) bring support for Flux ! 😀
@@ -33,9 +39,6 @@
 
   * 🆕 **2024-10-19** : 🔥 ***Installer bugfix and re-enabling audiocraft*** 🔥 >
 Audiocraft is usable again, bugfix for dependencies hell at installation time and bugfix for huggingface_hub error at startup.
-
-  * 🆕 **2024-10-18** : 🔥 ***Disabling audiocraft-based modules*** 🔥 >
-I had to disable audiocraft as it was breaking the installer -but not the updater- by introducing a "pip's dependencies hell" (see this [issue](https://github.com/facebookresearch/audiocraft/issues/493)). I'll try my best to fix it, but it's unlikely that audiocraft will be reintroduced in biniou. Consequently, Musicgen, Musicgen Melody and Audiogen modules are not usable anymore.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
