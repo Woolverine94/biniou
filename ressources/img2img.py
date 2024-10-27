@@ -264,6 +264,9 @@ def image_img2img(
     else :
         is_bin_img2img: bool = False
 
+    if is_turbo_img2img and is_sd35_img2img:
+        is_turbo_img2img: bool = False
+
     if (num_inference_step_img2img >= 10) and use_ays_img2img:
         if is_sdxl(modelid_img2img):
             sampling_schedule_img2img = AysSchedules["StableDiffusionXLTimesteps"]

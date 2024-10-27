@@ -273,6 +273,9 @@ def image_txt2img_sd(
     else :        
         is_flux_txt2img_sd: bool = False
 
+    if is_turbo_txt2img_sd and is_sd35_txt2img_sd:
+        is_turbo_txt2img_sd: bool = False
+
     if (num_inference_step_txt2img_sd >= 10) and use_ays_txt2img_sd:
         if is_sdxl(modelid_txt2img_sd):
             sampling_schedule_txt2img_sd = AysSchedules["StableDiffusionXLTimesteps"]
