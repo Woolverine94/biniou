@@ -2103,6 +2103,7 @@ def lora_model_list(model, *args):
             "-[ 👏 🐢 SD3.5 LoRAs ]-":("vietnamese-painting-art.safetensors", "viet-art"),
             "TDN-M/vietnamese-paint-art":("vietnamese-painting-art.safetensors", "viet-art"),
             "Shakker-Labs/SD3.5-LoRA-Chinese-Line-Art":("SD35-lora-Chinese-Line-Art.safetensors", "Chinese line art"),
+            "alvarobartt/ghibli-characters-sd3.5-lora":("pytorch_lora_weights.safetensors", "Ghibli style"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
