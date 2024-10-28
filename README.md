@@ -15,7 +15,7 @@
 
 ---
 
-<p align="center">⚠️ To anyone who wants to contribute to this project : please note that PR for typos, grammar, mispelled words in documentation/README.md and code not significantly contributing to the project won't be taken into account anymore and will be rejected as there's way too much of them. ⚠️<br /><br />I'm bad at writing a fluent and correct English : deal with it ! </p>
+<p align="center">⚠️ To anyone who wants to contribute to this project : please note that PR for typos, grammar, misspelled words in documentation/README.md and code not significantly contributing to the project won't be taken into account anymore and will be rejected as there's way too much of them. ⚠️<br /><br />I'm bad at writing a fluent and correct English : deal with it ! </p>
 
 ---
 
