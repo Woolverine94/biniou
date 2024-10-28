@@ -172,7 +172,8 @@ Audiocraft is usable again, bugfix for dependencies hell at installation time an
     - Windows 11 22H2
     - macOS ???
 
-><u>Note :</u> biniou supports Cuda or ROCm but does not require a dedicated GPU to run. You can install it in a virtual machine.
+> [!Note]
+> biniou supports Cuda or ROCm but does not require a dedicated GPU to run. You can install it in a virtual machine.
 
 ---
 
@@ -338,7 +339,8 @@ biniou:latest
 [https://127.0.0.1:7860](https://127.0.0.1:7860) or [https://127.0.0.1:7860/?__theme=dark](https://127.0.0.1:7860/?__theme=dark) for dark theme (recommended) <br/>
 ... or replace 127.0.0.1 by ip of your container
 
-><u>Note :</u> to save storage space, the previous container launch command defines common shared volumes for all biniou containers and ensure that the container auto-restart in case of OOM crash. Remove `--restart` and `-v` arguments if you didn't want these behaviors.<br/>
+> [!Note]
+> To save storage space, the previous container launch command defines common shared volumes for all biniou containers and ensure that the container auto-restart in case of OOM crash. Remove `--restart` and `-v` arguments if you didn't want these behaviors.<br/>
 
 ---
 
@@ -362,7 +364,8 @@ cd /home/$USER/biniou
 
 <p align="justify">Double-click <b>webui.cmd</b> in the biniou directory (C:\Users\%username%\biniou\). When asked by the UAC, configure the firewall according to your network type to authorize access to the webui
 
-><u>Note :</u> First start could be very slow on Windows 11 (comparing to others OS).
+> [!Note]
+> First start could be very slow on Windows 11 (compared to others OS).
 
   2. **Access** the webui by the url :<br/>
 [https://127.0.0.1:7860](https://127.0.0.1:7860) or [https://127.0.0.1:7860/?__theme=dark](https://127.0.0.1:7860/?__theme=dark) for dark theme (recommended) <br/>
