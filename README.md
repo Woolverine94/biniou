@@ -6,7 +6,7 @@
 </h1>
 
 
-<p align="justify">biniou is a self-hosted webui for several kinds of GenAI (generative artificial intelligence). You can generate multimedia contents with AI and use a chatbot on your own computer, even without dedicated GPU and starting from 8GB RAM. Can work offline (once deployed and required models downloaded).</p>
+<p align="justify">biniou is a self-hosted webui for several kinds of GenAI (generative artificial intelligence). You can generate multimedia contents with AI and use a chatbot on your own computer, even without dedicated GPU, starting from 8GB RAM. Can work offline (once deployed and required models downloaded).</p>
 
 <p align="center">
 <a href="#GNULinux">GNU/Linux</a> [ <a href="#OpenSUSE-Leap-155--OpenSUSE-Tumbleweed">OpenSUSE base</a> | <a href="#Rocky-93--Alma-93--CentOS-Stream-9">RHEL base</a> | <a href="#debian-12--ubuntu-22043--ubuntu-2404--linux-mint-212">Debian base</a> ] • <a href="#windows-10--windows-11">Windows</a> • <a href="#macos-intel-homebrew-install">macOS Intel (experimental)</a> • <a href="#dockerfile">Docker</a></br>
@@ -23,7 +23,7 @@
     - Add support for Chatbot models [anthracite-org/magnum-v4-9b-gguf](https://hf.co/anthracite-org/magnum-v4-9b-gguf) and [bartowski/Ministral-8B-Instruct-2410-GGUF](https://hf.co/bartowski/Ministral-8B-Instruct-2410-GGUF).
     - Add support for SDXL LoRA model [KappaNeuro/moebius-jean-giraud-style](https://hf.co/KappaNeuro/moebius-jean-giraud-style).
 
-  * 🆕 **2024-10-25** : 🔥 ***Support for Freepik/flux.1-lite-8B-alpha*** 🔥 > Finally ! biniou is now supporting a Flux model \o/ !!! Like SD 3.5, it will require a lot of RAM (64GB) for CPU-only inference, and would be incredibly slow, but gives awesome results. Support of LoRA models for Flux is also added by this update, and I definitely recommend to use the 8-steps HyperSD LoRA model to accelerate your inferences.
+  * 🆕 **2024-10-25** : 🔥 ***Support for Freepik/flux.1-lite-8B-alpha*** 🔥 > Finally ! biniou is now supporting a Flux model \o/ !!! Like SD 3.5, it will require a lot of RAM (64GB) for CPU-only inference, and would be incredibly slow, but gives awesome results. Support for LoRA models in Flux is also added by this update, and I definitely recommend to use the 8-steps HyperSD LoRA model to accelerate your inferences.
 
   * 🆕 **2024-10-24** : 🔥 ***Support for StableDiffusion-3.5-Large-Turbo*** 🔥 > The last update add support for the latest family of Stable Diffusion models : 3.5 Large. Only the turbo flavor is currently supported. Please note that this monster will require at least 64GB RAM for CPU-only inference, and would be very slow, but highly qualitative. Next update should  (finally) bring support for Flux ! 😀
 
@@ -120,7 +120,7 @@ Audiocraft is usable again, bugfix for dependencies hell at installation time an
   - Powered by [🤗 Huggingface](https://huggingface.co/) and [gradio](https://www.gradio.app/)
   - Cross platform : GNU/Linux, Windows 10/11 and macOS(experimental, via homebrew)
   - Convenient Dockerfile for cloud instances
-  - Generation settings saved as metadatas in each content.
+  - Generation settings saved as metadata in each content.
   - Support for CUDA (see [CUDA support](#cuda-support))
   - Experimental support for ROCm (see [here](https://github.com/Woolverine94/biniou/wiki/Experimental-features#rocm-support-under-gnulinux))
   - Support for Stable Diffusion SD-1.5, SD-2.1, SD-Turbo, SDXL, SDXL-Turbo, SDXL-Lightning, Hyper-SD, Stable Diffusion 3, LCM, VegaRT, Segmind, Playground-v2, Koala, Pixart-Alpha, Pixart-Sigma, Kandinsky and compatible models, through built-in model list or standalone .safetensors files
@@ -235,7 +235,7 @@ apt install google-perftools
 
 Windows installation has more prerequisites than GNU/Linux one, and requires following softwares (which will be installed automatically) : 
   - Git 
-  - Python 3.11 (and specifically 3.11 version)
+  - Python 3.11 (specifically 3.11 version)
   - OpenSSL
   - Visual Studio Build tools
   - Windows 10/11 SDK
@@ -418,7 +418,7 @@ This application uses the following softwares and technologies :
 - [IP-Adapter FaceID](https://huggingface.co/h94/IP-Adapter-FaceID) : Adapter model for Photobooth module
 - [Photomaker](https://huggingface.co/TencentARC/PhotoMaker) Adapter model for Photobooth module 
 - [Insight Face](https://insightface.ai/) : faceswapping
-- [Real ESRGAN](https://github.com/xinntao/Real-ESRGAN) : upscaler
+- [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN) : upscaler
 - [GFPGAN](https://github.com/TencentARC/GFPGAN) : face restoration
 - [Audiocraft](https://audiocraft.metademolab.com/) : musicgen, musicgen melody, audiogen
 - [MusicLDM](https://musicldm.github.io/) : MusicLDM
