@@ -2121,6 +2121,7 @@ def lora_model_list(model, *args):
             "Purz/vhs-box":("purz-vhs_box.safetensors", "vhs_box"),
             "multimodalart/flux-tarot-v1":("flux_tarot_v1_lora.safetensors", "in the style of TOK a trtcrd tarot style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
+            "dvyio/flux-lora-seventies-photograph":("1d21ceb96d254a2699df6a681c02780c_pytorch_lora_weights.safetensors", "photograph in the style of SVNTS"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
