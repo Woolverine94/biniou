@@ -145,6 +145,7 @@ model_list_img2img_builtin = [
     "ptx0/sd3-reality-mix",
     "-[ 👏 🐢 SD3.5 ]-",
     "adamo1139/stable-diffusion-3.5-large-turbo-ungated",
+    "ariG23498/sd-3.5-merged",
     "-[ 🏠 Local models ]-",
 ]
 

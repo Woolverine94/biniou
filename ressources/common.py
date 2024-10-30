@@ -1858,7 +1858,8 @@ def is_sd3(model):
 def is_sd35(model):
     model = model_cleaner_sd(model)
     if (\
-(model == "adamo1139/stable-diffusion-3.5-large-turbo-ungated")\
+(model == "adamo1139/stable-diffusion-3.5-large-turbo-ungated") or \
+(model == "ariG23498/sd-3.5-merged")\
 ):
         is_sd35_value = True
     else:
