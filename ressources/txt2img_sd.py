@@ -150,6 +150,7 @@ model_list_txt2img_sd_builtin = [
     "ptx0/sd3-reality-mix",
     "-[ 👏 🐢 SD3.5 ]-",
     "adamo1139/stable-diffusion-3.5-large-turbo-ungated",
+    "adamo1139/stable-diffusion-3.5-medium-ungated",
     "ariG23498/sd-3.5-merged",
     "-[ 🏆 🐢 Flux ]-",
     "Freepik/flux.1-lite-8B-alpha",
