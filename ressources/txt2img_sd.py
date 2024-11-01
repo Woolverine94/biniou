@@ -29,52 +29,6 @@ for filename in os.listdir(model_path_txt2img_sd):
         model_list_txt2img_sd_local.append(f)
 
 model_list_txt2img_sd_builtin = [
-##    "rubbrband/realisticVisionV60B1_v51VAE",
-#    "SG161222/Realistic_Vision_V3.0_VAE",
-#    "SG161222/Paragon_V1.0",
-#    "digiplay/majicMIX_realistic_v7",
-#    "SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep",
-#    "IDKiro/sdxs-512-dreamshaper",
-#    "IDKiro/sdxs-512-0.9",
-#    "sd-community/sdxl-flash",
-#    "dataautogpt3/PrometheusV1",
-#    "mann-e/Mann-E_Dreams",
-#    "mann-e/Mann-E_Art",
-#    "ehristoforu/Visionix-alpha",
-#    "v2ray/stable-diffusion-3-medium-diffusers",
-#    "ptx0/sd3-reality-mix",
-#    "RunDiffusion/Juggernaut-X-Hyper",
-#    "cutycat2000x/InterDiffusion-4.0",
-#    "RunDiffusion/Juggernaut-XL-Lightning",
-#    "fluently/Fluently-XL-v3-Lightning",
-#    "Corcelio/mobius",
-#    "fluently/Fluently-XL-Final",
-#    "SPO-Diffusion-Models/SPO-SDXL_4k-p_10ep",
-#    "recoilme/ColorfulXL-Lightning",
-#    "playgroundai/playground-v2-512px-base",
-#    "playgroundai/playground-v2-1024px-aesthetic",
-#    "playgroundai/playground-v2.5-1024px-aesthetic",
-#    "stabilityai/sd-turbo", 
-#    "stabilityai/sdxl-turbo", 
-#    "thibaud/sdxl_dpo_turbo",
-#    "SG161222/RealVisXL_V4.0_Lightning",
-#    "cagliostrolab/animagine-xl-3.1",
-#    "aipicasso/emi-2",
-#    "IDEA-CCNL/Taiyi-Stable-Diffusion-XL-3.5B",
-#    "dataautogpt3/OpenDalleV1.1",
-#    "dataautogpt3/ProteusV0.5",
-#    "dataautogpt3/ProteusV0.4-Lightning",
-#    "etri-vilab/koala-lightning-1b",
-#    "etri-vilab/koala-lightning-700m",
-#    "digiplay/AbsoluteReality_v1.8.1",
-#    "segmind/Segmind-Vega",
-#    "segmind/SSD-1B",
-#    "gsdf/Counterfeit-V2.5",
-##    "ckpt/anything-v4.5-vae-swapped",
-#    "stabilityai/stable-diffusion-xl-base-1.0",
-#    "runwayml/stable-diffusion-v1-5",
-#    "nitrosocke/Ghibli-Diffusion",
-
     "-[ 👍 SD15 ]-",
     "SG161222/Realistic_Vision_V3.0_VAE",
     "Yntec/VisionVision",
@@ -508,7 +462,7 @@ def image_txt2img_sd(
         conditioning, pooled = compel(prompt_txt2img_sd)
         neg_conditioning, neg_pooled = compel(negative_prompt_txt2img_sd)
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
-    elif is_sd3_txt2img_sd or is_sd35_txt2img_sd:
+    elif is_sd3_txt2img_sd or is_sd35_txt2img_sd or is_flux_txt2img_sd:
         pass
     else :
         compel = Compel(tokenizer=pipe_txt2img_sd.tokenizer, text_encoder=pipe_txt2img_sd.text_encoder, truncate_long_prompts=False, device=device_txt2img_sd)
@@ -613,10 +567,8 @@ def image_txt2img_sd(
 
     exif_writer_png(reporting_txt2img_sd, final_image)
     
-    if is_sd3_txt2img_sd or is_sd35_txt2img_sd:
+    if is_sd3_txt2img_sd or is_sd35_txt2img_sd or is_flux_txt2img_sd:
         del nsfw_filter_final, feat_ex, pipe_txt2img_sd, generator, image
-    elif is_flux_txt2img_sd:
-        del nsfw_filter_final, feat_ex, pipe_txt2img_sd, generator, compel, conditioning, image
     else:
         del nsfw_filter_final, feat_ex, pipe_txt2img_sd, generator, compel, conditioning, neg_conditioning, image
     clean_ram()
