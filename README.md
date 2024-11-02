@@ -17,6 +17,13 @@
 
 ## Updates
 
+  * 🆕 **2024-11-02** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for SD 3.5 models [ariG23498/sd-3.5-merged](https://hf.co/ariG23498/sd-3.5-merged) and [adamo1139/stable-diffusion-3.5-medium-ungated](https://hf.co/adamo1139/stable-diffusion-3.5-medium-ungated) to Stable Diffusion and img2img modules.
+    - Add support for Chatbot model [bartowski/granite-3.0-8b-instruct-GGUF](https://hf.co/bartowski/granite-3.0-8b-instruct-GGUF).
+    - Add support for Flux LoRA models [dvyio/flux-lora-seventies-photograph](https://hf.co/dvyio/flux-lora-seventies-photograph), [Bootoshi/retroanime](https://hf.co/Bootoshi/retroanime), [XLabs-AI/flux-RealismLora](https://hf.co/XLabs-AI/flux-RealismLora) and [prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA](https://hf.co/prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA) (this last one gives awesome results !).
+    - Add support for SD 3.5 LoRA Models [alvarobartt/ghibli-characters-sd3.5-lora](https://hf.co/alvarobartt/ghibli-characters-sd3.5-lora), [reverentelusarca/ancient-style-sd35](https://hf.co/reverentelusarca/ancient-style-sd35) and [Wadaka/NewYorkerComic_Style](https://hf.co/Wadaka/NewYorkerComic_Style).
+    - Add support for SD 3.5 models to img2img module.
+
   * 🆕 **2024-10-26** : 🔥 ***This week's updates*** 🔥 >
     - As previously announced, Flux model [Freepik/flux.1-lite-8B-alpha](https://hf.co/Freepik/flux.1-lite-8B-alpha) and SD 3.5 model [adamo1139/stable-diffusion-3.5-large-turbo-ungated](https://hf.co/adamo1139/stable-diffusion-3.5-large-turbo-ungated) are now supported by Stable Diffusion module. Support will be extended to all eligible modules. Also add support for LoRAs on these models. 
     - Add support for SDXL model [dataautogpt3/Proteus-v0.6](https://hf.co/dataautogpt3/Proteus-v0.6) to all Stable Diffusion-based modules.
@@ -32,9 +39,6 @@
     - Add support for SDXL "Sliders" LoRA models [LyliaEngine/add-detail-xl](https://hf.co/LyliaEngine/add-detail-xl), [ntc-ai/SDXL-LoRA-slider.pixar-style](https://hf.co/ntc-ai/SDXL-LoRA-slider.pixar-style) and [ntc-ai/SDXL-LoRA-slider.Studio-Ghibli-style](https://hf.co/ntc-ai/SDXL-LoRA-slider.Studio-Ghibli-style).
     - Code enhancement for Photobooth module.
     - Bugfixes for critical errors in install scripts.
-
-  * 🆕 **2024-10-19** : 🔥 ***Installer bugfix and re-enabling audiocraft*** 🔥 >
-Audiocraft is usable again, bugfix for dependencies hell at installation time and bugfix for huggingface_hub error at startup.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
