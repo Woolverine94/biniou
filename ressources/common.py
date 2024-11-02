@@ -2077,6 +2077,7 @@ def lora_model_list(model, *args):
             "dvyio/flux-lora-seventies-photograph":("1d21ceb96d254a2699df6a681c02780c_pytorch_lora_weights.safetensors", "photograph in the style of SVNTS"),
             "Bootoshi/retroanime":("RetroAnimeFluxV1.safetensors", "retro anime"),
             "XLabs-AI/flux-RealismLora":("lora.safetensors", ""),
+            "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
