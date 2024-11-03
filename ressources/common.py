@@ -1859,13 +1859,22 @@ def is_sd35(model):
     model = model_cleaner_sd(model)
     if (\
 (model == "adamo1139/stable-diffusion-3.5-large-turbo-ungated") or \
-(model == "adamo1139/stable-diffusion-3.5-medium-ungated") or \
 (model == "ariG23498/sd-3.5-merged")\
 ):
         is_sd35_value = True
     else:
         is_sd35_value = False
     return is_sd35_value
+
+def is_sd35m(model):
+    model = model_cleaner_sd(model)
+    if (\
+(model == "adamo1139/stable-diffusion-3.5-medium-ungated")\
+):
+        is_sd35m_value = True
+    else:
+        is_sd35m_value = False
+    return is_sd35m_value
 
 def is_flux(model):
     model = model_cleaner_sd(model)
@@ -1901,7 +1910,8 @@ def model_cleaner_sd(model):
         "-[ 👌 🇯🇵 Anime SDXL ]-": "cagliostrolab/animagine-xl-3.1",
         "-[ 👌 🐢 SDXL ]-": "fluently/Fluently-XL-Final",
         "-[ 👏 🐢 SD3 ]-": "v2ray/stable-diffusion-3-medium-diffusers",
-        "-[ 👏 🐢 SD3.5 ]-": "adamo1139/stable-diffusion-3.5-large-turbo-ungated",
+        "-[ 👏 🐢 SD3.5 Large ]-": "adamo1139/stable-diffusion-3.5-large-turbo-ungated",
+        "-[ 👏 🐢 SD3.5 Medium ]-": "adamo1139/stable-diffusion-3.5-medium-ungated",
         "-[ 🏆 🐢 Flux ]-": "Freepik/flux.1-lite-8B-alpha",
     }
     for clean_model_key, clean_model_value in model_replacement.items():
@@ -1931,7 +1941,8 @@ def model_cleaner_lora(model):
         "-[ 👏 🎚️ Sliders SD15 ]-": "color_temperature_slider_v1.safetensors",
         "-[ 👍 SD15 LoRAs ]-": "Kvikontent/midjourney-v6",
         "-[ 👏 🐢 SD3 LoRAs ]-": "adbrasi/jujutsuKaisen-style-sd3",
-        "-[ 👏 🐢 SD3.5 LoRAs ]-": "TDN-M/vietnamese-paint-art",
+        "-[ 👏 🐢 SD3.5 Large LoRAs ]-": "TDN-M/vietnamese-paint-art",
+        "-[ 👏 🐢 SD3.5 Medium LoRAs ]-": "linoyts/yarn-art-30-37-max-grad-norm-medium",
         "-[ 🏆 🐢 Flux LoRAs ]-": "alvdansen/pola-photo-flux",
         "-[ 👏 🔎 Enhancement ]-": "KingNish/Better-SDXL-Lora",
         "-[ 👌 🎨 Style ]-": "goofyai/3d_render_style_xl",
@@ -2048,17 +2059,30 @@ def lora_model_list(model, *args):
             "-[ 🏠 Local models ]-":("", ""),
     }
     elif is_sd35(model):
-        model_path_lora = model_path_lora_sd3
+        model_path_lora = model_path_lora_sd35
         model_list_lora_builtin_fast = {
             "":("", ""),
         }
         model_list_lora_builtin = {
-            "-[ 👏 🐢 SD3.5 LoRAs ]-":("vietnamese-painting-art.safetensors", "viet-art"),
+            "-[ 👏 🐢 SD3.5 Large LoRAs ]-":("vietnamese-painting-art.safetensors", "viet-art"),
             "TDN-M/vietnamese-paint-art":("vietnamese-painting-art.safetensors", "viet-art"),
             "Shakker-Labs/SD3.5-LoRA-Chinese-Line-Art":("SD35-lora-Chinese-Line-Art.safetensors", "Chinese line art"),
             "alvarobartt/ghibli-characters-sd3.5-lora":("pytorch_lora_weights.safetensors", "Ghibli style"),
             "reverentelusarca/ancient-style-sd35":("sd35-ancient_style_v1.safetensors", "ancientstyle"),
             "Wadaka/NewYorkerComic_Style":("NYS_Lora.safetensors", "nyrkr style"),
+            "-[ 🏠 Local models ]-":("", ""),
+    }
+
+    elif is_sd35m(model):
+        model_path_lora = model_path_lora_sd35
+        model_list_lora_builtin_fast = {
+            "":("", ""),
+        }
+        model_list_lora_builtin = {
+            "-[ 👏 🐢 SD3.5 Medium LoRAs ]-":("pytorch_lora_weights.safetensors", "yarn art style"),
+            "linoyts/yarn-art-30-37-max-grad-norm-medium":("pytorch_lora_weights.safetensors", "yarn art style"),
+#            "raaedk/subliminal":("pytorch_lora_weights.safetensors", "ps2 graphics, fog filled space, subliminal"),
+#            "Clybius/mspaint-style-sd3.5medium":("mspaint-style-sd3-v1.safetensors", "mspaint style"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 

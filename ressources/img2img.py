@@ -28,49 +28,6 @@ for filename in os.listdir(model_path_img2img):
         model_list_img2img_local.append(f)
 
 model_list_img2img_builtin = [
-#    "SG161222/Realistic_Vision_V3.0_VAE",
-#    "SG161222/Paragon_V1.0",
-#    "digiplay/majicMIX_realistic_v7",
-#    "SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep",
-#    "IDKiro/sdxs-512-dreamshaper",
-#    "IDKiro/sdxs-512-0.9",
-#    "sd-community/sdxl-flash",
-#    "dataautogpt3/PrometheusV1",
-#    "mann-e/Mann-E_Dreams",
-#    "mann-e/Mann-E_Art",
-#    "ehristoforu/Visionix-alpha",
-#    "v2ray/stable-diffusion-3-medium-diffusers",
-#    "ptx0/sd3-reality-mix",
-#    "RunDiffusion/Juggernaut-X-Hyper",
-#    "cutycat2000x/InterDiffusion-4.0",
-#    "RunDiffusion/Juggernaut-XL-Lightning",
-#    "fluently/Fluently-XL-v3-Lightning",
-#    "Corcelio/mobius",
-#    "fluently/Fluently-XL-Final",
-#    "SPO-Diffusion-Models/SPO-SDXL_4k-p_10ep",
-#    "recoilme/ColorfulXL-Lightning",
-#    "playgroundai/playground-v2-512px-base",
-#    "playgroundai/playground-v2-1024px-aesthetic",
-#    "playgroundai/playground-v2.5-1024px-aesthetic",
-#    "stabilityai/sd-turbo",
-#    "stabilityai/sdxl-turbo",
-#    "thibaud/sdxl_dpo_turbo",
-#    "SG161222/RealVisXL_V4.0_Lightning",
-#    "cagliostrolab/animagine-xl-3.1",
-#    "aipicasso/emi-2",
-#    "dataautogpt3/OpenDalleV1.1",
-#    "dataautogpt3/ProteusV0.5",
-#    "dataautogpt3/ProteusV0.4-Lightning",
-#    "etri-vilab/koala-lightning-1b",
-#    "etri-vilab/koala-lightning-700m",
-#    "digiplay/AbsoluteReality_v1.8.1",
-#    "segmind/Segmind-Vega",
-#    "segmind/SSD-1B",
-#    "gsdf/Counterfeit-V2.5",
-##    "ckpt/anything-v4.5-vae-swapped",
-#    "stabilityai/stable-diffusion-xl-refiner-1.0",
-#    "runwayml/stable-diffusion-v1-5",
-#    "nitrosocke/Ghibli-Diffusion",
     "-[ 👍 SD15 ]-",
     "SG161222/Realistic_Vision_V3.0_VAE",
     "Yntec/VisionVision",
@@ -143,10 +100,11 @@ model_list_img2img_builtin = [
     "-[ 👏 🐢 SD3 ]-",
     "v2ray/stable-diffusion-3-medium-diffusers",
     "ptx0/sd3-reality-mix",
-    "-[ 👏 🐢 SD3.5 ]-",
+    "-[ 👏 🐢 SD3.5 Large ]-",
     "adamo1139/stable-diffusion-3.5-large-turbo-ungated",
-    "adamo1139/stable-diffusion-3.5-medium-ungated",
     "ariG23498/sd-3.5-merged",
+    "-[ 👏 🐢 SD3.5 Medium ]-",
+    "adamo1139/stable-diffusion-3.5-medium-ungated",
     "-[ 🏠 Local models ]-",
 ]
 
@@ -261,6 +219,11 @@ def image_img2img(
     else :
         is_sd35_img2img: bool = False
 
+    if is_sd35m(modelid_img2img):
+        is_sd35m_img2img: bool = True
+    else :
+        is_sd35m_img2img: bool = False
+
     if is_bin(modelid_img2img):
         is_bin_img2img: bool = True
     else :
@@ -325,7 +288,7 @@ def image_img2img(
                 local_files_only=True if offline_test() else None
             )
 
-    elif (is_sd3_img2img == True) or (is_sd35_img2img == True):
+    elif is_sd3_img2img or is_sd35_img2img or is_sd35m_img2img:
         if modelid_img2img[0:9] == "./models/" :
             pipe_img2img = StableDiffusion3Img2ImgPipeline.from_single_file(
                 modelid_img2img,
@@ -375,7 +338,7 @@ def image_img2img(
 
     pipe_img2img = schedulerer(pipe_img2img, sampler_img2img)
     pipe_img2img.enable_attention_slicing("max")
-    if not is_sd3_img2img and not is_sd35_img2img:
+    if not is_sd3_img2img and not is_sd35_img2img and not is_sd35m_img2img:
         tomesd.apply_patch(pipe_img2img, ratio=tkme_img2img)
     if device_label_img2img == "cuda" :
         pipe_img2img.enable_sequential_cpu_offload()
@@ -400,7 +363,7 @@ def image_img2img(
                     lora_model_path = model_path_lora_sdxl
                 elif is_sd3_img2img:
                     lora_model_path = model_path_lora_sd3
-                elif is_sd35_img2img:
+                elif is_sd35_img2img or is_sd35m_img2img:
                     lora_model_path = model_path_lora_sd35
                 else: 
                     lora_model_path = model_path_lora_sd
@@ -488,7 +451,7 @@ def image_img2img(
         conditioning, pooled = compel(prompt_img2img)
         neg_conditioning, neg_pooled = compel(negative_prompt_img2img)
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
-    elif is_sd3_img2img or is_sd35_img2img:
+    elif is_sd3_img2img or is_sd35_img2img or is_sd35m_img2img:
         pass
     else :
         compel = Compel(tokenizer=pipe_img2img.tokenizer, text_encoder=pipe_img2img.text_encoder, truncate_long_prompts=False, device=device_img2img)
@@ -529,7 +492,7 @@ def image_img2img(
                 callback_on_step_end=check_img2img, 
                 callback_on_step_end_tensor_inputs=['latents'], 
             ).images
-        elif is_sd3_img2img or is_sd35_img2img:
+        elif is_sd3_img2img or is_sd35_img2img or is_sd35m_img2img:
             image = pipe_img2img(
                 image=image_input,
                 prompt=prompt_img2img,
@@ -564,7 +527,7 @@ def image_img2img(
             ).images
 
         for j in range(len(image)):
-            if is_xl_img2img or is_sd3_img2img or is_sd35_img2img or (modelid_img2img[0:9] == "./models/"):
+            if is_xl_img2img or is_sd3_img2img or is_sd35_img2img or is_sd35m_img2img or (modelid_img2img[0:9] == "./models/"):
                 image[j] = safety_checker_sdxl(model_path_img2img, image[j], nsfw_filter)
             savename = name_image()
             if use_gfpgan_img2img == True :
@@ -600,7 +563,7 @@ def image_img2img(
 
     exif_writer_png(reporting_img2img, final_image)
 
-    if is_sd3_img2img or is_sd35_img2img:
+    if is_sd3_img2img or is_sd35_img2img or is_sd35m_img2img:
         del nsfw_filter_final, feat_ex, pipe_img2img, generator, image_input, image
     else:
         del nsfw_filter_final, feat_ex, pipe_img2img, generator, image_input, compel, conditioning, neg_conditioning, image
