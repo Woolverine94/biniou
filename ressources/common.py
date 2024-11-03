@@ -1783,7 +1783,8 @@ def is_fast_lora(model):
 (model == "jasperai/flash-sd") or \
 (model == "sd-community/sdxl-flash-lora") or \
 (model == "mann-e/Mann-E_Turbo") or \
-(model == "jasperai/flash-sd3")\
+(model == "jasperai/flash-sd3") or \
+(model == "Lingyuzhou/Hyper_Flux.1_Dev_4_step_Lora")\
 ):
         is_fast_lora_value = True
     else:
@@ -1936,7 +1937,7 @@ def model_cleaner_lora(model):
         "-[ 👍 🚀 Fast SD15 LoRA ]-": "ByteDance/Hyper-SD",
         "-[ 👍 🚀 Fast SDXL LoRA ]-": "ByteDance/SDXL-Lightning",
         "-[ 👍 🚀 Fast SD3 LoRA ]-": "ByteDance/Hyper-SD",
-        "-[ 👍 🚀 Fast Flux LoRA ]-": "ByteDance/Hyper-SD",
+        "-[ 👍 🚀 Fast Flux LoRA ]-": "Lingyuzhou/Hyper_Flux.1_Dev_4_step_Lora",
         "-[ 👏 🎚️ Sliders SDXL ]-": "ntc-ai/SDXL-LoRA-slider.extremely-detailed",
         "-[ 👏 🎚️ Sliders SD15 ]-": "color_temperature_slider_v1.safetensors",
         "-[ 👍 SD15 LoRAs ]-": "Kvikontent/midjourney-v6",
@@ -2089,12 +2090,15 @@ def lora_model_list(model, *args):
     elif is_flux(model):
         model_path_lora = model_path_lora_flux
         model_list_lora_builtin_fast = {
-            "-[ 👍 🚀 Fast Flux LoRA ]-":("Hyper-FLUX.1-dev-8steps-lora.safetensors", ""),
+            "-[ 👍 🚀 Fast Flux LoRA ]-":("Hyper-Flux.1-Dev 4-step-Lora.safetensors", ""),
+            "Lingyuzhou/Hyper_Flux.1_Dev_4_step_Lora":("Hyper-Flux.1-Dev 4-step-Lora.safetensors", ""),
             "ByteDance/Hyper-SD":("Hyper-FLUX.1-dev-8steps-lora.safetensors", ""),
         }
         model_list_lora_builtin = {
             "-[ 🏆 🐢 Flux LoRAs ]-":("pola_photo_araminta_k.safetensors", "polaroid style"),
             "alvdansen/pola-photo-flux":("pola_photo_araminta_k.safetensors", "polaroid style"),
+            "prithivMLmods/Ton618-Epic-Realism-Flux-LoRA":("Epic-Realism-Unpruned.safetensors", "Epic Realism"),
+            "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Purz/vhs-box":("purz-vhs_box.safetensors", "vhs_box"),
             "multimodalart/flux-tarot-v1":("flux_tarot_v1_lora.safetensors", "in the style of TOK a trtcrd tarot style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
