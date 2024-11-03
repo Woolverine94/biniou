@@ -2097,8 +2097,10 @@ def lora_model_list(model, *args):
         model_list_lora_builtin = {
             "-[ 🏆 🐢 Flux LoRAs ]-":("pola_photo_araminta_k.safetensors", "polaroid style"),
             "alvdansen/pola-photo-flux":("pola_photo_araminta_k.safetensors", "polaroid style"),
+            "alvdansen/flux-koda":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "prithivMLmods/Ton618-Epic-Realism-Flux-LoRA":("Epic-Realism-Unpruned.safetensors", "Epic Realism"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
+            "Shakker-Labs/FLUX.1-dev-LoRA-add-details":("FLUX-dev-lora-add_details.safetensors", ""),
             "Purz/vhs-box":("purz-vhs_box.safetensors", "vhs_box"),
             "multimodalart/flux-tarot-v1":("flux_tarot_v1_lora.safetensors", "in the style of TOK a trtcrd tarot style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
