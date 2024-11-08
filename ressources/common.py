@@ -22,6 +22,7 @@ from ressources.scheduler import *
 import exiv2
 import ffmpeg
 import music_tag
+import shutil
 
 device_torch = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -679,7 +680,7 @@ def metadata_writer_gif(metadata, filename, fps):
     if check_metadata("biniou_global_gif_exif") == True:
         frametime = int((1000/fps))
         for j in range(len(filename)):
-            os.rename(filename[j], ".tmp/tmp.gif")
+            shutil.move(filename[j], ".tmp/tmp.gif")
             with Image.open(".tmp/tmp.gif") as image:
                 image.save(filename[j], save_all=True, duration=frametime, comment=f"biniou settings: {metadata}")
             os.remove(".tmp/tmp.gif")
@@ -693,7 +694,7 @@ def metadata_writer_mp4(metadata, filename):
         else:
             filename_list = filename
         for j in range(len(filename_list)):
-            os.rename(filename_list[j], ".tmp/tmp.mp4")
+            shutil.move(filename_list[j], ".tmp/tmp.mp4")
             ffmpeg.input(".tmp/tmp.mp4").output(filename_list[j], metadata=f"comment=biniou settings: {metadata}", map=0, c="copy").overwrite_output().run()
             os.remove(".tmp/tmp.mp4")
     return

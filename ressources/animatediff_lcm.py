@@ -14,6 +14,7 @@ from ressources.gfpgan import *
 from huggingface_hub import snapshot_download, hf_hub_download
 from safetensors.torch import load_file
 import tomesd
+import shutil
 
 device_label_animatediff_lcm, model_arch = detect_device()
 device_animatediff_lcm = torch.device(device_label_animatediff_lcm)
@@ -221,12 +222,12 @@ def video_animatediff_lcm(
             savename = ".tmp/tmp_animatelcm_out.mp4"
             savename_final = name_seeded_video(seed_id)
             export_to_video(result, savename, fps=num_fps_animatediff_lcm)
-            os.rename(savename, savename_final)
+            shutil.move(savename, savename_final)
         elif output_type_animatediff_lcm == "gif" :
             savename = ".tmp/tmp_animatelcm_out.gif"
             savename_rename = name_seeded_gif(seed_id)
             export_to_gif(result, savename, fps=num_fps_animatediff_lcm)
-            os.rename(savename, savename_rename)
+            shutil.move(savename, savename_rename)
             savename_final.append(savename_rename)
         final_seed.append(seed_id)
 

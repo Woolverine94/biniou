@@ -14,11 +14,6 @@ import tomesd
 device_label_img2vid, model_arch = detect_device()
 device_img2vid = torch.device(device_label_img2vid)
 
-# Block to remove :
-if os.path.exists("./models/Stable_Diffusion_Video/") :
-    os.rename("./models/Stable_Diffusion_Video/", "./models/Stable_Video_Diffusion/")
-# End of block
-
 model_path_img2vid = "./models/Stable_Video_Diffusion/"
 model_path_safetychecker_img2vid = "./models/Stable_Diffusion/"
 os.makedirs(model_path_img2vid, exist_ok=True)

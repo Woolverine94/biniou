@@ -9,7 +9,7 @@ warnings.filterwarnings('ignore')
 import os
 import gradio as gr
 import numpy as np
-import shutil
+# import shutil
 from PIL import Image
 from ressources import *
 import sys
@@ -28,8 +28,10 @@ def local_ip():
     return host_ip
 
 tmp_biniou="./.tmp"
-if os.path.exists(tmp_biniou) :
-    shutil.rmtree(tmp_biniou)
+if os.path.exists(tmp_biniou):
+#    shutil.rmtree(tmp_biniou)
+     for tmpfile in os.listdir(tmp_biniou):
+         os.remove(os.path.join(tmp_biniou, tmpfile))
 os.makedirs(tmp_biniou, exist_ok=True)
 
 blankfile_common = "./.tmp/blank.txt"
