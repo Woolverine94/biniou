@@ -935,6 +935,8 @@ def change_model_type_img2img(model_img2img):
         return sampler_img2img.update(value="Flow Match Euler"), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=4.5), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), txtinv_img2img.update(choices=list(txtinv_list(model_img2img).keys()), value="", interactive=False), negative_prompt_img2img.update(interactive=True)
     elif is_sd3(model_img2img):
         return sampler_img2img.update(value="Flow Match Euler"), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), txtinv_img2img.update(choices=list(txtinv_list(model_img2img).keys()), value="", interactive=False), negative_prompt_img2img.update(interactive=True)
+    elif is_flux(model_img2img):
+        return sampler_img2img.update(value="Flow Match Euler"), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=3.5), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), txtinv_img2img.update(choices=list(txtinv_list(model_img2img).keys()), value="", interactive=False), negative_prompt_img2img.update(interactive=True)
     elif is_sdxl(model_img2img):
         return sampler_img2img.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_img2img.update(), height_img2img.update(), num_inference_step_img2img.update(value=10), guidance_scale_img2img.update(value=7.5), lora_model_img2img.update(choices=list(lora_model_list(model_img2img).keys()), value="", interactive=True), txtinv_img2img.update(choices=list(txtinv_list(model_img2img).keys()), value="", interactive=True), negative_prompt_img2img.update(interactive=True)
     else:
@@ -1006,7 +1008,7 @@ def change_lora_model_img2img(model, lora_model, prompt, steps, cfg_scale, sampl
         biniou_internal_previous_sampler_img2img = sampler
         if (lora_model == "ByteDance/SDXL-Lightning") or (lora_model == "GraydientPlatformAPI/lightning-faster-lora"):
             return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=4), guidance_scale_img2img.update(value=0.0), sampler_img2img.update(value="LCM")
-        elif ((lora_model == "ByteDance/Hyper-SD") or ("H1T/TCD-SD" in lora_model.upper())) and not is_sd3(model):
+        elif ((lora_model == "ByteDance/Hyper-SD") or ("H1T/TCD-SD" in lora_model.upper())) and not is_sd3(model) and not is_flux(model):
             return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=4), guidance_scale_img2img.update(value=0.0), sampler_img2img.update(value="TCD")
         elif (lora_model == "openskyml/lcm-lora-sdxl-turbo"):
             return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=4), guidance_scale_img2img.update(value=0.0), sampler_img2img.update(value="LCM")
@@ -1022,8 +1024,12 @@ def change_lora_model_img2img(model, lora_model, prompt, steps, cfg_scale, sampl
             return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=6), guidance_scale_img2img.update(value=3.0), sampler_img2img.update(value="DPM++ SDE")
         elif (lora_model == "mann-e/Mann-E_Turbo"):
             return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=6), guidance_scale_img2img.update(value=3.0), sampler_img2img.update(value="DPM++ SDE Karras")
-        elif (lora_model == "ByteDance/Hyper-SD") and is_sd3(model):
+        elif (lora_model == "ByteDance/Hyper-SD") and (is_sd3(model)):
             return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=4), guidance_scale_img2img.update(value=3.0), sampler_img2img.update(value="Flow Match Euler")
+        elif (lora_model == "ByteDance/Hyper-SD") and (is_flux(model)):
+            return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=8), guidance_scale_img2img.update(value=3.5), sampler_img2img.update(value="Flow Match Euler")
+        elif (lora_model == "Lingyuzhou/Hyper_Flux.1_Dev_4_step_Lora"):
+            return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=4), guidance_scale_img2img.update(value=3.5), sampler_img2img.update(value="Flow Match Euler")
     else:
         if ((biniou_internal_previous_model_img2img == "") and (biniou_internal_previous_steps_img2img == "") and (biniou_internal_previous_cfg_img2img == "") and (biniou_internal_previous_sampler_img2img == "")):
             return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(), guidance_scale_img2img.update(), sampler_img2img.update()
