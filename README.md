@@ -17,6 +17,15 @@
 
 ## Updates
 
+  * 🆕 **2024-11-09** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for Chatbot models [bartowski/SmolLM2-1.7B-Instruct-GGUF](https://hf.co/bartowski/SmolLM2-1.7B-Instruct-GGUF), [bartowski/cybertron-v4-qw7B-MGS-GGUF](https://hf.co/bartowski/cybertron-v4-qw7B-MGS-GGUF) and [bartowski/OpenChat-3.5-0106_32K-PoSE-GGUF](https://hf.co/bartowski/OpenChat-3.5-0106_32K-PoSE-GGUF).
+    - Update of Chatbot model Llama-3.2-3B-Instruct-GGUF to [bartowski/Llama-3.2-3B-Instruct-uncensored-GGUF](https://hf.co/bartowski/Llama-3.2-3B-Instruct-uncensored-GGUF).
+    - Add support for a lot of Flux LoRA models. Most remarkable one is the fast LoRA model [Lingyuzhou/Hyper_Flux.1_Dev_4_step_Lora](https://hf.co/Lingyuzhou/Hyper_Flux.1_Dev_4_step_Lora), that allow inferences in 4 steps. Definitely worth the try if you're using Flux.
+    - Add support for Flux and Flux LoRA models for img2img module.
+    - Add support for SD 3.5 Medium LoRA models for Stable Diffusion and img2img module.
+    - Add categories to Flux LoRA models.
+    - Bugfixes for docker when used with multiple hard drives and fixing issues in img2img module settings.
+
   * 🆕 **2024-11-02** : 🔥 ***This week's updates*** 🔥 >
     - Add support for SD 3.5 models [ariG23498/sd-3.5-merged](https://hf.co/ariG23498/sd-3.5-merged) and [adamo1139/stable-diffusion-3.5-medium-ungated](https://hf.co/adamo1139/stable-diffusion-3.5-medium-ungated) to Stable Diffusion and img2img modules.
     - Add support for Chatbot model [bartowski/granite-3.0-8b-instruct-GGUF](https://hf.co/bartowski/granite-3.0-8b-instruct-GGUF).
@@ -33,12 +42,6 @@
   * 🆕 **2024-10-25** : 🔥 ***Support for Freepik/flux.1-lite-8B-alpha*** 🔥 > Finally ! biniou is now supporting a Flux model \o/ !!! Like SD 3.5, it will require a lot of RAM (64GB) for CPU-only inference, and would be incredibly slow, but gives awesome results. Support of LoRA models for Flux is also added by this update, and I definitely recommend to use the 8-steps HyperSD LoRA model to accelerate your inferences.
 
   * 🆕 **2024-10-24** : 🔥 ***Support for StableDiffusion-3.5-Large-Turbo*** 🔥 > The last update add support for the latest family of Stable Diffusion models : 3.5 Large. Only the turbo flavor is currently supported. Please note that this monster will require at least 64GB RAM for CPU-only inference, and would be very slow, but highly qualitative. Next update should  (finally) bring support for Flux ! 😀
-
-  * 🆕 **2024-10-19** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for SDXL anime model [Bakanayatsu/ponyDiffusion-V6-XL-Turbo-DPO](https://hf.co/Bakanayatsu/ponyDiffusion-V6-XL-Turbo-DPO) and SDXL model [comin/IterComp](https://hf.co/comin/IterComp).
-    - Add support for SDXL "Sliders" LoRA models [LyliaEngine/add-detail-xl](https://hf.co/LyliaEngine/add-detail-xl), [ntc-ai/SDXL-LoRA-slider.pixar-style](https://hf.co/ntc-ai/SDXL-LoRA-slider.pixar-style) and [ntc-ai/SDXL-LoRA-slider.Studio-Ghibli-style](https://hf.co/ntc-ai/SDXL-LoRA-slider.Studio-Ghibli-style).
-    - Code enhancement for Photobooth module.
-    - Bugfixes for critical errors in install scripts.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
