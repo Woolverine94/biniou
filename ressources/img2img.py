@@ -453,14 +453,16 @@ def image_img2img(
         generator = torch.manual_seed(seed_img2img)
 
     if source_type_img2img == "sketch" :
-        width_img2img, height_img2img=[512, 512]
+        dim_size = [512, 512]
     elif (is_xl_img2img or is_sd3_img2img or is_sd35_img2img or is_sd35m_img2img or is_flux_img2img) and not (is_turbo_img2img == True) :
-        width_img2img, height_img2img = correct_size(width_img2img, height_img2img, 1024)
+        dim_size = correct_size(width_img2img, height_img2img, 1024)
     else :
-        width_img2img, height_img2img = correct_size(width_img2img, height_img2img, 512)
+        dim_size = correct_size(width_img2img, height_img2img, 512)
     image_input = PIL.Image.open(img_img2img)
     image_input = image_input.convert("RGB")
-    image_input = image_input.resize((width_img2img, height_img2img))
+    image_input = image_input.resize((dim_size[0], dim_size[1]))
+    width_img2img = dim_size[0]
+    height_img2img = dim_size[1]
 
     prompt_img2img = str(prompt_img2img)
     negative_prompt_img2img = str(negative_prompt_img2img)
