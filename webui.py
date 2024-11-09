@@ -4831,7 +4831,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                         lora_model4_img2img.change(fn=change_lora_model4_img2img, inputs=[model_img2img, lora_model4_img2img, prompt_img2img], outputs=[prompt_img2img])
                         lora_model5_img2img.change(fn=change_lora_model5_img2img, inputs=[model_img2img, lora_model5_img2img, prompt_img2img], outputs=[prompt_img2img])
                         txtinv_img2img.change(fn=change_txtinv_img2img, inputs=[model_img2img, txtinv_img2img, prompt_img2img, negative_prompt_img2img], outputs=[prompt_img2img, negative_prompt_img2img])
-                        denoising_strength_img2img.change(check_steps_strength, [num_inference_step_img2img, denoising_strength_img2img, model_img2img], [num_inference_step_img2img])
+                        denoising_strength_img2img.change(check_steps_strength, [num_inference_step_img2img, denoising_strength_img2img, model_img2img, lora_model_img2img], [num_inference_step_img2img])
                         use_ays_img2img.change(fn=change_ays_img2img, inputs=use_ays_img2img, outputs=[num_inference_step_img2img, sampler_img2img])
                         with gr.Column():
                             with gr.Row():
@@ -5116,7 +5116,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Row():
                                 with gr.Column():
                                     negative_prompt_img2img_ip = gr.Textbox(lines=2, max_lines=2, show_copy_button=True, label=biniou_lang_negprompt_label, info=biniou_lang_image_negprompt_info, placeholder=biniou_lang_tab_img2img_ip_negprompt_placeholder)
-                        denoising_strength_img2img_ip.change(check_steps_strength, [num_inference_step_img2img_ip, denoising_strength_img2img_ip, model_img2img_ip], [num_inference_step_img2img_ip])
+                        denoising_strength_img2img_ip.change(check_steps_strength, [num_inference_step_img2img_ip, denoising_strength_img2img_ip, model_img2img_ip, lora_model_img2img_ip], [num_inference_step_img2img_ip])
                         model_img2img_ip.change(
                             fn=change_model_type_img2img_ip,
                             inputs=[

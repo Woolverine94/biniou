@@ -453,15 +453,14 @@ def image_img2img(
         generator = torch.manual_seed(seed_img2img)
 
     if source_type_img2img == "sketch" :
-        dim_size=[512, 512]
+        width_img2img, height_img2img=[512, 512]
     elif (is_xl_img2img or is_sd3_img2img or is_sd35_img2img or is_sd35m_img2img or is_flux_img2img) and not (is_turbo_img2img == True) :
-        dim_size = correct_size(width_img2img, height_img2img, 1024)
+        width_img2img, height_img2img = correct_size(width_img2img, height_img2img, 1024)
     else :
-        dim_size = correct_size(width_img2img, height_img2img, 512)
+        width_img2img, height_img2img = correct_size(width_img2img, height_img2img, 512)
     image_input = PIL.Image.open(img_img2img)
     image_input = image_input.convert("RGB")
-    image_input = image_input.resize((dim_size[0], dim_size[1]))
-    print(dim_size[0], dim_size[1])
+    image_input = image_input.resize((width_img2img, height_img2img))
 
     prompt_img2img = str(prompt_img2img)
     negative_prompt_img2img = str(negative_prompt_img2img)
@@ -544,8 +543,8 @@ def image_img2img(
             image = pipe_img2img(
                 image=image_input,
                 prompt=prompt_img2img,
-                width=dim_size[0],
-                height=dim_size[1],
+                width=width_img2img,
+                height=height_img2img,
                 max_sequence_length=512,
                 num_images_per_prompt=num_images_per_prompt_img2img,
                 guidance_scale=guidance_scale_img2img,

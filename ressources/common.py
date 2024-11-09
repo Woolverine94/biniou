@@ -618,8 +618,9 @@ def convert_seconds_to_timestamp(seconds):
     total = f"{str(heures).zfill(2)}:{str(minutes).zfill(2)}:{str(secondes).zfill(2)},{msecondes_final}"
     return total
 
-def check_steps_strength (steps, strength, model):
+def check_steps_strength (steps, strength, model, lora_model):
     model = model_cleaner_sd(model)
+    lora_model = model_cleaner_lora(lora_model)
     if strength == 0:
         strength = 0.01
 
@@ -632,6 +633,10 @@ def check_steps_strength (steps, strength, model):
         steps = ceil(4/strength)
     elif (model == "RunDiffusion/Juggernaut-X-Hyper") or (model == "sd-community/sdxl-flash"):
         steps = ceil(6/strength)
+    elif (is_flux(model) and lora_model == "Lingyuzhou/Hyper_Flux.1_Dev_4_step_Lora"):
+        steps = ceil(4/strength)
+    elif (is_flux(model) and lora_model == "ByteDance/Hyper-SD"):
+        steps = ceil(8/strength)
     else:
         if strength < 0.1:
             steps = ceil(1/strength)
@@ -639,7 +644,6 @@ def check_steps_strength (steps, strength, model):
             steps = 15
         else:
             steps = 10
-
     return int(steps)
 
 def which_os():
