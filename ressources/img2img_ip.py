@@ -20,10 +20,10 @@ device_img2img_ip = torch.device(device_label_img2img_ip)
 # Gestion des modèles
 model_path_img2img_ip = "./models/Stable_Diffusion/"
 model_path_ipa_img2img_ip = "./models/Ip-Adapters"
-model_path_flux_img2img = "./models/Flux/"
+model_path_flux_img2img_ip = "./models/Flux/"
 os.makedirs(model_path_img2img_ip, exist_ok=True)
 os.makedirs(model_path_ipa_img2img_ip, exist_ok=True)
-os.makedirs(model_path_flux_img2img, exist_ok=True)
+os.makedirs(model_path_flux_img2img_ip, exist_ok=True)
 
 model_list_img2img_ip_local = []
 
@@ -374,7 +374,7 @@ def image_img2img_ip(
             else :
                 pipe_img2img_ip = FluxImg2ImgPipeline.from_pretrained(
                     modelid_img2img_ip,
-                    cache_dir=model_path_flux_img2img,
+                    cache_dir=model_path_flux_img2img_ip,
                     torch_dtype=model_arch,
                     use_safetensors=True if not is_bin_img2img_ip else False,
                     resume_download=True,
