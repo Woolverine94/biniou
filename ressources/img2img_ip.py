@@ -4,7 +4,7 @@ import gradio as gr
 import os
 import PIL
 import torch
-from diffusers import AutoPipelineForImage2Image, StableDiffusionXLImg2ImgPipeline, StableDiffusionImg2ImgPipeline, StableDiffusionPipeline, StableDiffusionXLPipeline, AutoPipelineForText2Image
+from diffusers import AutoPipelineForImage2Image, StableDiffusionXLImg2ImgPipeline, StableDiffusionImg2ImgPipeline, StableDiffusionPipeline, StableDiffusionXLPipeline, AutoPipelineForText2Image, FluxImg2ImgPipeline, FluxPipeline
 from transformers import CLIPVisionModelWithProjection
 from huggingface_hub import snapshot_download, hf_hub_download
 from compel import Compel, ReturnedEmbeddingsType
@@ -20,8 +20,10 @@ device_img2img_ip = torch.device(device_label_img2img_ip)
 # Gestion des modèles
 model_path_img2img_ip = "./models/Stable_Diffusion/"
 model_path_ipa_img2img_ip = "./models/Ip-Adapters"
+model_path_flux_img2img = "./models/Flux/"
 os.makedirs(model_path_img2img_ip, exist_ok=True)
 os.makedirs(model_path_ipa_img2img_ip, exist_ok=True)
+os.makedirs(model_path_flux_img2img, exist_ok=True)
 
 model_list_img2img_ip_local = []
 
@@ -31,46 +33,6 @@ for filename in os.listdir(model_path_img2img_ip):
         model_list_img2img_ip_local.append(f)
 
 model_list_img2img_ip_builtin = [
-#     "SG161222/Realistic_Vision_V3.0_VAE",
-#     "SG161222/Paragon_V1.0",
-#     "digiplay/majicMIX_realistic_v7",
-#     "SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep",
-#     "sd-community/sdxl-flash",
-#     "dataautogpt3/PrometheusV1",
-#     "mann-e/Mann-E_Dreams",
-#     "mann-e/Mann-E_Art",
-#     "ehristoforu/Visionix-alpha",
-#     "RunDiffusion/Juggernaut-X-Hyper",
-#     "cutycat2000x/InterDiffusion-4.0",
-#     "RunDiffusion/Juggernaut-XL-Lightning",
-#     "fluently/Fluently-XL-v3-Lightning",
-#     "Corcelio/mobius",
-#     "fluently/Fluently-XL-Final",
-#     "SPO-Diffusion-Models/SPO-SDXL_4k-p_10ep",
-#     "recoilme/ColorfulXL-Lightning",
-#     "playgroundai/playground-v2-512px-base",
-#     "playgroundai/playground-v2-1024px-aesthetic",
-#     "playgroundai/playground-v2.5-1024px-aesthetic",
-# #    "SG161222/RealVisXL_V3.0",
-# #    "stabilityai/sd-turbo",
-#     "stabilityai/sdxl-turbo",
-# #    "thibaud/sdxl_dpo_turbo",
-#     "SG161222/RealVisXL_V4.0_Lightning",
-#     "cagliostrolab/animagine-xl-3.1",
-#     "aipicasso/emi-2",
-#     "dataautogpt3/OpenDalleV1.1",
-#     "dataautogpt3/ProteusV0.5",
-#     "dataautogpt3/ProteusV0.4-Lightning",
-#     "digiplay/AbsoluteReality_v1.8.1",
-# #    "segmind/Segmind-Vega",
-# #    "segmind/SSD-1B",
-#     "gsdf/Counterfeit-V2.5",
-# #    "ckpt/anything-v4.5-vae-swapped",
-#     "stabilityai/stable-diffusion-xl-base-1.0",
-# #    "stabilityai/stable-diffusion-xl-refiner-1.0",
-#     "runwayml/stable-diffusion-v1-5",
-#     "nitrosocke/Ghibli-Diffusion",
-
     "-[ 👍 SD15 ]-",
     "SG161222/Realistic_Vision_V3.0_VAE",
     "Yntec/VisionVision",
@@ -131,6 +93,8 @@ model_list_img2img_ip_builtin = [
     "yodayo-ai/clandestine-xl-1.0",
     "stablediffusionapi/anime-journey-v2",
     "aipicasso/emi-2",
+    "-[ 🏆 🐢 Flux ]-",
+    "Freepik/flux.1-lite-8B-alpha",
     "-[ 🏠 Local models ]-",
 ]
 
@@ -205,6 +169,8 @@ def image_img2img_ip(
     adapters_list = []
 
     if lora_model_img2img_ip != "":
+        if (is_flux(modelid_img2img_ip)) and lora_model_img2img_ip == "ByteDance/Hyper-SD":
+            lora_weight_img2img_ip = 0.12
         lora_array.append(f"{lora_model_img2img_ip}")
         lora_weight_array.append(float(lora_weight_img2img_ip))
     if lora_model2_img2img_ip != "":
@@ -244,6 +210,11 @@ def image_img2img_ip(
         is_bin_img2img_ip: bool = True
     else :
         is_bin_img2img_ip: bool = False
+
+    if is_flux(modelid_img2img_ip):
+        is_flux_img2img_ip: bool = True
+    else :
+        is_flux_img2img_ip: bool = False
 
     if (num_inference_step_img2img_ip >= 10) and use_ays_img2img_ip:
         if is_sdxl(modelid_img2img_ip):
@@ -293,7 +264,6 @@ def image_img2img_ip(
                         resume_download=True,
                         local_files_only=True if offline_test() else None
                     )
-
                 image_encoder = CLIPVisionModelWithProjection.from_pretrained(
                     "h94/IP-Adapter",
                     subfolder="models/image_encoder",
@@ -303,7 +273,16 @@ def image_img2img_ip(
                     resume_download=True,
                     local_files_only=True if offline_test() else None
                 )
-
+#        elif (is_flux_img2img_ip == True):
+#            if (source_type_img2img_ip == "standard"):
+#                hf_hub_download(
+#                    repo_id="XLabs-AI/flux-ip-adapter-v2",
+#                    filename="ip_adapter.safetensors",
+#                    repo_type="model",
+#                    local_dir=model_path_ipa_img2img_ip,
+#                    resume_download=True,
+#                    local_files_only=True if offline_test() else None
+#                )
         else:
             hf_hub_download(
                 repo_id="h94/IP-Adapter",
@@ -383,6 +362,24 @@ def image_img2img_ip(
                     resume_download=True,
                     local_files_only=True if offline_test() else None
                 )
+    if (is_flux_img2img_ip == True):
+        if (source_type_img2img_ip == "standard"):
+            if modelid_img2img_ip[0:9] == "./models/" :
+                pipe_img2img_ip = FluxImg2ImgPipeline.from_single_file(
+                    modelid_img2img_ip,
+                    torch_dtype=model_arch,
+                    use_safetensors=True if not is_bin_img2img_ip else False,
+                    local_files_only=True if offline_test() else None
+                )
+            else :
+                pipe_img2img_ip = FluxImg2ImgPipeline.from_pretrained(
+                    modelid_img2img_ip,
+                    cache_dir=model_path_flux_img2img,
+                    torch_dtype=model_arch,
+                    use_safetensors=True if not is_bin_img2img_ip else False,
+                    resume_download=True,
+                    local_files_only=True if offline_test() else None
+                )
     else:
         if (source_type_img2img_ip == "standard"):
             if modelid_img2img_ip[0:9] == "./models/" :
@@ -458,6 +455,22 @@ def image_img2img_ip(
                 )
                 adapters_list.append("Composition")
                 lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
+#        elif (is_flux_img2img_ip == True):
+#            if (source_type_img2img_ip == "standard"):
+#                pipe_img2img_ip.load_lora_weights(
+#                    model_path_ipa_img2img_ip,
+#                    subfolder="",
+#                    weight_name="ip_adapter.safetensors",
+#                    adapter_name="Flux IP Adapter V2",
+#                    torch_dtype=model_arch,
+#                    use_safetensors=True,
+#                    resume_download=True,
+#                    local_files_only=True if offline_test() else None
+#                )
+#                adapters_list.append("Flux IP Adapter V2")
+#                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
+        elif (is_flux_img2img_ip == True):
+            pass
         else:
             if (source_type_img2img_ip == "standard"):
                 pipe_img2img_ip.load_ip_adapter(
@@ -515,6 +528,23 @@ def image_img2img_ip(
                 )
                 adapters_list.append("Composition")
                 lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
+#        elif (is_flux_img2img_ip == True):
+#            if (source_type_img2img_ip == "standard"):
+#                pipe_img2img_ip.load_lora_weights(
+#                    "XLabs-AI/flux-ip-adapter-v2", 
+#                    cache_dir=model_path_ipa_img2img_ip,
+#                    subfolder="",
+#                    weight_name="ip_adapter.safetensors",
+#                    adapter_name="Flux IP Adapter V2",
+#                    torch_dtype=model_arch,
+#                    use_safetensors=True,
+#                    resume_download=True,
+#                    local_files_only=True if offline_test() else None
+#                )
+#                adapters_list.append("Flux IP Adapter V2")
+#                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
+        elif (is_flux_img2img_ip == True):
+            pass
         else:
             if (source_type_img2img_ip == "standard"):
                 pipe_img2img_ip.load_ip_adapter(
@@ -544,11 +574,11 @@ def image_img2img_ip(
                 adapters_list.append("Composition")
                 lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
 
-
 #    pipe_img2img_ip.set_ip_adapter_scale(denoising_strength_img2img_ip)    
     pipe_img2img_ip = schedulerer(pipe_img2img_ip, sampler_img2img_ip)
 #    pipe_img2img_ip.enable_attention_slicing("max")  
-    tomesd.apply_patch(pipe_img2img_ip, ratio=tkme_img2img_ip)
+    if not is_flux_img2img_ip:
+        tomesd.apply_patch(pipe_img2img_ip, ratio=tkme_img2img_ip)
     if device_label_img2img_ip == "cuda" :
         pipe_img2img_ip.enable_sequential_cpu_offload()
     else :
@@ -570,6 +600,8 @@ def image_img2img_ip(
                     lora_model_path = model_path_lora_sdxl
                 elif is_sd3_img2img_ip:
                     lora_model_path = model_path_lora_sd3
+                elif is_flux_img2img_ip:
+                    lora_model_path = model_path_lora_flux
                 else: 
                     lora_model_path = model_path_lora_sd
 
@@ -626,19 +658,21 @@ def image_img2img_ip(
         generator = torch.manual_seed(seed_img2img_ip)
 
     if (img_img2img_ip != None):
-        if (is_xl_img2img_ip == True) and not (is_turbo_img2img_ip == True):
+        if (is_xl_img2img_ip or is_flux_img2img_ip) and not is_turbo_img2img_ip:
             dim_size = correct_size(width_img2img_ip, height_img2img_ip, 1024)
         else: 
             dim_size = correct_size(width_img2img_ip, height_img2img_ip, 512)
         image_input = PIL.Image.open(img_img2img_ip)
         image_input = image_input.convert("RGB")
         image_input = image_input.resize((dim_size[0], dim_size[1]))
+        width_img2img_ip = dim_size[0]
+        height_img2img_ip = dim_size[1]
     else:
         image_input = None
 
     if (img_ipa_img2img_ip != None):
         image_input_ipa = PIL.Image.open(img_ipa_img2img_ip)
-        if (is_xl_img2img_ip == True) and not (is_turbo_img2img_ip == True):
+        if (is_xl_img2img_ip or is_flux_img2img_ip) and not is_turbo_img2img_ip:
             dim_size_ipa = correct_size(image_input_ipa.size[0], image_input_ipa.size[1], 1024)
         else:
             dim_size_ipa = correct_size(image_input_ipa.size[0], image_input_ipa.size[1], 512)
@@ -665,6 +699,8 @@ def image_img2img_ip(
         conditioning, pooled = compel(prompt_img2img_ip)
         neg_conditioning, neg_pooled = compel(negative_prompt_img2img_ip)
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
+    elif (is_flux_img2img_ip == True) :
+        pass
     else :
         compel = Compel(tokenizer=pipe_img2img_ip.tokenizer, text_encoder=pipe_img2img_ip.text_encoder, truncate_long_prompts=False, device=device_img2img_ip)
         conditioning = compel.build_conditioning_tensor(prompt_img2img_ip)
@@ -703,9 +739,9 @@ def image_img2img_ip(
                     callback_on_step_end=check_img2img_ip, 
                     callback_on_step_end_tensor_inputs=['latents'], 
                 ).images
-        elif (is_xl_img2img_ip == True) :
+        elif (is_xl_img2img_ip == True):
             if (source_type_img2img_ip == "standard"):
-                image = pipe_img2img_ip(        
+                image = pipe_img2img_ip(
                     image=image_input,
                     ip_adapter_image=image_input_ipa,
                     prompt=prompt_img2img_ip,
@@ -740,7 +776,40 @@ def image_img2img_ip(
                     generator = generator,
                     callback_on_step_end=check_img2img_ip, 
                     callback_on_step_end_tensor_inputs=['latents'], 
-                ).images   
+                ).images
+        elif (is_flux_img2img_ip == True):
+            if (source_type_img2img_ip == "standard"):
+                image = pipe_img2img_ip(
+                    image=image_input,
+                    prompt=prompt_img2img_ip,
+                    width=dim_size[0],
+                    height=dim_size[1],
+                    max_sequence_length=512,
+                    num_images_per_prompt=num_images_per_prompt_img2img_ip,
+                    guidance_scale=guidance_scale_img2img_ip,
+                    strength=denoising_strength_img2img_ip,
+                    num_inference_steps=num_inference_step_img2img_ip,
+                    timesteps=sampling_schedule_img2img_ip,
+                    generator = generator,
+                    callback_on_step_end=check_img2img_ip, 
+                    callback_on_step_end_tensor_inputs=['latents'],
+                ).images
+            if (source_type_img2img_ip == "composition"):
+                image = pipe_img2img_ip(
+                    image=image_input,
+                    prompt=prompt_img2img_ip,
+                    width=dim_size[0],
+                    height=dim_size[1],
+                    max_sequence_length=512,
+                    num_images_per_prompt=num_images_per_prompt_img2img_ip,
+                    guidance_scale=guidance_scale_img2img_ip,
+                    strength=denoising_strength_img2img_ip,
+                    num_inference_steps=num_inference_step_img2img_ip,
+                    timesteps=sampling_schedule_img2img_ip,
+                    generator = generator,
+                    callback_on_step_end=check_img2img_ip, 
+                    callback_on_step_end_tensor_inputs=['latents'],
+                ).images
         else : 
             if (source_type_img2img_ip == "standard"):
                 image = pipe_img2img_ip(        
@@ -775,7 +844,7 @@ def image_img2img_ip(
                 ).images        
 
         for j in range(len(image)):
-            if is_xl_img2img_ip or (modelid_img2img_ip[0:9] == "./models/"):
+            if is_xl_img2img_ip or is_flux_img2img_ip or (modelid_img2img_ip[0:9] == "./models/"):
                 image[j] = safety_checker_sdxl(model_path_img2img_ip, image[j], nsfw_filter)
             savename = name_image()
             if use_gfpgan_img2img_ip == True :
@@ -807,7 +876,10 @@ def image_img2img_ip(
 
     exif_writer_png(reporting_img2img_ip, final_image)
 
-    del nsfw_filter_final, feat_ex, pipe_img2img_ip, generator, image_input, image_input_ipa, compel, conditioning, neg_conditioning, image
+    if is_flux_img2img_ip:
+        del nsfw_filter_final, feat_ex, pipe_img2img_ip, generator, image_input, image_input_ipa, image
+    else:
+        del nsfw_filter_final, feat_ex, pipe_img2img_ip, generator, image_input, image_input_ipa, compel, conditioning, neg_conditioning, image
     clean_ram()
 
     print(f">>>[IP-Adapter 🖌️ ]: leaving module")
