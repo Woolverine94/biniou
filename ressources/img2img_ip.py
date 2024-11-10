@@ -782,8 +782,8 @@ def image_img2img_ip(
                 image = pipe_img2img_ip(
                     image=image_input,
                     prompt=prompt_img2img_ip,
-                    width=dim_size[0],
-                    height=dim_size[1],
+                    width=width_img2img_ip,
+                    height=height_img2img_ip,
                     max_sequence_length=512,
                     num_images_per_prompt=num_images_per_prompt_img2img_ip,
                     guidance_scale=guidance_scale_img2img_ip,
@@ -798,8 +798,8 @@ def image_img2img_ip(
                 image = pipe_img2img_ip(
                     image=image_input,
                     prompt=prompt_img2img_ip,
-                    width=dim_size[0],
-                    height=dim_size[1],
+                    width=width_img2img_ip,
+                    height=height_img2img_ip,
                     max_sequence_length=512,
                     num_images_per_prompt=num_images_per_prompt_img2img_ip,
                     guidance_scale=guidance_scale_img2img_ip,
