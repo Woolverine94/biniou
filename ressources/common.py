@@ -2122,14 +2122,14 @@ def lora_model_list(model, *args):
             "multimodalart/flux-tarot-v1":("flux_tarot_v1_lora.safetensors", "in the style of TOK a trtcrd tarot style"),
             "prithivMLmods/EBook-Creative-Cover-Flux-LoRA":("EBook-Cover.safetensors", "EBook Cover"),
             "prithivMLmods/Coloring-Book-Flux-LoRA":("coloring-book.safetensors", "Coloring Book"),
+            "Shakker-Labs/FLUX.1-dev-LoRA-Text-Poster":("FLUX-dev-lora-Text-Poster.safetensors", "text poster"),
             "-[ 👌 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
             "Bootoshi/retroanime":("RetroAnimeFluxV1.safetensors", "retro anime"),
-
+            "dataautogpt3/FLUX-SyntheticAnime":("Flux_1_Dev_LoRA_syntheticanime.safetensors", "1980s anime screengrab, VHS quality, syntheticanime"),
             "-[ 🏠 Local models ]-":("", ""),
     }
-
 
     else :
         model_path_lora = model_path_lora_sd
