@@ -1608,6 +1608,8 @@ def change_model_type_controlnet(model_controlnet):
         return sampler_controlnet.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=7.5), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), txtinv_controlnet.update(choices=list(txtinv_list(model_controlnet).keys()), value=""), negative_prompt_controlnet.update(interactive=True), img_preview_controlnet.update(value=None), gs_img_preview_controlnet.update(value=None)
     elif is_sd3(model_controlnet):
         return sampler_controlnet.update(value="Flow Match Euler"), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=7.5), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), txtinv_controlnet.update(choices=list(txtinv_list(model_controlnet).keys()), value=""), negative_prompt_controlnet.update(interactive=True), img_preview_controlnet.update(value=None), gs_img_preview_controlnet.update(value=None)
+    elif is_flux(model_controlnet):
+        return sampler_controlnet.update(value="Flow Match Euler"), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=3.5), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), txtinv_controlnet.update(choices=list(txtinv_list(model_controlnet).keys()), value=""), negative_prompt_controlnet.update(interactive=True), img_preview_controlnet.update(value=None), gs_img_preview_controlnet.update(value=None)
     else:
         return sampler_controlnet.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_controlnet.update(), height_controlnet.update(), num_inference_step_controlnet.update(value=10), guidance_scale_controlnet.update(value=7.5), lora_model_controlnet.update(choices=list(lora_model_list(model_controlnet).keys()), value="", interactive=True), txtinv_controlnet.update(choices=list(txtinv_list(model_controlnet).keys()), value=""), negative_prompt_controlnet.update(interactive=True), img_preview_controlnet.update(value=None), gs_img_preview_controlnet.update(value=None)
 
@@ -1677,7 +1679,7 @@ def change_lora_model_controlnet(model, lora_model, prompt, steps, cfg_scale, sa
         biniou_internal_previous_sampler_controlnet = sampler
         if (lora_model == "ByteDance/SDXL-Lightning") or (lora_model == "GraydientPlatformAPI/lightning-faster-lora"):
             return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=4), guidance_scale_controlnet.update(value=0.0), sampler_controlnet.update(value="LCM")
-        elif ((lora_model == "ByteDance/Hyper-SD") or ("H1T/TCD-SD" in lora_model.upper())) and not is_sd3(model):
+        elif ((lora_model == "ByteDance/Hyper-SD") or ("H1T/TCD-SD" in lora_model.upper())) and not is_sd3(model) and not is_flux(model):
             return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=2), guidance_scale_controlnet.update(value=0.0), sampler_controlnet.update(value="TCD")
         elif (lora_model == "openskyml/lcm-lora-sdxl-turbo"):
             return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=4), guidance_scale_controlnet.update(value=0.0), sampler_controlnet.update(value="LCM")
@@ -1695,6 +1697,10 @@ def change_lora_model_controlnet(model, lora_model, prompt, steps, cfg_scale, sa
             return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=6), guidance_scale_controlnet.update(value=3.0), sampler_controlnet.update(value="DPM++ SDE Karras")
         elif (lora_model == "ByteDance/Hyper-SD") and is_sd3(model):
             return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=4), guidance_scale_controlnet.update(value=3.0), sampler_controlnet.update(value="Flow Match Euler")
+        elif (lora_model == "ByteDance/Hyper-SD") and is_flux(model):
+            return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=8), guidance_scale_controlnet.update(value=3.5), sampler_controlnet.update(value="Flow Match Euler")
+        elif (lora_model == "Lingyuzhou/Hyper_Flux.1_Dev_4_step_Lora"):
+            return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=4), guidance_scale_controlnet.update(value=3.5), sampler_controlnet.update(value="Flow Match Euler")
     else:
         if ((biniou_internal_previous_model_controlnet == "") and (biniou_internal_previous_steps_controlnet == "") and (biniou_internal_previous_cfg_controlnet == "") and (biniou_internal_previous_sampler_controlnet == "")):
             return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(), guidance_scale_controlnet.update(), sampler_controlnet.update()

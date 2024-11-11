@@ -4,7 +4,7 @@ import gradio as gr
 import os
 import cv2
 import torch
-from diffusers import StableDiffusionControlNetPipeline, StableDiffusionXLControlNetPipeline, ControlNetModel, StableDiffusion3ControlNetPipeline
+from diffusers import StableDiffusionControlNetPipeline, StableDiffusionXLControlNetPipeline, ControlNetModel, StableDiffusion3ControlNetPipeline, FluxControlNetPipeline, FluxControlNetModel
 from diffusers.models import SD3ControlNetModel, SD3MultiControlNetModel
 from huggingface_hub import hf_hub_download
 from compel import Compel, ReturnedEmbeddingsType
@@ -19,7 +19,9 @@ device_controlnet = torch.device(device_label_controlnet)
 
 # Gestion des modèles
 model_path_controlnet = "./models/Stable_Diffusion/"
+model_path_flux_controlnet = "./models/Flux/"
 os.makedirs(model_path_controlnet, exist_ok=True)
+os.makedirs(model_path_flux_controlnet, exist_ok=True)
 model_list_controlnet_local = []
 
 for filename in os.listdir(model_path_controlnet):
@@ -28,46 +30,6 @@ for filename in os.listdir(model_path_controlnet):
         model_list_controlnet_local.append(f)
 
 model_list_controlnet_builtin = [
-#     "SG161222/Realistic_Vision_V3.0_VAE",
-#     "SG161222/Paragon_V1.0",
-#     "digiplay/majicMIX_realistic_v7",
-#     "SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep",
-#     "sd-community/sdxl-flash",
-#     "dataautogpt3/PrometheusV1",
-#     "mann-e/Mann-E_Dreams",
-#     "mann-e/Mann-E_Art",
-#     "ehristoforu/Visionix-alpha",
-#     "v2ray/stable-diffusion-3-medium-diffusers",
-#     "ptx0/sd3-reality-mix",
-#     "RunDiffusion/Juggernaut-X-Hyper",
-#     "cutycat2000x/InterDiffusion-4.0",
-#     "RunDiffusion/Juggernaut-XL-Lightning",
-#     "fluently/Fluently-XL-v3-Lightning",
-#     "Corcelio/mobius",
-#     "fluently/Fluently-XL-Final",
-#     "SPO-Diffusion-Models/SPO-SDXL_4k-p_10ep",
-#     "recoilme/ColorfulXL-Lightning",
-#     "playgroundai/playground-v2-512px-base",
-#     "playgroundai/playground-v2-1024px-aesthetic",
-#     "playgroundai/playground-v2.5-1024px-aesthetic",
-# #    "stabilityai/sd-turbo",
-#     "stabilityai/sdxl-turbo",
-#     "thibaud/sdxl_dpo_turbo",
-#     "SG161222/RealVisXL_V4.0_Lightning",
-#     "cagliostrolab/animagine-xl-3.1",
-#     "aipicasso/emi-2",
-#     "dataautogpt3/OpenDalleV1.1",
-#     "dataautogpt3/ProteusV0.5",
-# #    "dataautogpt3/ProteusV0.4-Lightning",
-#     "digiplay/AbsoluteReality_v1.8.1",
-#     "segmind/Segmind-Vega",
-#     "segmind/SSD-1B",
-#     "gsdf/Counterfeit-V2.5",
-# #    "ckpt/anything-v4.5-vae-swapped",
-#     "stabilityai/stable-diffusion-xl-base-1.0",
-#     "runwayml/stable-diffusion-v1-5",
-#     "nitrosocke/Ghibli-Diffusion", 
-
     "-[ 👍 SD15 ]-",
     "SG161222/Realistic_Vision_V3.0_VAE",
     "Yntec/VisionVision",
@@ -133,6 +95,8 @@ model_list_controlnet_builtin = [
     "-[ 👏 🐢 SD3 ]-",
     "v2ray/stable-diffusion-3-medium-diffusers",
     "ptx0/sd3-reality-mix",
+    "-[ 🏆 🐢 Flux ]-",
+    "Freepik/flux.1-lite-8B-alpha",
     "-[ 🏠 Local models ]-",
 ]
 
@@ -172,6 +136,10 @@ variant_list_controlnet = [
     "InstantX/SD3-Controlnet-Canny",
     "InstantX/SD3-Controlnet-Pose",
     "InstantX/SD3-Controlnet-Tile",
+    "XLabs-AI/flux-controlnet-canny-diffusers",
+    "XLabs-AI/flux-controlnet-depth-diffusers",
+#    "George0667/Flux.1-dev-ControlNet-LineCombo",
+    "jasperai/Flux.1-dev-Controlnet-Upscaler",
 ]
 
 preprocessor_list_controlnet = [
@@ -244,6 +212,11 @@ def dispatch_controlnet_preview(
     else :
         is_sd3_controlnet: bool = False
 
+    if is_flux(modelid_controlnet):
+        is_flux_controlnet: bool = True
+    else :
+        is_flux_controlnet: bool = False
+
     img_source_controlnet = Image.open(img_source_controlnet)
     img_source_controlnet = np.array(img_source_controlnet)
     if not (('qr' in preprocessor_controlnet) or ('tile' in preprocessor_controlnet)):
@@ -258,25 +231,42 @@ def dispatch_controlnet_preview(
                 return result, result, variant_list_controlnet[20]
             elif is_sd3_controlnet:
                 return result, result, variant_list_controlnet[22]
+            elif is_flux_controlnet:
+                return result, result, variant_list_controlnet[25]
             else:
                 return result, result, variant_list_controlnet[0]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[0]
 # 02
         case "depth_leres":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[13] if is_xl_controlnet else variant_list_controlnet[1]
+            if is_xl_controlnet:
+                return result, result, variant_list_controlnet[13] 
+            elif is_flux_controlnet:
+                return result, result, variant_list_controlnet[26] 
+            else:
+                return result, result, variant_list_controlnet[1]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[1]
 # 03
         case "depth_leres++":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
-            return result, result, variant_list_controlnet[13] if is_xl_controlnet else variant_list_controlnet[1]
+            if is_xl_controlnet:
+                return result, result, variant_list_controlnet[13] 
+            elif is_flux_controlnet:
+                return result, result, variant_list_controlnet[26] 
+            else:
+                return result, result, variant_list_controlnet[1]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[1]
 # 04
         case "depth_midas":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
 #            return result, result, variant_list_controlnet[13] if is_xl_controlnet else variant_list_controlnet[1]
-            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[1]
-
+#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[1]
+            if is_xl_controlnet:
+                return result, result, variant_list_controlnet[20] 
+            elif is_flux_controlnet:
+                return result, result, variant_list_controlnet[26] 
+            else:
+                return result, result, variant_list_controlnet[1]
 #         case "depth_zoe":
 #             result = processor_controlnet(img_source_controlnet, to_pil=True)
 # #            return result, result, variant_list_controlnet[13] if is_xl_controlnet else variant_list_controlnet[1]
@@ -289,6 +279,8 @@ def dispatch_controlnet_preview(
                 return result, result, variant_list_controlnet[20]
             elif is_sd3_controlnet:
                 return result, result, variant_list_controlnet[22]
+            elif is_flux_controlnet:
+                return result, result, variant_list_controlnet[25]
             else:
                 return result, result, variant_list_controlnet[2]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[2]
@@ -300,6 +292,8 @@ def dispatch_controlnet_preview(
                 return result, result, variant_list_controlnet[12]
             elif is_sd3_controlnet:
                 return result, result, variant_list_controlnet[22]
+            elif is_flux_controlnet:
+                return result, result, variant_list_controlnet[25]
             else:
                 return result, result, variant_list_controlnet[3]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[3]
@@ -311,6 +305,8 @@ def dispatch_controlnet_preview(
                 return result, result, variant_list_controlnet[20]
             elif is_sd3_controlnet:
                 return result, result, variant_list_controlnet[22]
+            elif is_flux_controlnet:
+                return result, result, variant_list_controlnet[25]
             else:
                 return result, result, variant_list_controlnet[3]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[3]
@@ -322,6 +318,8 @@ def dispatch_controlnet_preview(
                 return result, result, variant_list_controlnet[20]
             elif is_sd3_controlnet:
                 return result, result, variant_list_controlnet[22]
+            elif is_flux_controlnet:
+                return result, result, variant_list_controlnet[25]
             else:
                 return result, result, variant_list_controlnet[4]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[4]
@@ -342,6 +340,8 @@ def dispatch_controlnet_preview(
                 return result, result, variant_list_controlnet[20]
             elif is_sd3_controlnet:
                 return result, result, variant_list_controlnet[23]
+            elif is_flux_controlnet:
+                return result, result, variant_list_controlnet[25]
             else:
                 return result, result, variant_list_controlnet[6]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
@@ -353,6 +353,8 @@ def dispatch_controlnet_preview(
                 return result, result, variant_list_controlnet[14]
             elif is_sd3_controlnet:
                 return result, result, variant_list_controlnet[23]
+            elif is_flux_controlnet:
+                return result, result, variant_list_controlnet[25]
             else:
                 return result, result, variant_list_controlnet[6]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
@@ -364,6 +366,8 @@ def dispatch_controlnet_preview(
                 return result, result, variant_list_controlnet[14]
             elif is_sd3_controlnet:
                 return result, result, variant_list_controlnet[23]
+            elif is_flux_controlnet:
+                return result, result, variant_list_controlnet[25]
             else:
                 return result, result, variant_list_controlnet[6]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
@@ -375,6 +379,8 @@ def dispatch_controlnet_preview(
                 return result, result, variant_list_controlnet[14]
             elif is_sd3_controlnet:
                 return result, result, variant_list_controlnet[23]
+            elif is_flux_controlnet:
+                return result, result, variant_list_controlnet[25]
             else:
                 return result, result, variant_list_controlnet[6]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
@@ -386,6 +392,8 @@ def dispatch_controlnet_preview(
                 return result, result, variant_list_controlnet[20]
             elif is_sd3_controlnet:
                 return result, result, variant_list_controlnet[23]
+            elif is_flux_controlnet:
+                return result, result, variant_list_controlnet[25]
             else:
                 return result, result, variant_list_controlnet[6]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
@@ -393,33 +401,69 @@ def dispatch_controlnet_preview(
 # 15
         case "scribble_hed":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
+            if is_xl_controlnet:
+                return result, result, variant_list_controlnet[20] 
+            elif is_flux_controlnet:
+                return result, result, variant_list_controlnet[25] 
+            else:
+                return result, result, variant_list_controlnet[7]
 #            return result, result, variant_list_controlnet[15] if is_xl_controlnet else variant_list_controlnet[7]
-            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[7]
+#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[7]
 # 16
         case "scribble_pidinet":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
+            if is_xl_controlnet:
+                return result, result, variant_list_controlnet[20] 
+            elif is_flux_controlnet:
+                return result, result, variant_list_controlnet[25] 
+            else:
+                return result, result, variant_list_controlnet[7]
 #            return result, result, variant_list_controlnet[15] if is_xl_controlnet else variant_list_controlnet[7]
-            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[7]
+#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[7]
 # 17
         case "softedge_hed":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
+            if is_xl_controlnet:
+                return result, result, variant_list_controlnet[20]
+            elif is_flux_controlnet:
+                return result, result, variant_list_controlnet[25]
+            else:
+                return result, result, variant_list_controlnet[8]
 #            return result, result, variant_list_controlnet[15] if is_xl_controlnet else variant_list_controlnet[8]
-            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[8]
+#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[8]
 # 18
         case "softedge_hedsafe":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
+            if is_xl_controlnet:
+                return result, result, variant_list_controlnet[20] 
+            elif is_flux_controlnet:
+                return result, result, variant_list_controlnet[25] 
+            else:
+                return result, result, variant_list_controlnet[8]
 #            return result, result, variant_list_controlnet[15] if is_xl_controlnet else variant_list_controlnet[8]
-            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[8]
+#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[8]
 # 19
         case "softedge_pidinet":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
+            if is_xl_controlnet:
+                return result, result, variant_list_controlnet[20] 
+            elif is_flux_controlnet:
+                return result, result, variant_list_controlnet[25] 
+            else:
+                return result, result, variant_list_controlnet[8]
 #            return result, result, variant_list_controlnet[15] if is_xl_controlnet else variant_list_controlnet[8]
-            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[8]
+#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[8]
 # 20
         case "softedge_pidsafe":
             result = processor_controlnet(img_source_controlnet, to_pil=True)
+            if is_xl_controlnet:
+                return result, result, variant_list_controlnet[20] 
+            elif is_flux_controlnet:
+                return result, result, variant_list_controlnet[25] 
+            else:
+                return result, result, variant_list_controlnet[8]
 #            return result, result, variant_list_controlnet[15] if is_xl_controlnet else variant_list_controlnet[8]
-            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[8]
+#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[8]
 # 21
         case "tile":
             result = tile_controlnet(img_source_controlnet, is_xl_controlnet, modelid_controlnet)
@@ -428,6 +472,8 @@ def dispatch_controlnet_preview(
                 return result, result, variant_list_controlnet[20]
             elif is_sd3_controlnet:
                 return result, result, variant_list_controlnet[24]
+            elif is_flux_controlnet:
+                return result, result, variant_list_controlnet[27]
             else:
                 return result, result, variant_list_controlnet[9]
 #            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[9]
@@ -532,7 +578,7 @@ def image_controlnet(
     lora_weight_array = []
 
     if lora_model_controlnet != "":
-        if is_sd3(modelid_controlnet) and lora_model_controlnet == "ByteDance/Hyper-SD":
+        if (is_sd3(modelid_controlnet) or is_flux(modelid_controlnet))and lora_model_controlnet == "ByteDance/Hyper-SD":
             lora_weight_controlnet = 0.12
         lora_array.append(f"{lora_model_controlnet}")
         lora_weight_array.append(float(lora_weight_controlnet))
@@ -574,6 +620,11 @@ def image_controlnet(
     else :
         is_bin_controlnet: bool = False
 
+    if is_flux(modelid_controlnet):
+        is_flux_controlnet: bool = True
+    else :
+        is_flux_controlnet: bool = False
+
     if is_sd3_controlnet:
         controlnet = SD3ControlNetModel.from_pretrained(
             variant_controlnet,
@@ -581,6 +632,14 @@ def image_controlnet(
             torch_dtype=model_arch,
 #            variant="fp16" if (variant_controlnet == "TheMistoAI/MistoLine" or variant_controlnet == "ValouF-pimento/ControlNet_SDXL_tile_upscale") else None,
     #        use_safetensors=True,
+            resume_download=True,
+            local_files_only=True if offline_test() else None
+            )
+    elif is_flux_controlnet:
+        controlnet = FluxControlNetModel.from_pretrained(
+            variant_controlnet,
+            cache_dir=model_path_base_controlnet,
+            torch_dtype=model_arch,
             resume_download=True,
             local_files_only=True if offline_test() else None
             )
@@ -655,6 +714,25 @@ def image_controlnet(
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
+    elif is_flux_controlnet:
+        if modelid_controlnet[0:9] == "./models/" :
+            pipe_controlnet = FluxControlNetPipeline.from_single_file(
+                modelid_controlnet,
+                controlnet=controlnet,
+                torch_dtype=model_arch,
+                use_safetensors=True if not is_bin_controlnet else False,
+                local_files_only=True if offline_test() else None
+            )
+        else :
+            pipe_controlnet = FluxControlNetPipeline.from_pretrained(
+                modelid_controlnet,
+                controlnet=controlnet,
+                cache_dir=model_path_flux_controlnet,
+                torch_dtype=model_arch,
+                use_safetensors=True if not is_bin_controlnet else False,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
     else :
         if modelid_controlnet[0:9] == "./models/" :
             pipe_controlnet = StableDiffusionControlNetPipeline.from_single_file(
@@ -682,13 +760,13 @@ def image_controlnet(
    
     pipe_controlnet = schedulerer(pipe_controlnet, sampler_controlnet)
     pipe_controlnet.enable_attention_slicing("max")
-    if not is_sd3_controlnet:
+    if not is_sd3_controlnet and not is_flux_controlnet:
         tomesd.apply_patch(pipe_controlnet, ratio=tkme_controlnet)
     if device_label_controlnet == "cuda" :
         pipe_controlnet.enable_sequential_cpu_offload()
     else : 
         pipe_controlnet = pipe_controlnet.to(device_controlnet)
-    if not is_sd3_controlnet:
+    if not is_sd3_controlnet and not is_flux_controlnet:
         pipe_controlnet.enable_vae_slicing()
 
     adapters_list = []
@@ -709,6 +787,8 @@ def image_controlnet(
                     lora_model_path = model_path_lora_sdxl
                 elif is_sd3_controlnet:
                     lora_model_path = model_path_lora_sd3
+                elif is_flux_controlnet:
+                    lora_model_path = model_path_lora_flux
                 else: 
                     lora_model_path = model_path_lora_sd
 
@@ -767,7 +847,7 @@ def image_controlnet(
     for k in range(num_prompt_controlnet):
         generator.append([torch.Generator(device_controlnet).manual_seed(final_seed + (k*num_images_per_prompt_controlnet) + l ) for l in range(num_images_per_prompt_controlnet)])
 
-    if ((is_xl_controlnet == True) or (is_sd3_controlnet == True)) and not (is_turbo_controlnet == True):
+    if (is_xl_controlnet or is_sd3_controlnet or is_flux_controlnet) and not is_turbo_controlnet:
         dim_size = correct_size(width_controlnet, height_controlnet, 1024)
     else :
         dim_size = correct_size(width_controlnet, height_controlnet, 512)
@@ -794,7 +874,7 @@ def image_controlnet(
         conditioning, pooled = compel(prompt_controlnet)
         neg_conditioning, neg_pooled = compel(negative_prompt_controlnet)
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
-    elif (is_sd3_controlnet == True):
+    elif is_sd3_controlnet or is_flux_controlnet:
         pass
     else : 
         compel = Compel(tokenizer=pipe_controlnet.tokenizer, text_encoder=pipe_controlnet.text_encoder, truncate_long_prompts=False, device=device_controlnet)
@@ -842,7 +922,7 @@ def image_controlnet(
                 callback_on_step_end=check_controlnet,
                 callback_on_step_end_tensor_inputs=['latents'],
             ).images
-        elif (is_sd3_controlnet == True) : 
+        elif is_sd3_controlnet:
             image = pipe_controlnet(
                 prompt=prompt_controlnet,
                 negative_prompt=negative_prompt_controlnet,
@@ -855,12 +935,30 @@ def image_controlnet(
                 guidance_scale=guidance_scale_controlnet,
                 controlnet_conditioning_scale=strength_controlnet,
                 control_guidance_start=start_controlnet,
-                control_guidance_end=stop_controlnet,                
+                control_guidance_end=stop_controlnet,
                 generator=generator[i],
                 callback_on_step_end=check_controlnet,
                 callback_on_step_end_tensor_inputs=['latents'],
             ).images
-        else :            
+        elif is_flux_controlnet:
+            image = pipe_controlnet(
+                prompt=prompt_controlnet,
+                control_image=image_input,
+                height=height_controlnet,
+                width=width_controlnet,
+                max_sequence_length=512,
+                num_images_per_prompt=num_images_per_prompt_controlnet,
+                num_inference_steps=num_inference_step_controlnet,
+                timesteps=sampling_schedule_controlnet,
+                guidance_scale=guidance_scale_controlnet,
+                controlnet_conditioning_scale=strength_controlnet,
+                control_guidance_start=start_controlnet,
+                control_guidance_end=stop_controlnet,
+                generator=generator[i],
+                callback_on_step_end=check_controlnet,
+                callback_on_step_end_tensor_inputs=['latents'],
+            ).images
+        else :
             image = pipe_controlnet(
                 prompt_embeds=conditioning,
                 negative_prompt_embeds=neg_conditioning,
@@ -881,7 +979,7 @@ def image_controlnet(
             ).images
 
         for j in range(len(image)):
-            if is_xl_controlnet or is_sd3_controlnet or (modelid_controlnet[0:9] == "./models/"):
+            if is_xl_controlnet or is_sd3_controlnet or is_flux_controlnet or (modelid_controlnet[0:9] == "./models/"):
                 image[j] = safety_checker_sdxl(model_path_controlnet, image[j], nsfw_filter)
             seed_id = random_seed + i*num_images_per_prompt_controlnet + j if (seed_controlnet == 0) else seed_controlnet + i*num_images_per_prompt_controlnet + j
             savename = name_seeded_image(seed_id)
