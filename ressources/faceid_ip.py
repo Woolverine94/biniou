@@ -395,15 +395,14 @@ def image_faceid_ip(
 #        pipe_faceid_ip.load_ip_adapter_face_id(
 
     pipe_faceid_ip.set_ip_adapter_scale(denoising_strength_faceid_ip)
-
 #    pipe_faceid_ip = schedulerer(pipe_faceid_ip, sampler_faceid_ip)
 #    pipe_faceid_ip.enable_attention_slicing("max")
-
     tomesd.apply_patch(pipe_faceid_ip, ratio=tkme_faceid_ip)
     if device_label_faceid_ip == "cuda" :
         pipe_faceid_ip.enable_sequential_cpu_offload()
     else : 
         pipe_faceid_ip = pipe_faceid_ip.to(device_faceid_ip)
+    pipe_faceid_ip.enable_vae_slicing()
 
     if len(lora_array) != 0:
         for e in range(len(lora_array)):
