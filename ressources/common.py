@@ -2128,6 +2128,8 @@ def lora_model_list(model, *args):
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
             "Bootoshi/retroanime":("RetroAnimeFluxV1.safetensors", "retro anime"),
             "dataautogpt3/FLUX-SyntheticAnime":("Flux_1_Dev_LoRA_syntheticanime.safetensors", "1980s anime screengrab, VHS quality, syntheticanime"),
+            "prithivMLmods/Canopus-Pixar-3D-Flux-LoRA":("Canopus-Pixar-3D-FluxDev-LoRA.safetensors", "Pixar 3D"),
+            "prithivMLmods/Flux-Dev-Real-Anime-LoRA":("Flux-Dev-Real-Anime-LoRA.safetensors", "Real Anime"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
