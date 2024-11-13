@@ -1843,7 +1843,8 @@ def is_sdxl(model):
 (model == "dataautogpt3/ProteusV0.4") or \
 (model == "dataautogpt3/ProteusV0.5") or \
 (model == "dataautogpt3/Proteus-v0.6") or \
-(model == "dataautogpt3/PrometheusV1")\
+(model == "dataautogpt3/PrometheusV1") or \
+(model == "dataautogpt3/ProteusSigma")\
 ):
         is_sdxl_value = True
     else:
@@ -2079,6 +2080,7 @@ def lora_model_list(model, *args):
             "alvarobartt/ghibli-characters-sd3.5-lora":("pytorch_lora_weights.safetensors", "Ghibli style"),
             "reverentelusarca/ancient-style-sd35":("sd35-ancient_style_v1.safetensors", "ancientstyle"),
             "Wadaka/NewYorkerComic_Style":("NYS_Lora.safetensors", "nyrkr style"),
+            "nerijs/pixel-art-3.5L":("pixel-art-3.5L-v2_000000500.safetensors", "pixel art"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
@@ -2090,6 +2092,7 @@ def lora_model_list(model, *args):
         model_list_lora_builtin = {
             "-[ 👏 🐢 SD3.5 Medium LoRA ]-":("pytorch_lora_weights.safetensors", "yarn art style"),
             "linoyts/yarn-art-30-37-max-grad-norm-medium":("pytorch_lora_weights.safetensors", "yarn art style"),
+#            "JINTAIRE/anime_pose":("anime pose(final).safetensors", "anime pose ,"),
 #            "raaedk/subliminal":("pytorch_lora_weights.safetensors", "ps2 graphics, fog filled space, subliminal"),
 #            "Clybius/mspaint-style-sd3.5medium":("mspaint-style-sd3-v1.safetensors", "mspaint style"),
             "-[ 🏠 Local models ]-":("", ""),
@@ -2116,6 +2119,7 @@ def lora_model_list(model, *args):
             "alvdansen/frosting_lane_flux":("flux_dev_frostinglane_araminta_k.safetensors", "frstingln illustration"),
             "gokaygokay/Flux-Double-Exposure-LoRA":("double_exposure.safetensors", "dblxpsr"),
             "glif-loradex-trainer/shipley_flux_dev_AlicesAdventuresInWonderland_v2":("flux_dev_AlicesAdventuresInWonderland_v2.safetensors", "wonderlandstyle"),
+            "markury/surrealidescent":("pytorch_lora_weights.safetensors", "A surreal photo"),
             "-[ 👌 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
