@@ -5,7 +5,7 @@ import os
 import PIL
 import torch
 from diffusers import AutoPipelineForImage2Image, StableDiffusionXLImg2ImgPipeline, StableDiffusionImg2ImgPipeline, StableDiffusionPipeline, StableDiffusionXLPipeline, AutoPipelineForText2Image, FluxImg2ImgPipeline, FluxPipeline
-from transformers import CLIPVisionModelWithProjection
+from transformers import CLIPVisionModelWithProjection, CLIPModel
 from huggingface_hub import snapshot_download, hf_hub_download
 from compel import Compel, ReturnedEmbeddingsType
 import random
@@ -362,12 +362,21 @@ def image_img2img_ip(
                     resume_download=True,
                     local_files_only=True if offline_test() else None
                 )
-    if (is_flux_img2img_ip == True):
+    elif (is_flux_img2img_ip == True):
         if (source_type_img2img_ip == "standard"):
+            clip_model_img2img_ip = CLIPModel.from_pretrained(
+                "openai/clip-vit-large-patch14",
+                cache_dir=model_path_flux_img2img_ip,
+                torch_dtype=model_arch,
+                use_safetensors=True,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
             if modelid_img2img_ip[0:9] == "./models/" :
                 pipe_img2img_ip = FluxImg2ImgPipeline.from_single_file(
                     modelid_img2img_ip,
                     torch_dtype=model_arch,
+                    clip_model=clip_model_img2img_ip,
                     use_safetensors=True if not is_bin_img2img_ip else False,
                     local_files_only=True if offline_test() else None
                 )
@@ -376,6 +385,7 @@ def image_img2img_ip(
                     modelid_img2img_ip,
                     cache_dir=model_path_flux_img2img_ip,
                     torch_dtype=model_arch,
+                    clip_model=clip_model_img2img_ip,
                     use_safetensors=True if not is_bin_img2img_ip else False,
                     resume_download=True,
                     local_files_only=True if offline_test() else None
@@ -658,11 +668,11 @@ def image_img2img_ip(
         generator = torch.manual_seed(seed_img2img_ip)
 
     if (img_img2img_ip != None):
-        if (is_xl_img2img_ip or is_flux_img2img_ip) and not is_turbo_img2img_ip:
-            dim_size = correct_size(width_img2img_ip, height_img2img_ip, 1024)
-        else: 
-            dim_size = correct_size(width_img2img_ip, height_img2img_ip, 512)
         image_input = PIL.Image.open(img_img2img_ip)
+        if (is_xl_img2img_ip or is_flux_img2img_ip) and not is_turbo_img2img_ip:
+            dim_size = correct_size(image_input.size[0], image_input.size[1], 1024)
+        else: 
+            dim_size = correct_size(image_input.size[0], image_input.size[1], 512)
         image_input = image_input.convert("RGB")
         image_input = image_input.resize((dim_size[0], dim_size[1]))
         width_img2img_ip = dim_size[0]
