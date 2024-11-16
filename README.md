@@ -17,6 +17,14 @@
 
 ## Updates
 
+  * 🆕 **2024-11-16** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for Chatbot models [bartowski/SuperNova-Medius-GGUF](https://hf.co/bartowski/SuperNova-Medius-GGUF) and [bartowski/OpenCoder-8B-Instruct-GGUF](https://hf.co/bartowski/OpenCoder-8B-Instruct-GGUF).
+    - Add support for  Flux LoRA models [Shakker-Labs/FLUX.1-dev-LoRA-Text-Poster](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-Text-Poster), [dataautogpt3/FLUX-SyntheticAnime](https://hf.co/dataautogpt3/FLUX-SyntheticAnime), [prithivMLmods/Canopus-Pixar-3D-Flux-LoRA](https://hf.co/prithivMLmods/Canopus-Pixar-3D-Flux-LoRA), [prithivMLmods/Flux-Dev-Real-Anime-LoRA](https://hf.co/prithivMLmods/Flux-Dev-Real-Anime-LoRA), [glif-loradex-trainer/shipley_flux_dev_AlicesAdventuresInWonderland_v2](https://hf.co/glif-loradex-trainer/shipley_flux_dev_AlicesAdventuresInWonderland_v2), [prithivMLmods/Ton618-Only-Stickers-Flux-LoRA](https://hf.co/prithivMLmods/Ton618-Only-Stickers-Flux-LoRA), [markury/surrealidescent](https://hf.co/markury/surrealidescent), [FounderFeed/gta-style-lora](https://hf.co/FounderFeed/gta-style-lora), [Keltezaa/movie-poster-ce-sdxl-flux](https://hf.co/Keltezaa/movie-poster-ce-sdxl-flux), [FounderFeed/MidjourneyMeetFlux](https://hf.co/FounderFeed/MidjourneyMeetFlux) and [dooart/flux-lora-vintage-tarot](https://hf.co/dooart/flux-lora-vintage-tarot).
+    - Add support for SD 3.5 Large LoRA models [nerijs/pixel-art-3.5L](https://hf.co/nerijs/pixel-art-3.5L).
+    - Add preliminary support for Flux to IP-Adapter module.
+    - Add preliminary support for Flux to ControlNet module (only canny and depth are working currently).
+    - Optimizations and bugfixes.
+
   * 🆕 **2024-11-09** : 🔥 ***This week's updates*** 🔥 >
     - Add support for Chatbot models [bartowski/SmolLM2-1.7B-Instruct-GGUF](https://hf.co/bartowski/SmolLM2-1.7B-Instruct-GGUF), [bartowski/cybertron-v4-qw7B-MGS-GGUF](https://hf.co/bartowski/cybertron-v4-qw7B-MGS-GGUF) and [bartowski/OpenChat-3.5-0106_32K-PoSE-GGUF](https://hf.co/bartowski/OpenChat-3.5-0106_32K-PoSE-GGUF).
     - Update of Chatbot model Llama-3.2-3B-Instruct-GGUF to [bartowski/Llama-3.2-3B-Instruct-uncensored-GGUF](https://hf.co/bartowski/Llama-3.2-3B-Instruct-uncensored-GGUF).
