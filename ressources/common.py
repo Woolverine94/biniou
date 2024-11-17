@@ -2135,6 +2135,8 @@ def lora_model_list(model, *args):
             "prithivMLmods/Ton618-Only-Stickers-Flux-LoRA":("only-stickers.safetensors", "Only Sticker"),
             "dooart/flux-lora-vintage-tarot":("flux-lora-vintage-tarot.safetensors", "tarot card"),
             "Keltezaa/movie-poster-ce-sdxl-flux":("MoviePoster03-02_CE_FLUX_128AIT.safetensors", "mvpstrCE style"),
+            "Norod78/Flux_1_Dev_LoRA_Paper-Cutout-Style":("Flux_1_Dev_LoRA_Paper-Cutout-Style.safetensors", "Paper Cutout Style"),
+            "prithivMLmods/Knitted-Character-Flux-LoRA":("Knitted-Character.safetensors", "Knitted Character"),
             "-[ 👌 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
