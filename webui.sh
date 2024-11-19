@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 ## Detection of TCMalloc
 RELEASE="$(cat /etc/os-release|grep ^ID)"
 
