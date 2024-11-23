@@ -17,6 +17,10 @@
 
 ## Updates
 
+  * 🆕 **2024-11-23** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for Chatbot model [prithivMLmods/Llama-Doctor-3.2-3B-Instruct-GGUF](https://hf.co/prithivMLmods/Llama-Doctor-3.2-3B-Instruct-GGUF).
+    - Add support for  Flux LoRA models [strangerzonehf/Flux-Super-Realism-LoRA](https://hf.co/strangerzonehf/Flux-Super-Realism-LoRA), [strangerzonehf/Flux-Midjourney-Mix-LoRA](https://hf.co/strangerzonehf/Flux-Midjourney-Mix-LoRA), [Norod78/Flux_1_Dev_LoRA_Paper-Cutout-Style](https://hf.co/Norod78/Flux_1_Dev_LoRA_Paper-Cutout-Style), [prithivMLmods/Knitted-Character-Flux-LoRA](https://hf.co/prithivMLmods/Knitted-Character-Flux-LoRA), [Shakker-Labs/FLUX.1-dev-LoRA-Children-Simple-Sketch](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-Children-Simple-Sketch), [renderartist/retrocomicflux](https://hf.co/renderartist/retrocomicflux), [prithivMLmods/Seamless-Pattern-Design-Flux-LoRA](https://hf.co/prithivMLmods/Seamless-Pattern-Design-Flux-LoRA), [alvdansen/haunted_linework_flux](https://hf.co/alvdansen/haunted_linework_flux), [prithivMLmods/Flux.1-Dev-Poster-HQ-LoRA](https://hf.co/prithivMLmods/Flux.1-Dev-Poster-HQ-LoRA), [Grohv/randart2_lora](https://hf.co/Grohv/randart2_lora), [renderartist/retroadflux](https://hf.co/renderartist/retroadflux), [prithivMLmods/Flux.1-Dev-Realtime-Toon-Mix](https://hf.co/prithivMLmods/Flux.1-Dev-Realtime-Toon-Mix) and [prithivMLmods/Flux-Product-Ad-Backdrop](https://hf.co/prithivMLmods/Flux-Product-Ad-Backdrop).
+
   * 🆕 **2024-11-16** : 🔥 ***This week's updates*** 🔥 >
     - Add support for Chatbot models [bartowski/SuperNova-Medius-GGUF](https://hf.co/bartowski/SuperNova-Medius-GGUF) and [bartowski/OpenCoder-8B-Instruct-GGUF](https://hf.co/bartowski/OpenCoder-8B-Instruct-GGUF).
     - Add support for  Flux LoRA models [Shakker-Labs/FLUX.1-dev-LoRA-Text-Poster](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-Text-Poster), [dataautogpt3/FLUX-SyntheticAnime](https://hf.co/dataautogpt3/FLUX-SyntheticAnime), [prithivMLmods/Canopus-Pixar-3D-Flux-LoRA](https://hf.co/prithivMLmods/Canopus-Pixar-3D-Flux-LoRA), [prithivMLmods/Flux-Dev-Real-Anime-LoRA](https://hf.co/prithivMLmods/Flux-Dev-Real-Anime-LoRA), [glif-loradex-trainer/shipley_flux_dev_AlicesAdventuresInWonderland_v2](https://hf.co/glif-loradex-trainer/shipley_flux_dev_AlicesAdventuresInWonderland_v2), [prithivMLmods/Ton618-Only-Stickers-Flux-LoRA](https://hf.co/prithivMLmods/Ton618-Only-Stickers-Flux-LoRA), [markury/surrealidescent](https://hf.co/markury/surrealidescent), [FounderFeed/gta-style-lora](https://hf.co/FounderFeed/gta-style-lora), [Keltezaa/movie-poster-ce-sdxl-flux](https://hf.co/Keltezaa/movie-poster-ce-sdxl-flux), [FounderFeed/MidjourneyMeetFlux](https://hf.co/FounderFeed/MidjourneyMeetFlux) and [dooart/flux-lora-vintage-tarot](https://hf.co/dooart/flux-lora-vintage-tarot).
@@ -46,10 +50,6 @@
     - Add support for SDXL model [dataautogpt3/Proteus-v0.6](https://hf.co/dataautogpt3/Proteus-v0.6) to all Stable Diffusion-based modules.
     - Add support for Chatbot models [anthracite-org/magnum-v4-9b-gguf](https://hf.co/anthracite-org/magnum-v4-9b-gguf) and [bartowski/Ministral-8B-Instruct-2410-GGUF](https://hf.co/bartowski/Ministral-8B-Instruct-2410-GGUF).
     - Add support for SDXL LoRA model [KappaNeuro/moebius-jean-giraud-style](https://hf.co/KappaNeuro/moebius-jean-giraud-style).
-
-  * 🆕 **2024-10-25** : 🔥 ***Support for Freepik/flux.1-lite-8B-alpha*** 🔥 > Finally ! biniou is now supporting a Flux model \o/ !!! Like SD 3.5, it will require a lot of RAM (64GB) for CPU-only inference, and would be incredibly slow, but gives awesome results. Support of LoRA models for Flux is also added by this update, and I definitely recommend to use the 8-steps HyperSD LoRA model to accelerate your inferences.
-
-  * 🆕 **2024-10-24** : 🔥 ***Support for StableDiffusion-3.5-Large-Turbo*** 🔥 > The last update add support for the latest family of Stable Diffusion models : 3.5 Large. Only the turbo flavor is currently supported. Please note that this monster will require at least 64GB RAM for CPU-only inference, and would be very slow, but highly qualitative. Next update should  (finally) bring support for Flux ! 😀
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
