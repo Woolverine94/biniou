@@ -2146,6 +2146,7 @@ def lora_model_list(model, *args):
             "prithivMLmods/Flux.1-Dev-Poster-HQ-LoRA":("poster-foss.safetensors", "poster foss"),
             "renderartist/retroadflux":("Retro_Ad_Flux_v1_renderartist.safetensors", "m1dc3ntury, vintage advertisement"),
             "prithivMLmods/Flux-Product-Ad-Backdrop":("Prod-Ad.safetensors", "Product Ad"),
+            "mozobozo/icon45":("icon45.safetensors", "style of icon45"),
             "-[ 👌 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
@@ -2153,6 +2154,7 @@ def lora_model_list(model, *args):
             "dataautogpt3/FLUX-SyntheticAnime":("Flux_1_Dev_LoRA_syntheticanime.safetensors", "1980s anime screengrab, VHS quality, syntheticanime"),
             "prithivMLmods/Canopus-Pixar-3D-Flux-LoRA":("Canopus-Pixar-3D-FluxDev-LoRA.safetensors", "Pixar 3D"),
             "prithivMLmods/Flux-Dev-Real-Anime-LoRA":("Flux-Dev-Real-Anime-LoRA.safetensors", "Real Anime"),
+            "Nishitbaria/LoRa-Flux-Anime-Style":("lora.safetensors", "ANMCH"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
