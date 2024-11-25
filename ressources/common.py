@@ -2129,6 +2129,7 @@ def lora_model_list(model, *args):
             "alvdansen/haunted_linework_flux":("hauntedlinework_flux_araminta_k.safetensors", "hntdlnwrk style"),
             "Grohv/randart2_lora":("randart2-lora.safetensors", "randart2_lora"),
             "prithivMLmods/Flux.1-Dev-Realtime-Toon-Mix":("toon-mix.safetensors", "toon mix"),
+            "Shakker-Labs/FLUX.1-dev-LoRA-Vector-Journey":("FLUX-dev-lora-Vector-Journey.safetensors", "artistic style blends reality and illustration elements."),
             "-[ 👌 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
@@ -2147,6 +2148,7 @@ def lora_model_list(model, *args):
             "renderartist/retroadflux":("Retro_Ad_Flux_v1_renderartist.safetensors", "m1dc3ntury, vintage advertisement"),
             "prithivMLmods/Flux-Product-Ad-Backdrop":("Prod-Ad.safetensors", "Product Ad"),
             "mozobozo/icon45":("icon45.safetensors", "style of icon45"),
+            "prithivMLmods/Flux.1-Dev-Quote-LoRA":("quoter001.safetensors", "quoter"),
             "-[ 👌 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
@@ -2155,6 +2157,7 @@ def lora_model_list(model, *args):
             "prithivMLmods/Canopus-Pixar-3D-Flux-LoRA":("Canopus-Pixar-3D-FluxDev-LoRA.safetensors", "Pixar 3D"),
             "prithivMLmods/Flux-Dev-Real-Anime-LoRA":("Flux-Dev-Real-Anime-LoRA.safetensors", "Real Anime"),
             "Nishitbaria/LoRa-Flux-Anime-Style":("lora.safetensors", "ANMCH"),
+            "prithivMLmods/Flux-Long-Toon-LoRA":("Long-Toon.safetensors", "Long toons"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
