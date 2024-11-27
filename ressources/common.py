@@ -2130,6 +2130,8 @@ def lora_model_list(model, *args):
             "Grohv/randart2_lora":("randart2-lora.safetensors", "randart2_lora"),
             "prithivMLmods/Flux.1-Dev-Realtime-Toon-Mix":("toon-mix.safetensors", "toon mix"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Vector-Journey":("FLUX-dev-lora-Vector-Journey.safetensors", "artistic style blends reality and illustration elements."),
+            "strangerzonehf/Flux-Isometric-3D-Cinematography":("Isometric-3D-Cinematography.safetensors", "Isometric 3D Cinematography"),
+            "prithivMLmods/Flux-Realism-FineDetailed":("Flux-Realism-FineDetailed.safetensors", "Fine Detailed"),
             "-[ 👌 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
