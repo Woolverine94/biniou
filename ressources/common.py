@@ -2132,6 +2132,7 @@ def lora_model_list(model, *args):
             "Shakker-Labs/FLUX.1-dev-LoRA-Vector-Journey":("FLUX-dev-lora-Vector-Journey.safetensors", "artistic style blends reality and illustration elements."),
             "strangerzonehf/Flux-Isometric-3D-Cinematography":("Isometric-3D-Cinematography.safetensors", "Isometric 3D Cinematography"),
             "prithivMLmods/Flux-Realism-FineDetailed":("Flux-Realism-FineDetailed.safetensors", "Fine Detailed"),
+            "swsqy/ue5flux":("3d.safetensors", "ue5"),
             "-[ 👌 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
@@ -2160,6 +2161,7 @@ def lora_model_list(model, *args):
             "prithivMLmods/Flux-Dev-Real-Anime-LoRA":("Flux-Dev-Real-Anime-LoRA.safetensors", "Real Anime"),
             "Nishitbaria/LoRa-Flux-Anime-Style":("lora.safetensors", "ANMCH"),
             "prithivMLmods/Flux-Long-Toon-LoRA":("Long-Toon.safetensors", "Long toons"),
+            "nerijs/animation2k-flux":("animation2k_v1.safetensors", ""),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
