@@ -17,6 +17,10 @@
 
 ## Updates
 
+  * 🆕 **2024-11-30** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for Chatbot models [bartowski/Marco-o1-GGUF](https://hf.co/bartowski/Marco-o1-GGUF), [bartowski/Llama-3.1-Tulu-3-8B-DPO-GGUF](https://hf.co/bartowski/Llama-3.1-Tulu-3-8B-DPO-GGUF) and [bartowski/QwQ-32B-Preview-GGUF](https://hf.co/bartowski/QwQ-32B-Preview-GGUF). The last one is a preview of a little monster that requires around 25GB of RAM to run and is slow as hell on CPU-only, but is also supposed to perform better than any commercial model ! 
+    - Add support for  Flux LoRA models [mozobozo/icon45](https://hf.co/mozobozo/icon45), [Nishitbaria/LoRa-Flux-Anime-Style](https://hf.co/Nishitbaria/LoRa-Flux-Anime-Style), [Shakker-Labs/FLUX.1-dev-LoRA-Vector-Journey](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-Vector-Journey), [prithivMLmods/Flux.1-Dev-Quote-LoRA](https://hf.co/prithivMLmods/Flux.1-Dev-Quote-LoRA), [strangerzonehf/Flux-Isometric-3D-Cinematography](https://hf.co/strangerzonehf/Flux-Isometric-3D-Cinematography), [prithivMLmods/Flux-Realism-FineDetailed](https://hf.co/prithivMLmods/Flux-Realism-FineDetailed), [swsqy/ue5flux](https://hf.co/swsqy/ue5flux), [nerijs/animation2k-flux](https://hf.co/nerijs/animation2k-flux), [gokaygokay/Flux-White-Background-LoRA](https://hf.co/gokaygokay/Flux-White-Background-LoRA), and [brushpenbob/flux-midjourney-anime](https://hf.co/brushpenbob/flux-midjourney-anime).
+
   * 🆕 **2024-11-23** : 🔥 ***This week's updates*** 🔥 >
     - Add support for Chatbot model [prithivMLmods/Llama-Doctor-3.2-3B-Instruct-GGUF](https://hf.co/prithivMLmods/Llama-Doctor-3.2-3B-Instruct-GGUF).
     - Add support for  Flux LoRA models [strangerzonehf/Flux-Super-Realism-LoRA](https://hf.co/strangerzonehf/Flux-Super-Realism-LoRA), [strangerzonehf/Flux-Midjourney-Mix-LoRA](https://hf.co/strangerzonehf/Flux-Midjourney-Mix-LoRA), [Norod78/Flux_1_Dev_LoRA_Paper-Cutout-Style](https://hf.co/Norod78/Flux_1_Dev_LoRA_Paper-Cutout-Style), [prithivMLmods/Knitted-Character-Flux-LoRA](https://hf.co/prithivMLmods/Knitted-Character-Flux-LoRA), [Shakker-Labs/FLUX.1-dev-LoRA-Children-Simple-Sketch](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-Children-Simple-Sketch), [renderartist/retrocomicflux](https://hf.co/renderartist/retrocomicflux), [prithivMLmods/Seamless-Pattern-Design-Flux-LoRA](https://hf.co/prithivMLmods/Seamless-Pattern-Design-Flux-LoRA), [alvdansen/haunted_linework_flux](https://hf.co/alvdansen/haunted_linework_flux), [prithivMLmods/Flux.1-Dev-Poster-HQ-LoRA](https://hf.co/prithivMLmods/Flux.1-Dev-Poster-HQ-LoRA), [Grohv/randart2_lora](https://hf.co/Grohv/randart2_lora), [renderartist/retroadflux](https://hf.co/renderartist/retroadflux), [prithivMLmods/Flux.1-Dev-Realtime-Toon-Mix](https://hf.co/prithivMLmods/Flux.1-Dev-Realtime-Toon-Mix) and [prithivMLmods/Flux-Product-Ad-Backdrop](https://hf.co/prithivMLmods/Flux-Product-Ad-Backdrop).
@@ -44,12 +48,6 @@
     - Add support for Flux LoRA models [dvyio/flux-lora-seventies-photograph](https://hf.co/dvyio/flux-lora-seventies-photograph), [Bootoshi/retroanime](https://hf.co/Bootoshi/retroanime), [XLabs-AI/flux-RealismLora](https://hf.co/XLabs-AI/flux-RealismLora) and [prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA](https://hf.co/prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA) (this last one gives awesome results !).
     - Add support for SD 3.5 LoRA Models [alvarobartt/ghibli-characters-sd3.5-lora](https://hf.co/alvarobartt/ghibli-characters-sd3.5-lora), [reverentelusarca/ancient-style-sd35](https://hf.co/reverentelusarca/ancient-style-sd35) and [Wadaka/NewYorkerComic_Style](https://hf.co/Wadaka/NewYorkerComic_Style).
     - Add support for SD 3.5 models to img2img module.
-
-  * 🆕 **2024-10-26** : 🔥 ***This week's updates*** 🔥 >
-    - As previously announced, Flux model [Freepik/flux.1-lite-8B-alpha](https://hf.co/Freepik/flux.1-lite-8B-alpha) and SD 3.5 model [adamo1139/stable-diffusion-3.5-large-turbo-ungated](https://hf.co/adamo1139/stable-diffusion-3.5-large-turbo-ungated) are now supported by Stable Diffusion module. Support will be extended to all eligible modules. Also add support for LoRAs on these models. 
-    - Add support for SDXL model [dataautogpt3/Proteus-v0.6](https://hf.co/dataautogpt3/Proteus-v0.6) to all Stable Diffusion-based modules.
-    - Add support for Chatbot models [anthracite-org/magnum-v4-9b-gguf](https://hf.co/anthracite-org/magnum-v4-9b-gguf) and [bartowski/Ministral-8B-Instruct-2410-GGUF](https://hf.co/bartowski/Ministral-8B-Instruct-2410-GGUF).
-    - Add support for SDXL LoRA model [KappaNeuro/moebius-jean-giraud-style](https://hf.co/KappaNeuro/moebius-jean-giraud-style).
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
