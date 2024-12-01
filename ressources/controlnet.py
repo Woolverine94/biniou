@@ -578,7 +578,7 @@ def image_controlnet(
     lora_weight_array = []
 
     if lora_model_controlnet != "":
-        if (is_sd3(modelid_controlnet) or is_flux(modelid_controlnet))and lora_model_controlnet == "ByteDance/Hyper-SD":
+        if (is_sd3(modelid_controlnet) or is_flux(modelid_controlnet)) and ((lora_model_controlnet == "ByteDance/Hyper-SD") or (lora_model_controlnet == "RED-AIGC/TDD")):
             lora_weight_controlnet = 0.12
         lora_array.append(f"{lora_model_controlnet}")
         lora_weight_array.append(float(lora_weight_controlnet))

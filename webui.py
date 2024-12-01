@@ -1034,6 +1034,9 @@ def change_lora_model_img2img(model, lora_model, prompt, steps, cfg_scale, sampl
             return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=8), guidance_scale_img2img.update(value=3.5), sampler_img2img.update(value="Flow Match Euler")
         elif (lora_model == "Lingyuzhou/Hyper_Flux.1_Dev_4_step_Lora"):
             return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=4), guidance_scale_img2img.update(value=3.5), sampler_img2img.update(value="Flow Match Euler")
+        elif (lora_model == "RED-AIGC/TDD") and (is_flux(model)):
+            return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(value=4), guidance_scale_img2img.update(value=2.0), sampler_img2img.update(value="Flow Match Euler")
+
     else:
         if ((biniou_internal_previous_model_img2img == "") and (biniou_internal_previous_steps_img2img == "") and (biniou_internal_previous_cfg_img2img == "") and (biniou_internal_previous_sampler_img2img == "")):
             return prompt_img2img.update(value=lora_prompt_img2img), num_inference_step_img2img.update(), guidance_scale_img2img.update(), sampler_img2img.update()
@@ -1343,7 +1346,8 @@ def change_lora_model_img2img_ip(model, lora_model, prompt, steps, cfg_scale, sa
             return prompt_img2img_ip.update(value=lora_prompt_img2img_ip), num_inference_step_img2img_ip.update(value=8), guidance_scale_img2img_ip.update(value=3.5), sampler_img2img_ip.update(value="Flow Match Euler")
         elif (lora_model == "Lingyuzhou/Hyper_Flux.1_Dev_4_step_Lora"):
             return prompt_img2img_ip.update(value=lora_prompt_img2img_ip), num_inference_step_img2img_ip.update(value=4), guidance_scale_img2img_ip.update(value=3.5), sampler_img2img_ip.update(value="Flow Match Euler")
-
+        elif (lora_model == "RED-AIGC/TDD") and (is_flux(model)):
+            return prompt_img2img_ip.update(value=lora_prompt_img2img_ip), num_inference_step_img2img_ip.update(value=4), guidance_scale_img2img_ip.update(value=2.0), sampler_img2img_ip.update(value="Flow Match Euler")
     else:
         if ((biniou_internal_previous_model_img2img_ip == "") and (biniou_internal_previous_steps_img2img_ip == "") and (biniou_internal_previous_cfg_img2img_ip == "") and (biniou_internal_previous_sampler_img2img_ip == "")):
             return prompt_img2img_ip.update(value=lora_prompt_img2img_ip), num_inference_step_img2img_ip.update(), guidance_scale_img2img_ip.update(), sampler_img2img_ip.update()
@@ -1703,6 +1707,8 @@ def change_lora_model_controlnet(model, lora_model, prompt, steps, cfg_scale, sa
             return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=8), guidance_scale_controlnet.update(value=3.5), sampler_controlnet.update(value="Flow Match Euler")
         elif (lora_model == "Lingyuzhou/Hyper_Flux.1_Dev_4_step_Lora"):
             return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=4), guidance_scale_controlnet.update(value=3.5), sampler_controlnet.update(value="Flow Match Euler")
+        elif (lora_model == "RED-AIGC/TDD") and is_flux(model):
+            return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(value=4), guidance_scale_controlnet.update(value=2.0), sampler_controlnet.update(value="Flow Match Euler")
     else:
         if ((biniou_internal_previous_model_controlnet == "") and (biniou_internal_previous_steps_controlnet == "") and (biniou_internal_previous_cfg_controlnet == "") and (biniou_internal_previous_sampler_controlnet == "")):
             return prompt_controlnet.update(value=lora_prompt_controlnet), num_inference_step_controlnet.update(), guidance_scale_controlnet.update(), sampler_controlnet.update()

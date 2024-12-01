@@ -169,7 +169,7 @@ def image_img2img_ip(
     adapters_list = []
 
     if lora_model_img2img_ip != "":
-        if (is_flux(modelid_img2img_ip)) and lora_model_img2img_ip == "ByteDance/Hyper-SD":
+        if (is_flux(modelid_img2img_ip)) and ((lora_model_img2img_ip == "ByteDance/Hyper-SD") or (lora_model_img2img_ip == "RED-AIGC/TDD")):
             lora_weight_img2img_ip = 0.12
         lora_array.append(f"{lora_model_img2img_ip}")
         lora_weight_array.append(float(lora_weight_img2img_ip))
