@@ -1789,7 +1789,8 @@ def is_fast_lora(model):
 (model == "sd-community/sdxl-flash-lora") or \
 (model == "mann-e/Mann-E_Turbo") or \
 (model == "jasperai/flash-sd3") or \
-(model == "Lingyuzhou/Hyper_Flux.1_Dev_4_step_Lora")\
+(model == "Lingyuzhou/Hyper_Flux.1_Dev_4_step_Lora") or \
+(model == "RED-AIGC/TDD")\
 ):
         is_fast_lora_value = True
     else:
@@ -2104,6 +2105,7 @@ def lora_model_list(model, *args):
             "-[ 👍 🚀 Fast Flux LoRA ]-":("Hyper-Flux.1-Dev 4-step-Lora.safetensors", ""),
             "Lingyuzhou/Hyper_Flux.1_Dev_4_step_Lora":("Hyper-Flux.1-Dev 4-step-Lora.safetensors", ""),
             "ByteDance/Hyper-SD":("Hyper-FLUX.1-dev-8steps-lora.safetensors", ""),
+            "RED-AIGC/TDD":("TDD-FLUX.1-dev-lora-beta.safetensors", ""),
         }
         model_list_lora_builtin = {
 #            "-[ 🏆 🐢 Flux LoRA ]-":("pola_photo_araminta_k.safetensors", "polaroid style"),
