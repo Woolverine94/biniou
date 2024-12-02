@@ -2135,6 +2135,8 @@ def lora_model_list(model, *args):
             "strangerzonehf/Flux-Isometric-3D-Cinematography":("Isometric-3D-Cinematography.safetensors", "Isometric 3D Cinematography"),
             "prithivMLmods/Flux-Realism-FineDetailed":("Flux-Realism-FineDetailed.safetensors", "Fine Detailed"),
             "swsqy/ue5flux":("3d.safetensors", "ue5"),
+            "glif/Brain-Melt-Acid-Art":("Brain_Melt.safetensors", "in an acid surrealism style, maximalism"),
+            "goofyai/3D_Render_for_Flux":("3D_render_flux.safetensors", "3D render"),
             "-[ 👌 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
