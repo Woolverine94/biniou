@@ -2021,6 +2021,7 @@ def lora_model_list(model, *args):
             "alvdansen/frosting_lane_redux":("araminta_k_frosting_lane_redux.safetensors", ""),
             "IcelosAI/Spacephoto_LORA_XL_Base":("spacephoto-10.safetensors", "spacephoto"),
             "KappaNeuro/moebius-jean-giraud-style":("Moebius (Jean Giraud) Style.safetensors", "Moebius (Jean Giraud) Style - "),
+            "prithivMLmods/Pegasi-Beta-GTA-LoRA":("Pegasi-Beta-GTA-LoRA.safetensors", "Gta"),
             "-[ 👌 🪧 Posters SDXL LoRA ]-":("SDXL-Caricaturized-Lora.safetensors", "Caricaturized"),
             "Norod78/SDXL-Caricaturized-Lora":("SDXL-Caricaturized-Lora.safetensors", "Caricaturized"),
             "artificialguybr/movie-poster-redmond-for-sd-xl-create-movie-poster-images":("MoviePosterRedmond-MoviePoster-MoviePosterRedAF.safetensors", "Movie Poster, MoviePosterAF"),
