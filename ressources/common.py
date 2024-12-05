@@ -2138,6 +2138,7 @@ def lora_model_list(model, *args):
             "swsqy/ue5flux":("3d.safetensors", "ue5"),
             "glif/Brain-Melt-Acid-Art":("Brain_Melt.safetensors", "in an acid surrealism style, maximalism"),
             "goofyai/3D_Render_for_Flux":("3D_render_flux.safetensors", "3D render"),
+            "dvyio/flux-lora-simple-illustration":("c262b2a947bb43c18218813436f9401f_pytorch_lora_weights.safetensors", "illustration in the style of SMPL"),
             "-[ 👌 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
@@ -2169,6 +2170,7 @@ def lora_model_list(model, *args):
             "prithivMLmods/Flux-Long-Toon-LoRA":("Long-Toon.safetensors", "Long toons"),
             "nerijs/animation2k-flux":("animation2k_v1.safetensors", ""),
             "brushpenbob/flux-midjourney-anime":("FLUX_MidJourney_Anime.safetensors", "egmid"),
+            "glif/90s-anime-art":("flux_dev_anime.safetensors", ""),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
