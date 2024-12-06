@@ -2159,6 +2159,8 @@ def lora_model_list(model, *args):
             "mozobozo/icon45":("icon45.safetensors", "style of icon45"),
             "prithivMLmods/Flux.1-Dev-Quote-LoRA":("quoter001.safetensors", "quoter"),
             "gokaygokay/Flux-White-Background-LoRA":("80cfbf52faf541d49c6abfe1ac571112_lora.safetensors", "in the middle, white background"),
+            "multimodalart/vintage-ads-flux":("vintage-ads-flux-1350.safetensors", "vintage ad of"),
+            "prithivMLmods/Flux-Lego-Ref-LoRA":("Lego.safetensors", "lego --fref --89890"),
             "-[ 👌 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
