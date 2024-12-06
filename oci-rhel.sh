@@ -1,5 +1,5 @@
 #!/bin/sh
-echo ">>>[biniou oci 🧠 ]: biniou one-click installer for Red-Hat based-distributions"
+echo ">>>[biniou oci 🧠 ]: biniou one-click installer for Red-Hat-based distributions"
 echo ">>>[biniou oci 🧠 ]: Installing prerequisites"
 
 if [ "$(groups|grep 'wheel')" == "" ]

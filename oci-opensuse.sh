@@ -1,5 +1,5 @@
 #!/bin/sh
-echo ">>>[biniou oci 🧠 ]: biniou one-click installer for Debian based-distributions"
+echo ">>>[biniou oci 🧠 ]: biniou one-click installer for OpenSuse-based distributions"
 echo ">>>[biniou oci 🧠 ]: Installing prerequisites"
 
 if [ "$(groups|grep 'wheel')" == "" ]
