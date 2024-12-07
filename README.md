@@ -17,6 +17,12 @@
 
 ## Updates
 
+  * 🆕 **2024-12-07** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for Chatbot models [bartowski/Teuken-7B-instruct-research-v0.4-GGUF](https://hf.co/bartowski/Teuken-7B-instruct-research-v0.4-GGUF) and [bartowski/deepthought-8b-llama-v0.01-alpha-GGUF](https://hf.co/bartowski/deepthought-8b-llama-v0.01-alpha-GGUF).
+    - Add support for Flux Fast LoRA model [RED-AIGC/TDD](https://hf.co/RED-AIGC/TDD).
+    - Add support for SDXL LoRA model  [prithivMLmods/Pegasi-Beta-GTA-LoRA](https://hf.co/prithivMLmods/Pegasi-Beta-GTA-LoRA). 
+    - Add support for Flux LoRA models [glif/Brain-Melt-Acid-Art](https://hf.co/glif/Brain-Melt-Acid-Art), [goofyai/3D_Render_for_Flux](https://hf.co/goofyai/3D_Render_for_Flux), [dvyio/flux-lora-simple-illustration](https://hf.co/dvyio/flux-lora-simple-illustration), [glif/90s-anime-art](https://hf.co/glif/90s-anime-art), [multimodalart/vintage-ads-flux](https://hf.co/multimodalart/vintage-ads-flux) and [prithivMLmods/Flux-Lego-Ref-LoRA](https://hf.co/prithivMLmods/Flux-Lego-Ref-LoRA).
+
   * 🆕 **2024-11-30** : 🔥 ***This week's updates*** 🔥 >
     - Add support for Chatbot models [bartowski/Marco-o1-GGUF](https://hf.co/bartowski/Marco-o1-GGUF), [bartowski/Llama-3.1-Tulu-3-8B-DPO-GGUF](https://hf.co/bartowski/Llama-3.1-Tulu-3-8B-DPO-GGUF) and [bartowski/QwQ-32B-Preview-GGUF](https://hf.co/bartowski/QwQ-32B-Preview-GGUF). The last one is a preview of a little monster that requires around 25GB of RAM to run and is slow as hell on CPU-only, but is also supposed to perform better than any commercial model ! 
     - Add support for  Flux LoRA models [mozobozo/icon45](https://hf.co/mozobozo/icon45), [Nishitbaria/LoRa-Flux-Anime-Style](https://hf.co/Nishitbaria/LoRa-Flux-Anime-Style), [Shakker-Labs/FLUX.1-dev-LoRA-Vector-Journey](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-Vector-Journey), [prithivMLmods/Flux.1-Dev-Quote-LoRA](https://hf.co/prithivMLmods/Flux.1-Dev-Quote-LoRA), [strangerzonehf/Flux-Isometric-3D-Cinematography](https://hf.co/strangerzonehf/Flux-Isometric-3D-Cinematography), [prithivMLmods/Flux-Realism-FineDetailed](https://hf.co/prithivMLmods/Flux-Realism-FineDetailed), [swsqy/ue5flux](https://hf.co/swsqy/ue5flux), [nerijs/animation2k-flux](https://hf.co/nerijs/animation2k-flux), [gokaygokay/Flux-White-Background-LoRA](https://hf.co/gokaygokay/Flux-White-Background-LoRA), and [brushpenbob/flux-midjourney-anime](https://hf.co/brushpenbob/flux-midjourney-anime).
