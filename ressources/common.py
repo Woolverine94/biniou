@@ -1790,7 +1790,8 @@ def is_fast_lora(model):
 (model == "mann-e/Mann-E_Turbo") or \
 (model == "jasperai/flash-sd3") or \
 (model == "Lingyuzhou/Hyper_Flux.1_Dev_4_step_Lora") or \
-(model == "RED-AIGC/TDD")\
+(model == "RED-AIGC/TDD") or \
+(model == "alimama-creative/FLUX.1-Turbo-Alpha")\
 ):
         is_fast_lora_value = True
     else:
@@ -2107,6 +2108,7 @@ def lora_model_list(model, *args):
             "Lingyuzhou/Hyper_Flux.1_Dev_4_step_Lora":("Hyper-Flux.1-Dev 4-step-Lora.safetensors", ""),
             "ByteDance/Hyper-SD":("Hyper-FLUX.1-dev-8steps-lora.safetensors", ""),
             "RED-AIGC/TDD":("TDD-FLUX.1-dev-lora-beta.safetensors", ""),
+            "alimama-creative/FLUX.1-Turbo-Alpha":("diffusion_pytorch_model.safetensors", ""),
         }
         model_list_lora_builtin = {
 #            "-[ 🏆 🐢 Flux LoRA ]-":("pola_photo_araminta_k.safetensors", "polaroid style"),
