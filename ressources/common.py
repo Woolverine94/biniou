@@ -2161,6 +2161,7 @@ def lora_model_list(model, *args):
             "gokaygokay/Flux-White-Background-LoRA":("80cfbf52faf541d49c6abfe1ac571112_lora.safetensors", "in the middle, white background"),
             "multimodalart/vintage-ads-flux":("vintage-ads-flux-1350.safetensors", "vintage ad of"),
             "prithivMLmods/Flux-Lego-Ref-LoRA":("Lego.safetensors", "lego --fref --89890"),
+            "strangerzonehf/Flux-Icon-Kit-LoRA":("Icon-Kit.safetensors", "Icon Kit"),
             "-[ 👌 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
@@ -2173,6 +2174,7 @@ def lora_model_list(model, *args):
             "nerijs/animation2k-flux":("animation2k_v1.safetensors", ""),
             "brushpenbob/flux-midjourney-anime":("FLUX_MidJourney_Anime.safetensors", "egmid"),
             "glif/90s-anime-art":("flux_dev_anime.safetensors", ""),
+            "strangerzonehf/Flux-Ghibli-Art-LoRA":("Ghibli-Art.safetensors", "Ghibli Art"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
