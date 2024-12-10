@@ -62,6 +62,7 @@ model_list_img2img_ip_builtin = [
     "dataautogpt3/Proteus-v0.6",
     "dataautogpt3/PrometheusV1",
     "dataautogpt3/OpenDalleV1.1",
+    "dataautogpt3/ProteusSigma",
     "Chan-Y/Stable-Flash-Lightning",
     "stablediffusionapi/protovision-xl-high-fidel",
     "comin/IterComp",
