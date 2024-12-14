@@ -17,6 +17,14 @@
 
 ## Updates
 
+  * 🆕 **2024-12-14** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for Chatbot model [bartowski/EuroLLM-9B-Instruct-GGUF](https://hf.co/bartowski/EuroLLM-9B-Instruct-GGUF) and Chatbot "Tiny" model [bartowski/Hermes-3-Llama-3.2-3B-GGUF](https://hf.co/bartowski/Hermes-3-Llama-3.2-3B-GGUF).
+    - Add support for SDXL model  [dataautogpt3/ProteusSigma](https://hf.co/dataautogpt3/ProteusSigma).
+    - Add support for Flux "fast" LoRA model [alimama-creative/FLUX.1-Turbo-Alpha](https://hf.co/alimama-creative/FLUX.1-Turbo-Alpha) (8 steps inferences).
+    - Add support for Flux LoRA models [strangerzonehf/Flux-Icon-Kit-LoRA](https://hf.co/strangerzonehf/Flux-Icon-Kit-LoRA), [strangerzonehf/Flux-Ghibli-Art-LoRA](https://hf.co/strangerzonehf/Flux-Ghibli-Art-LoRA), [UmeAiRT/FLUX.1-dev-LoRA-Modern_Pixel_art](https://hf.co/UmeAiRT/FLUX.1-dev-LoRA-Modern_Pixel_art), [prithivMLmods/Flux.1-Dev-Stamp-Art-LoRA](https://hf.co/prithivMLmods/Flux.1-Dev-Stamp-Art-LoRA), [glif-loradex-trainer/insectagon_Eightball_comics](https://hf.co/glif-loradex-trainer/insectagon_Eightball_comics) and [strangerzonehf/Flux-Xmas-3D-LoRA](https://hf.co/strangerzonehf/Flux-Xmas-3D-LoRA).
+    - Update of Flux LoRA model [kudzueye/Boreal](https://hf.co/kudzueye/Boreal) to [kudzueye/boreal-flux-dev-v2](https://hf.co/kudzueye/boreal-flux-dev-v2).
+    - Bugfixes for WebUI when using Flux models and crash following peft upgrade.
+
   * 🆕 **2024-12-07** : 🔥 ***This week's updates*** 🔥 >
     - Add support for Chatbot models [bartowski/Teuken-7B-instruct-research-v0.4-GGUF](https://hf.co/bartowski/Teuken-7B-instruct-research-v0.4-GGUF) and [bartowski/deepthought-8b-llama-v0.01-alpha-GGUF](https://hf.co/bartowski/deepthought-8b-llama-v0.01-alpha-GGUF).
     - Add support for Flux Fast LoRA model [RED-AIGC/TDD](https://hf.co/RED-AIGC/TDD).
@@ -38,22 +46,6 @@
     - Add preliminary support for Flux to IP-Adapter module.
     - Add preliminary support for Flux to ControlNet module (only canny and depth are working currently).
     - Optimizations and bugfixes.
-
-  * 🆕 **2024-11-09** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for Chatbot models [bartowski/SmolLM2-1.7B-Instruct-GGUF](https://hf.co/bartowski/SmolLM2-1.7B-Instruct-GGUF), [bartowski/cybertron-v4-qw7B-MGS-GGUF](https://hf.co/bartowski/cybertron-v4-qw7B-MGS-GGUF) and [bartowski/OpenChat-3.5-0106_32K-PoSE-GGUF](https://hf.co/bartowski/OpenChat-3.5-0106_32K-PoSE-GGUF).
-    - Update of Chatbot model Llama-3.2-3B-Instruct-GGUF to [bartowski/Llama-3.2-3B-Instruct-uncensored-GGUF](https://hf.co/bartowski/Llama-3.2-3B-Instruct-uncensored-GGUF).
-    - Add support for a lot of Flux LoRA models. Most remarkable one is the fast LoRA model [Lingyuzhou/Hyper_Flux.1_Dev_4_step_Lora](https://hf.co/Lingyuzhou/Hyper_Flux.1_Dev_4_step_Lora), that allow inferences in 4 steps. Definitely worth the try if you're using Flux.
-    - Add support for Flux and Flux LoRA models for img2img module.
-    - Add support for SD 3.5 Medium LoRA models for Stable Diffusion and img2img module.
-    - Add categories to Flux LoRA models.
-    - Bugfixes for docker when used with multiple hard drives and fixing issues in img2img module settings.
-
-  * 🆕 **2024-11-02** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for SD 3.5 models [ariG23498/sd-3.5-merged](https://hf.co/ariG23498/sd-3.5-merged) and [adamo1139/stable-diffusion-3.5-medium-ungated](https://hf.co/adamo1139/stable-diffusion-3.5-medium-ungated) to Stable Diffusion and img2img modules.
-    - Add support for Chatbot model [bartowski/granite-3.0-8b-instruct-GGUF](https://hf.co/bartowski/granite-3.0-8b-instruct-GGUF).
-    - Add support for Flux LoRA models [dvyio/flux-lora-seventies-photograph](https://hf.co/dvyio/flux-lora-seventies-photograph), [Bootoshi/retroanime](https://hf.co/Bootoshi/retroanime), [XLabs-AI/flux-RealismLora](https://hf.co/XLabs-AI/flux-RealismLora) and [prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA](https://hf.co/prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA) (this last one gives awesome results !).
-    - Add support for SD 3.5 LoRA Models [alvarobartt/ghibli-characters-sd3.5-lora](https://hf.co/alvarobartt/ghibli-characters-sd3.5-lora), [reverentelusarca/ancient-style-sd35](https://hf.co/reverentelusarca/ancient-style-sd35) and [Wadaka/NewYorkerComic_Style](https://hf.co/Wadaka/NewYorkerComic_Style).
-    - Add support for SD 3.5 models to img2img module.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
