@@ -1791,7 +1791,10 @@ def is_fast_lora(model):
 (model == "jasperai/flash-sd3") or \
 (model == "Lingyuzhou/Hyper_Flux.1_Dev_4_step_Lora") or \
 (model == "RED-AIGC/TDD") or \
-(model == "alimama-creative/FLUX.1-Turbo-Alpha")\
+(model == "alimama-creative/FLUX.1-Turbo-Alpha") or \
+(model == "sunhaha123/stable-diffusion-3.5-medium-turbo")\
+
+
 ):
         is_fast_lora_value = True
     else:
@@ -1878,7 +1881,8 @@ def is_sd35(model):
 def is_sd35m(model):
     model = model_cleaner_sd(model)
     if (\
-(model == "adamo1139/stable-diffusion-3.5-medium-ungated")\
+(model == "adamo1139/stable-diffusion-3.5-medium-ungated") or \
+(model == "SG161222/RealVis_Medium_1.0b")\
 ):
         is_sd35m_value = True
     else:
@@ -1946,6 +1950,7 @@ def model_cleaner_lora(model):
         "-[ 👍 🚀 Fast SDXL LoRA ]-": "ByteDance/SDXL-Lightning",
         "-[ 👍 🚀 Fast SD3 LoRA ]-": "ByteDance/Hyper-SD",
         "-[ 👍 🚀 Fast Flux LoRA ]-": "Lingyuzhou/Hyper_Flux.1_Dev_4_step_Lora",
+        "-[ 👍 🚀 Fast SD3.5 Medium LoRA ]-": "sunhaha123/stable-diffusion-3.5-medium-turbo",
         "-[ 👏 🎚️ Sliders SDXL ]-": "ntc-ai/SDXL-LoRA-slider.extremely-detailed",
         "-[ 👏 🎚️ Sliders SD15 ]-": "color_temperature_slider_v1.safetensors",
         "-[ 👍 SD15 LoRA ]-": "Kvikontent/midjourney-v6",
@@ -2090,7 +2095,8 @@ def lora_model_list(model, *args):
     elif is_sd35m(model):
         model_path_lora = model_path_lora_sd35
         model_list_lora_builtin_fast = {
-            "":("", ""),
+            "-[ 👍 🚀 Fast SD3.5 Medium LoRA ]-":("sd3.5m_turbo_8steps.safetensors", ""),
+            "sunhaha123/stable-diffusion-3.5-medium-turbo":("sd3.5m_turbo_8steps.safetensors", ""),
         }
         model_list_lora_builtin = {
             "-[ 👏 🐢 SD3.5 Medium LoRA ]-":("pytorch_lora_weights.safetensors", "yarn art style"),
