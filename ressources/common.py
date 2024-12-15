@@ -2176,6 +2176,8 @@ def lora_model_list(model, *args):
             "strangerzonehf/Flux-Icon-Kit-LoRA":("Icon-Kit.safetensors", "Icon Kit"),
             "prithivMLmods/Flux.1-Dev-Stamp-Art-LoRA":("stam9.safetensors", "stam9"),
             "strangerzonehf/Flux-Xmas-3D-LoRA":("Flux-Xmas-3D-LoRA.safetensors", "Xmas 3D"),
+            "SouthbayJay/t-shirt-vector-style-flux":("vector_shirt_flux_v1.safetensors", "tshirt design, in the style of 5h1rt"),
+            "fofr/flux-handwriting":("lora.safetensors", "HWRIT handwriting"),
             "-[ 👌 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
