@@ -2151,6 +2151,8 @@ def lora_model_list(model, *args):
             "Keltezaa/Fire_Spirit":("Fire Spirit-000008.safetensors", "bailing_fire"),
             "UmeAiRT/FLUX.1-dev-LoRA-Modern_Pixel_art":("ume_modern_pixelart.safetensors", "umempart"),
             "glif-loradex-trainer/insectagon_Eightball_comics":("Eightball_comics.safetensors", "8Ball"),
+            "Norod78/chalk-board-drawing-flux":("Chalk_Board_Drawing_FLUX.safetensors", "ChalkBoardDrawing"),
+            "Norod78/humeow-flux":("HuMeow_FLUX.safetensors", "HuMeow"),
             "-[ 👌 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
