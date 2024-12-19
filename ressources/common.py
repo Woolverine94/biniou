@@ -2181,6 +2181,7 @@ def lora_model_list(model, *args):
             "SouthbayJay/t-shirt-vector-style-flux":("vector_shirt_flux_v1.safetensors", "tshirt design, in the style of 5h1rt"),
             "fofr/flux-handwriting":("lora.safetensors", "HWRIT handwriting"),
             "Norod78/ms-fluentui-style-emoji-flux":("ms-fluentui_emoji_flux_lora_000001750.safetensors", "emoji"),
+            "strangerzonehf/Flux-3D-Emojies-LoRA":("Flux-3D-Emojies-Mation.safetensors", "3D Emojies"),
             "-[ 👌 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
@@ -2195,6 +2196,7 @@ def lora_model_list(model, *args):
             "glif/90s-anime-art":("flux_dev_anime.safetensors", ""),
             "strangerzonehf/Flux-Ghibli-Art-LoRA":("Ghibli-Art.safetensors", "Ghibli Art"),
             "leonel4rd/Shogunflux":("UENO (1).safetensors", "A black and white manga illustration of"),
+            "Nishitbaria/Anime-style-flux-lora-Large":("lora.safetensors", "anm"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
