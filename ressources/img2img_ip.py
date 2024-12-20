@@ -66,6 +66,7 @@ model_list_img2img_ip_builtin = [
     "Chan-Y/Stable-Flash-Lightning",
     "stablediffusionapi/protovision-xl-high-fidel",
     "comin/IterComp",
+    "Spestly/OdysseyXL-1.0",
     "playgroundai/playground-v2-512px-base",
     "playgroundai/playground-v2-1024px-aesthetic",
     "playgroundai/playground-v2.5-1024px-aesthetic",

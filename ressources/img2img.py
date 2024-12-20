@@ -69,6 +69,7 @@ model_list_img2img_builtin = [
     "Chan-Y/Stable-Flash-Lightning",
     "stablediffusionapi/protovision-xl-high-fidel",
     "comin/IterComp",
+    "Spestly/OdysseyXL-1.0",
     "segmind/SSD-1B",
     "segmind/Segmind-Vega",
     "playgroundai/playground-v2-512px-base",
