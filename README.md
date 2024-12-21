@@ -17,6 +17,12 @@
 
 ## Updates
 
+  * 🆕 **2024-12-21** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for Chatbot specialized model [bartowski/oxy-1-small-GGUF](https://hf.co/bartowski/oxy-1-small-GGUF) and upgrade of Chatbot model Granite 3.0 8B to [bartowski/granite-3.1-8b-instruct-GGUF](https://hf.co/bartowski/granite-3.1-8b-instruct-GGUF).
+    - Add support for SDXL model  [Spestly/OdysseyXL-1.0](https://hf.co/Spestly/OdysseyXL-1.0).
+    - Add support for SD 3.5 "fast" LoRA model [sunhaha123/stable-diffusion-3.5-medium-turbo](https://hf.co/sunhaha123/stable-diffusion-3.5-medium-turbo) (8 steps inferences).
+    - Add support for Flux LoRA models [SouthbayJay/t-shirt-vector-style-flux](https://hf.co/SouthbayJay/t-shirt-vector-style-flux), [fofr/flux-handwriting](https://hf.co/fofr/flux-handwriting), [Norod78/chalk-board-drawing-flux](https://hf.co/Norod78/chalk-board-drawing-flux), [Norod78/humeow-flux](https://hf.co/Norod78/humeow-flux), [Norod78/ms-fluentui-style-emoji-flux](https://hf.co/Norod78/ms-fluentui-style-emoji-flux), [leonel4rd/Shogunflux](https://hf.co/leonel4rd/Shogunflux), [strangerzonehf/Flux-3D-Emojies-LoRA](https://hf.co/strangerzonehf/Flux-3D-Emojies-LoRA) and [Nishitbaria/Anime-style-flux-lora-Large](https://hf.co/Nishitbaria/Anime-style-flux-lora-Large).
+
   * 🆕 **2024-12-14** : 🔥 ***This week's updates*** 🔥 >
     - Add support for Chatbot model [bartowski/EuroLLM-9B-Instruct-GGUF](https://hf.co/bartowski/EuroLLM-9B-Instruct-GGUF) and Chatbot "Tiny" model [bartowski/Hermes-3-Llama-3.2-3B-GGUF](https://hf.co/bartowski/Hermes-3-Llama-3.2-3B-GGUF).
     - Add support for SDXL model  [dataautogpt3/ProteusSigma](https://hf.co/dataautogpt3/ProteusSigma).
@@ -38,14 +44,6 @@
   * 🆕 **2024-11-23** : 🔥 ***This week's updates*** 🔥 >
     - Add support for Chatbot model [prithivMLmods/Llama-Doctor-3.2-3B-Instruct-GGUF](https://hf.co/prithivMLmods/Llama-Doctor-3.2-3B-Instruct-GGUF).
     - Add support for  Flux LoRA models [strangerzonehf/Flux-Super-Realism-LoRA](https://hf.co/strangerzonehf/Flux-Super-Realism-LoRA), [strangerzonehf/Flux-Midjourney-Mix-LoRA](https://hf.co/strangerzonehf/Flux-Midjourney-Mix-LoRA), [Norod78/Flux_1_Dev_LoRA_Paper-Cutout-Style](https://hf.co/Norod78/Flux_1_Dev_LoRA_Paper-Cutout-Style), [prithivMLmods/Knitted-Character-Flux-LoRA](https://hf.co/prithivMLmods/Knitted-Character-Flux-LoRA), [Shakker-Labs/FLUX.1-dev-LoRA-Children-Simple-Sketch](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-Children-Simple-Sketch), [renderartist/retrocomicflux](https://hf.co/renderartist/retrocomicflux), [prithivMLmods/Seamless-Pattern-Design-Flux-LoRA](https://hf.co/prithivMLmods/Seamless-Pattern-Design-Flux-LoRA), [alvdansen/haunted_linework_flux](https://hf.co/alvdansen/haunted_linework_flux), [prithivMLmods/Flux.1-Dev-Poster-HQ-LoRA](https://hf.co/prithivMLmods/Flux.1-Dev-Poster-HQ-LoRA), [Grohv/randart2_lora](https://hf.co/Grohv/randart2_lora), [renderartist/retroadflux](https://hf.co/renderartist/retroadflux), [prithivMLmods/Flux.1-Dev-Realtime-Toon-Mix](https://hf.co/prithivMLmods/Flux.1-Dev-Realtime-Toon-Mix) and [prithivMLmods/Flux-Product-Ad-Backdrop](https://hf.co/prithivMLmods/Flux-Product-Ad-Backdrop).
-
-  * 🆕 **2024-11-16** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for Chatbot models [bartowski/SuperNova-Medius-GGUF](https://hf.co/bartowski/SuperNova-Medius-GGUF) and [bartowski/OpenCoder-8B-Instruct-GGUF](https://hf.co/bartowski/OpenCoder-8B-Instruct-GGUF).
-    - Add support for  Flux LoRA models [Shakker-Labs/FLUX.1-dev-LoRA-Text-Poster](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-Text-Poster), [dataautogpt3/FLUX-SyntheticAnime](https://hf.co/dataautogpt3/FLUX-SyntheticAnime), [prithivMLmods/Canopus-Pixar-3D-Flux-LoRA](https://hf.co/prithivMLmods/Canopus-Pixar-3D-Flux-LoRA), [prithivMLmods/Flux-Dev-Real-Anime-LoRA](https://hf.co/prithivMLmods/Flux-Dev-Real-Anime-LoRA), [glif-loradex-trainer/shipley_flux_dev_AlicesAdventuresInWonderland_v2](https://hf.co/glif-loradex-trainer/shipley_flux_dev_AlicesAdventuresInWonderland_v2), [prithivMLmods/Ton618-Only-Stickers-Flux-LoRA](https://hf.co/prithivMLmods/Ton618-Only-Stickers-Flux-LoRA), [markury/surrealidescent](https://hf.co/markury/surrealidescent), [FounderFeed/gta-style-lora](https://hf.co/FounderFeed/gta-style-lora), [Keltezaa/movie-poster-ce-sdxl-flux](https://hf.co/Keltezaa/movie-poster-ce-sdxl-flux), [FounderFeed/MidjourneyMeetFlux](https://hf.co/FounderFeed/MidjourneyMeetFlux) and [dooart/flux-lora-vintage-tarot](https://hf.co/dooart/flux-lora-vintage-tarot).
-    - Add support for SD 3.5 Large LoRA models [nerijs/pixel-art-3.5L](https://hf.co/nerijs/pixel-art-3.5L).
-    - Add preliminary support for Flux to IP-Adapter module.
-    - Add preliminary support for Flux to ControlNet module (only canny and depth are working currently).
-    - Optimizations and bugfixes.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
