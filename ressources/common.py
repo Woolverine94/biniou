@@ -1792,9 +1792,8 @@ def is_fast_lora(model):
 (model == "Lingyuzhou/Hyper_Flux.1_Dev_4_step_Lora") or \
 (model == "RED-AIGC/TDD") or \
 (model == "alimama-creative/FLUX.1-Turbo-Alpha") or \
-(model == "sunhaha123/stable-diffusion-3.5-medium-turbo")\
-
-
+(model == "sunhaha123/stable-diffusion-3.5-medium-turbo") or \
+(model == "tensorart/stable-diffusion-3.5-medium-turbo")\
 ):
         is_fast_lora_value = True
     else:
@@ -1882,6 +1881,7 @@ def is_sd35m(model):
     model = model_cleaner_sd(model)
     if (\
 (model == "adamo1139/stable-diffusion-3.5-medium-ungated") or \
+(model == "tensorart/stable-diffusion-3.5-medium-turbo") or \
 (model == "SG161222/RealVis_Medium_1.0b")\
 ):
         is_sd35m_value = True

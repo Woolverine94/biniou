@@ -109,6 +109,7 @@ model_list_img2img_builtin = [
     "ariG23498/sd-3.5-merged",
     "-[ 👏 🐢 SD3.5 Medium ]-",
     "adamo1139/stable-diffusion-3.5-medium-ungated",
+    "tensorart/stable-diffusion-3.5-medium-turbo",
     "-[ 🏆 🐢 Flux ]-",
     "Freepik/flux.1-lite-8B-alpha",
     "-[ 🏠 Local models ]-",
