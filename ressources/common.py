@@ -2156,6 +2156,8 @@ def lora_model_list(model, *args):
             "Datou1111/Yoji_Shinkawa":("Yoji_Shinkawa.safetensors", "Yoji_Shinkawa"),
             "youknownothing/flux_dreamscape":("flux_dreamscape.safetensors", "in the style of BSstyle004"),
             "Datou1111/shou_xin":("shou_xin.safetensors", "shou_xin, pencil sketch"),
+            "gokaygokay/Flux-Engrave-LoRA":("engrave.safetensors", "NGRVNG, engrave"),
+            "gokaygokay/Flux-Mosaic-LoRA":("mosaic_lora.safetensors", "MZCMZC, mosaic"),
             "-[ 👌 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
