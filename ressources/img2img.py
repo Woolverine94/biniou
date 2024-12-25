@@ -107,6 +107,7 @@ model_list_img2img_builtin = [
     "-[ 👏 🐢 SD3.5 Large ]-",
     "adamo1139/stable-diffusion-3.5-large-turbo-ungated",
     "ariG23498/sd-3.5-merged",
+    "aipicasso/emi-3",
     "-[ 👏 🐢 SD3.5 Medium ]-",
     "adamo1139/stable-diffusion-3.5-medium-ungated",
     "tensorart/stable-diffusion-3.5-medium-turbo",
