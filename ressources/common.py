@@ -1788,6 +1788,7 @@ def is_fast_lora(model):
 (model == "jasperai/flash-sd") or \
 (model == "sd-community/sdxl-flash-lora") or \
 (model == "mann-e/Mann-E_Turbo") or \
+(model == "alimama-creative/slam-lora-sdxl") or \
 (model == "jasperai/flash-sd3") or \
 (model == "Lingyuzhou/Hyper_Flux.1_Dev_4_step_Lora") or \
 (model == "RED-AIGC/TDD") or \
@@ -1993,6 +1994,7 @@ def lora_model_list(model, *args):
 #            "ByteDance/Hyper-SD":("Hyper-SDXL-1step-lora.safetensors", ""),
             "h1t/TCD-SDXL-LoRA":("pytorch_lora_weights.safetensors", ""),
             "GraydientPlatformAPI/lightning-faster-lora":("PAseer-SDXL-AcceleratorLighting.safetensors", ""),
+            "alimama-creative/slam-lora-sdxl":("pytorch_lora_weights.safetensors", ""),
         }
         model_list_lora_builtin = {
             "-[ 👏 🔎 Enhancement SDXL LoRA ]-":("example-03.safetensors", ""),
