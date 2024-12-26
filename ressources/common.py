@@ -2191,6 +2191,8 @@ def lora_model_list(model, *args):
             "Norod78/ms-fluentui-style-emoji-flux":("ms-fluentui_emoji_flux_lora_000001750.safetensors", "emoji"),
             "strangerzonehf/Flux-3D-Emojies-LoRA":("Flux-3D-Emojies-Mation.safetensors", "3D Emojies"),
             "glif-loradex-trainer/swapagrawal14_tattoo_artist_v1":("tattoo_artist_v1.safetensors", "tattooz_v1_swap"),
+            "glif-loradex-trainer/quitters_flux_dev_gc_boxart":("flux_dev_gc_boxart.safetensors", "in the style of gc_boxart"),
+            "glif-loradex-trainer/x_bulbul_x_Playstation_2_Game_Covers":("Playstation_2_Game_Covers.safetensors", "ps2 cover"),
             "-[ 👌 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
