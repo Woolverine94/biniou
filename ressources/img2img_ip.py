@@ -97,6 +97,8 @@ model_list_img2img_ip_builtin = [
     "aipicasso/emi-2",
     "-[ 🏆 🐢 Flux ]-",
     "Freepik/flux.1-lite-8B-alpha",
+    "black-forest-labs/FLUX.1-schnell",
+    "ChuckMcSneed/FLUX.1-dev",
     "-[ 🏠 Local models ]-",
 ]
 

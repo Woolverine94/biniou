@@ -114,6 +114,8 @@ model_list_txt2img_sd_builtin = [
     "tensorart/stable-diffusion-3.5-medium-turbo",
     "-[ 🏆 🐢 Flux ]-",
     "Freepik/flux.1-lite-8B-alpha",
+    "black-forest-labs/FLUX.1-schnell",
+    "ChuckMcSneed/FLUX.1-dev",
     "-[ 🏠 Local models ]-",
 ]
 

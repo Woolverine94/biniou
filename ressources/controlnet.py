@@ -99,6 +99,8 @@ model_list_controlnet_builtin = [
     "ptx0/sd3-reality-mix",
     "-[ 🏆 🐢 Flux ]-",
     "Freepik/flux.1-lite-8B-alpha",
+    "black-forest-labs/FLUX.1-schnell",
+    "ChuckMcSneed/FLUX.1-dev",
     "-[ 🏠 Local models ]-",
 ]
 

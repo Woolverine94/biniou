@@ -1894,7 +1894,9 @@ def is_sd35m(model):
 def is_flux(model):
     model = model_cleaner_sd(model)
     if (\
-(model == "Freepik/flux.1-lite-8B-alpha")\
+(model == "Freepik/flux.1-lite-8B-alpha") or \
+(model == "black-forest-labs/FLUX.1-schnell") or \
+(model == "ChuckMcSneed/FLUX.1-dev")\
 ):
         is_flux_value = True
     else:
