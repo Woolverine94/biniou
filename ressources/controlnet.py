@@ -100,6 +100,7 @@ model_list_controlnet_builtin = [
     "-[ 🏆 🐢 Flux ]-",
     "Freepik/flux.1-lite-8B-alpha",
     "black-forest-labs/FLUX.1-schnell",
+    "sayakpaul/FLUX.1-merged",
     "ChuckMcSneed/FLUX.1-dev",
     "-[ 🏠 Local models ]-",
 ]
