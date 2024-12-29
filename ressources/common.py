@@ -2196,6 +2196,8 @@ def lora_model_list(model, *args):
             "glif-loradex-trainer/swapagrawal14_tattoo_artist_v1":("tattoo_artist_v1.safetensors", "tattooz_v1_swap"),
             "glif-loradex-trainer/quitters_flux_dev_gc_boxart":("flux_dev_gc_boxart.safetensors", "in the style of gc_boxart"),
             "glif-loradex-trainer/x_bulbul_x_Playstation_2_Game_Covers":("Playstation_2_Game_Covers.safetensors", "ps2 cover"),
+            "WizWhite/Wizards_vintage_romance_novel-FLUX":("Wiz-Vintage_Romance-FLUX.safetensors", "Harlequin Romance Book Cover"),
+            "WizWhite/wizard-s-paper-model-universe":("Wiz-Paper_Model_Universe.safetensors", "A paper model"),
             "-[ 👌 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
