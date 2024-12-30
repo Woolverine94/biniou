@@ -2164,6 +2164,8 @@ def lora_model_list(model, *args):
             "Datou1111/shou_xin":("shou_xin.safetensors", "shou_xin, pencil sketch"),
             "gokaygokay/Flux-Engrave-LoRA":("engrave.safetensors", "NGRVNG, engrave"),
             "gokaygokay/Flux-Mosaic-LoRA":("mosaic_lora.safetensors", "MZCMZC, mosaic"),
+            "leonel4rd/FluxDisney":("Flux_retro_Disney.safetensors", "egdisney"),
+            "Weiii722/SouthParkVibe":("South_Park_style_flux.safetensors", "SouthParkVibe"),
             "-[ 👌 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
