@@ -19,7 +19,7 @@ device_img2img_ip = torch.device(device_label_img2img_ip)
 
 # Gestion des modèles
 model_path_img2img_ip = "./models/Stable_Diffusion/"
-model_path_ipa_img2img_ip = "./models/Ip-Adapters"
+model_path_ipa_img2img_ip = "./models/Ip-Adapters/"
 model_path_flux_img2img_ip = "./models/Flux/"
 os.makedirs(model_path_img2img_ip, exist_ok=True)
 os.makedirs(model_path_ipa_img2img_ip, exist_ok=True)
@@ -278,16 +278,16 @@ def image_img2img_ip(
                     resume_download=True,
                     local_files_only=True if offline_test() else None
                 )
-#        elif (is_flux_img2img_ip == True):
-#            if (source_type_img2img_ip == "standard"):
-#                hf_hub_download(
-#                    repo_id="XLabs-AI/flux-ip-adapter-v2",
-#                    filename="ip_adapter.safetensors",
-#                    repo_type="model",
-#                    local_dir=model_path_ipa_img2img_ip,
-#                    resume_download=True,
-#                    local_files_only=True if offline_test() else None
-#                )
+        elif (is_flux_img2img_ip == True):
+            hf_hub_download(
+                repo_id="XLabs-AI/flux-ip-adapter-v2",
+                filename="ip_adapter.safetensors",
+                repo_type="model",
+                local_dir=model_path_ipa_img2img_ip,
+                torch_dtype=model_arch,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
         else:
             hf_hub_download(
                 repo_id="h94/IP-Adapter",
@@ -368,33 +368,34 @@ def image_img2img_ip(
                     local_files_only=True if offline_test() else None
                 )
     elif (is_flux_img2img_ip == True):
-        if (source_type_img2img_ip == "standard"):
-            clip_model_img2img_ip = CLIPModel.from_pretrained(
-                "openai/clip-vit-large-patch14",
+        clip_model_img2img_ip = CLIPModel.from_pretrained(
+            "openai/clip-vit-large-patch14",
+            cache_dir=model_path_ipa_img2img_ip,
+            torch_dtype=model_arch,
+            use_safetensors=True,
+            resume_download=True,
+            local_files_only=True if offline_test() else None
+        )
+        if modelid_img2img_ip[0:9] == "./models/" :
+#            pipe_img2img_ip = FluxImg2ImgPipeline.from_single_file(
+            pipe_img2img_ip = FluxPipeline.from_single_file(
+                modelid_img2img_ip,
+                torch_dtype=model_arch,
+                clip_model=clip_model_img2img_ip,
+                use_safetensors=True if not is_bin_img2img_ip else False,
+                local_files_only=True if offline_test() else None
+            )
+        else :
+#            pipe_img2img_ip = FluxImg2ImgPipeline.from_pretrained(
+            pipe_img2img_ip = FluxPipeline.from_pretrained(
+                modelid_img2img_ip,
                 cache_dir=model_path_flux_img2img_ip,
                 torch_dtype=model_arch,
-                use_safetensors=True,
+                clip_model=clip_model_img2img_ip,
+                use_safetensors=True if not is_bin_img2img_ip else False,
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
-            if modelid_img2img_ip[0:9] == "./models/" :
-                pipe_img2img_ip = FluxImg2ImgPipeline.from_single_file(
-                    modelid_img2img_ip,
-                    torch_dtype=model_arch,
-                    clip_model=clip_model_img2img_ip,
-                    use_safetensors=True if not is_bin_img2img_ip else False,
-                    local_files_only=True if offline_test() else None
-                )
-            else :
-                pipe_img2img_ip = FluxImg2ImgPipeline.from_pretrained(
-                    modelid_img2img_ip,
-                    cache_dir=model_path_flux_img2img_ip,
-                    torch_dtype=model_arch,
-                    clip_model=clip_model_img2img_ip,
-                    use_safetensors=True if not is_bin_img2img_ip else False,
-                    resume_download=True,
-                    local_files_only=True if offline_test() else None
-                )
     else:
         if (source_type_img2img_ip == "standard"):
             if modelid_img2img_ip[0:9] == "./models/" :
@@ -470,22 +471,22 @@ def image_img2img_ip(
                 )
                 adapters_list.append("Composition")
                 lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
-#        elif (is_flux_img2img_ip == True):
-#            if (source_type_img2img_ip == "standard"):
-#                pipe_img2img_ip.load_lora_weights(
-#                    model_path_ipa_img2img_ip,
-#                    subfolder="",
-#                    weight_name="ip_adapter.safetensors",
-#                    adapter_name="Flux IP Adapter V2",
-#                    torch_dtype=model_arch,
-#                    use_safetensors=True,
-#                    resume_download=True,
-#                    local_files_only=True if offline_test() else None
-#                )
-#                adapters_list.append("Flux IP Adapter V2")
-#                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
+
         elif (is_flux_img2img_ip == True):
-            pass
+            pipe_img2img_ip.load_ip_adapter(
+                "XLabs-AI/flux-ip-adapter-v2",
+                cache_dir=model_path_ipa_img2img_ip,
+                subfolder="",
+                weight_name="ip_adapter.safetensors",
+                adapter_name="IP Adapter V2",
+                adapter_weights=float(denoising_strength_img2img_ip),
+                image_encoder_pretrained_model_name_or_path="openai/clip-vit-large-patch14",
+                image_encoder_dtype=model_arch,
+                torch_dtype=model_arch,
+                use_safetensors=True,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
         else:
             if (source_type_img2img_ip == "standard"):
                 pipe_img2img_ip.load_ip_adapter(
@@ -543,23 +544,22 @@ def image_img2img_ip(
                 )
                 adapters_list.append("Composition")
                 lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
-#        elif (is_flux_img2img_ip == True):
-#            if (source_type_img2img_ip == "standard"):
-#                pipe_img2img_ip.load_lora_weights(
-#                    "XLabs-AI/flux-ip-adapter-v2", 
-#                    cache_dir=model_path_ipa_img2img_ip,
-#                    subfolder="",
-#                    weight_name="ip_adapter.safetensors",
-#                    adapter_name="Flux IP Adapter V2",
-#                    torch_dtype=model_arch,
-#                    use_safetensors=True,
-#                    resume_download=True,
-#                    local_files_only=True if offline_test() else None
-#                )
-#                adapters_list.append("Flux IP Adapter V2")
-#                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
+
         elif (is_flux_img2img_ip == True):
-            pass
+            pipe_img2img_ip.load_ip_adapter(
+                "XLabs-AI/flux-ip-adapter-v2",
+                cache_dir=model_path_ipa_img2img_ip,
+                subfolder="",
+                weight_name="ip_adapter.safetensors",
+                adapter_name="IP Adapter V2",
+                adapter_weights=float(denoising_strength_img2img_ip),
+                image_encoder_pretrained_model_name_or_path="openai/clip-vit-large-patch14",
+                image_encoder_dtype=model_arch,
+                torch_dtype=model_arch,
+                use_safetensors=True,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
         else:
             if (source_type_img2img_ip == "standard"):
                 pipe_img2img_ip.load_ip_adapter(
@@ -588,7 +588,6 @@ def image_img2img_ip(
                 )
                 adapters_list.append("Composition")
                 lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
-
 #    pipe_img2img_ip.set_ip_adapter_scale(denoising_strength_img2img_ip)    
     pipe_img2img_ip = schedulerer(pipe_img2img_ip, sampler_img2img_ip)
 #    pipe_img2img_ip.enable_attention_slicing("max")  
@@ -617,7 +616,7 @@ def image_img2img_ip(
                     lora_model_path = model_path_lora_sd3
                 elif is_flux_img2img_ip:
                     lora_model_path = model_path_lora_flux
-                else: 
+                else:
                     lora_model_path = model_path_lora_sd
 
                 local_lora_img2img_ip = hf_hub_download(
@@ -693,6 +692,9 @@ def image_img2img_ip(
             dim_size_ipa = correct_size(image_input_ipa.size[0], image_input_ipa.size[1], 512)
         image_input_ipa = image_input_ipa.convert("RGB")
         image_input_ipa = image_input_ipa.resize((dim_size_ipa[0], dim_size_ipa[1]))
+        if image_input == None:
+            width_img2img_ip = dim_size_ipa[0]
+            height_img2img_ip = dim_size_ipa[1]
     else:
         image_input_ipa = None
 
@@ -793,38 +795,22 @@ def image_img2img_ip(
                     callback_on_step_end_tensor_inputs=['latents'], 
                 ).images
         elif (is_flux_img2img_ip == True):
-            if (source_type_img2img_ip == "standard"):
-                image = pipe_img2img_ip(
-                    image=image_input,
-                    prompt=prompt_img2img_ip,
-                    width=width_img2img_ip,
-                    height=height_img2img_ip,
-                    max_sequence_length=512,
-                    num_images_per_prompt=num_images_per_prompt_img2img_ip,
-                    guidance_scale=guidance_scale_img2img_ip,
-                    strength=denoising_strength_img2img_ip,
-                    num_inference_steps=num_inference_step_img2img_ip,
-                    timesteps=sampling_schedule_img2img_ip,
-                    generator = generator,
-                    callback_on_step_end=check_img2img_ip, 
-                    callback_on_step_end_tensor_inputs=['latents'],
-                ).images
-            if (source_type_img2img_ip == "composition"):
-                image = pipe_img2img_ip(
-                    image=image_input,
-                    prompt=prompt_img2img_ip,
-                    width=width_img2img_ip,
-                    height=height_img2img_ip,
-                    max_sequence_length=512,
-                    num_images_per_prompt=num_images_per_prompt_img2img_ip,
-                    guidance_scale=guidance_scale_img2img_ip,
-                    strength=denoising_strength_img2img_ip,
-                    num_inference_steps=num_inference_step_img2img_ip,
-                    timesteps=sampling_schedule_img2img_ip,
-                    generator = generator,
-                    callback_on_step_end=check_img2img_ip, 
-                    callback_on_step_end_tensor_inputs=['latents'],
-                ).images
+            image = pipe_img2img_ip(
+#                image=image_input,
+                ip_adapter_image=image_input_ipa,
+                prompt=prompt_img2img_ip,
+                width=width_img2img_ip,
+                height=height_img2img_ip,
+                max_sequence_length=512,
+                num_images_per_prompt=num_images_per_prompt_img2img_ip,
+                guidance_scale=guidance_scale_img2img_ip,
+#                strength=denoising_strength_img2img_ip,
+                num_inference_steps=num_inference_step_img2img_ip,
+#                timesteps=sampling_schedule_img2img_ip,
+                generator = generator,
+                callback_on_step_end=check_img2img_ip, 
+                callback_on_step_end_tensor_inputs=['latents'],
+            ).images
         else : 
             if (source_type_img2img_ip == "standard"):
                 image = pipe_img2img_ip(        
@@ -880,7 +866,7 @@ def image_img2img_ip(
         f"Token merging={tkme_img2img_ip} | "+\
         f"CLIP skip={clipskip_img2img_ip} | "+\
         f"AYS={use_ays_img2img_ip} | "+\
-        f"LoRA model={adapters_list} | "+\
+        f"LoRA model={lora_array} | "+\
         f"LoRA weight={lora_weight_array} | "+\
         f"Textual inversion={txtinv_img2img_ip} | "+\
         f"nsfw_filter={bool(int(nsfw_filter))} | "+\

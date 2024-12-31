@@ -22,7 +22,7 @@ gradio==3.50.2
 transformers==4.44.2
 sentencepiece
 accelerate
-diffusers==0.31.0
+diffusers==0.32.1
 compel
 scipy
 opencv-python
