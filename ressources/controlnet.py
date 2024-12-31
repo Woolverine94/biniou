@@ -954,7 +954,7 @@ def image_controlnet(
                 max_sequence_length=512,
                 num_images_per_prompt=num_images_per_prompt_controlnet,
                 num_inference_steps=num_inference_step_controlnet,
-                timesteps=sampling_schedule_controlnet,
+#                timesteps=sampling_schedule_controlnet,
                 guidance_scale=guidance_scale_controlnet,
                 controlnet_conditioning_scale=strength_controlnet,
                 control_guidance_start=start_controlnet,

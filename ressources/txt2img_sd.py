@@ -525,7 +525,7 @@ def image_txt2img_sd(
                 width=width_txt2img_sd,
                 num_images_per_prompt=num_images_per_prompt_txt2img_sd,
                 num_inference_steps=num_inference_step_txt2img_sd,
-                timesteps=sampling_schedule_txt2img_sd,
+#                timesteps=sampling_schedule_txt2img_sd,
                 guidance_scale=guidance_scale_txt2img_sd,
                 generator=generator[i],
                 callback_on_step_end=check_txt2img_sd,

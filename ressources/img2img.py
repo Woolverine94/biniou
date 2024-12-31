@@ -559,7 +559,7 @@ def image_img2img(
                 guidance_scale=guidance_scale_img2img,
                 strength=denoising_strength_img2img,
                 num_inference_steps=num_inference_step_img2img,
-                timesteps=sampling_schedule_img2img,
+#                timesteps=sampling_schedule_img2img,
                 generator=generator,
                 callback_on_step_end=check_img2img,
                 callback_on_step_end_tensor_inputs=['latents'],
