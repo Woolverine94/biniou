@@ -2200,6 +2200,8 @@ def lora_model_list(model, *args):
             "glif-loradex-trainer/x_bulbul_x_Playstation_2_Game_Covers":("Playstation_2_Game_Covers.safetensors", "ps2 cover"),
             "WizWhite/Wizards_vintage_romance_novel-FLUX":("Wiz-Vintage_Romance-FLUX.safetensors", "Harlequin Romance Book Cover"),
             "WizWhite/wizard-s-paper-model-universe":("Wiz-Paper_Model_Universe.safetensors", "A paper model"),
+            "renderartist/toyboxflux":("Toy_Box_Flux_v2_renderartist.safetensors", "t0yb0x 3d render of a toy design"),
+            "EvanZhouDev/open-genmoji":("flux-dev.safetensors", "emoji"),
             "-[ 👌 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
