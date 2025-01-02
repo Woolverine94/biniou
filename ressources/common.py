@@ -2168,6 +2168,8 @@ def lora_model_list(model, *args):
             "leonel4rd/FluxDisney":("Flux_retro_Disney.safetensors", "egdisney"),
             "Weiii722/SouthParkVibe":("South_Park_style_flux.safetensors", "SouthParkVibe"),
             "aixonlab/FLUX.1-dev-LoRA-Cinematic-1940s":("cinematic-1940s.safetensors", "cinematic_1940s"),
+            "fofr/flux-80s-cyberpunk":("lora.safetensors", "80s cyberpunk"),
+            "veryVANYA/ps1-style-flux":("ps1_style_flux_v1.safetensors", "ps1"),
             "-[ 👌 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
