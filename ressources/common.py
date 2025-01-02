@@ -1897,7 +1897,8 @@ def is_flux(model):
 (model == "Freepik/flux.1-lite-8B-alpha") or \
 (model == "black-forest-labs/FLUX.1-schnell") or \
 (model == "sayakpaul/FLUX.1-merged") or \
-(model == "ChuckMcSneed/FLUX.1-dev")\
+(model == "ChuckMcSneed/FLUX.1-dev") or \
+(model == "enhanceaiteam/Mystic")\
 ):
         is_flux_value = True
     else:

@@ -100,6 +100,7 @@ model_list_img2img_ip_builtin = [
     "black-forest-labs/FLUX.1-schnell",
     "sayakpaul/FLUX.1-merged",
     "ChuckMcSneed/FLUX.1-dev",
+    "enhanceaiteam/Mystic",
     "-[ 🏠 Local models ]-",
 ]
 
