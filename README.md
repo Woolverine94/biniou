@@ -17,6 +17,14 @@
 
 ## Updates
 
+  * 🆕 **2025-01-04** : 🔥 ***This week's updates*** 🔥 >
+    - Happy new year 2025 to everyone ! 
+    - Add support for Chatbot specialized model [bartowski/HuatuoGPT-o1-8B-GGUF](https://hf.co/bartowski/HuatuoGPT-o1-8B-GGUF), Chatbot High-end model [DavidAU/Llama-3.2-8X3B-MOE-Dark-Champion-Instruct-uncensored-abliterated-18.4B-GGUF](https://hf.co/DavidAU/Llama-3.2-8X3B-MOE-Dark-Champion-Instruct-uncensored-abliterated-18.4B-GGUF) and Chatbot models [bartowski/DRT-o1-7B-GGUF](https://hf.co/bartowski/DRT-o1-7B-GGUF) and [bartowski/Llama-3.1-8B-Open-SFT-GGUF](https://hf.co/bartowski/Llama-3.1-8B-Open-SFT-GGUF).
+    - Add support for Flux LoRA models [renderartist/toyboxflux](https://hf.co/renderartist/toyboxflux), [EvanZhouDev/open-genmoji](https://hf.co/EvanZhouDev/open-genmoji), [aixonlab/FLUX.1-dev-LoRA-Cinematic-1940s](https://hf.co/aixonlab/FLUX.1-dev-LoRA-Cinematic-1940s), [glif-loradex-trainer/shipley_flux_dev_bookFoldArt_v1](https://hf.co/glif-loradex-trainer/shipley_flux_dev_bookFoldArt_v1), [fofr/flux-80s-cyberpunk](https://hf.co/fofr/flux-80s-cyberpunk), [veryVANYA/ps1-style-flux](https://hf.co/veryVANYA/ps1-style-flux), [alvdansen/the-point-flux](https://hf.co/alvdansen/the-point-flux), [mgwr/Cine-Aesthetic](https://hf.co/mgwr/Cine-Aesthetic), [WizWhite/Wizards_vintage_romance_novel-FLUX](https://hf.co/WizWhite/Wizards_vintage_romance_novel-FLUX), [WizWhite/wizard-s-paper-model-universe](https://hf.co/WizWhite/wizard-s-paper-model-universe), [leonel4rd/FluxDisney](https://hf.co/leonel4rd/FluxDisney) and [Weiii722/SouthParkVibe](https://hf.co/Weiii722/SouthParkVibe).
+    - Add support for text2image with Flux models in IP-Adapter module
+    - Add support for Flux model [enhanceaiteam/Mystic](https://hf.co/enhanceaiteam/Mystic). Please note that this huge (but highly qualitatives !) model will requires at least 70GB RAM for CPU-only inferences.
+    - Bugfix for Flux pipelines following Diffusers upgrade.
+
   * 🆕 **2024-12-28** : 🔥 ***This week's updates*** 🔥 >
     - Add support for Chatbot specialized models [bartowski/Tulu-MathLingo-8B-GGUF](https://hf.co/bartowski/Tulu-MathLingo-8B-GGUF), [AlicanKiraz0/SenecaLLM-Q4_K_M-GGUF](https://hf.co/AlicanKiraz0/SenecaLLM-Q4_K_M-GGUF) and Chatbot model [bartowski/moxin-chat-7b-GGUF](https://hf.co/bartowski/moxin-chat-7b-GGUF).
     - Add support for SD 3.5 Large model [aipicasso/emi-3](https://hf.co/aipicasso/emi-3).
@@ -44,10 +52,6 @@
     - Add support for Flux Fast LoRA model [RED-AIGC/TDD](https://hf.co/RED-AIGC/TDD).
     - Add support for SDXL LoRA model  [prithivMLmods/Pegasi-Beta-GTA-LoRA](https://hf.co/prithivMLmods/Pegasi-Beta-GTA-LoRA). 
     - Add support for Flux LoRA models [glif/Brain-Melt-Acid-Art](https://hf.co/glif/Brain-Melt-Acid-Art), [goofyai/3D_Render_for_Flux](https://hf.co/goofyai/3D_Render_for_Flux), [dvyio/flux-lora-simple-illustration](https://hf.co/dvyio/flux-lora-simple-illustration), [glif/90s-anime-art](https://hf.co/glif/90s-anime-art), [multimodalart/vintage-ads-flux](https://hf.co/multimodalart/vintage-ads-flux) and [prithivMLmods/Flux-Lego-Ref-LoRA](https://hf.co/prithivMLmods/Flux-Lego-Ref-LoRA).
-
-  * 🆕 **2024-11-30** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for Chatbot models [bartowski/Marco-o1-GGUF](https://hf.co/bartowski/Marco-o1-GGUF), [bartowski/Llama-3.1-Tulu-3-8B-DPO-GGUF](https://hf.co/bartowski/Llama-3.1-Tulu-3-8B-DPO-GGUF) and [bartowski/QwQ-32B-Preview-GGUF](https://hf.co/bartowski/QwQ-32B-Preview-GGUF). The last one is a preview of a little monster that requires around 25GB of RAM to run and is slow as hell on CPU-only, but is also supposed to perform better than any commercial model ! 
-    - Add support for  Flux LoRA models [mozobozo/icon45](https://hf.co/mozobozo/icon45), [Nishitbaria/LoRa-Flux-Anime-Style](https://hf.co/Nishitbaria/LoRa-Flux-Anime-Style), [Shakker-Labs/FLUX.1-dev-LoRA-Vector-Journey](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-Vector-Journey), [prithivMLmods/Flux.1-Dev-Quote-LoRA](https://hf.co/prithivMLmods/Flux.1-Dev-Quote-LoRA), [strangerzonehf/Flux-Isometric-3D-Cinematography](https://hf.co/strangerzonehf/Flux-Isometric-3D-Cinematography), [prithivMLmods/Flux-Realism-FineDetailed](https://hf.co/prithivMLmods/Flux-Realism-FineDetailed), [swsqy/ue5flux](https://hf.co/swsqy/ue5flux), [nerijs/animation2k-flux](https://hf.co/nerijs/animation2k-flux), [gokaygokay/Flux-White-Background-LoRA](https://hf.co/gokaygokay/Flux-White-Background-LoRA), and [brushpenbob/flux-midjourney-anime](https://hf.co/brushpenbob/flux-midjourney-anime).
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
