@@ -118,6 +118,7 @@ model_list_txt2img_sd_builtin = [
     "sayakpaul/FLUX.1-merged",
     "ChuckMcSneed/FLUX.1-dev",
     "enhanceaiteam/Mystic",
+    "AlekseyCalvin/AuraFlux_merge_diffusers",
     "-[ 🏠 Local models ]-",
 ]
 

@@ -101,6 +101,7 @@ model_list_img2img_ip_builtin = [
     "sayakpaul/FLUX.1-merged",
     "ChuckMcSneed/FLUX.1-dev",
     "enhanceaiteam/Mystic",
+    "AlekseyCalvin/AuraFlux_merge_diffusers",
     "-[ 🏠 Local models ]-",
 ]
 
