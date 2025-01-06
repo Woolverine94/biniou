@@ -2173,6 +2173,8 @@ def lora_model_list(model, *args):
             "veryVANYA/ps1-style-flux":("ps1_style_flux_v1.safetensors", "ps1"),
             "alvdansen/the-point-flux":("thepoint_flux_araminta_k.safetensors", "pnt style"),
             "mgwr/Cine-Aesthetic":("MGWR_Cine.safetensors", "mgwr/cine"),
+            "keturn/woodcut-illustrations-Trousset-LoRA":("woodcut-illustration.epoch8.safetensors", "woodcut illustration"),
+            "glif-loradex-trainer/AP123_flux_dev_cutaway_style":("flux_dev_cutaway_style.safetensors", "cut4w4y illustration"),
             "-[ 👌 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
