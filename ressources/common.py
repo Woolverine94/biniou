@@ -2175,6 +2175,8 @@ def lora_model_list(model, *args):
             "mgwr/Cine-Aesthetic":("MGWR_Cine.safetensors", "mgwr/cine"),
             "keturn/woodcut-illustrations-Trousset-LoRA":("woodcut-illustration.epoch8.safetensors", "woodcut illustration"),
             "glif-loradex-trainer/AP123_flux_dev_cutaway_style":("flux_dev_cutaway_style.safetensors", "cut4w4y illustration"),
+            "glif-loradex-trainer/i12bp8_i12bp8_povshots_v1":("i12bp8_povshots_v1.safetensors", "PVSHTS_PPLSNSM first person POV shot"),
+            "glif-loradex-trainer/fabian3000_bosch":("bosch.safetensors", "boschstyle"),
             "-[ 👌 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
