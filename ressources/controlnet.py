@@ -147,6 +147,8 @@ variant_list_controlnet = [
     "XLabs-AI/flux-controlnet-depth-diffusers",
 #    "George0667/Flux.1-dev-ControlNet-LineCombo",
     "jasperai/Flux.1-dev-Controlnet-Upscaler",
+#    "InstantX/FLUX.1-dev-Controlnet-Union",
+    "Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro",
 ]
 
 preprocessor_list_controlnet = [
@@ -888,7 +890,20 @@ def image_controlnet(
         conditioning = compel.build_conditioning_tensor(prompt_controlnet)
         neg_conditioning = compel.build_conditioning_tensor(negative_prompt_controlnet)
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
-   
+
+    union_flux_mode = None
+    if (is_flux_controlnet and variant_controlnet == "Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro"):
+        if preprocessor_controlnet in ["canny", "lineart_anime", "lineart_coarse", "lineart_realistic", "mlsd", "scribble_hed", "scribble_pidinet", "softedge_hed", "softedge_hedsafe", "softedge_pidinet", "softedge_pidsafe"]:
+            union_flux_mode=0
+        elif preprocessor_controlnet in ["tile"]:
+            union_flux_mode=1
+        elif preprocessor_controlnet in ["depth_leres", "depth_leres++", "depth_midas", "normal_bae"]:
+            union_flux_mode=2
+        elif preprocessor_controlnet in ["openpose", "openpose_face", "openpose_faceonly", "openpose_full", "openpose_hand"]:
+            union_flux_mode=4
+        else:
+            union_flux_mode=None
+
     final_image = []
     final_seed = []
     for i in range (num_prompt_controlnet):
@@ -961,6 +976,7 @@ def image_controlnet(
                 controlnet_conditioning_scale=strength_controlnet,
                 control_guidance_start=start_controlnet,
                 control_guidance_end=stop_controlnet,
+                control_mode=union_flux_mode,
                 generator=generator[i],
                 callback_on_step_end=check_controlnet,
                 callback_on_step_end_tensor_inputs=['latents'],
