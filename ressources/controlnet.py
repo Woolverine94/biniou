@@ -147,7 +147,7 @@ variant_list_controlnet = [
     "XLabs-AI/flux-controlnet-depth-diffusers",
 #    "George0667/Flux.1-dev-ControlNet-LineCombo",
     "jasperai/Flux.1-dev-Controlnet-Upscaler",
-#    "InstantX/FLUX.1-dev-Controlnet-Union",
+    "InstantX/FLUX.1-dev-Controlnet-Union",
     "Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro",
 ]
 
@@ -892,7 +892,7 @@ def image_controlnet(
         [conditioning, neg_conditioning] = compel.pad_conditioning_tensors_to_same_length([conditioning, neg_conditioning])
 
     union_flux_mode = None
-    if (is_flux_controlnet and variant_controlnet == "Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro"):
+    if (is_flux_controlnet and (variant_controlnet == "Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro" or variant_controlnet == "InstantX/FLUX.1-dev-Controlnet-Union")):
         if preprocessor_controlnet in ["canny", "lineart_anime", "lineart_coarse", "lineart_realistic", "mlsd", "scribble_hed", "scribble_pidinet", "softedge_hed", "softedge_hedsafe", "softedge_pidinet", "softedge_pidsafe"]:
             union_flux_mode=0
         elif preprocessor_controlnet in ["tile"]:
