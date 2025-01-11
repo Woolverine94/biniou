@@ -17,6 +17,13 @@
 
 ## Updates
 
+  * 🆕 **2025-01-11** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for Chatbot high-end model [bartowski/Qwentile2.5-32B-Instruct-GGUF](https://hf.co/bartowski/Qwentile2.5-32B-Instruct-GGUF) and Chatbot  model [cognitivecomputations/Dolphin3.0-Llama3.1-8B-GGUF](https://hf.co/cognitivecomputations/Dolphin3.0-Llama3.1-8B-GGUF).
+    - Update of Chatbot default model to [bartowski/Meta-Llama-3.1-8B-Instruct-GGUF](https://hf.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF) and update of Qwen2.5-Coder-7B to [bartowski/Qwen2.5.1-Coder-7B-Instruct-GGUF](https://hf.co/bartowski/Qwen2.5.1-Coder-7B-Instruct-GGUF).
+    - Add support for Flux LoRA models [keturn/woodcut-illustrations-Trousset-LoRA](https://hf.co/keturn/woodcut-illustrations-Trousset-LoRA), [glif-loradex-trainer/AP123_flux_dev_cutaway_style](https://hf.co/glif-loradex-trainer/AP123_flux_dev_cutaway_style), [glif-loradex-trainer/i12bp8_i12bp8_povshots_v1](https://hf.co/glif-loradex-trainer/i12bp8_i12bp8_povshots_v1), [glif-loradex-trainer/fabian3000_bosch](https://hf.co/glif-loradex-trainer/fabian3000_bosch), [glif-loradex-trainer/i12bp8_i12bp8_greeksculptures_v1](https://hf.co/glif-loradex-trainer/i12bp8_i12bp8_greeksculptures_v1) and [leonel4rd/DBZFLUX](https://hf.co/leonel4rd/DBZFLUX).
+    - Add preliminary suppport for ControlNet Flux models [Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro](https://hf.co/Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro) and [InstantX/FLUX.1-dev-Controlnet-Union](https://hf.co/InstantX/FLUX.1-dev-Controlnet-Union). You currently had to manually select these models if you want to use them during inferences.
+    - Add support for Flux model [AlekseyCalvin/AuraFlux_merge_diffusers](https://hf.co/AlekseyCalvin/AuraFlux_merge_diffusers). Please note that this huge (but highly qualitatives !) model will requires at least 70GB RAM for CPU-only inferences.
+
   * 🆕 **2025-01-04** : 🔥 ***This week's updates*** 🔥 >
     - Happy new year 2025 to everyone ! 
     - Add support for Chatbot specialized model [bartowski/HuatuoGPT-o1-8B-GGUF](https://hf.co/bartowski/HuatuoGPT-o1-8B-GGUF), Chatbot High-end model [DavidAU/Llama-3.2-8X3B-MOE-Dark-Champion-Instruct-uncensored-abliterated-18.4B-GGUF](https://hf.co/DavidAU/Llama-3.2-8X3B-MOE-Dark-Champion-Instruct-uncensored-abliterated-18.4B-GGUF) and Chatbot models [bartowski/DRT-o1-7B-GGUF](https://hf.co/bartowski/DRT-o1-7B-GGUF) and [bartowski/Llama-3.1-8B-Open-SFT-GGUF](https://hf.co/bartowski/Llama-3.1-8B-Open-SFT-GGUF).
@@ -46,12 +53,6 @@
     - Add support for Flux LoRA models [strangerzonehf/Flux-Icon-Kit-LoRA](https://hf.co/strangerzonehf/Flux-Icon-Kit-LoRA), [strangerzonehf/Flux-Ghibli-Art-LoRA](https://hf.co/strangerzonehf/Flux-Ghibli-Art-LoRA), [UmeAiRT/FLUX.1-dev-LoRA-Modern_Pixel_art](https://hf.co/UmeAiRT/FLUX.1-dev-LoRA-Modern_Pixel_art), [prithivMLmods/Flux.1-Dev-Stamp-Art-LoRA](https://hf.co/prithivMLmods/Flux.1-Dev-Stamp-Art-LoRA), [glif-loradex-trainer/insectagon_Eightball_comics](https://hf.co/glif-loradex-trainer/insectagon_Eightball_comics) and [strangerzonehf/Flux-Xmas-3D-LoRA](https://hf.co/strangerzonehf/Flux-Xmas-3D-LoRA).
     - Update of Flux LoRA model [kudzueye/Boreal](https://hf.co/kudzueye/Boreal) to [kudzueye/boreal-flux-dev-v2](https://hf.co/kudzueye/boreal-flux-dev-v2).
     - Bugfixes for WebUI when using Flux models and crash following peft upgrade.
-
-  * 🆕 **2024-12-07** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for Chatbot models [bartowski/Teuken-7B-instruct-research-v0.4-GGUF](https://hf.co/bartowski/Teuken-7B-instruct-research-v0.4-GGUF) and [bartowski/deepthought-8b-llama-v0.01-alpha-GGUF](https://hf.co/bartowski/deepthought-8b-llama-v0.01-alpha-GGUF).
-    - Add support for Flux Fast LoRA model [RED-AIGC/TDD](https://hf.co/RED-AIGC/TDD).
-    - Add support for SDXL LoRA model  [prithivMLmods/Pegasi-Beta-GTA-LoRA](https://hf.co/prithivMLmods/Pegasi-Beta-GTA-LoRA). 
-    - Add support for Flux LoRA models [glif/Brain-Melt-Acid-Art](https://hf.co/glif/Brain-Melt-Acid-Art), [goofyai/3D_Render_for_Flux](https://hf.co/goofyai/3D_Render_for_Flux), [dvyio/flux-lora-simple-illustration](https://hf.co/dvyio/flux-lora-simple-illustration), [glif/90s-anime-art](https://hf.co/glif/90s-anime-art), [multimodalart/vintage-ads-flux](https://hf.co/multimodalart/vintage-ads-flux) and [prithivMLmods/Flux-Lego-Ref-LoRA](https://hf.co/prithivMLmods/Flux-Lego-Ref-LoRA).
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
