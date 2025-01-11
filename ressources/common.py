@@ -2214,6 +2214,7 @@ def lora_model_list(model, *args):
             "renderartist/toyboxflux":("Toy_Box_Flux_v2_renderartist.safetensors", "t0yb0x 3d render of a toy design"),
             "EvanZhouDev/open-genmoji":("flux-dev.safetensors", "emoji"),
             "glif-loradex-trainer/shipley_flux_dev_bookFoldArt_v1":("flux_dev_bookFoldArt_v1.safetensors", "bookfoldart"),
+            "glif-loradex-trainer/i12bp8_i12bp8_greeksculptures_v1":("i12bp8_greeksculptures_v1.safetensors", "GRKSCLPTRS_PPLSNSM"),
             "-[ 👌 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
@@ -2229,6 +2230,7 @@ def lora_model_list(model, *args):
             "strangerzonehf/Flux-Ghibli-Art-LoRA":("Ghibli-Art.safetensors", "Ghibli Art"),
             "leonel4rd/Shogunflux":("UENO (1).safetensors", "A black and white manga illustration of"),
             "Nishitbaria/Anime-style-flux-lora-Large":("lora.safetensors", "anm"),
+            "leonel4rd/DBZFLUX":("Akira_Toriyama_Style_FX-000001.safetensors", "toriyama_style"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
