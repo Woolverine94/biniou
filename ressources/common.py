@@ -2177,6 +2177,8 @@ def lora_model_list(model, *args):
             "glif-loradex-trainer/AP123_flux_dev_cutaway_style":("flux_dev_cutaway_style.safetensors", "cut4w4y illustration"),
             "glif-loradex-trainer/i12bp8_i12bp8_povshots_v1":("i12bp8_povshots_v1.safetensors", "PVSHTS_PPLSNSM first person POV shot"),
             "glif-loradex-trainer/fabian3000_bosch":("bosch.safetensors", "boschstyle"),
+            "ludocomito/flux-lora-caravaggio":("lora.safetensors", "In the style of CARAVAGGIO"),
+            "strangerzonehf/Flux-Claude-Art":("claude-art.safetensors", "claude art"),
             "-[ 👌 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
