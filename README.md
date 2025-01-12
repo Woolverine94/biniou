@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * 🆕 **2025-01-12** : 🔥 ***New high-end Chatbot model*** 🔥 > **Phi-4** is now available in biniou, via [microsoft/phi-4-gguf](https://hf.co/microsoft/phi-4-gguf). This model is absolutely awesome and cleary out of his league. It only weight 8.4 GB, and -so far- answered *perfectly* to all submited requests. Definitely a must try !
+
   * 🆕 **2025-01-11** : 🔥 ***This week's updates*** 🔥 >
     - Add support for Chatbot high-end model [bartowski/Qwentile2.5-32B-Instruct-GGUF](https://hf.co/bartowski/Qwentile2.5-32B-Instruct-GGUF) and Chatbot  model [cognitivecomputations/Dolphin3.0-Llama3.1-8B-GGUF](https://hf.co/cognitivecomputations/Dolphin3.0-Llama3.1-8B-GGUF).
     - Update of Chatbot default model to [bartowski/Meta-Llama-3.1-8B-Instruct-GGUF](https://hf.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF) and update of Qwen2.5-Coder-7B to [bartowski/Qwen2.5.1-Coder-7B-Instruct-GGUF](https://hf.co/bartowski/Qwen2.5.1-Coder-7B-Instruct-GGUF).
