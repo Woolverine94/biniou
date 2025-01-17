@@ -2183,6 +2183,7 @@ def lora_model_list(model, *args):
             "strangerzonehf/Flux-Claude-Art":("claude-art.safetensors", "claude art"),
             "WiroAI/GTA6-style-flux-lora":("gta6_style.safetensors", "gta6style"),
             "strangerzonehf/Flux-Sketch-Ep-LoRA":("ep-sketch.safetensors", "ep sketch"),
+            "alvdansen/flux_film_foto":("araminta_k_flux_film_foto.safetensors", "flmft photo style"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
@@ -2238,6 +2239,8 @@ def lora_model_list(model, *args):
             "leonel4rd/Shogunflux":("UENO (1).safetensors", "A black and white manga illustration of"),
             "Nishitbaria/Anime-style-flux-lora-Large":("lora.safetensors", "anm"),
             "leonel4rd/DBZFLUX":("Akira_Toriyama_Style_FX-000001.safetensors", "toriyama_style"),
+            "glif-loradex-trainer/x_bulbul_x_90s_anime":("90s_anime.safetensors", "90s anime"),
+            "":("", ""),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
