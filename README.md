@@ -17,6 +17,11 @@
 
 ## Updates
 
+  * 🆕 **2025-01-18** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for Chatbot model [prithivMLmods/GWQ-9B-Preview2-Q5_K_M-GGUF](https://hf.co/prithivMLmods/GWQ-9B-Preview2-Q5_K_M-GGUF).
+    - Add support for Flux LoRA models [ludocomito/flux-lora-caravaggio](https://hf.co/ludocomito/flux-lora-caravaggio), [strangerzonehf/Flux-Claude-Art](https://hf.co/strangerzonehf/Flux-Claude-Art), [WiroAI/GTA6-style-flux-lora](https://hf.co/WiroAI/GTA6-style-flux-lora), [strangerzonehf/Flux-Cardboard-Art-LoRA](https://hf.co/strangerzonehf/Flux-Cardboard-Art-LoRA), [strangerzonehf/Flux-Midjourney-Mix2-LoRA](https://hf.co/strangerzonehf/Flux-Midjourney-Mix2-LoRA), [strangerzonehf/Flux-Sketch-Ep-LoRA](https://hf.co/strangerzonehf/Flux-Sketch-Ep-LoRA), [alvdansen/flux_film_foto](https://hf.co/alvdansen/flux_film_foto), [glif-loradex-trainer/x_bulbul_x_90s_anime](https://hf.co/glif-loradex-trainer/x_bulbul_x_90s_anime), [](https://hf.co/) and [](https://hf.co/).
+    - New Flux LoRA category : Enhancement.
+
   * 🆕 **2025-01-12** : 🔥 ***New high-end Chatbot model*** 🔥 > **Phi-4** is now available in biniou, via [microsoft/phi-4-gguf](https://hf.co/microsoft/phi-4-gguf). This model is absolutely awesome and cleary out of his league. It only weight 8.4 GB, and -so far- answered *perfectly* to all submited requests. Definitely a must try !
 
   * 🆕 **2025-01-11** : 🔥 ***This week's updates*** 🔥 >
@@ -41,20 +46,6 @@
     - Add support for SDXL fast (4 steps) LoRA model [alimama-creative/slam-lora-sdxl](https://hf.co/alimama-creative/slam-lora-sdxl).
     - Add support for Flux LoRA models [Datou1111/Yoji_Shinkawa](https://hf.co/Datou1111/Yoji_Shinkawa), [youknownothing/flux_dreamscape](https://hf.co/youknownothing/flux_dreamscape), [Datou1111/shou_xin](https://hf.co/Datou1111/shou_xin), [glif-loradex-trainer/swapagrawal14_tattoo_artist_v1](https://hf.co/glif-loradex-trainer/swapagrawal14_tattoo_artist_v1), [gokaygokay/Flux-Engrave-LoRA](https://hf.co/gokaygokay/Flux-Engrave-LoRA), [gokaygokay/Flux-Mosaic-LoRA](https://hf.co/gokaygokay/Flux-Mosaic-LoRA), [glif-loradex-trainer/quitters_flux_dev_gc_boxart](https://hf.co/glif-loradex-trainer/quitters_flux_dev_gc_boxart) and [glif-loradex-trainer/x_bulbul_x_Playstation_2_Game_Covers](https://hf.co/glif-loradex-trainer/x_bulbul_x_Playstation_2_Game_Covers).
     - Add support for Flux models [black-forest-labs/FLUX.1-schnell](https://hf.co/black-forest-labs/FLUX.1-schnell), [ChuckMcSneed/FLUX.1-dev](https://hf.co/ChuckMcSneed/FLUX.1-dev) and  [sayakpaul/FLUX.1-merged](https://hf.co/sayakpaul/FLUX.1-merged). Please note that these 3 huges (but highly qualitatives !) models will requires at least 70GB RAM for CPU-only inferences.
-
-  * 🆕 **2024-12-21** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for Chatbot specialized model [bartowski/oxy-1-small-GGUF](https://hf.co/bartowski/oxy-1-small-GGUF) and upgrade of Chatbot model Granite 3.0 8B to [bartowski/granite-3.1-8b-instruct-GGUF](https://hf.co/bartowski/granite-3.1-8b-instruct-GGUF).
-    - Add support for SDXL model  [Spestly/OdysseyXL-1.0](https://hf.co/Spestly/OdysseyXL-1.0).
-    - Add support for SD 3.5 "fast" LoRA model [sunhaha123/stable-diffusion-3.5-medium-turbo](https://hf.co/sunhaha123/stable-diffusion-3.5-medium-turbo) (8 steps inferences).
-    - Add support for Flux LoRA models [SouthbayJay/t-shirt-vector-style-flux](https://hf.co/SouthbayJay/t-shirt-vector-style-flux), [fofr/flux-handwriting](https://hf.co/fofr/flux-handwriting), [Norod78/chalk-board-drawing-flux](https://hf.co/Norod78/chalk-board-drawing-flux), [Norod78/humeow-flux](https://hf.co/Norod78/humeow-flux), [Norod78/ms-fluentui-style-emoji-flux](https://hf.co/Norod78/ms-fluentui-style-emoji-flux), [leonel4rd/Shogunflux](https://hf.co/leonel4rd/Shogunflux), [strangerzonehf/Flux-3D-Emojies-LoRA](https://hf.co/strangerzonehf/Flux-3D-Emojies-LoRA) and [Nishitbaria/Anime-style-flux-lora-Large](https://hf.co/Nishitbaria/Anime-style-flux-lora-Large).
-
-  * 🆕 **2024-12-14** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for Chatbot model [bartowski/EuroLLM-9B-Instruct-GGUF](https://hf.co/bartowski/EuroLLM-9B-Instruct-GGUF) and Chatbot "Tiny" model [bartowski/Hermes-3-Llama-3.2-3B-GGUF](https://hf.co/bartowski/Hermes-3-Llama-3.2-3B-GGUF).
-    - Add support for SDXL model  [dataautogpt3/ProteusSigma](https://hf.co/dataautogpt3/ProteusSigma).
-    - Add support for Flux "fast" LoRA model [alimama-creative/FLUX.1-Turbo-Alpha](https://hf.co/alimama-creative/FLUX.1-Turbo-Alpha) (8 steps inferences).
-    - Add support for Flux LoRA models [strangerzonehf/Flux-Icon-Kit-LoRA](https://hf.co/strangerzonehf/Flux-Icon-Kit-LoRA), [strangerzonehf/Flux-Ghibli-Art-LoRA](https://hf.co/strangerzonehf/Flux-Ghibli-Art-LoRA), [UmeAiRT/FLUX.1-dev-LoRA-Modern_Pixel_art](https://hf.co/UmeAiRT/FLUX.1-dev-LoRA-Modern_Pixel_art), [prithivMLmods/Flux.1-Dev-Stamp-Art-LoRA](https://hf.co/prithivMLmods/Flux.1-Dev-Stamp-Art-LoRA), [glif-loradex-trainer/insectagon_Eightball_comics](https://hf.co/glif-loradex-trainer/insectagon_Eightball_comics) and [strangerzonehf/Flux-Xmas-3D-LoRA](https://hf.co/strangerzonehf/Flux-Xmas-3D-LoRA).
-    - Update of Flux LoRA model [kudzueye/Boreal](https://hf.co/kudzueye/Boreal) to [kudzueye/boreal-flux-dev-v2](https://hf.co/kudzueye/boreal-flux-dev-v2).
-    - Bugfixes for WebUI when using Flux models and crash following peft upgrade.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
