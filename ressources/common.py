@@ -1894,7 +1894,7 @@ def is_sd35m(model):
 def is_flux(model):
     model = model_cleaner_sd(model)
     if (\
-(model == "Freepik/flux.1-lite-8B-alpha") or \
+(model == "Freepik/flux.1-lite-8B") or \
 (model == "black-forest-labs/FLUX.1-schnell") or \
 (model == "sayakpaul/FLUX.1-merged") or \
 (model == "ChuckMcSneed/FLUX.1-dev") or \
@@ -1932,7 +1932,7 @@ def model_cleaner_sd(model):
         "-[ 👏 🐢 SD3 ]-": "v2ray/stable-diffusion-3-medium-diffusers",
         "-[ 👏 🐢 SD3.5 Large ]-": "adamo1139/stable-diffusion-3.5-large-turbo-ungated",
         "-[ 👏 🐢 SD3.5 Medium ]-": "adamo1139/stable-diffusion-3.5-medium-ungated",
-        "-[ 🏆 🐢 Flux ]-": "Freepik/flux.1-lite-8B-alpha",
+        "-[ 🏆 🐢 Flux ]-": "Freepik/flux.1-lite-8B",
     }
     for clean_model_key, clean_model_value in model_replacement.items():
         model = model.replace(clean_model_key, clean_model_value)

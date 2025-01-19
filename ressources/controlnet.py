@@ -98,7 +98,7 @@ model_list_controlnet_builtin = [
     "v2ray/stable-diffusion-3-medium-diffusers",
     "ptx0/sd3-reality-mix",
     "-[ 🏆 🐢 Flux ]-",
-    "Freepik/flux.1-lite-8B-alpha",
+    "Freepik/flux.1-lite-8B",
     "black-forest-labs/FLUX.1-schnell",
     "sayakpaul/FLUX.1-merged",
     "ChuckMcSneed/FLUX.1-dev",
