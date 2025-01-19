@@ -2223,6 +2223,7 @@ def lora_model_list(model, *args):
             "glif-loradex-trainer/shipley_flux_dev_bookFoldArt_v1":("flux_dev_bookFoldArt_v1.safetensors", "bookfoldart"),
             "glif-loradex-trainer/i12bp8_i12bp8_greeksculptures_v1":("i12bp8_greeksculptures_v1.safetensors", "GRKSCLPTRS_PPLSNSM"),
             "strangerzonehf/Flux-Cardboard-Art-LoRA":("cardboard# art.safetensors", "cardboard# art"),
+            "glif-loradex-trainer/i12bp8_appelsiensam_vintagesign_v1":("appelsiensam_vintagesign_v1.safetensors", "VNTGSGN_PPLSNSM"),
             "-[ 🏆 🐢 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
@@ -2240,7 +2241,7 @@ def lora_model_list(model, *args):
             "Nishitbaria/Anime-style-flux-lora-Large":("lora.safetensors", "anm"),
             "leonel4rd/DBZFLUX":("Akira_Toriyama_Style_FX-000001.safetensors", "toriyama_style"),
             "glif-loradex-trainer/x_bulbul_x_90s_anime":("90s_anime.safetensors", "90s anime"),
-            "":("", ""),
+            "strangerzonehf/Ctoon-Plus-Plus":("Ctoon++.safetensors", "Ctoon++"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
