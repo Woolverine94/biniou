@@ -2184,6 +2184,8 @@ def lora_model_list(model, *args):
             "WiroAI/GTA6-style-flux-lora":("gta6_style.safetensors", "gta6style"),
             "strangerzonehf/Flux-Sketch-Ep-LoRA":("ep-sketch.safetensors", "ep sketch"),
             "alvdansen/flux_film_foto":("araminta_k_flux_film_foto.safetensors", "flmft photo style"),
+            "Jovie/Comics":("comics.safetensors", ""),
+            "den123/squidgame":("squidgame.safetensors", "squidgame"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
