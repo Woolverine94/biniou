@@ -119,6 +119,7 @@ model_list_txt2img_sd_builtin = [
     "ChuckMcSneed/FLUX.1-dev",
     "enhanceaiteam/Mystic",
     "AlekseyCalvin/AuraFlux_merge_diffusers",
+    "ostris/Flex.1-alpha",
     "-[ 🏠 Local models ]-",
 ]
 
