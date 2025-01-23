@@ -2227,6 +2227,8 @@ def lora_model_list(model, *args):
             "glif-loradex-trainer/i12bp8_i12bp8_greeksculptures_v1":("i12bp8_greeksculptures_v1.safetensors", "GRKSCLPTRS_PPLSNSM"),
             "strangerzonehf/Flux-Cardboard-Art-LoRA":("cardboard# art.safetensors", "cardboard# art"),
             "glif-loradex-trainer/i12bp8_appelsiensam_vintagesign_v1":("appelsiensam_vintagesign_v1.safetensors", "VNTGSGN_PPLSNSM"),
+            "prithivMLmods/Logo-Design-Flux-LoRA":("Logo-design.safetensors", "Logo Design"),
+            "saurabhswami/Vibrant-tech-3D":("VibrantTech3D_v1.safetensors", "VibrantTech3D style"),
             "-[ 🏆 🐢 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
