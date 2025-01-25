@@ -17,9 +17,15 @@
 
 ## Updates
 
+  * 🆕 **2025-01-25** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for Chatbot models [bartowski/DeepSeek-R1-Distill-Llama-8B-GGUF](https://hf.co/bartowski/DeepSeek-R1-Distill-Llama-8B-GGUF) and [mradermacher/Lucie-7B-Instruct-GGUF](https://hf.co/mradermacher/Lucie-7B-Instruct-GGUF).
+    - Add support for Flux LoRA models [glif-loradex-trainer/i12bp8_appelsiensam_vintagesign_v1](https://hf.co/glif-loradex-trainer/i12bp8_appelsiensam_vintagesign_v1), [strangerzonehf/Ctoon-Plus-Plus](https://hf.co/strangerzonehf/Ctoon-Plus-Plus), [Jovie/Comics](https://hf.co/Jovie/Comics), [den123/squidgame](https://hf.co/den123/squidgame), [prithivMLmods/Logo-Design-Flux-LoRA](https://hf.co/prithivMLmods/Logo-Design-Flux-LoRA), [saurabhswami/Vibrant-tech-3D](https://hf.co/saurabhswami/Vibrant-tech-3D), [leonel4rd/Comicfx](https://hf.co/leonel4rd/Comicfx) and [noahyoungs/icon-generator](https://hf.co/noahyoungs/icon-generator).
+    - Add support for Flux model [ostris/Flex.1-alpha](https://hf.co/ostris/Flex.1-alpha). Please note that this huge (but highly qualitatives !) model will requires at least 64GB RAM for CPU-only inferences.
+    - Update of default Flux model from [Freepik/flux.1-lite-8B-alpha](https://hf.co/Freepik/flux.1-lite-8B-alpha) to [Freepik/flux.1-lite-8B](https://hf.co/Freepik/flux.1-lite-8B).
+
   * 🆕 **2025-01-18** : 🔥 ***This week's updates*** 🔥 >
     - Add support for Chatbot model [prithivMLmods/GWQ-9B-Preview2-Q5_K_M-GGUF](https://hf.co/prithivMLmods/GWQ-9B-Preview2-Q5_K_M-GGUF).
-    - Add support for Flux LoRA models [ludocomito/flux-lora-caravaggio](https://hf.co/ludocomito/flux-lora-caravaggio), [strangerzonehf/Flux-Claude-Art](https://hf.co/strangerzonehf/Flux-Claude-Art), [WiroAI/GTA6-style-flux-lora](https://hf.co/WiroAI/GTA6-style-flux-lora), [strangerzonehf/Flux-Cardboard-Art-LoRA](https://hf.co/strangerzonehf/Flux-Cardboard-Art-LoRA), [strangerzonehf/Flux-Midjourney-Mix2-LoRA](https://hf.co/strangerzonehf/Flux-Midjourney-Mix2-LoRA), [strangerzonehf/Flux-Sketch-Ep-LoRA](https://hf.co/strangerzonehf/Flux-Sketch-Ep-LoRA), [alvdansen/flux_film_foto](https://hf.co/alvdansen/flux_film_foto), [glif-loradex-trainer/x_bulbul_x_90s_anime](https://hf.co/glif-loradex-trainer/x_bulbul_x_90s_anime), [](https://hf.co/) and [](https://hf.co/).
+    - Add support for Flux LoRA models [ludocomito/flux-lora-caravaggio](https://hf.co/ludocomito/flux-lora-caravaggio), [strangerzonehf/Flux-Claude-Art](https://hf.co/strangerzonehf/Flux-Claude-Art), [WiroAI/GTA6-style-flux-lora](https://hf.co/WiroAI/GTA6-style-flux-lora), [strangerzonehf/Flux-Cardboard-Art-LoRA](https://hf.co/strangerzonehf/Flux-Cardboard-Art-LoRA), [strangerzonehf/Flux-Midjourney-Mix2-LoRA](https://hf.co/strangerzonehf/Flux-Midjourney-Mix2-LoRA), [strangerzonehf/Flux-Sketch-Ep-LoRA](https://hf.co/strangerzonehf/Flux-Sketch-Ep-LoRA), [alvdansen/flux_film_foto](https://hf.co/alvdansen/flux_film_foto) and [glif-loradex-trainer/x_bulbul_x_90s_anime](https://hf.co/glif-loradex-trainer/x_bulbul_x_90s_anime).
     - New Flux LoRA category : Enhancement.
 
   * 🆕 **2025-01-12** : 🔥 ***New high-end Chatbot model*** 🔥 > **Phi-4** is now available in biniou, via [microsoft/phi-4-gguf](https://hf.co/microsoft/phi-4-gguf). This model is absolutely awesome and cleary out of his league. It only weight 8.4 GB, and -so far- answered *perfectly* to all submited requests. Definitely a must try !
@@ -38,14 +44,6 @@
     - Add support for text2image with Flux models in IP-Adapter module
     - Add support for Flux model [enhanceaiteam/Mystic](https://hf.co/enhanceaiteam/Mystic). Please note that this huge (but highly qualitatives !) model will requires at least 70GB RAM for CPU-only inferences.
     - Bugfix for Flux pipelines following Diffusers upgrade.
-
-  * 🆕 **2024-12-28** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for Chatbot specialized models [bartowski/Tulu-MathLingo-8B-GGUF](https://hf.co/bartowski/Tulu-MathLingo-8B-GGUF), [AlicanKiraz0/SenecaLLM-Q4_K_M-GGUF](https://hf.co/AlicanKiraz0/SenecaLLM-Q4_K_M-GGUF) and Chatbot model [bartowski/moxin-chat-7b-GGUF](https://hf.co/bartowski/moxin-chat-7b-GGUF).
-    - Add support for SD 3.5 Large model [aipicasso/emi-3](https://hf.co/aipicasso/emi-3).
-    - Add support for SD 3.5 Medium Turbo (8 steps) model [tensorart/stable-diffusion-3.5-medium-turbo](https://hf.co/tensorart/stable-diffusion-3.5-medium-turbo).
-    - Add support for SDXL fast (4 steps) LoRA model [alimama-creative/slam-lora-sdxl](https://hf.co/alimama-creative/slam-lora-sdxl).
-    - Add support for Flux LoRA models [Datou1111/Yoji_Shinkawa](https://hf.co/Datou1111/Yoji_Shinkawa), [youknownothing/flux_dreamscape](https://hf.co/youknownothing/flux_dreamscape), [Datou1111/shou_xin](https://hf.co/Datou1111/shou_xin), [glif-loradex-trainer/swapagrawal14_tattoo_artist_v1](https://hf.co/glif-loradex-trainer/swapagrawal14_tattoo_artist_v1), [gokaygokay/Flux-Engrave-LoRA](https://hf.co/gokaygokay/Flux-Engrave-LoRA), [gokaygokay/Flux-Mosaic-LoRA](https://hf.co/gokaygokay/Flux-Mosaic-LoRA), [glif-loradex-trainer/quitters_flux_dev_gc_boxart](https://hf.co/glif-loradex-trainer/quitters_flux_dev_gc_boxart) and [glif-loradex-trainer/x_bulbul_x_Playstation_2_Game_Covers](https://hf.co/glif-loradex-trainer/x_bulbul_x_Playstation_2_Game_Covers).
-    - Add support for Flux models [black-forest-labs/FLUX.1-schnell](https://hf.co/black-forest-labs/FLUX.1-schnell), [ChuckMcSneed/FLUX.1-dev](https://hf.co/ChuckMcSneed/FLUX.1-dev) and  [sayakpaul/FLUX.1-merged](https://hf.co/sayakpaul/FLUX.1-merged). Please note that these 3 huges (but highly qualitatives !) models will requires at least 70GB RAM for CPU-only inferences.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
