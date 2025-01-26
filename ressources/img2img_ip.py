@@ -103,6 +103,7 @@ model_list_img2img_ip_builtin = [
     "enhanceaiteam/Mystic",
     "AlekseyCalvin/AuraFlux_merge_diffusers",
     "ostris/Flex.1-alpha",
+    "shuttleai/shuttle-jaguar",
     "-[ 🏠 Local models ]-",
 ]
 

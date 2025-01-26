@@ -120,6 +120,7 @@ model_list_txt2img_sd_builtin = [
     "enhanceaiteam/Mystic",
     "AlekseyCalvin/AuraFlux_merge_diffusers",
     "ostris/Flex.1-alpha",
+    "shuttleai/shuttle-jaguar",
     "-[ 🏠 Local models ]-",
 ]
 
