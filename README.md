@@ -173,6 +173,7 @@
     - Fedora 39+
     - OpenSUSE Leap 15.5
     - OpenSUSE Tumbleweed
+    - NixOS (via nix-shell)
     - Windows 10 22H2
     - Windows 11 22H2
     - macOS ???
@@ -211,6 +212,29 @@ sh <(curl https://raw.githubusercontent.com/Woolverine94/biniou/main/oci-rhel.sh
   1. **Copy/paste and execute** the following command in a terminal : 
 ```bash
 sh <(curl https://raw.githubusercontent.com/Woolverine94/biniou/main/oci-debian.sh || wget -O - https://raw.githubusercontent.com/Woolverine94/biniou/main/oci-debian.sh)
+```
+
+#### NixOS (via nix-shell)
+
+```sh
+# Open a port through the firewall to allow temporary (until next boot) remote access for containers and other services
+open-port() {
+    if [ -z "$1" ]; then
+        echo "Usage: open-port <port>"
+        return 1
+    fi
+    local port=$1
+    sudo iptables -A INPUT -p tcp --dport $port -j ACCEPT
+    sudo systemctl reload firewall
+}
+
+git clone https://github.com/Woolverine94/biniou
+cd biniou
+nix-shell
+./install.sh
+# open-port 7860 # uncomment to open NixOS firewall port if accessing from a remote machine
+(sleep 3; xdg-open https://0.0.0.0:7860) &
+./webui.sh
 ```
 
 ##### Manual installation :
