@@ -2135,6 +2135,7 @@ def lora_model_list(model, *args):
             "strangerzonehf/Flux-Super-Realism-LoRA":("super-realism.safetensors", "Super Realism"),
             "Shakker-Labs/FLUX.1-dev-LoRA-add-details":("FLUX-dev-lora-add_details.safetensors", ""),
             "prithivMLmods/Flux-Realism-FineDetailed":("Flux-Realism-FineDetailed.safetensors", "Fine Detailed"),
+            "glif-loradex-trainer/insectagon_Architect_render1":("Architect_render1.safetensors", "R3nderd"),
             "-[ 🏆 🐢 🎨 Style Flux LoRA ]-":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/flux-koda":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/pola-photo-flux":("pola_photo_araminta_k.safetensors", "polaroid style"),
@@ -2250,6 +2251,7 @@ def lora_model_list(model, *args):
             "leonel4rd/DBZFLUX":("Akira_Toriyama_Style_FX-000001.safetensors", "toriyama_style"),
             "glif-loradex-trainer/x_bulbul_x_90s_anime":("90s_anime.safetensors", "90s anime"),
             "strangerzonehf/Ctoon-Plus-Plus":("Ctoon++.safetensors", "Ctoon++"),
+            "cagrison/cyberpunk-anime":("CPA.safetensors", ""),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
