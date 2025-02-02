@@ -1929,7 +1929,7 @@ def model_cleaner_sd(model):
         "-[ 👍 🇯🇵 Anime SD15 ]-": "gsdf/Counterfeit-V2.5",
         "-[ 👍 SD15 ]-": "SG161222/Realistic_Vision_V3.0_VAE",
         "-[ 👌 🚀 Fast SDXL ]-": "sd-community/sdxl-flash",
-        "-[ 👌 🇯🇵 Anime SDXL ]-": "cagliostrolab/animagine-xl-3.1",
+        "-[ 👌 🇯🇵 Anime SDXL ]-": "GraydientPlatformAPI/geekpower-cellshade-xl",
         "-[ 👌 🐢 SDXL ]-": "fluently/Fluently-XL-Final",
         "-[ 👏 🐢 SD3 ]-": "v2ray/stable-diffusion-3-medium-diffusers",
         "-[ 👏 🐢 SD3.5 Large ]-": "adamo1139/stable-diffusion-3.5-large-turbo-ungated",
