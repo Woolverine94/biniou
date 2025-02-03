@@ -141,7 +141,7 @@ prompt_template_list_llamacpp = {
     "Llama-2-Chat":("[INST] <<SYS>>\n{system}\n<</SYS>>\n{prompt}[/INST]", "You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature. If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information."),
     "Llama-3-Instruct":("<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "Mistral":("<s>[INST] {prompt} [/INST]", ""),
-    "Mistral instruct":("<s>[SYSTEM_PROMPT]{system_prompt}[/SYSTEM_PROMPT][INST]{prompt}[/INST]", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
+    "Mistral Small instruct":("<s>[SYSTEM_PROMPT]{system_prompt}[/SYSTEM_PROMPT][INST]{prompt}[/INST]", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "None / Unknown":("{prompt}", ""),
     "OpenChat":("GPT4 User: {prompt}<|end_of_turn|>GPT4 Assistant:", ""),
     "OpenChat-Correct":("GPT4 Correct User: {prompt}<|end_of_turn|>GPT4 Correct Assistant:", ""),
