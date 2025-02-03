@@ -11,14 +11,17 @@ if [ "$(echo $RELEASE|grep 'debian')" !=  "" ]
   elif [ "$(echo $RELEASE|grep 'opensuse')" !=  "" ]
     then
       TCMALLOC_PATH="/usr/lib64"
+  elif [ "$(echo $RELEASE|grep 'cachyos')" !=  "" ]
+    then
+      TCMALLOC_PATH="/usr/lib64"
 fi
 
 if [ "$(ls -l $TCMALLOC_PATH/libtcmalloc.so* 2>/dev/null)" != "" ]
   then
-    TCMALLOC_NAME="$(ls -l $TCMALLOC_PATH/libtcmalloc.so* 2>/dev/null|sed -ne 's/^.*\/\(.*\) ->.*/\1/p')"
+    TCMALLOC_NAME="$(ls -l $TCMALLOC_PATH/libtcmalloc.so* 2>/dev/null|sed -ne 's/^.*\/\(.*\) ->.*/\1/p'|tail -n 1)"
 elif [ "$(ls -l $TCMALLOC_PATH/libtcmalloc_minimal.so* 2>/dev/null)" != "" ]
   then
-    TCMALLOC_NAME="$(ls -l $TCMALLOC_PATH/libtcmalloc_minimal.so* 2>/dev/null|sed -ne 's/^.*\/\(.*\) ->.*/\1/p')"
+    TCMALLOC_NAME="$(ls -l $TCMALLOC_PATH/libtcmalloc_minimal.so* 2>/dev/null|sed -ne 's/^.*\/\(.*\) ->.*/\1/p'|tail -n 1)"
 fi
 
 ## Activate python venv
