@@ -50,6 +50,7 @@ model_list_img2img_ip_builtin = [
     "nitrosocke/Ghibli-Diffusion",
     "-[ 👌 🐢 SDXL ]-",
     "fluently/Fluently-XL-Final",
+    "SG161222/RealVisXL_V5.0",
     "Corcelio/mobius",
     "misri/juggernautXL_juggXIByRundiffusion",
     "mann-e/Mann-E_Dreams",
