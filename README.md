@@ -9,8 +9,8 @@
 <p align="justify">biniou is a self-hosted webui for several kinds of GenAI (generative artificial intelligence). You can generate multimedia contents with AI and use a chatbot on your own computer, even without dedicated GPU and starting from 8GB RAM. Can work offline (once deployed and required models downloaded).</p>
 
 <p align="center">
-<a href="#GNULinux">GNU/Linux</a> [ <a href="#OpenSUSE-Leap-155--OpenSUSE-Tumbleweed">OpenSUSE base</a> | <a href="#Rocky-93--Alma-93--CentOS-Stream-9--Fedora-39">RHEL base</a> | <a href="#CachyOS">Arch base</a> | <a href="#debian-12--ubuntu-22043--ubuntu-2404--linux-mint-212--linux-mint-22">Debian base</a> ] • <a href="#windows-10--windows-11">Windows</a> • <a href="#macos-intel-homebrew-install">macOS Intel (experimental)</a> • <a href="#dockerfile">Docker</a></br>
-<a href="https://github.com/Woolverine94/biniou/wiki">Documentation ❓</a> | <a href="https://github.com/Woolverine94/biniou/wiki/Showroom">Showroom 🖼️</a> | <a href="https://www.youtube.com/watch?v=WcCZSt6xMc4" target="_blank">Video presentation (by @Natlamir) 🎞️</a> | <a href="https://www.youtube.com/watch?v=e_gAJFTitYg" target="_blank">Windows installation tutorial (by Fahd Mirza) 🎞️</a>
+<a href="#GNULinux">GNU/Linux base</a> :  [ <a href="#OpenSUSE-Leap-155--OpenSUSE-Tumbleweed">OpenSUSE</a> | <a href="#Rocky-93--Alma-93--CentOS-Stream-9--Fedora-39">RHEL</a> | <a href="#CachyOS">Arch</a> | <a href="#debian-12--ubuntu-22043--ubuntu-2404--linux-mint-212--linux-mint-22">Debian</a> ] • <a href="#windows-10--windows-11">Windows</a> • <a href="#macos-intel-homebrew-install">macOS Intel (experimental)</a> • <a href="#dockerfile">Docker</a></br>
+<a href="https://github.com/Woolverine94/biniou/wiki">Documentation ❓</a> | <a href="https://github.com/Woolverine94/biniou/wiki/Showroom">Showroom 🖼️</a> | <a href="https://www.youtube.com/watch?v=WcCZSt6xMc4" target="_blank">Video presentation (by @Natlamir) 🎞️</a> | <a href="https://www.youtube.com/watch?v=e_gAJFTitYg" target="_blank">Windows install tutorial (by Fahd Mirza) 🎞️</a>
 </p>
 
 ---
