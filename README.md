@@ -17,6 +17,13 @@
 
 ## Updates
 
+  * **2025-02-08** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for Chatbot Tiny model [bartowski/AGI-0_Art-Skynet-3B-GGUF](https://hf.co/bartowski/AGI-0_Art-Skynet-3B-GGUF).
+    - Add support for Flux LoRA models [strangerzonehf/Realism-v3-Flux](https://hf.co/strangerzonehf/Realism-v3-Flux), [multimodalart/product-design](https://hf.co/multimodalart/product-design), [glif-loradex-trainer/fabian3000_pixelfighters](https://hf.co/glif-loradex-trainer/fabian3000_pixelfighters) and [prithivMLmods/Retro-Pixel-Flux-LoRA](https://hf.co/prithivMLmods/Retro-Pixel-Flux-LoRA).
+    - Add support for SDXL model [SG161222/RealVisXL_V5.0](https://hf.co/SG161222/RealVisXL_V5.0)
+    - Update of default SDXL Anime model to [GraydientPlatformAPI/geekpower-cellshade-xl](https://hf.co/GraydientPlatformAPI/geekpower-cellshade-xl)
+    - Add compatibility for CachyOS (Arch Linux family).
+
   * **2025-02-02** : 🔥 ***This week's updates*** 🔥 >
     - Add support for Chatbot high-end models [bartowski/DeepSeek-R1-Distill-Qwen-14B-GGUF](https://hf.co/bartowski/DeepSeek-R1-Distill-Qwen-14B-GGUF), [bartowski/Mistral-Small-24B-Instruct-2501-GGUF](https://hf.co/bartowski/Mistral-Small-24B-Instruct-2501-GGUF) and update of [bartowski/Qwen2-Wukong-7B-GGUF](https://hf.co/bartowski/Qwen2-Wukong-7B-GGUF) to [bartowski/Qwen2.5-7B-Instruct-1M-GGUF](https://hf.co/bartowski/Qwen2.5-7B-Instruct-1M-GGUF).
     - Add support for Flux LoRA models [glif-loradex-trainer/insectagon_Architect_render1](https://hf.co/glif-loradex-trainer/insectagon_Architect_render1) and [cagrison/cyberpunk-anime](https://hf.co/cagrison/cyberpunk-anime).
@@ -36,13 +43,6 @@
     - New Flux LoRA category : Enhancement.
 
   * 🆕 **2025-01-12** : 🔥 ***New high-end Chatbot model*** 🔥 > **Phi-4** is now available in biniou, via [microsoft/phi-4-gguf](https://hf.co/microsoft/phi-4-gguf). This model is absolutely awesome and cleary out of his league. It only weight 8.4 GB, and -so far- answered *perfectly* to all submited requests. Definitely a must try !
-
-  * 🆕 **2025-01-11** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for Chatbot high-end model [bartowski/Qwentile2.5-32B-Instruct-GGUF](https://hf.co/bartowski/Qwentile2.5-32B-Instruct-GGUF) and Chatbot  model [cognitivecomputations/Dolphin3.0-Llama3.1-8B-GGUF](https://hf.co/cognitivecomputations/Dolphin3.0-Llama3.1-8B-GGUF).
-    - Update of Chatbot default model to [bartowski/Meta-Llama-3.1-8B-Instruct-GGUF](https://hf.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF) and update of Qwen2.5-Coder-7B to [bartowski/Qwen2.5.1-Coder-7B-Instruct-GGUF](https://hf.co/bartowski/Qwen2.5.1-Coder-7B-Instruct-GGUF).
-    - Add support for Flux LoRA models [keturn/woodcut-illustrations-Trousset-LoRA](https://hf.co/keturn/woodcut-illustrations-Trousset-LoRA), [glif-loradex-trainer/AP123_flux_dev_cutaway_style](https://hf.co/glif-loradex-trainer/AP123_flux_dev_cutaway_style), [glif-loradex-trainer/i12bp8_i12bp8_povshots_v1](https://hf.co/glif-loradex-trainer/i12bp8_i12bp8_povshots_v1), [glif-loradex-trainer/fabian3000_bosch](https://hf.co/glif-loradex-trainer/fabian3000_bosch), [glif-loradex-trainer/i12bp8_i12bp8_greeksculptures_v1](https://hf.co/glif-loradex-trainer/i12bp8_i12bp8_greeksculptures_v1) and [leonel4rd/DBZFLUX](https://hf.co/leonel4rd/DBZFLUX).
-    - Add preliminary suppport for ControlNet Flux models [Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro](https://hf.co/Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro) and [InstantX/FLUX.1-dev-Controlnet-Union](https://hf.co/InstantX/FLUX.1-dev-Controlnet-Union). You currently had to manually select these models if you want to use them during inferences.
-    - Add support for Flux model [AlekseyCalvin/AuraFlux_merge_diffusers](https://hf.co/AlekseyCalvin/AuraFlux_merge_diffusers). Please note that this huge (but highly qualitatives !) model will requires at least 70GB RAM for CPU-only inferences.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
