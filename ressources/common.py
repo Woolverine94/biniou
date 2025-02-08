@@ -2191,6 +2191,8 @@ def lora_model_list(model, *args):
             "Jovie/Comics":("comics.safetensors", ""),
             "den123/squidgame":("squidgame.safetensors", "squidgame"),
             "leonel4rd/Comicfx":("the-farish-side_v20-000035.safetensors", "a difrsd comic"),
+            "glif-loradex-trainer/fabian3000_pixelfighters":("pixelfighters.safetensors", "pixelfighters style"),
+            "prithivMLmods/Retro-Pixel-Flux-LoRA":("Retro-Pixel.safetensors", "Retro Pixel"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
