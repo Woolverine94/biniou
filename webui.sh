@@ -5,7 +5,7 @@ RELEASE="$(cat /etc/os-release|grep ^ID)"
 if [ "$(echo $RELEASE|grep 'debian')" !=  "" ]
   then
     TCMALLOC_PATH="/lib/x86_64-linux-gnu"
-  elif [ "$(echo $RELEASE|grep 'rhel')" !=  "" ] || [ "$(echo $RELEASE|grep 'fedora')" !=  "" ] 
+  elif [ "$(echo $RELEASE|grep 'rhel')" !=  "" ] || [ "$(echo $RELEASE|grep 'fedora')" !=  "" ] || [ "$(echo $RELEASE|grep 'openmandriva')" !=  "" ] 
     then
       TCMALLOC_PATH="/lib64"
   elif [ "$(echo $RELEASE|grep 'opensuse')" !=  "" ]
