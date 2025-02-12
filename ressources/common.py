@@ -2195,6 +2195,7 @@ def lora_model_list(model, *args):
             "glif-loradex-trainer/fabian3000_pixelfighters":("pixelfighters.safetensors", "pixelfighters style"),
             "prithivMLmods/Retro-Pixel-Flux-LoRA":("Retro-Pixel.safetensors", "Retro Pixel"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Dark-Fantasy":("FLUX.1-dev-lora-Dark-Fantasy.safetensors", ""),
+            "memyself/synthwaveglitch":("SynthWaveGlitchyAnalogVideoSynthesisFluxV1.safetensors", "vidsynthsynth, video synth"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
@@ -2258,6 +2259,7 @@ def lora_model_list(model, *args):
             "glif-loradex-trainer/x_bulbul_x_90s_anime":("90s_anime.safetensors", "90s anime"),
             "strangerzonehf/Ctoon-Plus-Plus":("Ctoon++.safetensors", "Ctoon++"),
             "cagrison/cyberpunk-anime":("CPA.safetensors", ""),
+            "WiroAI/Batman-Animated-Flux-LoRA":("batman_flux_lora.safetensors", "btmnwiro"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
