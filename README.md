@@ -17,6 +17,12 @@
 
 ## Updates
 
+  * **2025-02-15** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for Chatbot model [bartowski/Falcon3-10B-Instruct-GGUF](https://hf.co/bartowski/Falcon3-10B-Instruct-GGUF), chatbot high-end models [bartowski/cognitivecomputations_Dolphin3.0-R1-Mistral-24B-GGUF](https://hf.co/bartowski/cognitivecomputations_Dolphin3.0-R1-Mistral-24B-GGUF), [bartowski/krutrim-ai-labs_Krutrim-2-instruct-GGUF](https://hf.co/bartowski/krutrim-ai-labs_Krutrim-2-instruct-GGUF) and update of Granite model to [Triangle104/granite-3.2-8b-instruct-preview-Q5_K_M-GGUF](https://hf.co/Triangle104/granite-3.2-8b-instruct-preview-Q5_K_M-GGUF).
+    - Add support for Flux LoRA models [strangerzonehf/cinematicShot-Pics-Flux](https://hf.co/strangerzonehf/cinematicShot-Pics-Flux), [Shakker-Labs/FLUX.1-dev-LoRA-Dark-Fantasy](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-Dark-Fantasy), [memyself/synthwaveglitch](https://hf.co/memyself/synthwaveglitch) and [WiroAI/Batman-Animated-Flux-LoRA](https://hf.co/WiroAI/Batman-Animated-Flux-LoRA).
+    - Add compatibility for Pop! OS and OpenMandriva.
+    - Add automation for built-in documentation of models lists.
+
   * **2025-02-08** : 🔥 ***This week's updates*** 🔥 >
     - Add support for Chatbot Tiny model [bartowski/AGI-0_Art-Skynet-3B-GGUF](https://hf.co/bartowski/AGI-0_Art-Skynet-3B-GGUF).
     - Add support for Flux LoRA models [strangerzonehf/Realism-v3-Flux](https://hf.co/strangerzonehf/Realism-v3-Flux), [multimodalart/product-design](https://hf.co/multimodalart/product-design), [glif-loradex-trainer/fabian3000_pixelfighters](https://hf.co/glif-loradex-trainer/fabian3000_pixelfighters) and [prithivMLmods/Retro-Pixel-Flux-LoRA](https://hf.co/prithivMLmods/Retro-Pixel-Flux-LoRA).
@@ -41,8 +47,6 @@
     - Add support for Chatbot model [prithivMLmods/GWQ-9B-Preview2-Q5_K_M-GGUF](https://hf.co/prithivMLmods/GWQ-9B-Preview2-Q5_K_M-GGUF).
     - Add support for Flux LoRA models [ludocomito/flux-lora-caravaggio](https://hf.co/ludocomito/flux-lora-caravaggio), [strangerzonehf/Flux-Claude-Art](https://hf.co/strangerzonehf/Flux-Claude-Art), [WiroAI/GTA6-style-flux-lora](https://hf.co/WiroAI/GTA6-style-flux-lora), [strangerzonehf/Flux-Cardboard-Art-LoRA](https://hf.co/strangerzonehf/Flux-Cardboard-Art-LoRA), [strangerzonehf/Flux-Midjourney-Mix2-LoRA](https://hf.co/strangerzonehf/Flux-Midjourney-Mix2-LoRA), [strangerzonehf/Flux-Sketch-Ep-LoRA](https://hf.co/strangerzonehf/Flux-Sketch-Ep-LoRA), [alvdansen/flux_film_foto](https://hf.co/alvdansen/flux_film_foto) and [glif-loradex-trainer/x_bulbul_x_90s_anime](https://hf.co/glif-loradex-trainer/x_bulbul_x_90s_anime).
     - New Flux LoRA category : Enhancement.
-
-  * 🆕 **2025-01-12** : 🔥 ***New high-end Chatbot model*** 🔥 > **Phi-4** is now available in biniou, via [microsoft/phi-4-gguf](https://hf.co/microsoft/phi-4-gguf). This model is absolutely awesome and cleary out of his league. It only weight 8.4 GB, and -so far- answered *perfectly* to all submited requests. Definitely a must try !
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
