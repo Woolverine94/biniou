@@ -1773,6 +1773,16 @@ seed_img2shape.value = {seed_img2shape}"
         savefile.write(content)
     return
 
+def autodoc(toparse):
+    content = ""
+    for item in toparse:
+        if (item[:2] != "-[") and (item[:2] != "./"):
+            content += f"<a href='https://huggingface.co/{item}' target='_blank'>{item}</a>, "
+        elif (item[:2] == "-["):
+            content += f"<br />{item}: "
+        elif (item[:2] == "./"):
+            content += f"{item}, "
+    return content
 
 def is_fast_lora(model):
     model = model_cleaner_sd(model)
