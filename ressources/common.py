@@ -1952,7 +1952,7 @@ def model_cleaner_sd(model):
 
 def model_cleaner_llamacpp(model):
     model_replacement = {
-        "-[ 👌 Standard ]-": "NousResearch/Meta-Llama-3-8B-Instruct-GGUF",
+        "-[ 👌 Standard ]-": "bartowski/Meta-Llama-3.1-8B-Instruct-GGUF",
         "-[ 👍 🚀 Tiny ]-":	"bartowski/Phi-3.1-mini-4k-instruct-GGUF",
         "-[ 👏 🐢 High-end ]-":	"bartowski/Mistral-Nemo-Instruct-2407-GGUF",
         "-[ 🧑‍💻 Code ]-": "bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF",
