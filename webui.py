@@ -2502,7 +2502,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 quantization_llamacpp = gr.Textbox(value="", label=biniou_lang_tab_llamacpp_quantization_label, info=biniou_lang_tab_llamacpp_quantization_info)
                             with gr.Column():
-                                max_tokens_llamacpp = gr.Slider(0, 524288, step=16, value=1024, label=biniou_lang_maxtoken_label, info=biniou_lang_maxtoken_info)
+                                max_tokens_llamacpp = gr.Slider(0, 131072, step=16, value=0, label=biniou_lang_maxtoken_label, info=biniou_lang_maxtoken_info)
                             with gr.Column():
                                 seed_llamacpp = gr.Slider(0, 10000000000, step=1, value=1337, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                         with gr.Row():
