@@ -234,281 +234,281 @@ def dispatch_controlnet_preview(
     if not (('qr' in preprocessor_controlnet) or ('tile' in preprocessor_controlnet)):
         processor_controlnet = Processor(preprocessor_controlnet)
 
-    match preprocessor_controlnet:
+#    match preprocessor_controlnet:
 # 01
-        case "canny":
-            result = canny_controlnet(img_source_controlnet, low_threshold_controlnet, high_threshold_controlnet)
-#            return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[0]
-            if is_xl_controlnet:
-                return result, result, variant_list_controlnet[20]
-            elif is_sd3_controlnet:
-                return result, result, variant_list_controlnet[22]
-            elif is_flux_controlnet:
-                return result, result, variant_list_controlnet[25]
-            else:
-                return result, result, variant_list_controlnet[0]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[0]
+    if preprocessor_controlnet == "canny":
+        result = canny_controlnet(img_source_controlnet, low_threshold_controlnet, high_threshold_controlnet)
+#        return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[0]
+        if is_xl_controlnet:
+            return result, result, variant_list_controlnet[20]
+        elif is_sd3_controlnet:
+            return result, result, variant_list_controlnet[22]
+        elif is_flux_controlnet:
+            return result, result, variant_list_controlnet[25]
+        else:
+            return result, result, variant_list_controlnet[0]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[0]
 # 02
-        case "depth_leres":
-            result = processor_controlnet(img_source_controlnet, to_pil=True)
-            if is_xl_controlnet:
-                return result, result, variant_list_controlnet[13] 
-            elif is_flux_controlnet:
-                return result, result, variant_list_controlnet[26] 
-            else:
-                return result, result, variant_list_controlnet[1]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[1]
+    elif preprocessor_controlnet == "depth_leres":
+        result = processor_controlnet(img_source_controlnet, to_pil=True)
+        if is_xl_controlnet:
+            return result, result, variant_list_controlnet[13] 
+        elif is_flux_controlnet:
+            return result, result, variant_list_controlnet[26] 
+        else:
+            return result, result, variant_list_controlnet[1]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[1]
 # 03
-        case "depth_leres++":
-            result = processor_controlnet(img_source_controlnet, to_pil=True)
-            if is_xl_controlnet:
-                return result, result, variant_list_controlnet[13] 
-            elif is_flux_controlnet:
-                return result, result, variant_list_controlnet[26] 
-            else:
-                return result, result, variant_list_controlnet[1]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[1]
+    elif preprocessor_controlnet == "depth_leres++":
+        result = processor_controlnet(img_source_controlnet, to_pil=True)
+        if is_xl_controlnet:
+            return result, result, variant_list_controlnet[13] 
+        elif is_flux_controlnet:
+            return result, result, variant_list_controlnet[26] 
+        else:
+            return result, result, variant_list_controlnet[1]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[1]
 # 04
-        case "depth_midas":
-            result = processor_controlnet(img_source_controlnet, to_pil=True)
-#            return result, result, variant_list_controlnet[13] if is_xl_controlnet else variant_list_controlnet[1]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[1]
-            if is_xl_controlnet:
-                return result, result, variant_list_controlnet[20] 
-            elif is_flux_controlnet:
-                return result, result, variant_list_controlnet[26] 
-            else:
-                return result, result, variant_list_controlnet[1]
-#         case "depth_zoe":
-#             result = processor_controlnet(img_source_controlnet, to_pil=True)
-# #            return result, result, variant_list_controlnet[13] if is_xl_controlnet else variant_list_controlnet[1]
-#             return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[1]
+    elif preprocessor_controlnet == "depth_midas":
+        result = processor_controlnet(img_source_controlnet, to_pil=True)
+#        return result, result, variant_list_controlnet[13] if is_xl_controlnet else variant_list_controlnet[1]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[1]
+        if is_xl_controlnet:
+            return result, result, variant_list_controlnet[20] 
+        elif is_flux_controlnet:
+            return result, result, variant_list_controlnet[26] 
+        else:
+            return result, result, variant_list_controlnet[1]
+#     case "depth_zoe":
+#         result = processor_controlnet(img_source_controlnet, to_pil=True)
+# #        return result, result, variant_list_controlnet[13] if is_xl_controlnet else variant_list_controlnet[1]
+#         return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[1]
 # 05
-        case "lineart_anime":
-            result = processor_controlnet(img_source_controlnet, to_pil=True)
-#            return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[2]
-            if is_xl_controlnet:
-                return result, result, variant_list_controlnet[20]
-            elif is_sd3_controlnet:
-                return result, result, variant_list_controlnet[22]
-            elif is_flux_controlnet:
-                return result, result, variant_list_controlnet[25]
-            else:
-                return result, result, variant_list_controlnet[2]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[2]
+    elif preprocessor_controlnet == "lineart_anime":
+        result = processor_controlnet(img_source_controlnet, to_pil=True)
+#        return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[2]
+        if is_xl_controlnet:
+            return result, result, variant_list_controlnet[20]
+        elif is_sd3_controlnet:
+            return result, result, variant_list_controlnet[22]
+        elif is_flux_controlnet:
+            return result, result, variant_list_controlnet[25]
+        else:
+            return result, result, variant_list_controlnet[2]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[2]
 # 06
-        case "lineart_coarse":
-            result = processor_controlnet(img_source_controlnet, to_pil=True)
-#            return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[3]
-            if is_xl_controlnet:
-                return result, result, variant_list_controlnet[12]
-            elif is_sd3_controlnet:
-                return result, result, variant_list_controlnet[22]
-            elif is_flux_controlnet:
-                return result, result, variant_list_controlnet[25]
-            else:
-                return result, result, variant_list_controlnet[3]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[3]
+    elif preprocessor_controlnet == "lineart_coarse":
+        result = processor_controlnet(img_source_controlnet, to_pil=True)
+#        return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[3]
+        if is_xl_controlnet:
+            return result, result, variant_list_controlnet[12]
+        elif is_sd3_controlnet:
+            return result, result, variant_list_controlnet[22]
+        elif is_flux_controlnet:
+            return result, result, variant_list_controlnet[25]
+        else:
+            return result, result, variant_list_controlnet[3]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[3]
 # 07
-        case "lineart_realistic":
-            result = processor_controlnet(img_source_controlnet, to_pil=True)
-#            return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[3]
-            if is_xl_controlnet:
-                return result, result, variant_list_controlnet[20]
-            elif is_sd3_controlnet:
-                return result, result, variant_list_controlnet[22]
-            elif is_flux_controlnet:
-                return result, result, variant_list_controlnet[25]
-            else:
-                return result, result, variant_list_controlnet[3]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[3]
+    elif preprocessor_controlnet == "lineart_realistic":
+        result = processor_controlnet(img_source_controlnet, to_pil=True)
+#        return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[3]
+        if is_xl_controlnet:
+            return result, result, variant_list_controlnet[20]
+        elif is_sd3_controlnet:
+            return result, result, variant_list_controlnet[22]
+        elif is_flux_controlnet:
+            return result, result, variant_list_controlnet[25]
+        else:
+            return result, result, variant_list_controlnet[3]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[3]
 # 08
-        case "mlsd":
-            result = processor_controlnet(img_source_controlnet, to_pil=True)
-#            return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[4]
-            if is_xl_controlnet:
-                return result, result, variant_list_controlnet[20]
-            elif is_sd3_controlnet:
-                return result, result, variant_list_controlnet[22]
-            elif is_flux_controlnet:
-                return result, result, variant_list_controlnet[25]
-            else:
-                return result, result, variant_list_controlnet[4]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[4]
+    elif preprocessor_controlnet == "mlsd":
+        result = processor_controlnet(img_source_controlnet, to_pil=True)
+#        return result, result, variant_list_controlnet[12] if is_xl_controlnet else variant_list_controlnet[4]
+        if is_xl_controlnet:
+            return result, result, variant_list_controlnet[20]
+        elif is_sd3_controlnet:
+            return result, result, variant_list_controlnet[22]
+        elif is_flux_controlnet:
+            return result, result, variant_list_controlnet[25]
+        else:
+            return result, result, variant_list_controlnet[4]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[4]
 # 09
-        case "normal_bae":
-            result = processor_controlnet(img_source_controlnet, to_pil=True)
-#            return result, result, variant_list_controlnet[13] if is_xl_controlnet else variant_list_controlnet[5]
-            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[5]
-#         case "normal_midas":
-#             result = processor_controlnet(img_source_controlnet, to_pil=True)
-# #            return result, result, variant_list_controlnet[13] if is_xl_controlnet else variant_list_controlnet[5]
-#             return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[5]
+    elif preprocessor_controlnet == "normal_bae":
+        result = processor_controlnet(img_source_controlnet, to_pil=True)
+#        return result, result, variant_list_controlnet[13] if is_xl_controlnet else variant_list_controlnet[5]
+        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[5]
+#     case "normal_midas":
+#         result = processor_controlnet(img_source_controlnet, to_pil=True)
+# #        return result, result, variant_list_controlnet[13] if is_xl_controlnet else variant_list_controlnet[5]
+#         return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[5]
 # 10
-        case "openpose":
-            result = processor_controlnet(img_source_controlnet, to_pil=True)
-#            return result, result, variant_list_controlnet[14] if is_xl_controlnet else variant_list_controlnet[6]
-            if is_xl_controlnet:
-                return result, result, variant_list_controlnet[20]
-            elif is_sd3_controlnet:
-                return result, result, variant_list_controlnet[23]
-            elif is_flux_controlnet:
-                return result, result, variant_list_controlnet[25]
-            else:
-                return result, result, variant_list_controlnet[6]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
+    elif preprocessor_controlnet == "openpose":
+        result = processor_controlnet(img_source_controlnet, to_pil=True)
+#        return result, result, variant_list_controlnet[14] if is_xl_controlnet else variant_list_controlnet[6]
+        if is_xl_controlnet:
+            return result, result, variant_list_controlnet[20]
+        elif is_sd3_controlnet:
+            return result, result, variant_list_controlnet[23]
+        elif is_flux_controlnet:
+            return result, result, variant_list_controlnet[25]
+        else:
+            return result, result, variant_list_controlnet[6]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
 # 11
-        case "openpose_face":
-            result = processor_controlnet(img_source_controlnet, to_pil=True)
-#            return result, result, variant_list_controlnet[14] if is_xl_controlnet else variant_list_controlnet[6]
-            if is_xl_controlnet:
-                return result, result, variant_list_controlnet[14]
-            elif is_sd3_controlnet:
-                return result, result, variant_list_controlnet[23]
-            elif is_flux_controlnet:
-                return result, result, variant_list_controlnet[25]
-            else:
-                return result, result, variant_list_controlnet[6]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
+    elif preprocessor_controlnet == "openpose_face":
+        result = processor_controlnet(img_source_controlnet, to_pil=True)
+#        return result, result, variant_list_controlnet[14] if is_xl_controlnet else variant_list_controlnet[6]
+        if is_xl_controlnet:
+            return result, result, variant_list_controlnet[14]
+        elif is_sd3_controlnet:
+            return result, result, variant_list_controlnet[23]
+        elif is_flux_controlnet:
+            return result, result, variant_list_controlnet[25]
+        else:
+            return result, result, variant_list_controlnet[6]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
 # 12
-        case "openpose_faceonly":
-            result = processor_controlnet(img_source_controlnet, to_pil=True)
-#            return result, result, variant_list_controlnet[14] if is_xl_controlnet else variant_list_controlnet[6]
-            if is_xl_controlnet:
-                return result, result, variant_list_controlnet[14]
-            elif is_sd3_controlnet:
-                return result, result, variant_list_controlnet[23]
-            elif is_flux_controlnet:
-                return result, result, variant_list_controlnet[25]
-            else:
-                return result, result, variant_list_controlnet[6]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
+    elif preprocessor_controlnet == "openpose_faceonly":
+        result = processor_controlnet(img_source_controlnet, to_pil=True)
+#        return result, result, variant_list_controlnet[14] if is_xl_controlnet else variant_list_controlnet[6]
+        if is_xl_controlnet:
+            return result, result, variant_list_controlnet[14]
+        elif is_sd3_controlnet:
+            return result, result, variant_list_controlnet[23]
+        elif is_flux_controlnet:
+            return result, result, variant_list_controlnet[25]
+        else:
+            return result, result, variant_list_controlnet[6]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
 # 13
-        case "openpose_full":
-            result = processor_controlnet(img_source_controlnet, to_pil=True)
-#            return result, result, variant_list_controlnet[14] if is_xl_controlnet else variant_list_controlnet[6]
-            if is_xl_controlnet:
-                return result, result, variant_list_controlnet[14]
-            elif is_sd3_controlnet:
-                return result, result, variant_list_controlnet[23]
-            elif is_flux_controlnet:
-                return result, result, variant_list_controlnet[25]
-            else:
-                return result, result, variant_list_controlnet[6]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
+    elif preprocessor_controlnet == "openpose_full":
+        result = processor_controlnet(img_source_controlnet, to_pil=True)
+#        return result, result, variant_list_controlnet[14] if is_xl_controlnet else variant_list_controlnet[6]
+        if is_xl_controlnet:
+            return result, result, variant_list_controlnet[14]
+        elif is_sd3_controlnet:
+            return result, result, variant_list_controlnet[23]
+        elif is_flux_controlnet:
+            return result, result, variant_list_controlnet[25]
+        else:
+            return result, result, variant_list_controlnet[6]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
 # 14
-        case "openpose_hand":
-            result = processor_controlnet(img_source_controlnet, to_pil=True)
-#            return result, result, variant_list_controlnet[14] if is_xl_controlnet else variant_list_controlnet[6]
-            if is_xl_controlnet:
-                return result, result, variant_list_controlnet[20]
-            elif is_sd3_controlnet:
-                return result, result, variant_list_controlnet[23]
-            elif is_flux_controlnet:
-                return result, result, variant_list_controlnet[25]
-            else:
-                return result, result, variant_list_controlnet[6]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
-
+    elif preprocessor_controlnet == "openpose_hand":
+        result = processor_controlnet(img_source_controlnet, to_pil=True)
+#        return result, result, variant_list_controlnet[14] if is_xl_controlnet else variant_list_controlnet[6]
+        if is_xl_controlnet:
+            return result, result, variant_list_controlnet[20]
+        elif is_sd3_controlnet:
+            return result, result, variant_list_controlnet[23]
+        elif is_flux_controlnet:
+            return result, result, variant_list_controlnet[25]
+        else:
+            return result, result, variant_list_controlnet[6]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[6]
+	
 # 15
-        case "scribble_hed":
-            result = processor_controlnet(img_source_controlnet, to_pil=True)
-            if is_xl_controlnet:
-                return result, result, variant_list_controlnet[20] 
-            elif is_flux_controlnet:
-                return result, result, variant_list_controlnet[25] 
-            else:
-                return result, result, variant_list_controlnet[7]
-#            return result, result, variant_list_controlnet[15] if is_xl_controlnet else variant_list_controlnet[7]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[7]
+    elif preprocessor_controlnet == "scribble_hed":
+        result = processor_controlnet(img_source_controlnet, to_pil=True)
+        if is_xl_controlnet:
+            return result, result, variant_list_controlnet[20] 
+        elif is_flux_controlnet:
+            return result, result, variant_list_controlnet[25] 
+        else:
+            return result, result, variant_list_controlnet[7]
+#        return result, result, variant_list_controlnet[15] if is_xl_controlnet else variant_list_controlnet[7]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[7]
 # 16
-        case "scribble_pidinet":
-            result = processor_controlnet(img_source_controlnet, to_pil=True)
-            if is_xl_controlnet:
-                return result, result, variant_list_controlnet[20] 
-            elif is_flux_controlnet:
-                return result, result, variant_list_controlnet[25] 
-            else:
-                return result, result, variant_list_controlnet[7]
-#            return result, result, variant_list_controlnet[15] if is_xl_controlnet else variant_list_controlnet[7]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[7]
+    elif preprocessor_controlnet == "scribble_pidinet":
+        result = processor_controlnet(img_source_controlnet, to_pil=True)
+        if is_xl_controlnet:
+            return result, result, variant_list_controlnet[20] 
+        elif is_flux_controlnet:
+            return result, result, variant_list_controlnet[25] 
+        else:
+            return result, result, variant_list_controlnet[7]
+#        return result, result, variant_list_controlnet[15] if is_xl_controlnet else variant_list_controlnet[7]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[7]
 # 17
-        case "softedge_hed":
-            result = processor_controlnet(img_source_controlnet, to_pil=True)
-            if is_xl_controlnet:
-                return result, result, variant_list_controlnet[20]
-            elif is_flux_controlnet:
-                return result, result, variant_list_controlnet[25]
-            else:
-                return result, result, variant_list_controlnet[8]
-#            return result, result, variant_list_controlnet[15] if is_xl_controlnet else variant_list_controlnet[8]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[8]
+    elif preprocessor_controlnet == "softedge_hed":
+        result = processor_controlnet(img_source_controlnet, to_pil=True)
+        if is_xl_controlnet:
+            return result, result, variant_list_controlnet[20]
+        elif is_flux_controlnet:
+            return result, result, variant_list_controlnet[25]
+        else:
+            return result, result, variant_list_controlnet[8]
+#        return result, result, variant_list_controlnet[15] if is_xl_controlnet else variant_list_controlnet[8]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[8]
 # 18
-        case "softedge_hedsafe":
-            result = processor_controlnet(img_source_controlnet, to_pil=True)
-            if is_xl_controlnet:
-                return result, result, variant_list_controlnet[20] 
-            elif is_flux_controlnet:
-                return result, result, variant_list_controlnet[25] 
-            else:
-                return result, result, variant_list_controlnet[8]
-#            return result, result, variant_list_controlnet[15] if is_xl_controlnet else variant_list_controlnet[8]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[8]
+    elif preprocessor_controlnet == "softedge_hedsafe":
+        result = processor_controlnet(img_source_controlnet, to_pil=True)
+        if is_xl_controlnet:
+            return result, result, variant_list_controlnet[20] 
+        elif is_flux_controlnet:
+            return result, result, variant_list_controlnet[25] 
+        else:
+            return result, result, variant_list_controlnet[8]
+#        return result, result, variant_list_controlnet[15] if is_xl_controlnet else variant_list_controlnet[8]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[8]
 # 19
-        case "softedge_pidinet":
-            result = processor_controlnet(img_source_controlnet, to_pil=True)
-            if is_xl_controlnet:
-                return result, result, variant_list_controlnet[20] 
-            elif is_flux_controlnet:
-                return result, result, variant_list_controlnet[25] 
-            else:
-                return result, result, variant_list_controlnet[8]
-#            return result, result, variant_list_controlnet[15] if is_xl_controlnet else variant_list_controlnet[8]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[8]
+    elif preprocessor_controlnet == "softedge_pidinet":
+        result = processor_controlnet(img_source_controlnet, to_pil=True)
+        if is_xl_controlnet:
+            return result, result, variant_list_controlnet[20] 
+        elif is_flux_controlnet:
+            return result, result, variant_list_controlnet[25] 
+        else:
+            return result, result, variant_list_controlnet[8]
+#        return result, result, variant_list_controlnet[15] if is_xl_controlnet else variant_list_controlnet[8]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[8]
 # 20
-        case "softedge_pidsafe":
-            result = processor_controlnet(img_source_controlnet, to_pil=True)
-            if is_xl_controlnet:
-                return result, result, variant_list_controlnet[20] 
-            elif is_flux_controlnet:
-                return result, result, variant_list_controlnet[25] 
-            else:
-                return result, result, variant_list_controlnet[8]
-#            return result, result, variant_list_controlnet[15] if is_xl_controlnet else variant_list_controlnet[8]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[8]
+    elif preprocessor_controlnet == "softedge_pidsafe":
+        result = processor_controlnet(img_source_controlnet, to_pil=True)
+        if is_xl_controlnet:
+            return result, result, variant_list_controlnet[20] 
+        elif is_flux_controlnet:
+            return result, result, variant_list_controlnet[25] 
+        else:
+            return result, result, variant_list_controlnet[8]
+#        return result, result, variant_list_controlnet[15] if is_xl_controlnet else variant_list_controlnet[8]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[8]
 # 21
-        case "tile":
-            result = tile_controlnet(img_source_controlnet, is_xl_controlnet, modelid_controlnet)
-#            return result, result, variant_list_controlnet[16] if is_xl_controlnet else variant_list_controlnet[9]
-            if is_xl_controlnet:
-                return result, result, variant_list_controlnet[20]
-            elif is_sd3_controlnet:
-                return result, result, variant_list_controlnet[24]
-            elif is_flux_controlnet:
-                return result, result, variant_list_controlnet[27]
-            else:
-                return result, result, variant_list_controlnet[9]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[9]
+    elif preprocessor_controlnet == "tile":
+        result = tile_controlnet(img_source_controlnet, is_xl_controlnet, modelid_controlnet)
+#        return result, result, variant_list_controlnet[16] if is_xl_controlnet else variant_list_controlnet[9]
+        if is_xl_controlnet:
+            return result, result, variant_list_controlnet[20]
+        elif is_sd3_controlnet:
+            return result, result, variant_list_controlnet[24]
+        elif is_flux_controlnet:
+            return result, result, variant_list_controlnet[27]
+        else:
+            return result, result, variant_list_controlnet[9]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[9]
 # 22
-        case "qr":
-            result = qr_controlnet(img_source_controlnet, 0)
-            return result, result, variant_list_controlnet[17] if is_xl_controlnet else variant_list_controlnet[10]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[10]
+    elif preprocessor_controlnet == "qr":
+        result = qr_controlnet(img_source_controlnet, 0)
+        return result, result, variant_list_controlnet[17] if is_xl_controlnet else variant_list_controlnet[10]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[10]
 # 23
-        case "qr_invert":
-            result = qr_controlnet(img_source_controlnet, 1)
-            return result, result, variant_list_controlnet[17] if is_xl_controlnet else variant_list_controlnet[10]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[10]
+    elif preprocessor_controlnet == "qr_invert":
+        result = qr_controlnet(img_source_controlnet, 1)
+        return result, result, variant_list_controlnet[17] if is_xl_controlnet else variant_list_controlnet[10]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[10]
 # 24
-        case "qr_monster":
-            result = qr_controlnet(img_source_controlnet, 0)
-            return result, result, variant_list_controlnet[18] if is_xl_controlnet else variant_list_controlnet[11]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[11]
+    elif preprocessor_controlnet == "qr_monster":
+        result = qr_controlnet(img_source_controlnet, 0)
+        return result, result, variant_list_controlnet[18] if is_xl_controlnet else variant_list_controlnet[11]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[11]
 # 25
-        case "qr_monster_invert":
-            result = qr_controlnet(img_source_controlnet, 1)
-            return result, result, variant_list_controlnet[18] if is_xl_controlnet else variant_list_controlnet[11]
-#            return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[11]
+    elif preprocessor_controlnet == "qr_monster_invert":
+        result = qr_controlnet(img_source_controlnet, 1)
+        return result, result, variant_list_controlnet[18] if is_xl_controlnet else variant_list_controlnet[11]
+#        return result, result, variant_list_controlnet[20] if is_xl_controlnet else variant_list_controlnet[11]
 
 def canny_controlnet(image, low_threshold, high_threshold):
     image = cv2.Canny(image, low_threshold, high_threshold)
