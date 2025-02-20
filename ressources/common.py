@@ -2207,6 +2207,8 @@ def lora_model_list(model, *args):
             "Shakker-Labs/FLUX.1-dev-LoRA-Dark-Fantasy":("FLUX.1-dev-lora-Dark-Fantasy.safetensors", ""),
             "memyself/synthwaveglitch":("SynthWaveGlitchyAnalogVideoSynthesisFluxV1.safetensors", "vidsynthsynth, video synth"),
             "batchku/storai-persian-miniature":("storai-persian-miniature.safetensors", "ali_persian-miniature"),
+            "strangerzonehf/Flux-Super-Paint-LoRA":("Super-Paint.safetensors", "Super Paint"),
+            "aleksa-codes/flux-ghibsky-illustration":("lora.safetensors", "GHIBSKY style"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
