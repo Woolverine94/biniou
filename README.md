@@ -17,6 +17,14 @@
 
 ## Updates
 
+  * **2025-02-22** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for Chatbot model [bartowski/nvidia_AceInstruct-7B-GGUF](https://hf.co/bartowski/nvidia_AceInstruct-7B-GGUF), chatbot maths specialized model [bartowski/internlm_OREAL-DeepSeek-R1-Distill-Qwen-7B-GGUF](https://hf.co/bartowski/internlm_OREAL-DeepSeek-R1-Distill-Qwen-7B-GGUF) and update of OLMoE model to [allenai/OLMoE-1B-7B-0125-Instruct-GGUF](https://hf.co/allenai/OLMoE-1B-7B-0125-Instruct-GGUF).
+    - Add support for Flux LoRA models [batchku/storai-persian-miniature](https://hf.co/batchku/storai-persian-miniature), [Shakker-Labs/FLUX.1-dev-LoRA-Miniature-World](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-Miniature-World), [strangerzonehf/Flux-Super-Paint-LoRA](https://hf.co/strangerzonehf/Flux-Super-Paint-LoRA) and [aleksa-codes/flux-ghibsky-illustration](https://hf.co/aleksa-codes/flux-ghibsky-illustration).
+    - Bugfix for default Chatbot model failure.
+    - Code enhancement for ControlNet module.
+    - Update of Chatbot module defaults settings.
+    - Typofix in french language translation.
+
   * **2025-02-15** : 🔥 ***This week's updates*** 🔥 >
     - Add support for Chatbot model [bartowski/Falcon3-10B-Instruct-GGUF](https://hf.co/bartowski/Falcon3-10B-Instruct-GGUF), chatbot high-end models [bartowski/cognitivecomputations_Dolphin3.0-R1-Mistral-24B-GGUF](https://hf.co/bartowski/cognitivecomputations_Dolphin3.0-R1-Mistral-24B-GGUF), [bartowski/krutrim-ai-labs_Krutrim-2-instruct-GGUF](https://hf.co/bartowski/krutrim-ai-labs_Krutrim-2-instruct-GGUF) and update of Granite model to [Triangle104/granite-3.2-8b-instruct-preview-Q5_K_M-GGUF](https://hf.co/Triangle104/granite-3.2-8b-instruct-preview-Q5_K_M-GGUF).
     - Add support for Flux LoRA models [strangerzonehf/cinematicShot-Pics-Flux](https://hf.co/strangerzonehf/cinematicShot-Pics-Flux), [Shakker-Labs/FLUX.1-dev-LoRA-Dark-Fantasy](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-Dark-Fantasy), [memyself/synthwaveglitch](https://hf.co/memyself/synthwaveglitch) and [WiroAI/Batman-Animated-Flux-LoRA](https://hf.co/WiroAI/Batman-Animated-Flux-LoRA).
@@ -42,11 +50,6 @@
     - Add support for Flux LoRA models [glif-loradex-trainer/i12bp8_appelsiensam_vintagesign_v1](https://hf.co/glif-loradex-trainer/i12bp8_appelsiensam_vintagesign_v1), [strangerzonehf/Ctoon-Plus-Plus](https://hf.co/strangerzonehf/Ctoon-Plus-Plus), [Jovie/Comics](https://hf.co/Jovie/Comics), [den123/squidgame](https://hf.co/den123/squidgame), [prithivMLmods/Logo-Design-Flux-LoRA](https://hf.co/prithivMLmods/Logo-Design-Flux-LoRA), [saurabhswami/Vibrant-tech-3D](https://hf.co/saurabhswami/Vibrant-tech-3D), [leonel4rd/Comicfx](https://hf.co/leonel4rd/Comicfx) and [noahyoungs/icon-generator](https://hf.co/noahyoungs/icon-generator).
     - Add support for Flux model [ostris/Flex.1-alpha](https://hf.co/ostris/Flex.1-alpha). Please note that this huge (but highly qualitatives !) model will requires at least 64GB RAM for CPU-only inferences.
     - Update of default Flux model from [Freepik/flux.1-lite-8B-alpha](https://hf.co/Freepik/flux.1-lite-8B-alpha) to [Freepik/flux.1-lite-8B](https://hf.co/Freepik/flux.1-lite-8B).
-
-  * 🆕 **2025-01-18** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for Chatbot model [prithivMLmods/GWQ-9B-Preview2-Q5_K_M-GGUF](https://hf.co/prithivMLmods/GWQ-9B-Preview2-Q5_K_M-GGUF).
-    - Add support for Flux LoRA models [ludocomito/flux-lora-caravaggio](https://hf.co/ludocomito/flux-lora-caravaggio), [strangerzonehf/Flux-Claude-Art](https://hf.co/strangerzonehf/Flux-Claude-Art), [WiroAI/GTA6-style-flux-lora](https://hf.co/WiroAI/GTA6-style-flux-lora), [strangerzonehf/Flux-Cardboard-Art-LoRA](https://hf.co/strangerzonehf/Flux-Cardboard-Art-LoRA), [strangerzonehf/Flux-Midjourney-Mix2-LoRA](https://hf.co/strangerzonehf/Flux-Midjourney-Mix2-LoRA), [strangerzonehf/Flux-Sketch-Ep-LoRA](https://hf.co/strangerzonehf/Flux-Sketch-Ep-LoRA), [alvdansen/flux_film_foto](https://hf.co/alvdansen/flux_film_foto) and [glif-loradex-trainer/x_bulbul_x_90s_anime](https://hf.co/glif-loradex-trainer/x_bulbul_x_90s_anime).
-    - New Flux LoRA category : Enhancement.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
