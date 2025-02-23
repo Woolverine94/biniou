@@ -2433,28 +2433,43 @@ def url_params_theme(url):
         url_final = dict_to_url(url)
         return f"<a href='https://github.com/Woolverine94/biniou' target='_blank' style='text-decoration: none;'><p style='float:left;'><img src='file/images/biniou_64.png' width='48' height='48'/></p><span style='text-align: left; font-size: 32px; font-weight: bold; line-height:48px;'>biniou</span></a><span style='vertical-align: bottom; line-height:48px; font-size: 10px;'> ({biniou_global_version}) </span><span style='vertical-align: top; line-height:48px;'><button onclick=\"window.location.href='{url_final}';\" title='{biniou_lang_dark_mode}'>🌘</button></span>", banner_biniou.update(visible=True)
 
-color_label = "#7B43EE"
+color_label = "#7b43ee"
+color_label_light = "#4361ee"
 color_label_button = "#4361ee"
+background_color_light = "#f3f3f3"
+background_fill_color = "#fcfcfc"
+color_grey="#aaa"
+color_darkgrey="#666"
+color_black="#000"
+color_white="#fff"
 
 theme_gradio = gr.themes.Base().set(
-    block_label_background_fill=color_label,
+    body_background_fill=background_color_light,
+    background_fill_primary=background_fill_color,
+    body_text_color=color_black,
+    body_text_color_subdued=color_darkgrey,
+    border_color_primary=color_grey,
+    button_secondary_border_color=color_grey,
+    input_border_width="1px",
+#
+    block_label_background_fill=background_color_light,
     block_label_background_fill_dark=color_label,
-    block_label_border_color='#000000',
-    block_label_border_color_dark='#000000',
-    block_label_text_color='silver',
-    block_label_text_color_dark='white',
-    block_title_background_fill=color_label,
+    block_label_border_color=color_black,
+    block_label_border_color_dark=color_black,
+    block_label_text_color=color_black,
+    block_label_text_color_dark=color_white,
+    block_title_background_fill=background_color_light,
     block_title_background_fill_dark=color_label,
-    block_title_text_color='white',
-    block_title_text_color_dark='white',
+    block_title_text_color=color_black,
+    block_title_text_color_dark=color_white,
     block_title_padding='5px',
     block_title_radius='*radius_lg',
     button_primary_background_fill=color_label_button,
     button_primary_background_fill_dark=color_label_button,
     button_primary_border_color=color_label_button,
     button_primary_border_color_dark=color_label_button,
-    button_primary_text_color='white',
-    button_primary_text_color_dark='white',
+    button_primary_text_color=color_white,
+    button_primary_text_color_dark=color_white,
 )
 
 with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
