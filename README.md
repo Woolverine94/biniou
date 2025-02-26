@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * **2025-02-26** : 🔥 ***Windows installer temporarily broken*** 🔥 > Following february update of Visual Studio, llama-cpp-python can't compile anymore on Windows. See #61 for details. Hoping for a fix very soon. 
+
   * **2025-02-22** : 🔥 ***This week's updates*** 🔥 >
     - Add support for Chatbot model [bartowski/nvidia_AceInstruct-7B-GGUF](https://hf.co/bartowski/nvidia_AceInstruct-7B-GGUF), chatbot maths specialized model [bartowski/internlm_OREAL-DeepSeek-R1-Distill-Qwen-7B-GGUF](https://hf.co/bartowski/internlm_OREAL-DeepSeek-R1-Distill-Qwen-7B-GGUF) and update of OLMoE model to [allenai/OLMoE-1B-7B-0125-Instruct-GGUF](https://hf.co/allenai/OLMoE-1B-7B-0125-Instruct-GGUF).
     - Add support for Flux LoRA models [batchku/storai-persian-miniature](https://hf.co/batchku/storai-persian-miniature), [Shakker-Labs/FLUX.1-dev-LoRA-Miniature-World](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-Miniature-World), [strangerzonehf/Flux-Super-Paint-LoRA](https://hf.co/strangerzonehf/Flux-Super-Paint-LoRA) and [aleksa-codes/flux-ghibsky-illustration](https://hf.co/aleksa-codes/flux-ghibsky-illustration).
