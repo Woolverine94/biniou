@@ -17,6 +17,8 @@
 
 ## Updates
 
+  * **2025-02-27** : 🔥 ***Temporary Windows installer in degraded mode*** 🔥 > Windows installer is now usable, but with some limitations : most recents chatbot models *may* be unusable (all new architectures post-november 2024). This is an ugly temporary bugfix to allow deployment of biniou on Windows, hoping for a quick release of Llama-cpp-python 0.3.8. Also, a great thanks to @AaronMickDee for his contribution in this workaround. 
+
   * **2025-02-26** : 🔥 ***Windows installer temporarily broken*** 🔥 > Following february update of Visual Studio, llama-cpp-python can't compile anymore on Windows. See [#61](https://github.com/Woolverine94/biniou/issues/61) for details. Hoping for a fix very soon. 
 
   * **2025-02-22** : 🔥 ***This week's updates*** 🔥 >
