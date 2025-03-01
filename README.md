@@ -17,11 +17,17 @@
 
 ## Updates
 
-  * **2025-02-27** : 🔥 ***Temporary Windows installer in degraded mode*** 🔥 > Windows installer is now usable, but with some limitations : most recents chatbot models *may* be unusable (all new architectures post-november 2024). This is an ugly temporary bugfix to allow deployment of biniou on Windows, hoping for a quick release of Llama-cpp-python 0.3.8. Also, a great thanks to [@AaronMickDee](https://github.com/AaronMickDee) for his contribution in this workaround. 
+  * 🆕 **2025-03-01** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for Chatbot model [bartowski/NousResearch_DeepHermes-3-Llama-3-8B-Preview-GGUF](https://hf.co/bartowski/NousResearch_DeepHermes-3-Llama-3-8B-Preview-GGUF), high-end model [bartowski/arcee-ai_Arcee-Blitz-GGUF](https://hf.co/bartowski/arcee-ai_Arcee-Blitz-GGUF) and code model [bartowski/hkust-nlp_qwen2.5-7b-coder_codeio_pp-GGUF](https://hf.co/bartowski/hkust-nlp_qwen2.5-7b-coder_codeio_pp-GGUF).
+    - Add support for Flux LoRA models [Shakker-Labs/FLUX.1-dev-LoRA-AntiBlur](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-AntiBlur) and [fffiloni/oniric-750](https://hf.co/fffiloni/oniric-750).
+    - Redesign of default light theme to enhance readability.
+    - Temporary bugfix for Windows installer/updater : newer Chatbot models wouldn't probably work for Windows users until a new release of llama-cpp-python.
 
-  * **2025-02-26** : 🔥 ***Windows installer temporarily broken*** 🔥 > Following february update of Visual Studio, llama-cpp-python can't compile anymore on Windows. See [#61](https://github.com/Woolverine94/biniou/issues/61) for details. Hoping for a fix very soon. 
+  * 🆕 **2025-02-27** : 🔥 ***Temporary Windows installer in degraded mode*** 🔥 > Windows installer is now usable, but with some limitations : most recents chatbot models *may* be unusable (all new architectures post-november 2024). This is an ugly temporary bugfix to allow deployment of biniou on Windows, hoping for a quick release of Llama-cpp-python 0.3.8. Also, a great thanks to [@AaronMickDee](https://github.com/AaronMickDee) for his contribution in this workaround. 
 
-  * **2025-02-22** : 🔥 ***This week's updates*** 🔥 >
+  * 🆕 **2025-02-26** : 🔥 ***Windows installer temporarily broken*** 🔥 > Following february update of Visual Studio, llama-cpp-python can't compile anymore on Windows. See [#61](https://github.com/Woolverine94/biniou/issues/61) for details. Hoping for a fix very soon. 
+
+  * 🆕 **2025-02-22** : 🔥 ***This week's updates*** 🔥 >
     - Add support for Chatbot model [bartowski/nvidia_AceInstruct-7B-GGUF](https://hf.co/bartowski/nvidia_AceInstruct-7B-GGUF), chatbot maths specialized model [bartowski/internlm_OREAL-DeepSeek-R1-Distill-Qwen-7B-GGUF](https://hf.co/bartowski/internlm_OREAL-DeepSeek-R1-Distill-Qwen-7B-GGUF) and update of OLMoE model to [allenai/OLMoE-1B-7B-0125-Instruct-GGUF](https://hf.co/allenai/OLMoE-1B-7B-0125-Instruct-GGUF).
     - Add support for Flux LoRA models [batchku/storai-persian-miniature](https://hf.co/batchku/storai-persian-miniature), [Shakker-Labs/FLUX.1-dev-LoRA-Miniature-World](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-Miniature-World), [strangerzonehf/Flux-Super-Paint-LoRA](https://hf.co/strangerzonehf/Flux-Super-Paint-LoRA) and [aleksa-codes/flux-ghibsky-illustration](https://hf.co/aleksa-codes/flux-ghibsky-illustration).
     - Bugfix for default Chatbot model failure.
@@ -29,31 +35,18 @@
     - Update of Chatbot module defaults settings.
     - Typofix in french language translation.
 
-  * **2025-02-15** : 🔥 ***This week's updates*** 🔥 >
+  * 🆕 **2025-02-15** : 🔥 ***This week's updates*** 🔥 >
     - Add support for Chatbot model [bartowski/Falcon3-10B-Instruct-GGUF](https://hf.co/bartowski/Falcon3-10B-Instruct-GGUF), chatbot high-end models [bartowski/cognitivecomputations_Dolphin3.0-R1-Mistral-24B-GGUF](https://hf.co/bartowski/cognitivecomputations_Dolphin3.0-R1-Mistral-24B-GGUF), [bartowski/krutrim-ai-labs_Krutrim-2-instruct-GGUF](https://hf.co/bartowski/krutrim-ai-labs_Krutrim-2-instruct-GGUF) and update of Granite model to [Triangle104/granite-3.2-8b-instruct-preview-Q5_K_M-GGUF](https://hf.co/Triangle104/granite-3.2-8b-instruct-preview-Q5_K_M-GGUF).
     - Add support for Flux LoRA models [strangerzonehf/cinematicShot-Pics-Flux](https://hf.co/strangerzonehf/cinematicShot-Pics-Flux), [Shakker-Labs/FLUX.1-dev-LoRA-Dark-Fantasy](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-Dark-Fantasy), [memyself/synthwaveglitch](https://hf.co/memyself/synthwaveglitch) and [WiroAI/Batman-Animated-Flux-LoRA](https://hf.co/WiroAI/Batman-Animated-Flux-LoRA).
     - Add compatibility for Pop! OS and OpenMandriva.
     - Add automation for built-in documentation of models lists.
 
-  * **2025-02-08** : 🔥 ***This week's updates*** 🔥 >
+  * 🆕 **2025-02-08** : 🔥 ***This week's updates*** 🔥 >
     - Add support for Chatbot Tiny model [bartowski/AGI-0_Art-Skynet-3B-GGUF](https://hf.co/bartowski/AGI-0_Art-Skynet-3B-GGUF).
     - Add support for Flux LoRA models [strangerzonehf/Realism-v3-Flux](https://hf.co/strangerzonehf/Realism-v3-Flux), [multimodalart/product-design](https://hf.co/multimodalart/product-design), [glif-loradex-trainer/fabian3000_pixelfighters](https://hf.co/glif-loradex-trainer/fabian3000_pixelfighters) and [prithivMLmods/Retro-Pixel-Flux-LoRA](https://hf.co/prithivMLmods/Retro-Pixel-Flux-LoRA).
     - Add support for SDXL model [SG161222/RealVisXL_V5.0](https://hf.co/SG161222/RealVisXL_V5.0)
     - Update of default SDXL Anime model to [GraydientPlatformAPI/geekpower-cellshade-xl](https://hf.co/GraydientPlatformAPI/geekpower-cellshade-xl)
     - Add compatibility for CachyOS (Arch Linux family).
-
-  * **2025-02-02** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for Chatbot high-end models [bartowski/DeepSeek-R1-Distill-Qwen-14B-GGUF](https://hf.co/bartowski/DeepSeek-R1-Distill-Qwen-14B-GGUF), [bartowski/Mistral-Small-24B-Instruct-2501-GGUF](https://hf.co/bartowski/Mistral-Small-24B-Instruct-2501-GGUF) and update of [bartowski/Qwen2-Wukong-7B-GGUF](https://hf.co/bartowski/Qwen2-Wukong-7B-GGUF) to [bartowski/Qwen2.5-7B-Instruct-1M-GGUF](https://hf.co/bartowski/Qwen2.5-7B-Instruct-1M-GGUF).
-    - Add support for Flux LoRA models [glif-loradex-trainer/insectagon_Architect_render1](https://hf.co/glif-loradex-trainer/insectagon_Architect_render1) and [cagrison/cyberpunk-anime](https://hf.co/cagrison/cyberpunk-anime).
-    - Add support for Flux model [shuttleai/shuttle-jaguar](https://hf.co/shuttleai/shuttle-jaguar). Please note that this huge (but highly qualitatives !) model will requires at least 70GB RAM for CPU-only inferences.
-    - Compatibility for the following OS : Alma 9.4/9.5, Rocky 9.4/9.5, Fedora 40/41 and Linux Mint 22/22.1.
-    - Update of diffusers to 0.32.2
-
-  * 🆕 **2025-01-25** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for Chatbot models [bartowski/DeepSeek-R1-Distill-Llama-8B-GGUF](https://hf.co/bartowski/DeepSeek-R1-Distill-Llama-8B-GGUF) and [mradermacher/Lucie-7B-Instruct-GGUF](https://hf.co/mradermacher/Lucie-7B-Instruct-GGUF).
-    - Add support for Flux LoRA models [glif-loradex-trainer/i12bp8_appelsiensam_vintagesign_v1](https://hf.co/glif-loradex-trainer/i12bp8_appelsiensam_vintagesign_v1), [strangerzonehf/Ctoon-Plus-Plus](https://hf.co/strangerzonehf/Ctoon-Plus-Plus), [Jovie/Comics](https://hf.co/Jovie/Comics), [den123/squidgame](https://hf.co/den123/squidgame), [prithivMLmods/Logo-Design-Flux-LoRA](https://hf.co/prithivMLmods/Logo-Design-Flux-LoRA), [saurabhswami/Vibrant-tech-3D](https://hf.co/saurabhswami/Vibrant-tech-3D), [leonel4rd/Comicfx](https://hf.co/leonel4rd/Comicfx) and [noahyoungs/icon-generator](https://hf.co/noahyoungs/icon-generator).
-    - Add support for Flux model [ostris/Flex.1-alpha](https://hf.co/ostris/Flex.1-alpha). Please note that this huge (but highly qualitatives !) model will requires at least 64GB RAM for CPU-only inferences.
-    - Update of default Flux model from [Freepik/flux.1-lite-8B-alpha](https://hf.co/Freepik/flux.1-lite-8B-alpha) to [Freepik/flux.1-lite-8B](https://hf.co/Freepik/flux.1-lite-8B).
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
