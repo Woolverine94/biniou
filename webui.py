@@ -10929,9 +10929,9 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
     demo.load(read_logs, None, biniou_console_output, every=1)
 #    demo.load(fn=lambda: gr.Info('Biniou loading completed. Ready to work !'))
     if biniou_global_server_name:
-        print(f">>>[biniou 🧠]: Up and running at https://{local_ip()}:{biniou_global_server_port}/?__theme=dark")
+        print(f">>>[biniou 🧠]: Up and running at https://{local_ip()}:{biniou_global_server_port}")
     else:
-        print(f">>>[biniou 🧠]: Up and running at https://127.0.0.1:{biniou_global_server_port}/?__theme=dark")
+        print(f">>>[biniou 🧠]: Up and running at https://127.0.0.1:{biniou_global_server_port}")
 
 if __name__ == "__main__":
     demo.queue(concurrency_count=8).launch(
