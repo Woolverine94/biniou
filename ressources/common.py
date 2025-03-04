@@ -2212,6 +2212,8 @@ def lora_model_list(model, *args):
             "aleksa-codes/flux-ghibsky-illustration":("lora.safetensors", "GHIBSKY style"),
             "fffiloni/oniric-750":("oniric-750.safetensors", "in the style of TOK"),
             "mujibanget/vector-illustration":("lora-000002.TA_trained.safetensors", "mujibvector, vector"),
+            "prithivMLmods/Castor-Red-Dead-Redemption-2-Flux-LoRA":("Castor-Red-Dead-Redemption-2-Flux-LoRA.safetensors", "Red Dead Redemption 2"),
+            "fffiloni/cozy-book-800":("cozy-book-800.safetensors", "in the style of TOK"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
