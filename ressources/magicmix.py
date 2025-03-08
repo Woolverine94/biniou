@@ -25,7 +25,7 @@ for filename in os.listdir(model_path_magicmix):
 model_list_magicmix_builtin = [
     "SG161222/Realistic_Vision_V3.0_VAE",
 #    "ckpt/anything-v4.5-vae-swapped",
-    "runwayml/stable-diffusion-v1-5",
+    "stable-diffusion-v1-5/stable-diffusion-v1-5",
     "nitrosocke/Ghibli-Diffusion", 
 ]
 

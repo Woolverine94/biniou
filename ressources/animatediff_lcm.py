@@ -39,7 +39,7 @@ model_list_animatediff_lcm = [
 #    "segmind/SSD-1B",
     "gsdf/Counterfeit-V2.5",
 #    "ckpt/anything-v4.5-vae-swapped",
-    "runwayml/stable-diffusion-v1-5",
+    "stable-diffusion-v1-5/stable-diffusion-v1-5",
     "nitrosocke/Ghibli-Diffusion",
 ]
 
