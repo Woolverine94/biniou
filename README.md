@@ -17,6 +17,11 @@
 
 ## Updates
 
+  * 🆕 **2025-03-08** : 🔥 ***This week's updates*** 🔥 >
+    - Add support for Chatbot tiny model [bartowski/YuLan-Mini-GGUF](https://hf.co/bartowski/YuLan-Mini-GGUF), update of chatbot models [bartowski/ibm-granite_granite-3.2-8b-instruct-GGUF](https://hf.co/bartowski/ibm-granite_granite-3.2-8b-instruct-GGUF) and [bartowski/allenai_Llama-3.1-Tulu-3.1-8B-GGUF](https://hf.co/bartowski/allenai_Llama-3.1-Tulu-3.1-8B-GGUF).
+    - Add support for Flux LoRA models [mujibanget/vector-illustration](https://hf.co/mujibanget/vector-illustration), [strangerzonehf/Real-Claymation](https://hf.co/strangerzonehf/Real-Claymation), [prithivMLmods/Castor-Red-Dead-Redemption-2-Flux-LoRA](https://hf.co/prithivMLmods/Castor-Red-Dead-Redemption-2-Flux-LoRA), [fffiloni/cozy-book-800](https://hf.co/fffiloni/cozy-book-800), [Jonjew/DPMadeofSoap](https://hf.co/Jonjew/DPMadeofSoap) and [Jonjew/TransformersStyle](https://hf.co/Jonjew/TransformersStyle).
+    - Replacement of SD1.5 model runwayml/stable-diffusion-v1-5 by [stable-diffusion-v1-5/stable-diffusion-v1-5](https://hf.co/stable-diffusion-v1-5/stable-diffusion-v1-5)
+
   * 🆕 **2025-03-01** : 🔥 ***This week's updates*** 🔥 >
     - Add support for Chatbot model [bartowski/NousResearch_DeepHermes-3-Llama-3-8B-Preview-GGUF](https://hf.co/bartowski/NousResearch_DeepHermes-3-Llama-3-8B-Preview-GGUF), high-end model [bartowski/arcee-ai_Arcee-Blitz-GGUF](https://hf.co/bartowski/arcee-ai_Arcee-Blitz-GGUF) and code model [bartowski/hkust-nlp_qwen2.5-7b-coder_codeio_pp-GGUF](https://hf.co/bartowski/hkust-nlp_qwen2.5-7b-coder_codeio_pp-GGUF).
     - Add support for Flux LoRA models [Shakker-Labs/FLUX.1-dev-LoRA-AntiBlur](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-AntiBlur) and [fffiloni/oniric-750](https://hf.co/fffiloni/oniric-750).
@@ -34,19 +39,6 @@
     - Code enhancement for ControlNet module.
     - Update of Chatbot module defaults settings.
     - Typofix in french language translation.
-
-  * 🆕 **2025-02-15** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for Chatbot model [bartowski/Falcon3-10B-Instruct-GGUF](https://hf.co/bartowski/Falcon3-10B-Instruct-GGUF), chatbot high-end models [bartowski/cognitivecomputations_Dolphin3.0-R1-Mistral-24B-GGUF](https://hf.co/bartowski/cognitivecomputations_Dolphin3.0-R1-Mistral-24B-GGUF), [bartowski/krutrim-ai-labs_Krutrim-2-instruct-GGUF](https://hf.co/bartowski/krutrim-ai-labs_Krutrim-2-instruct-GGUF) and update of Granite model to [Triangle104/granite-3.2-8b-instruct-preview-Q5_K_M-GGUF](https://hf.co/Triangle104/granite-3.2-8b-instruct-preview-Q5_K_M-GGUF).
-    - Add support for Flux LoRA models [strangerzonehf/cinematicShot-Pics-Flux](https://hf.co/strangerzonehf/cinematicShot-Pics-Flux), [Shakker-Labs/FLUX.1-dev-LoRA-Dark-Fantasy](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-Dark-Fantasy), [memyself/synthwaveglitch](https://hf.co/memyself/synthwaveglitch) and [WiroAI/Batman-Animated-Flux-LoRA](https://hf.co/WiroAI/Batman-Animated-Flux-LoRA).
-    - Add compatibility for Pop! OS and OpenMandriva.
-    - Add automation for built-in documentation of models lists.
-
-  * 🆕 **2025-02-08** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for Chatbot Tiny model [bartowski/AGI-0_Art-Skynet-3B-GGUF](https://hf.co/bartowski/AGI-0_Art-Skynet-3B-GGUF).
-    - Add support for Flux LoRA models [strangerzonehf/Realism-v3-Flux](https://hf.co/strangerzonehf/Realism-v3-Flux), [multimodalart/product-design](https://hf.co/multimodalart/product-design), [glif-loradex-trainer/fabian3000_pixelfighters](https://hf.co/glif-loradex-trainer/fabian3000_pixelfighters) and [prithivMLmods/Retro-Pixel-Flux-LoRA](https://hf.co/prithivMLmods/Retro-Pixel-Flux-LoRA).
-    - Add support for SDXL model [SG161222/RealVisXL_V5.0](https://hf.co/SG161222/RealVisXL_V5.0)
-    - Update of default SDXL Anime model to [GraydientPlatformAPI/geekpower-cellshade-xl](https://hf.co/GraydientPlatformAPI/geekpower-cellshade-xl)
-    - Add compatibility for CachyOS (Arch Linux family).
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
