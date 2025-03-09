@@ -122,6 +122,7 @@ model_list_txt2img_sd_builtin = [
     "AlekseyCalvin/AuraFlux_merge_diffusers",
     "ostris/Flex.1-alpha",
     "shuttleai/shuttle-jaguar",
+    "Shakker-Labs/AWPortrait-FL",
     "-[ 🏠 Local models ]-",
 ]
 

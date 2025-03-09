@@ -1911,7 +1911,8 @@ def is_flux(model):
 (model == "enhanceaiteam/Mystic") or \
 (model == "AlekseyCalvin/AuraFlux_merge_diffusers") or \
 (model == "ostris/Flex.1-alpha") or \
-(model == "shuttleai/shuttle-jaguar")\
+(model == "shuttleai/shuttle-jaguar") or \
+(model == "Shakker-Labs/AWPortrait-FL")\
 ):
         is_flux_value = True
     else:

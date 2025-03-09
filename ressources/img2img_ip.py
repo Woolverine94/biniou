@@ -105,6 +105,7 @@ model_list_img2img_ip_builtin = [
     "AlekseyCalvin/AuraFlux_merge_diffusers",
     "ostris/Flex.1-alpha",
     "shuttleai/shuttle-jaguar",
+    "Shakker-Labs/AWPortrait-FL",
     "-[ 🏠 Local models ]-",
 ]
 
