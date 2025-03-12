@@ -2218,6 +2218,7 @@ def lora_model_list(model, *args):
             "Jonjew/DPMadeofSoap":("DP_Made_Of_Soap_Bubble_FLUX_madeOfSoapBubble.safetensors", "madeOfSoapBubble"),
             "Jonjew/TransformersStyle":("dvr-transformers-flux.safetensors", "mechanical, robot, cybernetic"),
             "Shakker-Labs/Lumatales-FL":("Lumatales.safetensors", "gushirensheng\(style\)"),
+            "nerijs/dark-fantasy-movie-flux":("darkfantasy_movie_v1.safetensors", ""),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
@@ -2285,6 +2286,7 @@ def lora_model_list(model, *args):
             "strangerzonehf/Ctoon-Plus-Plus":("Ctoon++.safetensors", "Ctoon++"),
             "cagrison/cyberpunk-anime":("CPA.safetensors", ""),
             "WiroAI/Batman-Animated-Flux-LoRA":("batman_flux_lora.safetensors", "btmnwiro"),
+            "alvdansen/softserve_anime":("flux_dev_softstyle_araminta_k.safetensors", "sftsrv style illustration"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
