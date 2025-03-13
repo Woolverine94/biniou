@@ -34,7 +34,7 @@ optimum
 git+https://github.com/facebookresearch/audiocraft
 git+https://github.com/ai-forever/Real-ESRGAN.git
 insightface
-onnxruntime==1.20.0
+onnxruntime
 controlnet-aux
 mediapipe
 tomesd

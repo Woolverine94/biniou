@@ -61,7 +61,7 @@ call venv.cmd
 python.exe -m pip install --upgrade pip
 pip install wheel
 pip install torch==2.1.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-pip install llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
+pip install llama-cpp-python==0.3.2 --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
 pip install -r requirements.txt
 copy ".\win_installer\biniou.lnk" "%userprofile%\Desktop"
 echo "Installation finished ! You could now launch biniou by double-clicking %DEFAULT_BINIOU_DIR%\biniou\webui.cmd"
