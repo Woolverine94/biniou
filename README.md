@@ -17,6 +17,12 @@
 
 ## Updates
 
+  * 🆕 **2025-03-15** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot tiny models [bartowski/goppa-ai_Goppa-LogiLlama-GGUF](https://hf.co/bartowski/goppa-ai_Goppa-LogiLlama-GGUF), [bartowski/microsoft_Phi-4-mini-instruct-GGUF](https://hf.co/bartowski/microsoft_Phi-4-mini-instruct-GGUF), high-end model [bartowski/google_gemma-3-12b-it-GGUF](https://hf.co/bartowski/google_gemma-3-12b-it-GGUF) and update of high-end model model [bartowski/Qwen_QwQ-32B-GGUF](https://hf.co/bartowski/Qwen_QwQ-32B-GGUF).
+    - Add support fo Flux model [Shakker-Labs/AWPortrait-FL](https://hf.co/Shakker-Labs/AWPortrait-FL)
+    - Add support for Flux LoRA models [Shakker-Labs/Lumatales-FL](https://hf.co/Shakker-Labs/Lumatales-FL), [glif-loradex-trainer/fab1an_1970sbookcovers](https://hf.co/glif-loradex-trainer/fab1an_1970sbookcovers), [nerijs/dark-fantasy-movie-flux](https://hf.co/nerijs/dark-fantasy-movie-flux) and [alvdansen/softserve_anime](https://hf.co/alvdansen/softserve_anime).
+     - Bugfix for onnxruntime error at startup.
+
   * 🆕 **2025-03-08** : 🔥 ***This week's updates*** 🔥 >
     - Add support for Chatbot tiny model [bartowski/YuLan-Mini-GGUF](https://hf.co/bartowski/YuLan-Mini-GGUF), update of chatbot models [bartowski/ibm-granite_granite-3.2-8b-instruct-GGUF](https://hf.co/bartowski/ibm-granite_granite-3.2-8b-instruct-GGUF) and [bartowski/allenai_Llama-3.1-Tulu-3.1-8B-GGUF](https://hf.co/bartowski/allenai_Llama-3.1-Tulu-3.1-8B-GGUF).
     - Add support for Flux LoRA models [mujibanget/vector-illustration](https://hf.co/mujibanget/vector-illustration), [strangerzonehf/Real-Claymation](https://hf.co/strangerzonehf/Real-Claymation), [prithivMLmods/Castor-Red-Dead-Redemption-2-Flux-LoRA](https://hf.co/prithivMLmods/Castor-Red-Dead-Redemption-2-Flux-LoRA), [fffiloni/cozy-book-800](https://hf.co/fffiloni/cozy-book-800), [Jonjew/DPMadeofSoap](https://hf.co/Jonjew/DPMadeofSoap) and [Jonjew/TransformersStyle](https://hf.co/Jonjew/TransformersStyle).
@@ -31,14 +37,6 @@
   * 🆕 **2025-02-27** : 🔥 ***Temporary Windows installer in degraded mode*** 🔥 > Windows installer is now usable, but with some limitations : most recents chatbot models *may* be unusable (all new architectures post-november 2024). This is an ugly temporary bugfix to allow deployment of biniou on Windows, hoping for a quick release of Llama-cpp-python 0.3.8. Also, a great thanks to [@AaronMickDee](https://github.com/AaronMickDee) for his contribution in this workaround. 
 
   * 🆕 **2025-02-26** : 🔥 ***Windows installer temporarily broken*** 🔥 > Following february update of Visual Studio, llama-cpp-python can't compile anymore on Windows. See [#61](https://github.com/Woolverine94/biniou/issues/61) for details. Hoping for a fix very soon. 
-
-  * 🆕 **2025-02-22** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for Chatbot model [bartowski/nvidia_AceInstruct-7B-GGUF](https://hf.co/bartowski/nvidia_AceInstruct-7B-GGUF), chatbot maths specialized model [bartowski/internlm_OREAL-DeepSeek-R1-Distill-Qwen-7B-GGUF](https://hf.co/bartowski/internlm_OREAL-DeepSeek-R1-Distill-Qwen-7B-GGUF) and update of OLMoE model to [allenai/OLMoE-1B-7B-0125-Instruct-GGUF](https://hf.co/allenai/OLMoE-1B-7B-0125-Instruct-GGUF).
-    - Add support for Flux LoRA models [batchku/storai-persian-miniature](https://hf.co/batchku/storai-persian-miniature), [Shakker-Labs/FLUX.1-dev-LoRA-Miniature-World](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-Miniature-World), [strangerzonehf/Flux-Super-Paint-LoRA](https://hf.co/strangerzonehf/Flux-Super-Paint-LoRA) and [aleksa-codes/flux-ghibsky-illustration](https://hf.co/aleksa-codes/flux-ghibsky-illustration).
-    - Bugfix for default Chatbot model failure.
-    - Code enhancement for ControlNet module.
-    - Update of Chatbot module defaults settings.
-    - Typofix in french language translation.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
