@@ -391,9 +391,9 @@ class biniouUIControl:
             os.system(command_line)
         elif sys.platform == "win32": 
             if optimizer == "cuda":
-                os.system(f"pip install --no-cache-dir --force-reinstall llama-cpp-python==0.3.4 --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cu121 numpy==1.25.2")
+                os.system(f"pip install --no-cache-dir --force-reinstall llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cu121 numpy==1.25.2")
             else:
-                os.system(f"set FORCE_CMAKE=1 & set CMAKE_ARGS={compilation_args} & pip install --no-cache-dir --force-reinstall llama-cpp-python==0.3.2 numpy==1.25.2")
+                os.system(f"set FORCE_CMAKE=1 & set CMAKE_ARGS={compilation_args} & pip install --no-cache-dir --force-reinstall llama-cpp-python numpy==1.25.2")
         savename = ".ini/llamacpp_backend.cfg"
 
         with open(savename, 'w', encoding="utf-8") as savefile:

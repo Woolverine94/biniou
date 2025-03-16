@@ -2,6 +2,7 @@
 # Webui.py
 # import diffusers
 # diffusers.utils.USE_PEFT_BACKEND = False
+from llama_cpp import Llama
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 import warnings
