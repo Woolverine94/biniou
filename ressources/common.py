@@ -2050,6 +2050,7 @@ def lora_model_list(model, *args):
             "IcelosAI/Spacephoto_LORA_XL_Base":("spacephoto-10.safetensors", "spacephoto"),
             "KappaNeuro/moebius-jean-giraud-style":("Moebius (Jean Giraud) Style.safetensors", "Moebius (Jean Giraud) Style - "),
             "prithivMLmods/Pegasi-Beta-GTA-LoRA":("Pegasi-Beta-GTA-LoRA.safetensors", "Gta"),
+            "inventwithdean/vangogh-SDXL-LoRA":("vangogh-SDXL-LoRA.safetensors", "<s0><s1>"),
             "-[ 👌 🪧 Posters SDXL LoRA ]-":("SDXL-Caricaturized-Lora.safetensors", "Caricaturized"),
             "Norod78/SDXL-Caricaturized-Lora":("SDXL-Caricaturized-Lora.safetensors", "Caricaturized"),
             "artificialguybr/movie-poster-redmond-for-sd-xl-create-movie-poster-images":("MoviePosterRedmond-MoviePoster-MoviePosterRedAF.safetensors", "Movie Poster, MoviePosterAF"),
@@ -2079,6 +2080,7 @@ def lora_model_list(model, *args):
             "Norod78/SDXL-simpstyle-Lora-v2":("SDXL-Simpstyle-Lora-v2-r16.safetensors", "simpstyle"),
             "ProomptEngineer/pe-old-school-cartoon-style":("PE_OldCartoonStyle.safetensors", "old school cartoon style"),
             "Pclanglais/Mickey-1928":("pytorch_lora_weights.safetensors", "Mickey|Minnie|Pete"),
+            "ivolegrey/Sci-fi_Sketch_Style_SDXL":("Sci-fi_Sketch_Style_SDXL_V1.safetensors", "rough sketch, messy lineart, monochromatic, flat color"),
             "-[ 🏠 Local models ]-":("", ""),
         }
     elif is_sd3(model):
