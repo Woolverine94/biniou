@@ -7,6 +7,13 @@ if [ "$ENV_PYTHON_TEST" != "" ]
     PYTHON_VER='python3'
 fi
 
+# Exit if python > 3.11 and python3.11 not found
+if [ "$(python3 --version|sed -ne 's/^.*[0-9]*\.\([0-9]*\)\.[0-9]*.*$/\1/p')" -gt 11 ] && [ "$(which python3.11)" == "" ]
+  then
+    echo "Error : biniou requires python<=3.11. Try the One-Click Installer for your distribution to correct this."
+    exit 1
+fi
+
 mkdir -p ./outputs
 mkdir -p ./ssl
 mkdir -p ./models/Audiocraft

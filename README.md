@@ -175,6 +175,18 @@
     - Windows 11 22H2
     - macOS ???
 
+* **Software pre-requisites (will be installed automatically with install scripts) :**
+    - Python 3.10 or 3.11 (3.11+ wouldn't work)
+    - git 
+    - pip
+    - python3.x-venv
+    - python3.x-dev
+    - gcc
+    - perl
+    - make / Cmake via Visual Studio 2017 for Windows
+    - ffmpeg
+    - openssl
+
 ><u>Note :</u> biniou supports Cuda or ROCm but does not require a dedicated GPU to run. You can install it in a virtual machine.
 
 ---
@@ -229,7 +241,7 @@ sh <(curl https://raw.githubusercontent.com/Woolverine94/biniou/main/oci-mandriv
 sh <(curl https://raw.githubusercontent.com/Woolverine94/biniou/main/oci-debian.sh || wget -O - https://raw.githubusercontent.com/Woolverine94/biniou/main/oci-debian.sh)
 ```
 
-##### Manual installation :
+##### Manual installation (debian 12 / Ubuntu 22.04 / Linux Mint 21.2+) :
 
   1. **Install** the pre-requisites as root :
 
