@@ -17,6 +17,12 @@
 
 ## Updates
 
+  * 🆕 **2025-03-22** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot model [tensorblock/Llama-3.1-Nemotron-Nano-8B-v1-GGUF](https://hf.co/tensorblock/Llama-3.1-Nemotron-Nano-8B-v1-GGUF), specialized model [bartowski/open-r1_OlympicCoder-7B-GGUF](https://hf.co/bartowski/open-r1_OlympicCoder-7B-GGUF) and update of high-end model model [bartowski/mistralai_Mistral-Small-3.1-24B-Instruct-2503-GGUF](https://hf.co/bartowski/mistralai_Mistral-Small-3.1-24B-Instruct-2503-GGUF).
+    - Add support for SDXL LoRA models [inventwithdean/vangogh-SDXL-LoRA](https://hf.co/inventwithdean/vangogh-SDXL-LoRA) and [ivolegrey/Sci-fi_Sketch_Style_SDXL](https://hf.co/ivolegrey/Sci-fi_Sketch_Style_SDXL).
+    - Add support for Flux LoRA models [martintomov/retrofuturism-flux-v2](https://hf.co/martintomov/retrofuturism-flux-v2) and [elikoy/storyboard](https://hf.co/elikoy/storyboard).
+     - Bugfix for Windows install script and enhancement for Linux one.
+
   * 🆕 **2025-03-15** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot tiny models [bartowski/goppa-ai_Goppa-LogiLlama-GGUF](https://hf.co/bartowski/goppa-ai_Goppa-LogiLlama-GGUF), [bartowski/microsoft_Phi-4-mini-instruct-GGUF](https://hf.co/bartowski/microsoft_Phi-4-mini-instruct-GGUF), high-end model [bartowski/google_gemma-3-12b-it-GGUF](https://hf.co/bartowski/google_gemma-3-12b-it-GGUF) and update of high-end model model [bartowski/Qwen_QwQ-32B-GGUF](https://hf.co/bartowski/Qwen_QwQ-32B-GGUF).
     - Add support fo Flux model [Shakker-Labs/AWPortrait-FL](https://hf.co/Shakker-Labs/AWPortrait-FL)
@@ -35,8 +41,6 @@
     - Temporary bugfix for Windows installer/updater : newer Chatbot models wouldn't probably work for Windows users until a new release of llama-cpp-python.
 
   * 🆕 **2025-02-27** : 🔥 ***Temporary Windows installer in degraded mode*** 🔥 > Windows installer is now usable, but with some limitations : most recents chatbot models *may* be unusable (all new architectures post-november 2024). This is an ugly temporary bugfix to allow deployment of biniou on Windows, hoping for a quick release of Llama-cpp-python 0.3.8. Also, a great thanks to [@AaronMickDee](https://github.com/AaronMickDee) for his contribution in this workaround. 
-
-  * 🆕 **2025-02-26** : 🔥 ***Windows installer temporarily broken*** 🔥 > Following february update of Visual Studio, llama-cpp-python can't compile anymore on Windows. See [#61](https://github.com/Woolverine94/biniou/issues/61) for details. Hoping for a fix very soon. 
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
