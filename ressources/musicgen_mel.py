@@ -21,6 +21,7 @@ modellist_musicgen_mel = [
     "facebook/musicgen-stereo-melody-large",
     "facebook/musicgen-melody-large",
     "nateraw/musicgen-songstarter-v0.2",
+    "facebook/musicgen-style",
 ]
 
 # Bouton Cancel
@@ -77,7 +78,7 @@ def music_musicgen_mel(
     for i in range (num_batch_musicgen_mel):
         wav = pipe_musicgen_mel.generate_with_chroma(
             prompt_musicgen_mel_final, 
-            melody_musicgen_mel[None].expand(-1, -1, -1), 
+            melody_musicgen_mel[None].expand(-1, -1, -1),
             sr_musicgen_mel, 
             progress=True,
         )
