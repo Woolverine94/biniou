@@ -2273,6 +2273,7 @@ def lora_model_list(model, *args):
             "strangerzonehf/Real-Claymation":("Real-Claymation.safetensors", "Real Claymation"),
             "glif-loradex-trainer/fab1an_1970sbookcovers":("1970sbookcovers.safetensors", "1970s sci-fi book cover"),
             "elikoy/storyboard":("Storyboard_sketch--FLUX.safetensors", "storyboard sketch of"),
+            "fffiloni/wooly-play-doh":("wooly-play-doh.safetensors", "in the style of TOK"),
             "-[ 🏆 🐢 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
@@ -2295,6 +2296,7 @@ def lora_model_list(model, *args):
             "WiroAI/Batman-Animated-Flux-LoRA":("batman_flux_lora.safetensors", "btmnwiro"),
             "alvdansen/softserve_anime":("flux_dev_softstyle_araminta_k.safetensors", "sftsrv style illustration"),
             "glif-loradex-trainer/R4Z0R1337_rubberhose_inspired":("rubberhose_inspired.safetensors", "rubberhose"),
+            "FounderFeed/3dAnime-Style-flux-dev-lora":("1800861.safetensors", "3dstyle style"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
