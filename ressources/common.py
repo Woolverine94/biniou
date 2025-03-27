@@ -1912,7 +1912,8 @@ def is_flux(model):
 (model == "AlekseyCalvin/AuraFlux_merge_diffusers") or \
 (model == "ostris/Flex.1-alpha") or \
 (model == "shuttleai/shuttle-jaguar") or \
-(model == "Shakker-Labs/AWPortrait-FL")\
+(model == "Shakker-Labs/AWPortrait-FL") or \
+(model == "AlekseyCalvin/PixelWave_Schnell_03_by_humblemikey_Diffusers_fp8_T4bf16")\
 ):
         is_flux_value = True
     else:

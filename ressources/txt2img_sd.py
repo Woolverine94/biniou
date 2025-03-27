@@ -123,6 +123,7 @@ model_list_txt2img_sd_builtin = [
     "ostris/Flex.1-alpha",
     "shuttleai/shuttle-jaguar",
     "Shakker-Labs/AWPortrait-FL",
+    "AlekseyCalvin/PixelWave_Schnell_03_by_humblemikey_Diffusers_fp8_T4bf16",
     "-[ 🏠 Local models ]-",
 ]
 
