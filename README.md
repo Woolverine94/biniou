@@ -17,8 +17,16 @@
 
 ## Updates
 
+  * 🆕 **2025-03-29** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end models [bartowski/nvidia_Llama-3_3-Nemotron-Super-49B-v1-GGUF](https://hf.co/bartowski/nvidia_Llama-3_3-Nemotron-Super-49B-v1-GGUF), [mlabonne/gemma-3-27b-it-abliterated-GGUF](https://hf.co/mlabonne/gemma-3-27b-it-abliterated-GGUF), [bartowski/RekaAI_reka-flash-3-GGUF](https://hf.co/bartowski/RekaAI_reka-flash-3-GGUF) and update of french model Lucie to [OpenLLM-France/Lucie-7B-Instruct-v1.1-gguf](https://hf.co/OpenLLM-France/Lucie-7B-Instruct-v1.1-gguf).
+    - Add support for Flux Schnell model [AlekseyCalvin/PixelWave_Schnell_03_by_humblemikey_Diffusers_fp8_T4bf1](https://hf.co/AlekseyCalvin/PixelWave_Schnell_03_by_humblemikey_Diffusers_fp8_T4bf1).
+    - Add support for MusicGen Melody model [facebook/musicgen-style](https://hf.co/facebook/musicgen-style).
+    - Add support for SDXL LoRA models [AiWise/sdxl-faetastic-details_v24](https://hf.co/AiWise/sdxl-faetastic-details_v24) and [pookienumnums/DpictClassicalIllustration](https://hf.co/pookienumnums/DpictClassicalIllustration).
+    - Add support for Flux LoRA models [fffiloni/wooly-play-doh](https://hf.co/fffiloni/wooly-play-doh) and [FounderFeed/3dAnime-Style-flux-dev-lora](https://hf.co/FounderFeed/3dAnime-Style-flux-dev-lora).
+     - Various Bugfixes.
+
   * 🆕 **2025-03-22** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot model [tensorblock/Llama-3.1-Nemotron-Nano-8B-v1-GGUF](https://hf.co/tensorblock/Llama-3.1-Nemotron-Nano-8B-v1-GGUF), specialized model [bartowski/open-r1_OlympicCoder-7B-GGUF](https://hf.co/bartowski/open-r1_OlympicCoder-7B-GGUF) and update of high-end model model [bartowski/mistralai_Mistral-Small-3.1-24B-Instruct-2503-GGUF](https://hf.co/bartowski/mistralai_Mistral-Small-3.1-24B-Instruct-2503-GGUF).
+    - Add support for Chatbot model [tensorblock/Llama-3.1-Nemotron-Nano-8B-v1-GGUF](https://hf.co/tensorblock/Llama-3.1-Nemotron-Nano-8B-v1-GGUF), specialized model [bartowski/open-r1_OlympicCoder-7B-GGUF](https://hf.co/bartowski/open-r1_OlympicCoder-7B-GGUF) and update of high-end model [bartowski/mistralai_Mistral-Small-3.1-24B-Instruct-2503-GGUF](https://hf.co/bartowski/mistralai_Mistral-Small-3.1-24B-Instruct-2503-GGUF).
     - Add support for SDXL LoRA models [inventwithdean/vangogh-SDXL-LoRA](https://hf.co/inventwithdean/vangogh-SDXL-LoRA) and [ivolegrey/Sci-fi_Sketch_Style_SDXL](https://hf.co/ivolegrey/Sci-fi_Sketch_Style_SDXL).
     - Add support for Flux LoRA models [martintomov/retrofuturism-flux-v2](https://hf.co/martintomov/retrofuturism-flux-v2) and [elikoy/storyboard](https://hf.co/elikoy/storyboard).
      - Bugfix for Windows install script and enhancement for Linux one.
@@ -39,8 +47,6 @@
     - Add support for Flux LoRA models [Shakker-Labs/FLUX.1-dev-LoRA-AntiBlur](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-AntiBlur) and [fffiloni/oniric-750](https://hf.co/fffiloni/oniric-750).
     - Redesign of default light theme to enhance readability.
     - Temporary bugfix for Windows installer/updater : newer Chatbot models wouldn't probably work for Windows users until a new release of llama-cpp-python.
-
-  * 🆕 **2025-02-27** : 🔥 ***Temporary Windows installer in degraded mode*** 🔥 > Windows installer is now usable, but with some limitations : most recents chatbot models *may* be unusable (all new architectures post-november 2024). This is an ugly temporary bugfix to allow deployment of biniou on Windows, hoping for a quick release of Llama-cpp-python 0.3.8. Also, a great thanks to [@AaronMickDee](https://github.com/AaronMickDee) for his contribution in this workaround. 
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
