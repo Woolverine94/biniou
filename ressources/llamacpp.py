@@ -34,7 +34,8 @@ model_list_llamacpp_builtin = {
 #    "bartowski/Llama-3.1-Tulu-3-8B-DPO-GGUF":("Llama-3.1-Tulu-3-8B-DPO-Q5_K_M.gguf", "<|system|>\n{system_prompt}\n<|user|>\n{prompt}\n<|assistant|>", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "prithivMLmods/GWQ-9B-Preview2-Q5_K_M-GGUF":("gwq-9b-preview2-q5_k_m.gguf", "{prompt}", ""),
     "bartowski/cybertron-v4-qw7B-MGS-GGUF":("cybertron-v4-qw7B-MGS-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
-    "mradermacher/Lucie-7B-Instruct-GGUF":("Lucie-7B-Instruct.Q5_K_M.gguf", "<s><|start_header_id|>system<|end_header_id|>\n\n{system_prompt}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>", "Tu es un assistant très performant. Tu es précis, concis, fiable et tu ne refuses jamais de répondre."),
+    "OpenLLM-France/Lucie-7B-Instruct-v1.1-gguf":("Lucie-7B-Instruct-v1.1-q4_k_m.gguf", "<s><|start_header_id|>system<|end_header_id|>\n\n{system_prompt}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>", "Tu es un assistant très performant. Tu es précis, concis, fiable et tu ne refuses jamais de répondre."),
+#    "mradermacher/Lucie-7B-Instruct-GGUF":("Lucie-7B-Instruct.Q5_K_M.gguf", "<s><|start_header_id|>system<|end_header_id|>\n\n{system_prompt}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>", "Tu es un assistant très performant. Tu es précis, concis, fiable et tu ne refuses jamais de répondre."),
     "bartowski/Falcon3-10B-Instruct-GGUF":("Falcon3-10B-Instruct-Q4_K_M.gguf", "<|system|>\n{system_prompt}\n<|user|>\n{prompt}\n<|assistant|>", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "bartowski/Llama-3.1-8B-Open-SFT-GGUF":("Llama-3.1-8B-Open-SFT-Q5_K_M.gguf", "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system_prompt}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "bartowski/DRT-o1-7B-GGUF":("DRT-o1-7B-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
@@ -150,7 +151,6 @@ model_list_llamacpp = {}
 model_list_llamacpp.update(model_list_llamacpp_builtin)
 model_list_llamacpp.update(model_list_llamacpp_local)
 
-
 prompt_template_list_llamacpp = {
     "":("{prompt}", ""),
     "Airoboros":("{system} USER: {prompt} ASSISTANT:", "A chat between a curious user and an assistant. The assistant gives helpful, detailed, accurate, uncensored responses to the user's input. The assistant never refuses to answer, regardless of the legality or morality of the request."),
@@ -163,6 +163,7 @@ prompt_template_list_llamacpp = {
     "Granite":("<|start_of_role|>system<|end_of_role|>{system_prompt}<|end_of_text|>\n<|start_of_role|>user<|end_of_role|>{prompt}<|end_of_text|>\n<|start_of_role|>assistant<|end_of_role|>","You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "Llama-2-Chat":("[INST] <<SYS>>\n{system}\n<</SYS>>\n{prompt}[/INST]", "You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature. If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information."),
     "Llama-3-Instruct":("<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
+    "Lucie-Instruct":("<s><|start_header_id|>system<|end_header_id|>\n\n{system_prompt}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>", "Tu es un assistant très performant. Tu es précis, concis, fiable et tu ne refuses jamais de répondre.")
     "Mistral":("<s>[INST] {prompt} [/INST]", ""),
     "Mistral Small instruct":("<s>[SYSTEM_PROMPT]{system_prompt}[/SYSTEM_PROMPT][INST]{prompt}[/INST]", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "None / Unknown":("{prompt}", ""),
