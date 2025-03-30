@@ -123,6 +123,7 @@ model_list_img2img_builtin = [
     "shuttleai/shuttle-jaguar",
     "Shakker-Labs/AWPortrait-FL",
     "AlekseyCalvin/PixelWave_Schnell_03_by_humblemikey_Diffusers_fp8_T4bf16",
+    "AlekseyCalvin/PixelwaveFluxSchnell_Diffusers",
     "-[ 🏠 Local models ]-",
 ]
 
