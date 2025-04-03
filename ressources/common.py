@@ -2229,6 +2229,7 @@ def lora_model_list(model, *args):
             "Shakker-Labs/Lumatales-FL":("Lumatales.safetensors", "gushirensheng\(style\)"),
             "nerijs/dark-fantasy-movie-flux":("darkfantasy_movie_v1.safetensors", ""),
             "martintomov/retrofuturism-flux-v2":("retrofuturism_flux_lora_martintomov_v2.safetensors", "retrofuturism"),
+            "fffiloni/greyscale-tiny-town":("greyscale-tiny-town.safetensors", "greyscale drawing"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
@@ -2303,6 +2304,7 @@ def lora_model_list(model, *args):
             "glif-loradex-trainer/R4Z0R1337_rubberhose_inspired":("rubberhose_inspired.safetensors", "rubberhose"),
             "FounderFeed/3dAnime-Style-flux-dev-lora":("1800861.safetensors", "3dstyle style"),
             "openfree/flux-chatgpt-ghibli-lora":("flux-chatgpt-ghibli-lora.safetensors", "ghibli"),
+            "fffiloni/cute-comic-800":("cute-comic-800.safetensors", "in the style of TOK"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
