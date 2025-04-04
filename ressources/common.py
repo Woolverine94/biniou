@@ -2305,6 +2305,8 @@ def lora_model_list(model, *args):
             "FounderFeed/3dAnime-Style-flux-dev-lora":("1800861.safetensors", "3dstyle style"),
             "openfree/flux-chatgpt-ghibli-lora":("flux-chatgpt-ghibli-lora.safetensors", "ghibli"),
             "fffiloni/cute-comic-800":("cute-comic-800.safetensors", "in the style of TOK"),
+            "InstantX/FLUX.1-dev-LoRA-Ghibli":("ghibli_style.safetensors", "ghibli style"),
+            "strangerzonehf/Ghibli-Flux-Cartoon-LoRA":("Ghibili-Cartoon-Art.safetensors", "Ghibli Art"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
