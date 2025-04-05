@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM debian:bookworm-slim
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get install -y bash sudo apt-utils git pip python3 python3-venv gcc perl make ffmpeg openssl libtcmalloc-minimal4
