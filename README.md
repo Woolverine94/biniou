@@ -17,6 +17,13 @@
 
 ## Updates
 
+  * 🆕 **2025-04-05** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot Code model [bartowski/Tesslate_Tessa-T1-7B-GGUF](https://hf.co/bartowski/Tesslate_Tessa-T1-7B-GGUF) and high-end model [ginigen/Private-BitSix-Mistral-Small-3.1-24B-Instruct-2503](https://hf.co/ginigen/Private-BitSix-Mistral-Small-3.1-24B-Instruct-2503).
+    - Add support for Flux Schnell model [AlekseyCalvin/PixelwaveFluxSchnell_Diffusers](https://hf.co/AlekseyCalvin/PixelwaveFluxSchnell_Diffusers).
+    - Ghibli, Ghibli and more Ghibli ! Add support for Flux LoRA models [InstantX/FLUX.1-dev-LoRA-Ghibli](https://hf.co/InstantX/FLUX.1-dev-LoRA-Ghibli), [strangerzonehf/Ghibli-Flux-Cartoon-LoRA](https://hf.co/strangerzonehf/Ghibli-Flux-Cartoon-LoRA) and [openfree/flux-chatgpt-ghibli-lora](https://hf.co/openfree/flux-chatgpt-ghibli-lora).
+    - Also add support for Flux LoRA models [strangerzonehf/Realism-H6-Flux](https://hf.co/strangerzonehf/Realism-H6-Flux), [fffiloni/greyscale-tiny-town](https://hf.co/fffiloni/greyscale-tiny-town),  [fffiloni/cute-comic-800](https://hf.co/fffiloni/cute-comic-800), [Jovie/Midjourney_Schnell](https://hf.co/Jovie/Midjourney_Schnell) and [iliketoasters/miniature-people](https://hf.co/iliketoasters/miniature-people). 
+    - Update of default Debian base image for Dockefile, from debian:latest to debian:bookworm-slim.
+
   * 🆕 **2025-03-29** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end models [bartowski/nvidia_Llama-3_3-Nemotron-Super-49B-v1-GGUF](https://hf.co/bartowski/nvidia_Llama-3_3-Nemotron-Super-49B-v1-GGUF), [mlabonne/gemma-3-27b-it-abliterated-GGUF](https://hf.co/mlabonne/gemma-3-27b-it-abliterated-GGUF), [bartowski/RekaAI_reka-flash-3-GGUF](https://hf.co/bartowski/RekaAI_reka-flash-3-GGUF) and update of french model Lucie to [OpenLLM-France/Lucie-7B-Instruct-v1.1-gguf](https://hf.co/OpenLLM-France/Lucie-7B-Instruct-v1.1-gguf).
     - Add support for Flux Schnell model [AlekseyCalvin/PixelWave_Schnell_03_by_humblemikey_Diffusers_fp8_T4bf1](https://hf.co/AlekseyCalvin/PixelWave_Schnell_03_by_humblemikey_Diffusers_fp8_T4bf1).
@@ -41,12 +48,6 @@
     - Add support for Chatbot tiny model [bartowski/YuLan-Mini-GGUF](https://hf.co/bartowski/YuLan-Mini-GGUF), update of chatbot models [bartowski/ibm-granite_granite-3.2-8b-instruct-GGUF](https://hf.co/bartowski/ibm-granite_granite-3.2-8b-instruct-GGUF) and [bartowski/allenai_Llama-3.1-Tulu-3.1-8B-GGUF](https://hf.co/bartowski/allenai_Llama-3.1-Tulu-3.1-8B-GGUF).
     - Add support for Flux LoRA models [mujibanget/vector-illustration](https://hf.co/mujibanget/vector-illustration), [strangerzonehf/Real-Claymation](https://hf.co/strangerzonehf/Real-Claymation), [prithivMLmods/Castor-Red-Dead-Redemption-2-Flux-LoRA](https://hf.co/prithivMLmods/Castor-Red-Dead-Redemption-2-Flux-LoRA), [fffiloni/cozy-book-800](https://hf.co/fffiloni/cozy-book-800), [Jonjew/DPMadeofSoap](https://hf.co/Jonjew/DPMadeofSoap) and [Jonjew/TransformersStyle](https://hf.co/Jonjew/TransformersStyle).
     - Replacement of SD1.5 model runwayml/stable-diffusion-v1-5 by [stable-diffusion-v1-5/stable-diffusion-v1-5](https://hf.co/stable-diffusion-v1-5/stable-diffusion-v1-5)
-
-  * 🆕 **2025-03-01** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for Chatbot model [bartowski/NousResearch_DeepHermes-3-Llama-3-8B-Preview-GGUF](https://hf.co/bartowski/NousResearch_DeepHermes-3-Llama-3-8B-Preview-GGUF), high-end model [bartowski/arcee-ai_Arcee-Blitz-GGUF](https://hf.co/bartowski/arcee-ai_Arcee-Blitz-GGUF) and code model [bartowski/hkust-nlp_qwen2.5-7b-coder_codeio_pp-GGUF](https://hf.co/bartowski/hkust-nlp_qwen2.5-7b-coder_codeio_pp-GGUF).
-    - Add support for Flux LoRA models [Shakker-Labs/FLUX.1-dev-LoRA-AntiBlur](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-AntiBlur) and [fffiloni/oniric-750](https://hf.co/fffiloni/oniric-750).
-    - Redesign of default light theme to enhance readability.
-    - Temporary bugfix for Windows installer/updater : newer Chatbot models wouldn't probably work for Windows users until a new release of llama-cpp-python.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
