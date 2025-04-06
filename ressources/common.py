@@ -1804,7 +1804,8 @@ def is_fast_lora(model):
 (model == "RED-AIGC/TDD") or \
 (model == "alimama-creative/FLUX.1-Turbo-Alpha") or \
 (model == "sunhaha123/stable-diffusion-3.5-medium-turbo") or \
-(model == "tensorart/stable-diffusion-3.5-medium-turbo")\
+(model == "tensorart/stable-diffusion-3.5-medium-turbo") or \
+(model == "ostris/fluxdev2schnell-lora")\
 ):
         is_fast_lora_value = True
     else:
@@ -2140,6 +2141,7 @@ def lora_model_list(model, *args):
         model_list_lora_builtin_fast = {
             "-[ 👍 🚀 Fast Flux LoRA ]-":("Hyper-Flux.1-Dev 4-step-Lora.safetensors", ""),
             "Lingyuzhou/Hyper_Flux.1_Dev_4_step_Lora":("Hyper-Flux.1-Dev 4-step-Lora.safetensors", ""),
+            "ostris/fluxdev2schnell-lora":("dev2schnell.safetensors", ""),
             "ByteDance/Hyper-SD":("Hyper-FLUX.1-dev-8steps-lora.safetensors", ""),
             "RED-AIGC/TDD":("TDD-FLUX.1-dev-lora-beta.safetensors", ""),
             "alimama-creative/FLUX.1-Turbo-Alpha":("diffusion_pytorch_model.safetensors", ""),
