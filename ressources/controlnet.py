@@ -674,7 +674,7 @@ def image_controlnet(
     start_controlnet = float(start_controlnet)
     stop_controlnet = float(stop_controlnet)
 
-    if (num_inference_step_controlnet >= 10) and use_ays_controlnet:
+    if (num_inference_step_controlnet >= 10) and use_ays_controlnet and not is_flux(modelid_controlnet):
         if is_sdxl(modelid_controlnet):
             sampling_schedule_controlnet = AysSchedules["StableDiffusionXLTimesteps"]
             sampler_controlnet = "DPM++ SDE"
@@ -682,6 +682,11 @@ def image_controlnet(
             sampling_schedule_controlnet = AysSchedules["StableDiffusionTimesteps"]
             sampler_controlnet = "Euler"
         num_inference_step_controlnet = 10
+    elif use_ays_controlnet and is_flux(modelid_controlnet):
+        sampling_schedule_controlnet = AysSchedules["StableDiffusionXLTimesteps"]
+        sampler_controlnet = "Flow Match Euler"
+        if (num_inference_step_controlnet >= 10):
+            num_inference_step_controlnet = 10
     else:
         sampling_schedule_controlnet = None
 
@@ -772,8 +777,10 @@ def image_controlnet(
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
-   
-    pipe_controlnet = schedulerer(pipe_controlnet, sampler_controlnet)
+    if  use_ays_controlnet and is_flux(modelid_controlnet):
+        pipe_controlnet = schedulerer(pipe_controlnet, sampler_controlnet, timesteps=sampling_schedule_controlnet)
+    else:
+        pipe_controlnet = schedulerer(pipe_controlnet, sampler_controlnet)
     pipe_controlnet.enable_attention_slicing("max")
     if not is_sd3_controlnet and not is_flux_controlnet:
         tomesd.apply_patch(pipe_controlnet, ratio=tkme_controlnet)

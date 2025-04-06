@@ -254,7 +254,7 @@ def image_txt2img_sd(
     if is_turbo_txt2img_sd and is_sd35_txt2img_sd:
         is_turbo_txt2img_sd: bool = False
 
-    if (num_inference_step_txt2img_sd >= 10) and use_ays_txt2img_sd:
+    if (num_inference_step_txt2img_sd >= 10) and use_ays_txt2img_sd and not is_flux(modelid_txt2img_sd):
         if is_sdxl(modelid_txt2img_sd):
             sampling_schedule_txt2img_sd = AysSchedules["StableDiffusionXLTimesteps"]
             sampler_txt2img_sd = "DPM++ SDE"
@@ -264,6 +264,11 @@ def image_txt2img_sd(
             sampling_schedule_txt2img_sd = AysSchedules["StableDiffusionTimesteps"]
             sampler_txt2img_sd = "Euler"
         num_inference_step_txt2img_sd = 10
+    elif use_ays_txt2img_sd and is_flux(modelid_txt2img_sd):
+        sampling_schedule_txt2img_sd = AysSchedules["StableDiffusionXLTimesteps"]
+        sampler_txt2img_sd = "Flow Match Euler"
+        if (num_inference_step_txt2img_sd >= 10):
+            num_inference_step_txt2img_sd = 10
     else:
         sampling_schedule_txt2img_sd = None
 
@@ -372,8 +377,10 @@ def image_txt2img_sd(
                 resume_download=True,
                 local_files_only=True if offline_test() else None
             )
-
-    pipe_txt2img_sd = schedulerer(pipe_txt2img_sd, sampler_txt2img_sd)
+    if  use_ays_txt2img_sd and is_flux(modelid_txt2img_sd):
+        pipe_txt2img_sd = schedulerer(pipe_txt2img_sd, sampler_txt2img_sd, timesteps=sampling_schedule_txt2img_sd)
+    else:
+        pipe_txt2img_sd = schedulerer(pipe_txt2img_sd, sampler_txt2img_sd)
 #    if lora_model_txt2img_sd == "":
     pipe_txt2img_sd.enable_attention_slicing("max")
     if not is_sd3_txt2img_sd and not is_sd35_txt2img_sd and not is_sd35m_txt2img_sd and not is_flux_txt2img_sd:

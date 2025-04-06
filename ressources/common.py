@@ -711,7 +711,7 @@ def metadata_writer_wav(metadata, filename):
             f.save()
     return
 
-def schedulerer(pipe, scheduler):
+def schedulerer(pipe, scheduler, **kwargs):
     karras = False
     sde = False
     if ('Karras') in scheduler:
@@ -719,13 +719,13 @@ def schedulerer(pipe, scheduler):
     if ('DPM++ 2M SDE' or 'DPM++ 2M SDE Karras') in scheduler:
         sde = True
     if karras and not sde:
-        return get_scheduler(pipe=pipe, scheduler=scheduler, use_karras_sigmas=True)
+        return get_scheduler(pipe=pipe, scheduler=scheduler, use_karras_sigmas=True, **kwargs)
     elif not karras and sde:
-        return get_scheduler(pipe=pipe, scheduler=scheduler, algorithm_type="sde-dpmsolver++")
+        return get_scheduler(pipe=pipe, scheduler=scheduler, algorithm_type="sde-dpmsolver++", **kwargs)
     elif karras and sde:
-        return get_scheduler(pipe=pipe, scheduler=scheduler, use_karras_sigmas=True, algorithm_type="sde-dpmsolver++")
+        return get_scheduler(pipe=pipe, scheduler=scheduler, use_karras_sigmas=True, algorithm_type="sde-dpmsolver++", **kwargs)
     elif not karras and not sde:
-        return get_scheduler(pipe=pipe, scheduler=scheduler)
+        return get_scheduler(pipe=pipe, scheduler=scheduler, **kwargs)
 
 def nparse(string):
     return string.replace("\n", "\\n")

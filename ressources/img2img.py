@@ -257,7 +257,7 @@ def image_img2img(
     if is_turbo_img2img and is_sd35_img2img:
         is_turbo_img2img: bool = False
 
-    if (num_inference_step_img2img >= 10) and use_ays_img2img:
+    if (num_inference_step_img2img >= 10) and use_ays_img2img and not is_flux(modelid_img2img):
         if is_sdxl(modelid_img2img):
             sampling_schedule_img2img = AysSchedules["StableDiffusionXLTimesteps"]
             sampler_img2img = "DPM++ SDE"
@@ -267,6 +267,11 @@ def image_img2img(
             sampling_schedule_img2img = AysSchedules["StableDiffusionTimesteps"]
             sampler_img2img = "Euler"
         num_inference_step_img2img = 10
+    elif use_ays_img2img and is_flux(modelid_img2img):
+        sampling_schedule_img2img = AysSchedules["StableDiffusionXLTimesteps"]
+        sampler_img2img = "Flow Match Euler"
+        if (num_inference_step_img2img >= 10):
+            num_inference_step_img2img = 10
     else:
         sampling_schedule_img2img = None
 
@@ -378,7 +383,10 @@ def image_img2img(
                 local_files_only=True if offline_test() else None
             )
 
-    pipe_img2img = schedulerer(pipe_img2img, sampler_img2img)
+    if  use_ays_img2img and is_flux(modelid_img2img):
+        pipe_img2img = schedulerer(pipe_img2img, sampler_img2img, timesteps=sampling_schedule_img2img)
+    else:
+        pipe_img2img = schedulerer(pipe_img2img, sampler_img2img)
     pipe_img2img.enable_attention_slicing("max")
     if not is_sd3_img2img and not is_sd35_img2img and not is_sd35m_img2img and not is_flux_img2img:
         tomesd.apply_patch(pipe_img2img, ratio=tkme_img2img)

@@ -229,7 +229,7 @@ def image_img2img_ip(
     else :
         is_flux_img2img_ip: bool = False
 
-    if (num_inference_step_img2img_ip >= 10) and use_ays_img2img_ip:
+    if (num_inference_step_img2img_ip >= 10) and use_ays_img2img_ip and not is_flux(modelid_img2img_ip):
         if is_sdxl(modelid_img2img_ip):
             sampling_schedule_img2img_ip = AysSchedules["StableDiffusionXLTimesteps"]
             sampler_img2img_ip = "DPM++ SDE"
@@ -237,6 +237,11 @@ def image_img2img_ip(
             sampling_schedule_img2img_ip = AysSchedules["StableDiffusionTimesteps"]
             sampler_img2img_ip = "Euler"
         num_inference_step_img2img_ip = 10
+    elif use_ays_img2img_ip and is_flux(modelid_img2img_ip):
+        sampling_schedule_img2img_ip = AysSchedules["StableDiffusionXLTimesteps"]
+        sampler_img2img_ip = "Flow Match Euler"
+        if (num_inference_step_img2img_ip >= 10):
+            num_inference_step_img2img_ip = 10
     else:
         sampling_schedule_img2img_ip = None
 
@@ -597,7 +602,10 @@ def image_img2img_ip(
                 adapters_list.append("Composition")
                 lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
 #    pipe_img2img_ip.set_ip_adapter_scale(denoising_strength_img2img_ip)    
-    pipe_img2img_ip = schedulerer(pipe_img2img_ip, sampler_img2img_ip)
+    if  use_ays_img2img_ip and is_flux(modelid_img2img_ip):
+        pipe_img2img_ip = schedulerer(pipe_img2img_ip, sampler_img2img_ip, timesteps=sampling_schedule_img2img_ip)
+    else:
+        pipe_img2img_ip = schedulerer(pipe_img2img_ip, sampler_img2img_ip)
 #    pipe_img2img_ip.enable_attention_slicing("max")  
     if not is_flux_img2img_ip:
         tomesd.apply_patch(pipe_img2img_ip, ratio=tkme_img2img_ip)
