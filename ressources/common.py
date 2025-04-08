@@ -2221,7 +2221,6 @@ def lora_model_list(model, *args):
             "memyself/synthwaveglitch":("SynthWaveGlitchyAnalogVideoSynthesisFluxV1.safetensors", "vidsynthsynth, video synth"),
             "batchku/storai-persian-miniature":("storai-persian-miniature.safetensors", "ali_persian-miniature"),
             "strangerzonehf/Flux-Super-Paint-LoRA":("Super-Paint.safetensors", "Super Paint"),
-            "aleksa-codes/flux-ghibsky-illustration":("lora.safetensors", "GHIBSKY style"),
             "fffiloni/oniric-750":("oniric-750.safetensors", "in the style of TOK"),
             "mujibanget/vector-illustration":("lora-000002.TA_trained.safetensors", "mujibvector, vector"),
             "prithivMLmods/Castor-Red-Dead-Redemption-2-Flux-LoRA":("Castor-Red-Dead-Redemption-2-Flux-LoRA.safetensors", "Red Dead Redemption 2"),
@@ -2309,6 +2308,8 @@ def lora_model_list(model, *args):
             "fffiloni/cute-comic-800":("cute-comic-800.safetensors", "in the style of TOK"),
             "InstantX/FLUX.1-dev-LoRA-Ghibli":("ghibli_style.safetensors", "ghibli style"),
             "strangerzonehf/Ghibli-Flux-Cartoon-LoRA":("Ghibili-Cartoon-Art.safetensors", "Ghibli Art"),
+            "aleksa-codes/flux-ghibsky-illustration":("lora_v2.safetensors", "GHIBSKY style painting"),
+            "InstantX/FLUX.1-dev-LoRA-Makoto-Shinkai":("Makoto_Shinkai_style.safetensors", "Makoto Shinkai style"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
