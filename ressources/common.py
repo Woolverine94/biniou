@@ -2281,6 +2281,8 @@ def lora_model_list(model, *args):
             "elikoy/storyboard":("Storyboard_sketch--FLUX.safetensors", "storyboard sketch of"),
             "fffiloni/wooly-play-doh":("wooly-play-doh.safetensors", "in the style of TOK"),
             "iliketoasters/miniature-people":("mini-people-v2-13.safetensors", "miniature people"),
+            "AlekseyCalvin/Deni_Style_Soviet_Agitprop_FluxLoRA_BySilverAgePoets":("Deni_Style_Agitprop_FluxLoRA.safetensors", "Art by Deni. Soviet Revolutionary agitprop illustration"),
+            "elikoy/actionherofigurator":("Action_Figurator_F1D-000015.safetensors", "boxed action figure"),
             "-[ 🏆 🐢 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
