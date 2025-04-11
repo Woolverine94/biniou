@@ -2086,6 +2086,8 @@ def lora_model_list(model, *args):
             "ProomptEngineer/pe-old-school-cartoon-style":("PE_OldCartoonStyle.safetensors", "old school cartoon style"),
             "Pclanglais/Mickey-1928":("pytorch_lora_weights.safetensors", "Mickey|Minnie|Pete"),
             "ivolegrey/Sci-fi_Sketch_Style_SDXL":("Sci-fi_Sketch_Style_SDXL_V1.safetensors", "rough sketch, messy lineart, monochromatic, flat color"),
+            "artificialguybr/StudioGhibliRedmond":("StudioGhibliRedmond-StdGBRedmAF.safetensors", "StdGBRedmAF"),
+            "artificialguybr/StudioGhibli.Redmond-V2":("StudioGhibli.Redmond-StdGBRRedmAF-StudioGhibli.safetensors", "Studio Ghibli"),
             "-[ 🏠 Local models ]-":("", ""),
         }
     elif is_sd3(model):
