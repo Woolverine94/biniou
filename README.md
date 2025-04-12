@@ -17,6 +17,14 @@
 
 ## Updates
 
+  * 🆕 **2025-04-12** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot code model [bartowski/agentica-org_DeepCoder-14B-Preview-GGUF](https://hf.co/bartowski/agentica-org_DeepCoder-14B-Preview-GGUF).
+    - Replace Chatbot models Gemma 3 27B and 12B with their QAT (Quantization Aware Training) counterparts [vinimuchulski/gemma-3-27b-it-qat-q4_0-gguf](https://hf.co/vinimuchulski/gemma-3-27b-it-qat-q4_0-gguf) and [vinimuchulski/gemma-3-12b-it-qat-q4_0-gguf](https://hf.co/vinimuchulski/gemma-3-12b-it-qat-q4_0-gguf). This special training greatly enhances the results provided by these models. Also add support for [vinimuchulski/gemma-3-4b-it-qat-q4_0-gguf](https://hf.co/vinimuchulski/gemma-3-4b-it-qat-q4_0-gguf). 
+    - Add support for Flux fast LoRA model [ostris/fluxdev2schnell-lora](https://hf.co/ostris/fluxdev2schnell-lora).
+    - Add support for Flux LoRA models [aleksa-codes/flux-ghibsky-illustration](https://hf.co/aleksa-codes/flux-ghibsky-illustration), [InstantX/FLUX.1-dev-LoRA-Makoto-Shinkai](https://hf.co/InstantX/FLUX.1-dev-LoRA-Makoto-Shinkai), [AlekseyCalvin/Deni_Style_Soviet_Agitprop_FluxLoRA_BySilverAgePoets](https://hf.co/AlekseyCalvin/Deni_Style_Soviet_Agitprop_FluxLoRA_BySilverAgePoets) and [elikoy/actionherofigurator](https://hf.co/elikoy/actionherofigurator).
+    - Add support for SDXL LoRA models [artificialguybr/StudioGhibliRedmond](https://hf.co/artificialguybr/StudioGhibliRedmond) and [artificialguybr/StudioGhibli.Redmond-V2](https://hf.co/artificialguybr/StudioGhibli.Redmond-V2). 
+    - Add preliminary support for AYS (Align Your Steps) with Flux.
+
   * 🆕 **2025-04-05** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot Code model [bartowski/Tesslate_Tessa-T1-7B-GGUF](https://hf.co/bartowski/Tesslate_Tessa-T1-7B-GGUF) and high-end model [ginigen/Private-BitSix-Mistral-Small-3.1-24B-Instruct-2503](https://hf.co/ginigen/Private-BitSix-Mistral-Small-3.1-24B-Instruct-2503).
     - Add support for Flux Schnell model [AlekseyCalvin/PixelwaveFluxSchnell_Diffusers](https://hf.co/AlekseyCalvin/PixelwaveFluxSchnell_Diffusers).
@@ -43,11 +51,6 @@
     - Add support fo Flux model [Shakker-Labs/AWPortrait-FL](https://hf.co/Shakker-Labs/AWPortrait-FL)
     - Add support for Flux LoRA models [Shakker-Labs/Lumatales-FL](https://hf.co/Shakker-Labs/Lumatales-FL), [glif-loradex-trainer/fab1an_1970sbookcovers](https://hf.co/glif-loradex-trainer/fab1an_1970sbookcovers), [nerijs/dark-fantasy-movie-flux](https://hf.co/nerijs/dark-fantasy-movie-flux) and [alvdansen/softserve_anime](https://hf.co/alvdansen/softserve_anime).
      - Bugfix for onnxruntime error at startup.
-
-  * 🆕 **2025-03-08** : 🔥 ***This week's updates*** 🔥 >
-    - Add support for Chatbot tiny model [bartowski/YuLan-Mini-GGUF](https://hf.co/bartowski/YuLan-Mini-GGUF), update of chatbot models [bartowski/ibm-granite_granite-3.2-8b-instruct-GGUF](https://hf.co/bartowski/ibm-granite_granite-3.2-8b-instruct-GGUF) and [bartowski/allenai_Llama-3.1-Tulu-3.1-8B-GGUF](https://hf.co/bartowski/allenai_Llama-3.1-Tulu-3.1-8B-GGUF).
-    - Add support for Flux LoRA models [mujibanget/vector-illustration](https://hf.co/mujibanget/vector-illustration), [strangerzonehf/Real-Claymation](https://hf.co/strangerzonehf/Real-Claymation), [prithivMLmods/Castor-Red-Dead-Redemption-2-Flux-LoRA](https://hf.co/prithivMLmods/Castor-Red-Dead-Redemption-2-Flux-LoRA), [fffiloni/cozy-book-800](https://hf.co/fffiloni/cozy-book-800), [Jonjew/DPMadeofSoap](https://hf.co/Jonjew/DPMadeofSoap) and [Jonjew/TransformersStyle](https://hf.co/Jonjew/TransformersStyle).
-    - Replacement of SD1.5 model runwayml/stable-diffusion-v1-5 by [stable-diffusion-v1-5/stable-diffusion-v1-5](https://hf.co/stable-diffusion-v1-5/stable-diffusion-v1-5)
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
