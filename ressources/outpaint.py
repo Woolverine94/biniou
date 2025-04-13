@@ -32,7 +32,8 @@ for filename in os.listdir(model_path_outpaint):
 model_list_outpaint_builtin = [
     "Uminosachi/realisticVisionV51_v51VAE-inpainting",
     "diffusers/stable-diffusion-xl-1.0-inpainting-0.1",
-    "runwayml/stable-diffusion-inpainting",
+    "stable-diffusion-v1-5/stable-diffusion-inpainting",
+#    "runwayml/stable-diffusion-inpainting",
     "Lykon/dreamshaper-8-inpainting",
     "Sanster/anything-4.0-inpainting",
 ]
