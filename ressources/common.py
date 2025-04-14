@@ -2287,6 +2287,7 @@ def lora_model_list(model, *args):
             "AlekseyCalvin/Deni_Style_Soviet_Agitprop_FluxLoRA_BySilverAgePoets":("Deni_Style_Agitprop_FluxLoRA.safetensors", "Art by Deni. Soviet Revolutionary agitprop illustration"),
             "elikoy/actionherofigurator":("Action_Figurator_F1D-000015.safetensors", "boxed action figure"),
             "AlekseyCalvin/Propaganda_Poster_Schnell_by_doctor_diffusion":("propaganda_schnell_v1.safetensors", "propaganda poster"),
+            "strangerzonehf/Flux-Master-Claymation":("Master-Claymation.safetensors", "Master Claymation"),
             "-[ 🏆 🐢 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
@@ -2316,6 +2317,7 @@ def lora_model_list(model, *args):
             "strangerzonehf/Ghibli-Flux-Cartoon-LoRA":("Ghibili-Cartoon-Art.safetensors", "Ghibli Art"),
             "aleksa-codes/flux-ghibsky-illustration":("lora_v2.safetensors", "GHIBSKY style painting"),
             "InstantX/FLUX.1-dev-LoRA-Makoto-Shinkai":("Makoto_Shinkai_style.safetensors", "Makoto Shinkai style"),
+            "AIWarper/RubberCore1920sCartoonStyle":("RU883R_AIWARPER_v1.0.safetensors", "RU883R"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
