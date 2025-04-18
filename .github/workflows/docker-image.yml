@@ -1,7 +1,5 @@
 name: Docker Image CI
 
-on:
-
 jobs:
 
   build:
