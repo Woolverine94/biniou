@@ -1,0 +1,27 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the CPU Docker image
+      run: docker build . --file Dockerfile --tag biniou-cpu:$(date +%s)
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the CUDA 12.1 Docker image
+      run: docker build . --file CUDA/Dockerfile --tag biniou-cuda:$(date +%s)
