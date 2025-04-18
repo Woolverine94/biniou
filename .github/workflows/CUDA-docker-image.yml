@@ -1,7 +1,5 @@
 name: CUDA Docker Image CI
 
-on:
-
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
