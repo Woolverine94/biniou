@@ -17,10 +17,6 @@ jobs:
     - name: Build the CPU Docker image
       run: docker build . --file Dockerfile --tag biniou-cpu:$(date +%s)
 
-  build:
-
-    runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
     - name: Build the CUDA 12.1 Docker image
