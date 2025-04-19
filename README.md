@@ -5,6 +5,11 @@
 </p>
 </h1>
 
+<p align="center">
+
+[![biniou Docker Image CI](https://github.com/Woolverine94/biniou/actions/workflows/docker-image.yml/badge.svg?branch=main)](https://github.com/Woolverine94/biniou/actions/workflows/docker-image.yml) [![biniou CUDA Docker Image CI](https://github.com/Woolverine94/biniou/actions/workflows/CUDA-docker-image.yml/badge.svg?branch=main)](https://github.com/Woolverine94/biniou/actions/workflows/CUDA-docker-image.yml)
+
+</p>
 
 <p align="justify">biniou is a self-hosted webui for several kinds of GenAI (generative artificial intelligence). You can generate multimedia contents with AI and use a chatbot on your own computer, even without dedicated GPU and starting from 8GB RAM. Can work offline (once deployed and required models downloaded).</p>
 
