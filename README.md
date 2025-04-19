@@ -18,7 +18,7 @@
 ## Updates
 
   * 🆕 **2025-04-19** : 🔥 ***Weekly update*** 🔥 >
-    - Add automatic packages generation through github actions : you can now directly pull up-to-date docker images of biniou from ghcr.io !
+    - Add automatic packages generation through github actions : you can now directly pull a weekly updated docker images of biniou from ghcr.io !
     - Add support for Chatbot math model [bartowski/Skywork_Skywork-OR1-Math-7B-GGUF](https://hf.co/bartowski/Skywork_Skywork-OR1-Math-7B-GGUF).
     - Update of Granite Chatbot model to [ibm-granite/granite-3.3-8b-instruct-GGUF](https://hf.co/ibm-granite/granite-3.3-8b-instruct-GGUF). 
     - Add support for Flux LoRA models [AlekseyCalvin/HSTcolorFlexAlpha](https://hf.co/AlekseyCalvin/HSTcolorFlexAlpha), [AlekseyCalvin/Propaganda_Poster_Schnell_by_doctor_diffusion](https://hf.co/AlekseyCalvin/Propaganda_Poster_Schnell_by_doctor_diffusion), [strangerzonehf/Flux-Master-Claymation](https://hf.co/strangerzonehf/Flux-Master-Claymation), [AIWarper/RubberCore1920sCartoonStyle](https://hf.co/AIWarper/RubberCore1920sCartoonStyle), [fofr/flux-mona-lisa](https://hf.co/fofr/flux-mona-lisa) and [SebastianBodza/flux_lora_retro_linedrawing_style_v1](https://hf.co/SebastianBodza/flux_lora_retro_linedrawing_style_v1).
@@ -364,7 +364,7 @@ docker build -t biniou https://raw.githubusercontent.com/Woolverine94/biniou/mai
 ```
 Alternatively, you can directly pull an up-to-date image from ghcr.io using  :
 ```bash
-docker pull ghcr.io/woolverine94/biniou:main 
+docker pull ghcr.io/woolverine94/biniou:main
 ```
  or, for CUDA support : 
 
@@ -372,7 +372,9 @@ docker pull ghcr.io/woolverine94/biniou:main
 docker pull ghcr.io/woolverine94/biniou-cuda:main
 ```
 
-  2. **Launch** the container : 
+  2. **Launch** the container :
+
+     * For Dockerfile generated images :
 ```bash
 docker run -it --restart=always -p 7860:7860 \
 -v biniou_outputs:/home/biniou/biniou/outputs \
@@ -382,7 +384,7 @@ docker run -it --restart=always -p 7860:7860 \
 biniou:latest
 ```
 
- or, for CUDA support : 
+or, with CUDA support :
  
 ```bash
 docker run -it --gpus all --restart=always -p 7860:7860 \
@@ -391,6 +393,27 @@ docker run -it --gpus all --restart=always -p 7860:7860 \
 -v biniou_cache:/home/biniou/.cache/huggingface \
 -v biniou_gfpgan:/home/biniou/biniou/gfpgan \
 biniou:latest
+```
+
+     * For docker images pulled from ghcr.io :
+```bash
+docker run -it --restart=always -p 7860:7860 \
+-v biniou_outputs:/home/biniou/biniou/outputs \
+-v biniou_models:/home/biniou/biniou/models \
+-v biniou_cache:/home/biniou/.cache/huggingface \
+-v biniou_gfpgan:/home/biniou/biniou/gfpgan \
+biniou:main
+```
+
+or, with CUDA support :
+
+```bash
+docker run -it --gpus all --restart=always -p 7860:7860 \
+-v biniou_outputs:/home/biniou/biniou/outputs \
+-v biniou_models:/home/biniou/biniou/models \
+-v biniou_cache:/home/biniou/.cache/huggingface \
+-v biniou_gfpgan:/home/biniou/biniou/gfpgan \
+biniou-cuda:main
 ```
 
 
