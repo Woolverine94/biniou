@@ -17,6 +17,16 @@
 
 ## Updates
 
+  * 🆕 **2025-04-19** : 🔥 ***Weekly update*** 🔥 >
+    - Add automatic packages generation through github actions : you can now directly pull up-to-date docker images of biniou from ghcr.io !
+    - Add support for Chatbot math model [bartowski/Skywork_Skywork-OR1-Math-7B-GGUF](https://hf.co/bartowski/Skywork_Skywork-OR1-Math-7B-GGUF).
+    - Update of Granite Chatbot model to [ibm-granite/granite-3.3-8b-instruct-GGUF](https://hf.co/ibm-granite/granite-3.3-8b-instruct-GGUF). 
+    - Add support for Flux LoRA models [AlekseyCalvin/HSTcolorFlexAlpha](https://hf.co/AlekseyCalvin/HSTcolorFlexAlpha), [AlekseyCalvin/Propaganda_Poster_Schnell_by_doctor_diffusion](https://hf.co/AlekseyCalvin/Propaganda_Poster_Schnell_by_doctor_diffusion), [strangerzonehf/Flux-Master-Claymation](https://hf.co/strangerzonehf/Flux-Master-Claymation), [AIWarper/RubberCore1920sCartoonStyle](https://hf.co/AIWarper/RubberCore1920sCartoonStyle), [fofr/flux-mona-lisa](https://hf.co/fofr/flux-mona-lisa) and [SebastianBodza/flux_lora_retro_linedrawing_style_v1](https://hf.co/SebastianBodza/flux_lora_retro_linedrawing_style_v1).
+    - Update of inpaint SD 1.5 model to [stable-diffusion-v1-5/stable-diffusion-inpainting](https://hf.co/stable-diffusion-v1-5/stable-diffusion-inpainting) for inpaint and outpaint modules.
+    - Bugfix for SD 1.5 outputs default dimensions in Stable Diffusion module
+    - Bugfix in design of IP-Adapter module for Flux inferences.
+    - 
+
   * 🆕 **2025-04-12** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot code model [bartowski/agentica-org_DeepCoder-14B-Preview-GGUF](https://hf.co/bartowski/agentica-org_DeepCoder-14B-Preview-GGUF).
     - Replace Chatbot models Gemma 3 27B and 12B with their QAT (Quantization Aware Training) counterparts [vinimuchulski/gemma-3-27b-it-qat-q4_0-gguf](https://hf.co/vinimuchulski/gemma-3-27b-it-qat-q4_0-gguf) and [vinimuchulski/gemma-3-12b-it-qat-q4_0-gguf](https://hf.co/vinimuchulski/gemma-3-12b-it-qat-q4_0-gguf). This special training greatly enhances the results provided by these models. Also add support for [vinimuchulski/gemma-3-4b-it-qat-q4_0-gguf](https://hf.co/vinimuchulski/gemma-3-4b-it-qat-q4_0-gguf). 
@@ -45,12 +55,6 @@
     - Add support for SDXL LoRA models [inventwithdean/vangogh-SDXL-LoRA](https://hf.co/inventwithdean/vangogh-SDXL-LoRA) and [ivolegrey/Sci-fi_Sketch_Style_SDXL](https://hf.co/ivolegrey/Sci-fi_Sketch_Style_SDXL).
     - Add support for Flux LoRA models [martintomov/retrofuturism-flux-v2](https://hf.co/martintomov/retrofuturism-flux-v2) and [elikoy/storyboard](https://hf.co/elikoy/storyboard).
      - Bugfix for Windows install script and enhancement for Linux one.
-
-  * 🆕 **2025-03-15** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot tiny models [bartowski/goppa-ai_Goppa-LogiLlama-GGUF](https://hf.co/bartowski/goppa-ai_Goppa-LogiLlama-GGUF), [bartowski/microsoft_Phi-4-mini-instruct-GGUF](https://hf.co/bartowski/microsoft_Phi-4-mini-instruct-GGUF), high-end model [bartowski/google_gemma-3-12b-it-GGUF](https://hf.co/bartowski/google_gemma-3-12b-it-GGUF) and update of high-end model model [bartowski/Qwen_QwQ-32B-GGUF](https://hf.co/bartowski/Qwen_QwQ-32B-GGUF).
-    - Add support fo Flux model [Shakker-Labs/AWPortrait-FL](https://hf.co/Shakker-Labs/AWPortrait-FL)
-    - Add support for Flux LoRA models [Shakker-Labs/Lumatales-FL](https://hf.co/Shakker-Labs/Lumatales-FL), [glif-loradex-trainer/fab1an_1970sbookcovers](https://hf.co/glif-loradex-trainer/fab1an_1970sbookcovers), [nerijs/dark-fantasy-movie-flux](https://hf.co/nerijs/dark-fantasy-movie-flux) and [alvdansen/softserve_anime](https://hf.co/alvdansen/softserve_anime).
-     - Bugfix for onnxruntime error at startup.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
@@ -357,6 +361,15 @@ docker build -t biniou https://github.com/Woolverine94/biniou.git
 
 ```bash
 docker build -t biniou https://raw.githubusercontent.com/Woolverine94/biniou/main/CUDA/Dockerfile
+```
+Alternatively, you can directly pull an up-to-date image from ghcr.io using  :
+```bash
+docker pull ghcr.io/woolverine94/biniou:main 
+```
+ or, for CUDA support : 
+
+```bash
+docker pull ghcr.io/woolverine94/biniou-cuda:main
 ```
 
   2. **Launch** the container : 
