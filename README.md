@@ -18,7 +18,7 @@
 ## Updates
 
   * 🆕 **2025-04-19** : 🔥 ***Weekly update*** 🔥 >
-    - Add automatic packages generation through github actions : you can now directly pull a weekly updated docker images of biniou from ghcr.io !
+    - Add automatic packages generation through github actions : you can now directly pull weekly updated docker images of biniou from ghcr.io !
     - Add support for Chatbot math model [bartowski/Skywork_Skywork-OR1-Math-7B-GGUF](https://hf.co/bartowski/Skywork_Skywork-OR1-Math-7B-GGUF).
     - Update of Granite Chatbot model to [ibm-granite/granite-3.3-8b-instruct-GGUF](https://hf.co/ibm-granite/granite-3.3-8b-instruct-GGUF). 
     - Add support for Flux LoRA models [AlekseyCalvin/HSTcolorFlexAlpha](https://hf.co/AlekseyCalvin/HSTcolorFlexAlpha), [AlekseyCalvin/Propaganda_Poster_Schnell_by_doctor_diffusion](https://hf.co/AlekseyCalvin/Propaganda_Poster_Schnell_by_doctor_diffusion), [strangerzonehf/Flux-Master-Claymation](https://hf.co/strangerzonehf/Flux-Master-Claymation), [AIWarper/RubberCore1920sCartoonStyle](https://hf.co/AIWarper/RubberCore1920sCartoonStyle), [fofr/flux-mona-lisa](https://hf.co/fofr/flux-mona-lisa) and [SebastianBodza/flux_lora_retro_linedrawing_style_v1](https://hf.co/SebastianBodza/flux_lora_retro_linedrawing_style_v1).
