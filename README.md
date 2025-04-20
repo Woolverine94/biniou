@@ -367,7 +367,7 @@ docker build -t biniou https://github.com/Woolverine94/biniou.git
 ```bash
 docker build -t biniou https://raw.githubusercontent.com/Woolverine94/biniou/main/CUDA/Dockerfile
 ```
-Alternatively, you can directly pull an up-to-date image from ghcr.io using  :
+Alternatively, you can directly pull a weekly updated image from ghcr.io using  :
 ```bash
 docker pull ghcr.io/woolverine94/biniou:main
 ```
@@ -379,7 +379,7 @@ docker pull ghcr.io/woolverine94/biniou-cuda:main
 
   2. **Launch** the container :
 
-     * For Dockerfile generated images :
+  - For Dockerfile generated images :
 ```bash
 docker run -it --restart=always -p 7860:7860 \
 -v biniou_outputs:/home/biniou/biniou/outputs \
@@ -400,14 +400,14 @@ docker run -it --gpus all --restart=always -p 7860:7860 \
 biniou:latest
 ```
 
-     * For docker images pulled from ghcr.io :
+  - For docker images pulled from ghcr.io :
 ```bash
 docker run -it --restart=always -p 7860:7860 \
 -v biniou_outputs:/home/biniou/biniou/outputs \
 -v biniou_models:/home/biniou/biniou/models \
 -v biniou_cache:/home/biniou/.cache/huggingface \
 -v biniou_gfpgan:/home/biniou/biniou/gfpgan \
-biniou:main
+ghcr.io/woolverine94/biniou:main
 ```
 
 or, with CUDA support :
@@ -418,7 +418,7 @@ docker run -it --gpus all --restart=always -p 7860:7860 \
 -v biniou_models:/home/biniou/biniou/models \
 -v biniou_cache:/home/biniou/.cache/huggingface \
 -v biniou_gfpgan:/home/biniou/biniou/gfpgan \
-biniou-cuda:main
+ghcr.io/woolverine94/biniou-cuda:main
 ```
 
 
