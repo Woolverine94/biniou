@@ -27,12 +27,8 @@ jobs:
       run: powershell -command "(New-Object System.Net.WebClient).DownloadFile(\"https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win.cmd\", \"install_win.cmd\")"
       run: .\install_win.cmd
 
-    steps:
-    - uses: actions/checkout@v4
     - name: Windows updater test
       run: biniou\update_win_cuda.cmd
 
-    steps:
-    - uses: actions/checkout@v4
     - name: Windows CUDA updater test
       run: biniou\update_win_cuda.cmd

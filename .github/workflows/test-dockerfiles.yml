@@ -30,7 +30,5 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag biniou:$(date +%s)
 
-    steps:
-    - uses: actions/checkout@v4
     - name: Build the CUDA Docker image
       run: docker build . --file CUDA/Dockerfile --tag biniou-cuda:$(date +%s)
