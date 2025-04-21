@@ -25,10 +25,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Linux installer test
+    - name: Pre-requisites installation
       run: apt install git pip python3 python3-venv gcc perl make ffmpeg openssl
+
+    - name: Cloning repo
       run: git clone https://github.com/Woolverine94/biniou.git
-      run: cd ./biniou && ./install.sh
+
+    - name: Linux installer test
+      run: cd ~/biniou && ./install.sh
 
     - name: Linux updater test
       run: cd ~/biniou && ./update.sh
