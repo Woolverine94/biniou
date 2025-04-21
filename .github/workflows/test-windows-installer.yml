@@ -24,7 +24,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Download of installer
-      run: powershell -command "(New-Object System.Net.WebClient).DownloadFile(https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win.cmd, install_win.cmd)"
+      run: curl -O https://raw.githubusercontent.com/Woolverine94/biniou/main/install_win.cmd
 
     - name: Windows installer test
       run: .\install_win.cmd
