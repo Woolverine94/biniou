@@ -2,6 +2,7 @@ REM ******************************************************
 REM *** DEFINING INSTALL PATH FOR BINIOU DIRECTORY : *****
 REM *** ONLY USE ABSOLUTE PATH, WITHOUT TRAILING SLASH ***
 REM ******************************************************
+REM trigger test
 set DEFAULT_BINIOU_DIR="%userprofile%"
 
 if not exist "%DEFAULT_BINIOU_DIR%" (
