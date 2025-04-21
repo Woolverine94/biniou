@@ -4,17 +4,17 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - ./install_win.cmd
-      - ./requirements.txt
-      - ./update_win.cmd
-      - ./update_win_cuda.cmd
+      - install_win.cmd
+      - requirements.txt
+      - update_win.cmd
+      - update_win_cuda.cmd
   pull_request:
     branches: [ "main" ]
     paths:
-      - ./install_win.cmd
-      - ./requirements.txt
-      - ./update_win.cmd
-      - ./update_win_cuda.cmd
+      - install_win.cmd
+      - requirements.txt
+      - update_win.cmd
+      - update_win_cuda.cmd
 jobs:
 
   install:

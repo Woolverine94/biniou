@@ -4,20 +4,20 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - ./Dockerfile
-      - ./install.sh
-      - ./requirements.txt
-      - ./update.sh
-      - ./update_cuda.sh
+      - Dockerfile
+      - install.sh
+      - requirements.txt
+      - update.sh
+      - update_cuda.sh
       - CUDA/Dockerfile
   pull_request:
     branches: [ "main" ]
     paths:
-      - ./Dockerfile
-      - ./install.sh
-      - ./requirements.txt
-      - ./update.sh
-      - ./update_cuda.sh
+      - Dockerfile
+      - install.sh
+      - requirements.txt
+      - update.sh
+      - update_cuda.sh
       - CUDA/Dockerfile
 jobs:
 

@@ -4,19 +4,19 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - ./install.sh
-      - ./requirements.txt
-      - ./update.sh
-      - ./update_cuda.sh
-      - ./update_rocm.sh
+      - install.sh
+      - requirements.txt
+      - update.sh
+      - update_cuda.sh
+      - update_rocm.sh
   pull_request:
     branches: [ "main" ]
     paths:
-      - ./install.sh
-      - ./requirements.txt
-      - ./update.sh
-      - ./update_cuda.sh
-      - ./update_rocm.sh
+      - install.sh
+      - requirements.txt
+      - update.sh
+      - update_cuda.sh
+      - update_rocm.sh
 jobs:
 
   install:
