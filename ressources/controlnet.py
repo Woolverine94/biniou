@@ -154,7 +154,8 @@ variant_list_controlnet = [
 #    "George0667/Flux.1-dev-ControlNet-LineCombo",
     "jasperai/Flux.1-dev-Controlnet-Upscaler",
     "InstantX/FLUX.1-dev-Controlnet-Union",
-    "Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro",
+#    "Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro",
+    "Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro-2.0",
 ]
 
 preprocessor_list_controlnet = [
