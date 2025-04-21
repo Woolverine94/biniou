@@ -1,5 +1,4 @@
 #!/bin/bash
-# trigger test
 ENV_PYTHON_TEST="$ENV_BINIOU_PYTHON_VER"
 if [ "$ENV_PYTHON_TEST" != "" ]
   then
