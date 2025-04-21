@@ -1,0 +1,47 @@
+name: Test of Linux installer
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - ./install.sh
+      - ./requirements.txt
+      - ./update.sh
+      - ./update_cuda.sh
+      - ./update_rocm.sh
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - ./install.sh
+      - ./requirements.txt
+      - ./update.sh
+      - ./update_cuda.sh
+      - ./update_rocm.sh
+jobs:
+
+  install:
+
+    runs-on: ubuntu-22.04
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Linux installer test
+      run: apt install git pip python3 python3-venv gcc perl make ffmpeg openssl
+      run: git clone https://github.com/Woolverine94/biniou.git
+      run: cd ./biniou && ./install.sh
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Linux updater test
+      run: cd ~/biniou && ./update.sh
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Linux CUDA updater test
+      run: cd ~/biniou && ./update_cuda.sh
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Linux ROCm updater test
+      run: cd ~/biniou && ./update_rocm.sh
+

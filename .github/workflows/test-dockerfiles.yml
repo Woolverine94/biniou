@@ -1,0 +1,36 @@
+name: Test of Docker
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - ./Dockerfile
+      - ./install.sh
+      - ./requirements.txt
+      - ./update.sh
+      - ./update_cuda.sh
+      - CUDA/Dockerfile
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - ./Dockerfile
+      - ./install.sh
+      - ./requirements.txt
+      - ./update.sh
+      - ./update_cuda.sh
+      - CUDA/Dockerfile
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag biniou:$(date +%s)
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the CUDA Docker image
+      run: docker build . --file CUDA/Dockerfile --tag biniou-cuda:$(date +%s)
