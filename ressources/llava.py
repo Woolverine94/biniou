@@ -15,6 +15,7 @@ device_llava = torch.device(device_label_llava)
 
 # Gestion des modèles
 model_path_llava = "./models/llava/"
+# model_path_llamacpp = "./models/llamacpp/"
 os.makedirs(model_path_llava, exist_ok=True)
 
 
@@ -28,12 +29,14 @@ model_list_llava = {}
 
 model_list_llava_builtin = {
     "xtuner/llava-llama-3-8b-v1_1-gguf":("llava-llama-3-8b-v1_1-int4.gguf", "llava-llama-3-8b-v1_1-mmproj-f16.gguf", "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
+    "light3611/llava-v1.6-finetuned-quantized-gguf":("Merged_Model-7.6B-Q4_K_M.gguf", "mmproj-model-f16.gguf", "{prompt}",""),
     "xtuner/llava-phi-3-mini-gguf":("llava-phi-3-mini-int4.gguf", "llava-phi-3-mini-mmproj-f16.gguf", "{prompt}",""),
     "mys/ggml_bakllava-1":("ggml-model-q5_k.gguf", "mmproj-model-f16.gguf", "{prompt}", ""),
     "cmp-nct/llava-1.6-gguf":("ggml-mistral-7b-q_5_k.gguf", "mmproj-mistral7b-f16.gguf", "{prompt}", ""),
     "mys/ggml_llava-v1.5-7b":("ggml-model-q5_k.gguf", "mmproj-model-f16.gguf", "{prompt}", ""),
     "mys/ggml_llava-v1.5-13b":("ggml-model-q5_k.gguf", "mmproj-model-f16.gguf", "{prompt}", ""),
     "bee-kake/nanollava-1.5-gguf":("nanollava-text-model-f16.gguf", "nanollava-mmproj-f16.gguf", "{prompt}", ""),
+#    "vinimuchulski/gemma-3-12b-it-qat-q4_0-gguf":("gemma-3-12b-it-q4_0.gguf", "mmproj-model-f16-12B.gguf", "<bos><start_of_turn>user\n{system}\n\n{prompt}<end_of_turn>\n<start_of_turn>model", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
 }
 
 model_list_llava.update(model_list_llava_builtin)
@@ -45,6 +48,7 @@ def download_model(modelid_llava):
             filename=model_list_llava[modelid_llava][0],
             repo_type="model",
             cache_dir=model_path_llava,
+#            cache_dir=model_path_llava if (modelid_llava != "vinimuchulski/gemma-3-12b-it-qat-q4_0-gguf") else model_path_llamacpp,
             resume_download=True,
             local_files_only=True if offline_test() else None
         )
