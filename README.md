@@ -22,6 +22,13 @@
 
 ## Updates
 
+  * 🆕 **2025-04-26** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot specialized model [bartowski/dreamgen_lucid-v1-nemo-GGUF](https://hf.co/bartowski/dreamgen_lucid-v1-nemo-GGUF) and long context chatbot model [bartowski/nvidia_Llama-3.1-8B-UltraLong-4M-Instruct-GGUF](https://hf.co/bartowski/nvidia_Llama-3.1-8B-UltraLong-4M-Instruct-GGUF).
+    - Add support for Llava model [light3611/llava-v1.6-finetuned-quantized-gguf](https://hf.co/light3611/llava-v1.6-finetuned-quantized-gguf).
+    - Update of ControlNet model FLUX.1-dev-ControlNet-Union-Pro to [Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro-2.0](https://hf.co/Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro-2.0).
+    - Add support for Flux LoRA models [ms2stationthis/dutchbaroqueflux](https://hf.co/ms2stationthis/dutchbaroqueflux) and [Borcherding/LogoIconEmojiMOE-v0.2-FLUX.1-dev-LoRA](https://hf.co/Borcherding/LogoIconEmojiMOE-v0.2-FLUX.1-dev-LoRA).
+    - Bugfix and updates for workflows.
+
   * 🆕 **2025-04-19** : 🔥 ***Weekly update*** 🔥 >
     - Add automatic packages generation through github actions : you can now directly pull weekly updated docker images of biniou from ghcr.io !
     - Add support for Chatbot math model [bartowski/Skywork_Skywork-OR1-Math-7B-GGUF](https://hf.co/bartowski/Skywork_Skywork-OR1-Math-7B-GGUF).
@@ -54,12 +61,6 @@
     - Add support for SDXL LoRA models [AiWise/sdxl-faetastic-details_v24](https://hf.co/AiWise/sdxl-faetastic-details_v24) and [pookienumnums/DpictClassicalIllustration](https://hf.co/pookienumnums/DpictClassicalIllustration).
     - Add support for Flux LoRA models [fffiloni/wooly-play-doh](https://hf.co/fffiloni/wooly-play-doh) and [FounderFeed/3dAnime-Style-flux-dev-lora](https://hf.co/FounderFeed/3dAnime-Style-flux-dev-lora).
      - Various Bugfixes.
-
-  * 🆕 **2025-03-22** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot model [tensorblock/Llama-3.1-Nemotron-Nano-8B-v1-GGUF](https://hf.co/tensorblock/Llama-3.1-Nemotron-Nano-8B-v1-GGUF), specialized model [bartowski/open-r1_OlympicCoder-7B-GGUF](https://hf.co/bartowski/open-r1_OlympicCoder-7B-GGUF) and update of high-end model [bartowski/mistralai_Mistral-Small-3.1-24B-Instruct-2503-GGUF](https://hf.co/bartowski/mistralai_Mistral-Small-3.1-24B-Instruct-2503-GGUF).
-    - Add support for SDXL LoRA models [inventwithdean/vangogh-SDXL-LoRA](https://hf.co/inventwithdean/vangogh-SDXL-LoRA) and [ivolegrey/Sci-fi_Sketch_Style_SDXL](https://hf.co/ivolegrey/Sci-fi_Sketch_Style_SDXL).
-    - Add support for Flux LoRA models [martintomov/retrofuturism-flux-v2](https://hf.co/martintomov/retrofuturism-flux-v2) and [elikoy/storyboard](https://hf.co/elikoy/storyboard).
-     - Bugfix for Windows install script and enhancement for Linux one.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
