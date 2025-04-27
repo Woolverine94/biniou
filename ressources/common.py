@@ -2292,6 +2292,7 @@ def lora_model_list(model, *args):
             "strangerzonehf/Flux-Master-Claymation":("Master-Claymation.safetensors", "Master Claymation"),
             "SebastianBodza/flux_lora_retro_linedrawing_style_v1":("lora.safetensors", "Retro TOK illustration style of"),
             "Borcherding/LogoIconEmojiMOE-v0.2-FLUX.1-dev-LoRA":("logoiconemojimoe-v0-2-flux-1-dev-lora.safetensors", "LogoIconEmojiMOE"),
+            "strangerzonehf/NFT-Plus-InsideOut-Perspective":("NFT-Plus-InsideOut-Perspective.safetensors", "NFT ++, a glass milk carton with inside a "),
             "-[ 🏆 🐢 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
@@ -2322,6 +2323,7 @@ def lora_model_list(model, *args):
             "aleksa-codes/flux-ghibsky-illustration":("lora_v2.safetensors", "GHIBSKY style painting"),
             "InstantX/FLUX.1-dev-LoRA-Makoto-Shinkai":("Makoto_Shinkai_style.safetensors", "Makoto Shinkai style"),
             "AIWarper/RubberCore1920sCartoonStyle":("RU883R_AIWARPER_v1.0.safetensors", "RU883R"),
+            "AIGCDuckBoss/fluxLora_handDrawAnime":("fluxLora_handdrawAnime.safetensors", "A simple color hand-drawn anime style illustration"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
