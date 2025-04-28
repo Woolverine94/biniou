@@ -2236,6 +2236,8 @@ def lora_model_list(model, *args):
             "AlekseyCalvin/HSTcolorFlexAlpha":("HSToricColorFlex_6000steps_LoRAforFluxOrFlex_32dim64alpha.safetensors", "HST style autochrome photograph"),
             "fofr/flux-mona-lisa":("lora.safetensors", "MNALSA"),
             "ms2stationthis/dutchbaroqueflux":("dutchbaroqueflux.safetensors", "dutchbaroque"),
+            "Anashel/rpg":("RPGv6-beta3.safetensors", "RPG Style"),
+            "strangerzonehf/Flux-Cute-3D-Kawaii-LoRA":("Cute-3d-Kawaii.safetensors", "Cute 3d Kawaii"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
