@@ -92,6 +92,7 @@ model_list_txt2vid_ze = [
     "stablediffusionapi/protovision-xl-high-fidel",
     "comin/IterComp",
     "Spestly/OdysseyXL-1.0",
+    "eramth/realism-sdxl",
     "segmind/SSD-1B",
     "segmind/Segmind-Vega",
     "playgroundai/playground-v2-512px-base",

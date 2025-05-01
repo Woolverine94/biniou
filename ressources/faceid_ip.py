@@ -116,6 +116,7 @@ model_list_faceid_ip_builtin = [
     "stablediffusionapi/protovision-xl-high-fidel",
     "comin/IterComp",
     "Spestly/OdysseyXL-1.0",
+    "eramth/realism-sdxl",
     "playgroundai/playground-v2-512px-base",
     "playgroundai/playground-v2-1024px-aesthetic",
     "playgroundai/playground-v2.5-1024px-aesthetic",
