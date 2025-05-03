@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2025-05-03** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end models [bartowski/soob3123_Veritas-12B-GGUF](https://hf.co/bartowski/soob3123_Veritas-12B-GGUF), [bartowski/microsoft_Phi-4-reasoning-plus-GGUF](https://hf.co/bartowski/microsoft_Phi-4-reasoning-plus-GGUF) and maths specialized model[bartowski/nvidia_OpenMath-Nemotron-14B-Kaggle-GGUF](https://hf.co/bartowski/nvidia_OpenMath-Nemotron-14B-Kaggle-GGUF).
+    - Add support for SDXL model [eramth/realism-sdxl](https://hf.co/eramth/realism-sdxl) to all Stable Diffusion-based modules.
+    - Add support for SDXL LoRA models [Fictiverse/Voxel_XL_Lora](https://hf.co/Fictiverse/Voxel_XL_Lora) and [alvdansen/phantasma-anime](https://hf.co/alvdansen/phantasma-anime).
+    - Add support for Flux LoRA models [strangerzonehf/NFT-Plus-InsideOut-Perspective](https://hf.co/strangerzonehf/NFT-Plus-InsideOut-Perspective), [AIGCDuckBoss/fluxLora_handDrawAnime](https://hf.co/AIGCDuckBoss/fluxLora_handDrawAnime),  [Anashel/rpg](https://hf.co/Anashel/rpg), [strangerzonehf/Flux-Cute-3D-Kawaii-LoRA](https://hf.co/strangerzonehf/Flux-Cute-3D-Kawaii-LoRA), [Hectore/80s_commercial_scan](https://hf.co/Hectore/80s_commercial_scan) and [h0x91b/clay-vorona](https://hf.co/h0x91b/clay-vorona).
+
   * 🆕 **2025-04-26** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot specialized model [bartowski/dreamgen_lucid-v1-nemo-GGUF](https://hf.co/bartowski/dreamgen_lucid-v1-nemo-GGUF) and long context chatbot model [bartowski/nvidia_Llama-3.1-8B-UltraLong-4M-Instruct-GGUF](https://hf.co/bartowski/nvidia_Llama-3.1-8B-UltraLong-4M-Instruct-GGUF).
     - Add support for Llava model [light3611/llava-v1.6-finetuned-quantized-gguf](https://hf.co/light3611/llava-v1.6-finetuned-quantized-gguf).
@@ -53,14 +59,6 @@
     - Ghibli, Ghibli and more Ghibli ! Add support for Flux LoRA models [InstantX/FLUX.1-dev-LoRA-Ghibli](https://hf.co/InstantX/FLUX.1-dev-LoRA-Ghibli), [strangerzonehf/Ghibli-Flux-Cartoon-LoRA](https://hf.co/strangerzonehf/Ghibli-Flux-Cartoon-LoRA) and [openfree/flux-chatgpt-ghibli-lora](https://hf.co/openfree/flux-chatgpt-ghibli-lora).
     - Also add support for Flux LoRA models [strangerzonehf/Realism-H6-Flux](https://hf.co/strangerzonehf/Realism-H6-Flux), [fffiloni/greyscale-tiny-town](https://hf.co/fffiloni/greyscale-tiny-town), [fffiloni/cute-comic-800](https://hf.co/fffiloni/cute-comic-800), [Jovie/Midjourney_Schnell](https://hf.co/Jovie/Midjourney_Schnell) and [iliketoasters/miniature-people](https://hf.co/iliketoasters/miniature-people). 
     - Update of default Debian base image for Dockerfile and CUDA Dockerfile, from debian:latest to debian:bookworm-slim.
-
-  * 🆕 **2025-03-29** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end models [bartowski/nvidia_Llama-3_3-Nemotron-Super-49B-v1-GGUF](https://hf.co/bartowski/nvidia_Llama-3_3-Nemotron-Super-49B-v1-GGUF), [mlabonne/gemma-3-27b-it-abliterated-GGUF](https://hf.co/mlabonne/gemma-3-27b-it-abliterated-GGUF), [bartowski/RekaAI_reka-flash-3-GGUF](https://hf.co/bartowski/RekaAI_reka-flash-3-GGUF) and update of french model Lucie to [OpenLLM-France/Lucie-7B-Instruct-v1.1-gguf](https://hf.co/OpenLLM-France/Lucie-7B-Instruct-v1.1-gguf).
-    - Add support for Flux Schnell model [AlekseyCalvin/PixelWave_Schnell_03_by_humblemikey_Diffusers_fp8_T4bf1](https://hf.co/AlekseyCalvin/PixelWave_Schnell_03_by_humblemikey_Diffusers_fp8_T4bf1).
-    - Add support for MusicGen Melody model [facebook/musicgen-style](https://hf.co/facebook/musicgen-style).
-    - Add support for SDXL LoRA models [AiWise/sdxl-faetastic-details_v24](https://hf.co/AiWise/sdxl-faetastic-details_v24) and [pookienumnums/DpictClassicalIllustration](https://hf.co/pookienumnums/DpictClassicalIllustration).
-    - Add support for Flux LoRA models [fffiloni/wooly-play-doh](https://hf.co/fffiloni/wooly-play-doh) and [FounderFeed/3dAnime-Style-flux-dev-lora](https://hf.co/FounderFeed/3dAnime-Style-flux-dev-lora).
-     - Various Bugfixes.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
