@@ -1957,7 +1957,7 @@ def model_cleaner_sd(model):
 def model_cleaner_llamacpp(model):
     model_replacement = {
         "-[ 👌 Standard ]-": "bartowski/Meta-Llama-3.1-8B-Instruct-GGUF",
-        "-[ 👍 🚀 Tiny ]-":	"bartowski/Phi-3.1-mini-4k-instruct-GGUF",
+        "-[ 👍 🚀 Tiny ]-":	"bartowski/microsoft_Phi-4-mini-instruct-GGUF",
         "-[ 👏 🐢 High-end ]-":	"bartowski/Mistral-Nemo-Instruct-2407-GGUF",
         "-[ 🧑‍💻 Code ]-": "bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF",
         "-[ 🧑‍⚕️ Specialized ]-": "AdityaXPV/Llama-3-8b-Instruct-law-sage-v0.1-GGUF",
@@ -2345,11 +2345,13 @@ def lora_model_list(model, *args):
         model_list_lora_builtin = {
             "-[ 👏 🎚️ Sliders SD15 ]-":("color_temperature_slider_v1.safetensors", ""),
             "ostris/color-temperature-slider-lora":("color_temperature_slider_v1.safetensors", ""),
+            "leonel4rd/Hyperdetailer":("hyperdetailer_v095.safetensors", ""),
             "-[ 👍 SD15 LoRA ]-":("mj6-10.safetensors", ""),
             "Kvikontent/midjourney-v6":("mj6-10.safetensors", ""),
             "artificialguybr/icons-redmond-1-5v-app-icons-lora-for-sd-liberteredmond-sd-1-5":("IconsRedmond15V-Icons.safetensors", "icons, ios icon app, icons app"),
             "Norod78/SD15-IllusionDiffusionPattern-LoRA":("SD15-IllusionDiffusionPattern-LoRA.safetensors","IllusionDiffusionPattern"),
             "mnemic/MinionStyle-SD1.5-LoRA":("MinionStyle.safetensors", "MinionStyle"),
+            "Ivan5d/lora_deep_sea":("UNDERWATER_SCENE_v2.safetensors", "UNDERWATER_SCENE, aqua"),
             "-[ 🏠 Local models ]-":("", ""),
         }
 
