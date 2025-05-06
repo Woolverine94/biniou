@@ -111,6 +111,7 @@ model_list_controlnet_builtin = [
     "Shakker-Labs/AWPortrait-FL",
     "AlekseyCalvin/PixelWave_Schnell_03_by_humblemikey_Diffusers_fp8_T4bf16",
     "AlekseyCalvin/PixelwaveFluxSchnell_Diffusers",
+    "mikeyandfriends/PixelWave_FLUX.1-schnell_04",
     "-[ 🏠 Local models ]-",
 ]
 
