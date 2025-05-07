@@ -2300,6 +2300,8 @@ def lora_model_list(model, *args):
             "Borcherding/LogoIconEmojiMOE-v0.2-FLUX.1-dev-LoRA":("logoiconemojimoe-v0-2-flux-1-dev-lora.safetensors", "LogoIconEmojiMOE"),
             "strangerzonehf/NFT-Plus-InsideOut-Perspective":("NFT-Plus-InsideOut-Perspective.safetensors", "NFT ++, a glass milk carton with inside a "),
             "h0x91b/clay-vorona":("Clay-Vorona-Flux-Lora-V1-Strong.safetensors", "a clay painting of"),
+            "rajkumaralma/Toy_Store":("Starter Pack V2.1.safetensors", "starter pack with toy figure"),
+            "glif-loradex-trainer/Hailey_ConcertPoster":("ConcertPoster.safetensors", "Concert Poster"),
             "-[ 🏆 🐢 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
