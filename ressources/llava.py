@@ -36,6 +36,7 @@ model_list_llava_builtin = {
     "mys/ggml_llava-v1.5-7b":("ggml-model-q5_k.gguf", "mmproj-model-f16.gguf", "{prompt}", ""),
     "mys/ggml_llava-v1.5-13b":("ggml-model-q5_k.gguf", "mmproj-model-f16.gguf", "{prompt}", ""),
     "bee-kake/nanollava-1.5-gguf":("nanollava-text-model-f16.gguf", "nanollava-mmproj-f16.gguf", "{prompt}", ""),
+    "moondream/moondream2-gguf":("moondream2-text-model-f16.gguf", "moondream2-mmproj-f16.gguf", "{prompt}", ""),
 #    "vinimuchulski/gemma-3-12b-it-qat-q4_0-gguf":("gemma-3-12b-it-q4_0.gguf", "mmproj-model-f16-12B.gguf", "<bos><start_of_turn>user\n{system}\n\n{prompt}<end_of_turn>\n<start_of_turn>model", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
 }
 
@@ -109,7 +110,18 @@ def text_llava(
     else :
         prompt_final_llava = prompt_full_llava
 
-    chat_handler_llava = Llava15ChatHandler(clip_model_path=modelid_mmproj_llava)
+    if (modelid_llava == "moondream/moondream2-gguf"):
+        chat_handler_llava = MoondreamChatHandler(clip_model_path=modelid_mmproj_llava)
+    elif (modelid_llava == "bee-kake/nanollava-1.5-gguf"):
+        chat_handler_llava = NanollavaChatHandler(clip_model_path=modelid_mmproj_llava)
+#    elif (modelid_llava == ""):
+#        chat_handler_llava = Llama3VisionAlphaChatHandler(clip_model_path=modelid_mmproj_llava)
+#    elif (modelid_llava == ""):
+#        chat_handler_llava = MiniCPMv26ChatHandler(clip_model_path=modelid_mmproj_llava)
+    elif ((modelid_llava =="light3611/llava-v1.6-finetuned-quantized-gguf") or (modelid_llava =="cmp-nct/llava-1.6-gguf")):
+        chat_handler_llava = Llava16ChatHandler(clip_model_path=modelid_mmproj_llava)
+    else:
+        chat_handler_llava = Llava15ChatHandler(clip_model_path=modelid_mmproj_llava)
 
     if (biniouUIControl.detect_llama_backend() == "cuda"):
         llm = Llama(model_path=modelid_llava, seed=seed_llava, n_gpu_layers=-1, n_threads=multiprocessing.cpu_count(), n_threads_batch=multiprocessing.cpu_count(), n_ctx=n_ctx_llava, chat_handler=chat_handler_llava, logits_all=True)
