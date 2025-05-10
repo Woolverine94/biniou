@@ -22,6 +22,15 @@
 
 ## Updates
 
+  * 🆕 **2025-05-10** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for high-end (specialized in French language) Chatbot model [jpacifico/Chocolatine-2-14B-Instruct-v2.0.3-Q4_K_M-GGUF](https://hf.co/jpacifico/Chocolatine-2-14B-Instruct-v2.0.3-Q4_K_M-GGUF).
+    - Introducing support for Qwen3 models with [bartowski/mlabonne_Qwen3-8B-abliterated-GGUF](https://hf.co/bartowski/mlabonne_Qwen3-8B-abliterated-GGUF). You can easily enable/disable thinking on Qwen3 family models by using the switches `/think` and `/no_think` at the end of your prompts.
+    - Add support for Llava model [moondream/moondream2-gguf](https://hf.co/moondream/moondream2-gguf). Also adding code enhancement to Llava module.
+    - Add support for Flux Schnell model [mikeyandfriends/PixelWave_FLUX.1-schnell_04](https://hf.co/mikeyandfriends/PixelWave_FLUX.1-schnell_04).
+    - Add support for SD 1.5 LoRA models [leonel4rd/Hyperdetailer](https://hf.co/leonel4rd/Hyperdetailer) and [Ivan5d/lora_deep_sea](https://hf.co/Ivan5d/lora_deep_sea).
+    - Add support for Flux LoRA models [dvyio/flux-lora-medieval-illustration](https://hf.co/dvyio/flux-lora-medieval-illustration), [prithivMLmods/CAnime-LoRA](https://hf.co/prithivMLmods/CAnime-LoRA), [glif-loradex-trainer/Hailey_ConcertPoster](https://hf.co/glif-loradex-trainer/Hailey_ConcertPoster) and [rajkumaralma/Toy_Store](https://hf.co/rajkumaralma/Toy_Store). Using the latest, you can easily create "Starter Pack" contents !
+    - Code cleaning and re-ordering of models list in Chatbot module.
+
   * 🆕 **2025-05-03** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end models [bartowski/soob3123_Veritas-12B-GGUF](https://hf.co/bartowski/soob3123_Veritas-12B-GGUF), [bartowski/microsoft_Phi-4-reasoning-plus-GGUF](https://hf.co/bartowski/microsoft_Phi-4-reasoning-plus-GGUF) and maths specialized model[bartowski/nvidia_OpenMath-Nemotron-14B-Kaggle-GGUF](https://hf.co/bartowski/nvidia_OpenMath-Nemotron-14B-Kaggle-GGUF).
     - Add support for SDXL model [eramth/realism-sdxl](https://hf.co/eramth/realism-sdxl) to all Stable Diffusion-based modules.
@@ -52,13 +61,6 @@
     - Add support for Flux LoRA models [aleksa-codes/flux-ghibsky-illustration](https://hf.co/aleksa-codes/flux-ghibsky-illustration), [InstantX/FLUX.1-dev-LoRA-Makoto-Shinkai](https://hf.co/InstantX/FLUX.1-dev-LoRA-Makoto-Shinkai), [AlekseyCalvin/Deni_Style_Soviet_Agitprop_FluxLoRA_BySilverAgePoets](https://hf.co/AlekseyCalvin/Deni_Style_Soviet_Agitprop_FluxLoRA_BySilverAgePoets) and [elikoy/actionherofigurator](https://hf.co/elikoy/actionherofigurator).
     - Add support for SDXL LoRA models [artificialguybr/StudioGhibliRedmond](https://hf.co/artificialguybr/StudioGhibliRedmond) and [artificialguybr/StudioGhibli.Redmond-V2](https://hf.co/artificialguybr/StudioGhibli.Redmond-V2). 
     - Add preliminary support for AYS (Align Your Steps) with Flux.
-
-  * 🆕 **2025-04-05** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot Code model [bartowski/Tesslate_Tessa-T1-7B-GGUF](https://hf.co/bartowski/Tesslate_Tessa-T1-7B-GGUF) and high-end model [ginigen/Private-BitSix-Mistral-Small-3.1-24B-Instruct-2503](https://hf.co/ginigen/Private-BitSix-Mistral-Small-3.1-24B-Instruct-2503).
-    - Add support for Flux Schnell model [AlekseyCalvin/PixelwaveFluxSchnell_Diffusers](https://hf.co/AlekseyCalvin/PixelwaveFluxSchnell_Diffusers).
-    - Ghibli, Ghibli and more Ghibli ! Add support for Flux LoRA models [InstantX/FLUX.1-dev-LoRA-Ghibli](https://hf.co/InstantX/FLUX.1-dev-LoRA-Ghibli), [strangerzonehf/Ghibli-Flux-Cartoon-LoRA](https://hf.co/strangerzonehf/Ghibli-Flux-Cartoon-LoRA) and [openfree/flux-chatgpt-ghibli-lora](https://hf.co/openfree/flux-chatgpt-ghibli-lora).
-    - Also add support for Flux LoRA models [strangerzonehf/Realism-H6-Flux](https://hf.co/strangerzonehf/Realism-H6-Flux), [fffiloni/greyscale-tiny-town](https://hf.co/fffiloni/greyscale-tiny-town), [fffiloni/cute-comic-800](https://hf.co/fffiloni/cute-comic-800), [Jovie/Midjourney_Schnell](https://hf.co/Jovie/Midjourney_Schnell) and [iliketoasters/miniature-people](https://hf.co/iliketoasters/miniature-people). 
-    - Update of default Debian base image for Dockerfile and CUDA Dockerfile, from debian:latest to debian:bookworm-slim.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
