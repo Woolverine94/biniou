@@ -2243,6 +2243,7 @@ def lora_model_list(model, *args):
             "strangerzonehf/Flux-Cute-3D-Kawaii-LoRA":("Cute-3d-Kawaii.safetensors", "Cute 3d Kawaii"),
             "Hectore/80s_commercial_scan":("80s_commercial_scan_2.safetensors", "80s commercial"),
             "dvyio/flux-lora-medieval-illustration":("a2d763462b754c4c82cc1632f217aac4_pytorch_lora_weights.safetensors", "illustration in the style of MDVL"),
+            "Jonjew/ArtNouveauFashionIllustration":("Art_Nouveau_Fashion_illustration.safetensors", "Art Nouveau Fashion illustration"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
@@ -2335,6 +2336,7 @@ def lora_model_list(model, *args):
             "AIWarper/RubberCore1920sCartoonStyle":("RU883R_AIWARPER_v1.0.safetensors", "RU883R"),
             "AIGCDuckBoss/fluxLora_handDrawAnime":("fluxLora_handdrawAnime.safetensors", "A simple color hand-drawn anime style illustration"),
             "prithivMLmods/CAnime-LoRA":("CAnime.safetensors", "CAnime"),
+            "peter198477/DarkAnimeComics3D":("lora.TA_trained.safetensors", "Anime style"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
