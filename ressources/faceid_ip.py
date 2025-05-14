@@ -98,6 +98,7 @@ model_list_faceid_ip_builtin = [
     "fluently/Fluently-anime",
     "xyn-ai/anything-v4.0",
     "nitrosocke/Ghibli-Diffusion",
+    "digiplay/STRANGER-ANIME",
     "-[ 👌 🐢 SDXL ]-",
     "fluently/Fluently-XL-Final",
     "SG161222/RealVisXL_V5.0",
