@@ -22,6 +22,13 @@
 
 ## Updates
 
+  * 🆕 **2025-05-17** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for high-end Chatbot models [bartowski/Qwen_Qwen3-30B-A3B-GGUF](https://hf.co/bartowski/Qwen_Qwen3-30B-A3B-GGUF), [bartowski/Qwen_Qwen3-14B-GGUF](https://hf.co/bartowski/Qwen_Qwen3-14B-GGUF), [bartowski/ServiceNow-AI_Apriel-Nemotron-15b-Thinker-GGUF](https://hf.co/bartowski/ServiceNow-AI_Apriel-Nemotron-15b-Thinker-GGUF) and tiny model [bartowski/Qwen_Qwen3-4B-GGUF](https://hf.co/bartowski/Qwen_Qwen3-4B-GGUF).
+    - Add support for Llava model [bartowski/MiniCPM-V-2_6-GGUF](https://hf.co/bartowski/MiniCPM-V-2_6-GGUF).
+    - Add support for SD 1.5 model [digiplay/STRANGER-ANIME](https://hf.co/digiplay/STRANGER-ANIME).
+    - Add support for Flux LoRA models [Jonjew/ArtNouveauFashionIllustration](https://hf.co/Jonjew/ArtNouveauFashionIllustration) and [peter198477/DarkAnimeComics3D](https://hf.co/peter198477/DarkAnimeComics3D).
+    - Bugfix for interactions between modules Faceswap, Real ESRGAN and GFPGAN.
+
   * 🆕 **2025-05-10** : 🔥 ***Weekly update*** 🔥 >
     - Add support for high-end (specialized in French language) Chatbot model [jpacifico/Chocolatine-2-14B-Instruct-v2.0.3-Q4_K_M-GGUF](https://hf.co/jpacifico/Chocolatine-2-14B-Instruct-v2.0.3-Q4_K_M-GGUF).
     - Introducing support for Qwen3 models with [bartowski/mlabonne_Qwen3-8B-abliterated-GGUF](https://hf.co/bartowski/mlabonne_Qwen3-8B-abliterated-GGUF). You can easily enable/disable thinking on Qwen3 family models by using the switches `/think` and `/no_think` at the end of your prompts.
@@ -52,15 +59,6 @@
     - Update of inpaint SD 1.5 model to [stable-diffusion-v1-5/stable-diffusion-inpainting](https://hf.co/stable-diffusion-v1-5/stable-diffusion-inpainting) for inpaint and outpaint modules.
     - Bugfix for SD 1.5 outputs default dimensions in Stable Diffusion module
     - Bugfix in design of IP-Adapter module for Flux inferences.
-    - 
-
-  * 🆕 **2025-04-12** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot code model [bartowski/agentica-org_DeepCoder-14B-Preview-GGUF](https://hf.co/bartowski/agentica-org_DeepCoder-14B-Preview-GGUF).
-    - Replace Chatbot models Gemma 3 27B and 12B with their QAT (Quantization Aware Training) counterparts [vinimuchulski/gemma-3-27b-it-qat-q4_0-gguf](https://hf.co/vinimuchulski/gemma-3-27b-it-qat-q4_0-gguf) and [vinimuchulski/gemma-3-12b-it-qat-q4_0-gguf](https://hf.co/vinimuchulski/gemma-3-12b-it-qat-q4_0-gguf). This special training greatly enhances the results provided by these models. Also add support for [vinimuchulski/gemma-3-4b-it-qat-q4_0-gguf](https://hf.co/vinimuchulski/gemma-3-4b-it-qat-q4_0-gguf). 
-    - Add support for Flux fast LoRA model [ostris/fluxdev2schnell-lora](https://hf.co/ostris/fluxdev2schnell-lora).
-    - Add support for Flux LoRA models [aleksa-codes/flux-ghibsky-illustration](https://hf.co/aleksa-codes/flux-ghibsky-illustration), [InstantX/FLUX.1-dev-LoRA-Makoto-Shinkai](https://hf.co/InstantX/FLUX.1-dev-LoRA-Makoto-Shinkai), [AlekseyCalvin/Deni_Style_Soviet_Agitprop_FluxLoRA_BySilverAgePoets](https://hf.co/AlekseyCalvin/Deni_Style_Soviet_Agitprop_FluxLoRA_BySilverAgePoets) and [elikoy/actionherofigurator](https://hf.co/elikoy/actionherofigurator).
-    - Add support for SDXL LoRA models [artificialguybr/StudioGhibliRedmond](https://hf.co/artificialguybr/StudioGhibliRedmond) and [artificialguybr/StudioGhibli.Redmond-V2](https://hf.co/artificialguybr/StudioGhibli.Redmond-V2). 
-    - Add preliminary support for AYS (Align Your Steps) with Flux.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
