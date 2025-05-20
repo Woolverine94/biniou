@@ -2245,6 +2245,7 @@ def lora_model_list(model, *args):
             "dvyio/flux-lora-medieval-illustration":("a2d763462b754c4c82cc1632f217aac4_pytorch_lora_weights.safetensors", "illustration in the style of MDVL"),
             "Jonjew/ArtNouveauFashionIllustration":("Art_Nouveau_Fashion_illustration.safetensors", "Art Nouveau Fashion illustration"),
             "GeorgyGUF/flux-lettering":("letters-000001.safetensors", "Lettering"),
+            "glif-loradex-trainer/i12bp8_appelsiensam_light_art_v1":("appelsiensam_light_art_v1.safetensors", "LGHTRT_PPLSNSM"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
@@ -2339,6 +2340,7 @@ def lora_model_list(model, *args):
             "AIGCDuckBoss/fluxLora_handDrawAnime":("fluxLora_handdrawAnime.safetensors", "A simple color hand-drawn anime style illustration"),
             "prithivMLmods/CAnime-LoRA":("CAnime.safetensors", "CAnime"),
             "peter198477/DarkAnimeComics3D":("lora.TA_trained.safetensors", "Anime style"),
+            "glif-loradex-trainer/001_Detailed_Manga_Style-v2_1":("Detailed_Manga_Style-v2_1.safetensors", "Hyper-detailed dark X.M4ng4.S7y13"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
