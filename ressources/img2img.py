@@ -127,6 +127,7 @@ model_list_img2img_builtin = [
     "AlekseyCalvin/PixelWave_Schnell_03_by_humblemikey_Diffusers_fp8_T4bf16",
     "AlekseyCalvin/PixelwaveFluxSchnell_Diffusers",
     "mikeyandfriends/PixelWave_FLUX.1-schnell_04",
+    "minpeter/FLUX-Hyperscale-fused-fast",
     "-[ 🏠 Local models ]-",
 ]
 
