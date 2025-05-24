@@ -22,6 +22,11 @@
 
 ## Updates
 
+  * 🆕 **2025-05-24** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot models [bartowski/THUDM_GLM-Z1-9B-0414-GGUF](https://hf.co/bartowski/THUDM_GLM-Z1-9B-0414-GGUF), [bartowski/facebook_KernelLLM-GGUF](https://hf.co/bartowski/facebook_KernelLLM-GGUF) and update of specialized model [bartowski/WhiteRabbitNeo_WhiteRabbitNeo-V3-7B-GGUF](https://hf.co/bartowski/WhiteRabbitNeo_WhiteRabbitNeo-V3-7B-GGUF).
+    - Add support for Flux model [minpeter/FLUX-Hyperscale-fused-fast](https://hf.co/minpeter/FLUX-Hyperscale-fused-fast).
+    - Add support for Flux LoRA models [GeorgyGUF/flux-lettering](https://hf.co/GeorgyGUF/flux-lettering), [multimodalart/isometric-skeumorphic-3d-bnb](https://hf.co/multimodalart/isometric-skeumorphic-3d-bnb), [glif-loradex-trainer/i12bp8_appelsiensam_light_art_v1](https://hf.co/glif-loradex-trainer/i12bp8_appelsiensam_light_art_v1), [glif-loradex-trainer/001_Detailed_Manga_Style-v2_1](https://hf.co/glif-loradex-trainer/001_Detailed_Manga_Style-v2_1),[diabolic6045/Flux_Wallpaper_Lora](https://hf.co/diabolic6045/Flux_Wallpaper_Lora) and [strangerzonehf/Flux-Nft-Exp](https://hf.co/strangerzonehf/Flux-Nft-Exp).
+
   * 🆕 **2025-05-17** : 🔥 ***Weekly update*** 🔥 >
     - Add support for high-end Chatbot models [bartowski/Qwen_Qwen3-30B-A3B-GGUF](https://hf.co/bartowski/Qwen_Qwen3-30B-A3B-GGUF), [bartowski/Qwen_Qwen3-14B-GGUF](https://hf.co/bartowski/Qwen_Qwen3-14B-GGUF), [bartowski/ServiceNow-AI_Apriel-Nemotron-15b-Thinker-GGUF](https://hf.co/bartowski/ServiceNow-AI_Apriel-Nemotron-15b-Thinker-GGUF) and tiny model [bartowski/Qwen_Qwen3-4B-GGUF](https://hf.co/bartowski/Qwen_Qwen3-4B-GGUF).
     - Add support for Llava model [bartowski/MiniCPM-V-2_6-GGUF](https://hf.co/bartowski/MiniCPM-V-2_6-GGUF).
@@ -50,15 +55,6 @@
     - Update of ControlNet model FLUX.1-dev-ControlNet-Union-Pro to [Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro-2.0](https://hf.co/Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro-2.0).
     - Add support for Flux LoRA models [ms2stationthis/dutchbaroqueflux](https://hf.co/ms2stationthis/dutchbaroqueflux) and [Borcherding/LogoIconEmojiMOE-v0.2-FLUX.1-dev-LoRA](https://hf.co/Borcherding/LogoIconEmojiMOE-v0.2-FLUX.1-dev-LoRA).
     - Bugfix and updates for workflows.
-
-  * 🆕 **2025-04-19** : 🔥 ***Weekly update*** 🔥 >
-    - Add automatic packages generation through github actions : you can now directly pull weekly updated docker images of biniou from ghcr.io !
-    - Add support for Chatbot math model [bartowski/Skywork_Skywork-OR1-Math-7B-GGUF](https://hf.co/bartowski/Skywork_Skywork-OR1-Math-7B-GGUF).
-    - Update of Granite Chatbot model to [ibm-granite/granite-3.3-8b-instruct-GGUF](https://hf.co/ibm-granite/granite-3.3-8b-instruct-GGUF). 
-    - Add support for Flux LoRA models [AlekseyCalvin/HSTcolorFlexAlpha](https://hf.co/AlekseyCalvin/HSTcolorFlexAlpha), [AlekseyCalvin/Propaganda_Poster_Schnell_by_doctor_diffusion](https://hf.co/AlekseyCalvin/Propaganda_Poster_Schnell_by_doctor_diffusion), [strangerzonehf/Flux-Master-Claymation](https://hf.co/strangerzonehf/Flux-Master-Claymation), [AIWarper/RubberCore1920sCartoonStyle](https://hf.co/AIWarper/RubberCore1920sCartoonStyle), [fofr/flux-mona-lisa](https://hf.co/fofr/flux-mona-lisa) and [SebastianBodza/flux_lora_retro_linedrawing_style_v1](https://hf.co/SebastianBodza/flux_lora_retro_linedrawing_style_v1).
-    - Update of inpaint SD 1.5 model to [stable-diffusion-v1-5/stable-diffusion-inpainting](https://hf.co/stable-diffusion-v1-5/stable-diffusion-inpainting) for inpaint and outpaint modules.
-    - Bugfix for SD 1.5 outputs default dimensions in Stable Diffusion module
-    - Bugfix in design of IP-Adapter module for Flux inferences.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
