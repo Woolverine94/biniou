@@ -188,6 +188,8 @@ def image_img2img_ip(
     if lora_model_img2img_ip != "":
         if (is_flux(modelid_img2img_ip)) and ((lora_model_img2img_ip == "ByteDance/Hyper-SD") or (lora_model_img2img_ip == "RED-AIGC/TDD")):
             lora_weight_img2img_ip = 0.12
+        elif (is_sdxl(modelid_img2img_ip)) and (lora_model_img2img_ip == "sd-community/sdxl-flash-lora"):
+            lora_weight_img2img_ip = 0.55
         lora_array.append(f"{lora_model_img2img_ip}")
         lora_weight_array.append(float(lora_weight_img2img_ip))
     if lora_model2_img2img_ip != "":

@@ -202,6 +202,8 @@ def image_img2img(
     if lora_model_img2img != "":
         if (is_sd3(modelid_img2img) or is_flux(modelid_img2img)) and ((lora_model_img2img == "ByteDance/Hyper-SD") or (lora_model_img2img == "RED-AIGC/TDD")):
             lora_weight_img2img = 0.12
+        elif (is_sdxl(modelid_img2img)) and (lora_model_img2img == "sd-community/sdxl-flash-lora"):
+            lora_weight_img2img = 0.55
         lora_array.append(f"{lora_model_img2img}")
         lora_weight_array.append(float(lora_weight_img2img))
     if lora_model2_img2img != "":

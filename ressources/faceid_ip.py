@@ -239,6 +239,8 @@ def image_faceid_ip(
     adapters_list = []
 
     if lora_model_faceid_ip != "":
+        if (is_sdxl(modelid_faceid_ip)) and (lora_model_faceid_ip == "sd-community/sdxl-flash-lora"):
+            lora_weight_faceid_ip = 0.55
         lora_array.append(f"{lora_model_faceid_ip}")
         lora_weight_array.append(float(lora_weight_faceid_ip))
     if lora_model2_faceid_ip != "":
