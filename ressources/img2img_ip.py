@@ -475,8 +475,8 @@ def image_img2img_ip(
                     resume_download=True,
                     local_files_only=True if offline_test() else None
                 )
-                adapters_list.append("IP Adapter")
-                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
+#                adapters_list.append("IP Adapter")
+#                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
             elif (source_type_img2img_ip == "composition"):
                 pipe_img2img_ip.load_ip_adapter(
                     model_path_ipa_img2img_ip,
@@ -488,8 +488,8 @@ def image_img2img_ip(
                     resume_download=True,
                     local_files_only=True if offline_test() else None
                 )
-                adapters_list.append("Composition")
-                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
+#                adapters_list.append("Composition")
+#                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
 
         elif (is_flux_img2img_ip == True):
             pipe_img2img_ip.load_ip_adapter(
@@ -518,8 +518,8 @@ def image_img2img_ip(
                     resume_download=True,
                     local_files_only=True if offline_test() else None
                 )
-                adapters_list.append("IP Adapter")
-                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
+#                adapters_list.append("IP Adapter")
+#                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
             elif (source_type_img2img_ip == "composition"):
                 pipe_img2img_ip.load_ip_adapter(
                     model_path_ipa_img2img_ip,
@@ -531,8 +531,8 @@ def image_img2img_ip(
                     resume_download=True,
                     local_files_only=True if offline_test() else None
                 )
-                adapters_list.append("Composition")
-                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
+#                adapters_list.append("Composition")
+#                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
 
     else:
         if (is_xl_img2img_ip == True):
@@ -548,8 +548,8 @@ def image_img2img_ip(
                     resume_download=True,
                     local_files_only=True if offline_test() else None
                 )
-                adapters_list.append("IP Adapter")
-                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
+#                adapters_list.append("IP Adapter")
+#                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
             elif (source_type_img2img_ip == "composition"):
                 pipe_img2img_ip.load_ip_adapter(
                     model_path_ipa_img2img_ip,
@@ -561,8 +561,8 @@ def image_img2img_ip(
                     resume_download=True,
                     local_files_only=True if offline_test() else None
                 )
-                adapters_list.append("Composition")
-                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
+#                adapters_list.append("Composition")
+#                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
 
         elif (is_flux_img2img_ip == True):
             pipe_img2img_ip.load_ip_adapter(
@@ -592,8 +592,8 @@ def image_img2img_ip(
                     resume_download=True,
                     local_files_only=True if offline_test() else None
                 )
-                adapters_list.append("IP Adapter")
-                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
+#                adapters_list.append("IP Adapter")
+#                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
             elif (source_type_img2img_ip == "composition"):
                 pipe_img2img_ip.load_ip_adapter(
                     model_path_ipa_img2img_ip,
@@ -605,8 +605,8 @@ def image_img2img_ip(
                     resume_download=True,
                     local_files_only=True if offline_test() else None
                 )
-                adapters_list.append("Composition")
-                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
+#                adapters_list.append("Composition")
+#                lora_weight_array.insert(0, float(denoising_strength_img2img_ip))
 #    pipe_img2img_ip.set_ip_adapter_scale(denoising_strength_img2img_ip)    
     if  use_ays_img2img_ip and is_flux(modelid_img2img_ip):
         pipe_img2img_ip = schedulerer(pipe_img2img_ip, sampler_img2img_ip, timesteps=sampling_schedule_img2img_ip)
