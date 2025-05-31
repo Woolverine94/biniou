@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2025-05-31** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot model [bartowski/deepseek-ai_DeepSeek-R1-0528-Qwen3-8B-GGUF](https://hf.co/bartowski/deepseek-ai_DeepSeek-R1-0528-Qwen3-8B-GGUF), Chatbot high-end model  [bartowski/PrimeIntellect_INTELLECT-2-GGUF](https://hf.co/bartowski/PrimeIntellect_INTELLECT-2-GGUF) and french finetuned tiny model [MaziyarPanahi/calme-3.3-baguette-3b-GGUF](https://hf.co/MaziyarPanahi/calme-3.3-baguette-3b-GGUF).
+    - Add support for Flux LoRA models [dvyio/flux-lora-film-noir](https://hf.co/dvyio/flux-lora-film-noir) and  [dvyio/flux-lora-soviet-propaganda](https://hf.co/dvyio/flux-lora-soviet-propaganda).
+    - Bugfix for LoRA weight of LoRA model [sd-community/sdxl-flash-lora](https://hf.co/sd-community/sdxl-flash-lora).
+    - Bugfix for IP-Adapter module when used with LoRAs.
+
   * 🆕 **2025-05-24** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot models [bartowski/THUDM_GLM-Z1-9B-0414-GGUF](https://hf.co/bartowski/THUDM_GLM-Z1-9B-0414-GGUF), [bartowski/facebook_KernelLLM-GGUF](https://hf.co/bartowski/facebook_KernelLLM-GGUF) and update of specialized model [bartowski/WhiteRabbitNeo_WhiteRabbitNeo-V3-7B-GGUF](https://hf.co/bartowski/WhiteRabbitNeo_WhiteRabbitNeo-V3-7B-GGUF).
     - Add support for Flux model [minpeter/FLUX-Hyperscale-fused-fast](https://hf.co/minpeter/FLUX-Hyperscale-fused-fast).
@@ -48,13 +54,6 @@
     - Add support for SDXL model [eramth/realism-sdxl](https://hf.co/eramth/realism-sdxl) to all Stable Diffusion-based modules.
     - Add support for SDXL LoRA models [Fictiverse/Voxel_XL_Lora](https://hf.co/Fictiverse/Voxel_XL_Lora) and [alvdansen/phantasma-anime](https://hf.co/alvdansen/phantasma-anime).
     - Add support for Flux LoRA models [strangerzonehf/NFT-Plus-InsideOut-Perspective](https://hf.co/strangerzonehf/NFT-Plus-InsideOut-Perspective), [AIGCDuckBoss/fluxLora_handDrawAnime](https://hf.co/AIGCDuckBoss/fluxLora_handDrawAnime),  [Anashel/rpg](https://hf.co/Anashel/rpg), [strangerzonehf/Flux-Cute-3D-Kawaii-LoRA](https://hf.co/strangerzonehf/Flux-Cute-3D-Kawaii-LoRA), [Hectore/80s_commercial_scan](https://hf.co/Hectore/80s_commercial_scan) and [h0x91b/clay-vorona](https://hf.co/h0x91b/clay-vorona).
-
-  * 🆕 **2025-04-26** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot specialized model [bartowski/dreamgen_lucid-v1-nemo-GGUF](https://hf.co/bartowski/dreamgen_lucid-v1-nemo-GGUF) and long context chatbot model [bartowski/nvidia_Llama-3.1-8B-UltraLong-4M-Instruct-GGUF](https://hf.co/bartowski/nvidia_Llama-3.1-8B-UltraLong-4M-Instruct-GGUF).
-    - Add support for Llava model [light3611/llava-v1.6-finetuned-quantized-gguf](https://hf.co/light3611/llava-v1.6-finetuned-quantized-gguf).
-    - Update of ControlNet model FLUX.1-dev-ControlNet-Union-Pro to [Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro-2.0](https://hf.co/Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro-2.0).
-    - Add support for Flux LoRA models [ms2stationthis/dutchbaroqueflux](https://hf.co/ms2stationthis/dutchbaroqueflux) and [Borcherding/LogoIconEmojiMOE-v0.2-FLUX.1-dev-LoRA](https://hf.co/Borcherding/LogoIconEmojiMOE-v0.2-FLUX.1-dev-LoRA).
-    - Bugfix and updates for workflows.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
