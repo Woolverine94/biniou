@@ -2,7 +2,7 @@
 # txt2img_sd.py
 import gradio as gr
 import os
-from diffusers import StableDiffusionPipeline, StableDiffusionXLPipeline, AutoPipelineForText2Image, StableDiffusion3Pipeline, FluxPipeline
+from diffusers import StableDiffusionPipeline, StableDiffusionXLPipeline, AutoPipelineForText2Image, StableDiffusion3Pipeline, FluxPipeline, FluxTransformer2DModel, GGUFQuantizationConfig
 from huggingface_hub import hf_hub_download
 from compel import Compel, ReturnedEmbeddingsType
 import torch
@@ -129,6 +129,7 @@ model_list_txt2img_sd_builtin = [
     "AlekseyCalvin/PixelwaveFluxSchnell_Diffusers",
     "mikeyandfriends/PixelWave_FLUX.1-schnell_04",
     "minpeter/FLUX-Hyperscale-fused-fast",
+    "city96/FLUX.1-schnell-gguf",
     "-[ 🏠 Local models ]-",
 ]
 
@@ -338,6 +339,40 @@ def image_txt2img_sd(
                 tokenizer_3=None,
                 cache_dir=model_path_txt2img_sd, 
                 torch_dtype=model_arch, 
+                use_safetensors=True if not is_bin_txt2img_sd else False,
+                resume_download=True,
+                local_files_only=True if offline_test() else None
+            )
+    elif (is_flux_txt2img_sd == True) and (modelid_txt2img_sd == "city96/FLUX.1-schnell-gguf"):
+        ckpt_path_txt2img_sd = (
+            "https://huggingface.co/city96/FLUX.1-schnell-gguf/blob/main/flux1-schnell-Q2_K.gguf"
+        )
+        transformer_txt2img_sd = FluxTransformer2DModel.from_single_file(
+            ckpt_path_txt2img_sd,
+            cache_dir=model_path_flux_txt2img_sd,
+            quantization_config=GGUFQuantizationConfig(compute_dtype=model_arch),
+            torch_dtype=model_arch,
+            config="AlekseyCalvin/PixelwaveFluxSchnell_Diffusers",
+            subfolder="transformer",
+            use_safetensors=True if not is_bin_txt2img_sd else False,
+            resume_download=True,
+            local_files_only=True if offline_test() else None
+        )
+        if modelid_txt2img_sd[0:9] == "./models/" :
+            pipe_txt2img_sd = FluxPipeline.from_single_file(
+                "AlekseyCalvin/PixelwaveFluxSchnell_Diffusers", 
+                transformer=transformer_txt2img_sd,
+                torch_dtype=model_arch, 
+                use_safetensors=True if not is_bin_txt2img_sd else False,
+#                load_safety_checker=False if (nsfw_filter_final == None) else True,
+                local_files_only=True if offline_test() else None
+            )
+        else :
+            pipe_txt2img_sd = FluxPipeline.from_pretrained(
+                "AlekseyCalvin/PixelwaveFluxSchnell_Diffusers",
+                cache_dir=model_path_flux_txt2img_sd,
+                transformer=transformer_txt2img_sd,
+                torch_dtype=model_arch,
                 use_safetensors=True if not is_bin_txt2img_sd else False,
                 resume_download=True,
                 local_files_only=True if offline_test() else None

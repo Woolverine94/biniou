@@ -44,3 +44,4 @@ peft==0.13.2
 git+https://github.com/TencentARC/PhotoMaker.git@ec35a8716ea790a404cb7e1ba282a320454906d1
 exiv2
 music-tag
+gguf
