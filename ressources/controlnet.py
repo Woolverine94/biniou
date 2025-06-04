@@ -67,6 +67,7 @@ model_list_controlnet_builtin = [
     "comin/IterComp",
     "Spestly/OdysseyXL-1.0",
     "eramth/realism-sdxl",
+    "yandex/stable-diffusion-xl-base-1.0-alchemist",
     "segmind/SSD-1B",
     "segmind/Segmind-Vega",
     "playgroundai/playground-v2-512px-base",
