@@ -2315,6 +2315,7 @@ def lora_model_list(model, *args):
             "strangerzonehf/Flux-Nft-Exp":("nft-flux-avatar.safetensors", "3d avatar nft"),
             "dvyio/flux-lora-soviet-propaganda":("f7fa6c43cc544d3c930f8c8a3b4ddd2b_pytorch_lora_weights.safetensors", "a poster in the style of SVTPRPGND"),
             "CiroN2022/microverse-creator":("microverse-creator.safetensors", ""),
+            "CtrlAltArt/Flux_Playing_Card_Pictures":("Playing Card Pictures - [FLUX] - v0.3_epoch_23.safetensors", "playing card image"),
             "-[ 🏆 🐢 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
@@ -2349,6 +2350,7 @@ def lora_model_list(model, *args):
             "prithivMLmods/CAnime-LoRA":("CAnime.safetensors", "CAnime"),
             "peter198477/DarkAnimeComics3D":("lora.TA_trained.safetensors", "Anime style"),
             "glif-loradex-trainer/001_Detailed_Manga_Style-v2_1":("Detailed_Manga_Style-v2_1.safetensors", "Hyper-detailed dark X.M4ng4.S7y13"),
+            "Norod78/once-upon-a-time-cartoon-style-flux-v3":("ouat_cartoon-OnceUponATimeV3-Flux-2142990.safetensors", "ouat cartoon"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
