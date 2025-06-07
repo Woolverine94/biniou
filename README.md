@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2025-06-07** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot model [bartowski/nvidia_AceReason-Nemotron-7B-GGUF](https://hf.co/bartowski/nvidia_AceReason-Nemotron-7B-GGUF) and Chatbot high-end model  [bartowski/mistralai_Devstral-Small-2505-GGUF](https://hf.co/bartowski/mistralai_Devstral-Small-2505-GGUF).
+    - Add support for gguf Flux model [city96/FLUX.1-schnell-gguf](https://hf.co/city96/FLUX.1-schnell-gguf). It halves the RAM pre-requisites for using Flux on cpu-only inference, making it usable with "only" 32GB RAM !
+    - Add support for SDXL model [yandex/stable-diffusion-xl-base-1.0-alchemist](https://hf.co/yandex/stable-diffusion-xl-base-1.0-alchemist).
+    - Add support for Flux LoRA models [glif-loradex-trainer/Swap_agrawal14_aestheticretrocapturez](https://hf.co/glif-loradex-trainer/Swap_agrawal14_aestheticretrocapturez), [CiroN2022/microverse-creator](https://hf.co/CiroN2022/microverse-creator), [CtrlAltArt/Flux_Playing_Card_Pictures](https://hf.co/CtrlAltArt/Flux_Playing_Card_Pictures) and  [Norod78/once-upon-a-time-cartoon-style-flux-v3](https://hf.co/Norod78/once-upon-a-time-cartoon-style-flux-v3).
+
   * 🆕 **2025-05-31** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot model [bartowski/deepseek-ai_DeepSeek-R1-0528-Qwen3-8B-GGUF](https://hf.co/bartowski/deepseek-ai_DeepSeek-R1-0528-Qwen3-8B-GGUF), Chatbot high-end model  [bartowski/PrimeIntellect_INTELLECT-2-GGUF](https://hf.co/bartowski/PrimeIntellect_INTELLECT-2-GGUF) and french finetuned tiny model [MaziyarPanahi/calme-3.3-baguette-3b-GGUF](https://hf.co/MaziyarPanahi/calme-3.3-baguette-3b-GGUF).
     - Add support for Flux LoRA models [dvyio/flux-lora-film-noir](https://hf.co/dvyio/flux-lora-film-noir) and  [dvyio/flux-lora-soviet-propaganda](https://hf.co/dvyio/flux-lora-soviet-propaganda).
@@ -48,12 +54,6 @@
     - Add support for SD 1.5 LoRA models [leonel4rd/Hyperdetailer](https://hf.co/leonel4rd/Hyperdetailer) and [Ivan5d/lora_deep_sea](https://hf.co/Ivan5d/lora_deep_sea).
     - Add support for Flux LoRA models [dvyio/flux-lora-medieval-illustration](https://hf.co/dvyio/flux-lora-medieval-illustration), [prithivMLmods/CAnime-LoRA](https://hf.co/prithivMLmods/CAnime-LoRA), [glif-loradex-trainer/Hailey_ConcertPoster](https://hf.co/glif-loradex-trainer/Hailey_ConcertPoster) and [rajkumaralma/Toy_Store](https://hf.co/rajkumaralma/Toy_Store). Using the latest, you can easily create "Starter Pack" contents !
     - Code cleaning and re-ordering of models list in Chatbot module.
-
-  * 🆕 **2025-05-03** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end models [bartowski/soob3123_Veritas-12B-GGUF](https://hf.co/bartowski/soob3123_Veritas-12B-GGUF), [bartowski/microsoft_Phi-4-reasoning-plus-GGUF](https://hf.co/bartowski/microsoft_Phi-4-reasoning-plus-GGUF) and maths specialized model[bartowski/nvidia_OpenMath-Nemotron-14B-Kaggle-GGUF](https://hf.co/bartowski/nvidia_OpenMath-Nemotron-14B-Kaggle-GGUF).
-    - Add support for SDXL model [eramth/realism-sdxl](https://hf.co/eramth/realism-sdxl) to all Stable Diffusion-based modules.
-    - Add support for SDXL LoRA models [Fictiverse/Voxel_XL_Lora](https://hf.co/Fictiverse/Voxel_XL_Lora) and [alvdansen/phantasma-anime](https://hf.co/alvdansen/phantasma-anime).
-    - Add support for Flux LoRA models [strangerzonehf/NFT-Plus-InsideOut-Perspective](https://hf.co/strangerzonehf/NFT-Plus-InsideOut-Perspective), [AIGCDuckBoss/fluxLora_handDrawAnime](https://hf.co/AIGCDuckBoss/fluxLora_handDrawAnime),  [Anashel/rpg](https://hf.co/Anashel/rpg), [strangerzonehf/Flux-Cute-3D-Kawaii-LoRA](https://hf.co/strangerzonehf/Flux-Cute-3D-Kawaii-LoRA), [Hectore/80s_commercial_scan](https://hf.co/Hectore/80s_commercial_scan) and [h0x91b/clay-vorona](https://hf.co/h0x91b/clay-vorona).
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
