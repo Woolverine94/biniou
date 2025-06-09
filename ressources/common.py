@@ -2316,6 +2316,8 @@ def lora_model_list(model, *args):
             "dvyio/flux-lora-soviet-propaganda":("f7fa6c43cc544d3c930f8c8a3b4ddd2b_pytorch_lora_weights.safetensors", "a poster in the style of SVTPRPGND"),
             "CiroN2022/microverse-creator":("microverse-creator.safetensors", ""),
             "CtrlAltArt/Flux_Playing_Card_Pictures":("Playing Card Pictures - [FLUX] - v0.3_epoch_23.safetensors", "playing card image"),
+            "cocktailpeanut/banksy":("banksy.safetensors", "bnksy mural"),
+            "glif-loradex-trainer/an303042_Barcoded_v1_NoCap":("Barcoded_v1_NoCap.safetensors", "barcode design"),
             "-[ 🏆 🐢 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
