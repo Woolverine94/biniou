@@ -2252,6 +2252,8 @@ def lora_model_list(model, *args):
             "dvyio/flux-lora-film-noir":("5ee2c3c6409f4618a134b883da64d04e_pytorch_lora_weights.safetensors", "in the style of FLMNR, high contrast black and white"),
             "glif-loradex-trainer/Swap_agrawal14_aestheticretrocapturez":("aestheticretrocapturez.safetensors", "$thetic_retro_charms"),
             "M00D/bubble-era":("BubbleEra-V1.safetensors", "lens flare, glints, light trails"),
+            "lichorosario/flux-lora-rtmi":("lora.safetensors", "RTMI"),
+            "wavymulder/ASCII-flux-LoRA":("ASCIIart_fluxlora_wavymulder.safetensors", "ASCII art on a white background, made of letters, numbers, and other symbols, dithering effect"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
