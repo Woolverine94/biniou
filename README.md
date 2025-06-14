@@ -22,6 +22,11 @@
 
 ## Updates
 
+  * 🆕 **2025-06-14** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end model [bartowski/mistralai_Magistral-Small-2506-GGUF](https://hf.co/bartowski/mistralai_Magistral-Small-2506-GGUF) and Chatbot specialized in chemistry model [DevQuasar/futurehouse.ether0-GGUF](https://hf.co/DevQuasar/futurehouse.ether0-GGUF).
+    - Add support for Flux LoRA models [cocktailpeanut/banksy](https://hf.co/cocktailpeanut/banksy), [glif-loradex-trainer/an303042_Barcoded_v1_NoCap](https://hf.co/glif-loradex-trainer/an303042_Barcoded_v1_NoCap), [M00D/bubble-era](https://hf.co/M00D/bubble-era), [TheAwakenOne/caricature](https://hf.co/TheAwakenOne/caricature), [lichorosario/flux-lora-rtmi](https://hf.co/lichorosario/flux-lora-rtmi) and  [wavymulder/ASCII-flux-LoRA](https://hf.co/wavymulder/ASCII-flux-LoRA).
+    - Bugfix for 404 error when using Chatbot model [microsoft/phi-4-gguf](https://hf.co/microsoft/phi-4-gguf).
+
   * 🆕 **2025-06-07** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot model [bartowski/nvidia_AceReason-Nemotron-7B-GGUF](https://hf.co/bartowski/nvidia_AceReason-Nemotron-7B-GGUF) and Chatbot high-end model  [bartowski/mistralai_Devstral-Small-2505-GGUF](https://hf.co/bartowski/mistralai_Devstral-Small-2505-GGUF).
     - Add support for gguf Flux model [city96/FLUX.1-schnell-gguf](https://hf.co/city96/FLUX.1-schnell-gguf). It halves the RAM pre-requisites for using Flux on cpu-only inference, making it usable with "only" 32GB RAM !
@@ -45,15 +50,6 @@
     - Add support for SD 1.5 model [digiplay/STRANGER-ANIME](https://hf.co/digiplay/STRANGER-ANIME).
     - Add support for Flux LoRA models [Jonjew/ArtNouveauFashionIllustration](https://hf.co/Jonjew/ArtNouveauFashionIllustration) and [peter198477/DarkAnimeComics3D](https://hf.co/peter198477/DarkAnimeComics3D).
     - Bugfix for interactions between modules Faceswap, Real ESRGAN and GFPGAN.
-
-  * 🆕 **2025-05-10** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for high-end (specialized in French language) Chatbot model [jpacifico/Chocolatine-2-14B-Instruct-v2.0.3-Q4_K_M-GGUF](https://hf.co/jpacifico/Chocolatine-2-14B-Instruct-v2.0.3-Q4_K_M-GGUF).
-    - Introducing support for Qwen3 models with [bartowski/mlabonne_Qwen3-8B-abliterated-GGUF](https://hf.co/bartowski/mlabonne_Qwen3-8B-abliterated-GGUF). You can easily enable/disable thinking on Qwen3 family models by using the switches `/think` and `/no_think` at the end of your prompts.
-    - Add support for Llava model [moondream/moondream2-gguf](https://hf.co/moondream/moondream2-gguf). Also adding code enhancement to Llava module.
-    - Add support for Flux Schnell model [mikeyandfriends/PixelWave_FLUX.1-schnell_04](https://hf.co/mikeyandfriends/PixelWave_FLUX.1-schnell_04).
-    - Add support for SD 1.5 LoRA models [leonel4rd/Hyperdetailer](https://hf.co/leonel4rd/Hyperdetailer) and [Ivan5d/lora_deep_sea](https://hf.co/Ivan5d/lora_deep_sea).
-    - Add support for Flux LoRA models [dvyio/flux-lora-medieval-illustration](https://hf.co/dvyio/flux-lora-medieval-illustration), [prithivMLmods/CAnime-LoRA](https://hf.co/prithivMLmods/CAnime-LoRA), [glif-loradex-trainer/Hailey_ConcertPoster](https://hf.co/glif-loradex-trainer/Hailey_ConcertPoster) and [rajkumaralma/Toy_Store](https://hf.co/rajkumaralma/Toy_Store). Using the latest, you can easily create "Starter Pack" contents !
-    - Code cleaning and re-ordering of models list in Chatbot module.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
