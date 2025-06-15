@@ -332,7 +332,7 @@ def offline_test():
     try:
 #        rq.get("https://www.google.com", timeout=5)
         test = rq.get("https://huggingface.co/", timeout=5)
-        if (str(test) == "<Response [503]>") or (str(test) == "<Response [501]>"):
+        if (str(test) == "<Response [503]>") or (str(test) == "<Response [501]>") or (str(test) == "<Response [504]>") or (str(test) == "<Response [429]>"):
             print(">>>[biniou 🧠]: Using offline mode")
             return True
         else:
