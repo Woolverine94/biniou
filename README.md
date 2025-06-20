@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2025-06-21** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end model [bartowski/OpenBuddy_OpenBuddy-R1-0528-Distill-Qwen3-32B-Preview0-QAT-GGUF](https://hf.co/bartowski/OpenBuddy_OpenBuddy-R1-0528-Distill-Qwen3-32B-Preview0-QAT-GGUF) and Chatbot specialized model [Tesslate/UIGEN-T3-14B-Preview-Q8_0-GGUF](https://hf.co/Tesslate/UIGEN-T3-14B-Preview-Q8_0-GGUF).
+    - Add support for Flux LoRA models [strangerzonehf/Dynamic-Silver-Flux](https://hf.co/strangerzonehf/Dynamic-Silver-Flux) and  [gokaygokay/Flux-Realistic-Backgrounds-LoRA](https://hf.co/gokaygokay/Flux-Realistic-Backgrounds-LoRA).
+    - Add support for SDXL LoRA models [ntc-ai/SDXL-LoRA-slider.super-mario](https://hf.co/ntc-ai/SDXL-LoRA-slider.super-mario), [KappaNeuro/bas-relief](https://hf.co/KappaNeuro/bas-relief), [KappaNeuro/needlepoint](https://hf.co/KappaNeuro/needlepoint) and  [KappaNeuro/synthwave-t-shirt](https://hf.co/KappaNeuro/synthwave-t-shirt).
+    - Bugfix in management of offline mode.
+
   * 🆕 **2025-06-14** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end model [bartowski/mistralai_Magistral-Small-2506-GGUF](https://hf.co/bartowski/mistralai_Magistral-Small-2506-GGUF) and Chatbot specialized in chemistry model [DevQuasar/futurehouse.ether0-GGUF](https://hf.co/DevQuasar/futurehouse.ether0-GGUF).
     - Add support for Flux LoRA models [cocktailpeanut/banksy](https://hf.co/cocktailpeanut/banksy), [glif-loradex-trainer/an303042_Barcoded_v1_NoCap](https://hf.co/glif-loradex-trainer/an303042_Barcoded_v1_NoCap), [M00D/bubble-era](https://hf.co/M00D/bubble-era), [TheAwakenOne/caricature](https://hf.co/TheAwakenOne/caricature), [lichorosario/flux-lora-rtmi](https://hf.co/lichorosario/flux-lora-rtmi) and  [wavymulder/ASCII-flux-LoRA](https://hf.co/wavymulder/ASCII-flux-LoRA).
@@ -43,13 +49,6 @@
     - Add support for Chatbot models [bartowski/THUDM_GLM-Z1-9B-0414-GGUF](https://hf.co/bartowski/THUDM_GLM-Z1-9B-0414-GGUF), [bartowski/facebook_KernelLLM-GGUF](https://hf.co/bartowski/facebook_KernelLLM-GGUF) and update of specialized model [bartowski/WhiteRabbitNeo_WhiteRabbitNeo-V3-7B-GGUF](https://hf.co/bartowski/WhiteRabbitNeo_WhiteRabbitNeo-V3-7B-GGUF).
     - Add support for Flux model [minpeter/FLUX-Hyperscale-fused-fast](https://hf.co/minpeter/FLUX-Hyperscale-fused-fast).
     - Add support for Flux LoRA models [GeorgyGUF/flux-lettering](https://hf.co/GeorgyGUF/flux-lettering), [multimodalart/isometric-skeumorphic-3d-bnb](https://hf.co/multimodalart/isometric-skeumorphic-3d-bnb), [glif-loradex-trainer/i12bp8_appelsiensam_light_art_v1](https://hf.co/glif-loradex-trainer/i12bp8_appelsiensam_light_art_v1), [glif-loradex-trainer/001_Detailed_Manga_Style-v2_1](https://hf.co/glif-loradex-trainer/001_Detailed_Manga_Style-v2_1),[diabolic6045/Flux_Wallpaper_Lora](https://hf.co/diabolic6045/Flux_Wallpaper_Lora) and [strangerzonehf/Flux-Nft-Exp](https://hf.co/strangerzonehf/Flux-Nft-Exp).
-
-  * 🆕 **2025-05-17** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for high-end Chatbot models [bartowski/Qwen_Qwen3-30B-A3B-GGUF](https://hf.co/bartowski/Qwen_Qwen3-30B-A3B-GGUF), [bartowski/Qwen_Qwen3-14B-GGUF](https://hf.co/bartowski/Qwen_Qwen3-14B-GGUF), [bartowski/ServiceNow-AI_Apriel-Nemotron-15b-Thinker-GGUF](https://hf.co/bartowski/ServiceNow-AI_Apriel-Nemotron-15b-Thinker-GGUF) and tiny model [bartowski/Qwen_Qwen3-4B-GGUF](https://hf.co/bartowski/Qwen_Qwen3-4B-GGUF).
-    - Add support for Llava model [bartowski/MiniCPM-V-2_6-GGUF](https://hf.co/bartowski/MiniCPM-V-2_6-GGUF).
-    - Add support for SD 1.5 model [digiplay/STRANGER-ANIME](https://hf.co/digiplay/STRANGER-ANIME).
-    - Add support for Flux LoRA models [Jonjew/ArtNouveauFashionIllustration](https://hf.co/Jonjew/ArtNouveauFashionIllustration) and [peter198477/DarkAnimeComics3D](https://hf.co/peter198477/DarkAnimeComics3D).
-    - Bugfix for interactions between modules Faceswap, Real ESRGAN and GFPGAN.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
