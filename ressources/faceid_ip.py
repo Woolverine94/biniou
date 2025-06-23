@@ -93,6 +93,7 @@ model_list_faceid_ip_builtin = [
     "SPO-Diffusion-Models/SPO-SD-v1-5_4k-p_10ep",
     "digiplay/PerfectDeliberate_v5",
     "stable-diffusion-v1-5/stable-diffusion-v1-5",
+    "ItsJayQz/GTA5_Artwork_Diffusion",
     "-[ 👍 🇯🇵 Anime SD15 ]-",
     "gsdf/Counterfeit-V2.5",
     "fluently/Fluently-anime",
