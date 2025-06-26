@@ -2386,6 +2386,7 @@ def lora_model_list(model, *args):
             "mnemic/MinionStyle-SD1.5-LoRA":("MinionStyle.safetensors", "MinionStyle"),
             "Ivan5d/lora_deep_sea":("UNDERWATER_SCENE_v2.safetensors", "UNDERWATER_SCENE, aqua"),
             "SedatAl/pixel-art-LoRa":("pytorch_lora_weights.safetensors", "pixel art"),
+            "Saitun/catconcept":(" CatCONCEPT.safetensors", "cat"),
             "-[ 🏠 Local models ]-":("", ""),
         }
 
