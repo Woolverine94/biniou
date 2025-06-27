@@ -72,6 +72,7 @@ model_list_txt2vid_ze = [
     "xyn-ai/anything-v4.0",
     "nitrosocke/Ghibli-Diffusion",
     "digiplay/STRANGER-ANIME",
+    "Norod78/sd15-jojo-stone-ocean",
     "-[ 👌 🐢 SDXL ]-",
     "fluently/Fluently-XL-Final",
     "SG161222/RealVisXL_V5.0",
