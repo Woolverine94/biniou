@@ -22,6 +22,11 @@
 
 ## Updates
 
+  * 🆕 **2025-06-28** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot tiny models [bartowski/nvidia_Llama-3.1-Nemotron-Nano-4B-v1.1-GGUF](https://hf.co/bartowski/nvidia_Llama-3.1-Nemotron-Nano-4B-v1.1-GGUF) and [bartowski/nvidia_Nemotron-Research-Reasoning-Qwen-1.5B-GGUF](https://hf.co/bartowski/nvidia_Nemotron-Research-Reasoning-Qwen-1.5B-GGUF).
+    - Add support for SD 1.5 models [ItsJayQz/GTA5_Artwork_Diffusion](https://hf.co/ItsJayQz/GTA5_Artwork_Diffusion) and  [Norod78/sd15-jojo-stone-ocean](https://hf.co/Norod78/sd15-jojo-stone-ocean).
+    - Add support for SD 1.5 LoRA models [SedatAl/pixel-art-LoRa](https://hf.co/SedatAl/pixel-art-LoRa) and [Saitun/catconcept](https://hf.co/Saitun/catconcept).
+
   * 🆕 **2025-06-21** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end model [bartowski/OpenBuddy_OpenBuddy-R1-0528-Distill-Qwen3-32B-Preview0-QAT-GGUF](https://hf.co/bartowski/OpenBuddy_OpenBuddy-R1-0528-Distill-Qwen3-32B-Preview0-QAT-GGUF) and Chatbot specialized model [Tesslate/UIGEN-T3-14B-Preview-Q8_0-GGUF](https://hf.co/Tesslate/UIGEN-T3-14B-Preview-Q8_0-GGUF).
     - Add support for Flux LoRA models [strangerzonehf/Dynamic-Silver-Flux](https://hf.co/strangerzonehf/Dynamic-Silver-Flux) and  [gokaygokay/Flux-Realistic-Backgrounds-LoRA](https://hf.co/gokaygokay/Flux-Realistic-Backgrounds-LoRA).
@@ -44,11 +49,6 @@
     - Add support for Flux LoRA models [dvyio/flux-lora-film-noir](https://hf.co/dvyio/flux-lora-film-noir) and  [dvyio/flux-lora-soviet-propaganda](https://hf.co/dvyio/flux-lora-soviet-propaganda).
     - Bugfix for LoRA weight of LoRA model [sd-community/sdxl-flash-lora](https://hf.co/sd-community/sdxl-flash-lora).
     - Bugfix for IP-Adapter module when used with LoRAs.
-
-  * 🆕 **2025-05-24** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot models [bartowski/THUDM_GLM-Z1-9B-0414-GGUF](https://hf.co/bartowski/THUDM_GLM-Z1-9B-0414-GGUF), [bartowski/facebook_KernelLLM-GGUF](https://hf.co/bartowski/facebook_KernelLLM-GGUF) and update of specialized model [bartowski/WhiteRabbitNeo_WhiteRabbitNeo-V3-7B-GGUF](https://hf.co/bartowski/WhiteRabbitNeo_WhiteRabbitNeo-V3-7B-GGUF).
-    - Add support for Flux model [minpeter/FLUX-Hyperscale-fused-fast](https://hf.co/minpeter/FLUX-Hyperscale-fused-fast).
-    - Add support for Flux LoRA models [GeorgyGUF/flux-lettering](https://hf.co/GeorgyGUF/flux-lettering), [multimodalart/isometric-skeumorphic-3d-bnb](https://hf.co/multimodalart/isometric-skeumorphic-3d-bnb), [glif-loradex-trainer/i12bp8_appelsiensam_light_art_v1](https://hf.co/glif-loradex-trainer/i12bp8_appelsiensam_light_art_v1), [glif-loradex-trainer/001_Detailed_Manga_Style-v2_1](https://hf.co/glif-loradex-trainer/001_Detailed_Manga_Style-v2_1),[diabolic6045/Flux_Wallpaper_Lora](https://hf.co/diabolic6045/Flux_Wallpaper_Lora) and [strangerzonehf/Flux-Nft-Exp](https://hf.co/strangerzonehf/Flux-Nft-Exp).
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
