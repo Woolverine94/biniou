@@ -60,7 +60,7 @@ REM ***********************************************
 call venv.cmd
 python.exe -m pip install --upgrade pip
 pip install wheel
-pip install torch==2.1.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cpu
 pip install llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
 pip install -r requirements.txt
 copy ".\win_installer\biniou.lnk" "%userprofile%\Desktop"

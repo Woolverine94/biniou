@@ -28,7 +28,7 @@ source ./env/bin/activate
 ## Install packages :
 pip install -U pip
 pip install wheel
-pip install torch==2.1.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cpu
 FORCE_CMAKE=1 pip install llama-cpp-python
 pip install -r requirements.txt
 
