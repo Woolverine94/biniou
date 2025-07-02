@@ -2261,6 +2261,7 @@ def lora_model_list(model, *args):
             "wavymulder/ASCII-flux-LoRA":("ASCIIart_fluxlora_wavymulder.safetensors", "ASCII art on a white background, made of letters, numbers, and other symbols, dithering effect"),
             "strangerzonehf/Dynamic-Silver-Flux":("Dynamic-Silver-Flux.safetensors", "Dynamic Silver Art"),
             "OpenGenerativeAI/SYNTHWAVE":("synthwave.safetensors", "SYNTHWAVE"),
+            "strangerzonehf/Thread-of-Art-Flux":("Thread-of-Art.safetensors", "Thread of Art"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
@@ -2366,6 +2367,7 @@ def lora_model_list(model, *args):
             "peter198477/DarkAnimeComics3D":("lora.TA_trained.safetensors", "Anime style"),
             "glif-loradex-trainer/001_Detailed_Manga_Style-v2_1":("Detailed_Manga_Style-v2_1.safetensors", "Hyper-detailed dark X.M4ng4.S7y13"),
             "Norod78/once-upon-a-time-cartoon-style-flux-v3":("ouat_cartoon-OnceUponATimeV3-Flux-2142990.safetensors", "ouat cartoon"),
+            "Norod78/CartoonStyle-flux-lora":("CartoonStyle_flux_lora.safetensors", ""),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
