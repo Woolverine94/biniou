@@ -2332,6 +2332,8 @@ def lora_model_list(model, *args):
             "TheAwakenOne/caricature":("caricature.safetensors", "CCTUR3"),
             "gokaygokay/Flux-Realistic-Backgrounds-LoRA":("realistic_background_lora.safetensors", "rlstcbg, background"),
             "derekl35/tarot-qlora-flux":("pytorch_lora_weights.safetensors", "a trtcrd of"),
+            "renderartist/doodletoonflux":("d00dlet00n_Flux_v2_renderartist.safetensors", "d00dlet00n"),
+            "Hectore/tshirt_design":("Tshirt style_epoch_5.safetensors", "TSHIRTDESIGN"),
             "-[ 🏆 🐢 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
