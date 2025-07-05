@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2025-07-05** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot tiny model [bartowski/POLARIS-Project_Polaris-4B-Preview-GGUF](https://hf.co/bartowski/POLARIS-Project_Polaris-4B-Preview-GGUF). The Polaris reinforcement learning post-training method applied to this Qwen3-based model is absolutely amazing, leading to incredible results for a 4B model and it can easily compete with 32B+ models in most situations. Definitely worth the try if you have limited ressources !
+    - Add support for Chatbot high-end model [bartowski/HelpingAI_Dhanishtha-2.0-preview-GGUF](https://hf.co/bartowski/HelpingAI_Dhanishtha-2.0-preview-GGUF) and update of high-end model [bartowski/mistralai_Mistral-Small-3.2-24B-Instruct-2506-GGUF](https://hf.co/bartowski/mistralai_Mistral-Small-3.2-24B-Instruct-2506-GGUF).
+    - Add support for Flux LoRA models [OpenGenerativeAI/SYNTHWAVE](https://hf.co/OpenGenerativeAI/SYNTHWAVE), [derekl35/tarot-qlora-flux](https://hf.co/derekl35/tarot-qlora-flux), [strangerzonehf/Thread-of-Art-Flux](https://hf.co/strangerzonehf/Thread-of-Art-Flux), [Norod78/CartoonStyle-flux-lora](https://hf.co/Norod78/CartoonStyle-flux-lora), [renderartist/doodletoonflux](https://hf.co/renderartist/doodletoonflux) and  [Hectore/tshirt_design](https://hf.co/Hectore/tshirt_design).
+    - Enhancement for install and update scripts.
+
   * 🆕 **2025-06-28** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot tiny models [bartowski/nvidia_Llama-3.1-Nemotron-Nano-4B-v1.1-GGUF](https://hf.co/bartowski/nvidia_Llama-3.1-Nemotron-Nano-4B-v1.1-GGUF) and [bartowski/nvidia_Nemotron-Research-Reasoning-Qwen-1.5B-GGUF](https://hf.co/bartowski/nvidia_Nemotron-Research-Reasoning-Qwen-1.5B-GGUF).
     - Add support for SD 1.5 models [ItsJayQz/GTA5_Artwork_Diffusion](https://hf.co/ItsJayQz/GTA5_Artwork_Diffusion) and  [Norod78/sd15-jojo-stone-ocean](https://hf.co/Norod78/sd15-jojo-stone-ocean).
@@ -43,12 +49,6 @@
     - Add support for gguf Flux model [city96/FLUX.1-schnell-gguf](https://hf.co/city96/FLUX.1-schnell-gguf). It halves the RAM pre-requisites for using Flux on cpu-only inference, making it usable with "only" 32GB RAM !
     - Add support for SDXL model [yandex/stable-diffusion-xl-base-1.0-alchemist](https://hf.co/yandex/stable-diffusion-xl-base-1.0-alchemist).
     - Add support for Flux LoRA models [glif-loradex-trainer/Swap_agrawal14_aestheticretrocapturez](https://hf.co/glif-loradex-trainer/Swap_agrawal14_aestheticretrocapturez), [CiroN2022/microverse-creator](https://hf.co/CiroN2022/microverse-creator), [CtrlAltArt/Flux_Playing_Card_Pictures](https://hf.co/CtrlAltArt/Flux_Playing_Card_Pictures) and  [Norod78/once-upon-a-time-cartoon-style-flux-v3](https://hf.co/Norod78/once-upon-a-time-cartoon-style-flux-v3).
-
-  * 🆕 **2025-05-31** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot model [bartowski/deepseek-ai_DeepSeek-R1-0528-Qwen3-8B-GGUF](https://hf.co/bartowski/deepseek-ai_DeepSeek-R1-0528-Qwen3-8B-GGUF), Chatbot high-end model  [bartowski/PrimeIntellect_INTELLECT-2-GGUF](https://hf.co/bartowski/PrimeIntellect_INTELLECT-2-GGUF) and french finetuned tiny model [MaziyarPanahi/calme-3.3-baguette-3b-GGUF](https://hf.co/MaziyarPanahi/calme-3.3-baguette-3b-GGUF).
-    - Add support for Flux LoRA models [dvyio/flux-lora-film-noir](https://hf.co/dvyio/flux-lora-film-noir) and  [dvyio/flux-lora-soviet-propaganda](https://hf.co/dvyio/flux-lora-soviet-propaganda).
-    - Bugfix for LoRA weight of LoRA model [sd-community/sdxl-flash-lora](https://hf.co/sd-community/sdxl-flash-lora).
-    - Bugfix for IP-Adapter module when used with LoRAs.
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
