@@ -8,6 +8,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 import warnings
 warnings.filterwarnings('ignore')
 import os
+import subprocess
 import gradio as gr
 import numpy as np
 # import shutil
@@ -123,7 +124,8 @@ with open("./version", "r", encoding="utf-8") as fichier:
 biniou_global_version = biniou_global_version.replace("\n", "")
 
 if biniou_global_version == "main":
-    biniou_global_version = "dev"
+    commit_ver = subprocess.getoutput("git rev-parse HEAD")
+    biniou_global_version = f"dev {commit_ver[0:7]}"
 
 with open(f"lang/lang_en_US.cfg", "r", encoding="utf-8") as fichier:
     exec(fichier.read())
