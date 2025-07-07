@@ -34,6 +34,7 @@ model_list_inpaint_builtin = [
 #    "runwayml/stable-diffusion-inpainting",
     "Lykon/dreamshaper-8-inpainting",
     "Sanster/anything-4.0-inpainting",
+    "kpsss34/inpaintingXL",
 ]
 
 for k in range(len(model_list_inpaint_builtin)):
