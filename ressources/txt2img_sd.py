@@ -108,6 +108,7 @@ model_list_txt2img_sd_builtin = [
     "stablediffusionapi/anime-journey-v2",
     "aipicasso/emi-2",
     "aipicasso/emi-3",
+    "zenless-lab/sdxl-anything-xl",
     "-[ 👏 🐢 SD3 ]-",
     "v2ray/stable-diffusion-3-medium-diffusers",
     "ptx0/sd3-reality-mix",

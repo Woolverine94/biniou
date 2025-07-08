@@ -101,6 +101,7 @@ model_list_img2img_ip_builtin = [
     "yodayo-ai/clandestine-xl-1.0",
     "stablediffusionapi/anime-journey-v2",
     "aipicasso/emi-2",
+    "zenless-lab/sdxl-anything-xl",
     "-[ 🏆 🐢 Flux ]-",
     "Freepik/flux.1-lite-8B",
     "black-forest-labs/FLUX.1-schnell",

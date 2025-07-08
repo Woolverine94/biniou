@@ -125,6 +125,7 @@ model_list_txt2vid_ze = [
     "yodayo-ai/clandestine-xl-1.0",
     "stablediffusionapi/anime-journey-v2",
     "aipicasso/emi-2",
+    "zenless-lab/sdxl-anything-xl",
 ]
 
 # Bouton Cancel
