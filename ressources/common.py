@@ -2086,6 +2086,7 @@ def lora_model_list(model, *args):
             "TheLastBen/Papercut_SDXL":("papercut.safetensors", "papercut - "),
             "pookienumnums/DpictClassicalIllustration":("DPICT_Classic_Sketches.safetensors", "dpict, monochrome, classical illustration"),
             "KappaNeuro/synthwave-t-shirt":("Synthwave T-shirt.safetensors", "Synthwave T-shirt - "),
+            "Lora-4-IABD-2/floor_plans_a_v1.safetensors":("floor_plans_a.safetensors", ""),
             "-[ 👌 🇯🇵 Anime SDXL LoRA ]-":("Studio Ghibli Style.safetensors", "Studio Ghibli Style - "),
             "KappaNeuro/studio-ghibli-style":("Studio Ghibli Style.safetensors", "Studio Ghibli Style - "),
             "mnemic/MinionStyleXL-SDXL-LoRA":("MinionStyleXL.safetensors", "MinionStyle"),
@@ -2098,6 +2099,7 @@ def lora_model_list(model, *args):
             "artificialguybr/StudioGhibliRedmond":("StudioGhibliRedmond-StdGBRedmAF.safetensors", "StdGBRedmAF"),
             "artificialguybr/StudioGhibli.Redmond-V2":("StudioGhibli.Redmond-StdGBRRedmAF-StudioGhibli.safetensors", "Studio Ghibli"),
             "alvdansen/phantasma-anime":("araminta_k_phantasma_anime.safetensors", ""),
+            "Pclanglais/Popeye-1929":("pytorch_lora_weights.safetensors", "drawing of popeye"),
             "-[ 🏠 Local models ]-":("", ""),
         }
     elif is_sd3(model):
