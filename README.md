@@ -22,6 +22,14 @@
 
 ## Updates
 
+  * 🆕 **2025-07-12** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end models [bartowski/cognitivecomputations_Dolphin-Mistral-24B-Venice-Edition-GGUF](https://hf.co/bartowski/cognitivecomputations_Dolphin-Mistral-24B-Venice-Edition-GGUF) and Chatbot Role playing specialized model [bartowski/TheDrummer_Cydonia-24B-v3.1-GGUF](https://hf.co/bartowski/TheDrummer_Cydonia-24B-v3.1-GGUF). Update of Chatbot high-end model Devstral to [bartowski/mistralai_Devstral-Small-2507-GGUF](https://hf.co/bartowski/mistralai_Devstral-Small-2507-GGUF) 
+    - Add support for SDXL Anime model [zenless-lab/sdxl-anything-xl](https://hf.co/zenless-lab/sdxl-anything-xl).
+    - Add support for SDXL Inpainting model [kpsss34/inpaintingXL](https://hf.co/kpsss34/inpaintingXL).
+    - Add support for SDXL LoRA models [Lora-4-IABD-2/floor_plans_a_v1.safetensors](https://hf.co/Lora-4-IABD-2/floor_plans_a_v1.safetensors) and [Pclanglais/Popeye-1929](https://hf.co/Pclanglais/Popeye-1929).
+    - Add support for Flux LoRA models [Hectore/80S_AESTHTETICS](https://hf.co/Hectore/80S_AESTHTETICS) and [diabolic6045/Flux_Sticker_Lora](https://hf.co/diabolic6045/Flux_Sticker_Lora).
+    - Display of commit version in the WebUI.
+
   * 🆕 **2025-07-05** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot tiny model [bartowski/POLARIS-Project_Polaris-4B-Preview-GGUF](https://hf.co/bartowski/POLARIS-Project_Polaris-4B-Preview-GGUF). The Polaris reinforcement learning post-training method applied to this Qwen3-based model is absolutely amazing, leading to incredible results for a 4B model and it can easily compete with 32B+ models in most situations. Definitely worth the try if you have limited ressources !
     - Add support for Chatbot high-end model [bartowski/HelpingAI_Dhanishtha-2.0-preview-GGUF](https://hf.co/bartowski/HelpingAI_Dhanishtha-2.0-preview-GGUF) and update of high-end model [bartowski/mistralai_Mistral-Small-3.2-24B-Instruct-2506-GGUF](https://hf.co/bartowski/mistralai_Mistral-Small-3.2-24B-Instruct-2506-GGUF).
@@ -43,12 +51,6 @@
     - Add support for Chatbot high-end model [bartowski/mistralai_Magistral-Small-2506-GGUF](https://hf.co/bartowski/mistralai_Magistral-Small-2506-GGUF) and Chatbot specialized in chemistry model [DevQuasar/futurehouse.ether0-GGUF](https://hf.co/DevQuasar/futurehouse.ether0-GGUF).
     - Add support for Flux LoRA models [cocktailpeanut/banksy](https://hf.co/cocktailpeanut/banksy), [glif-loradex-trainer/an303042_Barcoded_v1_NoCap](https://hf.co/glif-loradex-trainer/an303042_Barcoded_v1_NoCap), [M00D/bubble-era](https://hf.co/M00D/bubble-era), [TheAwakenOne/caricature](https://hf.co/TheAwakenOne/caricature), [lichorosario/flux-lora-rtmi](https://hf.co/lichorosario/flux-lora-rtmi) and  [wavymulder/ASCII-flux-LoRA](https://hf.co/wavymulder/ASCII-flux-LoRA).
     - Bugfix for 404 error when using Chatbot model [microsoft/phi-4-gguf](https://hf.co/microsoft/phi-4-gguf).
-
-  * 🆕 **2025-06-07** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot model [bartowski/nvidia_AceReason-Nemotron-7B-GGUF](https://hf.co/bartowski/nvidia_AceReason-Nemotron-7B-GGUF) and Chatbot high-end model  [bartowski/mistralai_Devstral-Small-2505-GGUF](https://hf.co/bartowski/mistralai_Devstral-Small-2505-GGUF).
-    - Add support for gguf Flux model [city96/FLUX.1-schnell-gguf](https://hf.co/city96/FLUX.1-schnell-gguf). It halves the RAM pre-requisites for using Flux on cpu-only inference, making it usable with "only" 32GB RAM !
-    - Add support for SDXL model [yandex/stable-diffusion-xl-base-1.0-alchemist](https://hf.co/yandex/stable-diffusion-xl-base-1.0-alchemist).
-    - Add support for Flux LoRA models [glif-loradex-trainer/Swap_agrawal14_aestheticretrocapturez](https://hf.co/glif-loradex-trainer/Swap_agrawal14_aestheticretrocapturez), [CiroN2022/microverse-creator](https://hf.co/CiroN2022/microverse-creator), [CtrlAltArt/Flux_Playing_Card_Pictures](https://hf.co/CtrlAltArt/Flux_Playing_Card_Pictures) and  [Norod78/once-upon-a-time-cartoon-style-flux-v3](https://hf.co/Norod78/once-upon-a-time-cartoon-style-flux-v3).
 
 [List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
