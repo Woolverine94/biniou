@@ -40,6 +40,7 @@ model_list_txt2img_sd_builtin = [
     "digiplay/PerfectDeliberate_v5",
     "stable-diffusion-v1-5/stable-diffusion-v1-5",
     "ItsJayQz/GTA5_Artwork_Diffusion",
+    "songkey/epicphotogasm_ultimateFidelity",
     "-[ 👍 🚀 Fast SD15 ]-",
     "IDKiro/sdxs-512-0.9",
     "IDKiro/sdxs-512-dreamshaper",
