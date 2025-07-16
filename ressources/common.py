@@ -2265,6 +2265,8 @@ def lora_model_list(model, *args):
             "OpenGenerativeAI/SYNTHWAVE":("synthwave.safetensors", "SYNTHWAVE"),
             "strangerzonehf/Thread-of-Art-Flux":("Thread-of-Art.safetensors", "Thread of Art"),
             "Hectore/80S_AESTHTETICS":("RetroSurrealist_1982.safetensors", "80SNEWWAVE"),
+            "DavidBaloches/STYLIZARD_F1_3D_Stylized":("3dstyl1z3d.safetensors", "3d cartoon stylized"),
+            "davisbro/flux-multi-angle":("lora.safetensors", "A TOK composite photo of a person posing at different angles"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
