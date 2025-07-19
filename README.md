@@ -22,6 +22,11 @@
 
 ## Updates
 
+  * 🆕 **2025-07-19** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot model [DevQuasar/openbmb.MiniCPM4-8B-GGUF](https://hf.co/DevQuasar/openbmb.MiniCPM4-8B-GGUF), tiny model [mradermacher/Polaris-1.7B-Preview-GGUF](https://hf.co/mradermacher/Polaris-1.7B-Preview-GGUF), medical specialized model [bartowski/google_medgemma-27b-it-GGUF](https://hf.co/bartowski/google_medgemma-27b-it-GGUF) and update of high-end model Reka to [bartowski/RekaAI_reka-flash-3.1-GGUF](https://hf.co/bartowski/RekaAI_reka-flash-3.1-GGUF).
+    - Add support for SD 1.5 model [songkey/epicphotogasm_ultimateFidelity](https://hf.co/songkey/epicphotogasm_ultimateFidelity).
+    - Add support for Flux LoRA models [DavidBaloches/STYLIZARD_F1_3D_Stylized](https://hf.co/DavidBaloches/STYLIZARD_F1_3D_Stylized) and [davisbro/flux-multi-angle](https://hf.co/davisbro/flux-multi-angle).
+
   * 🆕 **2025-07-12** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end models [bartowski/cognitivecomputations_Dolphin-Mistral-24B-Venice-Edition-GGUF](https://hf.co/bartowski/cognitivecomputations_Dolphin-Mistral-24B-Venice-Edition-GGUF) and Chatbot Role playing specialized model [bartowski/TheDrummer_Cydonia-24B-v3.1-GGUF](https://hf.co/bartowski/TheDrummer_Cydonia-24B-v3.1-GGUF). Update of Chatbot high-end model Devstral to [bartowski/mistralai_Devstral-Small-2507-GGUF](https://hf.co/bartowski/mistralai_Devstral-Small-2507-GGUF) 
     - Add support for SDXL Anime model [zenless-lab/sdxl-anything-xl](https://hf.co/zenless-lab/sdxl-anything-xl).
@@ -46,13 +51,6 @@
     - Add support for Flux LoRA models [strangerzonehf/Dynamic-Silver-Flux](https://hf.co/strangerzonehf/Dynamic-Silver-Flux) and  [gokaygokay/Flux-Realistic-Backgrounds-LoRA](https://hf.co/gokaygokay/Flux-Realistic-Backgrounds-LoRA).
     - Add support for SDXL LoRA models [ntc-ai/SDXL-LoRA-slider.super-mario](https://hf.co/ntc-ai/SDXL-LoRA-slider.super-mario), [KappaNeuro/bas-relief](https://hf.co/KappaNeuro/bas-relief), [KappaNeuro/needlepoint](https://hf.co/KappaNeuro/needlepoint) and  [KappaNeuro/synthwave-t-shirt](https://hf.co/KappaNeuro/synthwave-t-shirt).
     - Bugfix in management of offline mode.
-
-  * 🆕 **2025-06-14** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end model [bartowski/mistralai_Magistral-Small-2506-GGUF](https://hf.co/bartowski/mistralai_Magistral-Small-2506-GGUF) and Chatbot specialized in chemistry model [DevQuasar/futurehouse.ether0-GGUF](https://hf.co/DevQuasar/futurehouse.ether0-GGUF).
-    - Add support for Flux LoRA models [cocktailpeanut/banksy](https://hf.co/cocktailpeanut/banksy), [glif-loradex-trainer/an303042_Barcoded_v1_NoCap](https://hf.co/glif-loradex-trainer/an303042_Barcoded_v1_NoCap), [M00D/bubble-era](https://hf.co/M00D/bubble-era), [TheAwakenOne/caricature](https://hf.co/TheAwakenOne/caricature), [lichorosario/flux-lora-rtmi](https://hf.co/lichorosario/flux-lora-rtmi) and  [wavymulder/ASCII-flux-LoRA](https://hf.co/wavymulder/ASCII-flux-LoRA).
-    - Bugfix for 404 error when using Chatbot model [microsoft/phi-4-gguf](https://hf.co/microsoft/phi-4-gguf).
-
-[List of archived updates](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
 ---
 
