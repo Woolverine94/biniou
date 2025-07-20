@@ -2267,6 +2267,7 @@ def lora_model_list(model, *args):
             "Hectore/80S_AESTHTETICS":("RetroSurrealist_1982.safetensors", "80SNEWWAVE"),
             "DavidBaloches/STYLIZARD_F1_3D_Stylized":("3dstyl1z3d.safetensors", "3d cartoon stylized"),
             "davisbro/flux-multi-angle":("lora.safetensors", "A TOK composite photo of a person posing at different angles"),
+            "renderartist/classic-painting-flux":("Classic_Painting_Flux_v1_renderartist.safetensors", "class1cpa1nt, oil painting"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
@@ -2376,6 +2377,7 @@ def lora_model_list(model, *args):
             "glif-loradex-trainer/001_Detailed_Manga_Style-v2_1":("Detailed_Manga_Style-v2_1.safetensors", "Hyper-detailed dark X.M4ng4.S7y13"),
             "Norod78/once-upon-a-time-cartoon-style-flux-v3":("ouat_cartoon-OnceUponATimeV3-Flux-2142990.safetensors", "ouat cartoon"),
             "Norod78/CartoonStyle-flux-lora":("CartoonStyle_flux_lora.safetensors", ""),
+            "alvdansen/sonny-anime-fixed":("araminta_k_sonnyanime_fluxd_fixed.safetensors", "nm22 style"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
