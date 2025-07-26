@@ -22,6 +22,11 @@
 
 ## Updates
 
+  * 🆕 **2025-07-26** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot model [bartowski/nvidia_OpenReasoning-Nemotron-7B-GGUF](https://hf.co/bartowski/nvidia_OpenReasoning-Nemotron-7B-GGUF), tiny models [bartowski/HuggingFaceTB_SmolLM3-3B-GGUF](https://hf.co/bartowski/HuggingFaceTB_SmolLM3-3B-GGUF) and [LiquidAI/LFM2-1.2B-GGUF](https://hf.co/LiquidAI/LFM2-1.2B-GGUF).
+    - Add support for SDXL LoRA models [ntc-ai/SDXL-LoRA-slider.laser-background](https://hf.co/ntc-ai/SDXL-LoRA-slider.laser-background), [CiroN2022/ascii-art](https://hf.co/CiroN2022/ascii-art), [KappaNeuro/isometric-cutaway](https://hf.co/KappaNeuro/isometric-cutaway) and [Blib-la/caricature_lora_sdxl](https://hf.co/Blib-la/caricature_lora_sdxl).
+    - Add support for Flux LoRA models [renderartist/classic-painting-flux](https://hf.co/renderartist/classic-painting-flux) and [alvdansen/sonny-anime-fixed](https://hf.co/alvdansen/sonny-anime-fixed).
+
   * 🆕 **2025-07-19** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot model [DevQuasar/openbmb.MiniCPM4-8B-GGUF](https://hf.co/DevQuasar/openbmb.MiniCPM4-8B-GGUF), tiny model [mradermacher/Polaris-1.7B-Preview-GGUF](https://hf.co/mradermacher/Polaris-1.7B-Preview-GGUF), medical specialized model [bartowski/google_medgemma-27b-it-GGUF](https://hf.co/bartowski/google_medgemma-27b-it-GGUF) and update of high-end model Reka to [bartowski/RekaAI_reka-flash-3.1-GGUF](https://hf.co/bartowski/RekaAI_reka-flash-3.1-GGUF).
     - Add support for SD 1.5 model [songkey/epicphotogasm_ultimateFidelity](https://hf.co/songkey/epicphotogasm_ultimateFidelity).
@@ -45,13 +50,6 @@
     - Add support for Chatbot tiny models [bartowski/nvidia_Llama-3.1-Nemotron-Nano-4B-v1.1-GGUF](https://hf.co/bartowski/nvidia_Llama-3.1-Nemotron-Nano-4B-v1.1-GGUF) and [bartowski/nvidia_Nemotron-Research-Reasoning-Qwen-1.5B-GGUF](https://hf.co/bartowski/nvidia_Nemotron-Research-Reasoning-Qwen-1.5B-GGUF).
     - Add support for SD 1.5 models [ItsJayQz/GTA5_Artwork_Diffusion](https://hf.co/ItsJayQz/GTA5_Artwork_Diffusion) and  [Norod78/sd15-jojo-stone-ocean](https://hf.co/Norod78/sd15-jojo-stone-ocean).
     - Add support for SD 1.5 LoRA models [SedatAl/pixel-art-LoRa](https://hf.co/SedatAl/pixel-art-LoRa) and [Saitun/catconcept](https://hf.co/Saitun/catconcept).
-
-  * 🆕 **2025-06-21** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end model [bartowski/OpenBuddy_OpenBuddy-R1-0528-Distill-Qwen3-32B-Preview0-QAT-GGUF](https://hf.co/bartowski/OpenBuddy_OpenBuddy-R1-0528-Distill-Qwen3-32B-Preview0-QAT-GGUF) and Chatbot specialized model [Tesslate/UIGEN-T3-14B-Preview-Q8_0-GGUF](https://hf.co/Tesslate/UIGEN-T3-14B-Preview-Q8_0-GGUF).
-    - Add support for Flux LoRA models [strangerzonehf/Dynamic-Silver-Flux](https://hf.co/strangerzonehf/Dynamic-Silver-Flux) and  [gokaygokay/Flux-Realistic-Backgrounds-LoRA](https://hf.co/gokaygokay/Flux-Realistic-Backgrounds-LoRA).
-    - Add support for SDXL LoRA models [ntc-ai/SDXL-LoRA-slider.super-mario](https://hf.co/ntc-ai/SDXL-LoRA-slider.super-mario), [KappaNeuro/bas-relief](https://hf.co/KappaNeuro/bas-relief), [KappaNeuro/needlepoint](https://hf.co/KappaNeuro/needlepoint) and  [KappaNeuro/synthwave-t-shirt](https://hf.co/KappaNeuro/synthwave-t-shirt).
-    - Bugfix in management of offline mode.
-
 ---
 
 ## Menu
