@@ -316,7 +316,7 @@ class biniouUIControl:
         filename = ".ini/llamacpp_backend.cfg"
         if os.path.isfile(filename):
             with open(filename, "r", encoding="utf-8") as fichier:
-                compilation_args = fichier.read()
+                compilation_args = fichier.read().rstrip()
             if compilation_args == "":
                 optimizer = "none"
             elif compilation_args == "-DLLAMA_BLAS=ON -DLLAMA_BLAS_VENDOR=OpenBLAS":
