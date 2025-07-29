@@ -2272,6 +2272,8 @@ def lora_model_list(model, *args):
             "DavidBaloches/STYLIZARD_F1_3D_Stylized":("3dstyl1z3d.safetensors", "3d cartoon stylized"),
             "davisbro/flux-multi-angle":("lora.safetensors", "A TOK composite photo of a person posing at different angles"),
             "renderartist/classic-painting-flux":("Classic_Painting_Flux_v1_renderartist.safetensors", "class1cpa1nt, oil painting"),
+            "lucataco/ReplicateFluxLoRA":("flux_train_replicate.safetensors", "in the style of TOK"),
+            "lichorosario/flux-cubist-cartoon":("lora.safetensors", "CBSTCRTN cubist cartoon"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
