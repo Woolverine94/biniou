@@ -17,7 +17,8 @@ RUN mkdir -p /home/biniou/.cache/huggingface -p /home/biniou/biniou/gfpgan
 RUN chmod +x /home/biniou/biniou/webui.sh
 
 # Replace pyTorch cpu-only version by CUDA-enabled one
-RUN . ./env/bin/activate && pip uninstall -y torch torchvision torchaudio && ./update_cuda.sh && deactivate
+RUN mkdir -p /home/biniou/biniou/.ini && echo "-DLLAMA_CUDA=on" > /home/biniou/biniou/.ini/llamacpp_backend.cfg
+RUN . ./env/bin/activate && pip uninstall -y torch torchvision torchaudio llama-cpp-python && ./update_cuda.sh && deactivate
 
 ENV DEBIAN_FRONTEND=dialog
 
@@ -25,5 +26,5 @@ ENV DEBIAN_FRONTEND=dialog
 EXPOSE 7860/tcp
 
 # Launch at startup
-CMD [ "/home/biniou/biniou/webui.sh" ]
+ENTRYPOINT ["/home/biniou/biniou/webui.sh"]
 
