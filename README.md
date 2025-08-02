@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2025-08-02** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end model [bartowski/nvidia_Llama-3_3-Nemotron-Super-49B-v1_5-GGUF](https://hf.co/bartowski/nvidia_Llama-3_3-Nemotron-Super-49B-v1_5-GGUF). Update of Chatbot high-end model Magistral to [bartowski/mistralai_Magistral-Small-2507-GGUF](https://hf.co/bartowski/mistralai_Magistral-Small-2507-GGUF)
+    - Add support for Flux LoRA models [lucataco/ReplicateFluxLoRA](https://hf.co/lucataco/ReplicateFluxLoRA), [lichorosario/flux-cubist-cartoon](https://hf.co/lichorosario/flux-cubist-cartoon), [jakedahn/flux-latentpop](https://hf.co/jakedahn/flux-latentpop) and [CtrlAltArt/Flux_Laser_Cut_and_Layered_Wood_Style](https://hf.co/CtrlAltArt/Flux_Laser_Cut_and_Layered_Wood_Style).
+    - Enhancement for Dockerfiles
+    - Bugfix for CUDA update script.
+
   * 🆕 **2025-07-26** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot model [bartowski/nvidia_OpenReasoning-Nemotron-7B-GGUF](https://hf.co/bartowski/nvidia_OpenReasoning-Nemotron-7B-GGUF), tiny models [bartowski/HuggingFaceTB_SmolLM3-3B-GGUF](https://hf.co/bartowski/HuggingFaceTB_SmolLM3-3B-GGUF) and [LiquidAI/LFM2-1.2B-GGUF](https://hf.co/LiquidAI/LFM2-1.2B-GGUF).
     - Add support for SDXL LoRA models [ntc-ai/SDXL-LoRA-slider.laser-background](https://hf.co/ntc-ai/SDXL-LoRA-slider.laser-background), [CiroN2022/ascii-art](https://hf.co/CiroN2022/ascii-art), [KappaNeuro/isometric-cutaway](https://hf.co/KappaNeuro/isometric-cutaway) and [Blib-la/caricature_lora_sdxl](https://hf.co/Blib-la/caricature_lora_sdxl).
@@ -45,11 +51,6 @@
     - Add support for Chatbot high-end model [bartowski/HelpingAI_Dhanishtha-2.0-preview-GGUF](https://hf.co/bartowski/HelpingAI_Dhanishtha-2.0-preview-GGUF) and update of high-end model [bartowski/mistralai_Mistral-Small-3.2-24B-Instruct-2506-GGUF](https://hf.co/bartowski/mistralai_Mistral-Small-3.2-24B-Instruct-2506-GGUF).
     - Add support for Flux LoRA models [OpenGenerativeAI/SYNTHWAVE](https://hf.co/OpenGenerativeAI/SYNTHWAVE), [derekl35/tarot-qlora-flux](https://hf.co/derekl35/tarot-qlora-flux), [strangerzonehf/Thread-of-Art-Flux](https://hf.co/strangerzonehf/Thread-of-Art-Flux), [Norod78/CartoonStyle-flux-lora](https://hf.co/Norod78/CartoonStyle-flux-lora), [renderartist/doodletoonflux](https://hf.co/renderartist/doodletoonflux) and  [Hectore/tshirt_design](https://hf.co/Hectore/tshirt_design).
     - Enhancement for install and update scripts.
-
-  * 🆕 **2025-06-28** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot tiny models [bartowski/nvidia_Llama-3.1-Nemotron-Nano-4B-v1.1-GGUF](https://hf.co/bartowski/nvidia_Llama-3.1-Nemotron-Nano-4B-v1.1-GGUF) and [bartowski/nvidia_Nemotron-Research-Reasoning-Qwen-1.5B-GGUF](https://hf.co/bartowski/nvidia_Nemotron-Research-Reasoning-Qwen-1.5B-GGUF).
-    - Add support for SD 1.5 models [ItsJayQz/GTA5_Artwork_Diffusion](https://hf.co/ItsJayQz/GTA5_Artwork_Diffusion) and  [Norod78/sd15-jojo-stone-ocean](https://hf.co/Norod78/sd15-jojo-stone-ocean).
-    - Add support for SD 1.5 LoRA models [SedatAl/pixel-art-LoRa](https://hf.co/SedatAl/pixel-art-LoRa) and [Saitun/catconcept](https://hf.co/Saitun/catconcept).
 ---
 
 ## Menu
