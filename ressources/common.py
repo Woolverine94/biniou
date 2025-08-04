@@ -1919,7 +1919,8 @@ def is_flux(model):
 (model == "AlekseyCalvin/PixelwaveFluxSchnell_Diffusers") or \
 (model == "mikeyandfriends/PixelWave_FLUX.1-schnell_04") or \
 (model == "minpeter/FLUX-Hyperscale-fused-fast") or \
-(model == "city96/FLUX.1-schnell-gguf")\
+(model == "city96/FLUX.1-schnell-gguf") or \
+(model == "NikolaSigmoid/FLUX.1-Krea-dev")\
 ):
         is_flux_value = True
     else:

@@ -124,6 +124,7 @@ model_list_img2img_builtin = [
     "black-forest-labs/FLUX.1-schnell",
     "sayakpaul/FLUX.1-merged",
     "ChuckMcSneed/FLUX.1-dev",
+    "NikolaSigmoid/FLUX.1-Krea-dev",
     "enhanceaiteam/Mystic",
     "AlekseyCalvin/AuraFlux_merge_diffusers",
     "ostris/Flex.1-alpha",
