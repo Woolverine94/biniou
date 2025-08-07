@@ -21,7 +21,7 @@ huggingface-hub==0.25.2
 gradio==3.50.2
 transformers==4.44.2
 sentencepiece
-accelerate
+accelerate==1.9.0
 diffusers==0.32.2
 compel
 scipy
