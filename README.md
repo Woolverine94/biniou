@@ -22,6 +22,14 @@
 
 ## Updates
 
+  * 🆕 **2025-08-09** : 🔥 ***Weekly update*** 🔥 >
+
+    - 🔥 Now we're talking ! 🔥 Add support for Chatbot high-end model GPT oss [bartowski/openai_gpt-oss-20b-GGUF](https://hf.co/bartowski/openai_gpt-oss-20b-GGUF). As expected, answers given by this OpenAI Open Source model are absolutely awesome and really fast for its size (at the level of 8B models class). Cherry on the top : with a size under 12GB it should be usable with only 16GB RAM. It's like a tiny version of ChatGPT, but running on your own hardware ! Definitely worth the try and certainly the best Chatbot model supported by biniou, light-years away from most other models.
+    - Update of Chatbot high-end models Qwen3-30B-A3B-Instruct to [Qwen_Qwen3-30B-A3B-Instruct-2507-GGUF](https://hf.co/Qwen_Qwen3-30B-A3B-Instruct-2507-GGUF), Dhanishtha-2.0 to [HelpingAI_Dhanishtha-2.0-preview-0825-GGUF](https://hf.co/HelpingAI_Dhanishtha-2.0-preview-0825-GGUF) and Cydonia-24B to [bartowski/TheDrummer_Cydonia-R1-24B-v4-GGUF](https://hf.co/bartowski/TheDrummer_Cydonia-R1-24B-v4-GGUF).
+    - Add support for Krea Flux model through [NikolaSigmoid/FLUX.1-Krea-dev](https://hf.co/NikolaSigmoid/FLUX.1-Krea-dev).
+    - Add support for Flux LoRA models [42lux/42lux-flux-highres-fix-v2](https://hf.co/42lux/42lux-flux-highres-fix-v2) and [bingbangboom/flux_geopop](https://hf.co/bingbangboom/flux_geopop).
+    - Bugfix for crash at startup after update of accelerate.
+
   * 🆕 **2025-08-02** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end model [bartowski/nvidia_Llama-3_3-Nemotron-Super-49B-v1_5-GGUF](https://hf.co/bartowski/nvidia_Llama-3_3-Nemotron-Super-49B-v1_5-GGUF). Update of Chatbot high-end model Magistral to [bartowski/mistralai_Magistral-Small-2507-GGUF](https://hf.co/bartowski/mistralai_Magistral-Small-2507-GGUF)
     - Add support for Flux LoRA models [lucataco/ReplicateFluxLoRA](https://hf.co/lucataco/ReplicateFluxLoRA), [lichorosario/flux-cubist-cartoon](https://hf.co/lichorosario/flux-cubist-cartoon), [jakedahn/flux-latentpop](https://hf.co/jakedahn/flux-latentpop) and [CtrlAltArt/Flux_Laser_Cut_and_Layered_Wood_Style](https://hf.co/CtrlAltArt/Flux_Laser_Cut_and_Layered_Wood_Style).
@@ -46,11 +54,6 @@
     - Add support for Flux LoRA models [Hectore/80S_AESTHTETICS](https://hf.co/Hectore/80S_AESTHTETICS) and [diabolic6045/Flux_Sticker_Lora](https://hf.co/diabolic6045/Flux_Sticker_Lora).
     - Display of commit version in the WebUI.
 
-  * 🆕 **2025-07-05** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot tiny model [bartowski/POLARIS-Project_Polaris-4B-Preview-GGUF](https://hf.co/bartowski/POLARIS-Project_Polaris-4B-Preview-GGUF). The Polaris reinforcement learning post-training method applied to this Qwen3-based model is absolutely amazing, leading to incredible results for a 4B model and it can easily compete with 32B+ models in most situations. Definitely worth the try if you have limited ressources !
-    - Add support for Chatbot high-end model [bartowski/HelpingAI_Dhanishtha-2.0-preview-GGUF](https://hf.co/bartowski/HelpingAI_Dhanishtha-2.0-preview-GGUF) and update of high-end model [bartowski/mistralai_Mistral-Small-3.2-24B-Instruct-2506-GGUF](https://hf.co/bartowski/mistralai_Mistral-Small-3.2-24B-Instruct-2506-GGUF).
-    - Add support for Flux LoRA models [OpenGenerativeAI/SYNTHWAVE](https://hf.co/OpenGenerativeAI/SYNTHWAVE), [derekl35/tarot-qlora-flux](https://hf.co/derekl35/tarot-qlora-flux), [strangerzonehf/Thread-of-Art-Flux](https://hf.co/strangerzonehf/Thread-of-Art-Flux), [Norod78/CartoonStyle-flux-lora](https://hf.co/Norod78/CartoonStyle-flux-lora), [renderartist/doodletoonflux](https://hf.co/renderartist/doodletoonflux) and  [Hectore/tshirt_design](https://hf.co/Hectore/tshirt_design).
-    - Enhancement for install and update scripts.
 ---
 
 ## Menu
