@@ -145,7 +145,7 @@
   - Support for LoRA models (SD 1.5, SDXL, SD 3.5 medium, SD 3.5 large and Flux)
   - Support for textual inversion
   - Support llama-cpp-python optimizations CUDA, OpenBLAS, OpenCL BLAS, ROCm and  Vulkan through a simple setting
-  - Support for Llama/2/3, Mistral, Mixtral and compatible GGUF quantized models, through built-in model list or standalone .gguf files.
+  - Support for gpt-oss, Llama 2/3, Mistral, Mixtral, Qwen 2/3, Deepseek, Gemma, and compatible GGUF quantized models, through built-in model list or standalone .gguf files.
   - Easy copy/paste integration for [TheBloke GGUF quantized models](https://huggingface.co/models?search=TheBloke%20GGUF).
 
 ---
