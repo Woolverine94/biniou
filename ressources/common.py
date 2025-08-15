@@ -2280,6 +2280,7 @@ def lora_model_list(model, *args):
             "bingbangboom/flux_geopop":("geopop_NWGMTRCPOPV01.safetensors", "illustration in the style of NWGMTRCPOPV01"),
             "renderartist/simplevectorflux":("Simple_Vector_Flux_v2_renderartist.safetensors", "v3ct0r style, vector"),
             "Norod78/but-the-old-gods-are-rising-flux":("But_the_old_gods_are_rising_FLUX-000004.safetensors", "but the old gods are rising"),
+            "treeshark/KomikZv6.safetensors":("KomikZv6.safetensors", ""),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
@@ -2393,6 +2394,7 @@ def lora_model_list(model, *args):
             "Norod78/once-upon-a-time-cartoon-style-flux-v3":("ouat_cartoon-OnceUponATimeV3-Flux-2142990.safetensors", "ouat cartoon"),
             "Norod78/CartoonStyle-flux-lora":("CartoonStyle_flux_lora.safetensors", ""),
             "alvdansen/sonny-anime-fixed":("araminta_k_sonnyanime_fluxd_fixed.safetensors", "nm22 style"),
+            "ianspark/fc-Anime-Lora-Flux":("anime_v1_000019000.safetensors", ""),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
