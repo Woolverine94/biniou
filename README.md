@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2025-08-16** : 🔥 ***Weekly update*** 🔥 >
+
+    - Add support for Chatbot high-end models [bartowski/openai_gpt-oss-120b-GGUF-MXFP4-Experimental](https://hf.co/bartowski/openai_gpt-oss-120b-GGUF-MXFP4-Experimental), [DevQuasar/PowerInfer.SmallThinker-21BA3B-Instruct-GGUF](https://hf.co/DevQuasar/PowerInfer.SmallThinker-21BA3B-Instruct-GGUF) and marketing specialized model [mradermacher/CAI-20B-GGUF](https://hf.co/mradermacher/CAI-20B-GGUF).
+    - Add support for Flux LoRA models [renderartist/simplevectorflux](https://hf.co/renderartist/simplevectorflux), [dvyio/flux-lora-airbrush-art](https://hf.co/dvyio/flux-lora-airbrush-art), [Norod78/but-the-old-gods-are-rising-flux](https://hf.co/Norod78/but-the-old-gods-are-rising-flux), [strangerzonehf/Flux-Material-Glass-Cube](https://hf.co/strangerzonehf/Flux-Material-Glass-Cube), [treeshark/KomikZv6.safetensors](https://hf.co/treeshark/KomikZv6.safetensors) and  [ianspark/fc-Anime-Lora-Flux](https://hf.co/ianspark/fc-Anime-Lora-Flux).
+
+
   * 🆕 **2025-08-09** : 🔥 ***Weekly update*** 🔥 >
 
     - 🔥 Now we're talking ! 🔥 Add support for Chatbot high-end model GPT oss [bartowski/openai_gpt-oss-20b-GGUF](https://hf.co/bartowski/openai_gpt-oss-20b-GGUF). As expected, answers given by this OpenAI Open Source model are absolutely awesome and really fast for its size (at the level of 8B models class). Cherry on the top : with a size under 12GB it should be usable with only 16GB RAM. It's like a tiny version of ChatGPT, but running on your own hardware ! Definitely worth the try and certainly the best Chatbot model supported by biniou, light-years away from most other models.
@@ -46,13 +52,6 @@
     - Add support for SD 1.5 model [songkey/epicphotogasm_ultimateFidelity](https://hf.co/songkey/epicphotogasm_ultimateFidelity).
     - Add support for Flux LoRA models [DavidBaloches/STYLIZARD_F1_3D_Stylized](https://hf.co/DavidBaloches/STYLIZARD_F1_3D_Stylized) and [davisbro/flux-multi-angle](https://hf.co/davisbro/flux-multi-angle).
 
-  * 🆕 **2025-07-12** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end models [bartowski/cognitivecomputations_Dolphin-Mistral-24B-Venice-Edition-GGUF](https://hf.co/bartowski/cognitivecomputations_Dolphin-Mistral-24B-Venice-Edition-GGUF) and Chatbot Role playing specialized model [bartowski/TheDrummer_Cydonia-24B-v3.1-GGUF](https://hf.co/bartowski/TheDrummer_Cydonia-24B-v3.1-GGUF). Update of Chatbot high-end model Devstral to [bartowski/mistralai_Devstral-Small-2507-GGUF](https://hf.co/bartowski/mistralai_Devstral-Small-2507-GGUF) 
-    - Add support for SDXL Anime model [zenless-lab/sdxl-anything-xl](https://hf.co/zenless-lab/sdxl-anything-xl).
-    - Add support for SDXL Inpainting model [kpsss34/inpaintingXL](https://hf.co/kpsss34/inpaintingXL).
-    - Add support for SDXL LoRA models [Lora-4-IABD-2/floor_plans_a_v1.safetensors](https://hf.co/Lora-4-IABD-2/floor_plans_a_v1.safetensors) and [Pclanglais/Popeye-1929](https://hf.co/Pclanglais/Popeye-1929).
-    - Add support for Flux LoRA models [Hectore/80S_AESTHTETICS](https://hf.co/Hectore/80S_AESTHTETICS) and [diabolic6045/Flux_Sticker_Lora](https://hf.co/diabolic6045/Flux_Sticker_Lora).
-    - Display of commit version in the WebUI.
 
 ---
 
