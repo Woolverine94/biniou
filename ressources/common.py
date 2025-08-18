@@ -2281,6 +2281,8 @@ def lora_model_list(model, *args):
             "renderartist/simplevectorflux":("Simple_Vector_Flux_v2_renderartist.safetensors", "v3ct0r style, vector"),
             "Norod78/but-the-old-gods-are-rising-flux":("But_the_old_gods_are_rising_FLUX-000004.safetensors", "but the old gods are rising"),
             "treeshark/KomikZv6.safetensors":("KomikZv6.safetensors", ""),
+            "UmeAiRT/FLUX.1-dev-LoRA-Impressionism":("ume_classic_impressionist.safetensors", "impressionist"),
+            "AlloReview/flux-lora-undraw":("lora.safetensors", "in the style of UndrawPurple"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
