@@ -1963,7 +1963,7 @@ def model_cleaner_llamacpp(model):
     model_replacement = {
         "-[ 👌 Standard ]-": "bartowski/Meta-Llama-3.1-8B-Instruct-GGUF",
         "-[ 👍 🚀 Tiny ]-":	"bartowski/microsoft_Phi-4-mini-instruct-GGUF",
-        "-[ 👏 🐢 High-end ]-":	"bartowski/Mistral-Nemo-Instruct-2407-GGUF",
+        "-[ 👏 🐢 High-end ]-":	"bartowski/openai_gpt-oss-20b-GGUF",
         "-[ 🧑‍💻 Code ]-": "bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF",
         "-[ 🧑‍⚕️ Specialized ]-": "AdityaXPV/Llama-3-8b-Instruct-law-sage-v0.1-GGUF",
         "-[ 📜 Legacy ]-": "TheBloke/SOLAR-10.7B-Instruct-v1.0-GGUF",
