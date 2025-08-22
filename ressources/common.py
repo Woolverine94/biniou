@@ -2180,6 +2180,8 @@ def lora_model_list(model, *args):
             "Shakker-Labs/FLUX.1-dev-LoRA-AntiBlur":("FLUX-dev-lora-AntiBlur.safetensors", ""),
             "diabolic6045/Flux_Wallpaper_Lora":("tost-2024-09-20-07-35-44-wallpap3r5.safetensors", "wallpap3r5"),
             "42lux/42lux-flux-highres-fix-v2":("42lux-highres-fix-v2.safetensors", ""),
+            "DavidBaloches/Extreme_Detailer":("aidmaFLUXPro1.1-FLUX-v0.3.safetensors", "aidmafluxpro1.1"),
+            "DavidBaloches/Hyper_Realism_Lora_by_aidma":("aidmaHyperrealism-FLUX-v0.3.safetensors", "aidmaHyperrealism"),
             "-[ 🏆 🐢 🎨 Style Flux LoRA ]-":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/flux-koda":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/pola-photo-flux":("pola_photo_araminta_k.safetensors", "polaroid style"),
