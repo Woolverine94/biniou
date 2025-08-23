@@ -22,14 +22,16 @@
 
 ## Updates
 
-  * 🆕 **2025-08-16** : 🔥 ***Weekly update*** 🔥 >
+  * 🆕 **2025-08-23** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end models [bartowski/huihui-ai_Huihui-gpt-oss-20b-BF16-abliterated-GGUF](https://hf.co/bartowski/huihui-ai_Huihui-gpt-oss-20b-BF16-abliterated-GGUF), code specialized model [DavidAU/Openai_gpt-oss-20b-CODER-NEO-CODE-DI-MATRIX-GGUF](https://hf.co/DavidAU/Openai_gpt-oss-20b-CODER-NEO-CODE-DI-MATRIX-GGUF) and tiny model [bartowski/TheDrummer_Gemma-3-R1-4B-v1-GGUF](https://hf.co/bartowski/TheDrummer_Gemma-3-R1-4B-v1-GGUF).
+    - Replacing default chatbot high-end model [bartowski/openai_gpt-oss-20b-GGUF](https://hf.co/bartowski/openai_gpt-oss-20b-GGUF).
+    - Add support for Flux LoRA models [UmeAiRT/FLUX.1-dev-LoRA-Impressionism](https://hf.co/UmeAiRT/FLUX.1-dev-LoRA-Impressionism), [AlloReview/flux-lora-undraw](https://hf.co/AlloReview/flux-lora-undraw), [DavidBaloches/Extreme_Detailer](https://hf.co/DavidBaloches/Extreme_Detailer), and [DavidBaloches/Hyper_Realism_Lora_by_aidma](https://hf.co/DavidBaloches/Hyper_Realism_Lora_by_aidma).
 
+  * 🆕 **2025-08-16** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end models [bartowski/openai_gpt-oss-120b-GGUF-MXFP4-Experimental](https://hf.co/bartowski/openai_gpt-oss-120b-GGUF-MXFP4-Experimental), [DevQuasar/PowerInfer.SmallThinker-21BA3B-Instruct-GGUF](https://hf.co/DevQuasar/PowerInfer.SmallThinker-21BA3B-Instruct-GGUF) and marketing specialized model [mradermacher/CAI-20B-GGUF](https://hf.co/mradermacher/CAI-20B-GGUF).
     - Add support for Flux LoRA models [renderartist/simplevectorflux](https://hf.co/renderartist/simplevectorflux), [dvyio/flux-lora-airbrush-art](https://hf.co/dvyio/flux-lora-airbrush-art), [Norod78/but-the-old-gods-are-rising-flux](https://hf.co/Norod78/but-the-old-gods-are-rising-flux), [strangerzonehf/Flux-Material-Glass-Cube](https://hf.co/strangerzonehf/Flux-Material-Glass-Cube), [treeshark/KomikZv6.safetensors](https://hf.co/treeshark/KomikZv6.safetensors) and  [ianspark/fc-Anime-Lora-Flux](https://hf.co/ianspark/fc-Anime-Lora-Flux).
 
-
   * 🆕 **2025-08-09** : 🔥 ***Weekly update*** 🔥 >
-
     - 🔥 Now we're talking ! 🔥 Add support for Chatbot high-end model GPT oss [bartowski/openai_gpt-oss-20b-GGUF](https://hf.co/bartowski/openai_gpt-oss-20b-GGUF). As expected, answers given by this OpenAI Open Source model are absolutely awesome and really fast for its size (at the level of 8B models class). Cherry on the top : with a size under 12GB it should be usable with only 16GB RAM. It's like a tiny version of ChatGPT, but running on your own hardware ! Definitely worth the try and certainly the best Chatbot model supported by biniou, light-years away from most other models.
     - Update of Chatbot high-end models Qwen3-30B-A3B-Instruct to [Qwen_Qwen3-30B-A3B-Instruct-2507-GGUF](https://hf.co/Qwen_Qwen3-30B-A3B-Instruct-2507-GGUF), Dhanishtha-2.0 to [HelpingAI_Dhanishtha-2.0-preview-0825-GGUF](https://hf.co/HelpingAI_Dhanishtha-2.0-preview-0825-GGUF) and Cydonia-24B to [bartowski/TheDrummer_Cydonia-R1-24B-v4-GGUF](https://hf.co/bartowski/TheDrummer_Cydonia-R1-24B-v4-GGUF).
     - Add support for Krea Flux model through [NikolaSigmoid/FLUX.1-Krea-dev](https://hf.co/NikolaSigmoid/FLUX.1-Krea-dev).
@@ -46,12 +48,6 @@
     - Add support for Chatbot model [bartowski/nvidia_OpenReasoning-Nemotron-7B-GGUF](https://hf.co/bartowski/nvidia_OpenReasoning-Nemotron-7B-GGUF), tiny models [bartowski/HuggingFaceTB_SmolLM3-3B-GGUF](https://hf.co/bartowski/HuggingFaceTB_SmolLM3-3B-GGUF) and [LiquidAI/LFM2-1.2B-GGUF](https://hf.co/LiquidAI/LFM2-1.2B-GGUF).
     - Add support for SDXL LoRA models [ntc-ai/SDXL-LoRA-slider.laser-background](https://hf.co/ntc-ai/SDXL-LoRA-slider.laser-background), [CiroN2022/ascii-art](https://hf.co/CiroN2022/ascii-art), [KappaNeuro/isometric-cutaway](https://hf.co/KappaNeuro/isometric-cutaway) and [Blib-la/caricature_lora_sdxl](https://hf.co/Blib-la/caricature_lora_sdxl).
     - Add support for Flux LoRA models [renderartist/classic-painting-flux](https://hf.co/renderartist/classic-painting-flux) and [alvdansen/sonny-anime-fixed](https://hf.co/alvdansen/sonny-anime-fixed).
-
-  * 🆕 **2025-07-19** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot model [DevQuasar/openbmb.MiniCPM4-8B-GGUF](https://hf.co/DevQuasar/openbmb.MiniCPM4-8B-GGUF), tiny model [mradermacher/Polaris-1.7B-Preview-GGUF](https://hf.co/mradermacher/Polaris-1.7B-Preview-GGUF), medical specialized model [bartowski/google_medgemma-27b-it-GGUF](https://hf.co/bartowski/google_medgemma-27b-it-GGUF) and update of high-end model Reka to [bartowski/RekaAI_reka-flash-3.1-GGUF](https://hf.co/bartowski/RekaAI_reka-flash-3.1-GGUF).
-    - Add support for SD 1.5 model [songkey/epicphotogasm_ultimateFidelity](https://hf.co/songkey/epicphotogasm_ultimateFidelity).
-    - Add support for Flux LoRA models [DavidBaloches/STYLIZARD_F1_3D_Stylized](https://hf.co/DavidBaloches/STYLIZARD_F1_3D_Stylized) and [davisbro/flux-multi-angle](https://hf.co/davisbro/flux-multi-angle).
-
 
 ---
 
