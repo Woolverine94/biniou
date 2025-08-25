@@ -2285,6 +2285,8 @@ def lora_model_list(model, *args):
             "treeshark/KomikZv6.safetensors":("KomikZv6.safetensors", ""),
             "UmeAiRT/FLUX.1-dev-LoRA-Impressionism":("ume_classic_impressionist.safetensors", "impressionist"),
             "AlloReview/flux-lora-undraw":("lora.safetensors", "in the style of UndrawPurple"),
+            "tanzim1/WSJ-Hedcut":("wsj-portrait.safetensors", "WSJ Portrait, a black and white drawing of a"),
+            "prithivMLmods/Flux.1-Dev-Pov-DoorEye-LoRA":("look-in-2.safetensors", "look in 2"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
