@@ -53,6 +53,7 @@ model_list_img2img_builtin = [
     "nitrosocke/Ghibli-Diffusion",
     "digiplay/STRANGER-ANIME",
     "Norod78/sd15-jojo-stone-ocean",
+    "stablediffusionapi/anything-v5",
     "-[ 👌 🐢 SDXL ]-",
     "fluently/Fluently-XL-Final",
     "SG161222/RealVisXL_V5.0",
