@@ -65,7 +65,7 @@ model_list_llamacpp_builtin = {
     "bartowski/nvidia_AceReason-Nemotron-7B-GGUF":("nvidia_AceReason-Nemotron-7B-Q5_K_M.gguf", "<｜begin▁of▁sentence｜>{system_prompt}<｜User｜>{prompt}<｜Assistant｜><｜end▁of▁sentence｜><｜Assistant｜><think>\n", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "bartowski/nvidia_OpenReasoning-Nemotron-7B-GGUF":("nvidia_OpenReasoning-Nemotron-7B-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "DevQuasar/openbmb.MiniCPM4-8B-GGUF":("openbmb.MiniCPM4-8B.Q5_K_M.gguf", "{prompt}", ""),
-#    "bartowski/tencent_Hunyuan-7B-Instruct-GGUF":("tencent_Hunyuan-7B-Instruct-Q5_K_M.gguf", "<|startoftext|>{system_prompt}<|extra_4|>{prompt}<|extra_0|><|eos|><|extra_0|>", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
+    "bartowski/tencent_Hunyuan-7B-Instruct-GGUF":("tencent_Hunyuan-7B-Instruct-Q5_K_M.gguf", "<|startoftext|>{system_prompt}<|extra_4|>{prompt}<|extra_0|><|eos|><|extra_0|>", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
 #    "-[ 👍 🚀 Tiny ]-":("Phi-3.1-mini-4k-instruct-Q5_K_M.gguf", "<|system|> {system_prompt}<|end|><|user|> {prompt}<|end|><|assistant|>", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "-[ 👍 🚀 Tiny ]-":("microsoft_Phi-4-mini-instruct-Q5_K_M.gguf", "<|system|>{system_prompt}<|end|><|user|>{prompt}<|end|><|assistant|>", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "bartowski/microsoft_Phi-4-mini-instruct-GGUF":("microsoft_Phi-4-mini-instruct-Q5_K_M.gguf", "<|system|>{system_prompt}<|end|><|user|>{prompt}<|end|><|assistant|>", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
@@ -211,6 +211,7 @@ prompt_template_list_llamacpp = {
     "Gemma 3":("<bos><start_of_turn>user\n{system_prompt}\n\n{prompt}<end_of_turn>\n<start_of_turn>model", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "gpt-oss":("<|start|>system<|message|>You are ChatGPT, a large language model trained by OpenAI.\n\nReasoning: medium\n\n# Valid channels: analysis, commentary, final. Channel must be included for every message.<|end|><|start|>developer<|message|># Instructions\n\n{system_prompt}<|end|><|start|>user<|message|>{prompt}<|end|><|start|>assistant", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "Granite":("<|start_of_role|>system<|end_of_role|>{system_prompt}<|end_of_text|>\n<|start_of_role|>user<|end_of_role|>{prompt}<|end_of_text|>\n<|start_of_role|>assistant<|end_of_role|>","You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
+    "Hunyuan":("<|startoftext|>{system_prompt}<|extra_4|>{prompt}<|extra_0|><|eos|><|extra_0|>", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "Llama-2-Chat":("[INST] <<SYS>>\n{system}\n<</SYS>>\n{prompt}[/INST]", "You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature. If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information."),
     "Llama-3-Instruct":("<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "Lucie-Instruct":("<s><|start_header_id|>system<|end_header_id|>\n\n{system_prompt}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>", "Tu es un assistant très performant. Tu es précis, concis, fiable et tu ne refuses jamais de répondre."),
@@ -273,7 +274,7 @@ def text_llamacpp(
     history_llamacpp, 
     prompt_template_llamacpp, 
     system_template_llamacpp, 
-    progress_txt2vid_ze=gr.Progress(track_tqdm=True)
+    progress_llamacpp=gr.Progress(track_tqdm=True)
     ):
 
     print(">>>[Chatbot Llama-cpp 📝 ]: starting answer generation")
