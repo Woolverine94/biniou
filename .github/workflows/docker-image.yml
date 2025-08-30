@@ -53,3 +53,11 @@ jobs:
         subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
         subject-digest: ${{ steps.push.outputs.digest }}
         push-to-registry: true
+
+    - name: Delete outdated biniou containers
+      uses: actions/delete-package-versions@v5
+      with:
+        package-name: 'biniou'
+        package-type: 'container'
+        min-versions-to-keep: 5
+        delete-only-untagged-versions: 'false'
