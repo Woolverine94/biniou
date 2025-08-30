@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2025-08-30** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot model [bartowski/tencent_Hunyuan-7B-Instruct-GGUF](https://hf.co/bartowski/tencent_Hunyuan-7B-Instruct-GGUF), update of models AceReason-Nemotron to [bartowski/nvidia_AceReason-Nemotron-1.1-7B-GGUF](https://hf.co/bartowski/nvidia_AceReason-Nemotron-1.1-7B-GGUF) and Cydonia to [bartowski/TheDrummer_Cydonia-24B-v4.1-GGUF](https://hf.co/bartowski/TheDrummer_Cydonia-24B-v4.1-GGUF).
+    - Add support for SD 1.5 model  [stablediffusionapi/anything-v5](https://hf.co/stablediffusionapi/anything-v5)
+    - Add support for Flux LoRA models  [Datou1111/Slow-Shutter](https://hf.co/Datou1111/Slow-Shutter),  [strangerzonehf/Flux-NFTv4-Designs-LoRA](https://hf.co/strangerzonehf/Flux-NFTv4-Designs-LoRA),  [tanzim1/WSJ-Hedcut](https://hf.co/tanzim1/WSJ-Hedcut), and  [prithivMLmods/Flux.1-Dev-Pov-DoorEye-LoRA](https://hf.co/prithivMLmods/Flux.1-Dev-Pov-DoorEye-LoRA).
+    - Modification of visual identity, by introducing a new logo for biniou.
+
   * 🆕 **2025-08-23** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end models [bartowski/huihui-ai_Huihui-gpt-oss-20b-BF16-abliterated-GGUF](https://hf.co/bartowski/huihui-ai_Huihui-gpt-oss-20b-BF16-abliterated-GGUF), code specialized model [DavidAU/Openai_gpt-oss-20b-CODER-NEO-CODE-DI-MATRIX-GGUF](https://hf.co/DavidAU/Openai_gpt-oss-20b-CODER-NEO-CODE-DI-MATRIX-GGUF) and tiny model [bartowski/TheDrummer_Gemma-3-R1-4B-v1-GGUF](https://hf.co/bartowski/TheDrummer_Gemma-3-R1-4B-v1-GGUF).
     - Replacing default chatbot high-end model [bartowski/openai_gpt-oss-20b-GGUF](https://hf.co/bartowski/openai_gpt-oss-20b-GGUF).
@@ -43,11 +49,6 @@
     - Add support for Flux LoRA models [lucataco/ReplicateFluxLoRA](https://hf.co/lucataco/ReplicateFluxLoRA), [lichorosario/flux-cubist-cartoon](https://hf.co/lichorosario/flux-cubist-cartoon), [jakedahn/flux-latentpop](https://hf.co/jakedahn/flux-latentpop) and [CtrlAltArt/Flux_Laser_Cut_and_Layered_Wood_Style](https://hf.co/CtrlAltArt/Flux_Laser_Cut_and_Layered_Wood_Style).
     - Enhancement for Dockerfiles
     - Bugfix for CUDA update script.
-
-  * 🆕 **2025-07-26** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot model [bartowski/nvidia_OpenReasoning-Nemotron-7B-GGUF](https://hf.co/bartowski/nvidia_OpenReasoning-Nemotron-7B-GGUF), tiny models [bartowski/HuggingFaceTB_SmolLM3-3B-GGUF](https://hf.co/bartowski/HuggingFaceTB_SmolLM3-3B-GGUF) and [LiquidAI/LFM2-1.2B-GGUF](https://hf.co/LiquidAI/LFM2-1.2B-GGUF).
-    - Add support for SDXL LoRA models [ntc-ai/SDXL-LoRA-slider.laser-background](https://hf.co/ntc-ai/SDXL-LoRA-slider.laser-background), [CiroN2022/ascii-art](https://hf.co/CiroN2022/ascii-art), [KappaNeuro/isometric-cutaway](https://hf.co/KappaNeuro/isometric-cutaway) and [Blib-la/caricature_lora_sdxl](https://hf.co/Blib-la/caricature_lora_sdxl).
-    - Add support for Flux LoRA models [renderartist/classic-painting-flux](https://hf.co/renderartist/classic-painting-flux) and [alvdansen/sonny-anime-fixed](https://hf.co/alvdansen/sonny-anime-fixed).
 
 ---
 
