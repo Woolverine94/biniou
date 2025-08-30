@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '40 2 * * 6'
 
+  push:
+    branches: [ "main" ]
+    paths:
+      - .github/workflows/CUDA-docker-image.yml
+
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
@@ -60,4 +65,4 @@ jobs:
         package-name: 'biniou-cuda'
         package-type: 'container'
         min-versions-to-keep: 5
-        delete-only-untagged-versions: 'false'
+
