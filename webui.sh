@@ -41,6 +41,6 @@ if [ "$TCMALLOC_NAME" != "" ]
     export LD_PRELOAD=$TCMALLOC_PATH/$TCMALLOC_NAME:$LD_PRELOAD
 fi
 
-AUDIOCRAFT_CACHE_DIR='./models/Audiocraft/' python3 webui.py
+HF_HUB_DISABLE_XET=1 AUDIOCRAFT_CACHE_DIR='./models/Audiocraft/' python3 webui.py
 
 exit 0

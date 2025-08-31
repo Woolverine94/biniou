@@ -5,7 +5,8 @@ import os
 import PIL
 import torch
 import numpy as np
-from RealESRGAN import RealESRGAN
+from huggingface_hub import hf_hub_download
+import huggingface_hub
 # from realesrgan import RealESRGANModel as RE
 from ressources.common import *
 from ressources.gfpgan import *
@@ -24,7 +25,7 @@ model_list_resrgan = [
 
 @metrics_decoration
 def image_resrgan(
-    modelid_resrgan, 
+    modelid_resrgan,
     scale_resrgan, 
     img_resrgan, 
     use_gfpgan_resrgan, 
@@ -32,7 +33,14 @@ def image_resrgan(
     ):
 
     print(">>>[Real ESRGAN 🔎]: starting module")
-        
+
+    huggingface_hub.cached_download = lambda *args, **kwargs: hf_hub_download("sberbank-ai/Real-ESRGAN", modelid_resrgan, local_dir=model_path_resrgan, **kwargs)
+    from RealESRGAN import RealESRGAN
+
+    hf_hub_download("sberbank-ai/Real-ESRGAN", "RealESRGAN_x2.pth", local_dir=model_path_resrgan)
+    hf_hub_download("sberbank-ai/Real-ESRGAN", "RealESRGAN_x4.pth", local_dir=model_path_resrgan)
+    hf_hub_download("sberbank-ai/Real-ESRGAN", "RealESRGAN_x8.pth", local_dir=model_path_resrgan)
+
     model_resrgan_path  = os.path.join(model_path_resrgan, modelid_resrgan)
     device = torch.device(device_resrgan)
     model_resrgan = RealESRGAN(device, scale=RESRGAN_SCALES[scale_resrgan])
@@ -58,5 +66,5 @@ def image_resrgan(
     del model_resrgan, image, sr_image
     clean_ram()
 
-    print(f">>>[Real ESRGAN 🔎]: leaving module")    
+    print(f">>>[Real ESRGAN 🔎]: leaving module")
     return final_image, final_image

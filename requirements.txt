@@ -17,12 +17,12 @@ datasets==2.14.6
 albumentations==1.3.1
 xformers==0.0.22.post7
 mdurl==0.1.2
-huggingface-hub==0.25.2
+huggingface-hub==0.34.4
 gradio==3.50.2
-transformers==4.44.2
+transformers==4.51.3
 sentencepiece
 accelerate==1.9.0
-diffusers==0.32.2
+diffusers==0.34.0
 compel
 scipy
 opencv-python
@@ -40,8 +40,9 @@ mediapipe
 tomesd
 ffmpeg-python
 trimesh
-peft==0.13.2
+peft==0.17.1
 git+https://github.com/TencentARC/PhotoMaker.git@ec35a8716ea790a404cb7e1ba282a320454906d1
 exiv2
 music-tag
 gguf
+timm==1.0.19
