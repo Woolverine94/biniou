@@ -2289,6 +2289,8 @@ def lora_model_list(model, *args):
             "tanzim1/WSJ-Hedcut":("wsj-portrait.safetensors", "WSJ Portrait, a black and white drawing of a"),
             "prithivMLmods/Flux.1-Dev-Pov-DoorEye-LoRA":("look-in-2.safetensors", "look in 2"),
             "Datou1111/Slow-Shutter":("Slow-Shutter.safetensors", "slow shutter photography motion blur"),
+            "Kie-Fells/earl-moran-flux-32dim":("earl-moran-flux-32dim.safetensors", "Earl Moran"),
+            "UmeAiRT/FLUX.1-dev-LoRA-Romanticism":("ume_classic_Romanticism.safetensors", "romantic"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
