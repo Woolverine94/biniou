@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2025-09-06** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot model [bartowski/glm-4-9b-chat-abliterated-GGUF](https://hf.co/bartowski/glm-4-9b-chat-abliterated-GGUF) and Chatbot high-end model [bartowski/TheDrummer_Skyfall-31B-v4-GGUF](https://hf.co/bartowski/TheDrummer_Skyfall-31B-v4-GGUF).
+    - Add support for Flux LoRA models  [nerijs/flux_prettyshot_v1](https://hf.co/nerijs/flux_prettyshot_v1), [gokaygokay/Flux-2D-Game-Assets-LoRA](https://hf.co/gokaygokay/Flux-2D-Game-Assets-LoRA),  [Kie-Fells/earl-moran-flux-32dim](https://hf.co/Kie-Fells/earl-moran-flux-32dim) and  [UmeAiRT/FLUX.1-dev-LoRA-Romanticism](https://hf.co/UmeAiRT/FLUX.1-dev-LoRA-Romanticism).
+    - Update for new visual identity (dark theme).
+    - Update of technical stack : huggingface-hub 0.34.4, transformers 4.51.3, diffusers 0.34.0 and peft 0.17.1.
+
   * 🆕 **2025-08-30** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot model [bartowski/tencent_Hunyuan-7B-Instruct-GGUF](https://hf.co/bartowski/tencent_Hunyuan-7B-Instruct-GGUF), update of models AceReason-Nemotron to [bartowski/nvidia_AceReason-Nemotron-1.1-7B-GGUF](https://hf.co/bartowski/nvidia_AceReason-Nemotron-1.1-7B-GGUF) and Cydonia to [bartowski/TheDrummer_Cydonia-24B-v4.1-GGUF](https://hf.co/bartowski/TheDrummer_Cydonia-24B-v4.1-GGUF).
     - Add support for SD 1.5 model  [stablediffusionapi/anything-v5](https://hf.co/stablediffusionapi/anything-v5)
@@ -43,12 +49,6 @@
     - Add support for Krea Flux model through [NikolaSigmoid/FLUX.1-Krea-dev](https://hf.co/NikolaSigmoid/FLUX.1-Krea-dev).
     - Add support for Flux LoRA models [42lux/42lux-flux-highres-fix-v2](https://hf.co/42lux/42lux-flux-highres-fix-v2) and [bingbangboom/flux_geopop](https://hf.co/bingbangboom/flux_geopop).
     - Bugfix for crash at startup after update of accelerate.
-
-  * 🆕 **2025-08-02** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end model [bartowski/nvidia_Llama-3_3-Nemotron-Super-49B-v1_5-GGUF](https://hf.co/bartowski/nvidia_Llama-3_3-Nemotron-Super-49B-v1_5-GGUF). Update of Chatbot high-end model Magistral to [bartowski/mistralai_Magistral-Small-2507-GGUF](https://hf.co/bartowski/mistralai_Magistral-Small-2507-GGUF)
-    - Add support for Flux LoRA models [lucataco/ReplicateFluxLoRA](https://hf.co/lucataco/ReplicateFluxLoRA), [lichorosario/flux-cubist-cartoon](https://hf.co/lichorosario/flux-cubist-cartoon), [jakedahn/flux-latentpop](https://hf.co/jakedahn/flux-latentpop) and [CtrlAltArt/Flux_Laser_Cut_and_Layered_Wood_Style](https://hf.co/CtrlAltArt/Flux_Laser_Cut_and_Layered_Wood_Style).
-    - Enhancement for Dockerfiles
-    - Bugfix for CUDA update script.
 
 ---
 
