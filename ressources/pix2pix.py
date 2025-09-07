@@ -28,6 +28,7 @@ for filename in os.listdir(model_path_pix2pix):
 
 model_list_pix2pix_builtin = [
     "timbrooks/instruct-pix2pix",
+    "Ekenayy/instruct-pix2pix-full",
     "instruction-tuning-sd/low-level-img-proc",
     "instruction-tuning-sd/cartoonizer",
     "diffusers/sdxl-instructpix2pix-768",
@@ -116,7 +117,7 @@ def image_pix2pix(
             modelid_pix2pix, 
             cache_dir=model_path_pix2pix, 
             torch_dtype=model_arch,
-            use_safetensors=True if (modelid_pix2pix == "timbrooks/instruct-pix2pix") else False,
+            use_safetensors=True if (modelid_pix2pix == "timbrooks/instruct-pix2pix" or modelid_pix2pix == "Ekenayy/instruct-pix2pix-full") else False,
             safety_checker=nsfw_filter_final, 
             feature_extractor=feat_ex,
             resume_download=True,
