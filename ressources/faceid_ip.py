@@ -123,6 +123,7 @@ model_list_faceid_ip_builtin = [
     "Spestly/OdysseyXL-1.0",
     "eramth/realism-sdxl",
     "yandex/stable-diffusion-xl-base-1.0-alchemist",
+    "John6666/stellaratormix-photorealism-v30-sdxl",
     "playgroundai/playground-v2-512px-base",
     "playgroundai/playground-v2-1024px-aesthetic",
     "playgroundai/playground-v2.5-1024px-aesthetic",
