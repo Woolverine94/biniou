@@ -41,13 +41,14 @@ jobs:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-cuda
       
     - name: Build the CUDA Docker image
+      context: "{{defaultContext}}:CUDA"
       run: docker build . --file CUDA/Dockerfile --tag biniou-cuda:$(date +%s)
 
     - name: Build and push Docker image
       id: push
       uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
       with:
-        context: .
+        context: "{{defaultContext}}:CUDA"
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
