@@ -41,7 +41,6 @@ jobs:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-cuda
       
     - name: Build the CUDA Docker image
-      context: "{{defaultContext}}:CUDA"
       run: docker build . --file CUDA/Dockerfile --tag biniou-cuda:$(date +%s)
 
     - name: Build and push Docker image
