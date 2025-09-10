@@ -32,4 +32,4 @@ pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https
 FORCE_CMAKE=1 pip install llama-cpp-python
 pip install -r requirements.txt
 
-exit 0
+exit $?

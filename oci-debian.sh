@@ -3,7 +3,7 @@ echo ">>>[biniou oci 🧠 ]: biniou one-click installer for Debian-based distrib
 echo ">>>[biniou oci 🧠 ]: Installing prerequisites"
 if [ "$(lsb_release -si|grep Debian)" != "" ]
   then
-    su root -c "apt -y install git pip python3 python3-venv gcc perl make ffmpeg openssl libtcmalloc-minimal4"
+    su root -c "apt -y install git pip python3 python3-venv python3-dev gcc perl make ffmpeg openssl libtcmalloc-minimal4"
   elif [ "$(cat /etc/os-release|grep VERSION_CODENAME|grep noble)" != "" ] || [ "$(cat /etc/os-release|grep UBUNTU_CODENAME|grep noble)" != "" ]
     then
       sudo add-apt-repository -y ppa:deadsnakes/ppa
@@ -22,6 +22,15 @@ if [ "$(cat /etc/os-release|grep VERSION_CODENAME|grep noble)" != "" ] || [ "$(c
   else
     ./install.sh
 fi
-echo ">>>[biniou oci 🧠 ]: Installation finished. Use cd biniou && ./webui.sh to launch biniou. Press enter to exit"
+
+returncode=$?
+
+if [ "$returncode" = 0 ]
+  then
+    echo ">>>[biniou oci 🧠 ]: Installation succeeded. Use cd biniou && ./webui.sh to launch biniou. Press enter to exit"
+  else
+    echo ">>>[biniou oci 🧠 ]: Installation failed. Something went wrong. Check the logs. Press enter to exit"
+fi
+
 read dummy
 exit 0
