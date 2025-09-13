@@ -22,6 +22,14 @@
 
 ## Updates
 
+  * 🆕 **2025-09-13** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end model [bartowski/NousResearch_Hermes-4-14B-GGUF](https://hf.co/bartowski/NousResearch_Hermes-4-14B-GGUF), chatbot specialized model [bartowski/Aurore-Reveil_Koto-Small-7B-IT-GGUF](https://hf.co/bartowski/Aurore-Reveil_Koto-Small-7B-IT-GGUF) and update of MiniCPM4-8B-GGUF to [DevQuasar/openbmb.MiniCPM4.1-8B-GGUF](https://hf.co/DevQuasar/openbmb.MiniCPM4.1-8B-GGUF).
+    - Add support for Flux LoRA models [blurgy/CoMPaSS-FLUX.1](https://hf.co/blurgy/CoMPaSS-FLUX.1) and [saurabhswami/Tintincomicslora](https://hf.co/saurabhswami/Tintincomicslora).
+    - Add support for Instruct pix2pix model [Ekenayy/instruct-pix2pix-full](https://hf.co/Ekenayy/instruct-pix2pix-full).
+    - Add support for SDXL model [John6666/stellaratormix-photorealism-v30-sdxl](https://hf.co/John6666/stellaratormix-photorealism-v30-sdxl).
+    - Bugfix for workflow generating CUDA container.
+    - Bugfix and enhancement for Debian OCI installer.
+
   * 🆕 **2025-09-06** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot model [bartowski/glm-4-9b-chat-abliterated-GGUF](https://hf.co/bartowski/glm-4-9b-chat-abliterated-GGUF) and Chatbot high-end model [bartowski/TheDrummer_Skyfall-31B-v4-GGUF](https://hf.co/bartowski/TheDrummer_Skyfall-31B-v4-GGUF).
     - Add support for Flux LoRA models  [nerijs/flux_prettyshot_v1](https://hf.co/nerijs/flux_prettyshot_v1), [gokaygokay/Flux-2D-Game-Assets-LoRA](https://hf.co/gokaygokay/Flux-2D-Game-Assets-LoRA),  [Kie-Fells/earl-moran-flux-32dim](https://hf.co/Kie-Fells/earl-moran-flux-32dim) and  [UmeAiRT/FLUX.1-dev-LoRA-Romanticism](https://hf.co/UmeAiRT/FLUX.1-dev-LoRA-Romanticism).
@@ -42,13 +50,6 @@
   * 🆕 **2025-08-16** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end models [bartowski/openai_gpt-oss-120b-GGUF-MXFP4-Experimental](https://hf.co/bartowski/openai_gpt-oss-120b-GGUF-MXFP4-Experimental), [DevQuasar/PowerInfer.SmallThinker-21BA3B-Instruct-GGUF](https://hf.co/DevQuasar/PowerInfer.SmallThinker-21BA3B-Instruct-GGUF) and marketing specialized model [mradermacher/CAI-20B-GGUF](https://hf.co/mradermacher/CAI-20B-GGUF).
     - Add support for Flux LoRA models [renderartist/simplevectorflux](https://hf.co/renderartist/simplevectorflux), [dvyio/flux-lora-airbrush-art](https://hf.co/dvyio/flux-lora-airbrush-art), [Norod78/but-the-old-gods-are-rising-flux](https://hf.co/Norod78/but-the-old-gods-are-rising-flux), [strangerzonehf/Flux-Material-Glass-Cube](https://hf.co/strangerzonehf/Flux-Material-Glass-Cube), [treeshark/KomikZv6.safetensors](https://hf.co/treeshark/KomikZv6.safetensors) and  [ianspark/fc-Anime-Lora-Flux](https://hf.co/ianspark/fc-Anime-Lora-Flux).
-
-  * 🆕 **2025-08-09** : 🔥 ***Weekly update*** 🔥 >
-    - 🔥 Now we're talking ! 🔥 Add support for Chatbot high-end model GPT oss [bartowski/openai_gpt-oss-20b-GGUF](https://hf.co/bartowski/openai_gpt-oss-20b-GGUF). As expected, answers given by this OpenAI Open Source model are absolutely awesome and really fast for its size (at the level of 8B models class). Cherry on the top : with a size under 12GB it should be usable with only 16GB RAM. It's like a tiny version of ChatGPT, but running on your own hardware ! Definitely worth the try and certainly the best Chatbot model supported by biniou, light-years away from most other models.
-    - Update of Chatbot high-end models Qwen3-30B-A3B-Instruct to [Qwen_Qwen3-30B-A3B-Instruct-2507-GGUF](https://hf.co/Qwen_Qwen3-30B-A3B-Instruct-2507-GGUF), Dhanishtha-2.0 to [HelpingAI_Dhanishtha-2.0-preview-0825-GGUF](https://hf.co/HelpingAI_Dhanishtha-2.0-preview-0825-GGUF) and Cydonia-24B to [bartowski/TheDrummer_Cydonia-R1-24B-v4-GGUF](https://hf.co/bartowski/TheDrummer_Cydonia-R1-24B-v4-GGUF).
-    - Add support for Krea Flux model through [NikolaSigmoid/FLUX.1-Krea-dev](https://hf.co/NikolaSigmoid/FLUX.1-Krea-dev).
-    - Add support for Flux LoRA models [42lux/42lux-flux-highres-fix-v2](https://hf.co/42lux/42lux-flux-highres-fix-v2) and [bingbangboom/flux_geopop](https://hf.co/bingbangboom/flux_geopop).
-    - Bugfix for crash at startup after update of accelerate.
 
 ---
 
