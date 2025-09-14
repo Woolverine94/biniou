@@ -111,6 +111,7 @@ model_list_img2img_ip_builtin = [
     "sayakpaul/FLUX.1-merged",
     "ChuckMcSneed/FLUX.1-dev",
     "NikolaSigmoid/FLUX.1-Krea-dev",
+    "AlekseyCalvin/FluxKrea_HSTurbo_Diffusers",
     "enhanceaiteam/Mystic",
     "AlekseyCalvin/AuraFlux_merge_diffusers",
     "ostris/Flex.1-alpha",
