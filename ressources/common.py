@@ -2293,6 +2293,8 @@ def lora_model_list(model, *args):
             "Datou1111/Slow-Shutter":("Slow-Shutter.safetensors", "slow shutter photography motion blur"),
             "Kie-Fells/earl-moran-flux-32dim":("earl-moran-flux-32dim.safetensors", "Earl Moran"),
             "UmeAiRT/FLUX.1-dev-LoRA-Romanticism":("ume_classic_Romanticism.safetensors", "romantic"),
+            "WizWhite/wizard-s-acid-reflux":("Wizards_Acid_Reflux.safetensors", "Psychadelic acid art"),
+            "fofr/flux-cassette-futurism":("lora.safetensors", "cassette futurism"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
