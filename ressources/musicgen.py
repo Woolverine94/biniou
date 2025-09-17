@@ -22,6 +22,7 @@ modellist_musicgen = [
     "facebook/musicgen-medium",
     "facebook/musicgen-stereo-large",
     "facebook/musicgen-large",
+    "pharoAIsanders420/musicgen-stereo-dub",
 ]
 
 # Bouton Cancel
