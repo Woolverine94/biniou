@@ -76,6 +76,7 @@ model_list_img2img_ip_builtin = [
     "eramth/realism-sdxl",
     "yandex/stable-diffusion-xl-base-1.0-alchemist",
     "John6666/stellaratormix-photorealism-v30-sdxl",
+    "RunDiffusion/Juggernaut-XL-v6",
     "playgroundai/playground-v2-512px-base",
     "playgroundai/playground-v2-1024px-aesthetic",
     "playgroundai/playground-v2.5-1024px-aesthetic",

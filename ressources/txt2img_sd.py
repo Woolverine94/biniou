@@ -79,6 +79,7 @@ model_list_txt2img_sd_builtin = [
     "eramth/realism-sdxl",
     "yandex/stable-diffusion-xl-base-1.0-alchemist",
     "John6666/stellaratormix-photorealism-v30-sdxl",
+    "RunDiffusion/Juggernaut-XL-v6",
     "segmind/SSD-1B",
     "segmind/Segmind-Vega",
     "playgroundai/playground-v2-512px-base",

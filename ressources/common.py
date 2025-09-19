@@ -1831,7 +1831,8 @@ def is_bin(model):
 (model == "nitrosocke/classic-anim-diffusion") or \
 (model == "sd-dreambooth-library/dndcoverart-v1") or \
 (model == "Norod78/sd15-jojo-stone-ocean") or \
-(model == "stablediffusionapi/dream-diffusion-lightning")\
+(model == "stablediffusionapi/dream-diffusion-lightning") or \
+(model == "RunDiffusion/Juggernaut-XL-v6")\
 ):
         is_bin_value = True
     else :
