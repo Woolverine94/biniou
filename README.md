@@ -22,6 +22,13 @@
 
 ## Updates
 
+  * 🆕 **2025-09-20** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end model [bartowski/baidu_ERNIE-4.5-21B-A3B-Thinking-GGUF](https://hf.co/bartowski/baidu_ERNIE-4.5-21B-A3B-Thinking-GGUF) and chatbot code specialized model [unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF](https://hf.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF).
+    - Add support for Flux model [AlekseyCalvin/FluxKrea_HSTurbo_Diffusers](https://hf.co/AlekseyCalvin/FluxKrea_HSTurbo_Diffusers).
+    - Add support for SDXL model [RunDiffusion/Juggernaut-XL-v6](https://hf.co/RunDiffusion/Juggernaut-XL-v6).
+    - Add support for Musicgen model [pharoAIsanders420/musicgen-stereo-dub](https://hf.co/pharoAIsanders420/musicgen-stereo-dub).
+    - Add support for Flux LoRA models [WizWhite/wizard-s-acid-reflux](https://hf.co/WizWhite/wizard-s-acid-reflux) and [fofr/flux-cassette-futurism](https://hf.co/fofr/flux-cassette-futurism).
+
   * 🆕 **2025-09-13** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end model [bartowski/NousResearch_Hermes-4-14B-GGUF](https://hf.co/bartowski/NousResearch_Hermes-4-14B-GGUF), chatbot specialized model [bartowski/Aurore-Reveil_Koto-Small-7B-IT-GGUF](https://hf.co/bartowski/Aurore-Reveil_Koto-Small-7B-IT-GGUF) and update of MiniCPM4-8B-GGUF to [DevQuasar/openbmb.MiniCPM4.1-8B-GGUF](https://hf.co/DevQuasar/openbmb.MiniCPM4.1-8B-GGUF).
     - Add support for Flux LoRA models [blurgy/CoMPaSS-FLUX.1](https://hf.co/blurgy/CoMPaSS-FLUX.1) and [saurabhswami/Tintincomicslora](https://hf.co/saurabhswami/Tintincomicslora).
@@ -46,10 +53,6 @@
     - Add support for Chatbot high-end models [bartowski/huihui-ai_Huihui-gpt-oss-20b-BF16-abliterated-GGUF](https://hf.co/bartowski/huihui-ai_Huihui-gpt-oss-20b-BF16-abliterated-GGUF), code specialized model [DavidAU/Openai_gpt-oss-20b-CODER-NEO-CODE-DI-MATRIX-GGUF](https://hf.co/DavidAU/Openai_gpt-oss-20b-CODER-NEO-CODE-DI-MATRIX-GGUF) and tiny model [bartowski/TheDrummer_Gemma-3-R1-4B-v1-GGUF](https://hf.co/bartowski/TheDrummer_Gemma-3-R1-4B-v1-GGUF).
     - Replacing default chatbot high-end model [bartowski/openai_gpt-oss-20b-GGUF](https://hf.co/bartowski/openai_gpt-oss-20b-GGUF).
     - Add support for Flux LoRA models [UmeAiRT/FLUX.1-dev-LoRA-Impressionism](https://hf.co/UmeAiRT/FLUX.1-dev-LoRA-Impressionism), [AlloReview/flux-lora-undraw](https://hf.co/AlloReview/flux-lora-undraw), [DavidBaloches/Extreme_Detailer](https://hf.co/DavidBaloches/Extreme_Detailer), and [DavidBaloches/Hyper_Realism_Lora_by_aidma](https://hf.co/DavidBaloches/Hyper_Realism_Lora_by_aidma).
-
-  * 🆕 **2025-08-16** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end models [bartowski/openai_gpt-oss-120b-GGUF-MXFP4-Experimental](https://hf.co/bartowski/openai_gpt-oss-120b-GGUF-MXFP4-Experimental), [DevQuasar/PowerInfer.SmallThinker-21BA3B-Instruct-GGUF](https://hf.co/DevQuasar/PowerInfer.SmallThinker-21BA3B-Instruct-GGUF) and marketing specialized model [mradermacher/CAI-20B-GGUF](https://hf.co/mradermacher/CAI-20B-GGUF).
-    - Add support for Flux LoRA models [renderartist/simplevectorflux](https://hf.co/renderartist/simplevectorflux), [dvyio/flux-lora-airbrush-art](https://hf.co/dvyio/flux-lora-airbrush-art), [Norod78/but-the-old-gods-are-rising-flux](https://hf.co/Norod78/but-the-old-gods-are-rising-flux), [strangerzonehf/Flux-Material-Glass-Cube](https://hf.co/strangerzonehf/Flux-Material-Glass-Cube), [treeshark/KomikZv6.safetensors](https://hf.co/treeshark/KomikZv6.safetensors) and  [ianspark/fc-Anime-Lora-Flux](https://hf.co/ianspark/fc-Anime-Lora-Flux).
 
 ---
 
