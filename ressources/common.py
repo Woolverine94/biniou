@@ -1922,7 +1922,8 @@ def is_flux(model):
 (model == "minpeter/FLUX-Hyperscale-fused-fast") or \
 (model == "city96/FLUX.1-schnell-gguf") or \
 (model == "NikolaSigmoid/FLUX.1-Krea-dev") or \
-(model == "AlekseyCalvin/FluxKrea_HSTurbo_Diffusers")\
+(model == "AlekseyCalvin/FluxKrea_HSTurbo_Diffusers") or \
+(model == "minpeter/FLUX-Hyperscale-fused")\
 ):
         is_flux_value = True
     else:

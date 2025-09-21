@@ -113,6 +113,7 @@ model_list_img2img_ip_builtin = [
     "ChuckMcSneed/FLUX.1-dev",
     "NikolaSigmoid/FLUX.1-Krea-dev",
     "AlekseyCalvin/FluxKrea_HSTurbo_Diffusers",
+    "minpeter/FLUX-Hyperscale-fused",
     "enhanceaiteam/Mystic",
     "AlekseyCalvin/AuraFlux_merge_diffusers",
     "ostris/Flex.1-alpha",
