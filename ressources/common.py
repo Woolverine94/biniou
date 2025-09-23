@@ -2297,6 +2297,8 @@ def lora_model_list(model, *args):
             "UmeAiRT/FLUX.1-dev-LoRA-Romanticism":("ume_classic_Romanticism.safetensors", "romantic"),
             "WizWhite/wizard-s-acid-reflux":("Wizards_Acid_Reflux.safetensors", "Psychadelic acid art"),
             "fofr/flux-cassette-futurism":("lora.safetensors", "cassette futurism"),
+            "glif-loradex-trainer/Angelo-ec24_scifi_retro":("scifi_retro.safetensors", "retrofi"),
+            "tanzim1/Inkwatercolor":("ink-watercolor.safetensors", "ink watercolor"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
