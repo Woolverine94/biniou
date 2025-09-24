@@ -38,6 +38,7 @@ model_list_llava_builtin = {
     "bee-kake/nanollava-1.5-gguf":("nanollava-text-model-f16.gguf", "nanollava-mmproj-f16.gguf", "{prompt}", ""),
     "moondream/moondream2-gguf":("moondream2-text-model-f16.gguf", "moondream2-mmproj-f16.gguf", "{prompt}", ""),
     "bartowski/MiniCPM-V-2_6-GGUF":("MiniCPM-V-2_6-Q5_K_M.gguf", "mmproj-MiniCPM-V-2_6-f16.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
+    "Steven0090/llava1.6-Mistral-7B-Instruct-v0.2-gguf":("Mistral-7B-Instruct-v0.2-Q8_0.gguf", "mmproj-model-f16.gguf", "<s>[INST] {prompt} [/INST]", ""),
 #    "vinimuchulski/gemma-3-12b-it-qat-q4_0-gguf":("gemma-3-12b-it-q4_0.gguf", "mmproj-model-f16-12B.gguf", "<bos><start_of_turn>user\n{system}\n\n{prompt}<end_of_turn>\n<start_of_turn>model", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
 }
 
@@ -120,7 +121,7 @@ def text_llava(
 #        chat_handler_llava = Llama3VisionAlphaChatHandler(clip_model_path=modelid_mmproj_llava)
     elif (modelid_llava == "bartowski/MiniCPM-V-2_6-GGUF"):
         chat_handler_llava = MiniCPMv26ChatHandler(clip_model_path=modelid_mmproj_llava)
-    elif ((modelid_llava =="light3611/llava-v1.6-finetuned-quantized-gguf") or (modelid_llava =="cmp-nct/llava-1.6-gguf")):
+    elif ((modelid_llava == "light3611/llava-v1.6-finetuned-quantized-gguf") or (modelid_llava == "cmp-nct/llava-1.6-gguf") or (modelid_llava == "Steven0090/llava1.6-Mistral-7B-Instruct-v0.2-gguf")):
         chat_handler_llava = Llava16ChatHandler(clip_model_path=modelid_mmproj_llava)
     else:
         chat_handler_llava = Llava15ChatHandler(clip_model_path=modelid_mmproj_llava)
