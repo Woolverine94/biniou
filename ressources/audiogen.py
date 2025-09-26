@@ -16,7 +16,8 @@ model_path_audiogen = "./models/Audiocraft/"
 os.makedirs(model_path_audiogen, exist_ok=True)
 
 modellist_audiogen = [
-    "facebook/audiogen-medium",  
+    "facebook/audiogen-medium",
+    "AkhilTolani/audiogen-v2",
 ]
 
 # Bouton Cancel
