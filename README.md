@@ -22,6 +22,13 @@
 
 ## Updates
 
+  * 🆕 **2025-09-27** : 🔥 ***Weekly update*** 🔥 >
+    - Update of Chatbot specialized model Cydonia to [bartowski/TheDrummer_Cydonia-ReduX-22B-v1-GGUF](https://hf.co/bartowski/TheDrummer_Cydonia-ReduX-22B-v1-GGUF) and update of chatbot model Magistral small to [bartowski/mistralai_Magistral-Small-2509-GGUF](https://hf.co/bartowski/mistralai_Magistral-Small-2509-GGUF).
+    - Add support for Llava model [Steven0090/llava1.6-Mistral-7B-Instruct-v0.2-gguf](https://hf.co/Steven0090/llava1.6-Mistral-7B-Instruct-v0.2-gguf).
+    - Add support for Flux model [minpeter/FLUX-Hyperscale-fused](https://hf.co/minpeter/FLUX-Hyperscale-fused).
+    - Add support for Audiogen model [AkhilTolani/audiogen-v2](https://hf.co/AkhilTolani/audiogen-v2).
+    - Add support for Flux LoRA models [glif-loradex-trainer/Angelo-ec24_scifi_retro](https://hf.co/glif-loradex-trainer/Angelo-ec24_scifi_retro) and [tanzim1/Inkwatercolor](https://hf.co/tanzim1/Inkwatercolor).
+
   * 🆕 **2025-09-20** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end model [bartowski/baidu_ERNIE-4.5-21B-A3B-Thinking-GGUF](https://hf.co/bartowski/baidu_ERNIE-4.5-21B-A3B-Thinking-GGUF) and chatbot code specialized model [unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF](https://hf.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF).
     - Add support for Flux model [AlekseyCalvin/FluxKrea_HSTurbo_Diffusers](https://hf.co/AlekseyCalvin/FluxKrea_HSTurbo_Diffusers).
@@ -48,11 +55,6 @@
     - Add support for SD 1.5 model  [stablediffusionapi/anything-v5](https://hf.co/stablediffusionapi/anything-v5)
     - Add support for Flux LoRA models  [Datou1111/Slow-Shutter](https://hf.co/Datou1111/Slow-Shutter),  [strangerzonehf/Flux-NFTv4-Designs-LoRA](https://hf.co/strangerzonehf/Flux-NFTv4-Designs-LoRA),  [tanzim1/WSJ-Hedcut](https://hf.co/tanzim1/WSJ-Hedcut), and  [prithivMLmods/Flux.1-Dev-Pov-DoorEye-LoRA](https://hf.co/prithivMLmods/Flux.1-Dev-Pov-DoorEye-LoRA).
     - Modification of visual identity, by introducing a new logo for biniou.
-
-  * 🆕 **2025-08-23** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end models [bartowski/huihui-ai_Huihui-gpt-oss-20b-BF16-abliterated-GGUF](https://hf.co/bartowski/huihui-ai_Huihui-gpt-oss-20b-BF16-abliterated-GGUF), code specialized model [DavidAU/Openai_gpt-oss-20b-CODER-NEO-CODE-DI-MATRIX-GGUF](https://hf.co/DavidAU/Openai_gpt-oss-20b-CODER-NEO-CODE-DI-MATRIX-GGUF) and tiny model [bartowski/TheDrummer_Gemma-3-R1-4B-v1-GGUF](https://hf.co/bartowski/TheDrummer_Gemma-3-R1-4B-v1-GGUF).
-    - Replacing default chatbot high-end model [bartowski/openai_gpt-oss-20b-GGUF](https://hf.co/bartowski/openai_gpt-oss-20b-GGUF).
-    - Add support for Flux LoRA models [UmeAiRT/FLUX.1-dev-LoRA-Impressionism](https://hf.co/UmeAiRT/FLUX.1-dev-LoRA-Impressionism), [AlloReview/flux-lora-undraw](https://hf.co/AlloReview/flux-lora-undraw), [DavidBaloches/Extreme_Detailer](https://hf.co/DavidBaloches/Extreme_Detailer), and [DavidBaloches/Hyper_Realism_Lora_by_aidma](https://hf.co/DavidBaloches/Hyper_Realism_Lora_by_aidma).
 
 ---
 
