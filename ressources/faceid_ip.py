@@ -143,6 +143,7 @@ model_list_faceid_ip_builtin = [
     "John6666/comradeship-xl-v9a-spo-dpo-flash-sdxl",
     "stablediffusionapi/dream-diffusion-lightning",
     "John6666/jib-mix-realistic-xl-v15-maximus-sdxl",
+    "muverqqw/Dreamcoil-lightning",
     "-[ 👌 🇯🇵 Anime SDXL ]-",
     "GraydientPlatformAPI/geekpower-cellshade-xl",
     "cagliostrolab/animagine-xl-4.0",
