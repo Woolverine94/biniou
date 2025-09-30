@@ -2299,6 +2299,7 @@ def lora_model_list(model, *args):
             "fofr/flux-cassette-futurism":("lora.safetensors", "cassette futurism"),
             "glif-loradex-trainer/Angelo-ec24_scifi_retro":("scifi_retro.safetensors", "retrofi"),
             "tanzim1/Inkwatercolor":("ink-watercolor.safetensors", "ink watercolor"),
+            "glif-loradex-trainer/12matt3r_flux_dev_trippyAF":("flux_dev_trippyAF.safetensors", "trippy af, trippy"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
@@ -2416,6 +2417,7 @@ def lora_model_list(model, *args):
             "Norod78/CartoonStyle-flux-lora":("CartoonStyle_flux_lora.safetensors", ""),
             "alvdansen/sonny-anime-fixed":("araminta_k_sonnyanime_fluxd_fixed.safetensors", "nm22 style"),
             "ianspark/fc-Anime-Lora-Flux":("anime_v1_000019000.safetensors", ""),
+            "glif-loradex-trainer/_franklondon_Cel_Shader_Outline_Shader_Texture_Shader_by_Ch13f":("Cel_Shader_Outline_Shader_Texture_Shader_by_Ch13f.safetensors", "Ch13f-shadr"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
