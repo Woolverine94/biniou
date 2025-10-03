@@ -2300,6 +2300,8 @@ def lora_model_list(model, *args):
             "glif-loradex-trainer/Angelo-ec24_scifi_retro":("scifi_retro.safetensors", "retrofi"),
             "tanzim1/Inkwatercolor":("ink-watercolor.safetensors", "ink watercolor"),
             "glif-loradex-trainer/12matt3r_flux_dev_trippyAF":("flux_dev_trippyAF.safetensors", "trippy af, trippy"),
+            "davanstrien/nasa_concept_art-flux-lora":("nase_concept.safetensors", "NASA_CONCEPT"),
+            "oshtz/flux-pointcrayonstyle":("flux-pointcrayonstyle.safetensors", "pointcrayonstyle"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
