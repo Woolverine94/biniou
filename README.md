@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2025-10-04** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot tiny models [LiquidAI/LFM2-2.6B-GGUF](https://hf.co/LiquidAI/LFM2-2.6B-GGUF) and [bartowski/arcee-ai_AFM-4.5B-GGUF](https://hf.co/bartowski/arcee-ai_AFM-4.5B-GGUF).
+    - Add support for SDXL lightning model [muverqqw/Dreamcoil-lightning](https://hf.co/muverqqw/Dreamcoil-lightning).
+    - Add support for nllb model [facebook/nllb-200-3.3B](https://hf.co/facebook/nllb-200-3.3B).
+    - Add support for Flux LoRA models [glif-loradex-trainer/12matt3r_flux_dev_trippyAF](https://hf.co/glif-loradex-trainer/12matt3r_flux_dev_trippyAF), [glif-loradex-trainer/_franklondon_Cel_Shader_Outline_Shader_Texture_Shader_by_Ch13f](https://hf.co/glif-loradex-trainer/_franklondon_Cel_Shader_Outline_Shader_Texture_Shader_by_Ch13f), [davanstrien/nasa_concept_art-flux-lora](https://hf.co/davanstrien/nasa_concept_art-flux-lora) and [oshtz/flux-pointcrayonstyle](https://hf.co/oshtz/flux-pointcrayonstyle).
+
   * 🆕 **2025-09-27** : 🔥 ***Weekly update*** 🔥 >
     - Update of Chatbot specialized model Cydonia to [bartowski/TheDrummer_Cydonia-ReduX-22B-v1-GGUF](https://hf.co/bartowski/TheDrummer_Cydonia-ReduX-22B-v1-GGUF) and update of chatbot model Magistral small to [bartowski/mistralai_Magistral-Small-2509-GGUF](https://hf.co/bartowski/mistralai_Magistral-Small-2509-GGUF).
     - Add support for Llava model [Steven0090/llava1.6-Mistral-7B-Instruct-v0.2-gguf](https://hf.co/Steven0090/llava1.6-Mistral-7B-Instruct-v0.2-gguf).
@@ -49,12 +55,6 @@
     - Add support for Flux LoRA models  [nerijs/flux_prettyshot_v1](https://hf.co/nerijs/flux_prettyshot_v1), [gokaygokay/Flux-2D-Game-Assets-LoRA](https://hf.co/gokaygokay/Flux-2D-Game-Assets-LoRA),  [Kie-Fells/earl-moran-flux-32dim](https://hf.co/Kie-Fells/earl-moran-flux-32dim) and  [UmeAiRT/FLUX.1-dev-LoRA-Romanticism](https://hf.co/UmeAiRT/FLUX.1-dev-LoRA-Romanticism).
     - Update for new visual identity (dark theme).
     - Update of technical stack : huggingface-hub 0.34.4, transformers 4.51.3, diffusers 0.34.0 and peft 0.17.1.
-
-  * 🆕 **2025-08-30** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot model [bartowski/tencent_Hunyuan-7B-Instruct-GGUF](https://hf.co/bartowski/tencent_Hunyuan-7B-Instruct-GGUF), update of models AceReason-Nemotron to [bartowski/nvidia_AceReason-Nemotron-1.1-7B-GGUF](https://hf.co/bartowski/nvidia_AceReason-Nemotron-1.1-7B-GGUF) and Cydonia to [bartowski/TheDrummer_Cydonia-24B-v4.1-GGUF](https://hf.co/bartowski/TheDrummer_Cydonia-24B-v4.1-GGUF).
-    - Add support for SD 1.5 model  [stablediffusionapi/anything-v5](https://hf.co/stablediffusionapi/anything-v5)
-    - Add support for Flux LoRA models  [Datou1111/Slow-Shutter](https://hf.co/Datou1111/Slow-Shutter),  [strangerzonehf/Flux-NFTv4-Designs-LoRA](https://hf.co/strangerzonehf/Flux-NFTv4-Designs-LoRA),  [tanzim1/WSJ-Hedcut](https://hf.co/tanzim1/WSJ-Hedcut), and  [prithivMLmods/Flux.1-Dev-Pov-DoorEye-LoRA](https://hf.co/prithivMLmods/Flux.1-Dev-Pov-DoorEye-LoRA).
-    - Modification of visual identity, by introducing a new logo for biniou.
 
 ---
 
