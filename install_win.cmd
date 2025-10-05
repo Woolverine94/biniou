@@ -12,7 +12,7 @@ REM **************************************************
 REM *** DOWNLOADING AND INSTALLING PREREQUISITES : ***
 REM **************************************************
 set URL_GIT="https://github.com/git-for-windows/git/releases/download/v2.45.2.windows.1/Git-2.45.2-64-bit.exe"
-set URL_OPENSSL="https://download.firedaemon.com/FireDaemon-OpenSSL/FireDaemon-OpenSSL-x64-3.3.1.exe"
+set URL_OPENSSL="https://download.firedaemon.com/FireDaemon-OpenSSL/FireDaemon-OpenSSL-x64-3.5.4.exe"
 set URL_PYTHON="https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.exe"
 set URL_VSBT="https://aka.ms/vs/17/release/vs_BuildTools.exe"
 set URL_FFMPEG="https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip"
