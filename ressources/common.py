@@ -2383,6 +2383,7 @@ def lora_model_list(model, *args):
             "gokaygokay/Flux-2D-Game-Assets-LoRA":("game_assets_v3.safetensors", "GRPZA, white background, game asset"),
             "saurabhswami/Tintincomicslora":("Tintin_comic_style_flux.safetensors", "bande dessinée style"),
             "Purz/neon-sign":("purz-n30n_51gn.safetensors", "n30n_51gn"),
+            "Jonjew/FantasyArmor":("hinaFluxFantasyArmorMix-dev_v1-rev1.safetensors", "fantasy armor"),
             "-[ 🏆 🐢 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
@@ -2422,6 +2423,7 @@ def lora_model_list(model, *args):
             "alvdansen/sonny-anime-fixed":("araminta_k_sonnyanime_fluxd_fixed.safetensors", "nm22 style"),
             "ianspark/fc-Anime-Lora-Flux":("anime_v1_000019000.safetensors", ""),
             "glif-loradex-trainer/_franklondon_Cel_Shader_Outline_Shader_Texture_Shader_by_Ch13f":("Cel_Shader_Outline_Shader_Texture_Shader_by_Ch13f.safetensors", "Ch13f-shadr"),
+            "Bootoshi/comic_book":("Comic book V2.safetensors", "in style of comic book, illustration of"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
