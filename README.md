@@ -22,6 +22,11 @@
 
 ## Updates
 
+  * 🆕 **2025-10-11** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end model [bartowski/ServiceNow-AI_Apriel-1.5-15b-Thinker-GGUF](https://hf.co/bartowski/ServiceNow-AI_Apriel-1.5-15b-Thinker-GGUF) and update of Granite model to [bartowski/ibm-granite_granite-4.0-h-tiny-GGUF](https://hf.co/bartowski/ibm-granite_granite-4.0-h-tiny-GGUF).
+    - Add support for Flux LoRA models [fabdream/80s-Fantasy-Movie](https://hf.co/fabdream/80s-Fantasy-Movie), [Purz/neon-sign](https://hf.co/Purz/neon-sign), [Jonjew/FantasyArmor](https://hf.co/Jonjew/FantasyArmor) and [Bootoshi/comic_book](https://hf.co/Bootoshi/comic_book).
+    - Bugfix for Windows installer.
+
   * 🆕 **2025-10-04** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot tiny models [LiquidAI/LFM2-2.6B-GGUF](https://hf.co/LiquidAI/LFM2-2.6B-GGUF) and [bartowski/arcee-ai_AFM-4.5B-GGUF](https://hf.co/bartowski/arcee-ai_AFM-4.5B-GGUF).
     - Add support for SDXL lightning model [muverqqw/Dreamcoil-lightning](https://hf.co/muverqqw/Dreamcoil-lightning).
@@ -49,12 +54,6 @@
     - Add support for SDXL model [John6666/stellaratormix-photorealism-v30-sdxl](https://hf.co/John6666/stellaratormix-photorealism-v30-sdxl).
     - Bugfix for workflow generating CUDA container.
     - Bugfix and enhancement for Debian OCI installer.
-
-  * 🆕 **2025-09-06** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot model [bartowski/glm-4-9b-chat-abliterated-GGUF](https://hf.co/bartowski/glm-4-9b-chat-abliterated-GGUF) and Chatbot high-end model [bartowski/TheDrummer_Skyfall-31B-v4-GGUF](https://hf.co/bartowski/TheDrummer_Skyfall-31B-v4-GGUF).
-    - Add support for Flux LoRA models  [nerijs/flux_prettyshot_v1](https://hf.co/nerijs/flux_prettyshot_v1), [gokaygokay/Flux-2D-Game-Assets-LoRA](https://hf.co/gokaygokay/Flux-2D-Game-Assets-LoRA),  [Kie-Fells/earl-moran-flux-32dim](https://hf.co/Kie-Fells/earl-moran-flux-32dim) and  [UmeAiRT/FLUX.1-dev-LoRA-Romanticism](https://hf.co/UmeAiRT/FLUX.1-dev-LoRA-Romanticism).
-    - Update for new visual identity (dark theme).
-    - Update of technical stack : huggingface-hub 0.34.4, transformers 4.51.3, diffusers 0.34.0 and peft 0.17.1.
 
 ---
 
