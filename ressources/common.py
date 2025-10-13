@@ -2303,6 +2303,8 @@ def lora_model_list(model, *args):
             "davanstrien/nasa_concept_art-flux-lora":("nase_concept.safetensors", "NASA_CONCEPT"),
             "oshtz/flux-pointcrayonstyle":("flux-pointcrayonstyle.safetensors", "pointcrayonstyle"),
             "fabdream/80s-Fantasy-Movie":("80s_Fantasy_Movie.safetensors", "ArsMovieStill, 80s Fantasy Movie Still"),
+            "peter198477/fantasy_g":("lora-000010.TA_trained(3).safetensors", "Kiss"),
+            "strangerzonehf/Flux-Sketch-Flat-LoRA":("Sketch-Flat.safetensors", "Sketch Flat"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
