@@ -32,6 +32,7 @@ model_list_txt2img_paa_builtin = [
     "Luo-Yihong/yoso_pixart512",
     "Luo-Yihong/yoso_pixart1024",
     "jasperai/flash-pixart",
+    "artificialguybr/Fascinatio-PixartAlpha1024-Finetuned",
 ]
 
 for k in range(len(model_list_txt2img_paa_builtin)):
