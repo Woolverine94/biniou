@@ -2305,6 +2305,7 @@ def lora_model_list(model, *args):
             "fabdream/80s-Fantasy-Movie":("80s_Fantasy_Movie.safetensors", "ArsMovieStill, 80s Fantasy Movie Still"),
             "peter198477/fantasy_g":("lora-000010.TA_trained(3).safetensors", "Kiss"),
             "strangerzonehf/Flux-Sketch-Flat-LoRA":("Sketch-Flat.safetensors", "Sketch Flat"),
+            "Jonjew/FantasyOil01":("EnvyFluxFantasyOil01.safetensors", "fantasy oil painting"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
@@ -2426,6 +2427,7 @@ def lora_model_list(model, *args):
             "ianspark/fc-Anime-Lora-Flux":("anime_v1_000019000.safetensors", ""),
             "glif-loradex-trainer/_franklondon_Cel_Shader_Outline_Shader_Texture_Shader_by_Ch13f":("Cel_Shader_Outline_Shader_Texture_Shader_by_Ch13f.safetensors", "Ch13f-shadr"),
             "Bootoshi/comic_book":("Comic book V2.safetensors", "in style of comic book, illustration of"),
+            "minpeter/LoRA-FLUX-anime-style-v2":("adapter.safetensors", "anime style"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
