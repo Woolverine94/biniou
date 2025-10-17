@@ -27,6 +27,7 @@ for filename in os.listdir(model_path_txt2img_lcm):
 
 model_list_txt2img_lcm_builtin = [
     "SimianLuo/LCM_Dreamshaper_v7",
+    "Disty0/LCM_SoteMix",
     "segmind/Segmind-VegaRT",
     "latent-consistency/lcm-ssd-1b",
     "latent-consistency/lcm-sdxl",
