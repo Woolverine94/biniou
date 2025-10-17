@@ -633,7 +633,9 @@ def update_preview_txt2img_lcm(preview):
     return out_txt2img_lcm.update(preview)
 
 def change_model_type_txt2img_lcm(model_txt2img_lcm):
-    if (model_txt2img_lcm == "latent-consistency/lcm-ssd-1b"):
+    if (model_txt2img_lcm == "Disty0/LCM_SoteMix"):
+        return width_txt2img_lcm.update(value=biniou_global_sd15_width), height_txt2img_lcm.update(value=biniou_global_sd15_height), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=8), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
+    elif (model_txt2img_lcm == "latent-consistency/lcm-ssd-1b"):
         return width_txt2img_lcm.update(value=biniou_global_sdxl_width), height_txt2img_lcm.update(value=biniou_global_sdxl_height), guidance_scale_txt2img_lcm.update(value=0.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=False), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
     elif (model_txt2img_lcm == "latent-consistency/lcm-sdxl"):
         return width_txt2img_lcm.update(value=biniou_global_sdxl_width), height_txt2img_lcm.update(value=biniou_global_sdxl_height), guidance_scale_txt2img_lcm.update(value=8.0), num_inference_step_txt2img_lcm.update(value=4), lora_model_txt2img_lcm.update(choices=list(lora_model_list(model_txt2img_lcm).keys()), value="", interactive=True), txtinv_txt2img_lcm.update(choices=list(txtinv_list(model_txt2img_lcm).keys()), value="")
