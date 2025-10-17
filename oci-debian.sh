@@ -3,14 +3,14 @@ echo ">>>[biniou oci 🧠 ]: biniou one-click installer for Debian-based distrib
 echo ">>>[biniou oci 🧠 ]: Installing prerequisites"
 if [ "$(lsb_release -si|grep Debian)" != "" ]
   then
-    su root -c "apt -y install git pip python3 python3-venv python3-dev gcc perl make ffmpeg openssl libtcmalloc-minimal4"
+    su root -c "apt -y install git pip python3 python3-venv python3-dev python3-pkgconfig libavformat-dev libavdevice-dev gcc perl make ffmpeg openssl libtcmalloc-minimal4"
   elif [ "$(cat /etc/os-release|grep VERSION_CODENAME|grep noble)" != "" ] || [ "$(cat /etc/os-release|grep UBUNTU_CODENAME|grep noble)" != "" ]
     then
       sudo add-apt-repository -y ppa:deadsnakes/ppa
       sudo apt update
-      sudo apt -y install git pip python3.11 python3.11-venv python3.11-dev gcc perl make ffmpeg openssl libtcmalloc-minimal4
+      sudo apt -y install git pip python3.11 python3.11-venv python3.11-dev python3-pkgconfig libavformat-dev libavdevice-dev gcc perl make ffmpeg openssl libtcmalloc-minimal4
   else
-    sudo apt -y install git pip python3 python3-venv gcc perl make ffmpeg openssl libtcmalloc-minimal4
+    sudo apt -y install git pip python3 python3-venv  python3-pkgconfig libavformat-dev libavdevice-dev gcc perl make ffmpeg openssl libtcmalloc-minimal4
 fi
 echo ">>>[biniou oci 🧠 ]: Cloning repository"
 git clone --branch main https://github.com/Woolverine94/biniou.git
