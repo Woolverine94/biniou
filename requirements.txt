@@ -23,7 +23,7 @@ transformers==4.51.3
 sentencepiece
 accelerate==1.9.0
 diffusers==0.34.0
-compel
+compel==2.1.1
 scipy
 opencv-python
 imageio
