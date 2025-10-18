@@ -22,6 +22,14 @@
 
 ## Updates
 
+  * 🆕 **2025-10-18** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot model [bartowski/microsoft_UserLM-8b-GGUF](https://hf.co/bartowski/microsoft_UserLM-8b-GGUF) and Chatbot translation specialized model [bartowski/yanolja_YanoljaNEXT-Rosetta-12B-2510-GGUF](https://hf.co/bartowski/yanolja_YanoljaNEXT-Rosetta-12B-2510-GGUF).
+    - Add support for Pixart-Alpha model [artificialguybr/Fascinatio-PixartAlpha1024-Finetuned](https://hf.co/artificialguybr/Fascinatio-PixartAlpha1024-Finetuned).
+    - Add support for LCM model [Disty0/LCM_SoteMix](https://hf.co/Disty0/LCM_SoteMix).
+    - Add support for Flux LoRA models [peter198477/fantasy_g](https://hf.co/peter198477/fantasy_g), [strangerzonehf/Flux-Sketch-Flat-LoRA](https://hf.co/strangerzonehf/Flux-Sketch-Flat-LoRA), [Jonjew/FantasyOil01](https://hf.co/Jonjew/FantasyOil01) and [minpeter/LoRA-FLUX-anime-style-v2](https://hf.co/minpeter/LoRA-FLUX-anime-style-v2).
+    - Bugfix for image prompts longer than 77 tokens.
+    - Various bugfixes for installers.
+
   * 🆕 **2025-10-11** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end model [bartowski/ServiceNow-AI_Apriel-1.5-15b-Thinker-GGUF](https://hf.co/bartowski/ServiceNow-AI_Apriel-1.5-15b-Thinker-GGUF) and update of Granite model to [bartowski/ibm-granite_granite-4.0-h-tiny-GGUF](https://hf.co/bartowski/ibm-granite_granite-4.0-h-tiny-GGUF).
     - Add support for Flux LoRA models [fabdream/80s-Fantasy-Movie](https://hf.co/fabdream/80s-Fantasy-Movie), [Purz/neon-sign](https://hf.co/Purz/neon-sign), [Jonjew/FantasyArmor](https://hf.co/Jonjew/FantasyArmor) and [Bootoshi/comic_book](https://hf.co/Bootoshi/comic_book).
@@ -46,14 +54,6 @@
     - Add support for SDXL model [RunDiffusion/Juggernaut-XL-v6](https://hf.co/RunDiffusion/Juggernaut-XL-v6).
     - Add support for Musicgen model [pharoAIsanders420/musicgen-stereo-dub](https://hf.co/pharoAIsanders420/musicgen-stereo-dub).
     - Add support for Flux LoRA models [WizWhite/wizard-s-acid-reflux](https://hf.co/WizWhite/wizard-s-acid-reflux) and [fofr/flux-cassette-futurism](https://hf.co/fofr/flux-cassette-futurism).
-
-  * 🆕 **2025-09-13** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end model [bartowski/NousResearch_Hermes-4-14B-GGUF](https://hf.co/bartowski/NousResearch_Hermes-4-14B-GGUF), chatbot specialized model [bartowski/Aurore-Reveil_Koto-Small-7B-IT-GGUF](https://hf.co/bartowski/Aurore-Reveil_Koto-Small-7B-IT-GGUF) and update of MiniCPM4-8B-GGUF to [DevQuasar/openbmb.MiniCPM4.1-8B-GGUF](https://hf.co/DevQuasar/openbmb.MiniCPM4.1-8B-GGUF).
-    - Add support for Flux LoRA models [blurgy/CoMPaSS-FLUX.1](https://hf.co/blurgy/CoMPaSS-FLUX.1) and [saurabhswami/Tintincomicslora](https://hf.co/saurabhswami/Tintincomicslora).
-    - Add support for Instruct pix2pix model [Ekenayy/instruct-pix2pix-full](https://hf.co/Ekenayy/instruct-pix2pix-full).
-    - Add support for SDXL model [John6666/stellaratormix-photorealism-v30-sdxl](https://hf.co/John6666/stellaratormix-photorealism-v30-sdxl).
-    - Bugfix for workflow generating CUDA container.
-    - Bugfix and enhancement for Debian OCI installer.
 
 ---
 
