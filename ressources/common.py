@@ -2040,6 +2040,7 @@ def lora_model_list(model, *args):
             "ntc-ai/SDXL-LoRA-slider.pixar-style":("pixar-style.safetensors", "pixar-style"),
             "ntc-ai/SDXL-LoRA-slider.Studio-Ghibli-style":("Studio Ghibli style.safetensors", "Studio Ghibli style"),
             "ntc-ai/SDXL-LoRA-slider.super-mario":("super mario.safetensors", "super mario"),
+            "ntc-ai/SDXL-LoRA-slider.comic-portrait":("comic portrait.safetensors", "comic portrait"),
             "AiWise/sdxl-faetastic-details_v24":("SDXLFaeTastic2400.safetensors", "fantasy, details, sdxl style lora"),
             "ntc-ai/SDXL-LoRA-slider.laser-background":("laser background.safetensors", "laser background"),
             "-[ 👌 🎨 Style SDXL LoRA ]-":("3d_render_style_xl.safetensors", "3d style, 3d render"),
@@ -2108,6 +2109,7 @@ def lora_model_list(model, *args):
             "artificialguybr/StudioGhibli.Redmond-V2":("StudioGhibli.Redmond-StdGBRRedmAF-StudioGhibli.safetensors", "Studio Ghibli"),
             "alvdansen/phantasma-anime":("araminta_k_phantasma_anime.safetensors", ""),
             "Pclanglais/Popeye-1929":("pytorch_lora_weights.safetensors", "drawing of popeye"),
+            "rajkumaralma/futureistic_fantasy_anime_sDXL":("futureistic_fantasy_anime_sdxl_v1.safetensors", "futuristic-fantasy-anime"),
             "-[ 🏠 Local models ]-":("", ""),
         }
     elif is_sd3(model):
