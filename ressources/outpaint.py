@@ -36,6 +36,7 @@ model_list_outpaint_builtin = [
 #    "runwayml/stable-diffusion-inpainting",
     "Lykon/dreamshaper-8-inpainting",
     "Sanster/anything-4.0-inpainting",
+    "ckpt/dreamlike-diffusion-1.0-inpainting",
     "kpsss34/inpaintingXL",
 ]
 
@@ -123,6 +124,12 @@ def image_outpaint(
     else :        
         is_xl_outpaint: bool = False
 
+
+    if is_bin(modelid_outpaint):
+        is_bin_outpaint: bool = True
+    else :
+        is_bin_outpaint: bool = False
+
     if (num_inference_step_outpaint >= 10) and use_ays_outpaint:
         if is_sdxl(modelid_outpaint):
             sampling_schedule_outpaint = AysSchedules["StableDiffusionXLTimesteps"]
@@ -157,9 +164,9 @@ def image_outpaint(
     else:
         if modelid_outpaint[0:9] == "./models/" :
             pipe_outpaint = StableDiffusionInpaintPipeline.from_single_file(
-                modelid_outpaint, 
+                modelid_outpaint,
                 torch_dtype=model_arch,
-                use_safetensors=True,
+                use_safetensors=True if not is_bin_outpaint else False,
 #                load_safety_checker=False if (nsfw_filter_final == None) else True,
                 local_files_only=True if offline_test() else None
 #                safety_checker=nsfw_filter_final,
@@ -168,10 +175,10 @@ def image_outpaint(
         else:
             pipe_outpaint = StableDiffusionInpaintPipeline.from_pretrained(
                 modelid_outpaint, 
-                cache_dir=model_path_outpaint, 
+                cache_dir=model_path_outpaint,
                 torch_dtype=model_arch,
-                use_safetensors=True, 
-                safety_checker=nsfw_filter_final, 
+                use_safetensors=True if not is_bin_outpaint else False,
+                safety_checker=nsfw_filter_final,
                 feature_extractor=feat_ex,
                 resume_download=True,
                 local_files_only=True if offline_test() else None
