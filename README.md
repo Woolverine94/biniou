@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2025-10-25** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot specialized model [bartowski/gustavecortal_Beck-8B-GGUF](https://hf.co/bartowski/gustavecortal_Beck-8B-GGUF) and update of Chatbot model Cydonia to [bartowski/TheDrummer_Cydonia-24B-v4.2.0-GGUF](https://hf.co/bartowski/TheDrummer_Cydonia-24B-v4.2.0-GGUF).
+    - Add support for Llava model [acrkaan/livenova-vlm-llava-v1_6-mistral-7b-gguf](https://hf.co/acrkaan/livenova-vlm-llava-v1_6-mistral-7b-gguf).
+    - Add support for Inpainting model [ckpt/dreamlike-diffusion-1.0-inpainting](https://hf.co/ckpt/dreamlike-diffusion-1.0-inpainting).
+    - Add support for SDXL LoRA models [alvdansen/littletinies](https://hf.co/alvdansen/littletinies), [blink7630/graphic-novel-illustration](https://hf.co/blink7630/graphic-novel-illustration), [ntc-ai/SDXL-LoRA-slider.comic-portrait](https://hf.co/ntc-ai/SDXL-LoRA-slider.comic-portrait) and [rajkumaralma/futureistic_fantasy_anime_sDXL](https://hf.co/rajkumaralma/futureistic_fantasy_anime_sDXL).
+
   * 🆕 **2025-10-18** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot model [bartowski/microsoft_UserLM-8b-GGUF](https://hf.co/bartowski/microsoft_UserLM-8b-GGUF) and Chatbot translation specialized model [bartowski/yanolja_YanoljaNEXT-Rosetta-12B-2510-GGUF](https://hf.co/bartowski/yanolja_YanoljaNEXT-Rosetta-12B-2510-GGUF).
     - Add support for Pixart-Alpha model [artificialguybr/Fascinatio-PixartAlpha1024-Finetuned](https://hf.co/artificialguybr/Fascinatio-PixartAlpha1024-Finetuned).
@@ -47,13 +53,6 @@
     - Add support for Flux model [minpeter/FLUX-Hyperscale-fused](https://hf.co/minpeter/FLUX-Hyperscale-fused).
     - Add support for Audiogen model [AkhilTolani/audiogen-v2](https://hf.co/AkhilTolani/audiogen-v2).
     - Add support for Flux LoRA models [glif-loradex-trainer/Angelo-ec24_scifi_retro](https://hf.co/glif-loradex-trainer/Angelo-ec24_scifi_retro) and [tanzim1/Inkwatercolor](https://hf.co/tanzim1/Inkwatercolor).
-
-  * 🆕 **2025-09-20** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end model [bartowski/baidu_ERNIE-4.5-21B-A3B-Thinking-GGUF](https://hf.co/bartowski/baidu_ERNIE-4.5-21B-A3B-Thinking-GGUF) and chatbot code specialized model [unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF](https://hf.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF).
-    - Add support for Flux model [AlekseyCalvin/FluxKrea_HSTurbo_Diffusers](https://hf.co/AlekseyCalvin/FluxKrea_HSTurbo_Diffusers).
-    - Add support for SDXL model [RunDiffusion/Juggernaut-XL-v6](https://hf.co/RunDiffusion/Juggernaut-XL-v6).
-    - Add support for Musicgen model [pharoAIsanders420/musicgen-stereo-dub](https://hf.co/pharoAIsanders420/musicgen-stereo-dub).
-    - Add support for Flux LoRA models [WizWhite/wizard-s-acid-reflux](https://hf.co/WizWhite/wizard-s-acid-reflux) and [fofr/flux-cassette-futurism](https://hf.co/fofr/flux-cassette-futurism).
 
 ---
 
