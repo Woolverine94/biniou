@@ -2311,6 +2311,8 @@ def lora_model_list(model, *args):
             "peter198477/fantasy_g":("lora-000010.TA_trained(3).safetensors", "Kiss"),
             "strangerzonehf/Flux-Sketch-Flat-LoRA":("Sketch-Flat.safetensors", "Sketch Flat"),
             "Jonjew/FantasyOil01":("EnvyFluxFantasyOil01.safetensors", "fantasy oil painting"),
+            "dvyio/flux-lora-art-nouveau":("5222ed771f734e2fb9894d4147871cf6_pytorch_lora_weights.safetensors", "illustration in the style of ARTNV"),
+            "strangerzonehf/Flux-3DXL-Partfile-0004":("3DXLP4.safetensors", "3DXLP4"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
