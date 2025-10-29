@@ -2313,6 +2313,7 @@ def lora_model_list(model, *args):
             "Jonjew/FantasyOil01":("EnvyFluxFantasyOil01.safetensors", "fantasy oil painting"),
             "dvyio/flux-lora-art-nouveau":("5222ed771f734e2fb9894d4147871cf6_pytorch_lora_weights.safetensors", "illustration in the style of ARTNV"),
             "strangerzonehf/Flux-3DXL-Partfile-0004":("3DXLP4.safetensors", "3DXLP4"),
+            "manycore-research/FLUX.1-Panorama-dev-lora":("lora.safetensors", ""),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
@@ -2435,6 +2436,7 @@ def lora_model_list(model, *args):
             "glif-loradex-trainer/_franklondon_Cel_Shader_Outline_Shader_Texture_Shader_by_Ch13f":("Cel_Shader_Outline_Shader_Texture_Shader_by_Ch13f.safetensors", "Ch13f-shadr"),
             "Bootoshi/comic_book":("Comic book V2.safetensors", "in style of comic book, illustration of"),
             "minpeter/LoRA-FLUX-anime-style-v2":("adapter.safetensors", "anime style"),
+            "alfredplpl/flux.1-dev-modern-anime-lora":("modern-anime-lora-2.safetensors", "modern anime style"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
