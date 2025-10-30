@@ -128,6 +128,7 @@ model_list_img2img_builtin = [
     "black-forest-labs/FLUX.1-schnell",
     "sayakpaul/FLUX.1-merged",
     "ChuckMcSneed/FLUX.1-dev",
+    "SicariusSicariiStuff/flux.1dev-abliteratedv2",
     "NikolaSigmoid/FLUX.1-Krea-dev",
     "AlekseyCalvin/FluxKrea_HSTurbo_Diffusers",
     "minpeter/FLUX-Hyperscale-fused",
