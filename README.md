@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2025-11-08** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end model [bartowski/nvidia_Qwen3-Nemotron-32B-RLBFF-GGUF](https://hf.co/bartowski/nvidia_Qwen3-Nemotron-32B-RLBFF-GGUF) and Chatbot tiny model [bartowski/smolagents_SmolVLM2-2.2B-Instruct-Agentic-GUI-GGUF](https://hf.co/bartowski/smolagents_SmolVLM2-2.2B-Instruct-Agentic-GUI-GGUF).
+    - Add support for Flux LoRA models [fofr/flux-tron-ares](https://hf.co/fofr/flux-tron-ares), [strangerzonehf/Flux-Pixel-Background-LoRA](https://hf.co/strangerzonehf/Flux-Pixel-Background-LoRA), [renderartist/technically-color-flux](https://hf.co/renderartist/technically-color-flux) and [Datou1111/C0sm0s](https://hf.co/Datou1111/C0sm0s).
+    - Add "Artistic" category to Flux LoRA models list.
+    - Code enhancement for Llama-cpp module.
+
   * 🆕 **2025-11-01** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot specialized model [noctrex/Qwen3-Coder-REAP-25B-A3B-MXFP4_MOE-GGUF](https://hf.co/noctrex/Qwen3-Coder-REAP-25B-A3B-MXFP4_MOE-GGUF), Chatbot high-end model [Jinx-org/Jinx-gpt-oss-20b-GGUF](https://hf.co/Jinx-org/Jinx-gpt-oss-20b-GGUF) and Chatbot model [noctrex/Phi-mini-MoE-instruct-MXFP4_MOE-GGUF](https://hf.co/noctrex/Phi-mini-MoE-instruct-MXFP4_MOE-GGUF).
     - Add support for Flux model [SicariusSicariiStuff/flux.1dev-abliteratedv2](https://hf.co/SicariusSicariiStuff/flux.1dev-abliteratedv2).
@@ -45,12 +51,6 @@
     - Add support for Chatbot high-end model [bartowski/ServiceNow-AI_Apriel-1.5-15b-Thinker-GGUF](https://hf.co/bartowski/ServiceNow-AI_Apriel-1.5-15b-Thinker-GGUF) and update of Granite model to [bartowski/ibm-granite_granite-4.0-h-tiny-GGUF](https://hf.co/bartowski/ibm-granite_granite-4.0-h-tiny-GGUF).
     - Add support for Flux LoRA models [fabdream/80s-Fantasy-Movie](https://hf.co/fabdream/80s-Fantasy-Movie), [Purz/neon-sign](https://hf.co/Purz/neon-sign), [Jonjew/FantasyArmor](https://hf.co/Jonjew/FantasyArmor) and [Bootoshi/comic_book](https://hf.co/Bootoshi/comic_book).
     - Bugfix for Windows installer.
-
-  * 🆕 **2025-10-04** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot tiny models [LiquidAI/LFM2-2.6B-GGUF](https://hf.co/LiquidAI/LFM2-2.6B-GGUF) and [bartowski/arcee-ai_AFM-4.5B-GGUF](https://hf.co/bartowski/arcee-ai_AFM-4.5B-GGUF).
-    - Add support for SDXL lightning model [muverqqw/Dreamcoil-lightning](https://hf.co/muverqqw/Dreamcoil-lightning).
-    - Add support for nllb model [facebook/nllb-200-3.3B](https://hf.co/facebook/nllb-200-3.3B).
-    - Add support for Flux LoRA models [glif-loradex-trainer/12matt3r_flux_dev_trippyAF](https://hf.co/glif-loradex-trainer/12matt3r_flux_dev_trippyAF), [glif-loradex-trainer/_franklondon_Cel_Shader_Outline_Shader_Texture_Shader_by_Ch13f](https://hf.co/glif-loradex-trainer/_franklondon_Cel_Shader_Outline_Shader_Texture_Shader_by_Ch13f), [davanstrien/nasa_concept_art-flux-lora](https://hf.co/davanstrien/nasa_concept_art-flux-lora) and [oshtz/flux-pointcrayonstyle](https://hf.co/oshtz/flux-pointcrayonstyle).
 
 ---
 
