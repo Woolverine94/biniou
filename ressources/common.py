@@ -2320,6 +2320,8 @@ def lora_model_list(model, *args):
             "fofr/flux-tron-ares":("lora.safetensors", "TRON_ARES"),
             "renderartist/technically-color-flux":("Technically_Color_Flux_v2_renderartist.safetensors", "t3chnic4lly classic cinema film still 1950s"),
             "Datou1111/C0sm0s":("C0sm0s.safetensors", "C0sm0s"),
+            "ujouy/Amateur_Photography_FluxDev":("amateurphoto-v6-forcu.safetensors", "amateur photography, photorealistic"),
+            "fofr/flux-2004":("lora.safetensors", "a bad 2004 photo, harsh flash"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
