@@ -103,6 +103,7 @@ model_list_txt2vid_ze = [
     "RunDiffusion/Juggernaut-XL-v6",
     "segmind/SSD-1B",
     "segmind/Segmind-Vega",
+    "Ricardouchub/SarcasmDiffusion",
     "playgroundai/playground-v2-512px-base",
     "playgroundai/playground-v2-1024px-aesthetic",
     "-[ 👌 🚀 Fast SDXL ]-",

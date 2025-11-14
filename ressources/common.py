@@ -1863,7 +1863,8 @@ def is_sdxl(model):
 (model == "dataautogpt3/ProteusV0.5") or \
 (model == "dataautogpt3/Proteus-v0.6") or \
 (model == "dataautogpt3/PrometheusV1") or \
-(model == "dataautogpt3/ProteusSigma")\
+(model == "dataautogpt3/ProteusSigma") or \
+(model == "Ricardouchub/SarcasmDiffusion")\
 ):
         is_sdxl_value = True
     else:
