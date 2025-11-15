@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2025-11-15** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end model [DavidAU/Openai_gpt-oss-20b-NEO-GGUF](https://hf.co/DavidAU/Openai_gpt-oss-20b-NEO-GGUF) and Chatbot tiny model [bartowski/AllThingsIntel_Apollo-V0.1-4B-Thinking-GGUF](https://hf.co/bartowski/AllThingsIntel_Apollo-V0.1-4B-Thinking-GGUF).
+    - Add support for Llava model [billborkowski/llava-NousResearch_Nous-Hermes-2-Vision-GGUF](https://hf.co/billborkowski/llava-NousResearch_Nous-Hermes-2-Vision-GGUF).
+    - Add support for SDXL model [Ricardouchub/SarcasmDiffusion](https://hf.co/Ricardouchub/SarcasmDiffusion).
+    - Add support for Flux LoRA models [ujouy/Amateur_Photography_FluxDev](https://hf.co/ujouy/Amateur_Photography_FluxDev), [fofr/flux-2004](https://hf.co/fofr/flux-2004), [ampp/Chromatic_Grit](https://hf.co/ampp/Chromatic_Grit) and [fofr/flux-jwst](https://hf.co/fofr/flux-jwst).
+
   * 🆕 **2025-11-08** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end model [bartowski/nvidia_Qwen3-Nemotron-32B-RLBFF-GGUF](https://hf.co/bartowski/nvidia_Qwen3-Nemotron-32B-RLBFF-GGUF) and Chatbot tiny model [bartowski/smolagents_SmolVLM2-2.2B-Instruct-Agentic-GUI-GGUF](https://hf.co/bartowski/smolagents_SmolVLM2-2.2B-Instruct-Agentic-GUI-GGUF).
     - Add support for Flux LoRA models [fofr/flux-tron-ares](https://hf.co/fofr/flux-tron-ares), [strangerzonehf/Flux-Pixel-Background-LoRA](https://hf.co/strangerzonehf/Flux-Pixel-Background-LoRA), [renderartist/technically-color-flux](https://hf.co/renderartist/technically-color-flux) and [Datou1111/C0sm0s](https://hf.co/Datou1111/C0sm0s).
@@ -46,11 +52,6 @@
     - Add support for Flux LoRA models [peter198477/fantasy_g](https://hf.co/peter198477/fantasy_g), [strangerzonehf/Flux-Sketch-Flat-LoRA](https://hf.co/strangerzonehf/Flux-Sketch-Flat-LoRA), [Jonjew/FantasyOil01](https://hf.co/Jonjew/FantasyOil01) and [minpeter/LoRA-FLUX-anime-style-v2](https://hf.co/minpeter/LoRA-FLUX-anime-style-v2).
     - Bugfix for image prompts longer than 77 tokens.
     - Various bugfixes for installers.
-
-  * 🆕 **2025-10-11** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end model [bartowski/ServiceNow-AI_Apriel-1.5-15b-Thinker-GGUF](https://hf.co/bartowski/ServiceNow-AI_Apriel-1.5-15b-Thinker-GGUF) and update of Granite model to [bartowski/ibm-granite_granite-4.0-h-tiny-GGUF](https://hf.co/bartowski/ibm-granite_granite-4.0-h-tiny-GGUF).
-    - Add support for Flux LoRA models [fabdream/80s-Fantasy-Movie](https://hf.co/fabdream/80s-Fantasy-Movie), [Purz/neon-sign](https://hf.co/Purz/neon-sign), [Jonjew/FantasyArmor](https://hf.co/Jonjew/FantasyArmor) and [Bootoshi/comic_book](https://hf.co/Bootoshi/comic_book).
-    - Bugfix for Windows installer.
 
 ---
 
