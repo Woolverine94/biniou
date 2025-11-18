@@ -41,6 +41,7 @@ model_list_llava_builtin = {
     "Steven0090/llava1.6-Mistral-7B-Instruct-v0.2-gguf":("Mistral-7B-Instruct-v0.2-Q8_0.gguf", "mmproj-model-f16.gguf", "<s>[INST] {prompt} [/INST]", ""),
     "acrkaan/livenova-vlm-llava-v1_6-mistral-7b-gguf":("livenova-vlm-llava-v1_6-mistral-7b-Q4_K_M.gguf", "mmproj.gguf", "<s>[INST] {prompt} [/INST]", ""),
     "billborkowski/llava-NousResearch_Nous-Hermes-2-Vision-GGUF":("NousResearch_Nous-Hermes-2-Vision-GGUF_Q4_0.gguf", "mmproj-model-f16.gguf", "<s>[INST] {prompt} [/INST]", ""),
+    "mradermacher/LLaVA-Critic-R1-7B-Plus-Mimo-GGUF":("LLaVA-Critic-R1-7B-Plus-Mimo.Q5_K_M.gguf", "LLaVA-Critic-R1-7B-Plus-Mimo.mmproj-f16.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
 #    "vinimuchulski/gemma-3-12b-it-qat-q4_0-gguf":("gemma-3-12b-it-q4_0.gguf", "mmproj-model-f16-12B.gguf", "<bos><start_of_turn>user\n{system}\n\n{prompt}<end_of_turn>\n<start_of_turn>model", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
 }
 
