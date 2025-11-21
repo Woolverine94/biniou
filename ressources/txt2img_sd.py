@@ -53,6 +53,7 @@ model_list_txt2img_sd_builtin = [
     "digiplay/STRANGER-ANIME",
     "Norod78/sd15-jojo-stone-ocean",
     "stablediffusionapi/anything-v5",
+    "liamhvn/disney-pixar-cartoon-b",
     "-[ 👌 🐢 SDXL ]-",
     "fluently/Fluently-XL-Final",
     "SG161222/RealVisXL_V5.0",
