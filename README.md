@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2025-11-22** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end models [bartowski/EpistemeAI_metatune-gpt20b-R1.1-GGUF](https://hf.co/bartowski/EpistemeAI_metatune-gpt20b-R1.1-GGUF) and [bartowski/TheDrummer_Precog-24B-v1-GGUF](https://hf.co/bartowski/TheDrummer_Precog-24B-v1-GGUF).
+    - Add support for Llava model [mradermacher/LLaVA-Critic-R1-7B-Plus-Mimo-GGUF](https://hf.co/mradermacher/LLaVA-Critic-R1-7B-Plus-Mimo-GGUF).
+    - Add support for SD 1.5 model [liamhvn/disney-pixar-cartoon-b](https://hf.co/liamhvn/disney-pixar-cartoon-b).
+    - Add support for Flux LoRA models [prithivMLmods/Street-Bokeh-Flux-LoRA](https://hf.co/prithivMLmods/Street-Bokeh-Flux-LoRA), [StrategyAI/strategy-neon](https://hf.co/StrategyAI/strategy-neon), [gokaygokay/Flux-Watercolor-Strokes-LoRA](https://hf.co/gokaygokay/Flux-Watercolor-Strokes-LoRA) and [martintomov/tonys-chocolonely-flux](https://hf.co/martintomov/tonys-chocolonely-flux).
+
   * 🆕 **2025-11-15** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end model [DavidAU/Openai_gpt-oss-20b-NEO-GGUF](https://hf.co/DavidAU/Openai_gpt-oss-20b-NEO-GGUF) and Chatbot tiny model [bartowski/AllThingsIntel_Apollo-V0.1-4B-Thinking-GGUF](https://hf.co/bartowski/AllThingsIntel_Apollo-V0.1-4B-Thinking-GGUF).
     - Add support for Llava model [billborkowski/llava-NousResearch_Nous-Hermes-2-Vision-GGUF](https://hf.co/billborkowski/llava-NousResearch_Nous-Hermes-2-Vision-GGUF).
@@ -44,14 +50,6 @@
     - Add support for Llava model [acrkaan/livenova-vlm-llava-v1_6-mistral-7b-gguf](https://hf.co/acrkaan/livenova-vlm-llava-v1_6-mistral-7b-gguf).
     - Add support for Inpainting model [ckpt/dreamlike-diffusion-1.0-inpainting](https://hf.co/ckpt/dreamlike-diffusion-1.0-inpainting).
     - Add support for SDXL LoRA models [alvdansen/littletinies](https://hf.co/alvdansen/littletinies), [blink7630/graphic-novel-illustration](https://hf.co/blink7630/graphic-novel-illustration), [ntc-ai/SDXL-LoRA-slider.comic-portrait](https://hf.co/ntc-ai/SDXL-LoRA-slider.comic-portrait) and [rajkumaralma/futureistic_fantasy_anime_sDXL](https://hf.co/rajkumaralma/futureistic_fantasy_anime_sDXL).
-
-  * 🆕 **2025-10-18** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot model [bartowski/microsoft_UserLM-8b-GGUF](https://hf.co/bartowski/microsoft_UserLM-8b-GGUF) and Chatbot translation specialized model [bartowski/yanolja_YanoljaNEXT-Rosetta-12B-2510-GGUF](https://hf.co/bartowski/yanolja_YanoljaNEXT-Rosetta-12B-2510-GGUF).
-    - Add support for Pixart-Alpha model [artificialguybr/Fascinatio-PixartAlpha1024-Finetuned](https://hf.co/artificialguybr/Fascinatio-PixartAlpha1024-Finetuned).
-    - Add support for LCM model [Disty0/LCM_SoteMix](https://hf.co/Disty0/LCM_SoteMix).
-    - Add support for Flux LoRA models [peter198477/fantasy_g](https://hf.co/peter198477/fantasy_g), [strangerzonehf/Flux-Sketch-Flat-LoRA](https://hf.co/strangerzonehf/Flux-Sketch-Flat-LoRA), [Jonjew/FantasyOil01](https://hf.co/Jonjew/FantasyOil01) and [minpeter/LoRA-FLUX-anime-style-v2](https://hf.co/minpeter/LoRA-FLUX-anime-style-v2).
-    - Bugfix for image prompts longer than 77 tokens.
-    - Various bugfixes for installers.
 
 ---
 
