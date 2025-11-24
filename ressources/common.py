@@ -2477,6 +2477,8 @@ def lora_model_list(model, *args):
             "Ivan5d/lora_deep_sea":("UNDERWATER_SCENE_v2.safetensors", "UNDERWATER_SCENE, aqua"),
             "SedatAl/pixel-art-LoRa":("pytorch_lora_weights.safetensors", "pixel art"),
             "Saitun/catconcept":(" CatCONCEPT.safetensors", "cat"),
+            "ampp/N64_style_sd1.5":("N64 Lowpoly.safetensors", "n64-lowpoly style, low poly"),
+            "SedatAl/Logo-LoRa-1":("pytorch_lora_weights.safetensors", "a logo of"),
             "-[ 🏠 Local models ]-":("", ""),
         }
 
