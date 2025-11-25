@@ -33,6 +33,7 @@ model_list_whisper_builtin = {
     "distil-whisper/distil-large-v2": "model.safetensors",
     "distil-whisper/distil-large-v3": "model.safetensors",
     "openai/whisper-large-v3-turbo": "model.safetensors",
+    "bofenghuang/whisper-large-v3-french": "model.safetensors",
 }
 
 model_list_whisper.update(model_list_whisper_builtin)
