@@ -81,6 +81,7 @@ model_list_llamacpp_builtin = {
     "-[ 👍 🚀 Tiny ]-":("microsoft_Phi-4-mini-instruct-Q5_K_M.gguf", "<|system|>{system_prompt}<|end|><|user|>{prompt}<|end|><|assistant|>", std_system_prompt),
     "bartowski/microsoft_Phi-4-mini-instruct-GGUF":("microsoft_Phi-4-mini-instruct-Q5_K_M.gguf", "<|system|>{system_prompt}<|end|><|user|>{prompt}<|end|><|assistant|>", std_system_prompt),
     "bartowski/Qwen_Qwen3-4B-GGUF":("Qwen_Qwen3-4B-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", std_system_prompt),
+    "bartowski/p-e-w_Qwen3-4B-Instruct-2507-heretic-GGUF":("p-e-w_Qwen3-4B-Instruct-2507-heretic-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n", std_system_prompt),
     "bartowski/AllThingsIntel_Apollo-V0.1-4B-Thinking-GGUF":("AllThingsIntel_Apollo-V0.1-4B-Thinking-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n", std_system_prompt),
     "bartowski/POLARIS-Project_Polaris-4B-Preview-GGUF":("POLARIS-Project_Polaris-4B-Preview-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", std_system_prompt),
     "mradermacher/Polaris-1.7B-Preview-GGUF":("Polaris-1.7B-Preview.Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", std_system_prompt),
