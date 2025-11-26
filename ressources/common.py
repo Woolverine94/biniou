@@ -2479,8 +2479,6 @@ def lora_model_list(model, *args):
             "Saitun/catconcept":(" CatCONCEPT.safetensors", "cat"),
             "ampp/N64_style_sd1.5":("N64 Lowpoly.safetensors", "n64-lowpoly style, low poly"),
             "SedatAl/Logo-LoRa-1":("pytorch_lora_weights.safetensors", "a logo of"),
-            "leonel4rd/Bannersagav1":("bannersaga.safetensors", "Bannersaga"),
-            "Luisdure/anime-lora":("animemix_v3_offset.safetensors", "anime screencap"),
             "-[ 🏠 Local models ]-":("", ""),
         }
 
