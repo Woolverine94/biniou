@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2025-11-29** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end model [bartowski/p-e-w_phi-4-heretic-GGUF](https://hf.co/bartowski/p-e-w_phi-4-heretic-GGUF) and tiny model [bartowski/p-e-w_Qwen3-4B-Instruct-2507-heretic-GGUF](https://hf.co/bartowski/p-e-w_Qwen3-4B-Instruct-2507-heretic-GGUF).
+    - Add support for Whisper model [bofenghuang/whisper-large-v3-french](https://hf.co/bofenghuang/whisper-large-v3-french).
+    - Add support for SD 1.5 LoRA models [ampp/N64_style_sd1.5](https://hf.co/ampp/N64_style_sd1.5), [SedatAl/Logo-LoRa-1](https://hf.co/SedatAl/Logo-LoRa-1), [leonel4rd/Bannersagav1](https://hf.co/leonel4rd/Bannersagav1) and [Luisdure/anime-lora](https://hf.co/Luisdure/anime-lora).
+    - Using [bartowski/POLARIS-Project_Polaris-4B-Preview-GGUF](https://hf.co/bartowski/POLARIS-Project_Polaris-4B-Preview-GGUF) as default Chatbot tiny model.
+
   * 🆕 **2025-11-22** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end models [bartowski/EpistemeAI_metatune-gpt20b-R1.1-GGUF](https://hf.co/bartowski/EpistemeAI_metatune-gpt20b-R1.1-GGUF) and [bartowski/TheDrummer_Precog-24B-v1-GGUF](https://hf.co/bartowski/TheDrummer_Precog-24B-v1-GGUF).
     - Add support for Llava model [mradermacher/LLaVA-Critic-R1-7B-Plus-Mimo-GGUF](https://hf.co/mradermacher/LLaVA-Critic-R1-7B-Plus-Mimo-GGUF).
@@ -44,12 +50,6 @@
     - Add support for Chatbot specialized model [noctrex/Qwen3-Coder-REAP-25B-A3B-MXFP4_MOE-GGUF](https://hf.co/noctrex/Qwen3-Coder-REAP-25B-A3B-MXFP4_MOE-GGUF), Chatbot high-end model [Jinx-org/Jinx-gpt-oss-20b-GGUF](https://hf.co/Jinx-org/Jinx-gpt-oss-20b-GGUF) and Chatbot model [noctrex/Phi-mini-MoE-instruct-MXFP4_MOE-GGUF](https://hf.co/noctrex/Phi-mini-MoE-instruct-MXFP4_MOE-GGUF).
     - Add support for Flux model [SicariusSicariiStuff/flux.1dev-abliteratedv2](https://hf.co/SicariusSicariiStuff/flux.1dev-abliteratedv2).
     - Add support for Flux LoRA models [dvyio/flux-lora-art-nouveau](https://hf.co/dvyio/flux-lora-art-nouveau), [strangerzonehf/Flux-3DXL-Partfile-0004](https://hf.co/strangerzonehf/Flux-3DXL-Partfile-0004), [manycore-research/FLUX.1-Panorama-dev-lora](https://hf.co/manycore-research/FLUX.1-Panorama-dev-lora) and [alfredplpl/flux.1-dev-modern-anime-lora](https://hf.co/alfredplpl/flux.1-dev-modern-anime-lora).
-
-  * 🆕 **2025-10-25** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot specialized model [bartowski/gustavecortal_Beck-8B-GGUF](https://hf.co/bartowski/gustavecortal_Beck-8B-GGUF) and update of Chatbot model Cydonia to [bartowski/TheDrummer_Cydonia-24B-v4.2.0-GGUF](https://hf.co/bartowski/TheDrummer_Cydonia-24B-v4.2.0-GGUF).
-    - Add support for Llava model [acrkaan/livenova-vlm-llava-v1_6-mistral-7b-gguf](https://hf.co/acrkaan/livenova-vlm-llava-v1_6-mistral-7b-gguf).
-    - Add support for Inpainting model [ckpt/dreamlike-diffusion-1.0-inpainting](https://hf.co/ckpt/dreamlike-diffusion-1.0-inpainting).
-    - Add support for SDXL LoRA models [alvdansen/littletinies](https://hf.co/alvdansen/littletinies), [blink7630/graphic-novel-illustration](https://hf.co/blink7630/graphic-novel-illustration), [ntc-ai/SDXL-LoRA-slider.comic-portrait](https://hf.co/ntc-ai/SDXL-LoRA-slider.comic-portrait) and [rajkumaralma/futureistic_fantasy_anime_sDXL](https://hf.co/rajkumaralma/futureistic_fantasy_anime_sDXL).
 
 ---
 
