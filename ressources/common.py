@@ -2328,6 +2328,8 @@ def lora_model_list(model, *args):
             "fofr/flux-2004":("lora.safetensors", "a bad 2004 photo, harsh flash"),
             "fofr/flux-jwst":("lora.safetensors", "JWST"),
             "StrategyAI/strategy-neon":("strategy-neon.safetensors", "NeonPainter"),
+            "fofr/flux-black-light":("lora.safetensors", "BLKLGHT"),
+            "Keltezaa/furry-enhancer":("Furry_Enhancer PhotoV3.420.safetensors", "Anthro, Furry, Photo"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
