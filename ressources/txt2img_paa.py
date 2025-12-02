@@ -33,6 +33,7 @@ model_list_txt2img_paa_builtin = [
     "Luo-Yihong/yoso_pixart1024",
     "jasperai/flash-pixart",
     "artificialguybr/Fascinatio-PixartAlpha1024-Finetuned",
+    "TensorFamily/SigmaJourney",
 ]
 
 for k in range(len(model_list_txt2img_paa_builtin)):
@@ -169,6 +170,45 @@ def image_txt2img_paa(
             )
         pipe_txt2img_paa.scheduler = LCMScheduler.from_config(pipe_txt2img_paa.scheduler.config)
         pipe_txt2img_paa.scheduler.config.timestep_spacing = "trailing"
+
+    elif (modelid_txt2img_paa == "TensorFamily/SigmaJourney"):
+        transformerid_txt2img_paa = modelid_txt2img_paa
+        modelid_txt2img_paa = "PixArt-alpha/PixArt-Sigma-XL-2-1024-MS"
+
+        transformer_txt2img_paa = Transformer2DModel.from_pretrained(
+            transformerid_txt2img_paa,
+            cache_dir=model_path_txt2img_paa,
+            torch_dtype=model_arch,
+            subfolder="transformer",
+            use_safetensors=True,
+            resume_download=True,
+            local_files_only=True if offline_test() else None
+        )
+
+        if modelid_txt2img_paa[0:9] == "./models/" :
+            pipe_txt2img_paa = PixArtSigmaPipeline.from_single_file(
+                modelid_txt2img_paa,
+                transformer=transformer_txt2img_paa,
+                torch_dtype=model_arch,
+                use_safetensors=True,
+                load_safety_checker=False if (nsfw_filter_final == None) else True,
+                local_files_only=True if offline_test() else None,
+    #            safety_checker=nsfw_filter_final,
+    #            feature_extractor=feat_ex,
+            )
+        else:
+            pipe_txt2img_paa = PixArtSigmaPipeline.from_pretrained(
+                modelid_txt2img_paa,
+                transformer=transformer_txt2img_paa,
+                cache_dir=model_path_txt2img_paa,
+                torch_dtype=model_arch,
+                use_safetensors=True,
+                safety_checker=nsfw_filter_final,
+                feature_extractor=feat_ex,
+                resume_download=True,
+                local_files_only=True if offline_test() else None,
+            )
+        pipe_txt2img_paa = schedulerer(pipe_txt2img_paa, sampler_txt2img_paa)
 
     elif ("PIXART-SIGMA" in modelid_txt2img_paa.upper()):
         if modelid_txt2img_paa[0:9] == "./models/" :
