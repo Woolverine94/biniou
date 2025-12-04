@@ -2455,6 +2455,8 @@ def lora_model_list(model, *args):
             "Bootoshi/comic_book":("Comic book V2.safetensors", "in style of comic book, illustration of"),
             "minpeter/LoRA-FLUX-anime-style-v2":("adapter.safetensors", "anime style"),
             "alfredplpl/flux.1-dev-modern-anime-lora":("modern-anime-lora-2.safetensors", "modern anime style"),
+            "mastersubhajit/FLUX.1-dev-Finetuned-LoRA-Ghibli":("Flux-Finetune-LoRA-Ghibli.safetensors", "Cinderella style"),
+            "mastersubhajit/FLUX.1-dev-Finetuned-LoRA-Makoto-Shinkai":("Flux-Finetuned-LoRA-Makoto_Shinkai.safetensors", "Cinderella style"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
