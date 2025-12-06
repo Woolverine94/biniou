@@ -22,6 +22,11 @@
 
 ## Updates
 
+  * 🆕 **2025-12-06** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot specialized model [bartowski/TheDrummer_Snowpiercer-15B-v4-GGUF](https://hf.co/bartowski/TheDrummer_Snowpiercer-15B-v4-GGUF) and model [bartowski/squ11z1_Hypnos-i1-8B-GGUF](https://hf.co/bartowski/squ11z1_Hypnos-i1-8B-GGUF).
+    - Add support for PixArt-Alpha Sigma model [TensorFamily/SigmaJourney](https://hf.co/TensorFamily/SigmaJourney).
+    - Add support for Flux LoRA models [fofr/flux-black-light](https://hf.co/fofr/flux-black-light), [Keltezaa/furry-enhancer](https://hf.co/Keltezaa/furry-enhancer), [mastersubhajit/FLUX.1-dev-Finetuned-LoRA-Ghibli](https://hf.co/mastersubhajit/FLUX.1-dev-Finetuned-LoRA-Ghibli) and [mastersubhajit/FLUX.1-dev-Finetuned-LoRA-Makoto-Shinkai](https://hf.co/mastersubhajit/FLUX.1-dev-Finetuned-LoRA-Makoto-Shinkai).
+
   * 🆕 **2025-11-29** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end model [bartowski/p-e-w_phi-4-heretic-GGUF](https://hf.co/bartowski/p-e-w_phi-4-heretic-GGUF) and tiny model [bartowski/p-e-w_Qwen3-4B-Instruct-2507-heretic-GGUF](https://hf.co/bartowski/p-e-w_Qwen3-4B-Instruct-2507-heretic-GGUF).
     - Add support for Whisper model [bofenghuang/whisper-large-v3-french](https://hf.co/bofenghuang/whisper-large-v3-french).
@@ -45,11 +50,6 @@
     - Add support for Flux LoRA models [fofr/flux-tron-ares](https://hf.co/fofr/flux-tron-ares), [strangerzonehf/Flux-Pixel-Background-LoRA](https://hf.co/strangerzonehf/Flux-Pixel-Background-LoRA), [renderartist/technically-color-flux](https://hf.co/renderartist/technically-color-flux) and [Datou1111/C0sm0s](https://hf.co/Datou1111/C0sm0s).
     - Add "Artistic" category to Flux LoRA models list.
     - Code enhancement for Llama-cpp module.
-
-  * 🆕 **2025-11-01** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot specialized model [noctrex/Qwen3-Coder-REAP-25B-A3B-MXFP4_MOE-GGUF](https://hf.co/noctrex/Qwen3-Coder-REAP-25B-A3B-MXFP4_MOE-GGUF), Chatbot high-end model [Jinx-org/Jinx-gpt-oss-20b-GGUF](https://hf.co/Jinx-org/Jinx-gpt-oss-20b-GGUF) and Chatbot model [noctrex/Phi-mini-MoE-instruct-MXFP4_MOE-GGUF](https://hf.co/noctrex/Phi-mini-MoE-instruct-MXFP4_MOE-GGUF).
-    - Add support for Flux model [SicariusSicariiStuff/flux.1dev-abliteratedv2](https://hf.co/SicariusSicariiStuff/flux.1dev-abliteratedv2).
-    - Add support for Flux LoRA models [dvyio/flux-lora-art-nouveau](https://hf.co/dvyio/flux-lora-art-nouveau), [strangerzonehf/Flux-3DXL-Partfile-0004](https://hf.co/strangerzonehf/Flux-3DXL-Partfile-0004), [manycore-research/FLUX.1-Panorama-dev-lora](https://hf.co/manycore-research/FLUX.1-Panorama-dev-lora) and [alfredplpl/flux.1-dev-modern-anime-lora](https://hf.co/alfredplpl/flux.1-dev-modern-anime-lora).
 
 ---
 
