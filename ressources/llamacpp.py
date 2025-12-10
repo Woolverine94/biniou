@@ -55,6 +55,7 @@ model_list_llamacpp_builtin = {
     "bartowski/deepseek-ai_DeepSeek-R1-0528-Qwen3-8B-GGUF":("deepseek-ai_DeepSeek-R1-0528-Qwen3-8B-Q5_K_M.gguf", "<｜begin▁of▁sentence｜>{system_prompt}<｜User｜>{prompt}<｜Assistant｜>\n", std_system_prompt),
     "bartowski/Qwen2.5-7B-Instruct-1M-GGUF":("Qwen2.5-7B-Instruct-1M-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", std_system_prompt),
     "bartowski/nvidia_AceInstruct-7B-GGUF":("nvidia_AceInstruct-7B-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n", std_system_prompt),
+    "bartowski/nvidia_Orchestrator-8B-GGUF":("nvidia_Orchestrator-8B-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n", std_system_prompt),
     "bartowski/cybertron-v4-qw7B-MGS-GGUF":("cybertron-v4-qw7B-MGS-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", std_system_prompt),
     "bartowski/DRT-o1-7B-GGUF":("DRT-o1-7B-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", std_system_prompt),
     "arcee-ai/Arcee-Spark-GGUF":("Arcee-Spark-Q5_K_M.gguf", "<|im_start|>system\n{system_message}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", std_system_prompt),
