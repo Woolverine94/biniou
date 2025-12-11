@@ -2417,6 +2417,7 @@ def lora_model_list(model, *args):
             "strangerzonehf/Flux-Pixel-Background-LoRA":("Pixel-Background.safetensors", "Pixel Background"),
             "martintomov/tonys-chocolonely-flux":("tonys_chocolonely_flux_lora_martintomov_v1.safetensors", "Tony's Chocolate"),
             "geocine/decorative-relief":("lora_64_1700steps.safetensors", "in decorativerelief art style"),
+            "Shakker-Labs/FLUX.1-dev-LoRA-One-Click-Creative-Template":("FLUX-dev-lora-One-Click-Creative-Template.safetensors", "The background is 4 real photos, and in the middle is a cartoon picture summarizing the real photos"),
             "-[ 🏆 🐢 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
@@ -2461,6 +2462,7 @@ def lora_model_list(model, *args):
             "alfredplpl/flux.1-dev-modern-anime-lora":("modern-anime-lora-2.safetensors", "modern anime style"),
             "mastersubhajit/FLUX.1-dev-Finetuned-LoRA-Ghibli":("Flux-Finetune-LoRA-Ghibli.safetensors", "Cinderella style"),
             "mastersubhajit/FLUX.1-dev-Finetuned-LoRA-Makoto-Shinkai":("Flux-Finetuned-LoRA-Makoto_Shinkai.safetensors", "Cinderella style"),
+            "ikmalsaid/akira-anime-flux-dev-lora":("ak1ra_iss-lora.safetensors", "ak1ra_iss"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
