@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2025-12-13** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot model [bartowski/nvidia_Orchestrator-8B-GGUF](https://hf.co/bartowski/nvidia_Orchestrator-8B-GGUF) and update of specialized chatbot model Cydonia to [bartowski/TheDrummer_Cydonia-24B-v4.3-GGUF](https://hf.co/bartowski/TheDrummer_Cydonia-24B-v4.3-GGUF).
+    - Add support for SDXL LoRA models [ntc-ai/SDXL-LoRA-slider.glowing-eyes](https://hf.co/ntc-ai/SDXL-LoRA-slider.glowing-eyes) and [blink7630/storyboard-sketch](https://hf.co/blink7630/storyboard-sketch).
+    - Add support for Flux LoRA models [UmeAiRT/FLUX.1-dev-LoRA-Ume_Sky](https://hf.co/UmeAiRT/FLUX.1-dev-LoRA-Ume_Sky), [geocine/decorative-relief](https://hf.co/geocine/decorative-relief), [Shakker-Labs/FLUX.1-dev-LoRA-One-Click-Creative-Template](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-One-Click-Creative-Template) and [ikmalsaid/akira-anime-flux-dev-lora](https://hf.co/ikmalsaid/akira-anime-flux-dev-lora).
+    - Bugfix and optimizations for workflows of Docker containers.
+
   * 🆕 **2025-12-06** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot specialized model [bartowski/TheDrummer_Snowpiercer-15B-v4-GGUF](https://hf.co/bartowski/TheDrummer_Snowpiercer-15B-v4-GGUF) and model [bartowski/squ11z1_Hypnos-i1-8B-GGUF](https://hf.co/bartowski/squ11z1_Hypnos-i1-8B-GGUF).
     - Add support for PixArt-Alpha Sigma model [TensorFamily/SigmaJourney](https://hf.co/TensorFamily/SigmaJourney).
@@ -44,12 +50,6 @@
     - Add support for Llava model [billborkowski/llava-NousResearch_Nous-Hermes-2-Vision-GGUF](https://hf.co/billborkowski/llava-NousResearch_Nous-Hermes-2-Vision-GGUF).
     - Add support for SDXL model [Ricardouchub/SarcasmDiffusion](https://hf.co/Ricardouchub/SarcasmDiffusion).
     - Add support for Flux LoRA models [ujouy/Amateur_Photography_FluxDev](https://hf.co/ujouy/Amateur_Photography_FluxDev), [fofr/flux-2004](https://hf.co/fofr/flux-2004), [ampp/Chromatic_Grit](https://hf.co/ampp/Chromatic_Grit) and [fofr/flux-jwst](https://hf.co/fofr/flux-jwst).
-
-  * 🆕 **2025-11-08** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end model [bartowski/nvidia_Qwen3-Nemotron-32B-RLBFF-GGUF](https://hf.co/bartowski/nvidia_Qwen3-Nemotron-32B-RLBFF-GGUF) and Chatbot tiny model [bartowski/smolagents_SmolVLM2-2.2B-Instruct-Agentic-GUI-GGUF](https://hf.co/bartowski/smolagents_SmolVLM2-2.2B-Instruct-Agentic-GUI-GGUF).
-    - Add support for Flux LoRA models [fofr/flux-tron-ares](https://hf.co/fofr/flux-tron-ares), [strangerzonehf/Flux-Pixel-Background-LoRA](https://hf.co/strangerzonehf/Flux-Pixel-Background-LoRA), [renderartist/technically-color-flux](https://hf.co/renderartist/technically-color-flux) and [Datou1111/C0sm0s](https://hf.co/Datou1111/C0sm0s).
-    - Add "Artistic" category to Flux LoRA models list.
-    - Code enhancement for Llama-cpp module.
 
 ---
 
