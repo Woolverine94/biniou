@@ -36,7 +36,7 @@ git+https://github.com/ai-forever/Real-ESRGAN.git
 insightface
 onnxruntime==1.20.0
 controlnet-aux
-mediapipe
+mediapipe==0.10.21
 tomesd
 ffmpeg-python
 trimesh
