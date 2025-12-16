@@ -40,7 +40,7 @@ REM ****************************
 cd "%DEFAULT_BINIOU_DIR%"
 set path=%path%;%ProgramW6432%\Git\cmd;
 git clone --branch main https://github.com/Woolverine94/biniou.git
-git config --global --add safe.directory "%DEFAULT_BINIOU_DIR%/biniou"
+git config --global --add safe.directory "*"
 cd "%DEFAULT_BINIOU_DIR%\biniou"
 
 REM ******************************
