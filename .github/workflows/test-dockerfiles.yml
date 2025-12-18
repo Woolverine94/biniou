@@ -10,6 +10,7 @@ on:
       - update.sh
       - update_cuda.sh
       - CUDA/Dockerfile
+      - .github/workflows/test-dockerfiles.yml
   pull_request:
     branches: [ "main" ]
     paths:
@@ -19,6 +20,7 @@ on:
       - update.sh
       - update_cuda.sh
       - CUDA/Dockerfile
+      - .github/workflows/test-dockerfiles.yml
 jobs:
 
   build:
@@ -26,9 +28,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Free Disk Space (Ubuntu) CPU pass
+      uses: jlumbroso/free-disk-space@main
+      with:
+        tool-cache: true
+        android: true
+        dotnet: true
+        haskell: true
+        large-packages: true
+        docker-images: true
+        swap-storage: true
+    
     - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag biniou:$(date +%s)
+
+    - name: Free Disk Space (Ubuntu) CUDA pass
+      uses: jlumbroso/free-disk-space@main
+      with:
+        tool-cache: true
+        android: true
+        dotnet: true
+        haskell: true
+        large-packages: true
+        docker-images: true
+        swap-storage: true
 
     - name: Build the CUDA Docker image
       run: docker build . --file CUDA/Dockerfile --tag biniou-cuda:$(date +%s)
