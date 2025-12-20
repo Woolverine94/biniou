@@ -22,6 +22,13 @@
 
 ## Updates
 
+  * 🆕 **2025-12-20** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end model [bartowski/allenai_Olmo-3.1-32B-Instruct-GGUF](https://hf.co/bartowski/allenai_Olmo-3.1-32B-Instruct-GGUF) and update of Apriel model to [bartowski/ServiceNow-AI_Apriel-1.6-15b-Thinker-GGUF](https://hf.co/bartowski/ServiceNow-AI_Apriel-1.6-15b-Thinker-GGUF).
+    - Add support for Flux LoRA models [ANGJustinl/flux_Art_Design_Style_Lora](https://hf.co/ANGJustinl/flux_Art_Design_Style_Lora), [fofr/flux-bad-70s-food](https://hf.co/fofr/flux-bad-70s-food), [SebastianBodza/Flux_Aquarell_Watercolor_v2](https://hf.co/SebastianBodza/Flux_Aquarell_Watercolor_v2) and [BlaireSilver13/dollx-flux](https://hf.co/BlaireSilver13/dollx-flux).
+    - Add a photographic category to Flux LoRA models list. 
+    - Bugfixes for installer and updater.
+    - Bugfixes and optimizations for test-dockerfile workflow.
+
   * 🆕 **2025-12-13** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot model [bartowski/nvidia_Orchestrator-8B-GGUF](https://hf.co/bartowski/nvidia_Orchestrator-8B-GGUF) and update of specialized chatbot model Cydonia to [bartowski/TheDrummer_Cydonia-24B-v4.3-GGUF](https://hf.co/bartowski/TheDrummer_Cydonia-24B-v4.3-GGUF).
     - Add support for SDXL LoRA models [ntc-ai/SDXL-LoRA-slider.glowing-eyes](https://hf.co/ntc-ai/SDXL-LoRA-slider.glowing-eyes) and [blink7630/storyboard-sketch](https://hf.co/blink7630/storyboard-sketch).
@@ -44,12 +51,6 @@
     - Add support for Llava model [mradermacher/LLaVA-Critic-R1-7B-Plus-Mimo-GGUF](https://hf.co/mradermacher/LLaVA-Critic-R1-7B-Plus-Mimo-GGUF).
     - Add support for SD 1.5 model [liamhvn/disney-pixar-cartoon-b](https://hf.co/liamhvn/disney-pixar-cartoon-b).
     - Add support for Flux LoRA models [prithivMLmods/Street-Bokeh-Flux-LoRA](https://hf.co/prithivMLmods/Street-Bokeh-Flux-LoRA), [StrategyAI/strategy-neon](https://hf.co/StrategyAI/strategy-neon), [gokaygokay/Flux-Watercolor-Strokes-LoRA](https://hf.co/gokaygokay/Flux-Watercolor-Strokes-LoRA) and [martintomov/tonys-chocolonely-flux](https://hf.co/martintomov/tonys-chocolonely-flux).
-
-  * 🆕 **2025-11-15** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end model [DavidAU/Openai_gpt-oss-20b-NEO-GGUF](https://hf.co/DavidAU/Openai_gpt-oss-20b-NEO-GGUF) and Chatbot tiny model [bartowski/AllThingsIntel_Apollo-V0.1-4B-Thinking-GGUF](https://hf.co/bartowski/AllThingsIntel_Apollo-V0.1-4B-Thinking-GGUF).
-    - Add support for Llava model [billborkowski/llava-NousResearch_Nous-Hermes-2-Vision-GGUF](https://hf.co/billborkowski/llava-NousResearch_Nous-Hermes-2-Vision-GGUF).
-    - Add support for SDXL model [Ricardouchub/SarcasmDiffusion](https://hf.co/Ricardouchub/SarcasmDiffusion).
-    - Add support for Flux LoRA models [ujouy/Amateur_Photography_FluxDev](https://hf.co/ujouy/Amateur_Photography_FluxDev), [fofr/flux-2004](https://hf.co/fofr/flux-2004), [ampp/Chromatic_Grit](https://hf.co/ampp/Chromatic_Grit) and [fofr/flux-jwst](https://hf.co/fofr/flux-jwst).
 
 ---
 
