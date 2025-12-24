@@ -70,6 +70,7 @@ model_list_llamacpp_builtin = {
     "bartowski/internlm2_5-7b-chat-1m-GGUF":("internlm2_5-7b-chat-1m-Q5_K_M.gguf", "<|im_start|>system\n{system_message}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", std_system_prompt),
     "bartowski/THUDM_GLM-Z1-9B-0414-GGUF":("THUDM_GLM-Z1-9B-0414-Q5_K_M.gguf", "[gMASK]<sop><|system|>\n{system_prompt}<|user|>\n{prompt}<|assistant|>\n<think>", std_system_prompt),
     "bartowski/glm-4-9b-chat-abliterated-GGUF":("glm-4-9b-chat-abliterated-Q5_K_M.gguf", "[gMASK]<sop><|system|>\n{system_prompt}<|user|>\n{prompt}<|assistant|>\n<think>", std_system_prompt),
+    "bartowski/zai-org_GLM-4.6V-Flash-GGUF":("zai-org_GLM-4.6V-Flash-Q5_K_M.gguf", "[gMASK]<sop><|system|>\n{system_prompt}<|user|>\n{prompt}<|assistant|>", std_system_prompt),
     "bartowski/nvidia_AceReason-Nemotron-1.1-7B-GGUF":("nvidia_AceReason-Nemotron-1.1-7B-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", std_system_prompt),
 #    "bartowski/nvidia_AceReason-Nemotron-7B-GGUF":("nvidia_AceReason-Nemotron-7B-Q5_K_M.gguf", "<｜begin▁of▁sentence｜>{system_prompt}<｜User｜>{prompt}<｜Assistant｜><｜end▁of▁sentence｜><｜Assistant｜><think>\n", std_system_prompt),
     "bartowski/nvidia_OpenReasoning-Nemotron-7B-GGUF":("nvidia_OpenReasoning-Nemotron-7B-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", std_system_prompt),
