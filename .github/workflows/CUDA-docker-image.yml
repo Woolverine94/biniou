@@ -28,12 +28,12 @@ jobs:
     - name: Free Disk Space (Ubuntu)
       uses: jlumbroso/free-disk-space@main
       with:
-        tool-cache: false
+        tool-cache: true
         android: true
         dotnet: true
         haskell: true
         large-packages: true
-        docker-images: false
+        docker-images: true
         swap-storage: true
 
     - name: Checkout repository
