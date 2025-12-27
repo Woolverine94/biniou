@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2025-12-27** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end model [bartowski/utter-project_EuroLLM-22B-Instruct-2512-GGUF](https://hf.co/bartowski/utter-project_EuroLLM-22B-Instruct-2512-GGUF) and chatbot model [bartowski/zai-org_GLM-4.6V-Flash-GGUF](https://hf.co/bartowski/zai-org_GLM-4.6V-Flash-GGUF).
+    - Add support for nllb model [facebook/nllb-200-distilled-1.3B](https://hf.co/facebook/nllb-200-distilled-1.3B)
+    - Add support for Flux LoRA models [dvyio/flux-lora-thermal-image](https://hf.co/dvyio/flux-lora-thermal-image), [Saad381/SpectraGen](https://hf.co/Saad381/SpectraGen), [renderartist/ROYGBIVFlux](https://hf.co/renderartist/ROYGBIVFlux) and [fofr/flux-minecraft-movie](https://hf.co/fofr/flux-minecraft-movie).
+    - Update and pptimizations for weekly workflows.
+
   * 🆕 **2025-12-20** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end model [bartowski/allenai_Olmo-3.1-32B-Instruct-GGUF](https://hf.co/bartowski/allenai_Olmo-3.1-32B-Instruct-GGUF) and update of Apriel model to [bartowski/ServiceNow-AI_Apriel-1.6-15b-Thinker-GGUF](https://hf.co/bartowski/ServiceNow-AI_Apriel-1.6-15b-Thinker-GGUF).
     - Add support for Flux LoRA models [ANGJustinl/flux_Art_Design_Style_Lora](https://hf.co/ANGJustinl/flux_Art_Design_Style_Lora), [fofr/flux-bad-70s-food](https://hf.co/fofr/flux-bad-70s-food), [SebastianBodza/Flux_Aquarell_Watercolor_v2](https://hf.co/SebastianBodza/Flux_Aquarell_Watercolor_v2) and [BlaireSilver13/dollx-flux](https://hf.co/BlaireSilver13/dollx-flux).
@@ -45,12 +51,6 @@
     - Add support for Whisper model [bofenghuang/whisper-large-v3-french](https://hf.co/bofenghuang/whisper-large-v3-french).
     - Add support for SD 1.5 LoRA models [ampp/N64_style_sd1.5](https://hf.co/ampp/N64_style_sd1.5), [SedatAl/Logo-LoRa-1](https://hf.co/SedatAl/Logo-LoRa-1), [leonel4rd/Bannersagav1](https://hf.co/leonel4rd/Bannersagav1) and [Luisdure/anime-lora](https://hf.co/Luisdure/anime-lora).
     - Using [bartowski/POLARIS-Project_Polaris-4B-Preview-GGUF](https://hf.co/bartowski/POLARIS-Project_Polaris-4B-Preview-GGUF) as default Chatbot tiny model.
-
-  * 🆕 **2025-11-22** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end models [bartowski/EpistemeAI_metatune-gpt20b-R1.1-GGUF](https://hf.co/bartowski/EpistemeAI_metatune-gpt20b-R1.1-GGUF) and [bartowski/TheDrummer_Precog-24B-v1-GGUF](https://hf.co/bartowski/TheDrummer_Precog-24B-v1-GGUF).
-    - Add support for Llava model [mradermacher/LLaVA-Critic-R1-7B-Plus-Mimo-GGUF](https://hf.co/mradermacher/LLaVA-Critic-R1-7B-Plus-Mimo-GGUF).
-    - Add support for SD 1.5 model [liamhvn/disney-pixar-cartoon-b](https://hf.co/liamhvn/disney-pixar-cartoon-b).
-    - Add support for Flux LoRA models [prithivMLmods/Street-Bokeh-Flux-LoRA](https://hf.co/prithivMLmods/Street-Bokeh-Flux-LoRA), [StrategyAI/strategy-neon](https://hf.co/StrategyAI/strategy-neon), [gokaygokay/Flux-Watercolor-Strokes-LoRA](https://hf.co/gokaygokay/Flux-Watercolor-Strokes-LoRA) and [martintomov/tonys-chocolonely-flux](https://hf.co/martintomov/tonys-chocolonely-flux).
 
 ---
 
