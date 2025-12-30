@@ -2340,6 +2340,7 @@ def lora_model_list(model, *args):
             "UmeAiRT/FLUX.1-dev-LoRA-Ume_Sky":("ume_sky_v2.safetensors", "umesky"),
             "BlaireSilver13/dollx-flux":("FLUX-Dollx-xdlx.safetensors", "xdlx"),
             "dvyio/flux-lora-thermal-image":("79b5004c57ef4c4390dead1c65977bbb_pytorch_lora_weights.safetensors", "thermal image in the style of THRML"),
+            "dvyio/flux-lora-stippled-illustration":("31984be602a04a1fa296d9ccb244fb29_pytorch_lora_weights.safetensors", "stippled illustration in the style of STPPLD"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
@@ -2473,6 +2474,7 @@ def lora_model_list(model, *args):
             "mastersubhajit/FLUX.1-dev-Finetuned-LoRA-Makoto-Shinkai":("Flux-Finetuned-LoRA-Makoto_Shinkai.safetensors", "Cinderella style"),
             "ikmalsaid/akira-anime-flux-dev-lora":("ak1ra_iss-lora.safetensors", "ak1ra_iss"),
             "Saad381/SpectraGen":("anime.safetensors", ""),
+            "prithivMLmods/Clouds-Illusion-Flux-LoRA":("Clouds-Illusion.safetensors", "Clouds Illusion"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
