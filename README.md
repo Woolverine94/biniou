@@ -22,11 +22,20 @@
 
 ## Updates
 
+<p align="center">
+   <b>🎉 Happy new year ! The biniou community wish you the best for 2026. </br> May this new year bring you joy, love and success 🎉</b>
+</p>
+
+  * 🆕 **2026-01-03** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end model [Felladrin/gguf-MXFP4-gpt-oss-20b-Derestricted](https://hf.co/Felladrin/gguf-MXFP4-gpt-oss-20b-Derestricted), chatbot model [bartowski/nvidia_Nemotron-Cascade-8B-GGUF](https://hf.co/bartowski/nvidia_Nemotron-Cascade-8B-GGUF) and chatbot specialized model [bartowski/LatitudeGames_Hearthfire-24B-GGUF](https://hf.co/bartowski/LatitudeGames_Hearthfire-24B-GGUF).
+    - Add support for nllb model [facebook/nllb-200-1.3B](https://hf.co/facebook/nllb-200-1.3B).
+    - Add support for Flux LoRA models [dvyio/flux-lora-stippled-illustration](https://hf.co/dvyio/flux-lora-stippled-illustration), [prithivMLmods/Clouds-Illusion-Flux-LoRA](https://hf.co/prithivMLmods/Clouds-Illusion-Flux-LoRA), [dvyio/flux-lora-stippled-illustration](https://hf.co/dvyio/flux-lora-stippled-illustration) and [cocktailpeanut/doom](https://hf.co/cocktailpeanut/doom).
+
   * 🆕 **2025-12-27** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end model [bartowski/utter-project_EuroLLM-22B-Instruct-2512-GGUF](https://hf.co/bartowski/utter-project_EuroLLM-22B-Instruct-2512-GGUF) and chatbot model [bartowski/zai-org_GLM-4.6V-Flash-GGUF](https://hf.co/bartowski/zai-org_GLM-4.6V-Flash-GGUF).
     - Add support for nllb model [facebook/nllb-200-distilled-1.3B](https://hf.co/facebook/nllb-200-distilled-1.3B)
     - Add support for Flux LoRA models [dvyio/flux-lora-thermal-image](https://hf.co/dvyio/flux-lora-thermal-image), [Saad381/SpectraGen](https://hf.co/Saad381/SpectraGen), [renderartist/ROYGBIVFlux](https://hf.co/renderartist/ROYGBIVFlux) and [fofr/flux-minecraft-movie](https://hf.co/fofr/flux-minecraft-movie).
-    - Update and pptimizations for weekly workflows.
+    - Update and optimizations for weekly workflows.
 
   * 🆕 **2025-12-20** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end model [bartowski/allenai_Olmo-3.1-32B-Instruct-GGUF](https://hf.co/bartowski/allenai_Olmo-3.1-32B-Instruct-GGUF) and update of Apriel model to [bartowski/ServiceNow-AI_Apriel-1.6-15b-Thinker-GGUF](https://hf.co/bartowski/ServiceNow-AI_Apriel-1.6-15b-Thinker-GGUF).
@@ -45,12 +54,6 @@
     - Add support for Chatbot specialized model [bartowski/TheDrummer_Snowpiercer-15B-v4-GGUF](https://hf.co/bartowski/TheDrummer_Snowpiercer-15B-v4-GGUF) and model [bartowski/squ11z1_Hypnos-i1-8B-GGUF](https://hf.co/bartowski/squ11z1_Hypnos-i1-8B-GGUF).
     - Add support for PixArt-Alpha Sigma model [TensorFamily/SigmaJourney](https://hf.co/TensorFamily/SigmaJourney).
     - Add support for Flux LoRA models [fofr/flux-black-light](https://hf.co/fofr/flux-black-light), [Keltezaa/furry-enhancer](https://hf.co/Keltezaa/furry-enhancer), [mastersubhajit/FLUX.1-dev-Finetuned-LoRA-Ghibli](https://hf.co/mastersubhajit/FLUX.1-dev-Finetuned-LoRA-Ghibli) and [mastersubhajit/FLUX.1-dev-Finetuned-LoRA-Makoto-Shinkai](https://hf.co/mastersubhajit/FLUX.1-dev-Finetuned-LoRA-Makoto-Shinkai).
-
-  * 🆕 **2025-11-29** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end model [bartowski/p-e-w_phi-4-heretic-GGUF](https://hf.co/bartowski/p-e-w_phi-4-heretic-GGUF) and tiny model [bartowski/p-e-w_Qwen3-4B-Instruct-2507-heretic-GGUF](https://hf.co/bartowski/p-e-w_Qwen3-4B-Instruct-2507-heretic-GGUF).
-    - Add support for Whisper model [bofenghuang/whisper-large-v3-french](https://hf.co/bofenghuang/whisper-large-v3-french).
-    - Add support for SD 1.5 LoRA models [ampp/N64_style_sd1.5](https://hf.co/ampp/N64_style_sd1.5), [SedatAl/Logo-LoRa-1](https://hf.co/SedatAl/Logo-LoRa-1), [leonel4rd/Bannersagav1](https://hf.co/leonel4rd/Bannersagav1) and [Luisdure/anime-lora](https://hf.co/Luisdure/anime-lora).
-    - Using [bartowski/POLARIS-Project_Polaris-4B-Preview-GGUF](https://hf.co/bartowski/POLARIS-Project_Polaris-4B-Preview-GGUF) as default Chatbot tiny model.
 
 ---
 
