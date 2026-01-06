@@ -67,6 +67,7 @@ model_list_txt2vid_ze = [
     "stable-diffusion-v1-5/stable-diffusion-v1-5",
     "ItsJayQz/GTA5_Artwork_Diffusion",
     "songkey/epicphotogasm_ultimateFidelity",
+    "yandex/stable-diffusion-v1-5-alchemist",
     "-[ 👍 🇯🇵 Anime SD15 ]-",
     "gsdf/Counterfeit-V2.5",
     "fluently/Fluently-anime",
