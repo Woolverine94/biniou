@@ -236,9 +236,9 @@ def change_model_type_llamacpp(model_llamacpp):
     except KeyError as ke:
         test_model = None
     if (test_model != None):
-        return prompt_template_llamacpp.update(value=model_list_llamacpp[model_llamacpp][1]), system_template_llamacpp.update(value=model_list_llamacpp[model_llamacpp][2]), quantization_llamacpp.update(value="")
+        return prompt_template_llamacpp.update(value=model_list_llamacpp[model_llamacpp][1]), system_template_llamacpp.update(value=model_list_llamacpp[model_llamacpp][2]), quantization_llamacpp.update(value="", placeholder=model_list_llamacpp[model_llamacpp][0])
     else:
-        return prompt_template_llamacpp.update(value="{prompt}"), system_template_llamacpp.update(value=""), quantization_llamacpp.update(value="")
+        return prompt_template_llamacpp.update(value="{prompt}"), system_template_llamacpp.update(value=""), quantization_llamacpp.update(value="", placeholder=model_list_llamacpp[model_llamacpp][0])
 
 def change_prompt_template_llamacpp(prompt_template):
     return prompt_template_llamacpp.update(value=prompt_template_list_llamacpp[prompt_template][0]), system_template_llamacpp.update(value=prompt_template_list_llamacpp[prompt_template][1])
@@ -2543,7 +2543,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
                             with gr.Column():
                                 model_llamacpp = gr.Dropdown(choices=list(model_list_llamacpp.keys()), value=list(model_list_llamacpp.keys())[0], label=biniou_lang_model_label, allow_custom_value=True, info=biniou_lang_tab_llamacpp_model_info)
                             with gr.Column():
-                                quantization_llamacpp = gr.Textbox(value="", label=biniou_lang_tab_llamacpp_quantization_label, info=biniou_lang_tab_llamacpp_quantization_info)
+                                quantization_llamacpp = gr.Textbox(value="", label=biniou_lang_tab_llamacpp_quantization_label, info=biniou_lang_tab_llamacpp_quantization_info, placeholder=model_list_llamacpp[model_llamacpp.value][0])
                             with gr.Column():
                                 max_tokens_llamacpp = gr.Slider(0, 131072, step=16, value=0, label=biniou_lang_maxtoken_label, info=biniou_lang_maxtoken_info)
                             with gr.Column():
