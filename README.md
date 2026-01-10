@@ -26,6 +26,12 @@
    <b>🎉 Happy new year ! The biniou community wish you the best for 2026. </br> May this new year bring you joy, love and success 🎉</b>
 </p>
 
+  * 🆕 **2026-01-10** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot model [bartowski/allura-forge_Llama-3.3-8B-Instruct-GGUF](https://hf.co/bartowski/allura-forge_Llama-3.3-8B-Instruct-GGUF) and chatbot code specialized model [mradermacher/IQuest-Coder-V1-40B-Instruct-GGUF](https://hf.co/mradermacher/IQuest-Coder-V1-40B-Instruct-GGUF).
+    - Add support for SD 1.5 model [yandex/stable-diffusion-v1-5-alchemist](https://hf.co/yandex/stable-diffusion-v1-5-alchemist).
+    - Add support for Flux LoRA models [treeshark/interiorzpaint-v7.safetensors](https://hf.co/treeshark/interiorzpaint-v7.safetensors), [prithivMLmods/Castor-3D-Portrait-Flux-LoRA](https://hf.co/prithivMLmods/Castor-3D-Portrait-Flux-LoRA), [treeshark/charcoalzv1.safetensors](https://hf.co/treeshark/charcoalzv1.safetensors) and [treeshark/KomikZv10.safetensors](https://hf.co/treeshark/KomikZv10.safetensors).
+    - Code enhancement for UI of Chatbot module
+
   * 🆕 **2026-01-03** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end model [Felladrin/gguf-MXFP4-gpt-oss-20b-Derestricted](https://hf.co/Felladrin/gguf-MXFP4-gpt-oss-20b-Derestricted), chatbot model [bartowski/nvidia_Nemotron-Cascade-8B-GGUF](https://hf.co/bartowski/nvidia_Nemotron-Cascade-8B-GGUF) and chatbot specialized model [bartowski/LatitudeGames_Hearthfire-24B-GGUF](https://hf.co/bartowski/LatitudeGames_Hearthfire-24B-GGUF).
     - Add support for nllb model [facebook/nllb-200-1.3B](https://hf.co/facebook/nllb-200-1.3B).
@@ -49,11 +55,6 @@
     - Add support for SDXL LoRA models [ntc-ai/SDXL-LoRA-slider.glowing-eyes](https://hf.co/ntc-ai/SDXL-LoRA-slider.glowing-eyes) and [blink7630/storyboard-sketch](https://hf.co/blink7630/storyboard-sketch).
     - Add support for Flux LoRA models [UmeAiRT/FLUX.1-dev-LoRA-Ume_Sky](https://hf.co/UmeAiRT/FLUX.1-dev-LoRA-Ume_Sky), [geocine/decorative-relief](https://hf.co/geocine/decorative-relief), [Shakker-Labs/FLUX.1-dev-LoRA-One-Click-Creative-Template](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-One-Click-Creative-Template) and [ikmalsaid/akira-anime-flux-dev-lora](https://hf.co/ikmalsaid/akira-anime-flux-dev-lora).
     - Bugfix and optimizations for workflows of Docker containers.
-
-  * 🆕 **2025-12-06** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot specialized model [bartowski/TheDrummer_Snowpiercer-15B-v4-GGUF](https://hf.co/bartowski/TheDrummer_Snowpiercer-15B-v4-GGUF) and model [bartowski/squ11z1_Hypnos-i1-8B-GGUF](https://hf.co/bartowski/squ11z1_Hypnos-i1-8B-GGUF).
-    - Add support for PixArt-Alpha Sigma model [TensorFamily/SigmaJourney](https://hf.co/TensorFamily/SigmaJourney).
-    - Add support for Flux LoRA models [fofr/flux-black-light](https://hf.co/fofr/flux-black-light), [Keltezaa/furry-enhancer](https://hf.co/Keltezaa/furry-enhancer), [mastersubhajit/FLUX.1-dev-Finetuned-LoRA-Ghibli](https://hf.co/mastersubhajit/FLUX.1-dev-Finetuned-LoRA-Ghibli) and [mastersubhajit/FLUX.1-dev-Finetuned-LoRA-Makoto-Shinkai](https://hf.co/mastersubhajit/FLUX.1-dev-Finetuned-LoRA-Makoto-Shinkai).
 
 ---
 
