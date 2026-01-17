@@ -26,6 +26,13 @@
    <b>🎉 Happy new year ! The biniou community wish you the best for 2026. </br> May this new year bring you joy, love and success 🎉</b>
 </p>
 
+  * 🆕 **2026-01-17** : 🔥 ***Weekly update*** 🔥 >
+    - Bugfix for broken biniou-cuda container and CUDA Dockerfile.
+    - Add support for Chatbot model [bartowski/SicariusSicariiStuff_Llama-3.3-8B-Instruct-128K_Abliterated-GGUF](https://hf.co/bartowski/SicariusSicariiStuff_Llama-3.3-8B-Instruct-128K_Abliterated-GGUF) and chatbot code specialized model [bartowski/NousResearch_NousCoder-14B-GGUF](https://hf.co/bartowski/NousResearch_NousCoder-14B-GGUF).
+    - Add support for Flux LoRA models [prithivMLmods/Flux.1-Dev-LoRA-HDR-Realism](https://hf.co/prithivMLmods/Flux.1-Dev-LoRA-HDR-Realism), [je-suis-tm/pachu_torres_style_lora_flux](https://hf.co/je-suis-tm/pachu_torres_style_lora_flux), [VideoAditor/Flux-Lora-Realism](https://hf.co/VideoAditor/Flux-Lora-Realism) and [treeshark/berniefuchs-v1.safetensors](https://hf.co/treeshark/berniefuchs-v1.safetensors).
+    - Code enhancement for Chatbot module
+    - Update of github actions workflows
+
   * 🆕 **2026-01-10** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot model [bartowski/allura-forge_Llama-3.3-8B-Instruct-GGUF](https://hf.co/bartowski/allura-forge_Llama-3.3-8B-Instruct-GGUF) and chatbot code specialized model [mradermacher/IQuest-Coder-V1-40B-Instruct-GGUF](https://hf.co/mradermacher/IQuest-Coder-V1-40B-Instruct-GGUF).
     - Add support for SD 1.5 model [yandex/stable-diffusion-v1-5-alchemist](https://hf.co/yandex/stable-diffusion-v1-5-alchemist).
@@ -49,12 +56,6 @@
     - Add a photographic category to Flux LoRA models list. 
     - Bugfixes for installer and updater.
     - Bugfixes and optimizations for test-dockerfile workflow.
-
-  * 🆕 **2025-12-13** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot model [bartowski/nvidia_Orchestrator-8B-GGUF](https://hf.co/bartowski/nvidia_Orchestrator-8B-GGUF) and update of specialized chatbot model Cydonia to [bartowski/TheDrummer_Cydonia-24B-v4.3-GGUF](https://hf.co/bartowski/TheDrummer_Cydonia-24B-v4.3-GGUF).
-    - Add support for SDXL LoRA models [ntc-ai/SDXL-LoRA-slider.glowing-eyes](https://hf.co/ntc-ai/SDXL-LoRA-slider.glowing-eyes) and [blink7630/storyboard-sketch](https://hf.co/blink7630/storyboard-sketch).
-    - Add support for Flux LoRA models [UmeAiRT/FLUX.1-dev-LoRA-Ume_Sky](https://hf.co/UmeAiRT/FLUX.1-dev-LoRA-Ume_Sky), [geocine/decorative-relief](https://hf.co/geocine/decorative-relief), [Shakker-Labs/FLUX.1-dev-LoRA-One-Click-Creative-Template](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-One-Click-Creative-Template) and [ikmalsaid/akira-anime-flux-dev-lora](https://hf.co/ikmalsaid/akira-anime-flux-dev-lora).
-    - Bugfix and optimizations for workflows of Docker containers.
 
 ---
 
