@@ -61,7 +61,8 @@ prompt_template_list_llamacpp = {
 }
 
 model_list_llamacpp_builtin = {
-    "-[ 👌 Standard ]-":("Meta-Llama-3.1-8B-Instruct-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
+    "-[ 👌 Standard ]-":("allura-forge_Llama-3.3-8B-Instruct-Q5_K_M.gguf", "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system_prompt}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>", std_system_prompt),
+    "bartowski/allura-forge_Llama-3.3-8B-Instruct-GGUF":("allura-forge_Llama-3.3-8B-Instruct-Q5_K_M.gguf", "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system_prompt}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>", std_system_prompt),
     "bartowski/Meta-Llama-3.1-8B-Instruct-GGUF":("Meta-Llama-3.1-8B-Instruct-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
     "prithivMLmods/GWQ-9B-Preview2-Q5_K_M-GGUF":("gwq-9b-preview2-q5_k_m.gguf", "{prompt}", ""),
     "bartowski/Tiger-Gemma-9B-v3-GGUF":("Tiger-Gemma-9B-v3-Q5_K_M.gguf", "{prompt}", ""),
@@ -83,7 +84,6 @@ model_list_llamacpp_builtin = {
     "bartowski/L3-8B-Everything-COT-GGUF":("L3-8B-Everything-COT-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
     "bartowski/squ11z1_Hypnos-i1-8B-GGUF":("squ11z1_Hypnos-i1-8B-Q5_K_M.gguf", "<|begin_of_text|><|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", std_system_prompt),
     "bartowski/facebook_KernelLLM-GGUF":("facebook_KernelLLM-Q5_K_M.gguf", "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system_prompt}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>", std_system_prompt),
-    "bartowski/allura-forge_Llama-3.3-8B-Instruct-GGUF":("allura-forge_Llama-3.3-8B-Instruct-Q5_K_M.gguf", "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system_prompt}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>", std_system_prompt),
     "bartowski/SicariusSicariiStuff_Llama-3.3-8B-Instruct-128K_Abliterated-GGUF":("SicariusSicariiStuff_Llama-3.3-8B-Instruct-128K_Abliterated-Q5_K_M.gguf", "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\n\nToday Date: 30 Dec 2025\n\n{system_prompt}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n", std_system_prompt),
     "bartowski/Ministral-8B-Instruct-2410-GGUF":("Ministral-8B-Instruct-2410-Q5_K_M.gguf", "<s>[INST]{prompt}[/INST]", ""),
     "bartowski/Mistral-7B-Instruct-v0.3-GGUF":("Mistral-7B-Instruct-v0.3-Q5_K_S.gguf", "<s>[INST]  {prompt} [/INST]</s>", ""),
