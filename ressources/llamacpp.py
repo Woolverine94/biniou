@@ -165,6 +165,7 @@ model_list_llamacpp_builtin = {
     "bartowski/RekaAI_reka-flash-3.1-GGUF":("RekaAI_reka-flash-3.1-Q5_K_M.gguf", "human: {system_prompt} {prompt} <sep> assistant:", std_system_prompt),
     "DavidAU/Llama-3.2-8X3B-MOE-Dark-Champion-Instruct-uncensored-abliterated-18.4B-GGUF":("L3.2-8X3B-MOE-Dark-Champion-Inst-18.4B-uncen-ablit_D_AU-Q5_k_s.gguf", "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system_prompt}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>", std_system_prompt),
     "bartowski/utter-project_EuroLLM-22B-Instruct-2512-GGUF":("utter-project_EuroLLM-22B-Instruct-2512-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
+    "bartowski/speakleash_Bielik-11B-v3.0-Instruct-GGUF":("speakleash_Bielik-11B-v3.0-Instruct-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "bartowski/mistralai_Magistral-Small-2509-GGUF":("mistralai_Magistral-Small-2509-Q5_K_M.gguf", prompt_template_list_llamacpp["Mistral Small instruct"][0], std_system_prompt),
 #    "bartowski/mistralai_Magistral-Small-2507-GGUF":("mistralai_Magistral-Small-2507-Q5_K_M.gguf", "<s>[SYSTEM_PROMPT]{system_prompt}[/SYSTEM_PROMPT][INST]{prompt}[/INST]", std_system_prompt),
 #    "bartowski/mistralai_Magistral-Small-2506-GGUF":("mistralai_Magistral-Small-2506-Q5_K_M.gguf", prompt_template_list_llamacpp["Mistral Small instruct"][0], std_system_prompt),
