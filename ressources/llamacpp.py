@@ -133,7 +133,7 @@ model_list_llamacpp_builtin = {
     "bartowski/Llama-3.2-3B-Instruct-uncensored-GGUF":("Llama-3.2-3B-Instruct-uncensored-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
     "bartowski/Hermes-3-Llama-3.2-3B-GGUF":("Hermes-3-Llama-3.2-3B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "bartowski/goppa-ai_Goppa-LogiLlama-GGUF":("goppa-ai_Goppa-LogiLlama-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
-    "bartowski/nvidia_Llama-3.1-Nemotron-Nano-4B-v1.1-GGUF":("nvidia_Llama-3.1-Nemotron-Nano-4B-v1.1-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0]", std_system_prompt),
+    "bartowski/nvidia_Llama-3.1-Nemotron-Nano-4B-v1.1-GGUF":("nvidia_Llama-3.1-Nemotron-Nano-4B-v1.1-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
     "bartowski/AGI-0_Art-Skynet-3B-GGUF":("AGI-0_Art-Skynet-3B-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
     "bartowski/YuLan-Mini-GGUF":("YuLan-Mini-Q5_K_M.gguf", "<s> \n\n    <|start_header_id|> system<|end_header_id|> \n\n{system_prompt}<|eot_id|> \n\n    <|start_header_id|> user<|end_header_id|> \n\n{prompt}<|eot_id|> \n\n    <|start_header_id|> assistant<|end_header_id|>", std_system_prompt),
     "bartowski/Nemotron-Mini-4B-Instruct-GGUF":("Nemotron-Mini-4B-Instruct-Q5_K_M.gguf", "<extra_id_0>System\n{system_prompt}\n\n<extra_id_1>User\n{prompt}\n<extra_id_1>Assistant", std_system_prompt),
