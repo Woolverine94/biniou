@@ -26,6 +26,12 @@
    <b>🎉 Happy new year ! The biniou community wish you the best for 2026. </br> May this new year bring you joy, love and success 🎉</b>
 </p>
 
+  * 🆕 **2026-01-24** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end model [bartowski/speakleash_Bielik-11B-v3.0-Instruct-GGUF](https://hf.co/bartowski/speakleash_Bielik-11B-v3.0-Instruct-GGUF) and chatbot specialized model [piotreknow02/GPT-OSS-Cybersecurity-20B-Merged-GGUF](https://hf.co/piotreknow02/GPT-OSS-Cybersecurity-20B-Merged-GGUF).
+    - Replacement of default Chatbot standard model with [bartowski/allura-forge_Llama-3.3-8B-Instruct-GGUF](https://hf.co/bartowski/allura-forge_Llama-3.3-8B-Instruct-GGUF)
+    - Add support for SDXL LoRA models [sheko007/realistic-skin](https://hf.co/sheko007/realistic-skin), [CoolKrishh/Comic-SDXL-LoRA](https://hf.co/CoolKrishh/Comic-SDXL-LoRA), [HyperX-Sentience/UltraResXL](https://hf.co/HyperX-Sentience/UltraResXL) and [Norod78/SDXL-LaundryArt-LoRA-r32](https://hf.co/Norod78/SDXL-LaundryArt-LoRA-r32).
+    - Code enhancement for Chatbot module
+
   * 🆕 **2026-01-17** : 🔥 ***Weekly update*** 🔥 >
     - Bugfix for broken biniou-cuda container and CUDA Dockerfile.
     - Add support for Chatbot model [bartowski/SicariusSicariiStuff_Llama-3.3-8B-Instruct-128K_Abliterated-GGUF](https://hf.co/bartowski/SicariusSicariiStuff_Llama-3.3-8B-Instruct-128K_Abliterated-GGUF) and chatbot code specialized model [bartowski/NousResearch_NousCoder-14B-GGUF](https://hf.co/bartowski/NousResearch_NousCoder-14B-GGUF).
@@ -49,13 +55,6 @@
     - Add support for nllb model [facebook/nllb-200-distilled-1.3B](https://hf.co/facebook/nllb-200-distilled-1.3B)
     - Add support for Flux LoRA models [dvyio/flux-lora-thermal-image](https://hf.co/dvyio/flux-lora-thermal-image), [Saad381/SpectraGen](https://hf.co/Saad381/SpectraGen), [renderartist/ROYGBIVFlux](https://hf.co/renderartist/ROYGBIVFlux) and [fofr/flux-minecraft-movie](https://hf.co/fofr/flux-minecraft-movie).
     - Update and optimizations for weekly workflows.
-
-  * 🆕 **2025-12-20** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end model [bartowski/allenai_Olmo-3.1-32B-Instruct-GGUF](https://hf.co/bartowski/allenai_Olmo-3.1-32B-Instruct-GGUF) and update of Apriel model to [bartowski/ServiceNow-AI_Apriel-1.6-15b-Thinker-GGUF](https://hf.co/bartowski/ServiceNow-AI_Apriel-1.6-15b-Thinker-GGUF).
-    - Add support for Flux LoRA models [ANGJustinl/flux_Art_Design_Style_Lora](https://hf.co/ANGJustinl/flux_Art_Design_Style_Lora), [fofr/flux-bad-70s-food](https://hf.co/fofr/flux-bad-70s-food), [SebastianBodza/Flux_Aquarell_Watercolor_v2](https://hf.co/SebastianBodza/Flux_Aquarell_Watercolor_v2) and [BlaireSilver13/dollx-flux](https://hf.co/BlaireSilver13/dollx-flux).
-    - Add a photographic category to Flux LoRA models list. 
-    - Bugfixes for installer and updater.
-    - Bugfixes and optimizations for test-dockerfile workflow.
 
 ---
 
