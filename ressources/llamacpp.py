@@ -251,6 +251,7 @@ model_list_llamacpp_builtin = {
     "DevQuasar/futurehouse.ether0-GGUF":("futurehouse.ether0.Q5_K_M.gguf", prompt_template_list_llamacpp["Mistral Small instruct"][0], "You are a very helpful assistant highly specialized in chemistry and SMILES specifications. You are accurate, concise, reliable and you never refuse to answer."),
     "mradermacher/CAI-20B-GGUF":("CAI-20B.Q5_K_M.gguf", prompt_template_list_llamacpp["gpt-oss"][0], std_system_prompt),
     "bartowski/yanolja_YanoljaNEXT-Rosetta-12B-2510-GGUF":("yanolja_YanoljaNEXT-Rosetta-12B-2510-Q5_K_M.gguf", "<bos><start_of_turn>instruction\n{system_prompt}<end_of_turn>\n<start_of_turn>source\n{prompt}<end_of_turn>\n<start_of_turn>translation\n<end_of_turn>\n<start_of_turn>translation", "Translate the user's text to English."),
+    "mradermacher/translategemma-27b-it-GGUF":("translategemma-27b-it.Q5_K_M.gguf", prompt_template_list_llamacpp["Gemma 3"][0], std_system_prompt),
     "-[ 📜 Legacy ]-":("solar-10.7b-instruct-v1.0.Q5_K_S.gguf", prompt_template_list_llamacpp["User-Assistant-Newlines"][0], ""),
     "TheBloke/SOLAR-10.7B-Instruct-v1.0-GGUF":("solar-10.7b-instruct-v1.0.Q5_K_S.gguf", prompt_template_list_llamacpp["User-Assistant-Newlines"][0], ""),
     "TheBloke/CollectiveCognition-v1.1-Mistral-7B-GGUF":("collectivecognition-v1.1-mistral-7b.Q5_K_S.gguf", prompt_template_list_llamacpp["User-Assistant"][0], ""),
