@@ -2232,6 +2232,8 @@ def lora_model_list(model, *args):
             "treeshark/charcoalzv1.safetensors":("charcoalzv1.safetensors", "A charcoal drawing on white paper, Sketched and scribbled"),
             "je-suis-tm/pachu_torres_style_lora_flux":("pytorch_lora_weights.safetensors", "Pachu Torres Style"),
             "treeshark/berniefuchs-v1.safetensors":("berniefuchs-v1.safetensors", "illstrz, a retro magazine illustration"),
+            "Rakoo04/Renaissance-art":("renaissance_art_lora.safetensors", "renaissance art"),
+            "treeshark/oilpaintz-v4.safetensors":("oilpaintz-v4.safetensors", ""),
             "-[ 🏆 🐢 📷 Photographic Flux LoRA ]-":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/flux-koda":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/pola-photo-flux":("pola_photo_araminta_k.safetensors", "polaroid style"),
