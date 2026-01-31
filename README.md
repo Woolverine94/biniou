@@ -22,9 +22,11 @@
 
 ## Updates
 
-<p align="center">
-   <b>🎉 Happy new year ! The biniou community wish you the best for 2026. </br> May this new year bring you joy, love and success 🎉</b>
-</p>
+  * 🆕 **2026-01-31** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot translation specialized model [mradermacher/translategemma-27b-it-GGUF](https://hf.co/mradermacher/translategemma-27b-it-GGUF), medical specialized model [mradermacher/medgemma-1.5-4b-it-GGUF](https://hf.co/mradermacher/medgemma-1.5-4b-it-GGUF) and update of Skyfall model to [bartowski/TheDrummer_Skyfall-31B-v4.1-GGUF](https://hf.co/bartowski/TheDrummer_Skyfall-31B-v4.1-GGUF).
+    - Replacement of SDXL inpaint model [kpsss34/inpaintingXL](https://hf.co/kpsss34/inpaintingXL) to [GraydientPlatformAPI/fluently3-inpainting-xl](https://hf.co/GraydientPlatformAPI/fluently3-inpainting-xl)
+    - Add support for Flux LoRA models [glif-loradex-trainer/saq1b_halftone](https://hf.co/glif-loradex-trainer/saq1b_halftone), [Agusdor/pen_lettering_flux_lora](https://hf.co/Agusdor/pen_lettering_flux_lora), [Rakoo04/Renaissance-art](https://hf.co/Rakoo04/Renaissance-art) and [treeshark/oilpaintz-v4.safetensors](https://hf.co/treeshark/oilpaintz-v4.safetensors).
+
 
   * 🆕 **2026-01-24** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end model [bartowski/speakleash_Bielik-11B-v3.0-Instruct-GGUF](https://hf.co/bartowski/speakleash_Bielik-11B-v3.0-Instruct-GGUF) and chatbot specialized model [piotreknow02/GPT-OSS-Cybersecurity-20B-Merged-GGUF](https://hf.co/piotreknow02/GPT-OSS-Cybersecurity-20B-Merged-GGUF).
@@ -49,12 +51,6 @@
     - Add support for Chatbot high-end model [Felladrin/gguf-MXFP4-gpt-oss-20b-Derestricted](https://hf.co/Felladrin/gguf-MXFP4-gpt-oss-20b-Derestricted), chatbot model [bartowski/nvidia_Nemotron-Cascade-8B-GGUF](https://hf.co/bartowski/nvidia_Nemotron-Cascade-8B-GGUF) and chatbot specialized model [bartowski/LatitudeGames_Hearthfire-24B-GGUF](https://hf.co/bartowski/LatitudeGames_Hearthfire-24B-GGUF).
     - Add support for nllb model [facebook/nllb-200-1.3B](https://hf.co/facebook/nllb-200-1.3B).
     - Add support for Flux LoRA models [dvyio/flux-lora-stippled-illustration](https://hf.co/dvyio/flux-lora-stippled-illustration), [prithivMLmods/Clouds-Illusion-Flux-LoRA](https://hf.co/prithivMLmods/Clouds-Illusion-Flux-LoRA), [dvyio/flux-lora-stippled-illustration](https://hf.co/dvyio/flux-lora-stippled-illustration) and [cocktailpeanut/doom](https://hf.co/cocktailpeanut/doom).
-
-  * 🆕 **2025-12-27** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end model [bartowski/utter-project_EuroLLM-22B-Instruct-2512-GGUF](https://hf.co/bartowski/utter-project_EuroLLM-22B-Instruct-2512-GGUF) and chatbot model [bartowski/zai-org_GLM-4.6V-Flash-GGUF](https://hf.co/bartowski/zai-org_GLM-4.6V-Flash-GGUF).
-    - Add support for nllb model [facebook/nllb-200-distilled-1.3B](https://hf.co/facebook/nllb-200-distilled-1.3B)
-    - Add support for Flux LoRA models [dvyio/flux-lora-thermal-image](https://hf.co/dvyio/flux-lora-thermal-image), [Saad381/SpectraGen](https://hf.co/Saad381/SpectraGen), [renderartist/ROYGBIVFlux](https://hf.co/renderartist/ROYGBIVFlux) and [fofr/flux-minecraft-movie](https://hf.co/fofr/flux-minecraft-movie).
-    - Update and optimizations for weekly workflows.
 
 ---
 
