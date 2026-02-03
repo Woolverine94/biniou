@@ -37,7 +37,7 @@ model_list_outpaint_builtin = [
     "Lykon/dreamshaper-8-inpainting",
     "Sanster/anything-4.0-inpainting",
     "ckpt/dreamlike-diffusion-1.0-inpainting",
-    "kpsss34/inpaintingXL",
+    "GraydientPlatformAPI/fluently3-inpainting-xl",
 ]
 
 for k in range(len(model_list_outpaint_builtin)):
