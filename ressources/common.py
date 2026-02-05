@@ -2448,6 +2448,7 @@ def lora_model_list(model, *args):
             "renderartist/saturday-morning-flux":("Saturday_Morning_Flux_v1_renderartist.safetensors", "saturd4ym0rning, cartoon"),
             "Agusdor/pen_lettering_flux_lora":("pen_lettering_flux_lora.safetensors", "TOK, in the style of TOK"),
             "cfahlgren1/flux-qwen-capybara":("flux-qwen-capybara.safetensors", "QWENCAPY"),
+            "Norod78/vintage-cover-flux":("b0f2d15fd0d2413bbd1aa12b1dbb4b69_lora.safetensors", "Vintage cover"),
             "-[ 🏆 🐢 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
@@ -2495,6 +2496,7 @@ def lora_model_list(model, *args):
             "ikmalsaid/akira-anime-flux-dev-lora":("ak1ra_iss-lora.safetensors", "ak1ra_iss"),
             "Saad381/SpectraGen":("anime.safetensors", ""),
             "prithivMLmods/Clouds-Illusion-Flux-LoRA":("Clouds-Illusion.safetensors", "Clouds Illusion"),
+            "Norod78/JojosoStyle-flux-lora":("JojosoStyle_flux_lora.safetensors", "JojosoStyle"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
