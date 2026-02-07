@@ -22,6 +22,11 @@
 
 ## Updates
 
+  * 🆕 **2026-02-07** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot cybersecurity specialized model [mradermacher/RedSage-Qwen3-8B-Ins-i1-GGUF](https://hf.co/mradermacher/RedSage-Qwen3-8B-Ins-i1-GGUF). Also add experimental support for 2bit-quantized model [OpenBuddy/SimpleChat-72B-V3-QAT-GGUF](https://hf.co/OpenBuddy/SimpleChat-72B-V3-QAT-GGUF), for which strong quantization is balanced by the QAT training, making it the first 72B model supported by biniou and producing fairly good outputs. 
+    - Add support for SDXL inpaint model [GraydientPlatformAPI/fluently3-inpainting-xl](https://hf.co/GraydientPlatformAPI/fluently3-inpainting-xl) to outpaint module.
+    - Add support for Flux LoRA models [Wadaka/Mojo_Style_LoRA](https://hf.co/Wadaka/Mojo_Style_LoRA), [cfahlgren1/flux-qwen-capybara](https://hf.co/cfahlgren1/flux-qwen-capybara), [Norod78/vintage-cover-flux](https://hf.co/Norod78/vintage-cover-flux) and [Norod78/JojosoStyle-flux-lora](https://hf.co/Norod78/JojosoStyle-flux-lora).
+
   * 🆕 **2026-01-31** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot translation specialized model [mradermacher/translategemma-27b-it-GGUF](https://hf.co/mradermacher/translategemma-27b-it-GGUF), medical specialized model [mradermacher/medgemma-1.5-4b-it-GGUF](https://hf.co/mradermacher/medgemma-1.5-4b-it-GGUF) and update of Skyfall model to [bartowski/TheDrummer_Skyfall-31B-v4.1-GGUF](https://hf.co/bartowski/TheDrummer_Skyfall-31B-v4.1-GGUF).
     - Replacement of SDXL inpaint model [kpsss34/inpaintingXL](https://hf.co/kpsss34/inpaintingXL) to [GraydientPlatformAPI/fluently3-inpainting-xl](https://hf.co/GraydientPlatformAPI/fluently3-inpainting-xl)
@@ -46,11 +51,6 @@
     - Add support for SD 1.5 model [yandex/stable-diffusion-v1-5-alchemist](https://hf.co/yandex/stable-diffusion-v1-5-alchemist).
     - Add support for Flux LoRA models [treeshark/interiorzpaint-v7.safetensors](https://hf.co/treeshark/interiorzpaint-v7.safetensors), [prithivMLmods/Castor-3D-Portrait-Flux-LoRA](https://hf.co/prithivMLmods/Castor-3D-Portrait-Flux-LoRA), [treeshark/charcoalzv1.safetensors](https://hf.co/treeshark/charcoalzv1.safetensors) and [treeshark/KomikZv10.safetensors](https://hf.co/treeshark/KomikZv10.safetensors).
     - Code enhancement for UI of Chatbot module
-
-  * 🆕 **2026-01-03** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end model [Felladrin/gguf-MXFP4-gpt-oss-20b-Derestricted](https://hf.co/Felladrin/gguf-MXFP4-gpt-oss-20b-Derestricted), chatbot model [bartowski/nvidia_Nemotron-Cascade-8B-GGUF](https://hf.co/bartowski/nvidia_Nemotron-Cascade-8B-GGUF) and chatbot specialized model [bartowski/LatitudeGames_Hearthfire-24B-GGUF](https://hf.co/bartowski/LatitudeGames_Hearthfire-24B-GGUF).
-    - Add support for nllb model [facebook/nllb-200-1.3B](https://hf.co/facebook/nllb-200-1.3B).
-    - Add support for Flux LoRA models [dvyio/flux-lora-stippled-illustration](https://hf.co/dvyio/flux-lora-stippled-illustration), [prithivMLmods/Clouds-Illusion-Flux-LoRA](https://hf.co/prithivMLmods/Clouds-Illusion-Flux-LoRA), [dvyio/flux-lora-stippled-illustration](https://hf.co/dvyio/flux-lora-stippled-illustration) and [cocktailpeanut/doom](https://hf.co/cocktailpeanut/doom).
 
 ---
 
