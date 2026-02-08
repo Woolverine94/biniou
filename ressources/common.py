@@ -2256,6 +2256,7 @@ def lora_model_list(model, *args):
             "fofr/flux-2004":("lora.safetensors", "a bad 2004 photo, harsh flash"),
             "ujouy/Amateur_Photography_FluxDev":("amateurphoto-v6-forcu.safetensors", "amateur photography, photorealistic"),
             "renderartist/technically-color-flux":("Technically_Color_Flux_v2_renderartist.safetensors", "t3chnic4lly classic cinema film still 1950s"),
+            "fofr/flux-y2k":("lora.safetensors", "Y2K"),
             "-[ 🏆 🐢 🎨 Style Flux LoRA ]-":("mj5.safetensors", ""),
             "Jovie/Midjourney":("mj5.safetensors", ""),
             "Jovie/Midjourney_Schnell":("mj5.safetensors", ""),
@@ -2497,6 +2498,7 @@ def lora_model_list(model, *args):
             "Saad381/SpectraGen":("anime.safetensors", ""),
             "prithivMLmods/Clouds-Illusion-Flux-LoRA":("Clouds-Illusion.safetensors", "Clouds Illusion"),
             "Norod78/JojosoStyle-flux-lora":("JojosoStyle_flux_lora.safetensors", "JojosoStyle"),
+            "Norod78/FluxToon_style_flux_lora":("FluxToon_style_flux_lora.safetensors", "FluxToon style"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
