@@ -188,6 +188,7 @@ model_list_llamacpp_builtin = {
     "OpenBuddy/SimpleChat-72B-V3-QAT-GGUF":("ggml-model-Q2_K.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
 #    "bartowski/Qwen_Qwen3-30B-A3B-GGUF":("Qwen_Qwen3-30B-A3B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "bartowski/Qwen_Qwen3-30B-A3B-Instruct-2507-GGUF":("Qwen_Qwen3-30B-A3B-Instruct-2507-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
+    "mradermacher/Qwen3-32B-Kimi-K2-Thinking-Distill-i1-GGUF":("Qwen3-32B-Kimi-K2-Thinking-Distill.i1-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "bartowski/Qwen_QwQ-32B-GGUF":("Qwen_QwQ-32B-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n<think>", std_system_prompt),
     "bartowski/PrimeIntellect_INTELLECT-2-GGUF":("PrimeIntellect_INTELLECT-2-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n<think>", std_system_prompt),
     "bartowski/Qwentile2.5-32B-Instruct-GGUF":("Qwentile2.5-32B-Instruct-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
