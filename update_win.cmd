@@ -13,7 +13,7 @@ if exist %filename% (
 
 echo "Biniou env update"
 call venv.cmd
-python -m pip install --upgrade pip
+python -m pip install --upgrade pip==25.2
 python -m pip install --upgrade wheel
 python -m pip install --upgrade torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cpu
 python -m pip install --upgrade llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
