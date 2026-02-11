@@ -157,6 +157,7 @@ model_list_llamacpp_builtin = {
     "bartowski/Mistral-Nemo-Instruct-2407-GGUF":("Mistral-Nemo-Instruct-2407-Q5_K_M.gguf", "<s>[INST] {prompt}[/INST] </s>", ""),
     "vinimuchulski/gemma-3-12b-it-qat-q4_0-gguf":("gemma-3-12b-it-q4_0.gguf", prompt_template_list_llamacpp["Gemma 3"][0], std_system_prompt),
     "vinimuchulski/gemma-3-27b-it-qat-q4_0-gguf":("gemma-3-27b-it-q4_0.gguf", prompt_template_list_llamacpp["Gemma 3"][0], std_system_prompt),
+    "mradermacher/gemma-3-12b-it-vl-Polaris-GLM-4.7-Flash-VAR-Thinking-Instruct-Heretic-Uncensored-i1-GGUF":("gemma-3-12b-it-vl-Polaris-GLM-4.7-Flash-VAR-Thinking-Instruct-Heretic-Uncensored.i1-Q5_K_M.gguf", prompt_template_list_llamacpp["Gemma 3"][0], std_system_prompt),
     "bartowski/soob3123_Veritas-12B-GGUF":("soob3123_Veritas-12B-Q5_K_M.gguf", prompt_template_list_llamacpp["Gemma 3"][0], std_system_prompt),
     "bartowski/nvidia_Llama-3_3-Nemotron-Super-49B-v1-GGUF":("nvidia_Llama-3_3-Nemotron-Super-49B-v1-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
     "bartowski/nvidia_Qwen3-Nemotron-32B-RLBFF-GGUF":("nvidia_Qwen3-Nemotron-32B-RLBFF-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n", std_system_prompt),
