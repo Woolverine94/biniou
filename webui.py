@@ -884,7 +884,7 @@ def change_model_type_txt2img_paa(model_txt2img_paa):
     if model_txt2img_paa == "PixArt-alpha/PixArt-XL-2-1024-MS":
         return sampler_txt2img_paa.update(value="UniPC", interactive=True), width_txt2img_paa.update(value=biniou_global_sdxl_width), height_txt2img_paa.update(value=biniou_global_sdxl_height), guidance_scale_txt2img_paa.update(value=7.0), num_inference_step_txt2img_paa.update(value=15)
     elif model_txt2img_paa == "Luo-Yihong/yoso_pixart512":
-        return sampler_txt2img_paa.update(value="LCM", interactive=False), width_txt2img_paa.update(value=biniou_global_sd15_width), height_txt2img_paa.update(value=biniou_global_sd15_width), guidance_scale_txt2img_paa.update(value=1.0), num_inference_step_txt2img_paa.update(value=1)
+        return sampler_txt2img_paa.update(value="LCM", interactive=False), width_txt2img_paa.update(value=biniou_global_sd15_width), height_txt2img_paa.update(value=biniou_global_sd15_height), guidance_scale_txt2img_paa.update(value=1.0), num_inference_step_txt2img_paa.update(value=1)
     elif model_txt2img_paa == "Luo-Yihong/yoso_pixart1024":
         return sampler_txt2img_paa.update(value="LCM", interactive=False), width_txt2img_paa.update(value=biniou_global_sdxl_width), height_txt2img_paa.update(value=biniou_global_sdxl_height), guidance_scale_txt2img_paa.update(value=1.0), num_inference_step_txt2img_paa.update(value=1)
     elif model_txt2img_paa == "jasperai/flash-pixart":
@@ -897,6 +897,8 @@ def change_model_type_txt2img_paa(model_txt2img_paa):
         return sampler_txt2img_paa.update(value="UniPC", interactive=True), width_txt2img_paa.update(value=2048), height_txt2img_paa.update(value=2048), guidance_scale_txt2img_paa.update(value=7.0), num_inference_step_txt2img_paa.update(value=15)
     elif model_txt2img_paa == "TensorFamily/SigmaJourney":
         return sampler_txt2img_paa.update(value="UniPC", interactive=True), width_txt2img_paa.update(value=biniou_global_sdxl_width), height_txt2img_paa.update(value=biniou_global_sdxl_height), guidance_scale_txt2img_paa.update(value=5.5), num_inference_step_txt2img_paa.update(value=15)
+    elif model_txt2img_paa == "PixArt-alpha/PixArt-Alpha-DMD-XL-2-512x512":
+        return sampler_txt2img_paa.update(value="DDPM", interactive=False), width_txt2img_paa.update(value=biniou_global_sdxl_width), height_txt2img_paa.update(value=biniou_global_sdxl_height), guidance_scale_txt2img_paa.update(value=1.0), num_inference_step_txt2img_paa.update(value=1, interactive=False)
     else:
         return sampler_txt2img_paa.update(value="UniPC", interactive=True), width_txt2img_paa.update(value=biniou_global_sd15_width), height_txt2img_paa.update(value=biniou_global_sd15_height), guidance_scale_txt2img_paa.update(value=7.0), num_inference_step_txt2img_paa.update(value=15)
 
