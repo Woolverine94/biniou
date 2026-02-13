@@ -16,6 +16,7 @@ os.makedirs(model_path_bark, exist_ok=True)
 model_list_bark = [
     "suno/bark-small",
     "suno/bark",
+    "artificial-feelings/bark-forked",
 ]
 
 voice_preset_list_bark = {
