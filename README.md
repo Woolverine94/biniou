@@ -23,7 +23,7 @@
 ## Updates
 
   * 🆕 **2026-02-14** : 🔥 ***Weekly update*** 🔥 >
-    - Bugfix for issue #74 , which is linked to the way new versions of pip handles the old pip packages. As this issue also affect update scripts, if you tried to update biniou during this past week, you should have been impacted. If you encountered the error **`ModuleNotFoundError: No module named 'pkg_resources'`** during the update of biniou at Real-ESRGAN install step, you only have to re-launch the update script a second time to resolve this issue.
+    - Bugfix for issue [#74](https://github.com/Woolverine94/biniou/issues/74) , which is linked to the way new versions of pip handles the old pip packages. As this issue also affect update scripts, if you tried to update biniou during this past week, you should have been impacted. If you encountered the error **`ModuleNotFoundError: No module named 'pkg_resources'`** during the update of biniou at Real-ESRGAN install step, you only have to re-launch the update script a second time to resolve this issue.
     - Add support for Chatbot high-end models [mradermacher/Qwen3-32B-Kimi-K2-Thinking-Distill-i1-GGUF](https://hf.co/mradermacher/Qwen3-32B-Kimi-K2-Thinking-Distill-i1-GGUF) and [mradermacher/gemma-3-12b-it-vl-Polaris-GLM-4.7-Flash-VAR-Thinking-Instruct-Heretic-Uncensored-i1-GGUF](https://hf.co/mradermacher/gemma-3-12b-it-vl-Polaris-GLM-4.7-Flash-VAR-Thinking-Instruct-Heretic-Uncensored-i1-GGUF). 
     - Add support for PixArt-Alpha DMD 1-step model [PixArt-alpha/PixArt-Alpha-DMD-XL-2-512x512](https://hf.co/PixArt-alpha/PixArt-Alpha-DMD-XL-2-512x512). 
     - Add support for bark model [artificial-feelings/bark-forked](https://hf.co/artificial-feelings/bark-forked). 
