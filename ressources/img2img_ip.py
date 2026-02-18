@@ -80,6 +80,7 @@ model_list_img2img_ip_builtin = [
     "John6666/stellaratormix-photorealism-v30-sdxl",
     "RunDiffusion/Juggernaut-XL-v6",
     "Ricardouchub/SarcasmDiffusion",
+    "kopyl/miniSDXL",
     "playgroundai/playground-v2-512px-base",
     "playgroundai/playground-v2-1024px-aesthetic",
     "playgroundai/playground-v2.5-1024px-aesthetic",

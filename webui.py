@@ -344,6 +344,8 @@ def change_model_type_txt2img_sd(model_txt2img_sd):
         return sampler_txt2img_sd.update(value="EDM DPM++ 2M"), width_txt2img_sd.update(value=biniou_global_sdxl_width), height_txt2img_sd.update(value=biniou_global_sdxl_height), num_inference_step_txt2img_sd.update(value=15), guidance_scale_txt2img_sd.update(value=3.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=False), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=True)
     elif (model_txt2img_sd == "playgroundai/playground-v2-512px-base"):
         return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=biniou_global_sd15_width), height_txt2img_sd.update(value=biniou_global_sd15_height), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=3.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=False), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=True)
+    elif (model_txt2img_sd == "kopyl/miniSDXL"):
+        return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=256), height_txt2img_sd.update(value=256), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=True)
     elif is_sdxl(model_txt2img_sd):
         return sampler_txt2img_sd.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2img_sd.update(value=biniou_global_sdxl_width), height_txt2img_sd.update(value=biniou_global_sdxl_height), num_inference_step_txt2img_sd.update(value=10), guidance_scale_txt2img_sd.update(value=7.0), lora_model_txt2img_sd.update(choices=list(lora_model_list(model_txt2img_sd).keys()), value="", interactive=True), txtinv_txt2img_sd.update(choices=list(txtinv_list(model_txt2img_sd).keys()), value="", interactive=True), negative_prompt_txt2img_sd.update(interactive=True)
     elif (model_txt2img_sd == "ariG23498/sd-3.5-merged"):
@@ -1999,6 +2001,12 @@ def change_model_type_faceid_ip(model_faceid_ip, prompt):
         else:
             photomaker_prompt_faceid_ip = prompt
         return sampler_faceid_ip.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_faceid_ip.update(value=biniou_global_sd15_width), height_faceid_ip.update(value=biniou_global_sd15_height), num_inference_step_faceid_ip.update(value=15), guidance_scale_faceid_ip.update(value=3.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=False), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True), prompt_faceid_ip.update(value=photomaker_prompt_faceid_ip)
+    elif (model_faceid_ip == "kopyl/miniSDXL"):
+        if not ((" img " in prompt) or (" img," in prompt) or (" img:" in prompt)):
+            photomaker_prompt_faceid_ip = " img "+ prompt
+        else:
+            photomaker_prompt_faceid_ip = prompt
+        return sampler_faceid_ip.update(value="UniPC"), width_faceid_ip.update(value=256), height_faceid_ip.update(value=256), num_inference_step_faceid_ip.update(value=15), guidance_scale_faceid_ip.update(value=5.0), lora_model_faceid_ip.update(choices=list(lora_model_list(model_faceid_ip).keys()), value="", interactive=True), txtinv_faceid_ip.update(choices=list(txtinv_list(model_faceid_ip).keys()), value=""), negative_prompt_faceid_ip.update(interactive=True), prompt_faceid_ip.update(value=photomaker_prompt_faceid_ip)
     elif is_sdxl(model_faceid_ip):
         if not ((" img " in prompt) or (" img," in prompt) or (" img:" in prompt)):
             photomaker_prompt_faceid_ip = " img "+ prompt
@@ -2295,6 +2303,8 @@ def change_model_type_txt2vid_ze(model_txt2vid_ze):
         return sampler_txt2vid_ze.update(value="EDM DPM++ 2M"), width_txt2vid_ze.update(value=biniou_global_sdxl_width), height_txt2vid_ze.update(value=biniou_global_sdxl_height), num_inference_step_txt2vid_ze.update(value=15), guidance_scale_txt2vid_ze.update(value=3.0), negative_prompt_txt2vid_ze.update(interactive=True)
     elif (model_txt2vid_ze == "playgroundai/playground-v2-512px-base"):
         return sampler_txt2vid_ze.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2vid_ze.update(value=biniou_global_sd15_width), height_txt2vid_ze.update(value=biniou_global_sd15_height), num_inference_step_txt2vid_ze.update(value=10), guidance_scale_txt2vid_ze.update(value=3.0), negative_prompt_txt2vid_ze.update(interactive=True)
+    elif (model_txt2vid_ze == "kopyl/miniSDXL"):
+        return sampler_txt2vid_ze.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2vid_ze.update(value=256), height_txt2vid_ze.update(value=256), num_inference_step_txt2vid_ze.update(value=10), guidance_scale_txt2vid_ze.update(value=7.5), negative_prompt_txt2vid_ze.update(interactive=True)
     elif is_sdxl(model_txt2vid_ze):
         return sampler_txt2vid_ze.update(value=list(SCHEDULER_MAPPING.keys())[0]), width_txt2vid_ze.update(value=biniou_global_sdxl_width), height_txt2vid_ze.update(value=biniou_global_sdxl_height), num_inference_step_txt2vid_ze.update(value=10), guidance_scale_txt2vid_ze.update(value=7.5), negative_prompt_txt2vid_ze.update(interactive=True)
     else:
