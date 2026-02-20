@@ -30,6 +30,7 @@ for filename in os.listdir(model_path_vid2vid_ze):
 
 model_list_vid2vid_ze_builtin = [
     "timbrooks/instruct-pix2pix",
+    "Ekenayy/instruct-pix2pix-full",
 ]
 
 for k in range(len(model_list_vid2vid_ze_builtin)):
