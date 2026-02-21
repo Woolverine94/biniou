@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2026-02-21** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot specialized models [bartowski/zerofata_MS3.2-PaintedFantasy-v4-24B-GGUF](https://hf.co/bartowski/zerofata_MS3.2-PaintedFantasy-v4-24B-GGUF) and [mradermacher/Mistral-Helcyon-Mercury-12b-v3.2-i1-GGUF](https://hf.co/mradermacher/Mistral-Helcyon-Mercury-12b-v3.2-i1-GGUF). 
+    - Add support for SDXL model [kopyl/miniSDXL](https://hf.co/kopyl/miniSDXL).
+    - Add support for Flux LoRA models [fofr/flux-wrong](https://hf.co/fofr/flux-wrong), [Norod78/huggingface-emoji-flux](https://hf.co/Norod78/huggingface-emoji-flux), [treeshark/mechanimalz-v2.safetensors](https://hf.co/treeshark/mechanimalz-v2.safetensors) and [nsarrazin/demo-tarot](https://hf.co/nsarrazin/demo-tarot).
+    - Add support for model [Ekenayy/instruct-pix2pix-full](https://hf.co/Ekenayy/instruct-pix2pix-full) to Video Instruct-Pix2Pix module.
+
   * 🆕 **2026-02-14** : 🔥 ***Weekly update*** 🔥 >
     - Bugfix for issue [#74](https://github.com/Woolverine94/biniou/issues/74) , which is linked to the way new versions of pip handles the old pip packages. As this issue also affect update scripts, if you tried to update biniou during this past week, you should have been impacted. If you encountered the error **`ModuleNotFoundError: No module named 'pkg_resources'`** during the update of biniou at Real-ESRGAN install step, you only have to re-launch the update script a second time to resolve this issue.
     - Add support for Chatbot high-end models [mradermacher/Qwen3-32B-Kimi-K2-Thinking-Distill-i1-GGUF](https://hf.co/mradermacher/Qwen3-32B-Kimi-K2-Thinking-Distill-i1-GGUF) and [mradermacher/gemma-3-12b-it-vl-Polaris-GLM-4.7-Flash-VAR-Thinking-Instruct-Heretic-Uncensored-i1-GGUF](https://hf.co/mradermacher/gemma-3-12b-it-vl-Polaris-GLM-4.7-Flash-VAR-Thinking-Instruct-Heretic-Uncensored-i1-GGUF). 
@@ -46,13 +52,6 @@
     - Replacement of default Chatbot standard model with [bartowski/allura-forge_Llama-3.3-8B-Instruct-GGUF](https://hf.co/bartowski/allura-forge_Llama-3.3-8B-Instruct-GGUF)
     - Add support for SDXL LoRA models [sheko007/realistic-skin](https://hf.co/sheko007/realistic-skin), [CoolKrishh/Comic-SDXL-LoRA](https://hf.co/CoolKrishh/Comic-SDXL-LoRA), [HyperX-Sentience/UltraResXL](https://hf.co/HyperX-Sentience/UltraResXL) and [Norod78/SDXL-LaundryArt-LoRA-r32](https://hf.co/Norod78/SDXL-LaundryArt-LoRA-r32).
     - Code enhancement for Chatbot module
-
-  * 🆕 **2026-01-17** : 🔥 ***Weekly update*** 🔥 >
-    - Bugfix for broken biniou-cuda container and CUDA Dockerfile.
-    - Add support for Chatbot model [bartowski/SicariusSicariiStuff_Llama-3.3-8B-Instruct-128K_Abliterated-GGUF](https://hf.co/bartowski/SicariusSicariiStuff_Llama-3.3-8B-Instruct-128K_Abliterated-GGUF) and chatbot code specialized model [bartowski/NousResearch_NousCoder-14B-GGUF](https://hf.co/bartowski/NousResearch_NousCoder-14B-GGUF).
-    - Add support for Flux LoRA models [prithivMLmods/Flux.1-Dev-LoRA-HDR-Realism](https://hf.co/prithivMLmods/Flux.1-Dev-LoRA-HDR-Realism), [je-suis-tm/pachu_torres_style_lora_flux](https://hf.co/je-suis-tm/pachu_torres_style_lora_flux), [VideoAditor/Flux-Lora-Realism](https://hf.co/VideoAditor/Flux-Lora-Realism) and [treeshark/berniefuchs-v1.safetensors](https://hf.co/treeshark/berniefuchs-v1.safetensors).
-    - Code enhancement for Chatbot module
-    - Update of github actions workflows
 
 ---
 
