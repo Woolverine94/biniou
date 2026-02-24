@@ -195,6 +195,7 @@ model_list_llamacpp_builtin = {
     "bartowski/PrimeIntellect_INTELLECT-2-GGUF":("PrimeIntellect_INTELLECT-2-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n<think>", std_system_prompt),
     "bartowski/Qwentile2.5-32B-Instruct-GGUF":("Qwentile2.5-32B-Instruct-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "bartowski/Qwen_Qwen3-14B-GGUF":("Qwen_Qwen3-14B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
+    "TeichAI/Qwen3-14B-Claude-4.5-Opus-High-Reasoning-Distill-GGUF":("Qwen3-14B-Claude-4.5-Opus-Distill.q4_k_m.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "bartowski/HelpingAI_Dhanishtha-2.0-preview-0825-GGUF":("HelpingAI_Dhanishtha-2.0-preview-0825-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "bartowski/DeepSeek-R1-Distill-Qwen-14B-GGUF":("DeepSeek-R1-Distill-Qwen-14B-Q5_K_M.gguf", "<｜begin▁of▁sentence｜>{system_prompt}<｜User｜>{prompt}<｜Assistant｜>", std_system_prompt),
     "bartowski/Qwen2.5-14B-Instruct-GGUF":("Qwen2.5-14B-Instruct-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
