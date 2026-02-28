@@ -22,6 +22,11 @@
 
 ## Updates
 
+  * 🆕 **2026-02-28** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot model [mradermacher/gpt-4o-distil-Llama-3.1-8B-Instruct-PaperWitch-heresy-i1-GGUF](https://hf.co/mradermacher/gpt-4o-distil-Llama-3.1-8B-Instruct-PaperWitch-heresy-i1-GGUF) and Chatbot high-end model [TeichAI/Qwen3-14B-Claude-4.5-Opus-High-Reasoning-Distill-GGUF](https://hf.co/TeichAI/Qwen3-14B-Claude-4.5-Opus-High-Reasoning-Distill-GGUF). 
+    - Add support for Llava model [cjpais/llava-v1.6-34B-gguf](https://hf.co/cjpais/llava-v1.6-34B-gguf).
+    - Add support for Flux LoRA models [Norod78/johnny-5-robot-flux-lora](https://hf.co/Norod78/johnny-5-robot-flux-lora), [Norod78/pokirl-flux](https://hf.co/Norod78/pokirl-flux), [HoldDeezPlz/sharplines](https://hf.co/HoldDeezPlz/sharplines) and [DIOcheng/flux-lora-Cartoonillustration](https://hf.co/DIOcheng/flux-lora-Cartoonillustration).
+
   * 🆕 **2026-02-21** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot specialized models [bartowski/zerofata_MS3.2-PaintedFantasy-v4-24B-GGUF](https://hf.co/bartowski/zerofata_MS3.2-PaintedFantasy-v4-24B-GGUF) and [mradermacher/Mistral-Helcyon-Mercury-12b-v3.2-i1-GGUF](https://hf.co/mradermacher/Mistral-Helcyon-Mercury-12b-v3.2-i1-GGUF). 
     - Add support for SDXL model [kopyl/miniSDXL](https://hf.co/kopyl/miniSDXL).
@@ -46,12 +51,6 @@
     - Replacement of SDXL inpaint model [kpsss34/inpaintingXL](https://hf.co/kpsss34/inpaintingXL) to [GraydientPlatformAPI/fluently3-inpainting-xl](https://hf.co/GraydientPlatformAPI/fluently3-inpainting-xl)
     - Add support for Flux LoRA models [glif-loradex-trainer/saq1b_halftone](https://hf.co/glif-loradex-trainer/saq1b_halftone), [Agusdor/pen_lettering_flux_lora](https://hf.co/Agusdor/pen_lettering_flux_lora), [Rakoo04/Renaissance-art](https://hf.co/Rakoo04/Renaissance-art) and [treeshark/oilpaintz-v4.safetensors](https://hf.co/treeshark/oilpaintz-v4.safetensors).
 
-
-  * 🆕 **2026-01-24** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end model [bartowski/speakleash_Bielik-11B-v3.0-Instruct-GGUF](https://hf.co/bartowski/speakleash_Bielik-11B-v3.0-Instruct-GGUF) and chatbot specialized model [piotreknow02/GPT-OSS-Cybersecurity-20B-Merged-GGUF](https://hf.co/piotreknow02/GPT-OSS-Cybersecurity-20B-Merged-GGUF).
-    - Replacement of default Chatbot standard model with [bartowski/allura-forge_Llama-3.3-8B-Instruct-GGUF](https://hf.co/bartowski/allura-forge_Llama-3.3-8B-Instruct-GGUF)
-    - Add support for SDXL LoRA models [sheko007/realistic-skin](https://hf.co/sheko007/realistic-skin), [CoolKrishh/Comic-SDXL-LoRA](https://hf.co/CoolKrishh/Comic-SDXL-LoRA), [HyperX-Sentience/UltraResXL](https://hf.co/HyperX-Sentience/UltraResXL) and [Norod78/SDXL-LaundryArt-LoRA-r32](https://hf.co/Norod78/SDXL-LaundryArt-LoRA-r32).
-    - Code enhancement for Chatbot module
 
 ---
 
