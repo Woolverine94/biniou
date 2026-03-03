@@ -36,6 +36,7 @@ model_list_llava_builtin = {
     "mys/ggml_llava-v1.5-7b":("ggml-model-q5_k.gguf", "mmproj-model-f16.gguf", "{prompt}", ""),
     "mys/ggml_llava-v1.5-13b":("ggml-model-q5_k.gguf", "mmproj-model-f16.gguf", "{prompt}", ""),
     "bee-kake/nanollava-1.5-gguf":("nanollava-text-model-f16.gguf", "nanollava-mmproj-f16.gguf", "{prompt}", ""),
+    "PsiPi/liuhaotian_llava-v1.5-13b-GGUF":("llava-v1.5-13b-Q5_K_M.gguf", "mmproj-model-f16.gguf", "{prompt}", ""),
     "moondream/moondream2-gguf":("moondream2-text-model-f16.gguf", "moondream2-mmproj-f16.gguf", "{prompt}", ""),
     "bartowski/MiniCPM-V-2_6-GGUF":("MiniCPM-V-2_6-Q5_K_M.gguf", "mmproj-MiniCPM-V-2_6-f16.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", "You are a very helpful assistant. You are accurate, concise, reliable and you never refuse to answer."),
     "Steven0090/llava1.6-Mistral-7B-Instruct-v0.2-gguf":("Mistral-7B-Instruct-v0.2-Q8_0.gguf", "mmproj-model-f16.gguf", "<s>[INST] {prompt} [/INST]", ""),
