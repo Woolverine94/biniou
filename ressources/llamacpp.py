@@ -4,6 +4,7 @@ from llama_cpp import Llama
 import gradio as gr
 import os
 from huggingface_hub import snapshot_download, hf_hub_download
+import random
 from ressources.common import *
 from ressources.tools import biniouUIControl
 import multiprocessing
@@ -133,6 +134,7 @@ model_list_llamacpp_builtin = {
     "bartowski/2B_or_not_2B-GGUF":("2B_or_not_2B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "bartowski/Llama-3.2-3B-Instruct-uncensored-GGUF":("Llama-3.2-3B-Instruct-uncensored-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
     "bartowski/Hermes-3-Llama-3.2-3B-GGUF":("Hermes-3-Llama-3.2-3B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
+    "mradermacher/Nanbeige4.1-3B-PaperWitch-heresy-i1-GGUF":("Nanbeige4.1-3B-PaperWitch-heresy.i1-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "bartowski/goppa-ai_Goppa-LogiLlama-GGUF":("goppa-ai_Goppa-LogiLlama-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
     "bartowski/nvidia_Llama-3.1-Nemotron-Nano-4B-v1.1-GGUF":("nvidia_Llama-3.1-Nemotron-Nano-4B-v1.1-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
     "bartowski/AGI-0_Art-Skynet-3B-GGUF":("AGI-0_Art-Skynet-3B-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
@@ -358,6 +360,10 @@ def text_llamacpp(
     else :
         prompt_final_llamacpp = prompt_full_llamacpp
 
+    if seed_llamacpp == 0:
+        random_seed = random.randrange(0, 10000000000, 1)
+        seed_llamacpp = random_seed
+
     if (biniouUIControl.detect_llama_backend() == "cuda"):
         llm = Llama(model_path=modelid_llamacpp, seed=seed_llamacpp, n_gpu_layers=-1, n_threads=multiprocessing.cpu_count(), n_threads_batch=multiprocessing.cpu_count(), n_ctx=n_ctx_llamacpp)
     else:
@@ -440,6 +446,10 @@ def text_llamacpp_continue(
             history_final += history_llamacpp[i][0]+ "\n"
             history_final += history_llamacpp[i][1]+ "\n"
         history_final = history_final.rstrip()
+
+    if seed_llamacpp == 0:
+        random_seed = random.randrange(0, 10000000000, 1)
+        seed_llamacpp = random_seed
 
     if (biniouUIControl.detect_llama_backend() == "cuda"):
         llm = Llama(model_path=modelid_llamacpp, seed=seed_llamacpp, n_gpu_layers=-1, n_threads=multiprocessing.cpu_count(), n_threads_batch=multiprocessing.cpu_count(), n_ctx=n_ctx_llamacpp)
