@@ -6,6 +6,7 @@ from llama_cpp import Llama
 from llama_cpp.llama_chat_format import Llava15ChatHandler
 from PIL import Image
 from huggingface_hub import snapshot_download, hf_hub_download
+import random
 from ressources.common import *
 from ressources.tools import biniouUIControl
 import multiprocessing
@@ -131,6 +132,10 @@ def text_llava(
     else:
         chat_handler_llava = Llava15ChatHandler(clip_model_path=modelid_mmproj_llava)
 
+    if seed_llava == 0:
+        random_seed = random.randrange(0, 10000000000, 1)
+        seed_llava = random_seed
+
     if (biniouUIControl.detect_llama_backend() == "cuda"):
         llm = Llama(model_path=modelid_llava, seed=seed_llava, n_gpu_layers=-1, n_threads=multiprocessing.cpu_count(), n_threads_batch=multiprocessing.cpu_count(), n_ctx=n_ctx_llava, chat_handler=chat_handler_llava, logits_all=True)
     else:
@@ -215,6 +220,10 @@ def text_llava_continue(
             history_final += history_llava[i][0]+ "\n"
             history_final += history_llava[i][1]+ "\n"
         history_final = history_final.rstrip()
+
+    if seed_llava == 0:
+        random_seed = random.randrange(0, 10000000000, 1)
+        seed_llava = random_seed
 
     if (biniouUIControl.detect_llama_backend() == "cuda"):
         llm = Llama(model_path=modelid_llava, seed=seed_llava, n_gpu_layers=-1, n_threads=multiprocessing.cpu_count(), n_threads_batch=multiprocessing.cpu_count(), n_ctx=n_ctx_llava)
