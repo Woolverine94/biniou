@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2026-03-07** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot code specialized model [mradermacher/Strand-Rust-Coder-14B-v1-i1-GGUF](https://hf.co/mradermacher/Strand-Rust-Coder-14B-v1-i1-GGUF) and Chatbot tiny model [mradermacher/Nanbeige4.1-3B-PaperWitch-heresy-i1-GGUF](https://hf.co/mradermacher/Nanbeige4.1-3B-PaperWitch-heresy-i1-GGUF). 
+    - Add support for Llava model [PsiPi/liuhaotian_llava-v1.5-13b-GGUF](https://hf.co/PsiPi/liuhaotian_llava-v1.5-13b-GGUF).
+    - Add support for Flux LoRA models [dvyio/flux-lora-victorian-drawing](https://hf.co/dvyio/flux-lora-victorian-drawing), [dvyio/flux-lora-doom](https://hf.co/dvyio/flux-lora-doom), [glif/dithering](https://hf.co/glif/dithering) and [dvyio/flux-lora-the-sims](https://hf.co/dvyio/flux-lora-the-sims).
+    - Add support for random seed in Chatbot and Llava modules.
+
   * 🆕 **2026-02-28** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot model [mradermacher/gpt-4o-distil-Llama-3.1-8B-Instruct-PaperWitch-heresy-i1-GGUF](https://hf.co/mradermacher/gpt-4o-distil-Llama-3.1-8B-Instruct-PaperWitch-heresy-i1-GGUF) and Chatbot high-end model [TeichAI/Qwen3-14B-Claude-4.5-Opus-High-Reasoning-Distill-GGUF](https://hf.co/TeichAI/Qwen3-14B-Claude-4.5-Opus-High-Reasoning-Distill-GGUF). 
     - Add support for Llava model [cjpais/llava-v1.6-34B-gguf](https://hf.co/cjpais/llava-v1.6-34B-gguf).
@@ -45,12 +51,6 @@
     - Add support for Chatbot cybersecurity specialized model [mradermacher/RedSage-Qwen3-8B-Ins-i1-GGUF](https://hf.co/mradermacher/RedSage-Qwen3-8B-Ins-i1-GGUF). Also add experimental support for 2bit-quantized model [OpenBuddy/SimpleChat-72B-V3-QAT-GGUF](https://hf.co/OpenBuddy/SimpleChat-72B-V3-QAT-GGUF), for which strong quantization is balanced by the QAT training, making it the first 72B model supported by biniou and producing fairly good outputs. 
     - Add support for SDXL inpaint model [GraydientPlatformAPI/fluently3-inpainting-xl](https://hf.co/GraydientPlatformAPI/fluently3-inpainting-xl) to outpaint module.
     - Add support for Flux LoRA models [Wadaka/Mojo_Style_LoRA](https://hf.co/Wadaka/Mojo_Style_LoRA), [cfahlgren1/flux-qwen-capybara](https://hf.co/cfahlgren1/flux-qwen-capybara), [Norod78/vintage-cover-flux](https://hf.co/Norod78/vintage-cover-flux) and [Norod78/JojosoStyle-flux-lora](https://hf.co/Norod78/JojosoStyle-flux-lora).
-
-  * 🆕 **2026-01-31** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot translation specialized model [mradermacher/translategemma-27b-it-GGUF](https://hf.co/mradermacher/translategemma-27b-it-GGUF), medical specialized model [mradermacher/medgemma-1.5-4b-it-GGUF](https://hf.co/mradermacher/medgemma-1.5-4b-it-GGUF) and update of Skyfall model to [bartowski/TheDrummer_Skyfall-31B-v4.1-GGUF](https://hf.co/bartowski/TheDrummer_Skyfall-31B-v4.1-GGUF).
-    - Replacement of SDXL inpaint model [kpsss34/inpaintingXL](https://hf.co/kpsss34/inpaintingXL) to [GraydientPlatformAPI/fluently3-inpainting-xl](https://hf.co/GraydientPlatformAPI/fluently3-inpainting-xl)
-    - Add support for Flux LoRA models [glif-loradex-trainer/saq1b_halftone](https://hf.co/glif-loradex-trainer/saq1b_halftone), [Agusdor/pen_lettering_flux_lora](https://hf.co/Agusdor/pen_lettering_flux_lora), [Rakoo04/Renaissance-art](https://hf.co/Rakoo04/Renaissance-art) and [treeshark/oilpaintz-v4.safetensors](https://hf.co/treeshark/oilpaintz-v4.safetensors).
-
 
 ---
 
