@@ -2512,7 +2512,7 @@ theme_gradio = gr.themes.Base().set(
     button_primary_text_color_dark=color_white,
 )
 
-with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
+with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allow_api=False, api_name=None) as demo:
     nsfw_filter = gr.Textbox(value="1", visible=False)
     url_params_current = gr.Textbox(value="", visible=False)
     banner_biniou = gr.HTML("""""", visible=False)
@@ -10975,7 +10975,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou") as demo:
         print(f">>>[biniou 🧠]: Up and running at https://127.0.0.1:{biniou_global_server_port}")
 
 if __name__ == "__main__":
-    demo.queue(concurrency_count=8).launch(
+    demo.queue(concurrency_count=8, api_open=False).launch(
         server_name="0.0.0.0" if biniou_global_server_name else "127.0.0.1",
         server_port=biniou_global_server_port,
         ssl_certfile="./ssl/cert.pem" if not biniou_global_share else None,
@@ -10986,6 +10986,7 @@ if __name__ == "__main__":
         auth_message=biniou_global_auth_message if biniou_global_auth else None,
         share=biniou_global_share,
         inbrowser=biniou_global_inbrowser,
+        show_api=False,
 #        inbrowser=True if len(sys.argv)>1 and sys.argv[1]=="--inbrowser" else biniou_global_inbrowser,
     )
 # EOF
