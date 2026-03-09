@@ -105,9 +105,9 @@ biniou_global_gif_exif = True
 biniou_global_mp4_metadatas = True
 biniou_global_audio_metadatas = True
 
-if test_cfg_exist("settings") :
+if test_cfg_exist("settings"):
     with open(".ini/settings.cfg", "r", encoding="utf-8") as fichier:
-        exec(fichier.read())
+        locals().update(safe_exec(fichier))
 
 if not os.path.isfile(".ini/auth.cfg"):
     write_auth("biniou:biniou")
@@ -128,11 +128,11 @@ if biniou_global_version == "main":
     biniou_global_version = f"dev {commit_ver[0:7]}"
 
 with open(f"lang/lang_en_US.cfg", "r", encoding="utf-8") as fichier:
-    exec(fichier.read())
+    locals().update(safe_exec(fichier))
 
 if test_lang_exist(f"{biniou_global_lang_ui}.cfg") and biniou_global_lang_ui != "lang_en_US":
     with open(f"lang/{biniou_global_lang_ui}.cfg", "r", encoding="utf-8") as fichier:
-        exec(fichier.read())
+        locals().update(safe_exec(fichier))
 
 ## Fonctions communes
 def dummy():
@@ -2621,7 +2621,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_llamacpp.click(fn=lambda: del_ini_btn_llamacpp.update(interactive=False), outputs=del_ini_btn_llamacpp)
                         if test_ini_exist(module_name_llamacpp.value) :
                             with open(f".ini/{module_name_llamacpp.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         history_llamacpp = gr.Chatbot(
                             label=biniou_lang_chatbot_history,
@@ -2849,7 +2849,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_llava.click(fn=lambda: del_ini_btn_llava.update(interactive=False), outputs=del_ini_btn_llava)
                         if test_ini_exist(module_name_llava.value) :
                             with open(f".ini/{module_name_llava.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column(scale=1):
                             img_llava = gr.Image(label=biniou_lang_img_input_label, type="filepath", height=400)
@@ -3059,7 +3059,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_img2txt_git.click(fn=lambda: del_ini_btn_img2txt_git.update(interactive=False), outputs=del_ini_btn_img2txt_git)
                         if test_ini_exist(module_name_img2txt_git.value) :
                             with open(f".ini/{module_name_img2txt_git.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                             img_img2txt_git = gr.Image(label=biniou_lang_img_input_label, type="pil", height=400)
@@ -3180,7 +3180,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_whisper.click(fn=lambda: del_ini_btn_whisper.update(interactive=False), outputs=del_ini_btn_whisper)
                         if test_ini_exist(module_name_whisper.value) :
                             with open(f".ini/{module_name_whisper.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -3309,7 +3309,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_nllb.click(fn=lambda: del_ini_btn_nllb.update(interactive=False), outputs=del_ini_btn_nllb)
                         if test_ini_exist(module_name_nllb.value) :
                             with open(f".ini/{module_name_nllb.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -3443,7 +3443,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_txt2prompt.click(fn=lambda: del_ini_btn_txt2prompt.update(interactive=False), outputs=del_ini_btn_txt2prompt)
                         if test_ini_exist(module_name_txt2prompt.value) :
                             with open(f".ini/{module_name_txt2prompt.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -3605,7 +3605,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_txt2img_sd.click(fn=lambda: del_ini_btn_txt2img_sd.update(interactive=False), outputs=del_ini_btn_txt2img_sd)
                         if test_ini_exist(module_name_txt2img_sd.value) :
                             with open(f".ini/{module_name_txt2img_sd.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                         with gr.Accordion(biniou_lang_lora_label, open=True):
                             with gr.Row():
                                 with gr.Column():
@@ -3874,7 +3874,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_txt2img_kd.click(fn=lambda: del_ini_btn_txt2img_kd.update(interactive=False), outputs=del_ini_btn_txt2img_kd)
                         if test_ini_exist(module_name_txt2img_kd.value) :
                             with open(f".ini/{module_name_txt2img_kd.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -4084,7 +4084,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_txt2img_lcm.click(fn=lambda: del_ini_btn_txt2img_lcm.update(interactive=False), outputs=del_ini_btn_txt2img_lcm)
                         if test_ini_exist(module_name_txt2img_lcm.value) :
                             with open(f".ini/{module_name_txt2img_lcm.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                         with gr.Accordion(biniou_lang_lora_label, open=True):
                             with gr.Row():
                                 with gr.Column():
@@ -4345,7 +4345,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_txt2img_mjm.click(fn=lambda: del_ini_btn_txt2img_mjm.update(interactive=False), outputs=del_ini_btn_txt2img_mjm)
                         if test_ini_exist(module_name_txt2img_mjm.value) :
                             with open(f".ini/{module_name_txt2img_mjm.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -4547,7 +4547,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_txt2img_paa.click(fn=lambda: del_ini_btn_txt2img_paa.update(interactive=False), outputs=del_ini_btn_txt2img_paa)
                         if test_ini_exist(module_name_txt2img_paa.value) :
                             with open(f".ini/{module_name_txt2img_paa.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -4756,7 +4756,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_img2img.click(fn=lambda: del_ini_btn_img2img.update(interactive=False), outputs=del_ini_btn_img2img)
                         if test_ini_exist(module_name_img2img.value) :
                             with open(f".ini/{module_name_img2img.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                         with gr.Accordion(biniou_lang_lora_label, open=True):
                             with gr.Row():
                                 with gr.Column():
@@ -5037,7 +5037,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_img2img_ip.click(fn=lambda: del_ini_btn_img2img_ip.update(interactive=False), outputs=del_ini_btn_img2img_ip)
                         if test_ini_exist(module_name_img2img_ip.value) :
                             with open(f".ini/{module_name_img2img_ip.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                         with gr.Accordion(biniou_lang_lora_label, open=True):
                             with gr.Row():
                                 with gr.Column():
@@ -5341,7 +5341,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_img2var.click(fn=lambda: del_ini_btn_img2var.update(interactive=False), outputs=del_ini_btn_img2var)
                         if test_ini_exist(module_name_img2var.value) :
                             with open(f".ini/{module_name_img2var.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                             img_img2var = gr.Image(label=biniou_lang_img_input_label, height=400, type="filepath")
@@ -5520,7 +5520,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_pix2pix.click(fn=lambda: del_ini_btn_pix2pix.update(interactive=False), outputs=del_ini_btn_pix2pix)
                         if test_ini_exist(module_name_pix2pix.value) :
                             with open(f".ini/{module_name_pix2pix.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                              img_pix2pix = gr.Image(label=biniou_lang_img_input_label, height=400, type="filepath")
@@ -5719,7 +5719,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_magicmix.click(fn=lambda: del_ini_btn_magicmix.update(interactive=False), outputs=del_ini_btn_magicmix)
                         if test_ini_exist(module_name_magicmix.value):
                             with open(f".ini/{module_name_magicmix.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                              img_magicmix = gr.Image(label=biniou_lang_img_input_label, height=400, type="filepath")
@@ -5906,7 +5906,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_inpaint.click(fn=lambda: del_ini_btn_inpaint.update(interactive=False), outputs=del_ini_btn_inpaint)
                         if test_ini_exist(module_name_inpaint.value) :
                             with open(f".ini/{module_name_inpaint.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column(scale=2):
                              rotation_img_inpaint = gr.Number(value=0, visible=False)
@@ -6122,7 +6122,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_paintbyex.click(fn=lambda: del_ini_btn_paintbyex.update(interactive=False), outputs=del_ini_btn_paintbyex)
                         if test_ini_exist(module_name_paintbyex.value) :
                             with open(f".ini/{module_name_paintbyex.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column(scale=2):
                              rotation_img_paintbyex = gr.Number(value=0, visible=False)
@@ -6316,7 +6316,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_outpaint.click(fn=lambda: del_ini_btn_outpaint.update(interactive=False), outputs=del_ini_btn_outpaint)
                         if test_ini_exist(module_name_outpaint.value):
                             with open(f".ini/{module_name_outpaint.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -6576,7 +6576,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_controlnet.click(fn=lambda: del_ini_btn_controlnet.update(interactive=False), outputs=del_ini_btn_controlnet)
                         if test_ini_exist(module_name_controlnet.value) :
                             with open(f".ini/{module_name_controlnet.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                         with gr.Accordion(biniou_lang_lora_label, open=True):
                             with gr.Row():
                                 with gr.Column():
@@ -6888,7 +6888,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_faceid_ip.click(fn=lambda: del_ini_btn_faceid_ip.update(interactive=False), outputs=del_ini_btn_faceid_ip)
                         if test_ini_exist(module_name_faceid_ip.value) :
                             with open(f".ini/{module_name_faceid_ip.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                         with gr.Accordion(biniou_lang_lora_label, open=True):
                             with gr.Row():
                                 with gr.Column():
@@ -7132,7 +7132,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_faceswap.click(fn=lambda: del_ini_btn_faceswap.update(interactive=False), outputs=del_ini_btn_faceswap)
                         if test_ini_exist(module_name_faceswap.value) :
                             with open(f".ini/{module_name_faceswap.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                             img_source_faceswap = gr.Image(label=biniou_lang_tab_faceswap_src_img, height=400, type="filepath")
@@ -7287,7 +7287,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_resrgan.click(fn=lambda: del_ini_btn_resrgan.update(interactive=False), outputs=del_ini_btn_resrgan)
                         if test_ini_exist(module_name_resrgan.value) :
                             with open(f".ini/{module_name_resrgan.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                              img_resrgan = gr.Image(label=biniou_lang_img_input_label, type="filepath", height=400)
@@ -7414,7 +7414,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_gfpgan.click(fn=lambda: del_ini_btn_gfpgan.update(interactive=False), outputs=del_ini_btn_gfpgan)
                         if test_ini_exist(module_name_gfpgan.value):
                             with open(f".ini/{module_name_gfpgan.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                             img_gfpgan = gr.Image(label=biniou_lang_img_input_label, type="filepath", height=400)
@@ -7555,8 +7555,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_musicgen.click(fn=lambda: del_ini_btn_musicgen.update(interactive=False), outputs=del_ini_btn_musicgen)
                         if test_ini_exist(module_name_musicgen.value) :
                             with open(f".ini/{module_name_musicgen.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
-
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                             prompt_musicgen = gr.Textbox(label=biniou_lang_audio_prompt_label, lines=2, max_lines=2, show_copy_button=True, placeholder=biniou_lang_audio_prompt_placeholder)
@@ -7685,7 +7684,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_musicgen_mel.click(fn=lambda: del_ini_btn_musicgen_mel.update(interactive=False), outputs=del_ini_btn_musicgen_mel)
                         if test_ini_exist(module_name_musicgen_mel.value) :
                             with open(f".ini/{module_name_musicgen_mel.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -7819,7 +7818,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_musicldm.click(fn=lambda: del_ini_btn_musicldm.update(interactive=False), outputs=del_ini_btn_musicldm)
                         if test_ini_exist(module_name_musicldm.value):
                             with open(f".ini/{module_name_musicldm.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -7952,7 +7951,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_audiogen.click(fn=lambda: del_ini_btn_audiogen.update(interactive=False), outputs=del_ini_btn_audiogen)
                         if test_ini_exist(module_name_audiogen.value):
                             with open(f".ini/{module_name_audiogen.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                             prompt_audiogen = gr.Textbox(label=biniou_lang_tab_audiogen_prompt_label, lines=2, max_lines=2, show_copy_button=True, placeholder=biniou_lang_tab_audiogen_prompt_placeholder)
@@ -8070,7 +8069,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_harmonai.click(fn=lambda: del_ini_btn_harmonai.update(interactive=False), outputs=del_ini_btn_harmonai)
                         if test_ini_exist(module_name_harmonai.value) :
                             with open(f".ini/{module_name_harmonai.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         out_harmonai = gr.Audio(label="Output", type="filepath", show_download_button=True, interactive=False)
                     with gr.Row():
@@ -8159,7 +8158,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_bark.click(fn=lambda: del_ini_btn_bark.update(interactive=False), outputs=del_ini_btn_bark)
                         if test_ini_exist(module_name_bark.value) :
                             with open(f".ini/{module_name_bark.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                             prompt_bark = gr.Textbox(label=biniou_lang_tab_bark_prompt_label, lines=2, max_lines=2, show_copy_button=True, placeholder=biniou_lang_tab_bark_prompt_placeholder)
@@ -8291,7 +8290,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_txt2vid_ms.click(fn=lambda: del_ini_btn_txt2vid_ms.update(interactive=False), outputs=del_ini_btn_txt2vid_ms)
                         if test_ini_exist(module_name_txt2vid_ms.value) :
                             with open(f".ini/{module_name_txt2vid_ms.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -8513,7 +8512,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_txt2vid_ze.click(fn=lambda: del_ini_btn_txt2vid_ze.update(interactive=False), outputs=del_ini_btn_txt2vid_ze)
                         if test_ini_exist(module_name_txt2vid_ze.value) :
                             with open(f".ini/{module_name_txt2vid_ze.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -8756,7 +8755,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_animatediff_lcm.click(fn=lambda: del_ini_btn_animatediff_lcm.update(interactive=False), outputs=del_ini_btn_animatediff_lcm)
                         if test_ini_exist(module_name_animatediff_lcm.value) :
                             with open(f".ini/{module_name_animatediff_lcm.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -9019,7 +9018,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_img2vid.click(fn=lambda: del_ini_btn_img2vid.update(interactive=False), outputs=del_ini_btn_img2vid)
                         if test_ini_exist(module_name_img2vid.value) :
                             with open(f".ini/{module_name_img2vid.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -9236,7 +9235,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_vid2vid_ze.click(fn=lambda: del_ini_btn_vid2vid_ze.update(interactive=False), outputs=del_ini_btn_vid2vid_ze)
                         if test_ini_exist(module_name_vid2vid_ze.value) :
                             with open(f".ini/{module_name_vid2vid_ze.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                              vid_vid2vid_ze = gr.Video(label=biniou_lang_tab_vid2vid_ze_vid_label, height=400)
@@ -9431,7 +9430,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_txt2shape.click(fn=lambda: del_ini_btn_txt2shape.update(interactive=False), outputs=del_ini_btn_txt2shape)
                         if test_ini_exist(module_name_txt2shape.value) :
                             with open(f".ini/{module_name_txt2shape.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -9628,7 +9627,7 @@ with gr.Blocks(theme=theme_gradio, title="biniou", analytics_enabled=False, allo
                                 del_ini_btn_img2shape.click(fn=lambda: del_ini_btn_img2shape.update(interactive=False), outputs=del_ini_btn_img2shape)
                         if test_ini_exist(module_name_img2shape.value):
                             with open(f".ini/{module_name_img2shape.value}.ini", "r", encoding="utf-8") as fichier:
-                                exec(fichier.read())
+                                exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
                             with gr.Row():
@@ -10987,6 +10986,7 @@ if __name__ == "__main__":
         share=biniou_global_share,
         inbrowser=biniou_global_inbrowser,
         show_api=False,
+#        allowed_paths=[""]
 #        inbrowser=True if len(sys.argv)>1 and sys.argv[1]=="--inbrowser" else biniou_global_inbrowser,
     )
 # EOF

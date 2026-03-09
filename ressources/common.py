@@ -359,10 +359,27 @@ def write_seeded_file(seed, *args) :
         savefile.write(content)
     return savename
 
+def safe_exec(fichier):
+    globals_ns = {}
+    locals_ns = {}
+    export_ns = {}
+    exec(fichier.read(), globals_ns, locals_ns)
+    for key, value in locals_ns.items():
+        if str(type(value)) != "<class 'function'>":
+            export_ns.update({key:value})
+    return export_ns
+
+def safe_exec_ini(fichier):
+    export = ""
+    for line in fichier.readlines():
+        if ".value = " in line:
+            export += line
+    return export
+
 def check_image_fmt():
     if test_cfg_exist("settings"):
         with open(".ini/settings.cfg", "r", encoding="utf-8") as fichier:
-            exec(fichier.read())
+            locals().update(safe_exec(fichier))
     if ("biniou_global_img_fmt" in locals() and locals()['biniou_global_img_fmt'] != ""):
         extension = locals()['biniou_global_img_fmt']
     else:
@@ -372,7 +389,7 @@ def check_image_fmt():
 def check_metadata(value):
     if test_cfg_exist("settings"):
         with open(".ini/settings.cfg", "r", encoding="utf-8") as fichier:
-            exec(fichier.read())
+            locals().update(safe_exec(fichier))
     if (value in locals() and locals()[value] != ""):
         exif = locals()[value]
     else:
