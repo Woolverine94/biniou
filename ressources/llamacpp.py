@@ -227,6 +227,7 @@ model_list_llamacpp_builtin = {
     "bartowski/Qwen2.5.1-Coder-7B-Instruct-GGUF":("Qwen2.5.1-Coder-7B-Instruct-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], code_system_prompt),
     "mradermacher/Strand-Rust-Coder-14B-v1-i1-GGUF":("Strand-Rust-Coder-14B-v1.i1-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], code_system_prompt),
     "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF":("Qwen3-Coder-30B-A3B-Instruct-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], code_system_prompt),
+    "bartowski/janhq_Jan-code-4b-GGUF":("janhq_Jan-code-4b-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], code_system_prompt),
     "bartowski/NousResearch_NousCoder-14B-GGUF":("NousResearch_NousCoder-14B-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n", code_system_prompt),
     "bartowski/Tesslate_Tessa-T1-7B-GGUF":("Tesslate_Tessa-T1-7B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], "You are an helpful code assistant that is highly specialized in ReactJS. You are smart, fast, reliable and always produces clean readable code."),
     "-[ 🧑‍⚕️ Specialized ]-":("llama-3-8b-instruct-law-sage-v0.1.Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], "You are a very helpful law assistant. You are accurate, concise, reliable and you never refuse to answer."),
