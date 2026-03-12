@@ -2388,6 +2388,8 @@ def lora_model_list(model, *args):
             "dvyio/flux-lora-doom":("db793987944d4de59dfae97702b15519_pytorch_lora_weights.safetensors", "pixellated video game screenshot in the style of DMGM"),
             "dvyio/flux-lora-the-sims":("011ed14848b3408c8d70d3ecfa14f122_lora.safetensors", "video game screenshot in the style of THSMS"),
             "alvdansen/plushy-world-flux":("plushy_world_flux_araminta_k.safetensors", "3dcndylnd style"),
+            "davisbro/half_illustration":("flux_train_replicate.safetensors", "in the style of TOK"),
+            "Keltezaa/victorian-gothic-horror":("victoriangothic_v50_rank64_bf16-step01500.safetensors", "vicgoth"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
