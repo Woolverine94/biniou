@@ -11,11 +11,20 @@ import shutil
 import requests as req
 import gradio as gr
 from tqdm import tqdm
+from pathlib import Path
 import torch
 
 class biniouModelsManager:
     def __init__(self, models_dir):
         self.models_dir = models_dir
+
+    def directory_security_check_model(self, directory):
+        self.directory = directory
+        if ((os.path.relpath(self.directory,".").split("/")[0].split("\\")[0]) != "models"):
+            print("Error : Invalid or corrupted path detected ! Terminating biniou.")
+            os._exit(1)
+        else:
+            return self.directory
 
     def human_readable_size(self, size):
         self.size = size
@@ -30,7 +39,8 @@ class biniouModelsManager:
         return self.size_final
 
     def dirlister_models(self, directory):
-        self.directory = directory
+#        self.directory = directory
+        self.directory = self.directory_security_check_model(directory)
         filtered_list = []
         if sys.platform == "win32":
             self.directory = self.directory.replace("/", "\\")
@@ -70,7 +80,7 @@ class biniouModelsManager:
                     filtered_list.append(content)
             for name in dirs:
                 name = os.path.join(root, name)
-                if (3 < name.count(os.path.sep) < 5) and not (".lock") in name and not (".json") in name:
+                if (5 < name.count(os.path.sep) < 7) and not (".lock") in name and not (".json") in name:
                     size = 0
                     for r, d, f in os.walk(name, followlinks=False):
                         for fi in f:
@@ -82,7 +92,8 @@ class biniouModelsManager:
         return filtered_list
 
     def modelslister(self, ):
-        cachedirname = "../.cache/huggingface/hub"
+        self.path = Path('~').expanduser()
+        cachedirname = f"{self.path}/.cache/huggingface/hub"
         filtered_list_models = self.dirlister_models(self.models_dir)
         filtered_list_cache = self.dirlister_cache(cachedirname)
         filtered_list = filtered_list_models + filtered_list_cache
@@ -92,7 +103,10 @@ class biniouModelsManager:
     def modelsdeleter(self, delete_models_list):
         self.delete_models_list = delete_models_list
         for i in range(len(delete_models_list)):
-            self.delete_model = self.delete_models_list[i].split(":")[0]
+            if sys.platform == "win32":
+                self.delete_model = self.delete_models_list[i].replace(":" +self.delete_models_list[i].split(":")[-1], "")
+            elif sys.platform == "linux" or sys.platform == "darwin":
+                self.delete_model = self.delete_models_list[i].split(":")[0]
             if os.path.isfile(self.delete_model):
                 os.remove(self.delete_model)
             elif os.path.isdir(self.delete_model):
@@ -107,8 +121,16 @@ class biniouLoraModelsManager:
     def __init__(self, models_dir):
         self.models_dir = models_dir
 
-    def dirlister_models(self, directory):
+    def directory_security_check_model(self, directory):
         self.directory = directory
+        if ((os.path.relpath(self.directory,".").split("/")[0].split("\\")[0]) != "models"):
+            print("Error : Invalid or corrupted path detected ! Terminating biniou.")
+            os._exit(1)
+        else:
+            return self.directory
+
+    def dirlister_models(self, directory):
+        self.directory = self.directory_security_check_model(directory)
         filtered_list = []
         if sys.platform == "win32":
             self.directory = self.directory.replace("/", "\\")
@@ -141,7 +163,10 @@ class biniouLoraModelsManager:
     def modelsdeleter(self, delete_models_list):
         self.delete_models_list = delete_models_list
         for i in range(len(delete_models_list)):
-            self.delete_model = self.delete_models_list[i].split(":")[0]
+            if sys.platform == "win32":
+                self.delete_model = self.delete_models_list[i].replace(":" +self.delete_models_list[i].split(":")[-1], "")
+            elif sys.platform == "linux" or sys.platform == "darwin":
+                self.delete_model = self.delete_models_list[i].split(":")[0]
             if os.path.isfile(self.delete_model):
                 os.remove(self.delete_model)
             elif os.path.isdir(self.delete_model):
@@ -150,9 +175,10 @@ class biniouLoraModelsManager:
         return
 
     def modelsdownloader(self, url, progress=gr.Progress(track_tqdm=True)):
+        self.models_dir = self.directory_security_check_model(self.models_dir)
         self.url = url
         self.version = self.models_dir.split('/')[-1]
-        self.filename = self.url.split('/')[-1]
+        self.filename = self.url.split('?')[0].split('/')[-1]
         self.path = "./models/lora/"+ self.version+ "/"+ self.filename
         with req.get(self.url, stream=True) as r:
             total_size = int(r.headers.get("content-length", 0))
@@ -168,8 +194,16 @@ class biniouTextinvModelsManager:
     def __init__(self, models_dir):
         self.models_dir = models_dir
 
-    def dirlister_models(self, directory):
+    def directory_security_check_model(self, directory):
         self.directory = directory
+        if ((os.path.relpath(self.directory,".").split("/")[0].split("\\")[0]) != "models"):
+            print("Error : Invalid or corrupted path detected ! Terminating biniou.")
+            os._exit(1)
+        else:
+            return self.directory
+
+    def dirlister_models(self, directory):
+        self.directory = self.directory_security_check_model(directory)
         filtered_list = []
         if sys.platform == "win32":
             self.directory = self.directory.replace("/", "\\")
@@ -202,7 +236,10 @@ class biniouTextinvModelsManager:
     def modelsdeleter(self, delete_models_list):
         self.delete_models_list = delete_models_list
         for i in range(len(delete_models_list)):
-            self.delete_model = self.delete_models_list[i].split(":")[0]
+            if sys.platform == "win32":
+                self.delete_model = self.delete_models_list[i].replace(":" +self.delete_models_list[i].split(":")[-1], "")
+            elif sys.platform == "linux" or sys.platform == "darwin":
+                self.delete_model = self.delete_models_list[i].split(":")[0]
             if os.path.isfile(self.delete_model):
                 os.remove(self.delete_model)
             elif os.path.isdir(self.delete_model):
@@ -211,9 +248,10 @@ class biniouTextinvModelsManager:
         return
 
     def modelsdownloader(self, url, progress=gr.Progress(track_tqdm=True)):
+        self.models_dir = self.directory_security_check_model(self.models_dir)
         self.url = url
         self.version = self.models_dir.split('/')[-1]
-        self.filename = self.url.split('/')[-1]
+        self.filename = self.url.split('?')[0].split('/')[-1]
         self.path = "./models/TextualInversion/"+ self.version+ "/"+ self.filename
         with req.get(self.url, stream=True) as r:
             total_size = int(r.headers.get("content-length", 0))
@@ -229,9 +267,18 @@ class biniouSDModelsDownloader:
     def __init__(self, models_dir):
         self.models_dir = models_dir
 
+    def directory_security_check_model(self, directory):
+        self.directory = directory
+        if ((os.path.relpath(self.directory,".").split("/")[0].split("\\")[0]) != "models"):
+            print("Error : Invalid or corrupted path detected ! Terminating biniou.")
+            os._exit(1)
+        else:
+            return self.directory
+
     def modelsdownloader(self, url, progress=gr.Progress(track_tqdm=True)):
+        self.models_dir = self.directory_security_check_model(self.models_dir)
         self.url = url
-        self.filename = self.url.split('/')[-1]
+        self.filename = self.url.split('?')[0].split('/')[-1]
         self.path = self.models_dir+ "/"+ self.filename
         with req.get(self.url, stream=True) as r:
             total_size = int(r.headers.get("content-length", 0))
@@ -247,9 +294,18 @@ class biniouGGUFModelsDownloader:
     def __init__(self, models_dir):
         self.models_dir = models_dir
 
+    def directory_security_check_model(self, directory):
+        self.directory = directory
+        if ((os.path.relpath(self.directory,".").split("/")[0].split("\\")[0]) != "models"):
+            print("Error : Invalid or corrupted path detected ! Terminating biniou.")
+            os._exit(1)
+        else:
+            return self.directory
+
     def modelsdownloader(self, url, progress=gr.Progress(track_tqdm=True)):
+        self.models_dir = self.directory_security_check_model(self.models_dir)
         self.url = url
-        self.filename = self.url.split('/')[-1]
+        self.filename = self.url.split('?')[0].split('/')[-1]
         self.path = self.models_dir+ "/"+ self.filename
         with req.get(self.url, stream=True) as r:
             total_size = int(r.headers.get("content-length", 0))
