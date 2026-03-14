@@ -22,6 +22,11 @@
 
 ## Updates
 
+  * 🆕 **2026-02-14** : 🔥 ***Weekly update*** 🔥 >
+    - A huge thanks to Bulmax9797, -a security researcher- that kindly alerted me about security issues in biniou : 4 CVE have been patched this week. The API has been temporary disabled, and should be reintroduced soon. All other security issues were related to the settings modules and the way modules and configuration settings were handled, mainly through the API.
+    - Add support for Chatbot code specialized model [bartowski/janhq_Jan-code-4b-GGUF](https://hf.co/bartowski/janhq_Jan-code-4b-GGUF).
+    - Add support for Flux LoRA models [nt2323/simpletuner-lora](https://hf.co/nt2323/simpletuner-lora), [alvdansen/plushy-world-flux](https://hf.co/alvdansen/plushy-world-flux), [davisbro/half_illustration](https://hf.co/davisbro/half_illustration) and [Keltezaa/victorian-gothic-horror](https://hf.co/Keltezaa/victorian-gothic-horror).
+
   * 🆕 **2026-03-07** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot code specialized model [mradermacher/Strand-Rust-Coder-14B-v1-i1-GGUF](https://hf.co/mradermacher/Strand-Rust-Coder-14B-v1-i1-GGUF) and Chatbot tiny model [mradermacher/Nanbeige4.1-3B-PaperWitch-heresy-i1-GGUF](https://hf.co/mradermacher/Nanbeige4.1-3B-PaperWitch-heresy-i1-GGUF). 
     - Add support for Llava model [PsiPi/liuhaotian_llava-v1.5-13b-GGUF](https://hf.co/PsiPi/liuhaotian_llava-v1.5-13b-GGUF).
@@ -46,11 +51,6 @@
     - Add support for bark model [artificial-feelings/bark-forked](https://hf.co/artificial-feelings/bark-forked). 
     - Add support for SDXL LoRA models [Norod78/sdxl-muppetshow-lora](https://hf.co/Norod78/sdxl-muppetshow-lora) and [Norod78/cctv-stlye-sdxl](https://hf.co/Norod78/cctv-stlye-sdxl).
     - Add support for Flux LoRA models [fofr/flux-y2k](https://hf.co/fofr/flux-y2k) and [Norod78/FluxToon_style_flux_lora](https://hf.co/Norod78/FluxToon_style_flux_lora).
-
-  * 🆕 **2026-02-07** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot cybersecurity specialized model [mradermacher/RedSage-Qwen3-8B-Ins-i1-GGUF](https://hf.co/mradermacher/RedSage-Qwen3-8B-Ins-i1-GGUF). Also add experimental support for 2bit-quantized model [OpenBuddy/SimpleChat-72B-V3-QAT-GGUF](https://hf.co/OpenBuddy/SimpleChat-72B-V3-QAT-GGUF), for which strong quantization is balanced by the QAT training, making it the first 72B model supported by biniou and producing fairly good outputs. 
-    - Add support for SDXL inpaint model [GraydientPlatformAPI/fluently3-inpainting-xl](https://hf.co/GraydientPlatformAPI/fluently3-inpainting-xl) to outpaint module.
-    - Add support for Flux LoRA models [Wadaka/Mojo_Style_LoRA](https://hf.co/Wadaka/Mojo_Style_LoRA), [cfahlgren1/flux-qwen-capybara](https://hf.co/cfahlgren1/flux-qwen-capybara), [Norod78/vintage-cover-flux](https://hf.co/Norod78/vintage-cover-flux) and [Norod78/JojosoStyle-flux-lora](https://hf.co/Norod78/JojosoStyle-flux-lora).
 
 ---
 
