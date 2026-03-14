@@ -22,7 +22,7 @@
 
 ## Updates
 
-  * 🆕 **2026-02-14** : 🔥 ***Weekly update*** 🔥 >
+  * 🆕 **2026-03-14** : 🔥 ***Weekly update*** 🔥 >
     - A huge thanks to Bulmax9797, -a security researcher- that kindly alerted me about security issues in biniou : 4 CVE have been patched this week. The API has been temporary disabled, and should be reintroduced soon. All other security issues were related to the settings modules and the way modules and configuration settings were handled, mainly through the API.
     - Add support for Chatbot code specialized model [bartowski/janhq_Jan-code-4b-GGUF](https://hf.co/bartowski/janhq_Jan-code-4b-GGUF).
     - Add support for Flux LoRA models [nt2323/simpletuner-lora](https://hf.co/nt2323/simpletuner-lora), [alvdansen/plushy-world-flux](https://hf.co/alvdansen/plushy-world-flux), [davisbro/half_illustration](https://hf.co/davisbro/half_illustration) and [Keltezaa/victorian-gothic-horror](https://hf.co/Keltezaa/victorian-gothic-horror).
