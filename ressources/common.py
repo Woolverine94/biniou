@@ -2390,6 +2390,8 @@ def lora_model_list(model, *args):
             "alvdansen/plushy-world-flux":("plushy_world_flux_araminta_k.safetensors", "3dcndylnd style"),
             "davisbro/half_illustration":("flux_train_replicate.safetensors", "in the style of TOK"),
             "Keltezaa/victorian-gothic-horror":("victoriangothic_v50_rank64_bf16-step01500.safetensors", "vicgoth"),
+            "davisbro/photo-glow":("lora.safetensors", "TOK"),
+            "glif/l0w-r3z":("low-rez_000002000.safetensors", "l0w-r3z"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
