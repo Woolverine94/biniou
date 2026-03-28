@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2026-03-28** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot model [bartowski/TheDrummer_Anubis-Mini-8B-v1-GGUF](https://hf.co/bartowski/TheDrummer_Anubis-Mini-8B-v1-GGUF) and high-end model [bartowski/jtl11_GLM-4.7-Flash-heretic-GGUF](https://hf.co/bartowski/jtl11_GLM-4.7-Flash-heretic-GGUF).
+    - Add support for SDXL Anime models [Eugeoter/anime_illust_diffusion_xl](https://hf.co/Eugeoter/anime_illust_diffusion_xl).
+    - Add support for Stable Video Diffusion model [vdo/stable-video-diffusion-img2vid-xt-1-1](https://hf.co/vdo/stable-video-diffusion-img2vid-xt-1-1).
+    - Add support for Flux LoRA models [gokaygokay/Flux-Game-Assets-LoRA-v2](https://hf.co/gokaygokay/Flux-Game-Assets-LoRA-v2), [Ryouko65777/Anime-Flux](https://hf.co/Ryouko65777/Anime-Flux), [strangerzonehf/Gem-Touch-LoRA-Flux](https://hf.co/strangerzonehf/Gem-Touch-LoRA-Flux) and [jayavibhav/pixel-art-style](https://hf.co/jayavibhav/pixel-art-style).
+
   * 🆕 **2026-03-21** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end models [mradermacher/Mistral-Nemo-12B-R1-v0.4-i1-GGUF](https://hf.co/mradermacher/Mistral-Nemo-12B-R1-v0.4-i1-GGUF) and [mradermacher/GLM-4.7-Flash-Claude-Opus-4.5-High-Reasoning-Distill-v2-heretic-i1-GGUF](https://hf.co/mradermacher/GLM-4.7-Flash-Claude-Opus-4.5-High-Reasoning-Distill-v2-heretic-i1-GGUF).
     - Add support for Flux LoRA models [davisbro/photo-glow](https://hf.co/davisbro/photo-glow), [glif/l0w-r3z](https://hf.co/glif/l0w-r3z), [glif-loradex-trainer/maxxd4240_minimalistPastel](https://hf.co/glif-loradex-trainer/maxxd4240_minimalistPastel) and [dvyio/flux-lora-victorian-photograph](https://hf.co/dvyio/flux-lora-victorian-photograph).
@@ -43,12 +49,6 @@
     - Add support for Chatbot model [mradermacher/gpt-4o-distil-Llama-3.1-8B-Instruct-PaperWitch-heresy-i1-GGUF](https://hf.co/mradermacher/gpt-4o-distil-Llama-3.1-8B-Instruct-PaperWitch-heresy-i1-GGUF) and Chatbot high-end model [TeichAI/Qwen3-14B-Claude-4.5-Opus-High-Reasoning-Distill-GGUF](https://hf.co/TeichAI/Qwen3-14B-Claude-4.5-Opus-High-Reasoning-Distill-GGUF). 
     - Add support for Llava model [cjpais/llava-v1.6-34B-gguf](https://hf.co/cjpais/llava-v1.6-34B-gguf).
     - Add support for Flux LoRA models [Norod78/johnny-5-robot-flux-lora](https://hf.co/Norod78/johnny-5-robot-flux-lora), [Norod78/pokirl-flux](https://hf.co/Norod78/pokirl-flux), [HoldDeezPlz/sharplines](https://hf.co/HoldDeezPlz/sharplines) and [DIOcheng/flux-lora-Cartoonillustration](https://hf.co/DIOcheng/flux-lora-Cartoonillustration).
-
-  * 🆕 **2026-02-21** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot specialized models [bartowski/zerofata_MS3.2-PaintedFantasy-v4-24B-GGUF](https://hf.co/bartowski/zerofata_MS3.2-PaintedFantasy-v4-24B-GGUF) and [mradermacher/Mistral-Helcyon-Mercury-12b-v3.2-i1-GGUF](https://hf.co/mradermacher/Mistral-Helcyon-Mercury-12b-v3.2-i1-GGUF). 
-    - Add support for SDXL model [kopyl/miniSDXL](https://hf.co/kopyl/miniSDXL).
-    - Add support for Flux LoRA models [fofr/flux-wrong](https://hf.co/fofr/flux-wrong), [Norod78/huggingface-emoji-flux](https://hf.co/Norod78/huggingface-emoji-flux), [treeshark/mechanimalz-v2.safetensors](https://hf.co/treeshark/mechanimalz-v2.safetensors) and [nsarrazin/demo-tarot](https://hf.co/nsarrazin/demo-tarot).
-    - Add support for model [Ekenayy/instruct-pix2pix-full](https://hf.co/Ekenayy/instruct-pix2pix-full) to Video Instruct-Pix2Pix module.
 
 ---
 
