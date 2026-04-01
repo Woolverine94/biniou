@@ -88,6 +88,7 @@ model_list_llamacpp_builtin = {
     "bartowski/SicariusSicariiStuff_Llama-3.3-8B-Instruct-128K_Abliterated-GGUF":("SicariusSicariiStuff_Llama-3.3-8B-Instruct-128K_Abliterated-Q5_K_M.gguf", "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\n\nToday Date: 30 Dec 2025\n\n{system_prompt}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n", std_system_prompt),
     "mradermacher/gpt-4o-distil-Llama-3.1-8B-Instruct-PaperWitch-heresy-i1-GGUF":("gpt-4o-distil-Llama-3.1-8B-Instruct-PaperWitch-heresy.i1-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
     "bartowski/Ministral-8B-Instruct-2410-GGUF":("Ministral-8B-Instruct-2410-Q5_K_M.gguf", "<s>[INST]{prompt}[/INST]", ""),
+    "bartowski/mistralai_Ministral-3-8B-Instruct-2512-GGUF":("mistralai_Ministral-3-8B-Instruct-2512-Q5_K_M.gguf", prompt_template_list_llamacpp["Mistral Small instruct"][0], std_system_prompt),
     "bartowski/Mistral-7B-Instruct-v0.3-GGUF":("Mistral-7B-Instruct-v0.3-Q5_K_S.gguf", "<s>[INST]  {prompt} [/INST]</s>", ""),
     "bartowski/openchat-3.6-8b-20240522-GGUF":("openchat-3.6-8b-20240522-Q5_K_S.gguf", prompt_template_list_llamacpp["OpenChat"][0], ""),
     "bartowski/OpenChat-3.5-0106_32K-PoSE-GGUF":("OpenChat-3.5-0106_32K-PoSE-Q5_K_M.gguf", "<s> GPT4 System: {system_prompt}<|end_of_turn|> GPT4 User: {prompt}<|end_of_turn|> GPT4 Assistant: ", std_system_prompt),
