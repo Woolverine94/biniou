@@ -2285,7 +2285,6 @@ def lora_model_list(model, *args):
             "renderartist/technically-color-flux":("Technically_Color_Flux_v2_renderartist.safetensors", "t3chnic4lly classic cinema film still 1950s"),
             "fofr/flux-y2k":("lora.safetensors", "Y2K"),
             "dvyio/flux-lora-victorian-photograph":("e377b7657231499e9165dad83cdeb312_pytorch_lora_weights.safetensors", "photograph in the style of VCTRN"),
-            "hgw3lls/flux-mai68":("mai68_lora.safetensors", "mai68"),
             "-[ 🏆 🐢 🎨 Style Flux LoRA ]-":("mj5.safetensors", ""),
             "Jovie/Midjourney":("mj5.safetensors", ""),
             "Jovie/Midjourney_Schnell":("mj5.safetensors", ""),
@@ -2399,6 +2398,8 @@ def lora_model_list(model, *args):
             "glif/l0w-r3z":("low-rez_000002000.safetensors", "l0w-r3z"),
             "strangerzonehf/Gem-Touch-LoRA-Flux":("GemTouch.safetensors", "Gem Touch"),
             "jayavibhav/pixel-art-style":("pixel-art-style.safetensors", "in the style of pixel art"),
+            "hgw3lls/flux-mai68":("mai68_lora.safetensors", ""),
+            "glif-loradex-trainer/fatman2021b_Outlined_Cel_shader_with_Texture_by_Ch13f":("Outlined_Cel_shader_with_Texture_by_Ch13f.safetensors", "Ch13f-shadr"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
@@ -2546,6 +2547,7 @@ def lora_model_list(model, *args):
             "Norod78/FluxToon_style_flux_lora":("FluxToon_style_flux_lora.safetensors", "FluxToon style"),
             "Norod78/pokirl-flux":("Flux_PokIRL_Pokemon_LoRA_1855673.safetensors", "PokIRL pokemon"),
             "Ryouko65777/Anime-Flux":("lora.safetensors", "anime style"),
+            "glif-loradex-trainer/insectagon_1997_anime":("1997_anime.safetensors", "anime"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
