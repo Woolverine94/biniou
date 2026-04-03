@@ -1,0 +1,43 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: biniou
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Woolverine94
+    email: woolverine94@proton.me
+repository-code: 'https://github.com/Woolverine94/biniou'
+abstract: >-
+  biniou is a self-hosted webui for several kinds of GenAI
+  (generative artificial intelligence). You can generate
+  multimedia contents with AI and use a chatbot on your own
+  computer, even without dedicated GPU and starting from 8GB
+  RAM. Can work offline (once deployed and required models
+  downloaded).
+keywords:
+  - animatediff
+  - audiocraft
+  - bark
+  - controlnet
+  - diffusers
+  - flux
+  - generative-ai
+  - gfpgan
+  - gradio
+  - huggingface
+  - insightface
+  - ip-adapter
+  - kandinsky
+  - llama-cpp-python
+  - photomaker
+  - real-esrgan
+  - stable-diffusion
+  - stable-diffusion-3-5
+  - webui
+  - whisper
+license: GPL-3.0
+
