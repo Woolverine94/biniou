@@ -22,6 +22,11 @@
 
 ## Updates
 
+  * 🆕 **2026-04-04** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot models [bartowski/Qwen_Qwen3.5-9B-GGUF](https://hf.co/bartowski/Qwen_Qwen3.5-9B-GGUF) and [bartowski/mistralai_Ministral-3-8B-Instruct-2512-GGUF](https://hf.co/bartowski/mistralai_Ministral-3-8B-Instruct-2512-GGUF).
+    - Add support for Microsoft GIT image captioning model [microsoft/git-large-textcaps](https://hf.co/microsoft/git-large-textcaps)
+    - Add support for Flux LoRA models [hgw3lls/flux-mai68](https://hf.co/hgw3lls/flux-mai68), [glif-loradex-trainer/Hailey_LostVHS](https://hf.co/glif-loradex-trainer/Hailey_LostVHS), [glif-loradex-trainer/fatman2021b_Outlined_Cel_shader_with_Texture_by_Ch13f](https://hf.co/glif-loradex-trainer/fatman2021b_Outlined_Cel_shader_with_Texture_by_Ch13f) and [glif-loradex-trainer/insectagon_1997_anime](https://hf.co/glif-loradex-trainer/insectagon_1997_anime).
+
   * 🆕 **2026-03-28** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot model [bartowski/TheDrummer_Anubis-Mini-8B-v1-GGUF](https://hf.co/bartowski/TheDrummer_Anubis-Mini-8B-v1-GGUF) and high-end model [bartowski/jtl11_GLM-4.7-Flash-heretic-GGUF](https://hf.co/bartowski/jtl11_GLM-4.7-Flash-heretic-GGUF).
     - Add support for SDXL Anime models [Eugeoter/anime_illust_diffusion_xl](https://hf.co/Eugeoter/anime_illust_diffusion_xl).
@@ -44,11 +49,6 @@
     - Add support for Llava model [PsiPi/liuhaotian_llava-v1.5-13b-GGUF](https://hf.co/PsiPi/liuhaotian_llava-v1.5-13b-GGUF).
     - Add support for Flux LoRA models [dvyio/flux-lora-victorian-drawing](https://hf.co/dvyio/flux-lora-victorian-drawing), [dvyio/flux-lora-doom](https://hf.co/dvyio/flux-lora-doom), [glif/dithering](https://hf.co/glif/dithering) and [dvyio/flux-lora-the-sims](https://hf.co/dvyio/flux-lora-the-sims).
     - Add support for random seed in Chatbot and Llava modules.
-
-  * 🆕 **2026-02-28** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot model [mradermacher/gpt-4o-distil-Llama-3.1-8B-Instruct-PaperWitch-heresy-i1-GGUF](https://hf.co/mradermacher/gpt-4o-distil-Llama-3.1-8B-Instruct-PaperWitch-heresy-i1-GGUF) and Chatbot high-end model [TeichAI/Qwen3-14B-Claude-4.5-Opus-High-Reasoning-Distill-GGUF](https://hf.co/TeichAI/Qwen3-14B-Claude-4.5-Opus-High-Reasoning-Distill-GGUF). 
-    - Add support for Llava model [cjpais/llava-v1.6-34B-gguf](https://hf.co/cjpais/llava-v1.6-34B-gguf).
-    - Add support for Flux LoRA models [Norod78/johnny-5-robot-flux-lora](https://hf.co/Norod78/johnny-5-robot-flux-lora), [Norod78/pokirl-flux](https://hf.co/Norod78/pokirl-flux), [HoldDeezPlz/sharplines](https://hf.co/HoldDeezPlz/sharplines) and [DIOcheng/flux-lora-Cartoonillustration](https://hf.co/DIOcheng/flux-lora-Cartoonillustration).
 
 ---
 
