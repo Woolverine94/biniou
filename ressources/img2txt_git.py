@@ -16,6 +16,7 @@ os.makedirs(model_path_img2txt_git, exist_ok=True)
 model_list_img2txt_git = [
     "microsoft/git-large-coco",
     "microsoft/git-large-textcaps",
+    "microsoft/git-large-textvqa",
 ]
 
 @metrics_decoration
