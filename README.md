@@ -22,6 +22,11 @@
 
 ## Updates
 
+  * 🆕 **2026-04-11** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot model [bartowski/LiquidAI_LFM2-8B-A1B-GGUF](https://hf.co/bartowski/LiquidAI_LFM2-8B-A1B-GGUF), tiny model [bartowski/Qwen_Qwen3.5-4B-GGUF](https://hf.co/bartowski/Qwen_Qwen3.5-4B-GGUF), and [bartowski/google_gemma-4-26B-A4B-it-GGUF](https://hf.co/bartowski/google_gemma-4-26B-A4B-it-GGUF). If you use a cpu-only instance of biniou and have enough RAM, you should really try this latest model : it gives awesome results and answers pretty fast.
+    - Add support for Microsoft GIT image captioning model [microsoft/git-large-textvqa](https://hf.co/microsoft/git-large-textvqa)
+    - Add support for Flux LoRA models [glif-loradex-trainer/fab1an_polaroid](https://hf.co/glif-loradex-trainer/fab1an_polaroid), [glif-loradex-trainer/R4Z0R1337_artyvibe_balloons_v2](https://hf.co/glif-loradex-trainer/R4Z0R1337_artyvibe_balloons_v2), [glif-loradex-trainer/GOZT_miiaw_character_lora](https://hf.co/glif-loradex-trainer/GOZT_miiaw_character_lora) and [glif-loradex-trainer/djmenorobl_ALBUM_COVER_FUNK](https://hf.co/glif-loradex-trainer/djmenorobl_ALBUM_COVER_FUNK).
+
   * 🆕 **2026-04-04** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot models [bartowski/Qwen_Qwen3.5-9B-GGUF](https://hf.co/bartowski/Qwen_Qwen3.5-9B-GGUF) and [bartowski/mistralai_Ministral-3-8B-Instruct-2512-GGUF](https://hf.co/bartowski/mistralai_Ministral-3-8B-Instruct-2512-GGUF).
     - Add support for Microsoft GIT image captioning model [microsoft/git-large-textcaps](https://hf.co/microsoft/git-large-textcaps)
@@ -43,12 +48,6 @@
     - A huge thanks to Bulmax9797, -a security researcher- that kindly alerted me about security issues in biniou : 4 CVE have been patched this week. The API has been temporary disabled, and should be reintroduced soon. All other security issues were related to the settings modules and the way modules and configuration settings were handled, mainly through the API.
     - Add support for Chatbot code specialized model [bartowski/janhq_Jan-code-4b-GGUF](https://hf.co/bartowski/janhq_Jan-code-4b-GGUF).
     - Add support for Flux LoRA models [nt2323/simpletuner-lora](https://hf.co/nt2323/simpletuner-lora), [alvdansen/plushy-world-flux](https://hf.co/alvdansen/plushy-world-flux), [davisbro/half_illustration](https://hf.co/davisbro/half_illustration) and [Keltezaa/victorian-gothic-horror](https://hf.co/Keltezaa/victorian-gothic-horror).
-
-  * 🆕 **2026-03-07** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot code specialized model [mradermacher/Strand-Rust-Coder-14B-v1-i1-GGUF](https://hf.co/mradermacher/Strand-Rust-Coder-14B-v1-i1-GGUF) and Chatbot tiny model [mradermacher/Nanbeige4.1-3B-PaperWitch-heresy-i1-GGUF](https://hf.co/mradermacher/Nanbeige4.1-3B-PaperWitch-heresy-i1-GGUF). 
-    - Add support for Llava model [PsiPi/liuhaotian_llava-v1.5-13b-GGUF](https://hf.co/PsiPi/liuhaotian_llava-v1.5-13b-GGUF).
-    - Add support for Flux LoRA models [dvyio/flux-lora-victorian-drawing](https://hf.co/dvyio/flux-lora-victorian-drawing), [dvyio/flux-lora-doom](https://hf.co/dvyio/flux-lora-doom), [glif/dithering](https://hf.co/glif/dithering) and [dvyio/flux-lora-the-sims](https://hf.co/dvyio/flux-lora-the-sims).
-    - Add support for random seed in Chatbot and Llava modules.
 
 ---
 
