@@ -132,6 +132,7 @@ model_list_controlnet_builtin = [
     "AlekseyCalvin/PixelwaveFluxSchnell_Diffusers",
     "mikeyandfriends/PixelWave_FLUX.1-schnell_04",
     "minpeter/FLUX-Hyperscale-fused-fast",
+    "buildborderless/FLUX.MF-8step_lightning_v2",
     "-[ 🏠 Local models ]-",
 ]
 

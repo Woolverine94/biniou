@@ -148,6 +148,7 @@ model_list_txt2img_sd_builtin = [
     "mikeyandfriends/PixelWave_FLUX.1-schnell_04",
     "minpeter/FLUX-Hyperscale-fused-fast",
     "city96/FLUX.1-schnell-gguf",
+    "buildborderless/FLUX.MF-8step_lightning_v2",
     "-[ 🏠 Local models ]-",
 ]
 

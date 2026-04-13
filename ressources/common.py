@@ -646,7 +646,7 @@ def check_steps_strength (steps, strength, model, lora_model):
     if (model == "stabilityai/sdxl-turbo") or (model == "stabilityai/sd-turbo") or ("IDKIRO/SDXS-512" in model.upper()):
         steps = ceil(1/strength)
 #    elif (model == "SG161222/RealVisXL_V4.0_Lightning"):
-    elif ("LIGHTNING" in model.upper()):
+    elif ("LIGHTNING" in model.upper()) and not ("FLUX" in model.upper()):
         steps = ceil(4/strength)
     elif (model == "thibaud/sdxl_dpo_turbo"):
         steps = ceil(4/strength)
@@ -1863,7 +1863,7 @@ def is_sdxl(model):
     model = model_cleaner_sd(model)
     if (\
 ("XL" in model.upper()) or \
-("LIGHTNING" in model.upper()) or \
+(("LIGHTNING" in model.upper()) and not ("FLUX" in model.upper())) or \
 ("ETRI-VILAB/KOALA-" in model.upper()) or \
 ("PLAYGROUNDAI/PLAYGROUND-V2" in model.upper()) or \
 ("SSD-1B" in model.upper()) or \
@@ -1928,24 +1928,12 @@ def is_sd35m(model):
 def is_flux(model):
     model = model_cleaner_sd(model)
     if (\
-(model == "Freepik/flux.1-lite-8B") or \
-(model == "black-forest-labs/FLUX.1-schnell") or \
-(model == "sayakpaul/FLUX.1-merged") or \
-(model == "ChuckMcSneed/FLUX.1-dev") or \
+("FLUX" in model.upper()) or \
 (model == "enhanceaiteam/Mystic") or \
-(model == "AlekseyCalvin/AuraFlux_merge_diffusers") or \
 (model == "ostris/Flex.1-alpha") or \
 (model == "shuttleai/shuttle-jaguar") or \
 (model == "Shakker-Labs/AWPortrait-FL") or \
-(model == "AlekseyCalvin/PixelWave_Schnell_03_by_humblemikey_Diffusers_fp8_T4bf16") or \
-(model == "AlekseyCalvin/PixelwaveFluxSchnell_Diffusers") or \
-(model == "mikeyandfriends/PixelWave_FLUX.1-schnell_04") or \
-(model == "minpeter/FLUX-Hyperscale-fused-fast") or \
-(model == "city96/FLUX.1-schnell-gguf") or \
-(model == "NikolaSigmoid/FLUX.1-Krea-dev") or \
-(model == "AlekseyCalvin/FluxKrea_HSTurbo_Diffusers") or \
-(model == "minpeter/FLUX-Hyperscale-fused") or \
-(model == "SicariusSicariiStuff/flux.1dev-abliteratedv2")\
+(model == "AlekseyCalvin/PixelWave_Schnell_03_by_humblemikey_Diffusers_fp8_T4bf16")\
 ):
         is_flux_value = True
     else:
