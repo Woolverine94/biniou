@@ -46,3 +46,4 @@ exiv2
 music-tag
 gguf
 timm==1.0.19
+starlette==0.52.1
