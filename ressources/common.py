@@ -2392,6 +2392,7 @@ def lora_model_list(model, *args):
             "hgw3lls/flux-mai68":("mai68_lora.safetensors", ""),
             "glif-loradex-trainer/fatman2021b_Outlined_Cel_shader_with_Texture_by_Ch13f":("Outlined_Cel_shader_with_Texture_by_Ch13f.safetensors", "Ch13f-shadr"),
             "glif-loradex-trainer/GOZT_miiaw_character_lora":("miiaw_character_lora.safetensors", "Miiaw"),
+            "glif-loradex-trainer/insectagon_stylized_comic":("stylized_comic.safetensors", "C0micz2"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
@@ -2542,6 +2543,7 @@ def lora_model_list(model, *args):
             "Norod78/pokirl-flux":("Flux_PokIRL_Pokemon_LoRA_1855673.safetensors", "PokIRL pokemon"),
             "Ryouko65777/Anime-Flux":("lora.safetensors", "anime style"),
             "glif-loradex-trainer/insectagon_1997_anime":("1997_anime.safetensors", "anime"),
+            "glif-loradex-trainer/insectagon_rubberhose_nocap1":("rubberhose_nocap1.safetensors", "rubb3r"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
