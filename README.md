@@ -22,8 +22,14 @@
 
 ## Updates
 
+  * 🆕 **2026-04-18** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot model [bartowski/google_gemma-4-E4B-it-GGUF](https://hf.co/bartowski/google_gemma-4-E4B-it-GGUF), high-end models [bartowski/google_gemma-4-31B-it-GGUF](https://hf.co/bartowski/google_gemma-4-31B-it-GGUF) and [mradermacher/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-i1-GGUF](https://hf.co/mradermacher/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-i1-GGUF).
+    - Add support for Flux model [buildborderless/FLUX.MF-8step_lightning_v2](https://hf.co/buildborderless/FLUX.MF-8step_lightning_v2)
+    - Add support for Flux LoRA models [glif-loradex-trainer/Danyl_rbln_style_lora](https://hf.co/glif-loradex-trainer/Danyl_rbln_style_lora), [AlekseyCalvin/HSToric_Focus_Flux_Lora](https://hf.co/AlekseyCalvin/HSToric_Focus_Flux_Lora), [glif-loradex-trainer/insectagon_stylized_comic](https://hf.co/glif-loradex-trainer/insectagon_stylized_comic) and [glif-loradex-trainer/insectagon_rubberhose_nocap1](https://hf.co/glif-loradex-trainer/insectagon_rubberhose_nocap1).
+    - Bugfix for "Localhost not accessible" critical error at startup
+
   * 🆕 **2026-04-11** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot model [bartowski/LiquidAI_LFM2-8B-A1B-GGUF](https://hf.co/bartowski/LiquidAI_LFM2-8B-A1B-GGUF), tiny model [bartowski/Qwen_Qwen3.5-4B-GGUF](https://hf.co/bartowski/Qwen_Qwen3.5-4B-GGUF), and [bartowski/google_gemma-4-26B-A4B-it-GGUF](https://hf.co/bartowski/google_gemma-4-26B-A4B-it-GGUF). If you use a cpu-only instance of biniou and have enough RAM, you should really try this latest model : it gives awesome results and answers pretty fast.
+    - Add support for Chatbot model [bartowski/LiquidAI_LFM2-8B-A1B-GGUF](https://hf.co/bartowski/LiquidAI_LFM2-8B-A1B-GGUF), tiny model [bartowski/Qwen_Qwen3.5-4B-GGUF](https://hf.co/bartowski/Qwen_Qwen3.5-4B-GGUF) and [bartowski/google_gemma-4-26B-A4B-it-GGUF](https://hf.co/bartowski/google_gemma-4-26B-A4B-it-GGUF). If you use a cpu-only instance of biniou and have enough RAM, you should really try this latest model : it gives awesome results and answers pretty fast.
     - Add support for Microsoft GIT image captioning model [microsoft/git-large-textvqa](https://hf.co/microsoft/git-large-textvqa)
     - Add support for Flux LoRA models [glif-loradex-trainer/fab1an_polaroid](https://hf.co/glif-loradex-trainer/fab1an_polaroid), [glif-loradex-trainer/R4Z0R1337_artyvibe_balloons_v2](https://hf.co/glif-loradex-trainer/R4Z0R1337_artyvibe_balloons_v2), [glif-loradex-trainer/GOZT_miiaw_character_lora](https://hf.co/glif-loradex-trainer/GOZT_miiaw_character_lora) and [glif-loradex-trainer/djmenorobl_ALBUM_COVER_FUNK](https://hf.co/glif-loradex-trainer/djmenorobl_ALBUM_COVER_FUNK).
 
@@ -43,11 +49,6 @@
     - Add support for Flux LoRA models [davisbro/photo-glow](https://hf.co/davisbro/photo-glow), [glif/l0w-r3z](https://hf.co/glif/l0w-r3z), [glif-loradex-trainer/maxxd4240_minimalistPastel](https://hf.co/glif-loradex-trainer/maxxd4240_minimalistPastel) and [dvyio/flux-lora-victorian-photograph](https://hf.co/dvyio/flux-lora-victorian-photograph).
     - Add an option to the settings panel to activate API (default: off). You should not activate this option if you're planning to allow public access to biniou without authentication. 
     - Automatic documentation for LoRA models in images modules.
-
-  * 🆕 **2026-03-14** : 🔥 ***Weekly update*** 🔥 >
-    - A huge thanks to Bulmax9797, -a security researcher- that kindly alerted me about security issues in biniou : 4 CVE have been patched this week. The API has been temporary disabled, and should be reintroduced soon. All other security issues were related to the settings modules and the way modules and configuration settings were handled, mainly through the API.
-    - Add support for Chatbot code specialized model [bartowski/janhq_Jan-code-4b-GGUF](https://hf.co/bartowski/janhq_Jan-code-4b-GGUF).
-    - Add support for Flux LoRA models [nt2323/simpletuner-lora](https://hf.co/nt2323/simpletuner-lora), [alvdansen/plushy-world-flux](https://hf.co/alvdansen/plushy-world-flux), [davisbro/half_illustration](https://hf.co/davisbro/half_illustration) and [Keltezaa/victorian-gothic-horror](https://hf.co/Keltezaa/victorian-gothic-horror).
 
 ---
 
