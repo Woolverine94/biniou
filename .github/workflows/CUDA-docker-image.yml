@@ -9,6 +9,10 @@ on:
   push:
     branches: [ "main" ]
     paths:
+      - install.sh
+      - requirements.txt
+      - update_cuda.sh
+      - CUDA/Dockerfile
       - .github/workflows/CUDA-docker-image.yml
 
 env:

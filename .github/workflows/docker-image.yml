@@ -9,6 +9,10 @@ on:
   push:
     branches: [ "main" ]
     paths:
+      - Dockerfile
+      - install.sh
+      - requirements.txt
+      - update.sh
       - .github/workflows/docker-image.yml
 
 env:
