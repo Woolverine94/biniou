@@ -2251,6 +2251,8 @@ def lora_model_list(model, *args):
             "glif/dithering":("flux_dev_Dither_Atkinson_Coarse_captions.safetensors", "in ATKSN style"),
             "glif-loradex-trainer/maxxd4240_minimalistPastel":("minimalistPastel.safetensors", "minimalistPastel"),
             "glif-loradex-trainer/Danyl_rbln_style_lora":("rbln_style_lora.safetensors", "rbln_style"),
+            "glif-loradex-trainer/insectagon_notawimmel":("notawimmel.safetensors", "notawimmel"),
+            "glif-loradex-trainer/001_old_horror_paintings-autocaption":("old_horror_paintings-autocaption.safetensors", ""),
             "-[ 🏆 🐢 📷 Photographic Flux LoRA ]-":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/flux-koda":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/pola-photo-flux":("pola_photo_araminta_k.safetensors", "polaroid style"),
