@@ -2493,6 +2493,8 @@ def lora_model_list(model, *args):
             "glif-loradex-trainer/Hailey_LostVHS":("LostVHS.safetensors", "VHS"),
             "glif-loradex-trainer/R4Z0R1337_artyvibe_balloons_v2":("artyvibe_balloons_v2.safetensors", "balloons"),
             "glif-loradex-trainer/djmenorobl_ALBUM_COVER_FUNK":("ALBUM_COVER_FUNK.safetensors", "funk"),
+            "flyway/flux_lora_balloon_v1":("flux_lora_balloon_v1.safetensors", "balloons art"),
+            "Crowbar-Dub/magazine-text":("lora.safetensors", "MGZ"),
             "-[ 🏆 🐢 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
