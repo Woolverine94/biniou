@@ -41,7 +41,7 @@ jobs:
         docker-images: true
         swap-storage: true
     
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6.0.2
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag biniou:$(date +%s)
 
