@@ -22,6 +22,12 @@
 
 ## Updates
 
+
+  * 🆕 **2026-04-26** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end models [bartowski/LiquidAI_LFM2-24B-A2B-GGUF](https://hf.co/bartowski/LiquidAI_LFM2-24B-A2B-GGUF) and [bartowski/Qwen_Qwen3.6-35B-A3B-GGUF](https://hf.co/bartowski/Qwen_Qwen3.6-35B-A3B-GGUF).
+    - Add support for Flux LoRA models [glif-loradex-trainer/insectagon_notawimmel](https://hf.co/glif-loradex-trainer/insectagon_notawimmel), [glif-loradex-trainer/001_old_horror_paintings-autocaption](https://hf.co/), [flyway/flux_lora_balloon_v1](https://hf.co/flyway/flux_lora_balloon_v1) and [Crowbar-Dub/magazine-text](https://hf.co/Crowbar-Dub/magazine-text).
+    - Update and enhancements for GitHub Actions workflows
+
   * 🆕 **2026-04-18** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot model [bartowski/google_gemma-4-E4B-it-GGUF](https://hf.co/bartowski/google_gemma-4-E4B-it-GGUF), high-end models [bartowski/google_gemma-4-31B-it-GGUF](https://hf.co/bartowski/google_gemma-4-31B-it-GGUF) and [mradermacher/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-i1-GGUF](https://hf.co/mradermacher/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-i1-GGUF).
     - Add support for Flux model [buildborderless/FLUX.MF-8step_lightning_v2](https://hf.co/buildborderless/FLUX.MF-8step_lightning_v2)
@@ -43,12 +49,6 @@
     - Add support for SDXL Anime models [Eugeoter/anime_illust_diffusion_xl](https://hf.co/Eugeoter/anime_illust_diffusion_xl).
     - Add support for Stable Video Diffusion model [vdo/stable-video-diffusion-img2vid-xt-1-1](https://hf.co/vdo/stable-video-diffusion-img2vid-xt-1-1).
     - Add support for Flux LoRA models [gokaygokay/Flux-Game-Assets-LoRA-v2](https://hf.co/gokaygokay/Flux-Game-Assets-LoRA-v2), [Ryouko65777/Anime-Flux](https://hf.co/Ryouko65777/Anime-Flux), [strangerzonehf/Gem-Touch-LoRA-Flux](https://hf.co/strangerzonehf/Gem-Touch-LoRA-Flux) and [jayavibhav/pixel-art-style](https://hf.co/jayavibhav/pixel-art-style).
-
-  * 🆕 **2026-03-21** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end models [mradermacher/Mistral-Nemo-12B-R1-v0.4-i1-GGUF](https://hf.co/mradermacher/Mistral-Nemo-12B-R1-v0.4-i1-GGUF) and [mradermacher/GLM-4.7-Flash-Claude-Opus-4.5-High-Reasoning-Distill-v2-heretic-i1-GGUF](https://hf.co/mradermacher/GLM-4.7-Flash-Claude-Opus-4.5-High-Reasoning-Distill-v2-heretic-i1-GGUF).
-    - Add support for Flux LoRA models [davisbro/photo-glow](https://hf.co/davisbro/photo-glow), [glif/l0w-r3z](https://hf.co/glif/l0w-r3z), [glif-loradex-trainer/maxxd4240_minimalistPastel](https://hf.co/glif-loradex-trainer/maxxd4240_minimalistPastel) and [dvyio/flux-lora-victorian-photograph](https://hf.co/dvyio/flux-lora-victorian-photograph).
-    - Add an option to the settings panel to activate API (default: off). You should not activate this option if you're planning to allow public access to biniou without authentication. 
-    - Automatic documentation for LoRA models in images modules.
 
 ---
 
