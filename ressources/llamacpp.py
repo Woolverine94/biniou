@@ -187,6 +187,7 @@ model_list_llamacpp_builtin = {
 #    "bartowski/mistralai_Mistral-Small-3.1-24B-Instruct-2503-GGUF":("mistralai_Mistral-Small-3.1-24B-Instruct-2503-Q5_K_M.gguf", prompt_template_list_llamacpp["Mistral Small instruct"][0], std_system_prompt),
 #    "bartowski/mistralai_Devstral-Small-2505-GGUF":("mistralai_Devstral-Small-2505-Q5_K_M.gguf", prompt_template_list_llamacpp["Mistral Small instruct"][0], std_system_prompt),
     "bartowski/mistralai_Devstral-Small-2507-GGUF":("mistralai_Devstral-Small-2507-Q5_K_M.gguf", prompt_template_list_llamacpp["Mistral Small instruct"][0], std_system_prompt),
+    "bartowski/mistralai_Ministral-3-14B-Instruct-2512-GGUF":("mistralai_Ministral-3-14B-Instruct-2512-Q5_K_M.gguf", prompt_template_list_llamacpp["Mistral Small instruct"][0], std_system_prompt),
     "bartowski/TheDrummer_Skyfall-31B-v4.1-GGUF":("TheDrummer_Skyfall-31B-v4.1-Q5_K_M.gguf", prompt_template_list_llamacpp["Mistral Small instruct"][0], std_system_prompt),
 #    "bartowski/TheDrummer_Skyfall-31B-v4-GGUF":("TheDrummer_Skyfall-31B-v4-Q5_K_M.gguf", prompt_template_list_llamacpp["Mistral Small instruct"][0], std_system_prompt),
     "bartowski/cognitivecomputations_Dolphin-Mistral-24B-Venice-Edition-GGUF":("cognitivecomputations_Dolphin-Mistral-24B-Venice-Edition-Q5_K_M.gguf", prompt_template_list_llamacpp["Mistral Small instruct"][0], std_system_prompt),
