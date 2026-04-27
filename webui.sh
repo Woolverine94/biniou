@@ -1,5 +1,6 @@
 #!/bin/bash
 ## Detection of TCMalloc
+
 RELEASE="$(cat /etc/os-release|grep ^ID)"
 
 if [ "$(echo $RELEASE|grep 'debian')" !=  "" ]
@@ -41,6 +42,14 @@ if [ "$TCMALLOC_NAME" != "" ]
     export LD_PRELOAD=$TCMALLOC_PATH/$TCMALLOC_NAME:$LD_PRELOAD
 fi
 
-HF_HUB_DISABLE_XET=1 AUDIOCRAFT_CACHE_DIR='./models/Audiocraft/' python3 webui.py
+## Enable use of xet by hf-hub
+if [ "$ENV_BINIOU_ENABLE_XET" == 1 ]
+  then
+    HF_HUB_DISABLE_XET_VALUE=0
+  else
+    HF_HUB_DISABLE_XET_VALUE=1
+fi
+
+HF_HUB_DISABLE_XET=$HF_HUB_DISABLE_XET_VALUE AUDIOCRAFT_CACHE_DIR='./models/Audiocraft/' python3 webui.py
 
 exit 0
