@@ -2396,6 +2396,8 @@ def lora_model_list(model, *args):
             "glif-loradex-trainer/GOZT_miiaw_character_lora":("miiaw_character_lora.safetensors", "Miiaw"),
             "glif-loradex-trainer/insectagon_stylized_comic":("stylized_comic.safetensors", "C0micz2"),
             "ysmikey/Layerpano3D-FLUX-Panorama-LoRA":("lora_hubs/pano_lora_512*1024_v1.safetensors", ""),
+            "dvyio/flux-lora-victorian-satire":("lora.safetensors", "in the style of a Victorian-era TOK cartoon illustration"),
+            "glif-loradex-trainer/AP123_flux_dev_political_memes":("flux_dev_political_memes.safetensors", "totk"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
