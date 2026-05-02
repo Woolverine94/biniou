@@ -22,6 +22,10 @@
 
 ## Updates
 
+  * 🆕 **2026-05-02** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end model [bartowski/mistralai_Ministral-3-14B-Instruct-2512-GGUF](https://hf.co/bartowski/mistralai_Ministral-3-14B-Instruct-2512-GGUF), Chatbot tiny model [bartowski/Jackrong_Qwen3.5-4B-Neo-GGUF](https://hf.co/bartowski/Jackrong_Qwen3.5-4B-Neo-GGUF) and update of Skyfall model to [bartowski/TheDrummer_Skyfall-31B-v4.2-GGUF](https://hf.co/bartowski/TheDrummer_Skyfall-31B-v4.2-GGUF).
+    - Add support for Flux LoRA models [ysmikey/Layerpano3D-FLUX-Panorama-LoRA](https://hf.co/ysmikey/Layerpano3D-FLUX-Panorama-LoRA), [Shakker-Labs/FLUX.1-dev-LoRA-Garbage-Bag-Art](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-Garbage-Bag-Art), [dvyio/flux-lora-victorian-satire](https://hf.co/dvyio/flux-lora-victorian-satire) and [glif-loradex-trainer/AP123_flux_dev_political_memes](https://hf.co/glif-loradex-trainer/AP123_flux_dev_political_memes).
+    - Add an environnment variable to activate / desactivate use of xet when downloading models from Huggingface. Disabled by default, you can easily activate it by launching biniou with `ENV_BINIOU_ENABLE_XET=1 webui.sh` . It could be used as a workaround for some huge models (like gpt-oss-120B) that fails to download completely or not working after download.
 
   * 🆕 **2026-04-26** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end models [bartowski/LiquidAI_LFM2-24B-A2B-GGUF](https://hf.co/bartowski/LiquidAI_LFM2-24B-A2B-GGUF) and [bartowski/Qwen_Qwen3.6-35B-A3B-GGUF](https://hf.co/bartowski/Qwen_Qwen3.6-35B-A3B-GGUF).
@@ -43,12 +47,6 @@
     - Add support for Chatbot models [bartowski/Qwen_Qwen3.5-9B-GGUF](https://hf.co/bartowski/Qwen_Qwen3.5-9B-GGUF) and [bartowski/mistralai_Ministral-3-8B-Instruct-2512-GGUF](https://hf.co/bartowski/mistralai_Ministral-3-8B-Instruct-2512-GGUF).
     - Add support for Microsoft GIT image captioning model [microsoft/git-large-textcaps](https://hf.co/microsoft/git-large-textcaps)
     - Add support for Flux LoRA models [hgw3lls/flux-mai68](https://hf.co/hgw3lls/flux-mai68), [glif-loradex-trainer/Hailey_LostVHS](https://hf.co/glif-loradex-trainer/Hailey_LostVHS), [glif-loradex-trainer/fatman2021b_Outlined_Cel_shader_with_Texture_by_Ch13f](https://hf.co/glif-loradex-trainer/fatman2021b_Outlined_Cel_shader_with_Texture_by_Ch13f) and [glif-loradex-trainer/insectagon_1997_anime](https://hf.co/glif-loradex-trainer/insectagon_1997_anime).
-
-  * 🆕 **2026-03-28** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot model [bartowski/TheDrummer_Anubis-Mini-8B-v1-GGUF](https://hf.co/bartowski/TheDrummer_Anubis-Mini-8B-v1-GGUF) and high-end model [bartowski/jtl11_GLM-4.7-Flash-heretic-GGUF](https://hf.co/bartowski/jtl11_GLM-4.7-Flash-heretic-GGUF).
-    - Add support for SDXL Anime models [Eugeoter/anime_illust_diffusion_xl](https://hf.co/Eugeoter/anime_illust_diffusion_xl).
-    - Add support for Stable Video Diffusion model [vdo/stable-video-diffusion-img2vid-xt-1-1](https://hf.co/vdo/stable-video-diffusion-img2vid-xt-1-1).
-    - Add support for Flux LoRA models [gokaygokay/Flux-Game-Assets-LoRA-v2](https://hf.co/gokaygokay/Flux-Game-Assets-LoRA-v2), [Ryouko65777/Anime-Flux](https://hf.co/Ryouko65777/Anime-Flux), [strangerzonehf/Gem-Touch-LoRA-Flux](https://hf.co/strangerzonehf/Gem-Touch-LoRA-Flux) and [jayavibhav/pixel-art-style](https://hf.co/jayavibhav/pixel-art-style).
 
 ---
 
