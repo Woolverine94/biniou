@@ -149,6 +149,7 @@ model_list_txt2img_sd_builtin = [
     "minpeter/FLUX-Hyperscale-fused-fast",
     "city96/FLUX.1-schnell-gguf",
     "buildborderless/FLUX.MF-8step_lightning_v2",
+    "aifeifei798/DarkIdol-flux-v1.2",
     "-[ 🏠 Local models ]-",
 ]
 

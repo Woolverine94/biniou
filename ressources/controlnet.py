@@ -133,6 +133,7 @@ model_list_controlnet_builtin = [
     "mikeyandfriends/PixelWave_FLUX.1-schnell_04",
     "minpeter/FLUX-Hyperscale-fused-fast",
     "buildborderless/FLUX.MF-8step_lightning_v2",
+    "aifeifei798/DarkIdol-flux-v1.2",
     "-[ 🏠 Local models ]-",
 ]
 
