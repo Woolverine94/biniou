@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2026-05-09** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end model [bartowski/allura-org_Qwen3.6-35B-A3B-Anko-GGUF](https://hf.co/bartowski/allura-org_Qwen3.6-35B-A3B-Anko-GGUF)  and Chatbot model [bartowski/ibm-granite_granite-4.1-8b-GGUF](https://hf.co/bartowski/ibm-granite_granite-4.1-8b-GGUF).
+    - Add support for Flux model [aifeifei798/DarkIdol-flux-v1.2](https://hf.co/aifeifei798/DarkIdol-flux-v1.2)
+    - Add support for Flux LoRA models [mindlywork/ScribbAug24](https://hf.co/mindlywork/ScribbAug24), [alvdansen/flux_film_foto](https://hf.co/alvdansen/flux_film_foto), [jbilcke-hf/flux-dev-panorama-lora-2](https://hf.co/jbilcke-hf/flux-dev-panorama-lora-2) and [AlekseyCalvin/Marionette_Modernism_FluxLoRA_Var1_bySilverAgePoets](https://hf.co/AlekseyCalvin/Marionette_Modernism_FluxLoRA_Var1_bySilverAgePoets).
+    - Enhancement for defaults system prompts in Chatbot module.
+
   * 🆕 **2026-05-02** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end model [bartowski/mistralai_Ministral-3-14B-Instruct-2512-GGUF](https://hf.co/bartowski/mistralai_Ministral-3-14B-Instruct-2512-GGUF), Chatbot tiny model [bartowski/Jackrong_Qwen3.5-4B-Neo-GGUF](https://hf.co/bartowski/Jackrong_Qwen3.5-4B-Neo-GGUF) and update of Skyfall model to [bartowski/TheDrummer_Skyfall-31B-v4.2-GGUF](https://hf.co/bartowski/TheDrummer_Skyfall-31B-v4.2-GGUF).
     - Add support for Flux LoRA models [ysmikey/Layerpano3D-FLUX-Panorama-LoRA](https://hf.co/ysmikey/Layerpano3D-FLUX-Panorama-LoRA), [Shakker-Labs/FLUX.1-dev-LoRA-Garbage-Bag-Art](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-Garbage-Bag-Art), [dvyio/flux-lora-victorian-satire](https://hf.co/dvyio/flux-lora-victorian-satire) and [glif-loradex-trainer/AP123_flux_dev_political_memes](https://hf.co/glif-loradex-trainer/AP123_flux_dev_political_memes).
@@ -42,11 +48,6 @@
     - Add support for Chatbot model [bartowski/LiquidAI_LFM2-8B-A1B-GGUF](https://hf.co/bartowski/LiquidAI_LFM2-8B-A1B-GGUF), tiny model [bartowski/Qwen_Qwen3.5-4B-GGUF](https://hf.co/bartowski/Qwen_Qwen3.5-4B-GGUF) and [bartowski/google_gemma-4-26B-A4B-it-GGUF](https://hf.co/bartowski/google_gemma-4-26B-A4B-it-GGUF). If you use a cpu-only instance of biniou and have enough RAM, you should really try this latest model : it gives awesome results and answers pretty fast.
     - Add support for Microsoft GIT image captioning model [microsoft/git-large-textvqa](https://hf.co/microsoft/git-large-textvqa)
     - Add support for Flux LoRA models [glif-loradex-trainer/fab1an_polaroid](https://hf.co/glif-loradex-trainer/fab1an_polaroid), [glif-loradex-trainer/R4Z0R1337_artyvibe_balloons_v2](https://hf.co/glif-loradex-trainer/R4Z0R1337_artyvibe_balloons_v2), [glif-loradex-trainer/GOZT_miiaw_character_lora](https://hf.co/glif-loradex-trainer/GOZT_miiaw_character_lora) and [glif-loradex-trainer/djmenorobl_ALBUM_COVER_FUNK](https://hf.co/glif-loradex-trainer/djmenorobl_ALBUM_COVER_FUNK).
-
-  * 🆕 **2026-04-04** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot models [bartowski/Qwen_Qwen3.5-9B-GGUF](https://hf.co/bartowski/Qwen_Qwen3.5-9B-GGUF) and [bartowski/mistralai_Ministral-3-8B-Instruct-2512-GGUF](https://hf.co/bartowski/mistralai_Ministral-3-8B-Instruct-2512-GGUF).
-    - Add support for Microsoft GIT image captioning model [microsoft/git-large-textcaps](https://hf.co/microsoft/git-large-textcaps)
-    - Add support for Flux LoRA models [hgw3lls/flux-mai68](https://hf.co/hgw3lls/flux-mai68), [glif-loradex-trainer/Hailey_LostVHS](https://hf.co/glif-loradex-trainer/Hailey_LostVHS), [glif-loradex-trainer/fatman2021b_Outlined_Cel_shader_with_Texture_by_Ch13f](https://hf.co/glif-loradex-trainer/fatman2021b_Outlined_Cel_shader_with_Texture_by_Ch13f) and [glif-loradex-trainer/insectagon_1997_anime](https://hf.co/glif-loradex-trainer/insectagon_1997_anime).
 
 ---
 
