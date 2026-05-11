@@ -452,7 +452,7 @@ def image_txt2img_sd(
         pipe_txt2img_sd = pipe_txt2img_sd.to(device_txt2img_sd)
     if not is_sd3_txt2img_sd and not is_sd35_txt2img_sd and not is_sd35m_txt2img_sd:
         pipe_txt2img_sd.enable_vae_slicing()
-
+        pipe_txt2img_sd.enable_vae_tiling()
     adapters_list = []
 
     if len(lora_array) != 0:
@@ -656,7 +656,7 @@ def image_txt2img_sd(
     print(reporting_txt2img_sd)
 
     exif_writer_png(reporting_txt2img_sd, final_image)
-    
+
     if is_sd3_txt2img_sd or is_sd35_txt2img_sd or is_sd35m_txt2img_sd or is_flux_txt2img_sd:
         del nsfw_filter_final, feat_ex, pipe_txt2img_sd, generator, image
     else:

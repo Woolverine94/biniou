@@ -122,6 +122,7 @@ def image_txt2img_mjm(
     else : 
         pipe_txt2img_mjm = pipe_txt2img_mjm.to(device_txt2img_mjm)
     pipe_txt2img_mjm.enable_vae_slicing()
+    pipe_txt2img_mjm.enable_vae_tiling()
 
     if seed_txt2img_mjm == 0:
         random_seed = random.randrange(0, 10000000000, 1)

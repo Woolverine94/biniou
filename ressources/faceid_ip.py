@@ -423,6 +423,7 @@ def image_faceid_ip(
     else : 
         pipe_faceid_ip = pipe_faceid_ip.to(device_faceid_ip)
     pipe_faceid_ip.enable_vae_slicing()
+    pipe_faceid_ip.enable_vae_tiling()
 
     if len(lora_array) != 0:
         for e in range(len(lora_array)):

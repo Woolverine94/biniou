@@ -153,7 +153,7 @@ def video_animatediff_lcm(
     else : 
         pipe_animatediff_lcm = pipe_animatediff_lcm.to(device_animatediff_lcm)
     pipe_animatediff_lcm.enable_vae_slicing()
-
+    pipe_animatediff_lcm.enable_vae_tiling()
     if seed_animatediff_lcm == 0:
         random_seed = random.randrange(0, 10000000000, 1)
         final_seed = random_seed

@@ -80,7 +80,8 @@ def video_txt2vid_ms(
     else : 
         pipe_txt2vid_ms = pipe_txt2vid_ms.to(device_txt2vid_ms)
     pipe_txt2vid_ms.enable_vae_slicing()
-    
+    pipe_txt2vid_ms.enable_vae_tiling()
+
     if seed_txt2vid_ms == 0:
         random_seed = random.randrange(0, 10000000000, 1)
         final_seed = random_seed

@@ -817,6 +817,7 @@ def image_controlnet(
         pipe_controlnet = pipe_controlnet.to(device_controlnet)
     if not is_sd3_controlnet and not is_flux_controlnet:
         pipe_controlnet.enable_vae_slicing()
+        pipe_controlnet.enable_vae_tiling()
 
     adapters_list = []
 

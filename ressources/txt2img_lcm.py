@@ -229,6 +229,7 @@ def image_txt2img_lcm(modelid_txt2img_lcm,
     else : 
         pipe_txt2img_lcm = pipe_txt2img_lcm.to(device_txt2img_lcm)
     pipe_txt2img_lcm.enable_vae_slicing()
+    pipe_txt2img_lcm.enable_vae_tiling()
 
     if len(lora_array) != 0:
         for e in range(len(lora_array)):
