@@ -262,6 +262,7 @@ def preview_image(step, timestep, latents, pipe):
 
 def clean_ram():
     gc.collect()
+#    del gc.garbage[:]
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
         torch.cuda.ipc_collect()
@@ -2217,6 +2218,7 @@ def lora_model_list(model, *args):
             "VideoAditor/Flux-Lora-Realism":("flux_realism_lora.safetensors", ""),
             "HoldDeezPlz/sharplines":("FluxMythSharpL1nes.safetensors", "SharpL1nes"),
             "nt2323/simpletuner-lora":("pytorch_lora_weights.safetensors", ""),
+            "PlayDustinDB/FLUX.1-Krea-dev-LoRA":("flux1-krea-dev_rank_128-bf16.safetensors", ""),
             "-[ 🏆 🐢 🖼️ Artistic Flux LoRA ]-":("Yoji_Shinkawa.safetensors", "Yoji_Shinkawa"),
             "Datou1111/Yoji_Shinkawa":("Yoji_Shinkawa.safetensors", "Yoji_Shinkawa"),
             "leonel4rd/FluxDisney":("Flux_retro_Disney.safetensors", "egdisney"),
@@ -2254,6 +2256,7 @@ def lora_model_list(model, *args):
             "glif-loradex-trainer/insectagon_notawimmel":("notawimmel.safetensors", "notawimmel"),
             "glif-loradex-trainer/001_old_horror_paintings-autocaption":("old_horror_paintings-autocaption.safetensors", ""),
             "mindlywork/ScribbAug24":("ScribbAug24.safetensors", "ScribbAug24"),
+            "glif-loradex-trainer/heather_huet_textiles":("huet_textiles.safetensors", "jean baptiste huet textile pattern"),
             "-[ 🏆 🐢 📷 Photographic Flux LoRA ]-":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/flux-koda":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/pola-photo-flux":("pola_photo_araminta_k.safetensors", "polaroid style"),
