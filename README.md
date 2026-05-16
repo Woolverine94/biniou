@@ -22,6 +22,11 @@
 
 ## Updates
 
+  * 🆕 **2026-05-16** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end model [bartowski/mistralai_Devstral-Small-2-24B-Instruct-2512-GGUF](https://hf.co/bartowski/mistralai_Devstral-Small-2-24B-Instruct-2512-GGUF) and code-specialized model [Tesslate/OmniCoder-9B-GGUF](https://hf.co/Tesslate/OmniCoder-9B-GGUF).
+    - Add support for Flux LoRA models [PlayDustinDB/FLUX.1-Krea-dev-LoRA](https://hf.co/PlayDustinDB/FLUX.1-Krea-dev-LoRA), [glif-loradex-trainer/heather_huet_textiles](https://hf.co/glif-loradex-trainer/heather_huet_textiles), [strangerzonehf/Flux-Creative-Stocks-LoRA](https://hf.co/strangerzonehf/Flux-Creative-Stocks-LoRA) and [SoumilB7/FLUX.1-dev-ProductStudio](https://hf.co/SoumilB7/FLUX.1-dev-ProductStudio).
+    - Enable default use of VAE tiling in image modules supporting it.
+
   * 🆕 **2026-05-09** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end model [bartowski/allura-org_Qwen3.6-35B-A3B-Anko-GGUF](https://hf.co/bartowski/allura-org_Qwen3.6-35B-A3B-Anko-GGUF)  and Chatbot model [bartowski/ibm-granite_granite-4.1-8b-GGUF](https://hf.co/bartowski/ibm-granite_granite-4.1-8b-GGUF).
     - Add support for Flux model [aifeifei798/DarkIdol-flux-v1.2](https://hf.co/aifeifei798/DarkIdol-flux-v1.2)
@@ -43,11 +48,6 @@
     - Add support for Flux model [buildborderless/FLUX.MF-8step_lightning_v2](https://hf.co/buildborderless/FLUX.MF-8step_lightning_v2)
     - Add support for Flux LoRA models [glif-loradex-trainer/Danyl_rbln_style_lora](https://hf.co/glif-loradex-trainer/Danyl_rbln_style_lora), [AlekseyCalvin/HSToric_Focus_Flux_Lora](https://hf.co/AlekseyCalvin/HSToric_Focus_Flux_Lora), [glif-loradex-trainer/insectagon_stylized_comic](https://hf.co/glif-loradex-trainer/insectagon_stylized_comic) and [glif-loradex-trainer/insectagon_rubberhose_nocap1](https://hf.co/glif-loradex-trainer/insectagon_rubberhose_nocap1).
     - Bugfix for "Localhost not accessible" critical error at startup
-
-  * 🆕 **2026-04-11** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot model [bartowski/LiquidAI_LFM2-8B-A1B-GGUF](https://hf.co/bartowski/LiquidAI_LFM2-8B-A1B-GGUF), tiny model [bartowski/Qwen_Qwen3.5-4B-GGUF](https://hf.co/bartowski/Qwen_Qwen3.5-4B-GGUF) and [bartowski/google_gemma-4-26B-A4B-it-GGUF](https://hf.co/bartowski/google_gemma-4-26B-A4B-it-GGUF). If you use a cpu-only instance of biniou and have enough RAM, you should really try this latest model : it gives awesome results and answers pretty fast.
-    - Add support for Microsoft GIT image captioning model [microsoft/git-large-textvqa](https://hf.co/microsoft/git-large-textvqa)
-    - Add support for Flux LoRA models [glif-loradex-trainer/fab1an_polaroid](https://hf.co/glif-loradex-trainer/fab1an_polaroid), [glif-loradex-trainer/R4Z0R1337_artyvibe_balloons_v2](https://hf.co/glif-loradex-trainer/R4Z0R1337_artyvibe_balloons_v2), [glif-loradex-trainer/GOZT_miiaw_character_lora](https://hf.co/glif-loradex-trainer/GOZT_miiaw_character_lora) and [glif-loradex-trainer/djmenorobl_ALBUM_COVER_FUNK](https://hf.co/glif-loradex-trainer/djmenorobl_ALBUM_COVER_FUNK).
 
 ---
 
