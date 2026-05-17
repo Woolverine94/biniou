@@ -2650,7 +2650,7 @@ with gr.Blocks(
                         )
                         last_reply_llamacpp = gr.Textbox(value="", visible=False)
                     with gr.Row():
-                            prompt_llamacpp = gr.Textbox(label=biniou_lang_chatbot_prompt_label, lines=1, max_lines=3, show_copy_button=True, placeholder=biniou_lang_chatbot_prompt_placeholder, autofocus=True)
+                            prompt_llamacpp = gr.Textbox(label=biniou_lang_chatbot_prompt_label, lines=3, max_lines=3, show_copy_button=True, placeholder=biniou_lang_chatbot_prompt_placeholder, autofocus=True)
                             hidden_prompt_llamacpp = gr.Textbox(value="", visible=False)
                             last_reply_llamacpp.change(fn=lambda x:x, inputs=hidden_prompt_llamacpp, outputs=prompt_llamacpp)
                     with gr.Row():
@@ -2881,7 +2881,7 @@ with gr.Blocks(
                             )
                             last_reply_llava = gr.Textbox(value="", visible=False)
                     with gr.Row():
-                            prompt_llava = gr.Textbox(label=biniou_lang_chatbot_prompt_label, lines=1, max_lines=3, show_copy_button=True, placeholder=biniou_lang_chatbot_prompt_placeholder, autofocus=True)
+                            prompt_llava = gr.Textbox(label=biniou_lang_chatbot_prompt_label, lines=3, max_lines=3, show_copy_button=True, placeholder=biniou_lang_chatbot_prompt_placeholder, autofocus=True)
                             hidden_prompt_llava = gr.Textbox(value="", visible=False)
                             last_reply_llava.change(fn=lambda x:x, inputs=hidden_prompt_llava, outputs=prompt_llava)
                     with gr.Row():
