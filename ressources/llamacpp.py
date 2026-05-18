@@ -98,6 +98,7 @@ model_list_llamacpp_builtin = {
     "bartowski/OpenChat-3.5-0106_32K-PoSE-GGUF":("OpenChat-3.5-0106_32K-PoSE-Q5_K_M.gguf", "<s> GPT4 System: {system_prompt}<|end_of_turn|> GPT4 User: {prompt}<|end_of_turn|> GPT4 Assistant: ", std_system_prompt),
     "bartowski/mlabonne_Qwen3-8B-abliterated-GGUF":("mlabonne_Qwen3-8B-abliterated-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "bartowski/Qwen_Qwen3.5-9B-GGUF":("Qwen_Qwen3.5-9B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
+    "Jackrong/Qwen3.5-9B-DeepSeek-V4-Flash-GGUF":("Qwen3.5-9B-DeepSeek-V4-Flash-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
     "bartowski/deepseek-ai_DeepSeek-R1-0528-Qwen3-8B-GGUF":("deepseek-ai_DeepSeek-R1-0528-Qwen3-8B-Q5_K_M.gguf", "<｜begin▁of▁sentence｜>{system_prompt}<｜User｜>{prompt}<｜Assistant｜>\n", std_system_prompt),
     "bartowski/Qwen2.5-7B-Instruct-1M-GGUF":("Qwen2.5-7B-Instruct-1M-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "bartowski/nvidia_AceInstruct-7B-GGUF":("nvidia_AceInstruct-7B-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n", std_system_prompt),
