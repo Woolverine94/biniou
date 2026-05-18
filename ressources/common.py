@@ -2508,6 +2508,8 @@ def lora_model_list(model, *args):
             "AlekseyCalvin/Marionette_Modernism_FluxLoRA_Var1_bySilverAgePoets":("Marionettes_of_Ekster_and_TaeuberArp_FluxLoRA_Var1_bySilverAgePoets.safetensors", "dadadoll style photo"),
             "strangerzonehf/Flux-Creative-Stocks-LoRA":("Creative-Stocks.safetensors", "Creative Stocks"),
             "SoumilB7/FLUX.1-dev-ProductStudio":("pytorch_lora_weights.safetensors", "Item name: "),
+            "gokaygokay/Flux-Seamless-Texture-LoRA":("seamless_texture.safetensors", "smlstxtr"),
+            "merve/flux-lego-lora-dreambooth":("pytorch_lora_weights.safetensors", "lego set in style of TOK"),
             "-[ 🏆 🐢 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
