@@ -1853,7 +1853,8 @@ def is_bin(model):
 (model == "Norod78/sd15-jojo-stone-ocean") or \
 (model == "stablediffusionapi/dream-diffusion-lightning") or \
 (model == "RunDiffusion/Juggernaut-XL-v6") or \
-(model == "ckpt/dreamlike-diffusion-1.0-inpainting")\
+(model == "ckpt/dreamlike-diffusion-1.0-inpainting") or\
+(model == "RunDiffusion/Juggernaut-XI-Lightning")\
 ):
         is_bin_value = True
     else :

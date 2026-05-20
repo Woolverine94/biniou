@@ -140,6 +140,7 @@ model_list_faceid_ip_builtin = [
     "Lykon/dreamshaper-xl-lightning",
     "RunDiffusion/Juggernaut-XL-Lightning",
     "RunDiffusion/Juggernaut-X-Hyper",
+    "RunDiffusion/Juggernaut-XI-Lightning",
     "SG161222/RealVisXL_V5.0_Lightning",
     "dataautogpt3/ProteusV0.4-Lightning",
     "recoilme/ColorfulXL-Lightning",
