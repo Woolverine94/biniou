@@ -132,6 +132,7 @@ model_list_llamacpp_builtin = {
     "bartowski/POLARIS-Project_Polaris-4B-Preview-GGUF":("POLARIS-Project_Polaris-4B-Preview-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "bartowski/microsoft_Phi-4-mini-instruct-GGUF":("microsoft_Phi-4-mini-instruct-Q5_K_M.gguf", "<|system|>{system_prompt}<|end|><|user|>{prompt}<|end|><|assistant|>", std_system_prompt),
     "bartowski/Qwen_Qwen3-4B-GGUF":("Qwen_Qwen3-4B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
+    "bartowski/Tralalabs_Qwen3-2507-4B-Instruct-Haiku-4.5-Merged-GGUF":("Tralalabs_Qwen3-2507-4B-Instruct-Haiku-4.5-Merged-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "bartowski/p-e-w_Qwen3-4B-Instruct-2507-heretic-GGUF":("p-e-w_Qwen3-4B-Instruct-2507-heretic-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n", std_system_prompt),
     "bartowski/Qwen_Qwen3.5-4B-GGUF":("Qwen_Qwen3.5-4B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
     "bartowski/Jackrong_Qwen3.5-4B-Neo-GGUF":("Jackrong_Qwen3.5-4B-Neo-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
