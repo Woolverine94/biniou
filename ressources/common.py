@@ -2093,6 +2093,8 @@ def lora_model_list(model, *args):
             "CoolKrishh/Comic-SDXL-LoRA":("Comic-SDXL.safetensors", "Comic Style, Comic Art, Mythic, Illustration"),
             "Norod78/sdxl-muppetshow-lora":("SDXL-MuppetShow-Lora-step00002500.safetensors", "MuppetShow"),
             "Norod78/cctv-stlye-sdxl":("SDXL-CCTV-Style-Lora.safetensors", "CCTV Style"),
+            "lordjia/by-feng-zikai":("fengzikai_v1.0_XL.safetensors", "by Feng Zikai"),
+            "artificialguybr/360Redmond":("View360.safetensors", "360, 360 View"),
             "-[ 👌 🪧 Posters SDXL LoRA ]-":("SDXL-Caricaturized-Lora.safetensors", "Caricaturized"),
             "Norod78/SDXL-Caricaturized-Lora":("SDXL-Caricaturized-Lora.safetensors", "Caricaturized"),
             "artificialguybr/movie-poster-redmond-for-sd-xl-create-movie-poster-images":("MoviePosterRedmond-MoviePoster-MoviePosterRedAF.safetensors", "Movie Poster, MoviePosterAF"),
