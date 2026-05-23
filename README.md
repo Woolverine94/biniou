@@ -23,6 +23,13 @@
 ## Updates
 
   * 🆕 **2026-05-16** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot model [Jackrong/Qwen3.5-9B-DeepSeek-V4-Flash-GGUF](https://hf.co/Jackrong/Qwen3.5-9B-DeepSeek-V4-Flash-GGUF) and tiny model [bartowski/Tralalabs_Qwen3-2507-4B-Instruct-Haiku-4.5-Merged-GGUF](https://hf.co/bartowski/Tralalabs_Qwen3-2507-4B-Instruct-Haiku-4.5-Merged-GGUF).
+    - Add support for SDXL model [RunDiffusion/Juggernaut-XI-Lightning](https://hf.co/RunDiffusion/Juggernaut-XI-Lightning).
+    - Add support for SDXL LoRA models [lordjia/by-feng-zikai](https://hf.co/lordjia/by-feng-zikai) and [artificialguybr/360Redmond](https://hf.co/artificialguybr/360Redmond).
+    - Add support for Flux LoRA models [gokaygokay/Flux-Seamless-Texture-LoRA](https://hf.co/gokaygokay/Flux-Seamless-Texture-LoRA) and [merve/flux-lego-lora-dreambooth](https://hf.co/merve/flux-lego-lora-dreambooth).
+    - Modification of Chatbot interfaces behavior (both llamacpp and llava) : enter key will now generate a new line in the prompt textarea : use shift+enter to validate your prompt and launch inference.
+
+  * 🆕 **2026-05-16** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end model [bartowski/mistralai_Devstral-Small-2-24B-Instruct-2512-GGUF](https://hf.co/bartowski/mistralai_Devstral-Small-2-24B-Instruct-2512-GGUF) and code-specialized model [Tesslate/OmniCoder-9B-GGUF](https://hf.co/Tesslate/OmniCoder-9B-GGUF).
     - Add support for Flux LoRA models [PlayDustinDB/FLUX.1-Krea-dev-LoRA](https://hf.co/PlayDustinDB/FLUX.1-Krea-dev-LoRA), [glif-loradex-trainer/heather_huet_textiles](https://hf.co/glif-loradex-trainer/heather_huet_textiles), [strangerzonehf/Flux-Creative-Stocks-LoRA](https://hf.co/strangerzonehf/Flux-Creative-Stocks-LoRA) and [SoumilB7/FLUX.1-dev-ProductStudio](https://hf.co/SoumilB7/FLUX.1-dev-ProductStudio).
     - Enable default use of VAE tiling in image modules supporting it.
@@ -42,12 +49,6 @@
     - Add support for Chatbot high-end models [bartowski/LiquidAI_LFM2-24B-A2B-GGUF](https://hf.co/bartowski/LiquidAI_LFM2-24B-A2B-GGUF) and [bartowski/Qwen_Qwen3.6-35B-A3B-GGUF](https://hf.co/bartowski/Qwen_Qwen3.6-35B-A3B-GGUF).
     - Add support for Flux LoRA models [glif-loradex-trainer/insectagon_notawimmel](https://hf.co/glif-loradex-trainer/insectagon_notawimmel), [glif-loradex-trainer/001_old_horror_paintings-autocaption](https://hf.co/), [flyway/flux_lora_balloon_v1](https://hf.co/flyway/flux_lora_balloon_v1) and [Crowbar-Dub/magazine-text](https://hf.co/Crowbar-Dub/magazine-text).
     - Update and enhancements for GitHub Actions workflows
-
-  * 🆕 **2026-04-18** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot model [bartowski/google_gemma-4-E4B-it-GGUF](https://hf.co/bartowski/google_gemma-4-E4B-it-GGUF), high-end models [bartowski/google_gemma-4-31B-it-GGUF](https://hf.co/bartowski/google_gemma-4-31B-it-GGUF) and [mradermacher/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-i1-GGUF](https://hf.co/mradermacher/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-i1-GGUF).
-    - Add support for Flux model [buildborderless/FLUX.MF-8step_lightning_v2](https://hf.co/buildborderless/FLUX.MF-8step_lightning_v2)
-    - Add support for Flux LoRA models [glif-loradex-trainer/Danyl_rbln_style_lora](https://hf.co/glif-loradex-trainer/Danyl_rbln_style_lora), [AlekseyCalvin/HSToric_Focus_Flux_Lora](https://hf.co/AlekseyCalvin/HSToric_Focus_Flux_Lora), [glif-loradex-trainer/insectagon_stylized_comic](https://hf.co/glif-loradex-trainer/insectagon_stylized_comic) and [glif-loradex-trainer/insectagon_rubberhose_nocap1](https://hf.co/glif-loradex-trainer/insectagon_rubberhose_nocap1).
-    - Bugfix for "Localhost not accessible" critical error at startup
 
 ---
 
