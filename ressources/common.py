@@ -2122,6 +2122,8 @@ def lora_model_list(model, *args):
             "Lora-4-IABD-2/floor_plans_a_v1.safetensors":("floor_plans_a.safetensors", ""),
             "Blib-la/caricature_lora_sdxl":("caricature_sdxl_v2.safetensors", "caricature"),
             "Norod78/SDXL-LaundryArt-LoRA-r32":("LaundryArt_LoRA-r32.safetensors", "LaundryArt"),
+            "artificialguybr/amigurami-redmond-amigurami-crochet-sd-xl-lora":("AmiguramiRedmond-Crochet-Amigurumi.safetensors", "Amigurami, Crochet"),
+            "artificialguybr/ToyRedmond-ToyLoraForSDXL10":("ToyRedmond-FnkRedmAF.safetensors", ""),
             "-[ 👌 🇯🇵 Anime SDXL LoRA ]-":("Studio Ghibli Style.safetensors", "Studio Ghibli Style - "),
             "KappaNeuro/studio-ghibli-style":("Studio Ghibli Style.safetensors", "Studio Ghibli Style - "),
             "mnemic/MinionStyleXL-SDXL-LoRA":("MinionStyleXL.safetensors", "MinionStyle"),
