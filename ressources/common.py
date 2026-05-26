@@ -1825,7 +1825,8 @@ def is_fast_lora(model):
 (model == "alimama-creative/FLUX.1-Turbo-Alpha") or \
 (model == "sunhaha123/stable-diffusion-3.5-medium-turbo") or \
 (model == "tensorart/stable-diffusion-3.5-medium-turbo") or \
-(model == "ostris/fluxdev2schnell-lora")\
+(model == "ostris/fluxdev2schnell-lora") or\
+(model == "DarkMoonDragon/TurboRender-flux-dev")\
 ):
         is_fast_lora_value = True
     else:
@@ -2197,6 +2198,7 @@ def lora_model_list(model, *args):
             "ByteDance/Hyper-SD":("Hyper-FLUX.1-dev-8steps-lora.safetensors", ""),
             "RED-AIGC/TDD":("TDD-FLUX.1-dev-lora-beta.safetensors", ""),
             "alimama-creative/FLUX.1-Turbo-Alpha":("diffusion_pytorch_model.safetensors", ""),
+            "DarkMoonDragon/TurboRender-flux-dev":("pytorch_lora_weights.safetensors", ""),
         }
         model_list_lora_builtin = {
 #            "-[ 🏆 🐢 Flux LoRA ]-":("pola_photo_araminta_k.safetensors", "polaroid style"),
@@ -2515,6 +2517,7 @@ def lora_model_list(model, *args):
             "SoumilB7/FLUX.1-dev-ProductStudio":("pytorch_lora_weights.safetensors", "Item name: "),
             "gokaygokay/Flux-Seamless-Texture-LoRA":("seamless_texture.safetensors", "smlstxtr"),
             "merve/flux-lego-lora-dreambooth":("pytorch_lora_weights.safetensors", "lego set in style of TOK"),
+            "glif-loradex-trainer/rennurtsfx_crappy_rap_covers_test2":("crappy_rap_covers_test2.safetensors", "cr4prapc0vers"),
             "-[ 🏆 🐢 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
