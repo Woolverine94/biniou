@@ -32,6 +32,7 @@ model_list_pix2pix_builtin = [
     "instruction-tuning-sd/low-level-img-proc",
     "instruction-tuning-sd/cartoonizer",
     "diffusers/sdxl-instructpix2pix-768",
+    "pravin006/sdxl-pix2pix-lora-finetuned",
 ]
 
 for k in range(len(model_list_pix2pix_builtin)):
@@ -96,7 +97,7 @@ def image_pix2pix(
 
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_safety_checker, device_pix2pix, nsfw_filter)
 
-    if is_sdxl(modelid_pix2pix):
+    if is_sdxl(modelid_pix2pix) and (modelid_pix2pix != "pravin006/sdxl-pix2pix-lora-finetuned"):
         is_xl_pix2pix: bool = True
     else :        
         is_xl_pix2pix: bool = False
@@ -117,7 +118,7 @@ def image_pix2pix(
             modelid_pix2pix, 
             cache_dir=model_path_pix2pix, 
             torch_dtype=model_arch,
-            use_safetensors=True if (modelid_pix2pix == "timbrooks/instruct-pix2pix" or modelid_pix2pix == "Ekenayy/instruct-pix2pix-full") else False,
+            use_safetensors=True if (modelid_pix2pix == "timbrooks/instruct-pix2pix" or modelid_pix2pix == "Ekenayy/instruct-pix2pix-full" or modelid_pix2pix == "pravin006/sdxl-pix2pix-lora-finetuned") else False,
             safety_checker=nsfw_filter_final, 
             feature_extractor=feat_ex,
             resume_download=True,
