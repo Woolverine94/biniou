@@ -22,7 +22,13 @@
 
 ## Updates
 
-  * 🆕 **2026-05-16** : 🔥 ***Weekly update*** 🔥 >
+  * 🆕 **2026-05-30** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end model [bartowski/ibm-granite_granite-4.1-30b-GGUF](https://hf.co/bartowski/ibm-granite_granite-4.1-30b-GGUF) and code-specialized model [Jackrong/Qwopus3.5-9B-Coder-GGUF](https://hf.co/Jackrong/Qwopus3.5-9B-Coder-GGUF).
+    - Add support for Instruct pix2pix model [pravin006/sdxl-pix2pix-lora-finetuned](https://hf.co/pravin006/sdxl-pix2pix-lora-finetuned).
+    - Add support for SDXL LoRA models [artificialguybr/amigurami-redmond-amigurami-crochet-sd-xl-lora](https://hf.co/artificialguybr/amigurami-redmond-amigurami-crochet-sd-xl-lora) and [artificialguybr/ToyRedmond-ToyLoraForSDXL10](https://hf.co/artificialguybr/ToyRedmond-ToyLoraForSDXL10).
+    - Add support for Flux LoRA models [DarkMoonDragon/TurboRender-flux-dev](https://hf.co/DarkMoonDragon/TurboRender-flux-dev), [glif-loradex-trainer/rennurtsfx_crappy_rap_covers_test2](https://hf.co/glif-loradex-trainer/rennurtsfx_crappy_rap_covers_test2), [Rakoo04/vinci-sketch](https://hf.co/Rakoo04/vinci-sketch) and [glif-loradex-trainer/kklors_flux_dev_Lightning](https://hf.co/glif-loradex-trainer/kklors_flux_dev_Lightning).
+
+  * 🆕 **2026-05-23** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot model [Jackrong/Qwen3.5-9B-DeepSeek-V4-Flash-GGUF](https://hf.co/Jackrong/Qwen3.5-9B-DeepSeek-V4-Flash-GGUF) and tiny model [bartowski/Tralalabs_Qwen3-2507-4B-Instruct-Haiku-4.5-Merged-GGUF](https://hf.co/bartowski/Tralalabs_Qwen3-2507-4B-Instruct-Haiku-4.5-Merged-GGUF).
     - Add support for SDXL model [RunDiffusion/Juggernaut-XI-Lightning](https://hf.co/RunDiffusion/Juggernaut-XI-Lightning).
     - Add support for SDXL LoRA models [lordjia/by-feng-zikai](https://hf.co/lordjia/by-feng-zikai) and [artificialguybr/360Redmond](https://hf.co/artificialguybr/360Redmond).
@@ -44,11 +50,6 @@
     - Add support for Chatbot high-end model [bartowski/mistralai_Ministral-3-14B-Instruct-2512-GGUF](https://hf.co/bartowski/mistralai_Ministral-3-14B-Instruct-2512-GGUF), Chatbot tiny model [bartowski/Jackrong_Qwen3.5-4B-Neo-GGUF](https://hf.co/bartowski/Jackrong_Qwen3.5-4B-Neo-GGUF) and update of Skyfall model to [bartowski/TheDrummer_Skyfall-31B-v4.2-GGUF](https://hf.co/bartowski/TheDrummer_Skyfall-31B-v4.2-GGUF).
     - Add support for Flux LoRA models [ysmikey/Layerpano3D-FLUX-Panorama-LoRA](https://hf.co/ysmikey/Layerpano3D-FLUX-Panorama-LoRA), [Shakker-Labs/FLUX.1-dev-LoRA-Garbage-Bag-Art](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-Garbage-Bag-Art), [dvyio/flux-lora-victorian-satire](https://hf.co/dvyio/flux-lora-victorian-satire) and [glif-loradex-trainer/AP123_flux_dev_political_memes](https://hf.co/glif-loradex-trainer/AP123_flux_dev_political_memes).
     - Add an environnment variable to activate / desactivate use of xet when downloading models from Huggingface. Disabled by default, you can easily activate it by launching biniou with `ENV_BINIOU_ENABLE_XET=1 ./webui.sh` . It could be used as a workaround for some huge models (like gpt-oss-120B) that fails to download completely or not working after download.
-
-  * 🆕 **2026-04-26** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end models [bartowski/LiquidAI_LFM2-24B-A2B-GGUF](https://hf.co/bartowski/LiquidAI_LFM2-24B-A2B-GGUF) and [bartowski/Qwen_Qwen3.6-35B-A3B-GGUF](https://hf.co/bartowski/Qwen_Qwen3.6-35B-A3B-GGUF).
-    - Add support for Flux LoRA models [glif-loradex-trainer/insectagon_notawimmel](https://hf.co/glif-loradex-trainer/insectagon_notawimmel), [glif-loradex-trainer/001_old_horror_paintings-autocaption](https://hf.co/), [flyway/flux_lora_balloon_v1](https://hf.co/flyway/flux_lora_balloon_v1) and [Crowbar-Dub/magazine-text](https://hf.co/Crowbar-Dub/magazine-text).
-    - Update and enhancements for GitHub Actions workflows
 
 ---
 
