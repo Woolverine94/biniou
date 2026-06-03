@@ -159,6 +159,7 @@ model_list_llamacpp_builtin = {
 #    "bartowski/ibm-granite_granite-4.0-tiny-preview-GGUF":("ibm-granite_granite-4.0-tiny-preview-Q5_K_M.gguf", prompt_template_list_llamacpp["Granite"][0], std_system_prompt),
     "LiquidAI/LFM2-2.6B-GGUF":("LFM2-2.6B-Q5_K_M.gguf", "<|startoftext|><|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", std_system_prompt),
     "LiquidAI/LFM2-1.2B-GGUF":("LFM2-1.2B-Q5_K_M.gguf", "<|startoftext|><|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", std_system_prompt),
+    "bartowski/LiquidAI_LFM2.5-1.2B-Instruct-GGUF":("LiquidAI_LFM2.5-1.2B-Instruct-Q5_K_M.gguf", prompt_template_list_llamacpp["LFM2"][0], std_system_prompt),
     "bartowski/arcee-ai_AFM-4.5B-GGUF":("arcee-ai_AFM-4.5B-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n", std_system_prompt),
     "-[ 👏 🐢 High-end ]-":("openai_gpt-oss-20b-MXFP4.gguf", prompt_template_list_llamacpp["gpt-oss"][0], std_system_prompt),
     "bartowski/openai_gpt-oss-20b-GGUF":("openai_gpt-oss-20b-MXFP4.gguf", prompt_template_list_llamacpp["gpt-oss"][0], std_system_prompt),
