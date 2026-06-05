@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2026-06-06** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot tiny model [bartowski/LiquidAI_LFM2.5-1.2B-Instruct-GGUF](https://hf.co/bartowski/LiquidAI_LFM2.5-1.2B-Instruct-GGUF) and RPG specialized model [bartowski/rpDungeon_Gemma-4-E4B-Luchador-GGUF](https://hf.co/bartowski/rpDungeon_Gemma-4-E4B-Luchador-GGUF).
+    - Add support for Video Instruct-pix2pix model [pravin006/sdxl-pix2pix-lora-finetuned](https://hf.co/pravin006/sdxl-pix2pix-lora-finetuned).
+    - Add support for SDXL LoRA models [lakshan-bandara/DrapXi-Model](https://hf.co/lakshan-bandara/DrapXi-Model) and [artificialguybr/LogoRedmond-LogoLoraForSDXL-V2](https://hf.co/artificialguybr/LogoRedmond-LogoLoraForSDXL-V2).
+    - Add support for Flux LoRA models [inuptia/cinephoto](https://hf.co/inuptia/cinephoto), [Srinivaskolla/Geospatial-Lidar-Flux-V1](https://hf.co/Srinivaskolla/Geospatial-Lidar-Flux-V1), [Mari-ano/Gustav-Klimt-Ornamental-Symbolist-Aesthetic](https://hf.co/Mari-ano/Gustav-Klimt-Ornamental-Symbolist-Aesthetic) and [Muapi/dungeons-and-dragons-covers-dnd-5e](https://hf.co/Muapi/dungeons-and-dragons-covers-dnd-5e).
+
   * 🆕 **2026-05-30** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end model [bartowski/ibm-granite_granite-4.1-30b-GGUF](https://hf.co/bartowski/ibm-granite_granite-4.1-30b-GGUF) and code-specialized model [Jackrong/Qwopus3.5-9B-Coder-GGUF](https://hf.co/Jackrong/Qwopus3.5-9B-Coder-GGUF).
     - Add support for Instruct pix2pix model [pravin006/sdxl-pix2pix-lora-finetuned](https://hf.co/pravin006/sdxl-pix2pix-lora-finetuned).
@@ -46,10 +52,6 @@
     - Add support for Flux LoRA models [mindlywork/ScribbAug24](https://hf.co/mindlywork/ScribbAug24), [alvdansen/flux_film_foto](https://hf.co/alvdansen/flux_film_foto), [jbilcke-hf/flux-dev-panorama-lora-2](https://hf.co/jbilcke-hf/flux-dev-panorama-lora-2) and [AlekseyCalvin/Marionette_Modernism_FluxLoRA_Var1_bySilverAgePoets](https://hf.co/AlekseyCalvin/Marionette_Modernism_FluxLoRA_Var1_bySilverAgePoets).
     - Enhancement for defaults system prompts in Chatbot module.
 
-  * 🆕 **2026-05-02** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end model [bartowski/mistralai_Ministral-3-14B-Instruct-2512-GGUF](https://hf.co/bartowski/mistralai_Ministral-3-14B-Instruct-2512-GGUF), Chatbot tiny model [bartowski/Jackrong_Qwen3.5-4B-Neo-GGUF](https://hf.co/bartowski/Jackrong_Qwen3.5-4B-Neo-GGUF) and update of Skyfall model to [bartowski/TheDrummer_Skyfall-31B-v4.2-GGUF](https://hf.co/bartowski/TheDrummer_Skyfall-31B-v4.2-GGUF).
-    - Add support for Flux LoRA models [ysmikey/Layerpano3D-FLUX-Panorama-LoRA](https://hf.co/ysmikey/Layerpano3D-FLUX-Panorama-LoRA), [Shakker-Labs/FLUX.1-dev-LoRA-Garbage-Bag-Art](https://hf.co/Shakker-Labs/FLUX.1-dev-LoRA-Garbage-Bag-Art), [dvyio/flux-lora-victorian-satire](https://hf.co/dvyio/flux-lora-victorian-satire) and [glif-loradex-trainer/AP123_flux_dev_political_memes](https://hf.co/glif-loradex-trainer/AP123_flux_dev_political_memes).
-    - Add an environnment variable to activate / desactivate use of xet when downloading models from Huggingface. Disabled by default, you can easily activate it by launching biniou with `ENV_BINIOU_ENABLE_XET=1 ./webui.sh` . It could be used as a workaround for some huge models (like gpt-oss-120B) that fails to download completely or not working after download.
 
 ---
 
