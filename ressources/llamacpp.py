@@ -175,6 +175,7 @@ model_list_llamacpp_builtin = {
     "vinimuchulski/gemma-3-27b-it-qat-q4_0-gguf":("gemma-3-27b-it-q4_0.gguf", prompt_template_list_llamacpp["Gemma 3"][0], std_system_prompt),
     "mradermacher/gemma-3-12b-it-vl-Polaris-GLM-4.7-Flash-VAR-Thinking-Instruct-Heretic-Uncensored-i1-GGUF":("gemma-3-12b-it-vl-Polaris-GLM-4.7-Flash-VAR-Thinking-Instruct-Heretic-Uncensored.i1-Q5_K_M.gguf", prompt_template_list_llamacpp["Gemma 3"][0], std_system_prompt),
     "bartowski/soob3123_Veritas-12B-GGUF":("soob3123_Veritas-12B-Q5_K_M.gguf", prompt_template_list_llamacpp["Gemma 3"][0], std_system_prompt),
+    "bartowski/gemma-4-12B-it-GGUF":("gemma-4-12B-it-Q5_K_M.gguf", prompt_template_list_llamacpp["Gemma 4 Think"][0], std_system_prompt),
     "bartowski/google_gemma-4-26B-A4B-it-GGUF":("google_gemma-4-26B-A4B-it-Q5_K_M.gguf", prompt_template_list_llamacpp["Gemma 4 Think"][0], std_system_prompt),
     "bartowski/google_gemma-4-31B-it-GGUF":("google_gemma-4-31B-it-Q5_K_M.gguf", prompt_template_list_llamacpp["Gemma 4 Think"][0], std_system_prompt),
     "bartowski/nvidia_Llama-3_3-Nemotron-Super-49B-v1-GGUF":("nvidia_Llama-3_3-Nemotron-Super-49B-v1-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
