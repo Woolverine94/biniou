@@ -127,6 +127,7 @@ model_list_llamacpp_builtin = {
     "bartowski/microsoft_UserLM-8b-GGUF":("microsoft_UserLM-8b-Q5_K_M.gguf", "<|start_header_id|>system<|end_header_id|>\n{system_prompt}<|eot_id|><|start_header_id|>user<|end_header_id|>\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n<|eot_id|><|start_header_id|>user<|end_header_id|>", std_system_prompt),
     "noctrex/Phi-mini-MoE-instruct-MXFP4_MOE-GGUF":("Phi-mini-MoE-instruct-MXFP4_MOE.gguf", "<|system|>\n{system_prompt}<|end|>\n<|user|>\n{prompt}<|end|>\n<|assistant|>", std_system_prompt),
     "bartowski/LiquidAI_LFM2-8B-A1B-GGUF":("LiquidAI_LFM2-8B-A1B-Q5_K_M.gguf", prompt_template_list_llamacpp["LFM2"][0], std_system_prompt),
+    "LiquidAI/LFM2.5-8B-A1B-GGUF":("LFM2.5-8B-A1B-Q5_K_M.gguf", prompt_template_list_llamacpp["LFM2"][0], std_system_prompt),
 #    "-[ 👍 🚀 Tiny ]-":("Phi-3.1-mini-4k-instruct-Q5_K_M.gguf", "<|system|> {system_prompt}<|end|><|user|> {prompt}<|end|><|assistant|>", std_system_prompt),
     "-[ 👍 🚀 Tiny ]-":("POLARIS-Project_Polaris-4B-Preview-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "bartowski/POLARIS-Project_Polaris-4B-Preview-GGUF":("POLARIS-Project_Polaris-4B-Preview-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
