@@ -2419,6 +2419,7 @@ def lora_model_list(model, *args):
             "glif-loradex-trainer/AP123_flux_dev_political_memes":("flux_dev_political_memes.safetensors", "totk"),
             "Srinivaskolla/Geospatial-Lidar-Flux-V1":("geospatial-lidar-flux-v1.safetensors", "in the style of GS-LIDAR"),
             "glif-loradex-trainer/bulbul_POV":("POV.safetensors", "pov"),
+            "fofr/flux-barbietron":("lora.safetensors", "BRBTRN"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
@@ -2581,6 +2582,7 @@ def lora_model_list(model, *args):
             "Ryouko65777/Anime-Flux":("lora.safetensors", "anime style"),
             "glif-loradex-trainer/insectagon_1997_anime":("1997_anime.safetensors", "anime"),
             "glif-loradex-trainer/insectagon_rubberhose_nocap1":("rubberhose_nocap1.safetensors", "rubb3r"),
+            "Muapi/1930-s-toon-style":("1930-s-toon-style.safetensors", "1930's toon style"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
