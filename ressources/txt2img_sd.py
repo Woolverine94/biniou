@@ -42,6 +42,7 @@ model_list_txt2img_sd_builtin = [
     "ItsJayQz/GTA5_Artwork_Diffusion",
     "songkey/epicphotogasm_ultimateFidelity",
     "yandex/stable-diffusion-v1-5-alchemist",
+    "stablediffusionapi/realistic-vision-v51",
     "-[ 👍 🚀 Fast SD15 ]-",
     "IDKiro/sdxs-512-0.9",
     "IDKiro/sdxs-512-dreamshaper",
