@@ -22,6 +22,12 @@
 
 ## Updates
 
+
+  * 🆕 **2026-06-13** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end models [bartowski/gemma-4-12B-it-GGUF](https://hf.co/bartowski/gemma-4-12B-it-GGUF), [Jackrong/Qwopus3.6-27B-v2-MTP-GGUF](https://hf.co/Jackrong/Qwopus3.6-27B-v2-MTP-GGUF) and chatbot model [LiquidAI/LFM2.5-8B-A1B-GGUF](https://hf.co/LiquidAI/LFM2.5-8B-A1B-GGUF).
+    - Add support for Stable Diffusion 1.5 model [stablediffusionapi/realistic-vision-v51](https://hf.co/stablediffusionapi/realistic-vision-v51).
+    - Add support for Flux LoRA models [Crowbar-Dub/analog-flux-v3](https://hf.co/Crowbar-Dub/analog-flux-v3), [glif-loradex-trainer/bulbul_POV](https://hf.co/glif-loradex-trainer/bulbul_POV), [fofr/flux-barbietron](https://hf.co/fofr/flux-barbietron) and [Muapi/1930-s-toon-style](https://hf.co/Muapi/1930-s-toon-style).
+
   * 🆕 **2026-06-06** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot tiny model [bartowski/LiquidAI_LFM2.5-1.2B-Instruct-GGUF](https://hf.co/bartowski/LiquidAI_LFM2.5-1.2B-Instruct-GGUF) and RPG specialized model [bartowski/rpDungeon_Gemma-4-E4B-Luchador-GGUF](https://hf.co/bartowski/rpDungeon_Gemma-4-E4B-Luchador-GGUF).
     - Add support for Video Instruct-pix2pix model [pravin006/sdxl-pix2pix-lora-finetuned](https://hf.co/pravin006/sdxl-pix2pix-lora-finetuned).
@@ -45,13 +51,6 @@
     - Add support for Chatbot high-end model [bartowski/mistralai_Devstral-Small-2-24B-Instruct-2512-GGUF](https://hf.co/bartowski/mistralai_Devstral-Small-2-24B-Instruct-2512-GGUF) and code-specialized model [Tesslate/OmniCoder-9B-GGUF](https://hf.co/Tesslate/OmniCoder-9B-GGUF).
     - Add support for Flux LoRA models [PlayDustinDB/FLUX.1-Krea-dev-LoRA](https://hf.co/PlayDustinDB/FLUX.1-Krea-dev-LoRA), [glif-loradex-trainer/heather_huet_textiles](https://hf.co/glif-loradex-trainer/heather_huet_textiles), [strangerzonehf/Flux-Creative-Stocks-LoRA](https://hf.co/strangerzonehf/Flux-Creative-Stocks-LoRA) and [SoumilB7/FLUX.1-dev-ProductStudio](https://hf.co/SoumilB7/FLUX.1-dev-ProductStudio).
     - Enable default use of VAE tiling in image modules supporting it.
-
-  * 🆕 **2026-05-09** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end model [bartowski/allura-org_Qwen3.6-35B-A3B-Anko-GGUF](https://hf.co/bartowski/allura-org_Qwen3.6-35B-A3B-Anko-GGUF)  and Chatbot model [bartowski/ibm-granite_granite-4.1-8b-GGUF](https://hf.co/bartowski/ibm-granite_granite-4.1-8b-GGUF).
-    - Add support for Flux model [aifeifei798/DarkIdol-flux-v1.2](https://hf.co/aifeifei798/DarkIdol-flux-v1.2)
-    - Add support for Flux LoRA models [mindlywork/ScribbAug24](https://hf.co/mindlywork/ScribbAug24), [alvdansen/flux_film_foto](https://hf.co/alvdansen/flux_film_foto), [jbilcke-hf/flux-dev-panorama-lora-2](https://hf.co/jbilcke-hf/flux-dev-panorama-lora-2) and [AlekseyCalvin/Marionette_Modernism_FluxLoRA_Var1_bySilverAgePoets](https://hf.co/AlekseyCalvin/Marionette_Modernism_FluxLoRA_Var1_bySilverAgePoets).
-    - Enhancement for defaults system prompts in Chatbot module.
-
 
 ---
 
