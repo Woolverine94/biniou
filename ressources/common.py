@@ -2583,6 +2583,8 @@ def lora_model_list(model, *args):
             "glif-loradex-trainer/insectagon_1997_anime":("1997_anime.safetensors", "anime"),
             "glif-loradex-trainer/insectagon_rubberhose_nocap1":("rubberhose_nocap1.safetensors", "rubb3r"),
             "Muapi/1930-s-toon-style":("1930-s-toon-style.safetensors", "1930's toon style"),
+            "burhansyam/ghibli":("ghibli-characters-flux-lora.safetensors", "In style of Studio Ghibli"),
+            "Muapi/flux-hayao-miyazaki-ghibli":("flux-hayao-miyazaki-ghibli.safetensors", "Studio Ghibli style"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
