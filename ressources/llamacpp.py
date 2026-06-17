@@ -179,6 +179,7 @@ model_list_llamacpp_builtin = {
     "bartowski/gemma-4-12B-it-GGUF":("gemma-4-12B-it-Q5_K_M.gguf", prompt_template_list_llamacpp["Gemma 4 Think"][0], std_system_prompt),
     "unsloth/gemma-4-12B-it-qat-GGUF":("gemma-4-12B-it-qat-UD-Q4_K_XL.gguf", prompt_template_list_llamacpp["Gemma 4 Think"][0], std_system_prompt),
     "bartowski/google_gemma-4-26B-A4B-it-GGUF":("google_gemma-4-26B-A4B-it-Q5_K_M.gguf", prompt_template_list_llamacpp["Gemma 4 Think"][0], std_system_prompt),
+    "unsloth/gemma-4-26B-A4B-it-qat-GGUF":("gemma-4-26B-A4B-it-qat-UD-Q4_K_XL.gguf", prompt_template_list_llamacpp["Gemma 4 Think"][0], std_system_prompt),
     "bartowski/google_gemma-4-31B-it-GGUF":("google_gemma-4-31B-it-Q5_K_M.gguf", prompt_template_list_llamacpp["Gemma 4 Think"][0], std_system_prompt),
     "bartowski/nvidia_Llama-3_3-Nemotron-Super-49B-v1-GGUF":("nvidia_Llama-3_3-Nemotron-Super-49B-v1-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
     "bartowski/nvidia_Qwen3-Nemotron-32B-RLBFF-GGUF":("nvidia_Qwen3-Nemotron-32B-RLBFF-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n", std_system_prompt),
