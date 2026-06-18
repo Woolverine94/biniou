@@ -2298,6 +2298,7 @@ def lora_model_list(model, *args):
             "jbilcke-hf/flux-dev-panorama-lora-2":("flux_train_replicate.safetensors", "HDRI panoramic view of TOK"),
             "inuptia/cinephoto":("cinephoto.safetensors", "C1n3m4t1c"),
             "Crowbar-Dub/analog-flux-v3":("lora.safetensors", "TOK"),
+            "Muapi/pola-style":("pola-style.safetensors", "polaroid style"),
             "-[ 🏆 🐢 🎨 Style Flux LoRA ]-":("mj5.safetensors", ""),
             "Jovie/Midjourney":("mj5.safetensors", ""),
             "Jovie/Midjourney_Schnell":("mj5.safetensors", ""),
@@ -2585,6 +2586,7 @@ def lora_model_list(model, *args):
             "Muapi/1930-s-toon-style":("1930-s-toon-style.safetensors", "1930's toon style"),
             "burhansyam/ghibli":("ghibli-characters-flux-lora.safetensors", "In style of Studio Ghibli"),
             "Muapi/flux-hayao-miyazaki-ghibli":("flux-hayao-miyazaki-ghibli.safetensors", "Studio Ghibli style"),
+            "glif/semi-realistic-anime-portrait":("Semi-realistic_anime_portraitsV_0.safetensors", "GoldenArkPortraitStyle"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
