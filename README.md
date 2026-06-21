@@ -22,6 +22,11 @@
 
 ## Updates
 
+  * 🆕 **2026-06-21** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end models [unsloth/gemma-4-26B-A4B-it-qat-GGUF](https://hf.co/unsloth/gemma-4-26B-A4B-it-qat-GGUF) and [unsloth/gemma-4-12B-it-qat-GGUF](https://hf.co/unsloth/gemma-4-12B-it-qat-GGUF).
+    - Add support for Whisper specialize model [todeschini/medical-whisper-pt](https://hf.co/todeschini/medical-whisper-pt).
+    - Add support for Llava model [cinnabrad/llama-joycaption-beta-one-hf-llava-mmproj-gguf](https://hf.co/cinnabrad/llama-joycaption-beta-one-hf-llava-mmproj-gguf).
+    - Add support for Flux LoRA models [burhansyam/ghibli](https://hf.co/burhansyam/ghibli), [Muapi/flux-hayao-miyazaki-ghibli](https://hf.co/Muapi/flux-hayao-miyazaki-ghibli), [Muapi/pola-style](https://hf.co/Muapi/pola-style) and [glif/semi-realistic-anime-portrait](https://hf.co/glif/semi-realistic-anime-portrait).
 
   * 🆕 **2026-06-13** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end models [bartowski/gemma-4-12B-it-GGUF](https://hf.co/bartowski/gemma-4-12B-it-GGUF), [Jackrong/Qwopus3.6-27B-v2-MTP-GGUF](https://hf.co/Jackrong/Qwopus3.6-27B-v2-MTP-GGUF) and chatbot model [LiquidAI/LFM2.5-8B-A1B-GGUF](https://hf.co/LiquidAI/LFM2.5-8B-A1B-GGUF).
@@ -46,11 +51,6 @@
     - Add support for SDXL LoRA models [lordjia/by-feng-zikai](https://hf.co/lordjia/by-feng-zikai) and [artificialguybr/360Redmond](https://hf.co/artificialguybr/360Redmond).
     - Add support for Flux LoRA models [gokaygokay/Flux-Seamless-Texture-LoRA](https://hf.co/gokaygokay/Flux-Seamless-Texture-LoRA) and [merve/flux-lego-lora-dreambooth](https://hf.co/merve/flux-lego-lora-dreambooth).
     - Modification of Chatbot interfaces behavior (both llamacpp and llava) : enter key will now generate a new line in the prompt textarea : use shift+enter to validate your prompt and launch inference.
-
-  * 🆕 **2026-05-16** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end model [bartowski/mistralai_Devstral-Small-2-24B-Instruct-2512-GGUF](https://hf.co/bartowski/mistralai_Devstral-Small-2-24B-Instruct-2512-GGUF) and code-specialized model [Tesslate/OmniCoder-9B-GGUF](https://hf.co/Tesslate/OmniCoder-9B-GGUF).
-    - Add support for Flux LoRA models [PlayDustinDB/FLUX.1-Krea-dev-LoRA](https://hf.co/PlayDustinDB/FLUX.1-Krea-dev-LoRA), [glif-loradex-trainer/heather_huet_textiles](https://hf.co/glif-loradex-trainer/heather_huet_textiles), [strangerzonehf/Flux-Creative-Stocks-LoRA](https://hf.co/strangerzonehf/Flux-Creative-Stocks-LoRA) and [SoumilB7/FLUX.1-dev-ProductStudio](https://hf.co/SoumilB7/FLUX.1-dev-ProductStudio).
-    - Enable default use of VAE tiling in image modules supporting it.
 
 ---
 
