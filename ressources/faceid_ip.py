@@ -97,6 +97,7 @@ model_list_faceid_ip_builtin = [
     "songkey/epicphotogasm_ultimateFidelity",
     "yandex/stable-diffusion-v1-5-alchemist",
     "stablediffusionapi/realistic-vision-v51",
+    "wangyunnan/Canvas",
     "-[ 👍 🇯🇵 Anime SD15 ]-",
     "gsdf/Counterfeit-V2.5",
     "fluently/Fluently-anime",
