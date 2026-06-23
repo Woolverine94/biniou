@@ -137,6 +137,7 @@ model_list_llamacpp_builtin = {
     "bartowski/p-e-w_Qwen3-4B-Instruct-2507-heretic-GGUF":("p-e-w_Qwen3-4B-Instruct-2507-heretic-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n", std_system_prompt),
     "bartowski/Qwen_Qwen3.5-4B-GGUF":("Qwen_Qwen3.5-4B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
     "bartowski/Jackrong_Qwen3.5-4B-Neo-GGUF":("Jackrong_Qwen3.5-4B-Neo-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
+    "mradermacher/Qwen3.5-4B-Claude-4.6-HighIQ-THINKING-i1-GGUF":("Qwen3.5-4B-Claude-4.6-HighIQ-THINKING.i1-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
     "bartowski/AllThingsIntel_Apollo-V0.1-4B-Thinking-GGUF":("AllThingsIntel_Apollo-V0.1-4B-Thinking-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n", std_system_prompt),
     "mradermacher/Polaris-1.7B-Preview-GGUF":("Polaris-1.7B-Preview.Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "MaziyarPanahi/calme-3.3-baguette-3b-GGUF":("calme-3.3-baguette-3b.Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}\n<|im_end|>\n<|im_start|>user\n{prompt}\n<|im_end|>\n<|im_start|>assistant", "Tu es un assistant IA compétent et fiable. Tu fais des réponses concises et précises. Tu ne refuses jamais de répondre."),
