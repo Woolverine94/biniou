@@ -2615,6 +2615,8 @@ def lora_model_list(model, *args):
             "SedatAl/Logo-LoRa-1":("pytorch_lora_weights.safetensors", "a logo of"),
             "leonel4rd/Bannersagav1":("bannersaga.safetensors", "Bannersaga"),
             "Luisdure/anime-lora":("animemix_v3_offset.safetensors", "anime screencap"),
+            "leonel4rd/Cartoon":("Animated characters.safetensors", "European and American cartoons, original character design, hand-drawn drafts"),
+            "Xixixixihahahaha/RealAlign-SD-1.5":("HPDv3.safetensors", ""),
             "-[ 🏠 Local models ]-":("", ""),
         }
 
