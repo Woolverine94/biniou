@@ -48,6 +48,7 @@ model_list_img2img_ip_builtin = [
     "yandex/stable-diffusion-v1-5-alchemist",
     "stablediffusionapi/realistic-vision-v51",
     "wangyunnan/Canvas",
+    "songkey/realisticVisionV60B1_v51VAE",
     "-[ 👍 🇯🇵 Anime SD15 ]-",
     "gsdf/Counterfeit-V2.5",
     "fluently/Fluently-anime",
