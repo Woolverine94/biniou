@@ -66,6 +66,7 @@ prompt_template_list_llamacpp = {
 model_list_llamacpp_builtin = {
     "-[ 👌 Standard ]-":("allura-forge_Llama-3.3-8B-Instruct-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
     "bartowski/allura-forge_Llama-3.3-8B-Instruct-GGUF":("allura-forge_Llama-3.3-8B-Instruct-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
+    "mradermacher/Llama3.3-8B-Instruct-Thinking-Heretic-Uncensored-Claude-4.5-Opus-High-Reasoning-i1-GGUF":("Llama3.3-8B-Instruct-Thinking-Heretic-Uncensored-Claude-4.5-Opus-High-Reasoning.i1-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
     "bartowski/TheDrummer_Anubis-Mini-8B-v1-GGUF":("TheDrummer_Anubis-Mini-8B-v1-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
     "bartowski/Meta-Llama-3.1-8B-Instruct-GGUF":("Meta-Llama-3.1-8B-Instruct-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
     "prithivMLmods/GWQ-9B-Preview2-Q5_K_M-GGUF":("gwq-9b-preview2-q5_k_m.gguf", "{prompt}", ""),
