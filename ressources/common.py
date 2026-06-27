@@ -2617,6 +2617,8 @@ def lora_model_list(model, *args):
             "Luisdure/anime-lora":("animemix_v3_offset.safetensors", "anime screencap"),
             "leonel4rd/Cartoon":("Animated characters.safetensors", "European and American cartoons, original character design, hand-drawn drafts"),
             "Xixixixihahahaha/RealAlign-SD-1.5":("HPDv3.safetensors", ""),
+            "SedatAl/skyscraper-LoRa-0":("pytorch_lora_weights.safetensors", "A picture of a skyscraper in the style of a city building game"),
+            "philipp-zettl/borderlands":("pytorch_lora_weights.safetensors", "in the style of DSYL"),
             "-[ 🏠 Local models ]-":("", ""),
         }
 
