@@ -22,9 +22,14 @@
 
 ## Updates
 
+  * 🆕 **2026-06-28** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot model [mradermacher/Llama3.3-8B-Instruct-Thinking-Heretic-Uncensored-Claude-4.5-Opus-High-Reasoning-i1-GGUF](https://hf.co/mradermacher/Llama3.3-8B-Instruct-Thinking-Heretic-Uncensored-Claude-4.5-Opus-High-Reasoning-i1-GGUF) and tiny model [mradermacher/Qwen3.5-4B-Claude-4.6-HighIQ-THINKING-i1-GGUF](https://hf.co/mradermacher/Qwen3.5-4B-Claude-4.6-HighIQ-THINKING-i1-GGUF).
+    - Add support for Stable Diffusion 1.5 models [wangyunnan/Canvas](https://hf.co/wangyunnan/Canvas) and [songkey/realisticVisionV60B1_v51VAE](https://hf.co/songkey/realisticVisionV60B1_v51VAE).
+    - Add support for SD 1.5 LoRA models [leonel4rd/Cartoon](https://hf.co/leonel4rd/Cartoon), [Xixixixihahahaha/RealAlign-SD-1.5](https://hf.co/Xixixixihahahaha/RealAlign-SD-1.5), [SedatAl/skyscraper-LoRa-0](https://hf.co/SedatAl/skyscraper-LoRa-0) and [philipp-zettl/borderlands](https://hf.co/philipp-zettl/borderlands).
+
   * 🆕 **2026-06-21** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end models [unsloth/gemma-4-26B-A4B-it-qat-GGUF](https://hf.co/unsloth/gemma-4-26B-A4B-it-qat-GGUF) and [unsloth/gemma-4-12B-it-qat-GGUF](https://hf.co/unsloth/gemma-4-12B-it-qat-GGUF).
-    - Add support for Whisper specialize model [todeschini/medical-whisper-pt](https://hf.co/todeschini/medical-whisper-pt).
+    - Add support for Whisper specialized model [todeschini/medical-whisper-pt](https://hf.co/todeschini/medical-whisper-pt).
     - Add support for Llava model [cinnabrad/llama-joycaption-beta-one-hf-llava-mmproj-gguf](https://hf.co/cinnabrad/llama-joycaption-beta-one-hf-llava-mmproj-gguf).
     - Add support for Flux LoRA models [burhansyam/ghibli](https://hf.co/burhansyam/ghibli), [Muapi/flux-hayao-miyazaki-ghibli](https://hf.co/Muapi/flux-hayao-miyazaki-ghibli), [Muapi/pola-style](https://hf.co/Muapi/pola-style) and [glif/semi-realistic-anime-portrait](https://hf.co/glif/semi-realistic-anime-portrait).
 
@@ -44,13 +49,6 @@
     - Add support for Instruct pix2pix model [pravin006/sdxl-pix2pix-lora-finetuned](https://hf.co/pravin006/sdxl-pix2pix-lora-finetuned).
     - Add support for SDXL LoRA models [artificialguybr/amigurami-redmond-amigurami-crochet-sd-xl-lora](https://hf.co/artificialguybr/amigurami-redmond-amigurami-crochet-sd-xl-lora) and [artificialguybr/ToyRedmond-ToyLoraForSDXL10](https://hf.co/artificialguybr/ToyRedmond-ToyLoraForSDXL10).
     - Add support for Flux LoRA models [DarkMoonDragon/TurboRender-flux-dev](https://hf.co/DarkMoonDragon/TurboRender-flux-dev), [glif-loradex-trainer/rennurtsfx_crappy_rap_covers_test2](https://hf.co/glif-loradex-trainer/rennurtsfx_crappy_rap_covers_test2), [Rakoo04/vinci-sketch](https://hf.co/Rakoo04/vinci-sketch) and [glif-loradex-trainer/kklors_flux_dev_Lightning](https://hf.co/glif-loradex-trainer/kklors_flux_dev_Lightning).
-
-  * 🆕 **2026-05-23** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot model [Jackrong/Qwen3.5-9B-DeepSeek-V4-Flash-GGUF](https://hf.co/Jackrong/Qwen3.5-9B-DeepSeek-V4-Flash-GGUF) and tiny model [bartowski/Tralalabs_Qwen3-2507-4B-Instruct-Haiku-4.5-Merged-GGUF](https://hf.co/bartowski/Tralalabs_Qwen3-2507-4B-Instruct-Haiku-4.5-Merged-GGUF).
-    - Add support for SDXL model [RunDiffusion/Juggernaut-XI-Lightning](https://hf.co/RunDiffusion/Juggernaut-XI-Lightning).
-    - Add support for SDXL LoRA models [lordjia/by-feng-zikai](https://hf.co/lordjia/by-feng-zikai) and [artificialguybr/360Redmond](https://hf.co/artificialguybr/360Redmond).
-    - Add support for Flux LoRA models [gokaygokay/Flux-Seamless-Texture-LoRA](https://hf.co/gokaygokay/Flux-Seamless-Texture-LoRA) and [merve/flux-lego-lora-dreambooth](https://hf.co/merve/flux-lego-lora-dreambooth).
-    - Modification of Chatbot interfaces behavior (both llamacpp and llava) : enter key will now generate a new line in the prompt textarea : use shift+enter to validate your prompt and launch inference.
 
 ---
 
