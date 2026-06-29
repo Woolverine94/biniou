@@ -99,6 +99,7 @@ model_list_faceid_ip_builtin = [
     "stablediffusionapi/realistic-vision-v51",
     "wangyunnan/Canvas",
     "songkey/realisticVisionV60B1_v51VAE",
+    "songkey/epicrealism_naturalSinRC1VAE",
     "-[ 👍 🇯🇵 Anime SD15 ]-",
     "gsdf/Counterfeit-V2.5",
     "fluently/Fluently-anime",

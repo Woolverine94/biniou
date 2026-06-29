@@ -45,6 +45,7 @@ model_list_txt2img_sd_builtin = [
     "stablediffusionapi/realistic-vision-v51",
     "wangyunnan/Canvas",
     "songkey/realisticVisionV60B1_v51VAE",
+    "songkey/epicrealism_naturalSinRC1VAE",
     "-[ 👍 🚀 Fast SD15 ]-",
     "IDKiro/sdxs-512-0.9",
     "IDKiro/sdxs-512-dreamshaper",
