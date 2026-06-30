@@ -2268,6 +2268,7 @@ def lora_model_list(model, *args):
             "glif-loradex-trainer/heather_huet_textiles":("huet_textiles.safetensors", "jean baptiste huet textile pattern"),
             "Rakoo04/vinci-sketch":("lora.safetensors", "vinci sketch tok"),
             "Mari-ano/Gustav-Klimt-Ornamental-Symbolist-Aesthetic":("gustklim.safetensors", "gusklm"),
+            "Muapi/john-blanche-style":("john-blanche-style.safetensors", "John Blanche Style"),
             "-[ 🏆 🐢 📷 Photographic Flux LoRA ]-":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/flux-koda":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/pola-photo-flux":("pola_photo_araminta_k.safetensors", "polaroid style"),
@@ -2587,6 +2588,7 @@ def lora_model_list(model, *args):
             "burhansyam/ghibli":("ghibli-characters-flux-lora.safetensors", "In style of Studio Ghibli"),
             "Muapi/flux-hayao-miyazaki-ghibli":("flux-hayao-miyazaki-ghibli.safetensors", "Studio Ghibli style"),
             "glif/semi-realistic-anime-portrait":("Semi-realistic_anime_portraitsV_0.safetensors", "GoldenArkPortraitStyle"),
+            "Muapi/retro-anime-flux-style":("retro-anime-flux-style.safetensors", ""),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
