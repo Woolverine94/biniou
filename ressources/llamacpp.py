@@ -106,6 +106,7 @@ model_list_llamacpp_builtin = {
     "bartowski/nvidia_Orchestrator-8B-GGUF":("nvidia_Orchestrator-8B-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n", std_system_prompt),
     "bartowski/cybertron-v4-qw7B-MGS-GGUF":("cybertron-v4-qw7B-MGS-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "bartowski/nvidia_Nemotron-Cascade-8B-GGUF":("nvidia_Nemotron-Cascade-8B-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n", std_system_prompt),
+    "bartowski/nvidia_Nemotron-Cascade-8B-Thinking-GGUF":("nvidia_Nemotron-Cascade-8B-Thinking-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt} /think<|im_end|>\n<|im_start|>assistant", std_system_prompt),
     "bartowski/DRT-o1-7B-GGUF":("DRT-o1-7B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "arcee-ai/Arcee-Spark-GGUF":("Arcee-Spark-Q5_K_M.gguf", prompt_template_list_llamacpp["ChatML"][0], std_system_prompt),
     "bartowski/Marco-o1-GGUF":("Marco-o1-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
