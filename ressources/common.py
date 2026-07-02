@@ -2589,6 +2589,8 @@ def lora_model_list(model, *args):
             "Muapi/flux-hayao-miyazaki-ghibli":("flux-hayao-miyazaki-ghibli.safetensors", "Studio Ghibli style"),
             "glif/semi-realistic-anime-portrait":("Semi-realistic_anime_portraitsV_0.safetensors", "GoldenArkPortraitStyle"),
             "Muapi/retro-anime-flux-style":("retro-anime-flux-style.safetensors", ""),
+            "Muapi/cyberpunk-anime-style":("cyberpunk-anime-style.safetensors", "anime, cyberpunk"),
+            "Muapi/anime-art":("anime-art.safetensors", "Anime CRABDM style"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
