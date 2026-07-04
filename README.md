@@ -22,6 +22,11 @@
 
 ## Updates
 
+  * 🆕 **2026-07-04** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot models [bartowski/nvidia_Nemotron-Cascade-8B-Thinking-GGUF](https://hf.co/bartowski/nvidia_Nemotron-Cascade-8B-Thinking-GGUF) and [bartowski/deepreinforce-ai_Ornith-1.0-9B-GGUF](https://hf.co/bartowski/deepreinforce-ai_Ornith-1.0-9B-GGUF).
+    - Add support for Stable Diffusion 1.5 model [songkey/epicrealism_naturalSinRC1VAE](https://hf.co/songkey/epicrealism_naturalSinRC1VAE).
+    - Add support for Flux LoRA models [Muapi/john-blanche-style](https://hf.co/Muapi/john-blanche-style), [Muapi/retro-anime-flux-style](https://hf.co/Muapi/retro-anime-flux-style), [Muapi/cyberpunk-anime-style](https://hf.co/Muapi/cyberpunk-anime-style) and [Muapi/anime-art](https://hf.co/Muapi/anime-art).
+
   * 🆕 **2026-06-28** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot model [mradermacher/Llama3.3-8B-Instruct-Thinking-Heretic-Uncensored-Claude-4.5-Opus-High-Reasoning-i1-GGUF](https://hf.co/mradermacher/Llama3.3-8B-Instruct-Thinking-Heretic-Uncensored-Claude-4.5-Opus-High-Reasoning-i1-GGUF) and tiny model [mradermacher/Qwen3.5-4B-Claude-4.6-HighIQ-THINKING-i1-GGUF](https://hf.co/mradermacher/Qwen3.5-4B-Claude-4.6-HighIQ-THINKING-i1-GGUF).
     - Add support for Stable Diffusion 1.5 models [wangyunnan/Canvas](https://hf.co/wangyunnan/Canvas) and [songkey/realisticVisionV60B1_v51VAE](https://hf.co/songkey/realisticVisionV60B1_v51VAE).
@@ -43,12 +48,6 @@
     - Add support for Video Instruct-pix2pix model [pravin006/sdxl-pix2pix-lora-finetuned](https://hf.co/pravin006/sdxl-pix2pix-lora-finetuned).
     - Add support for SDXL LoRA models [lakshan-bandara/DrapXi-Model](https://hf.co/lakshan-bandara/DrapXi-Model) and [artificialguybr/LogoRedmond-LogoLoraForSDXL-V2](https://hf.co/artificialguybr/LogoRedmond-LogoLoraForSDXL-V2).
     - Add support for Flux LoRA models [inuptia/cinephoto](https://hf.co/inuptia/cinephoto), [Srinivaskolla/Geospatial-Lidar-Flux-V1](https://hf.co/Srinivaskolla/Geospatial-Lidar-Flux-V1), [Mari-ano/Gustav-Klimt-Ornamental-Symbolist-Aesthetic](https://hf.co/Mari-ano/Gustav-Klimt-Ornamental-Symbolist-Aesthetic) and [Muapi/dungeons-and-dragons-covers-dnd-5e](https://hf.co/Muapi/dungeons-and-dragons-covers-dnd-5e).
-
-  * 🆕 **2026-05-30** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end model [bartowski/ibm-granite_granite-4.1-30b-GGUF](https://hf.co/bartowski/ibm-granite_granite-4.1-30b-GGUF) and code-specialized model [Jackrong/Qwopus3.5-9B-Coder-GGUF](https://hf.co/Jackrong/Qwopus3.5-9B-Coder-GGUF).
-    - Add support for Instruct pix2pix model [pravin006/sdxl-pix2pix-lora-finetuned](https://hf.co/pravin006/sdxl-pix2pix-lora-finetuned).
-    - Add support for SDXL LoRA models [artificialguybr/amigurami-redmond-amigurami-crochet-sd-xl-lora](https://hf.co/artificialguybr/amigurami-redmond-amigurami-crochet-sd-xl-lora) and [artificialguybr/ToyRedmond-ToyLoraForSDXL10](https://hf.co/artificialguybr/ToyRedmond-ToyLoraForSDXL10).
-    - Add support for Flux LoRA models [DarkMoonDragon/TurboRender-flux-dev](https://hf.co/DarkMoonDragon/TurboRender-flux-dev), [glif-loradex-trainer/rennurtsfx_crappy_rap_covers_test2](https://hf.co/glif-loradex-trainer/rennurtsfx_crappy_rap_covers_test2), [Rakoo04/vinci-sketch](https://hf.co/Rakoo04/vinci-sketch) and [glif-loradex-trainer/kklors_flux_dev_Lightning](https://hf.co/glif-loradex-trainer/kklors_flux_dev_Lightning).
 
 ---
 
