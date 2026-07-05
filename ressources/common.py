@@ -2300,6 +2300,8 @@ def lora_model_list(model, *args):
             "inuptia/cinephoto":("cinephoto.safetensors", "C1n3m4t1c"),
             "Crowbar-Dub/analog-flux-v3":("lora.safetensors", "TOK"),
             "Muapi/pola-style":("pola-style.safetensors", "polaroid style"),
+            "Muapi/cinematic-shot":("cinematic-shot.safetensors", ""),
+            "Muapi/amateur-photography-flux-dev":("amateur-photography-flux-dev.safetensors", ""),
             "-[ 🏆 🐢 🎨 Style Flux LoRA ]-":("mj5.safetensors", ""),
             "Jovie/Midjourney":("mj5.safetensors", ""),
             "Jovie/Midjourney_Schnell":("mj5.safetensors", ""),
