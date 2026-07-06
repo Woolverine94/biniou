@@ -217,6 +217,7 @@ model_list_llamacpp_builtin = {
     "bartowski/Qwen_Qwen3.6-35B-A3B-GGUF":("Qwen_Qwen3.6-35B-A3B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
     "bartowski/allura-org_Qwen3.6-35B-A3B-Anko-GGUF":("allura-org_Qwen3.6-35B-A3B-Anko-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], "You are Claude, a helpful and harmless language model created by Anthropic."),
     "Jackrong/Qwopus3.6-27B-v2-MTP-GGUF":("Qwopus3.6-27B-v2-MTP-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
+    "bartowski/deepreinforce-ai_Ornith-1.0-35B-GGUF":("deepreinforce-ai_Ornith-1.0-35B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
     "mradermacher/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-i1-GGUF":("Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled.i1-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
 #    "bartowski/Qwen_Qwen3-30B-A3B-GGUF":("Qwen_Qwen3-30B-A3B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "bartowski/Qwen_Qwen3-30B-A3B-Instruct-2507-GGUF":("Qwen_Qwen3-30B-A3B-Instruct-2507-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
