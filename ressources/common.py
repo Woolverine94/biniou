@@ -2097,6 +2097,7 @@ def lora_model_list(model, *args):
             "lordjia/by-feng-zikai":("fengzikai_v1.0_XL.safetensors", "by Feng Zikai"),
             "artificialguybr/360Redmond":("View360.safetensors", "360, 360 View"),
             "lakshan-bandara/DrapXi-Model":("pytorch_lora_weights.safetensors", "a photo of drapxi style"),
+            "KappaNeuro/john-blanche-style":("John Blanche Style.safetensors", "John Blanche Style - "),
             "-[ 👌 🪧 Posters SDXL LoRA ]-":("SDXL-Caricaturized-Lora.safetensors", "Caricaturized"),
             "Norod78/SDXL-Caricaturized-Lora":("SDXL-Caricaturized-Lora.safetensors", "Caricaturized"),
             "artificialguybr/movie-poster-redmond-for-sd-xl-create-movie-poster-images":("MoviePosterRedmond-MoviePoster-MoviePosterRedAF.safetensors", "Movie Poster, MoviePosterAF"),
@@ -2141,6 +2142,7 @@ def lora_model_list(model, *args):
             "alvdansen/phantasma-anime":("araminta_k_phantasma_anime.safetensors", ""),
             "Pclanglais/Popeye-1929":("pytorch_lora_weights.safetensors", "drawing of popeye"),
             "rajkumaralma/futureistic_fantasy_anime_sDXL":("futureistic_fantasy_anime_sdxl_v1.safetensors", "futuristic-fantasy-anime"),
+            "Muapi/90-s-anime-melancholy-anima-illustriousxl-zimageturbo-flux-chroma":("90-s-anime-melancholy-anima-illustriousxl-zimageturbo-flux-chroma.safetensors", "90s_melancholy, retro"),
             "-[ 🏠 Local models ]-":("", ""),
         }
     elif is_sd3(model):
