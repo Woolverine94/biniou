@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2026-07-11** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot model [mradermacher/Huihui-Qwythos-9B-Claude-Mythos-5-1M-abliterated-i1-GGUF](https://hf.co/mradermacher/Huihui-Qwythos-9B-Claude-Mythos-5-1M-abliterated-i1-GGUF) and high-end model [bartowski/deepreinforce-ai_Ornith-1.0-35B-GGUF](https://hf.co/bartowski/deepreinforce-ai_Ornith-1.0-35B-GGUF).
+    - Add support for Flux model [prithivMLmods/Flux.1-Krea-Merged-Schnell](https://hf.co/prithivMLmods/Flux.1-Krea-Merged-Schnell).
+    - Add support for SDXL LoRA models [KappaNeuro/john-blanche-style](https://hf.co/KappaNeuro/john-blanche-style) and [Muapi/90-s-anime-melancholy-anima-illustriousxl-zimageturbo-flux-chroma](https://hf.co/Muapi/90-s-anime-melancholy-anima-illustriousxl-zimageturbo-flux-chroma).
+    - Add support for Flux LoRA models [Muapi/cinematic-shot](https://hf.co/Muapi/cinematic-shot), [Muapi/amateur-photography-flux-dev](https://hf.co/Muapi/amateur-photography-flux-dev), [Muapi/dark-sector-style](https://hf.co/Muapi/dark-sector-style) and [busetolunay/building_flux_lora_v1](https://hf.co/busetolunay/building_flux_lora_v1).
+
   * 🆕 **2026-07-04** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot models [bartowski/nvidia_Nemotron-Cascade-8B-Thinking-GGUF](https://hf.co/bartowski/nvidia_Nemotron-Cascade-8B-Thinking-GGUF) and [bartowski/deepreinforce-ai_Ornith-1.0-9B-GGUF](https://hf.co/bartowski/deepreinforce-ai_Ornith-1.0-9B-GGUF).
     - Add support for Stable Diffusion 1.5 model [songkey/epicrealism_naturalSinRC1VAE](https://hf.co/songkey/epicrealism_naturalSinRC1VAE).
@@ -42,12 +48,6 @@
     - Add support for Chatbot high-end models [bartowski/gemma-4-12B-it-GGUF](https://hf.co/bartowski/gemma-4-12B-it-GGUF), [Jackrong/Qwopus3.6-27B-v2-MTP-GGUF](https://hf.co/Jackrong/Qwopus3.6-27B-v2-MTP-GGUF) and chatbot model [LiquidAI/LFM2.5-8B-A1B-GGUF](https://hf.co/LiquidAI/LFM2.5-8B-A1B-GGUF).
     - Add support for Stable Diffusion 1.5 model [stablediffusionapi/realistic-vision-v51](https://hf.co/stablediffusionapi/realistic-vision-v51).
     - Add support for Flux LoRA models [Crowbar-Dub/analog-flux-v3](https://hf.co/Crowbar-Dub/analog-flux-v3), [glif-loradex-trainer/bulbul_POV](https://hf.co/glif-loradex-trainer/bulbul_POV), [fofr/flux-barbietron](https://hf.co/fofr/flux-barbietron) and [Muapi/1930-s-toon-style](https://hf.co/Muapi/1930-s-toon-style).
-
-  * 🆕 **2026-06-06** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot tiny model [bartowski/LiquidAI_LFM2.5-1.2B-Instruct-GGUF](https://hf.co/bartowski/LiquidAI_LFM2.5-1.2B-Instruct-GGUF) and RPG specialized model [bartowski/rpDungeon_Gemma-4-E4B-Luchador-GGUF](https://hf.co/bartowski/rpDungeon_Gemma-4-E4B-Luchador-GGUF).
-    - Add support for Video Instruct-pix2pix model [pravin006/sdxl-pix2pix-lora-finetuned](https://hf.co/pravin006/sdxl-pix2pix-lora-finetuned).
-    - Add support for SDXL LoRA models [lakshan-bandara/DrapXi-Model](https://hf.co/lakshan-bandara/DrapXi-Model) and [artificialguybr/LogoRedmond-LogoLoraForSDXL-V2](https://hf.co/artificialguybr/LogoRedmond-LogoLoraForSDXL-V2).
-    - Add support for Flux LoRA models [inuptia/cinephoto](https://hf.co/inuptia/cinephoto), [Srinivaskolla/Geospatial-Lidar-Flux-V1](https://hf.co/Srinivaskolla/Geospatial-Lidar-Flux-V1), [Mari-ano/Gustav-Klimt-Ornamental-Symbolist-Aesthetic](https://hf.co/Mari-ano/Gustav-Klimt-Ornamental-Symbolist-Aesthetic) and [Muapi/dungeons-and-dragons-covers-dnd-5e](https://hf.co/Muapi/dungeons-and-dragons-covers-dnd-5e).
 
 ---
 
