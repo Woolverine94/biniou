@@ -2271,6 +2271,7 @@ def lora_model_list(model, *args):
             "Rakoo04/vinci-sketch":("lora.safetensors", "vinci sketch tok"),
             "Mari-ano/Gustav-Klimt-Ornamental-Symbolist-Aesthetic":("gustklim.safetensors", "gusklm"),
             "Muapi/john-blanche-style":("john-blanche-style.safetensors", "John Blanche Style"),
+            "Muapi/velvet-s-mythic-fantasy-styles-flux-pony-illustrious":("velvet-s-mythic-fantasy-styles-flux-pony-illustrious.safetensors", "D1gitalL1nes"),
             "-[ 🏆 🐢 📷 Photographic Flux LoRA ]-":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/flux-koda":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/pola-photo-flux":("pola_photo_araminta_k.safetensors", "polaroid style"),
@@ -2597,6 +2598,7 @@ def lora_model_list(model, *args):
             "Muapi/retro-anime-flux-style":("retro-anime-flux-style.safetensors", ""),
             "Muapi/cyberpunk-anime-style":("cyberpunk-anime-style.safetensors", "anime, cyberpunk"),
             "Muapi/anime-art":("anime-art.safetensors", "Anime CRABDM style"),
+            "Muapi/definitive-disney-studios-style-illustrious-xl-pony-flux-by-yeiyeiart":("definitive-disney-studios-style-illustrious-xl-pony-flux-by-yeiyeiart.safetensors", "DisneyStudio, cartoon"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
