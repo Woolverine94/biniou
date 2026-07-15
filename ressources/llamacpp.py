@@ -187,6 +187,7 @@ model_list_llamacpp_builtin = {
     "unsloth/gemma-4-26B-A4B-it-qat-GGUF":("gemma-4-26B-A4B-it-qat-UD-Q4_K_XL.gguf", prompt_template_list_llamacpp["Gemma 4 Think"][0], std_system_prompt),
     "bartowski/google_gemma-4-31B-it-GGUF":("google_gemma-4-31B-it-Q5_K_M.gguf", prompt_template_list_llamacpp["Gemma 4 Think"][0], std_system_prompt),
     "bartowski/nvidia_Llama-3_3-Nemotron-Super-49B-v1-GGUF":("nvidia_Llama-3_3-Nemotron-Super-49B-v1-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
+    "mradermacher/NVIDIA-Nemotron-Labs-3-Elastic-12B-A2B-i1-GGUF":("NVIDIA-Nemotron-Labs-3-Elastic-12B-A2B.i1-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
     "bartowski/nvidia_Qwen3-Nemotron-32B-RLBFF-GGUF":("nvidia_Qwen3-Nemotron-32B-RLBFF-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n", std_system_prompt),
     "bartowski/RekaAI_reka-flash-3.1-GGUF":("RekaAI_reka-flash-3.1-Q5_K_M.gguf", "human: {system_prompt} {prompt} <sep> assistant:", std_system_prompt),
     "DavidAU/Llama-3.2-8X3B-MOE-Dark-Champion-Instruct-uncensored-abliterated-18.4B-GGUF":("L3.2-8X3B-MOE-Dark-Champion-Inst-18.4B-uncen-ablit_D_AU-Q5_k_s.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
