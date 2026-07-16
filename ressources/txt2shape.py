@@ -26,6 +26,7 @@ for filename in os.listdir(model_path_txt2shape):
 
 model_list_txt2shape_builtin = [
     "openai/shap-e", 
+    "JSCreatorPro/offline-3d-shap-e",
 ]
 
 for k in range(len(model_list_txt2shape_builtin)):
