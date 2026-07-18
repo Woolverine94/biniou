@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2026-07-18** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end models [mradermacher/NVIDIA-Nemotron-Labs-3-Elastic-12B-A2B-i1-GGUF](https://hf.co/mradermacher/NVIDIA-Nemotron-Labs-3-Elastic-12B-A2B-i1-GGUF) and [bartowski/migtissera_Tess-4-27B-GGUF](https://hf.co/bartowski/migtissera_Tess-4-27B-GGUF).
+    - Add support for Musicgen melody model [kylielee505/mymgm](https://hf.co/kylielee505/mymgm).
+    - Add support for Shape-e text-to-shape model [JSCreatorPro/offline-3d-shap-e](https://hf.co/JSCreatorPro/offline-3d-shap-e).
+    - Add support for Flux LoRA models [Muapi/velvet-s-mythic-fantasy-styles-flux-pony-illustrious](https://hf.co/Muapi/velvet-s-mythic-fantasy-styles-flux-pony-illustrious), [Muapi/definitive-disney-studios-style-illustrious-xl-pony-flux-by-yeiyeiart](https://hf.co/Muapi/definitive-disney-studios-style-illustrious-xl-pony-flux-by-yeiyeiart), [Muapi/ultrarealistic-lora-project](https://hf.co/Muapi/ultrarealistic-lora-project) and [PPSharks/cyber-rune-logo-flux](https://hf.co/PPSharks/cyber-rune-logo-flux).
+
   * 🆕 **2026-07-11** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot model [mradermacher/Huihui-Qwythos-9B-Claude-Mythos-5-1M-abliterated-i1-GGUF](https://hf.co/mradermacher/Huihui-Qwythos-9B-Claude-Mythos-5-1M-abliterated-i1-GGUF) and high-end model [bartowski/deepreinforce-ai_Ornith-1.0-35B-GGUF](https://hf.co/bartowski/deepreinforce-ai_Ornith-1.0-35B-GGUF).
     - Add support for Flux model [prithivMLmods/Flux.1-Krea-Merged-Schnell](https://hf.co/prithivMLmods/Flux.1-Krea-Merged-Schnell).
@@ -43,11 +49,6 @@
     - Add support for Whisper specialized model [todeschini/medical-whisper-pt](https://hf.co/todeschini/medical-whisper-pt).
     - Add support for Llava model [cinnabrad/llama-joycaption-beta-one-hf-llava-mmproj-gguf](https://hf.co/cinnabrad/llama-joycaption-beta-one-hf-llava-mmproj-gguf).
     - Add support for Flux LoRA models [burhansyam/ghibli](https://hf.co/burhansyam/ghibli), [Muapi/flux-hayao-miyazaki-ghibli](https://hf.co/Muapi/flux-hayao-miyazaki-ghibli), [Muapi/pola-style](https://hf.co/Muapi/pola-style) and [glif/semi-realistic-anime-portrait](https://hf.co/glif/semi-realistic-anime-portrait).
-
-  * 🆕 **2026-06-13** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end models [bartowski/gemma-4-12B-it-GGUF](https://hf.co/bartowski/gemma-4-12B-it-GGUF), [Jackrong/Qwopus3.6-27B-v2-MTP-GGUF](https://hf.co/Jackrong/Qwopus3.6-27B-v2-MTP-GGUF) and chatbot model [LiquidAI/LFM2.5-8B-A1B-GGUF](https://hf.co/LiquidAI/LFM2.5-8B-A1B-GGUF).
-    - Add support for Stable Diffusion 1.5 model [stablediffusionapi/realistic-vision-v51](https://hf.co/stablediffusionapi/realistic-vision-v51).
-    - Add support for Flux LoRA models [Crowbar-Dub/analog-flux-v3](https://hf.co/Crowbar-Dub/analog-flux-v3), [glif-loradex-trainer/bulbul_POV](https://hf.co/glif-loradex-trainer/bulbul_POV), [fofr/flux-barbietron](https://hf.co/fofr/flux-barbietron) and [Muapi/1930-s-toon-style](https://hf.co/Muapi/1930-s-toon-style).
 
 ---
 
