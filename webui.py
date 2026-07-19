@@ -240,7 +240,7 @@ def change_model_type_llamacpp(model_llamacpp):
     if (test_model != None):
         return prompt_template_llamacpp.update(value=model_list_llamacpp[model_llamacpp][1]), system_template_llamacpp.update(value=model_list_llamacpp[model_llamacpp][2]), quantization_llamacpp.update(value="", placeholder=model_list_llamacpp[model_llamacpp][0])
     else:
-        return prompt_template_llamacpp.update(value="{prompt}"), system_template_llamacpp.update(value=""), quantization_llamacpp.update(value="", placeholder=model_list_llamacpp[model_llamacpp][0])
+        return prompt_template_llamacpp.update(value="{prompt}"), system_template_llamacpp.update(value=""), quantization_llamacpp.update(value="", placeholder="")
 
 def change_prompt_template_llamacpp(prompt_template):
     return prompt_template_llamacpp.update(value=prompt_template_list_llamacpp[prompt_template][0]), system_template_llamacpp.update(value=prompt_template_list_llamacpp[prompt_template][1])
