@@ -2128,6 +2128,7 @@ def lora_model_list(model, *args):
             "artificialguybr/amigurami-redmond-amigurami-crochet-sd-xl-lora":("AmiguramiRedmond-Crochet-Amigurumi.safetensors", "Amigurami, Crochet"),
             "artificialguybr/ToyRedmond-ToyLoraForSDXL10":("ToyRedmond-FnkRedmAF.safetensors", ""),
             "artificialguybr/LogoRedmond-LogoLoraForSDXL-V2":("LogoRedmondV2-Logo-LogoRedmAF.safetensors", "LogoRedAF, A logo for"),
+            "nerijs/lego-minifig-xl":("legominifig-v1.0-000003.safetensors", "lego minifig of a"),
             "-[ 👌 🇯🇵 Anime SDXL LoRA ]-":("Studio Ghibli Style.safetensors", "Studio Ghibli Style - "),
             "KappaNeuro/studio-ghibli-style":("Studio Ghibli Style.safetensors", "Studio Ghibli Style - "),
             "mnemic/MinionStyleXL-SDXL-LoRA":("MinionStyleXL.safetensors", "MinionStyle"),
@@ -2143,6 +2144,7 @@ def lora_model_list(model, *args):
             "Pclanglais/Popeye-1929":("pytorch_lora_weights.safetensors", "drawing of popeye"),
             "rajkumaralma/futureistic_fantasy_anime_sDXL":("futureistic_fantasy_anime_sdxl_v1.safetensors", "futuristic-fantasy-anime"),
             "Muapi/90-s-anime-melancholy-anima-illustriousxl-zimageturbo-flux-chroma":("90-s-anime-melancholy-anima-illustriousxl-zimageturbo-flux-chroma.safetensors", "90s_melancholy, retro"),
+            "alvdansen/archfey_anime":("araminta_k_archfey_anime.safetensors", ""),
             "-[ 🏠 Local models ]-":("", ""),
         }
     elif is_sd3(model):
