@@ -2431,6 +2431,7 @@ def lora_model_list(model, *args):
             "glif-loradex-trainer/bulbul_POV":("POV.safetensors", "pov"),
             "fofr/flux-barbietron":("lora.safetensors", "BRBTRN"),
             "Muapi/dark-sector-style":("dark-sector-style.safetensors", "darksector_style"),
+            "dallinmackay/Tron-Legacy-FLUX":("TronFLUX.safetensors", "tron legacy style"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
@@ -2603,6 +2604,7 @@ def lora_model_list(model, *args):
             "Muapi/cyberpunk-anime-style":("cyberpunk-anime-style.safetensors", "anime, cyberpunk"),
             "Muapi/anime-art":("anime-art.safetensors", "Anime CRABDM style"),
             "Muapi/definitive-disney-studios-style-illustrious-xl-pony-flux-by-yeiyeiart":("definitive-disney-studios-style-illustrious-xl-pony-flux-by-yeiyeiart.safetensors", "DisneyStudio, cartoon"),
+            "Muapi/neurocore-anime-shadow-circuit-by-chronokight-flux-il":("neurocore-anime-shadow-circuit-by-chronokight-flux-il.safetensors", "in the style of cksc"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
