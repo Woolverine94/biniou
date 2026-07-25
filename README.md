@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2026-07-25** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot models [empero-ai/Qwythos-9B-v2-GGUF](https://hf.co/empero-ai/Qwythos-9B-v2-GGUF) and [ProCreations/grug-v2-9b-gguf](https://hf.co/ProCreations/grug-v2-9b-gguf).
+    - Add support for SDXL LoRA models [nerijs/lego-minifig-xl](https://hf.co/nerijs/lego-minifig-xl) and [alvdansen/archfey_anime](https://hf.co/alvdansen/archfey_anime).
+    - Add support for Flux LoRA models [dallinmackay/Tron-Legacy-FLUX](https://hf.co/dallinmackay/Tron-Legacy-FLUX), [Muapi/neurocore-anime-shadow-circuit-by-chronokight-flux-il](https://hf.co/Muapi/neurocore-anime-shadow-circuit-by-chronokight-flux-il), [furaidosu/flux-dott-remastered](https://hf.co/furaidosu/flux-dott-remastered) and [furaidosu/flux-lora-total-drama-character](https://hf.co/furaidosu/flux-lora-total-drama-character).
+    - Bugfix for use of external models in Chatbot module
+
   * 🆕 **2026-07-18** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end models [mradermacher/NVIDIA-Nemotron-Labs-3-Elastic-12B-A2B-i1-GGUF](https://hf.co/mradermacher/NVIDIA-Nemotron-Labs-3-Elastic-12B-A2B-i1-GGUF) and [bartowski/migtissera_Tess-4-27B-GGUF](https://hf.co/bartowski/migtissera_Tess-4-27B-GGUF).
     - Add support for Musicgen melody model [kylielee505/mymgm](https://hf.co/kylielee505/mymgm).
@@ -43,12 +49,6 @@
     - Add support for Chatbot model [mradermacher/Llama3.3-8B-Instruct-Thinking-Heretic-Uncensored-Claude-4.5-Opus-High-Reasoning-i1-GGUF](https://hf.co/mradermacher/Llama3.3-8B-Instruct-Thinking-Heretic-Uncensored-Claude-4.5-Opus-High-Reasoning-i1-GGUF) and tiny model [mradermacher/Qwen3.5-4B-Claude-4.6-HighIQ-THINKING-i1-GGUF](https://hf.co/mradermacher/Qwen3.5-4B-Claude-4.6-HighIQ-THINKING-i1-GGUF).
     - Add support for Stable Diffusion 1.5 models [wangyunnan/Canvas](https://hf.co/wangyunnan/Canvas) and [songkey/realisticVisionV60B1_v51VAE](https://hf.co/songkey/realisticVisionV60B1_v51VAE).
     - Add support for SD 1.5 LoRA models [leonel4rd/Cartoon](https://hf.co/leonel4rd/Cartoon), [Xixixixihahahaha/RealAlign-SD-1.5](https://hf.co/Xixixixihahahaha/RealAlign-SD-1.5), [SedatAl/skyscraper-LoRa-0](https://hf.co/SedatAl/skyscraper-LoRa-0) and [philipp-zettl/borderlands](https://hf.co/philipp-zettl/borderlands).
-
-  * 🆕 **2026-06-21** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end models [unsloth/gemma-4-26B-A4B-it-qat-GGUF](https://hf.co/unsloth/gemma-4-26B-A4B-it-qat-GGUF) and [unsloth/gemma-4-12B-it-qat-GGUF](https://hf.co/unsloth/gemma-4-12B-it-qat-GGUF).
-    - Add support for Whisper specialized model [todeschini/medical-whisper-pt](https://hf.co/todeschini/medical-whisper-pt).
-    - Add support for Llava model [cinnabrad/llama-joycaption-beta-one-hf-llava-mmproj-gguf](https://hf.co/cinnabrad/llama-joycaption-beta-one-hf-llava-mmproj-gguf).
-    - Add support for Flux LoRA models [burhansyam/ghibli](https://hf.co/burhansyam/ghibli), [Muapi/flux-hayao-miyazaki-ghibli](https://hf.co/Muapi/flux-hayao-miyazaki-ghibli), [Muapi/pola-style](https://hf.co/Muapi/pola-style) and [glif/semi-realistic-anime-portrait](https://hf.co/glif/semi-realistic-anime-portrait).
 
 ---
 
