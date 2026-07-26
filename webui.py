@@ -2589,14 +2589,14 @@ with gr.Blocks(
                             with gr.Column():
                                 quantization_llamacpp = gr.Textbox(value="", label=biniou_lang_tab_llamacpp_quantization_label, info=biniou_lang_tab_llamacpp_quantization_info, placeholder=model_list_llamacpp[model_llamacpp.value][0])
                             with gr.Column():
-                                max_tokens_llamacpp = gr.Slider(0, 131072, step=16, value=0, label=biniou_lang_maxtoken_label, info=biniou_lang_maxtoken_info)
+                                max_tokens_llamacpp = gr.Slider(0, 1048576, step=16, value=0, label=biniou_lang_maxtoken_label, info=biniou_lang_maxtoken_info)
                             with gr.Column():
                                 seed_llamacpp = gr.Slider(0, 10000000000, step=1, value=1337, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                         with gr.Row():
                             with gr.Column():
                                 stream_llamacpp = gr.Checkbox(value=False, label=biniou_lang_stream_label, info=biniou_lang_stream_info, interactive=False)
                             with gr.Column():
-                                n_ctx_llamacpp = gr.Slider(0, 131072, step=128, value=8192, label=biniou_lang_ctx_label, info=biniou_lang_ctx_info)
+                                n_ctx_llamacpp = gr.Slider(0, 1048576, step=128, value=8192, label=biniou_lang_ctx_label, info=biniou_lang_ctx_info)
                             with gr.Column():
                                 repeat_penalty_llamacpp = gr.Slider(0.0, 10.0, step=0.1, value=1.1, label=biniou_lang_penalty_label, info=biniou_lang_penalty_info)
                         with gr.Row():
@@ -2827,14 +2827,14 @@ with gr.Blocks(
                             with gr.Column():
                                 model_llava = gr.Dropdown(choices=list(model_list_llava.keys()), value=list(model_list_llava.keys())[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                max_tokens_llava = gr.Slider(0, 131072, step=16, value=512, label=biniou_lang_maxtoken_label, info=biniou_lang_maxtoken_info)
+                                max_tokens_llava = gr.Slider(0, 1048576, step=16, value=512, label=biniou_lang_maxtoken_label, info=biniou_lang_maxtoken_info)
                             with gr.Column():
                                 seed_llava = gr.Slider(0, 10000000000, step=1, value=1337, label=biniou_lang_seed_label, info=biniou_lang_seed_info)
                         with gr.Row():
                             with gr.Column():
                                 stream_llava = gr.Checkbox(value=False, label=biniou_lang_stream_label, info=biniou_lang_stream_info, interactive=False)
                             with gr.Column():
-                                n_ctx_llava = gr.Slider(0, 131072, step=128, value=8192, label=biniou_lang_ctx_label, info=biniou_lang_ctx_info)
+                                n_ctx_llava = gr.Slider(0, 1048576, step=128, value=8192, label=biniou_lang_ctx_label, info=biniou_lang_ctx_info)
                             with gr.Column():
                                 repeat_penalty_llava = gr.Slider(0.0, 10.0, step=0.1, value=1.1, label=biniou_lang_penalty_label, info=biniou_lang_penalty_info)
                         with gr.Row():
