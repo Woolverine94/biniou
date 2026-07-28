@@ -104,6 +104,7 @@ model_list_llamacpp_builtin = {
     "mradermacher/Huihui-Qwythos-9B-Claude-Mythos-5-1M-abliterated-i1-GGUF":("Huihui-Qwythos-9B-Claude-Mythos-5-1M-abliterated.i1-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
     "empero-ai/Qwythos-9B-v2-GGUF":("Qwythos-9B-v2-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
     "ProCreations/grug-v2-9b-gguf":("grug-v2-9b-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
+    "DavidAU/Qwen3.5-9B-The-Defiant-Fable-Uncensored-Heretic-NEO-IMATRIX-MAX-MTP-GGUF":("Qwen3.5-9B-The-Defiant-Fable-Uncnr-Heretic-NEO-MAX-MTP-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
     "bartowski/deepseek-ai_DeepSeek-R1-0528-Qwen3-8B-GGUF":("deepseek-ai_DeepSeek-R1-0528-Qwen3-8B-Q5_K_M.gguf", "<｜begin▁of▁sentence｜>{system_prompt}<｜User｜>{prompt}<｜Assistant｜>\n", std_system_prompt),
     "bartowski/Qwen2.5-7B-Instruct-1M-GGUF":("Qwen2.5-7B-Instruct-1M-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "bartowski/nvidia_AceInstruct-7B-GGUF":("nvidia_AceInstruct-7B-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n", std_system_prompt),
