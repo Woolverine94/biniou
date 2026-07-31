@@ -2643,6 +2643,8 @@ def lora_model_list(model, *args):
             "Xixixixihahahaha/RealAlign-SD-1.5":("HPDv3.safetensors", ""),
             "SedatAl/skyscraper-LoRa-0":("pytorch_lora_weights.safetensors", "A picture of a skyscraper in the style of a city building game"),
             "philipp-zettl/borderlands":("pytorch_lora_weights.safetensors", "in the style of DSYL"),
+            "ProGamerGov/360-Diffusion-LoRA-sd-v1-5":("360Diffusion_v1.safetensors", "qxj"),
+            "Charsarg/Minecraft_Lora":("minecraft_lora.safetensors", "image in ukj style"),
             "-[ 🏠 Local models ]-":("", ""),
         }
 
