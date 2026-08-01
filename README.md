@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2026-08-01** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot model [DavidAU/Qwen3.5-9B-The-Defiant-Fable-Uncensored-Heretic-NEO-IMATRIX-MAX-MTP-GGUF](https://hf.co/DavidAU/Qwen3.5-9B-The-Defiant-Fable-Uncensored-Heretic-NEO-IMATRIX-MAX-MTP-GGUF) and high-end model [DavidAU/Qwen3.6-27B-Fable-Fusion-711-Uncensored-Heretic-NM-DAU-NEO-MAX-MTP-GGUF](https://hf.co/DavidAU/Qwen3.6-27B-Fable-Fusion-711-Uncensored-Heretic-NM-DAU-NEO-MAX-MTP-GGUF).
+    - Add support for SD 1.5 LoRA models [ProGamerGov/360-Diffusion-LoRA-sd-v1-5](https://hf.co/ProGamerGov/360-Diffusion-LoRA-sd-v1-5) and [Charsarg/Minecraft_Lora](https://hf.co/Charsarg/Minecraft_Lora).
+    - Add support for Flux LoRA models [furaidosu/flux-cubist-cartoon](https://hf.co/furaidosu/flux-cubist-cartoon), [furaidosu/flux-lora-blobfish](https://hf.co/furaidosu/flux-lora-blobfish), [furaidosu/flux-lora-piccoli-figurative-full-captions](https://hf.co/furaidosu/flux-lora-piccoli-figurative-full-captions) and [furaidosu/flux-lora-bad-taxidermist](https://hf.co/furaidosu/flux-lora-bad-taxidermist).
+    - Raising maximum context window size to 1M tokens, for Chatbot and Llava modules.
+
   * 🆕 **2026-07-25** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot models [empero-ai/Qwythos-9B-v2-GGUF](https://hf.co/empero-ai/Qwythos-9B-v2-GGUF) and [ProCreations/grug-v2-9b-gguf](https://hf.co/ProCreations/grug-v2-9b-gguf).
     - Add support for SDXL LoRA models [nerijs/lego-minifig-xl](https://hf.co/nerijs/lego-minifig-xl) and [alvdansen/archfey_anime](https://hf.co/alvdansen/archfey_anime).
@@ -44,11 +50,6 @@
     - Add support for Chatbot models [bartowski/nvidia_Nemotron-Cascade-8B-Thinking-GGUF](https://hf.co/bartowski/nvidia_Nemotron-Cascade-8B-Thinking-GGUF) and [bartowski/deepreinforce-ai_Ornith-1.0-9B-GGUF](https://hf.co/bartowski/deepreinforce-ai_Ornith-1.0-9B-GGUF).
     - Add support for Stable Diffusion 1.5 model [songkey/epicrealism_naturalSinRC1VAE](https://hf.co/songkey/epicrealism_naturalSinRC1VAE).
     - Add support for Flux LoRA models [Muapi/john-blanche-style](https://hf.co/Muapi/john-blanche-style), [Muapi/retro-anime-flux-style](https://hf.co/Muapi/retro-anime-flux-style), [Muapi/cyberpunk-anime-style](https://hf.co/Muapi/cyberpunk-anime-style) and [Muapi/anime-art](https://hf.co/Muapi/anime-art).
-
-  * 🆕 **2026-06-28** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot model [mradermacher/Llama3.3-8B-Instruct-Thinking-Heretic-Uncensored-Claude-4.5-Opus-High-Reasoning-i1-GGUF](https://hf.co/mradermacher/Llama3.3-8B-Instruct-Thinking-Heretic-Uncensored-Claude-4.5-Opus-High-Reasoning-i1-GGUF) and tiny model [mradermacher/Qwen3.5-4B-Claude-4.6-HighIQ-THINKING-i1-GGUF](https://hf.co/mradermacher/Qwen3.5-4B-Claude-4.6-HighIQ-THINKING-i1-GGUF).
-    - Add support for Stable Diffusion 1.5 models [wangyunnan/Canvas](https://hf.co/wangyunnan/Canvas) and [songkey/realisticVisionV60B1_v51VAE](https://hf.co/songkey/realisticVisionV60B1_v51VAE).
-    - Add support for SD 1.5 LoRA models [leonel4rd/Cartoon](https://hf.co/leonel4rd/Cartoon), [Xixixixihahahaha/RealAlign-SD-1.5](https://hf.co/Xixixixihahahaha/RealAlign-SD-1.5), [SedatAl/skyscraper-LoRa-0](https://hf.co/SedatAl/skyscraper-LoRa-0) and [philipp-zettl/borderlands](https://hf.co/philipp-zettl/borderlands).
 
 ---
 
