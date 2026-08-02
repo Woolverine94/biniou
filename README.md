@@ -15,7 +15,7 @@
 
 <p align="center">
 <a href="#GNULinux">GNU/Linux base</a> :  [ <a href="#OpenSUSE-Leap-155--OpenSUSE-Tumbleweed">OpenSUSE</a> | <a href="#Rocky-93--Alma-93--CentOS-Stream-9--Fedora-39">RHEL</a> | <a href="#CachyOS">Arch</a> | <a href="#openmandriva">Mandriva</a> | <a href="#debian-12--ubuntu-22043--ubuntu-2404--linux-mint-212--linux-mint-22--pop-os">Debian</a> ] • <a href="#windows-10--windows-11">Windows</a> • <a href="#macos-intel-homebrew-install">macOS Intel (experimental)</a> • <a href="#dockerfile">Docker</a></br>
-<a href="https://github.com/Woolverine94/biniou/wiki">Documentation ❓</a> | <a href="https://github.com/Woolverine94/biniou/wiki/Showroom">Showroom 🖼️</a> | <a href="https://www.youtube.com/watch?v=WcCZSt6xMc4" target="_blank">Video presentation (by @Natlamir) 🎞️</a> | <a href="https://www.youtube.com/watch?v=e_gAJFTitYg" target="_blank">Windows install tutorial (by Fahd Mirza) 🎞️</a>
+<a href="https://github.com/Woolverine94/biniou/wiki">Documentation ❓</a> | <a href="https://github.com/Woolverine94/biniou/wiki/Showroom">Showroom 🖼️</a> | <a href="https://www.youtube.com/watch?v=WcCZSt6xMc4" target="_blank">Video presentation (by @Natlamir) 🎞️</a> | <a href="https://www.youtube.com/watch?v=e_gAJFTitYg" target="_blank">Windows install tutorial (by Fahd Mirza) 🎞️</a> | <a href="https://www.youtube.com/watch?v=X8bfiHkzbZQ" target="_blank">biniou : the ultimate local AI Studio for Linux (by RMLogicIO) 🎞️</a>
 </p>
 
 ---
