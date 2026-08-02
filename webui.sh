@@ -28,6 +28,9 @@ fi
 ## Activate python venv
 source ./env/bin/activate
 
+## Bugfix for CUDA users :
+export LD_LIBRARY_PATH=./env/lib/python3.*/site-packages/nvidia/cuda_runtime/lib:./env/lib/python3.*/site-packages/nvidia/cublas/lib:$LD_LIBRARY_PATH
+
 ## Launch Biniou
 if [ "$TCMALLOC_NAME" != "" ]
   then
