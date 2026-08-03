@@ -2436,6 +2436,8 @@ def lora_model_list(model, *args):
             "dallinmackay/Tron-Legacy-FLUX":("TronFLUX.safetensors", "tron legacy style"),
             "furaidosu/flux-dott-remastered":("lora.safetensors", "DOTTRMSTR"),
             "furaidosu/flux-lora-blobfish":("lora.safetensors", "BLBFSH"),
+            "furaidosu/flux-lora-tosti-vector-full-captions":("flux_dev_tosti_vector_style_full_captions.safetensors", "tosti vector style"),
+            "Muapi/sci-fi-environments":("sci-fi-environments.safetensors", ""),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
