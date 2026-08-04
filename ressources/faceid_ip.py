@@ -164,6 +164,7 @@ model_list_faceid_ip_builtin = [
     "stablediffusionapi/anime-journey-v2",
     "aipicasso/emi-2",
     "zenless-lab/sdxl-anything-xl",
+    "neta-art/neta-xl-2.0",
 ]
 
 for k in range(len(model_list_faceid_ip_builtin)):

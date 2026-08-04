@@ -141,6 +141,7 @@ model_list_txt2vid_ze = [
     "stablediffusionapi/anime-journey-v2",
     "aipicasso/emi-2",
     "zenless-lab/sdxl-anything-xl",
+    "neta-art/neta-xl-2.0",
 ]
 
 # Bouton Cancel

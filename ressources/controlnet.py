@@ -116,6 +116,7 @@ model_list_controlnet_builtin = [
     "stablediffusionapi/anime-journey-v2",
     "aipicasso/emi-2",
     "zenless-lab/sdxl-anything-xl",
+    "neta-art/neta-xl-2.0",
     "-[ 👏 🐢 SD3 ]-",
     "v2ray/stable-diffusion-3-medium-diffusers",
     "ptx0/sd3-reality-mix",

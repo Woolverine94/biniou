@@ -117,6 +117,7 @@ model_list_img2img_ip_builtin = [
     "stablediffusionapi/anime-journey-v2",
     "aipicasso/emi-2",
     "zenless-lab/sdxl-anything-xl",
+    "neta-art/neta-xl-2.0",
     "-[ 🏆 🐢 Flux ]-",
     "Freepik/flux.1-lite-8B",
     "black-forest-labs/FLUX.1-schnell",
