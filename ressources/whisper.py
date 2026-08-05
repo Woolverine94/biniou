@@ -35,6 +35,7 @@ model_list_whisper_builtin = {
     "openai/whisper-large-v3-turbo": "model.safetensors",
     "bofenghuang/whisper-large-v3-french": "model.safetensors",
     "todeschini/medical-whisper-pt": "model.safetensors",
+    "AMAImedia/Whisper-Large-V3-Turbo-Darwin-NOESIS-FP16": "model.safetensors",
 }
 
 model_list_whisper.update(model_list_whisper_builtin)
