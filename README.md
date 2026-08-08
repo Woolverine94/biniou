@@ -22,6 +22,15 @@
 
 ## Updates
 
+
+  * 🆕 **2026-08-08** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot code-specialized model [bartowski/Kwaipilot_KAT-Coder-V2.5-Dev-GGUF](https://hf.co/bartowski/Kwaipilot_KAT-Coder-V2.5-Dev-GGUF) and tiny model [YoozLabs/Qwen3.5-4B-qat-GGUF](https://hf.co/YoozLabs/Qwen3.5-4B-qat-GGUF).
+    - Add support for Whisper model [AMAImedia/Whisper-Large-V3-Turbo-Darwin-NOESIS-FP16](https://hf.co/AMAImedia/Whisper-Large-V3-Turbo-Darwin-NOESIS-FP16).
+    - Add support for SDXL model [neta-art/neta-xl-2.0](https://hf.co/neta-art/neta-xl-2.0).
+    - Add support for Flux LoRA models [furaidosu/flux-lora-tosti-vector-full-captions](https://hf.co/furaidosu/flux-lora-tosti-vector-full-captions), [Muapi/sci-fi-environments](https://hf.co/Muapi/sci-fi-environments), [Muapi/midjorney-lora-flux](https://hf.co/Muapi/midjorney-lora-flux) and [bingbangboom/flux_whimscape](https://hf.co/bingbangboom/flux_whimscape).
+    - Experimental bugfix for CUDA users who experiments missing CUDA libraries (credits for this one goes to @RMLogicIO : a huge thanks 🙏). Feedbacks are welcomed !
+
+
   * 🆕 **2026-08-01** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot model [DavidAU/Qwen3.5-9B-The-Defiant-Fable-Uncensored-Heretic-NEO-IMATRIX-MAX-MTP-GGUF](https://hf.co/DavidAU/Qwen3.5-9B-The-Defiant-Fable-Uncensored-Heretic-NEO-IMATRIX-MAX-MTP-GGUF) and high-end model [DavidAU/Qwen3.6-27B-Fable-Fusion-711-Uncensored-Heretic-NM-DAU-NEO-MAX-MTP-GGUF](https://hf.co/DavidAU/Qwen3.6-27B-Fable-Fusion-711-Uncensored-Heretic-NM-DAU-NEO-MAX-MTP-GGUF).
     - Add support for SD 1.5 LoRA models [ProGamerGov/360-Diffusion-LoRA-sd-v1-5](https://hf.co/ProGamerGov/360-Diffusion-LoRA-sd-v1-5) and [Charsarg/Minecraft_Lora](https://hf.co/Charsarg/Minecraft_Lora).
@@ -45,11 +54,6 @@
     - Add support for Flux model [prithivMLmods/Flux.1-Krea-Merged-Schnell](https://hf.co/prithivMLmods/Flux.1-Krea-Merged-Schnell).
     - Add support for SDXL LoRA models [KappaNeuro/john-blanche-style](https://hf.co/KappaNeuro/john-blanche-style) and [Muapi/90-s-anime-melancholy-anima-illustriousxl-zimageturbo-flux-chroma](https://hf.co/Muapi/90-s-anime-melancholy-anima-illustriousxl-zimageturbo-flux-chroma).
     - Add support for Flux LoRA models [Muapi/cinematic-shot](https://hf.co/Muapi/cinematic-shot), [Muapi/amateur-photography-flux-dev](https://hf.co/Muapi/amateur-photography-flux-dev), [Muapi/dark-sector-style](https://hf.co/Muapi/dark-sector-style) and [busetolunay/building_flux_lora_v1](https://hf.co/busetolunay/building_flux_lora_v1).
-
-  * 🆕 **2026-07-04** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot models [bartowski/nvidia_Nemotron-Cascade-8B-Thinking-GGUF](https://hf.co/bartowski/nvidia_Nemotron-Cascade-8B-Thinking-GGUF) and [bartowski/deepreinforce-ai_Ornith-1.0-9B-GGUF](https://hf.co/bartowski/deepreinforce-ai_Ornith-1.0-9B-GGUF).
-    - Add support for Stable Diffusion 1.5 model [songkey/epicrealism_naturalSinRC1VAE](https://hf.co/songkey/epicrealism_naturalSinRC1VAE).
-    - Add support for Flux LoRA models [Muapi/john-blanche-style](https://hf.co/Muapi/john-blanche-style), [Muapi/retro-anime-flux-style](https://hf.co/Muapi/retro-anime-flux-style), [Muapi/cyberpunk-anime-style](https://hf.co/Muapi/cyberpunk-anime-style) and [Muapi/anime-art](https://hf.co/Muapi/anime-art).
 
 ---
 
