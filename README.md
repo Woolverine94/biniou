@@ -55,6 +55,8 @@
     - Add support for SDXL LoRA models [KappaNeuro/john-blanche-style](https://hf.co/KappaNeuro/john-blanche-style) and [Muapi/90-s-anime-melancholy-anima-illustriousxl-zimageturbo-flux-chroma](https://hf.co/Muapi/90-s-anime-melancholy-anima-illustriousxl-zimageturbo-flux-chroma).
     - Add support for Flux LoRA models [Muapi/cinematic-shot](https://hf.co/Muapi/cinematic-shot), [Muapi/amateur-photography-flux-dev](https://hf.co/Muapi/amateur-photography-flux-dev), [Muapi/dark-sector-style](https://hf.co/Muapi/dark-sector-style) and [busetolunay/building_flux_lora_v1](https://hf.co/busetolunay/building_flux_lora_v1).
 
+[Updates archive](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
+
 ---
 
 ## Menu
