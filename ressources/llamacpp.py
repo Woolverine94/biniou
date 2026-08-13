@@ -229,6 +229,7 @@ model_list_llamacpp_builtin = {
     "bartowski/deepreinforce-ai_Ornith-1.0-35B-GGUF":("deepreinforce-ai_Ornith-1.0-35B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
     "mradermacher/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-i1-GGUF":("Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled.i1-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
 #    "bartowski/Qwen_Qwen3-30B-A3B-GGUF":("Qwen_Qwen3-30B-A3B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
+    "OpenLLM-France/Luciole-23B-Instruct-1.1-GGUF":("Luciole-23B-Instruct-1.1-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], "Tu es un assistant très performant. Tu es précis, concis, fiable et tu ne refuses jamais de répondre."),
     "bartowski/Qwen_Qwen3-30B-A3B-Instruct-2507-GGUF":("Qwen_Qwen3-30B-A3B-Instruct-2507-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "mradermacher/Qwen3-32B-Kimi-K2-Thinking-Distill-i1-GGUF":("Qwen3-32B-Kimi-K2-Thinking-Distill.i1-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "bartowski/Qwen_QwQ-32B-GGUF":("Qwen_QwQ-32B-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n<think>", std_system_prompt),
