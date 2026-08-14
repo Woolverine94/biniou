@@ -139,6 +139,7 @@ model_list_img2img_ip_builtin = [
     "minpeter/FLUX-Hyperscale-fused-fast",
     "buildborderless/FLUX.MF-8step_lightning_v2",
     "aifeifei798/DarkIdol-flux-v1.2",
+    "BxuanZ/FLUX-RS",
     "-[ 🏠 Local models ]-",
 ]
 
