@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2026-08-15** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for French 🐓 Chatbot models [OpenLLM-France/Luciole-8B-Instruct-1.1-GGUF](https://hf.co/OpenLLM-France/Luciole-8B-Instruct-1.1-GGUF) and [OpenLLM-France/Luciole-23B-Instruct-1.1-GGUF](https://hf.co/OpenLLM-France/Luciole-23B-Instruct-1.1-GGUF).
+    - Add support for Real ESRGAN x4 model [schwgHao/RealESRGAN_x4plus](https://hf.co/schwgHao/RealESRGAN_x4plus).
+    - Add support for Flux specialized model [BxuanZ/FLUX-RS](https://hf.co/BxuanZ/FLUX-RS).
+    - Add support for Flux LoRA models [fffiloni/sweet-brush](https://hf.co/fffiloni/sweet-brush), [WizWhite/wizard-s-vintage-sardine-tins](https://hf.co/WizWhite/wizard-s-vintage-sardine-tins), [gokaygokay/Flux-Expressive-LoRA](https://hf.co/gokaygokay/Flux-Expressive-LoRA) and [glif-loradex-trainer/heather_90s_corporate_training](https://hf.co/glif-loradex-trainer/heather_90s_corporate_training).
+
 
   * 🆕 **2026-08-08** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot code-specialized model [bartowski/Kwaipilot_KAT-Coder-V2.5-Dev-GGUF](https://hf.co/bartowski/Kwaipilot_KAT-Coder-V2.5-Dev-GGUF) and tiny model [YoozLabs/Qwen3.5-4B-qat-GGUF](https://hf.co/YoozLabs/Qwen3.5-4B-qat-GGUF).
@@ -48,12 +54,6 @@
     - Add support for Musicgen melody model [kylielee505/mymgm](https://hf.co/kylielee505/mymgm).
     - Add support for Shape-e text-to-shape model [JSCreatorPro/offline-3d-shap-e](https://hf.co/JSCreatorPro/offline-3d-shap-e).
     - Add support for Flux LoRA models [Muapi/velvet-s-mythic-fantasy-styles-flux-pony-illustrious](https://hf.co/Muapi/velvet-s-mythic-fantasy-styles-flux-pony-illustrious), [Muapi/definitive-disney-studios-style-illustrious-xl-pony-flux-by-yeiyeiart](https://hf.co/Muapi/definitive-disney-studios-style-illustrious-xl-pony-flux-by-yeiyeiart), [Muapi/ultrarealistic-lora-project](https://hf.co/Muapi/ultrarealistic-lora-project) and [PPSharks/cyber-rune-logo-flux](https://hf.co/PPSharks/cyber-rune-logo-flux).
-
-  * 🆕 **2026-07-11** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot model [mradermacher/Huihui-Qwythos-9B-Claude-Mythos-5-1M-abliterated-i1-GGUF](https://hf.co/mradermacher/Huihui-Qwythos-9B-Claude-Mythos-5-1M-abliterated-i1-GGUF) and high-end model [bartowski/deepreinforce-ai_Ornith-1.0-35B-GGUF](https://hf.co/bartowski/deepreinforce-ai_Ornith-1.0-35B-GGUF).
-    - Add support for Flux model [prithivMLmods/Flux.1-Krea-Merged-Schnell](https://hf.co/prithivMLmods/Flux.1-Krea-Merged-Schnell).
-    - Add support for SDXL LoRA models [KappaNeuro/john-blanche-style](https://hf.co/KappaNeuro/john-blanche-style) and [Muapi/90-s-anime-melancholy-anima-illustriousxl-zimageturbo-flux-chroma](https://hf.co/Muapi/90-s-anime-melancholy-anima-illustriousxl-zimageturbo-flux-chroma).
-    - Add support for Flux LoRA models [Muapi/cinematic-shot](https://hf.co/Muapi/cinematic-shot), [Muapi/amateur-photography-flux-dev](https://hf.co/Muapi/amateur-photography-flux-dev), [Muapi/dark-sector-style](https://hf.co/Muapi/dark-sector-style) and [busetolunay/building_flux_lora_v1](https://hf.co/busetolunay/building_flux_lora_v1).
 
 [Updates archive](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
