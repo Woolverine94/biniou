@@ -234,9 +234,8 @@ def scale_resrgan_change(scale_resrgan):
     elif (RESRGAN_SCALES[scale_resrgan] < 5):     
         scale_model_resrgan: str  = "RealESRGAN_x4.pth"
     else :     
-        scale_model_resrgan: str = "RealESRGAN_x8.pth"  
+        scale_model_resrgan: str = "RealESRGAN_x8.pth"
     return scale_model_resrgan
-        
 
 def preview_image(step, timestep, latents, pipe):
     final_preview=[]
@@ -2280,6 +2279,7 @@ def lora_model_list(model, *args):
             "bingbangboom/flux_whimscape":("WHMSCPE001.safetensors", "illustration in the style of WHMSCPE001"),
             "fffiloni/sweet-brush":("sweet-brush.safetensors", "in the style of TOK"),
             "gokaygokay/Flux-Expressive-LoRA":("expressive.safetensors", "XPRSSV, expressive painting"),
+            "strangerzonehf/Qd-Sketch":("Qd Sketch.safetensors", "Qd-Sketch"),
             "-[ 🏆 🐢 📷 Photographic Flux LoRA ]-":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/flux-koda":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/pola-photo-flux":("pola_photo_araminta_k.safetensors", "polaroid style"),
@@ -2619,6 +2619,7 @@ def lora_model_list(model, *args):
             "Muapi/anime-art":("anime-art.safetensors", "Anime CRABDM style"),
             "Muapi/definitive-disney-studios-style-illustrious-xl-pony-flux-by-yeiyeiart":("definitive-disney-studios-style-illustrious-xl-pony-flux-by-yeiyeiart.safetensors", "DisneyStudio, cartoon"),
             "Muapi/neurocore-anime-shadow-circuit-by-chronokight-flux-il":("neurocore-anime-shadow-circuit-by-chronokight-flux-il.safetensors", "in the style of cksc"),
+            "AIGCDuckBoss/fluxLora_pixarStyle":("fluxLora_pixarStyle.safetensors", "pixar"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
