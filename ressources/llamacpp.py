@@ -58,6 +58,7 @@ prompt_template_list_llamacpp = {
     "Phi-4 Instruct":("<|im_start|>system<|im_sep|>\n{system_prompt}<|im_end|>\n<|im_start|>user<|im_sep|>\n{prompt}<|im_end|>\n<|im_start|>assistant<|im_sep|>", std_system_prompt),
     "Qwen 3":("<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", std_system_prompt),
     "Qwen 3.5":("<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n<think>", std_system_prompt),
+    "Qwen 3.8":("<|im_start|>system\nReasoning effort is set to xhigh. Please think carefully through the task, validate key assumptions, consider plausible alternatives, and prioritize correctness, consistency, and clarity in the final answer.\n\n{system_prompt}<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n<think>", std_system_prompt),
     "System-User-Assistant":("### System:\n{system}\n\n### User:\n{prompt}\n\n### Assistant:", "You are a friendly chatbot assistant. Please answer all questions to the best of your ability."),
     "User-Assistant":("USER: {prompt}\nASSISTANT:", ""),
     "User-Assistant-Newlines":("### User:\n{prompt}\n\n### Assistant:", ""),
@@ -223,6 +224,7 @@ model_list_llamacpp_builtin = {
     "bartowski/p-e-w_phi-4-heretic-GGUF":("p-e-w_phi-4-heretic-Q5_K_M.gguf", "<|im_start|>system<|im_sep|>{system_prompt}<|im_end|><|im_start|>user<|im_sep|>{prompt}<|im_end|><|im_start|>assistant<|im_sep|>", "You are Phi, a language model trained by Microsoft to help users. Your role as an assistant involves thoroughly exploring questions through a systematic thinking process before providing the final precise and accurate solutions. This requires engaging in a comprehensive cycle of analysis, summarizing, exploration, reassessment, reflection, backtracing, and iteration to develop well-considered thinking process. Please structure your response into two main sections: Thought and Solution using the specified format:<think>{Thought section}</think>{Solution section}. In the Thought section, detail your reasoning process in steps. Each step should include detailed considerations such as analysing questions, summarizing relevant findings, brainstorming new ideas, verifying the accuracy of the current steps, refining any errors, and revisiting previous steps. In the Solution section, based on various attempts, explorations, and reflections from the Thought section, systematically present the final solution that you deem correct. The Solution section should be logical, accurate, and concise and detail necessary steps needed to reach the conclusion. Now, try to solve the following question through the above guidelines:"),
     "bartowski/OpenBuddy_OpenBuddy-R1-0528-Distill-Qwen3-32B-Preview0-QAT-GGUF":("OpenBuddy_OpenBuddy-R1-0528-Distill-Qwen3-32B-Preview0-QAT-Q5_K_M.gguf", "<|role|>system<|says|>{system_prompt}<|end|>\n<|role|>user<|says|>{prompt}<|end|>\n<|role|>assistant<|says|>", std_system_prompt),
     "OpenBuddy/SimpleChat-72B-V3-QAT-GGUF":("ggml-model-Q2_K.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
+    "bartowski/Qwen3.8-27B-GGUF":("Qwen3.8-27B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.8"][0], std_system_prompt),
     "bartowski/Qwen_Qwen3.6-35B-A3B-GGUF":("Qwen_Qwen3.6-35B-A3B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
     "bartowski/allura-org_Qwen3.6-35B-A3B-Anko-GGUF":("allura-org_Qwen3.6-35B-A3B-Anko-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], "You are Claude, a helpful and harmless language model created by Anthropic."),
     "Jackrong/Qwopus3.6-27B-v2-MTP-GGUF":("Qwopus3.6-27B-v2-MTP-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
@@ -422,14 +424,14 @@ def text_llamacpp(
     output_llamacpp = llm(
         f"{prompt_final_llamacpp}", 
         max_tokens=max_tokens_llamacpp, 
-        stream=stream_llamacpp, 
+        stream=stream_llamacpp,
         repeat_penalty=repeat_penalty_llamacpp, 
         temperature=temperature_llamacpp, 
         top_p=top_p_llamacpp, 
         top_k=top_k_llamacpp, 
         echo=True
     )    
-    
+
     answer_llamacpp = (output_llamacpp['choices'][0]['text'])
     llamacpp_replacement = {
         "<|im_end|>": "",
