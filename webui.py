@@ -7429,7 +7429,7 @@ with gr.Blocks(
                             with gr.Column():
                                 model_gfpgan = gr.Dropdown(choices=model_list_gfpgan, value=model_list_gfpgan[0], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
-                                variant_gfpgan = gr.Dropdown(choices=variant_list_gfpgan, value=variant_list_gfpgan[4], label=biniou_lang_tab_gfpgan_variant_label, info=biniou_lang_tab_gfpgan_variant_info)
+                                variant_gfpgan = gr.Dropdown(choices=variant_list_gfpgan, value=variant_list_gfpgan[3], label=biniou_lang_tab_gfpgan_variant_label, info=biniou_lang_tab_gfpgan_variant_info)
                         with gr.Row():
                             with gr.Column():
                                 width_gfpgan = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label=biniou_lang_image_width_label, info=biniou_lang_image_width_info, interactive=False)
