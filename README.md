@@ -22,6 +22,11 @@
 
 ## Updates
 
+  * 🆕 **2026-08-22** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot tiny model [bartowski/LiquidAI_LFM2.5-2.6B-GGUF](https://hf.co/bartowski/LiquidAI_LFM2.5-2.6B-GGUF) and high-end model [bartowski/Qwen3.8-27B-GGUF](https://hf.co/bartowski/Qwen3.8-27B-GGUF).
+    - Bugfix, code enhancement and support for [RestoreFormer](https://hf.co/leonelhs/gfpgan/blob/main/RestoreFormer.pth) in GFPGAN module .
+    - Add support for Flux LoRA models [strangerzonehf/Qd-Sketch](https://hf.co/strangerzonehf/Qd-Sketch), [AIGCDuckBoss/fluxLora_pixarStyle](https://hf.co/AIGCDuckBoss/fluxLora_pixarStyle), [artshooter/flux-hand-drawn-stickman](https://hf.co/artshooter/flux-hand-drawn-stickman) and [AP123/flux-logos-v1](https://hf.co/AP123/flux-logos-v1).
+
   * 🆕 **2026-08-15** : 🔥 ***Weekly update*** 🔥 >
     - Add support for French 🐓 Chatbot models [OpenLLM-France/Luciole-8B-Instruct-1.1-GGUF](https://hf.co/OpenLLM-France/Luciole-8B-Instruct-1.1-GGUF) and [OpenLLM-France/Luciole-23B-Instruct-1.1-GGUF](https://hf.co/OpenLLM-France/Luciole-23B-Instruct-1.1-GGUF).
     - Add support for Real ESRGAN x4 model [schwgHao/RealESRGAN_x4plus](https://hf.co/schwgHao/RealESRGAN_x4plus).
@@ -48,12 +53,6 @@
     - Add support for SDXL LoRA models [nerijs/lego-minifig-xl](https://hf.co/nerijs/lego-minifig-xl) and [alvdansen/archfey_anime](https://hf.co/alvdansen/archfey_anime).
     - Add support for Flux LoRA models [dallinmackay/Tron-Legacy-FLUX](https://hf.co/dallinmackay/Tron-Legacy-FLUX), [Muapi/neurocore-anime-shadow-circuit-by-chronokight-flux-il](https://hf.co/Muapi/neurocore-anime-shadow-circuit-by-chronokight-flux-il), [furaidosu/flux-dott-remastered](https://hf.co/furaidosu/flux-dott-remastered) and [furaidosu/flux-lora-total-drama-character](https://hf.co/furaidosu/flux-lora-total-drama-character).
     - Bugfix for use of external models in Chatbot module
-
-  * 🆕 **2026-07-18** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end models [mradermacher/NVIDIA-Nemotron-Labs-3-Elastic-12B-A2B-i1-GGUF](https://hf.co/mradermacher/NVIDIA-Nemotron-Labs-3-Elastic-12B-A2B-i1-GGUF) and [bartowski/migtissera_Tess-4-27B-GGUF](https://hf.co/bartowski/migtissera_Tess-4-27B-GGUF).
-    - Add support for Musicgen melody model [kylielee505/mymgm](https://hf.co/kylielee505/mymgm).
-    - Add support for Shape-e text-to-shape model [JSCreatorPro/offline-3d-shap-e](https://hf.co/JSCreatorPro/offline-3d-shap-e).
-    - Add support for Flux LoRA models [Muapi/velvet-s-mythic-fantasy-styles-flux-pony-illustrious](https://hf.co/Muapi/velvet-s-mythic-fantasy-styles-flux-pony-illustrious), [Muapi/definitive-disney-studios-style-illustrious-xl-pony-flux-by-yeiyeiart](https://hf.co/Muapi/definitive-disney-studios-style-illustrious-xl-pony-flux-by-yeiyeiart), [Muapi/ultrarealistic-lora-project](https://hf.co/Muapi/ultrarealistic-lora-project) and [PPSharks/cyber-rune-logo-flux](https://hf.co/PPSharks/cyber-rune-logo-flux).
 
 [Updates archive](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
