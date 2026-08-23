@@ -2559,6 +2559,7 @@ def lora_model_list(model, *args):
             "furaidosu/flux-lora-bad-taxidermist":("flux_dev_bad_taxidermist.safetensors", "bad taxidermist style"),
             "WizWhite/wizard-s-vintage-sardine-tins":("Wiz-SardineTins_Flux.safetensors", "Vintage Sardine Tin, Tinned Fish"),
             "AP123/flux-logos-v1":("flux-logos-v1.safetensors", ""),
+            "AlekseyCalvin/Alexander_Apsit_Style_Art_FLUX_LoRa_By_SilverAgePoets_DrawThingsTrainedOnDeDistilled":("apsitlora_500_f32convert.safetensors", "APSIT style"),
             "-[ 🏆 🐢 🇯🇵 Anime Flux LoRA ]-":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "alvarobartt/ghibli-characters-flux-lora":("ghibli-characters-flux-lora.safetensors", "Ghibli style"),
             "dataautogpt3/FLUX-AestheticAnime":("Flux_1_Dev_LoRA_AestheticAnime.safetensors", ""),
@@ -2622,6 +2623,7 @@ def lora_model_list(model, *args):
             "Muapi/definitive-disney-studios-style-illustrious-xl-pony-flux-by-yeiyeiart":("definitive-disney-studios-style-illustrious-xl-pony-flux-by-yeiyeiart.safetensors", "DisneyStudio, cartoon"),
             "Muapi/neurocore-anime-shadow-circuit-by-chronokight-flux-il":("neurocore-anime-shadow-circuit-by-chronokight-flux-il.safetensors", "in the style of cksc"),
             "AIGCDuckBoss/fluxLora_pixarStyle":("fluxLora_pixarStyle.safetensors", "pixar"),
+            "fofr/flux-pixar-cars":("lora.safetensors", ""),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
