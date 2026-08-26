@@ -2232,6 +2232,7 @@ def lora_model_list(model, *args):
             "nt2323/simpletuner-lora":("pytorch_lora_weights.safetensors", ""),
             "PlayDustinDB/FLUX.1-Krea-dev-LoRA":("flux1-krea-dev_rank_128-bf16.safetensors", ""),
             "Muapi/midjorney-lora-flux":("midjorney-lora-flux.safetensors", ""),
+            "gorlamee/LenovoUltraReal":("danrisi_l3n0v0_ultrareal_lora.safetensors", "l3n0v0"),
             "-[ 🏆 🐢 🖼️ Artistic Flux LoRA ]-":("Yoji_Shinkawa.safetensors", "Yoji_Shinkawa"),
             "Datou1111/Yoji_Shinkawa":("Yoji_Shinkawa.safetensors", "Yoji_Shinkawa"),
             "leonel4rd/FluxDisney":("Flux_retro_Disney.safetensors", "egdisney"),
@@ -2280,6 +2281,8 @@ def lora_model_list(model, *args):
             "fffiloni/sweet-brush":("sweet-brush.safetensors", "in the style of TOK"),
             "gokaygokay/Flux-Expressive-LoRA":("expressive.safetensors", "XPRSSV, expressive painting"),
             "strangerzonehf/Qd-Sketch":("Qd Sketch.safetensors", "Qd-Sketch"),
+            "strangerzonehf/Qd-Sketch":("Qd Sketch.safetensors", "Qd-Sketch"),
+            "Muapi/flux-frank-frazetta-style-oil-painting":("flux-frank-frazetta-style-oil-painting.safetensors", "Frank Frazetta fantasy oil painting"),
             "-[ 🏆 🐢 📷 Photographic Flux LoRA ]-":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/flux-koda":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/pola-photo-flux":("pola_photo_araminta_k.safetensors", "polaroid style"),
@@ -2623,7 +2626,7 @@ def lora_model_list(model, *args):
             "Muapi/definitive-disney-studios-style-illustrious-xl-pony-flux-by-yeiyeiart":("definitive-disney-studios-style-illustrious-xl-pony-flux-by-yeiyeiart.safetensors", "DisneyStudio, cartoon"),
             "Muapi/neurocore-anime-shadow-circuit-by-chronokight-flux-il":("neurocore-anime-shadow-circuit-by-chronokight-flux-il.safetensors", "in the style of cksc"),
             "AIGCDuckBoss/fluxLora_pixarStyle":("fluxLora_pixarStyle.safetensors", "pixar"),
-            "fofr/flux-pixar-cars":("lora.safetensors", ""),
+            "fofr/flux-pixar-cars":("lora.safetensors", "pixar cars style"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
