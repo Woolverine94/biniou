@@ -2265,6 +2265,14 @@ def hide_download_file_faceswap():
     return download_file_faceswap.update(visible=False)
 
 ## Functions specific to Real ESRGAN
+def scale_resrgan_change(scale_resrgan):
+    if ("x2" in scale_resrgan):
+        scale_model_resrgan: str = "RealESRGAN_x2.pth"
+    elif ("x4" in scale_resrgan):
+        scale_model_resrgan: str  = "RealESRGAN_x4.pth"
+    elif ("x8" in scale_resrgan):
+        scale_model_resrgan: str = "RealESRGAN_x8.pth"
+    return scale_model_resrgan
 
 ## Functions specific to GFPGAN
 

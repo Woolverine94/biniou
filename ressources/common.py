@@ -228,15 +228,6 @@ def scale_image_any(im, size):
         return (image_out)
     return ""
 
-def scale_resrgan_change(scale_resrgan):
-    if (RESRGAN_SCALES[scale_resrgan] < 3):
-        scale_model_resrgan: str = "RealESRGAN_x2.pth"
-    elif (RESRGAN_SCALES[scale_resrgan] < 5):     
-        scale_model_resrgan: str  = "RealESRGAN_x4.pth"
-    else :     
-        scale_model_resrgan: str = "RealESRGAN_x8.pth"
-    return scale_model_resrgan
-
 def preview_image(step, timestep, latents, pipe):
     final_preview=[]
 #    print(step, timestep, latents[0][0][0][0])
