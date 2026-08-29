@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2026-08-29** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot model [bartowski/OrionLLM_GRM-3.2-Cliff-GGUF](https://hf.co/bartowski/OrionLLM_GRM-3.2-Cliff-GGUF) and high-end model [bartowski/Muse-Glimmer-30B-GGUF](https://hf.co/bartowski/Muse-Glimmer-30B-GGUF).
+    - Code enhancement and replacement of default model by [lambda/sd-image-variations-diffusers](https://hf.co/lambda/sd-image-variations-diffusers) for Image Variation module.
+    - Add support for Flux LoRA models [AlekseyCalvin/Alexander_Apsit_Style_Art_FLUX_LoRa_By_SilverAgePoets_DrawThingsTrainedOnDeDistilled](https://hf.co/AlekseyCalvin/Alexander_Apsit_Style_Art_FLUX_LoRa_By_SilverAgePoets_DrawThingsTrainedOnDeDistilled), [fofr/flux-pixar-cars](https://hf.co/fofr/flux-pixar-cars), [gorlamee/LenovoUltraReal](https://hf.co/gorlamee/LenovoUltraReal) and [Muapi/flux-frank-frazetta-style-oil-painting](https://hf.co/Muapi/flux-frank-frazetta-style-oil-painting).
+    - Code enhancement for Real ESRGAN module
+
   * 🆕 **2026-08-22** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot tiny model [bartowski/LiquidAI_LFM2.5-2.6B-GGUF](https://hf.co/bartowski/LiquidAI_LFM2.5-2.6B-GGUF) and high-end model [bartowski/Qwen3.8-27B-GGUF](https://hf.co/bartowski/Qwen3.8-27B-GGUF).
     - Bugfix, code enhancement and support for [RestoreFormer](https://hf.co/leonelhs/gfpgan/blob/main/RestoreFormer.pth) in GFPGAN module .
@@ -47,12 +53,6 @@
     - Add support for SD 1.5 LoRA models [ProGamerGov/360-Diffusion-LoRA-sd-v1-5](https://hf.co/ProGamerGov/360-Diffusion-LoRA-sd-v1-5) and [Charsarg/Minecraft_Lora](https://hf.co/Charsarg/Minecraft_Lora).
     - Add support for Flux LoRA models [furaidosu/flux-cubist-cartoon](https://hf.co/furaidosu/flux-cubist-cartoon), [furaidosu/flux-lora-blobfish](https://hf.co/furaidosu/flux-lora-blobfish), [furaidosu/flux-lora-piccoli-figurative-full-captions](https://hf.co/furaidosu/flux-lora-piccoli-figurative-full-captions) and [furaidosu/flux-lora-bad-taxidermist](https://hf.co/furaidosu/flux-lora-bad-taxidermist).
     - Raising maximum context window size to 1M tokens, for Chatbot and Llava modules.
-
-  * 🆕 **2026-07-25** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot models [empero-ai/Qwythos-9B-v2-GGUF](https://hf.co/empero-ai/Qwythos-9B-v2-GGUF) and [ProCreations/grug-v2-9b-gguf](https://hf.co/ProCreations/grug-v2-9b-gguf).
-    - Add support for SDXL LoRA models [nerijs/lego-minifig-xl](https://hf.co/nerijs/lego-minifig-xl) and [alvdansen/archfey_anime](https://hf.co/alvdansen/archfey_anime).
-    - Add support for Flux LoRA models [dallinmackay/Tron-Legacy-FLUX](https://hf.co/dallinmackay/Tron-Legacy-FLUX), [Muapi/neurocore-anime-shadow-circuit-by-chronokight-flux-il](https://hf.co/Muapi/neurocore-anime-shadow-circuit-by-chronokight-flux-il), [furaidosu/flux-dott-remastered](https://hf.co/furaidosu/flux-dott-remastered) and [furaidosu/flux-lora-total-drama-character](https://hf.co/furaidosu/flux-lora-total-drama-character).
-    - Bugfix for use of external models in Chatbot module
 
 [Updates archive](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
