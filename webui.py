@@ -2265,14 +2265,25 @@ def hide_download_file_faceswap():
     return download_file_faceswap.update(visible=False)
 
 ## Functions specific to Real ESRGAN
-def scale_resrgan_change(scale_resrgan):
+def scale_resrgan_change(scale_resrgan, model_esrgan):
     if ("x2" in scale_resrgan):
         scale_model_resrgan: str = "RealESRGAN_x2.pth"
+    elif ("x4" in scale_resrgan) and ("plus" in model_esrgan):
+        scale_model_resrgan: str = "RealESRGAN_x4plus.pth"
     elif ("x4" in scale_resrgan):
-        scale_model_resrgan: str  = "RealESRGAN_x4.pth"
+        scale_model_resrgan: str = "RealESRGAN_x4.pth"
     elif ("x8" in scale_resrgan):
         scale_model_resrgan: str = "RealESRGAN_x8.pth"
     return scale_model_resrgan
+
+def model_resrgan_change(model_resrgan):
+    if ("x2" in model_resrgan):
+        scale_resrgan: str = "x2"
+    elif ("x4" in model_resrgan):
+        scale_resrgan: str = "x4"
+    elif ("x8" in model_resrgan):
+        scale_resrgan: str = "x8"
+    return scale_resrgan
 
 ## Functions specific to GFPGAN
 
@@ -7306,7 +7317,8 @@ with gr.Blocks(
                                 model_resrgan = gr.Dropdown(choices=model_list_resrgan, value=model_list_resrgan[1], label=biniou_lang_model_label, info=biniou_lang_model_info)
                             with gr.Column():
                                 scale_resrgan = gr.Dropdown(choices=list(RESRGAN_SCALES.keys()), value=list(RESRGAN_SCALES.keys())[1], label=biniou_lang_tab_resrgan_scale_label, info=biniou_lang_tab_resrgan_scale_info)
-                                scale_resrgan.change(scale_resrgan_change, inputs=scale_resrgan, outputs=model_resrgan)
+                                model_resrgan.change(model_resrgan_change, inputs=model_resrgan, outputs=scale_resrgan)
+                                scale_resrgan.change(scale_resrgan_change, inputs=[scale_resrgan, model_resrgan], outputs=model_resrgan)
                         with gr.Row():
                             with gr.Column():
                                 width_resrgan = gr.Slider(128, biniou_global_width_max_img_modify, step=64, value=biniou_global_sd15_width, label=biniou_lang_image_width_label, info=biniou_lang_tab_resrgan_width_info, interactive=False)
