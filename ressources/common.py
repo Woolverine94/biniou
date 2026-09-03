@@ -2121,6 +2121,8 @@ def lora_model_list(model, *args):
             "artificialguybr/ToyRedmond-ToyLoraForSDXL10":("ToyRedmond-FnkRedmAF.safetensors", ""),
             "artificialguybr/LogoRedmond-LogoLoraForSDXL-V2":("LogoRedmondV2-Logo-LogoRedmAF.safetensors", "LogoRedAF, A logo for"),
             "nerijs/lego-minifig-xl":("legominifig-v1.0-000003.safetensors", "lego minifig of a"),
+            "nerijs/lego-brickheadz-xl":("legobrickheadz-v1.0-000004.safetensors", "picture of a lego brickheadz of"),
+            "multimodalart/envy-pulp-horror-xl-01":("EnvyPulpHorrorXL01.safetensors", "pulp horror"),
             "-[ 👌 🇯🇵 Anime SDXL LoRA ]-":("Studio Ghibli Style.safetensors", "Studio Ghibli Style - "),
             "KappaNeuro/studio-ghibli-style":("Studio Ghibli Style.safetensors", "Studio Ghibli Style - "),
             "mnemic/MinionStyleXL-SDXL-LoRA":("MinionStyleXL.safetensors", "MinionStyle"),
