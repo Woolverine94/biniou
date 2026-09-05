@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2026-09-05** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot model [bartowski/granite-4.2-8b-GGUF](https://hf.co/bartowski/granite-4.2-8b-GGUF) and high-end model [bartowski/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF](https://hf.co/bartowski/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF).
+    - Update of SDXL model RunDiffusion/Juggernaut-XL-v6 to [limiteinductive/Juggernaut-XL_v9_RunDiffusionPhoto_v2](https://hf.co/limiteinductive/Juggernaut-XL_v9_RunDiffusionPhoto_v2).
+    - Add support for SDXL LoRA models [Muapi/lora-eyes-enhancer-free-use-or-merge](https://hf.co/Muapi/lora-eyes-enhancer-free-use-or-merge), [TheLastBen/Josef_Koudelka_Style_SDXL](https://hf.co/TheLastBen/Josef_Koudelka_Style_SDXL), [nerijs/lego-brickheadz-xl](https://hf.co/nerijs/lego-brickheadz-xl) and [multimodalart/envy-pulp-horror-xl-01](https://hf.co/multimodalart/envy-pulp-horror-xl-01).
+    - Code enhancement for Real ESRGAN module
+
   * 🆕 **2026-08-29** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot model [bartowski/OrionLLM_GRM-3.2-Cliff-GGUF](https://hf.co/bartowski/OrionLLM_GRM-3.2-Cliff-GGUF) and high-end model [bartowski/Muse-Glimmer-30B-GGUF](https://hf.co/bartowski/Muse-Glimmer-30B-GGUF).
     - Code enhancement and replacement of default model by [lambda/sd-image-variations-diffusers](https://hf.co/lambda/sd-image-variations-diffusers) for Image Variation module.
@@ -46,13 +52,6 @@
     - Add support for SDXL model [neta-art/neta-xl-2.0](https://hf.co/neta-art/neta-xl-2.0).
     - Add support for Flux LoRA models [furaidosu/flux-lora-tosti-vector-full-captions](https://hf.co/furaidosu/flux-lora-tosti-vector-full-captions), [Muapi/sci-fi-environments](https://hf.co/Muapi/sci-fi-environments), [Muapi/midjorney-lora-flux](https://hf.co/Muapi/midjorney-lora-flux) and [bingbangboom/flux_whimscape](https://hf.co/bingbangboom/flux_whimscape).
     - Experimental bugfix for CUDA users who experiments missing CUDA libraries (credits for this one goes to @RMLogicIO : a huge thanks 🙏). Feedbacks are welcomed !
-
-
-  * 🆕 **2026-08-01** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot model [DavidAU/Qwen3.5-9B-The-Defiant-Fable-Uncensored-Heretic-NEO-IMATRIX-MAX-MTP-GGUF](https://hf.co/DavidAU/Qwen3.5-9B-The-Defiant-Fable-Uncensored-Heretic-NEO-IMATRIX-MAX-MTP-GGUF) and high-end model [DavidAU/Qwen3.6-27B-Fable-Fusion-711-Uncensored-Heretic-NM-DAU-NEO-MAX-MTP-GGUF](https://hf.co/DavidAU/Qwen3.6-27B-Fable-Fusion-711-Uncensored-Heretic-NM-DAU-NEO-MAX-MTP-GGUF).
-    - Add support for SD 1.5 LoRA models [ProGamerGov/360-Diffusion-LoRA-sd-v1-5](https://hf.co/ProGamerGov/360-Diffusion-LoRA-sd-v1-5) and [Charsarg/Minecraft_Lora](https://hf.co/Charsarg/Minecraft_Lora).
-    - Add support for Flux LoRA models [furaidosu/flux-cubist-cartoon](https://hf.co/furaidosu/flux-cubist-cartoon), [furaidosu/flux-lora-blobfish](https://hf.co/furaidosu/flux-lora-blobfish), [furaidosu/flux-lora-piccoli-figurative-full-captions](https://hf.co/furaidosu/flux-lora-piccoli-figurative-full-captions) and [furaidosu/flux-lora-bad-taxidermist](https://hf.co/furaidosu/flux-lora-bad-taxidermist).
-    - Raising maximum context window size to 1M tokens, for Chatbot and Llava modules.
 
 [Updates archive](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
