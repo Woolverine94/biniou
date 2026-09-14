@@ -2445,6 +2445,7 @@ def lora_model_list(model, *args):
             "artshooter/flux-hand-drawn-stickman":("flux_hand_drawn_stickman.safetensors", "huashuo drawing"),
             "strangerzonehf/Flux-Sketch-Smudge-LoRA":("Sketch-Smudge.safetensors", "Sketch Smudge"),
             "strangerzonehf/2DAura-Flux":("2DAura.safetensors", "2D Aura"),
+            "Nishitbaria/midjourney-style-flux-lora":("midjourney-style-flux.safetensors", "aidmaMJ6.1"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
@@ -2626,6 +2627,7 @@ def lora_model_list(model, *args):
             "Muapi/neurocore-anime-shadow-circuit-by-chronokight-flux-il":("neurocore-anime-shadow-circuit-by-chronokight-flux-il.safetensors", "in the style of cksc"),
             "AIGCDuckBoss/fluxLora_pixarStyle":("fluxLora_pixarStyle.safetensors", "pixar"),
             "fofr/flux-pixar-cars":("lora.safetensors", "pixar cars style"),
+            "Nishitbaria/ghibli-stlye-lora":("lora.safetensors", "ghibli"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
