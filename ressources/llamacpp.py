@@ -161,6 +161,7 @@ model_list_llamacpp_builtin = {
     "bartowski/2B_or_not_2B-GGUF":("2B_or_not_2B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "bartowski/Llama-3.2-3B-Instruct-uncensored-GGUF":("Llama-3.2-3B-Instruct-uncensored-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
     "bartowski/Hermes-3-Llama-3.2-3B-GGUF":("Hermes-3-Llama-3.2-3B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
+    "bartowski/Nanbeige_Nanbeige4.2-3B-GGUF":("Nanbeige_Nanbeige4.2-3B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
     "mradermacher/Nanbeige4.1-3B-PaperWitch-heresy-i1-GGUF":("Nanbeige4.1-3B-PaperWitch-heresy.i1-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "bartowski/goppa-ai_Goppa-LogiLlama-GGUF":("goppa-ai_Goppa-LogiLlama-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
     "bartowski/nvidia_Llama-3.1-Nemotron-Nano-4B-v1.1-GGUF":("nvidia_Llama-3.1-Nemotron-Nano-4B-v1.1-Q5_K_M.gguf", prompt_template_list_llamacpp["Llama-3-Instruct"][0], std_system_prompt),
