@@ -18,19 +18,22 @@ model_path_paintbyex = "./models/Paint_by_example/"
 model_path_safety_checker = "./models/Stable_Diffusion/"
 os.makedirs(model_path_paintbyex, exist_ok=True)
 os.makedirs(model_path_safety_checker, exist_ok=True)
-model_list_paintbyex = []
+model_list_paintbyex_local = []
 
 for filename in os.listdir(model_path_paintbyex):
     f = os.path.join(model_path_paintbyex, filename)
     if os.path.isfile(f) and (filename.endswith('.ckpt') or filename.endswith('.safetensors')):
-        model_list_paintbyex.append(f)
+        model_list_paintbyex_local.append(f)
 
 model_list_paintbyex_builtin = [
     "Fantasy-Studio/Paint-by-Example",
+    "patrickvonplaten/new_inpaint_test",
 ]
 
-for k in range(len(model_list_paintbyex_builtin)):
-    model_list_paintbyex.append(model_list_paintbyex_builtin[k])
+model_list_paintbyex = model_list_paintbyex_builtin
+
+for k in range(len(model_list_paintbyex_local)):
+    model_list_paintbyex.append(model_list_paintbyex_local[k])
 
 # Bouton Cancel
 stop_paintbyex = False
