@@ -2446,6 +2446,8 @@ def lora_model_list(model, *args):
             "strangerzonehf/Flux-Sketch-Smudge-LoRA":("Sketch-Smudge.safetensors", "Sketch Smudge"),
             "strangerzonehf/2DAura-Flux":("2DAura.safetensors", "2D Aura"),
             "Nishitbaria/midjourney-style-flux-lora":("midjourney-style-flux.safetensors", "aidmaMJ6.1"),
+            "wkplhc/hkcomic2.0":("lora.by_tusi.safetensors", "vweg"),
+            "anthienlong/replica":("replica.safetensors", "replica"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
