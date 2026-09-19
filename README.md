@@ -22,8 +22,14 @@
 
 ## Updates
 
+  * 🆕 **2026-09-19** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end model [DavidAU/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF](https://hf.co/DavidAU/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF) and tiny model [bartowski/Nanbeige_Nanbeige4.2-3B-GGUF](https://hf.co/bartowski/Nanbeige_Nanbeige4.2-3B-GGUF).
+    - Code enhancement and support for model [patrickvonplaten/new_inpaint_test](https://hf.co/patrickvonplaten/new_inpaint_test) in Paint by Example module.
+    - Add support for Flux LoRA models [Nishitbaria/midjourney-style-flux-lora](https://hf.co/Nishitbaria/midjourney-style-flux-lora), [Nishitbaria/ghibli-stlye-lora](https://hf.co/Nishitbaria/ghibli-stlye-lora), [wkplhc/hkcomic2.0](https://hf.co/wkplhc/hkcomic2.0) and [anthienlong/replica](https://hf.co/anthienlong/replica).
+    - Code enhancement for MagicMix module.
+
   * 🆕 **2026-09-12** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot model high-end model [bartowski/thomsonreuters_Thomson-1.0-Small-GGUF](https://hf.co/bartowski/thomsonreuters_Thomson-1.0-Small-GGUF) and update of Granite 4.1 to [bartowski/granite-4.2-30b-GGUF](https://hf.co/bartowski/granite-4.2-30b-GGUF).
+    - Add support for Chatbot high-end model [bartowski/thomsonreuters_Thomson-1.0-Small-GGUF](https://hf.co/bartowski/thomsonreuters_Thomson-1.0-Small-GGUF) and update of Granite 4.1 to [bartowski/granite-4.2-30b-GGUF](https://hf.co/bartowski/granite-4.2-30b-GGUF).
     - Add support for Instruct-pix2pix model [Jephson/cartoonization-finetuned](https://hf.co/Jephson/cartoonization-finetuned)
     - Add support for Flux LoRA models [strangerzonehf/Flux-Sketch-Smudge-LoRA](https://hf.co/strangerzonehf/Flux-Sketch-Smudge-LoRA), [strangerzonehf/2DAura-Flux](https://hf.co/strangerzonehf/2DAura-Flux), [ampp/rough-kids-illustrations](https://hf.co/ampp/rough-kids-illustrations) and [Wakkamaruh/balatro-poker-cards](https://hf.co/Wakkamaruh/balatro-poker-cards).
     - Code enhancement and add automated support for any Bartowski, mradermacher and Unsloth GGUF models for Chatbot module.
@@ -44,12 +50,6 @@
     - Add support for Chatbot tiny model [bartowski/LiquidAI_LFM2.5-2.6B-GGUF](https://hf.co/bartowski/LiquidAI_LFM2.5-2.6B-GGUF) and high-end model [bartowski/Qwen3.8-27B-GGUF](https://hf.co/bartowski/Qwen3.8-27B-GGUF).
     - Bugfix, code enhancement and support for [RestoreFormer](https://hf.co/leonelhs/gfpgan/blob/main/RestoreFormer.pth) in GFPGAN module .
     - Add support for Flux LoRA models [strangerzonehf/Qd-Sketch](https://hf.co/strangerzonehf/Qd-Sketch), [AIGCDuckBoss/fluxLora_pixarStyle](https://hf.co/AIGCDuckBoss/fluxLora_pixarStyle), [artshooter/flux-hand-drawn-stickman](https://hf.co/artshooter/flux-hand-drawn-stickman) and [AP123/flux-logos-v1](https://hf.co/AP123/flux-logos-v1).
-
-  * 🆕 **2026-08-15** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for French 🐓 Chatbot models [OpenLLM-France/Luciole-8B-Instruct-1.1-GGUF](https://hf.co/OpenLLM-France/Luciole-8B-Instruct-1.1-GGUF) and [OpenLLM-France/Luciole-23B-Instruct-1.1-GGUF](https://hf.co/OpenLLM-France/Luciole-23B-Instruct-1.1-GGUF).
-    - Add support for Real ESRGAN x4 model [schwgHao/RealESRGAN_x4plus](https://hf.co/schwgHao/RealESRGAN_x4plus).
-    - Add support for Flux specialized model [BxuanZ/FLUX-RS](https://hf.co/BxuanZ/FLUX-RS).
-    - Add support for Flux LoRA models [fffiloni/sweet-brush](https://hf.co/fffiloni/sweet-brush), [WizWhite/wizard-s-vintage-sardine-tins](https://hf.co/WizWhite/wizard-s-vintage-sardine-tins), [gokaygokay/Flux-Expressive-LoRA](https://hf.co/gokaygokay/Flux-Expressive-LoRA) and [glif-loradex-trainer/heather_90s_corporate_training](https://hf.co/glif-loradex-trainer/heather_90s_corporate_training).
 
 [Updates archive](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
