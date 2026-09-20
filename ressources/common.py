@@ -2279,6 +2279,7 @@ def lora_model_list(model, *args):
             "strangerzonehf/Qd-Sketch":("Qd Sketch.safetensors", "Qd-Sketch"),
             "Muapi/flux-frank-frazetta-style-oil-painting":("flux-frank-frazetta-style-oil-painting.safetensors", "Frank Frazetta fantasy oil painting"),
             "ampp/rough-kids-illustrations":("rough-kids-illustrations.safetensors", "r0ughkids4rt"),
+            "mikiwazang/Celestial":("lora.TA_trained.safetensors", "Celestial Fantasy"),
             "-[ 🏆 🐢 📷 Photographic Flux LoRA ]-":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/flux-koda":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/pola-photo-flux":("pola_photo_araminta_k.safetensors", "polaroid style"),
@@ -2630,6 +2631,7 @@ def lora_model_list(model, *args):
             "AIGCDuckBoss/fluxLora_pixarStyle":("fluxLora_pixarStyle.safetensors", "pixar"),
             "fofr/flux-pixar-cars":("lora.safetensors", "pixar cars style"),
             "Nishitbaria/ghibli-stlye-lora":("lora.safetensors", "ghibli"),
+            "strangerzonehf/Flux-Animeo-v1-LoRA":("Animeo.safetensors", "Animeo"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
