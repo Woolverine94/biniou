@@ -121,14 +121,34 @@ def text_llava(
         prompt_final_llava = prompt_full_llava
 
     if (modelid_llava == "moondream/moondream2-gguf"):
-        chat_handler_llava = MoondreamChatHandler(clip_model_path=modelid_mmproj_llava)
+        modeltype_llava = "Moondream"
     elif (modelid_llava == "bee-kake/nanollava-1.5-gguf"):
-        chat_handler_llava = NanollavaChatHandler(clip_model_path=modelid_mmproj_llava)
-#    elif (modelid_llava == ""):
-#        chat_handler_llava = Llama3VisionAlphaChatHandler(clip_model_path=modelid_mmproj_llava)
+        modeltype_llava = "Nanollava"
+    elif (modelid_llava == ""):
+        modeltype_llava = "Llama3VisionAlpha"
     elif (modelid_llava == "bartowski/MiniCPM-V-2_6-GGUF"):
+        modeltype_llava = "MiniCPMv26"
+    elif (
+       (modelid_llava == "light3611/llava-v1.6-finetuned-quantized-gguf") or \
+       (modelid_llava == "cmp-nct/llava-1.6-gguf") or \
+       (modelid_llava == "Steven0090/llava1.6-Mistral-7B-Instruct-v0.2-gguf") or \
+       (modelid_llava == "acrkaan/livenova-vlm-llava-v1_6-mistral-7b-gguf") or \
+       (modelid_llava == "billborkowski/llava-NousResearch_Nous-Hermes-2-Vision-GGUF") or \
+       (modelid_llava == "cjpais/llava-v1.6-34B-gguf")\
+    ):
+        modeltype_llava = "Llava16"
+    else :
+        modeltype_llava = "Llava15"
+
+    if modeltype_llava == "Moondream":
+        chat_handler_llava = MoondreamChatHandler(clip_model_path=modelid_mmproj_llava)
+    elif modeltype_llava == "Nanollava":
+        chat_handler_llava = NanollavaChatHandler(clip_model_path=modelid_mmproj_llava)
+    elif modeltype_llava == "Llama3VisionAlpha":
+        chat_handler_llava = Llama3VisionAlphaChatHandler(clip_model_path=modelid_mmproj_llava)
+    elif modeltype_llava == "MiniCPMv26":
         chat_handler_llava = MiniCPMv26ChatHandler(clip_model_path=modelid_mmproj_llava)
-    elif ((modelid_llava == "light3611/llava-v1.6-finetuned-quantized-gguf") or (modelid_llava == "cmp-nct/llava-1.6-gguf") or (modelid_llava == "Steven0090/llava1.6-Mistral-7B-Instruct-v0.2-gguf") or (modelid_llava == "acrkaan/livenova-vlm-llava-v1_6-mistral-7b-gguf") or (modelid_llava == "billborkowski/llava-NousResearch_Nous-Hermes-2-Vision-GGUF") or (modelid_llava == "cjpais/llava-v1.6-34B-gguf")):
+    elif modeltype_llava == "Llava16":
         chat_handler_llava = Llava16ChatHandler(clip_model_path=modelid_mmproj_llava)
     else:
         chat_handler_llava = Llava15ChatHandler(clip_model_path=modelid_mmproj_llava)
