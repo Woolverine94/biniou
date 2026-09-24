@@ -2280,6 +2280,8 @@ def lora_model_list(model, *args):
             "Muapi/flux-frank-frazetta-style-oil-painting":("flux-frank-frazetta-style-oil-painting.safetensors", "Frank Frazetta fantasy oil painting"),
             "ampp/rough-kids-illustrations":("rough-kids-illustrations.safetensors", "r0ughkids4rt"),
             "mikiwazang/Celestial":("lora.TA_trained.safetensors", "Celestial Fantasy"),
+            "TheAwakenOne/watercolor":("watercolor.safetensors", "WAT3R"),
+            "renderartist/sketchpaintflux":("Sketch_Paint_Flux_v1_renderartist.safetensors", "sk3tchpa1nt, illustration"),
             "-[ 🏆 🐢 📷 Photographic Flux LoRA ]-":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/flux-koda":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/pola-photo-flux":("pola_photo_araminta_k.safetensors", "polaroid style"),
