@@ -22,6 +22,11 @@
 
 ## Updates
 
+  * 🆕 **2026-09-26** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end model [sdkyuan/qwen3.8-27B-qat-q2_0-gguf](https://hf.co/sdkyuan/qwen3.8-27B-qat-q2_0-gguf) and tiny model [bartowski/MiniCPM5-2B-GGUF](https://hf.co/bartowski/MiniCPM5-2B-GGUF).
+    - Code enhancement and support for model [dragonSwing/LLaVA-Phi-3-mini-4k-instruct-GGUF](https://hf.co/dragonSwing/LLaVA-Phi-3-mini-4k-instruct-GGUF) in Llava module.
+    - Add support for Flux LoRA models [mikiwazang/Celestial](https://hf.co/mikiwazang/Celestial), [strangerzonehf/Flux-Animeo-v1-LoRA](https://hf.co/strangerzonehf/Flux-Animeo-v1-LoRA), [TheAwakenOne/watercolor](https://hf.co/TheAwakenOne/watercolor) and [renderartist/sketchpaintflux](https://hf.co/renderartist/sketchpaintflux).
+
   * 🆕 **2026-09-19** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end model [DavidAU/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF](https://hf.co/DavidAU/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF) and tiny model [bartowski/Nanbeige_Nanbeige4.2-3B-GGUF](https://hf.co/bartowski/Nanbeige_Nanbeige4.2-3B-GGUF).
     - Code enhancement and support for model [patrickvonplaten/new_inpaint_test](https://hf.co/patrickvonplaten/new_inpaint_test) in Paint by Example module.
@@ -45,11 +50,6 @@
     - Code enhancement and replacement of default model by [lambda/sd-image-variations-diffusers](https://hf.co/lambda/sd-image-variations-diffusers) for Image Variation module.
     - Add support for Flux LoRA models [AlekseyCalvin/Alexander_Apsit_Style_Art_FLUX_LoRa_By_SilverAgePoets_DrawThingsTrainedOnDeDistilled](https://hf.co/AlekseyCalvin/Alexander_Apsit_Style_Art_FLUX_LoRa_By_SilverAgePoets_DrawThingsTrainedOnDeDistilled), [fofr/flux-pixar-cars](https://hf.co/fofr/flux-pixar-cars), [gorlamee/LenovoUltraReal](https://hf.co/gorlamee/LenovoUltraReal) and [Muapi/flux-frank-frazetta-style-oil-painting](https://hf.co/Muapi/flux-frank-frazetta-style-oil-painting).
     - Code enhancement for Real ESRGAN module
-
-  * 🆕 **2026-08-22** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot tiny model [bartowski/LiquidAI_LFM2.5-2.6B-GGUF](https://hf.co/bartowski/LiquidAI_LFM2.5-2.6B-GGUF) and high-end model [bartowski/Qwen3.8-27B-GGUF](https://hf.co/bartowski/Qwen3.8-27B-GGUF).
-    - Bugfix, code enhancement and support for [RestoreFormer](https://hf.co/leonelhs/gfpgan/blob/main/RestoreFormer.pth) in GFPGAN module .
-    - Add support for Flux LoRA models [strangerzonehf/Qd-Sketch](https://hf.co/strangerzonehf/Qd-Sketch), [AIGCDuckBoss/fluxLora_pixarStyle](https://hf.co/AIGCDuckBoss/fluxLora_pixarStyle), [artshooter/flux-hand-drawn-stickman](https://hf.co/artshooter/flux-hand-drawn-stickman) and [AP123/flux-logos-v1](https://hf.co/AP123/flux-logos-v1).
 
 [Updates archive](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
