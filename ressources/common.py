@@ -2282,6 +2282,8 @@ def lora_model_list(model, *args):
             "mikiwazang/Celestial":("lora.TA_trained.safetensors", "Celestial Fantasy"),
             "TheAwakenOne/watercolor":("watercolor.safetensors", "WAT3R"),
             "renderartist/sketchpaintflux":("Sketch_Paint_Flux_v1_renderartist.safetensors", "sk3tchpa1nt, illustration"),
+            "SouthbayJay/underground-comix-style-flux-robert-crumb":("robert_crumb_flux_v1.safetensors", "r0b3rt_crum8"),
+            "Muapi/robert-crumb-style":("robert-crumb-style.safetensors", "in the style of robert-crumb, a drawing of"),
             "-[ 🏆 🐢 📷 Photographic Flux LoRA ]-":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/flux-koda":("araminta_k_flux_koda.safetensors", "flmft kodachrome style"),
             "alvdansen/pola-photo-flux":("pola_photo_araminta_k.safetensors", "polaroid style"),
