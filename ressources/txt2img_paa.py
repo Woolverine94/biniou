@@ -81,9 +81,11 @@ def image_txt2img_paa(
     ):
 
     print(">>>[PixArt-Alpha 🖼️ ]: starting module")
-    
+
 #    global pipe_txt2img_paa
     nsfw_filter_final, feat_ex = safety_checker_sd(model_path_txt2img_paa_safetychecker, device_txt2img_paa, nsfw_filter)
+
+    transformerid_txt2img_paa: str = ""
 
     if ("YOSO" in modelid_txt2img_paa.upper()):
         if (modelid_txt2img_paa == "Luo-Yihong/yoso_pixart512"):
