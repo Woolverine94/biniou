@@ -2636,6 +2636,8 @@ def lora_model_list(model, *args):
             "fofr/flux-pixar-cars":("lora.safetensors", "pixar cars style"),
             "Nishitbaria/ghibli-stlye-lora":("lora.safetensors", "ghibli"),
             "strangerzonehf/Flux-Animeo-v1-LoRA":("Animeo.safetensors", "Animeo"),
+            "Nishitbaria/AnimeXL":("lora.safetensors", "animexl"),
+            "Nishitbaria/AnimeStyle-flux-Dev-Lora":("lora.safetensors", "anmwp"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
