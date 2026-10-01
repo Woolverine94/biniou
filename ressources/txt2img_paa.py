@@ -35,6 +35,7 @@ model_list_txt2img_paa_builtin = [
     "artificialguybr/Fascinatio-PixartAlpha1024-Finetuned",
     "TensorFamily/SigmaJourney",
     "PixArt-alpha/PixArt-Alpha-DMD-XL-2-512x512",
+    "terminusresearch/pixart-900m-1024-ft-v0.6",
 ]
 
 for k in range(len(model_list_txt2img_paa_builtin)):
@@ -255,7 +256,7 @@ def image_txt2img_paa(
         pipe_txt2img_paa.scheduler = DDPMScheduler.from_pretrained(transformerid_txt2img_paa, subfolder="scheduler")
 
 
-    elif ("PIXART-SIGMA" in modelid_txt2img_paa.upper()):
+    elif ("PIXART-SIGMA" in modelid_txt2img_paa.upper() or modelid_txt2img_paa == "terminusresearch/pixart-900m-1024-ft-v0.6" ):
         if modelid_txt2img_paa[0:9] == "./models/" :
             pipe_txt2img_paa = PixArtSigmaPipeline.from_single_file(
                 modelid_txt2img_paa,
