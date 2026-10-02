@@ -103,6 +103,7 @@ model_list_llamacpp_builtin = {
     "bartowski/openchat-3.6-8b-20240522-GGUF":("openchat-3.6-8b-20240522-Q5_K_S.gguf", prompt_template_list_llamacpp["OpenChat"][0], ""),
     "bartowski/OpenChat-3.5-0106_32K-PoSE-GGUF":("OpenChat-3.5-0106_32K-PoSE-Q5_K_M.gguf", "<s> GPT4 System: {system_prompt}<|end_of_turn|> GPT4 User: {prompt}<|end_of_turn|> GPT4 Assistant: ", std_system_prompt),
     "bartowski/mlabonne_Qwen3-8B-abliterated-GGUF":("mlabonne_Qwen3-8B-abliterated-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
+    "bartowski/MiMo-V2.6-Distill-Qwen-9B-GGUF":("MiMo-V2.6-Distill-Qwen-9B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "bartowski/Qwen_Qwen3.5-9B-GGUF":("Qwen_Qwen3.5-9B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
     "Jackrong/Qwen3.5-9B-DeepSeek-V4-Flash-GGUF":("Qwen3.5-9B-DeepSeek-V4-Flash-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
     "bartowski/deepreinforce-ai_Ornith-1.0-9B-GGUF":("deepreinforce-ai_Ornith-1.0-9B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
