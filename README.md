@@ -22,6 +22,11 @@
 
 ## Updates
 
+  * 🆕 **2026-10-03** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot model [bartowski/MiMo-V2.6-Distill-Qwen-9B-GGUF](https://hf.co/bartowski/MiMo-V2.6-Distill-Qwen-9B-GGUF) and specialized model [bartowski/Gryphe_Pantheon-Reasoning-26B-A4B-1.1-V2-GGUF](https://hf.co/bartowski/Gryphe_Pantheon-Reasoning-26B-A4B-1.1-V2-GGUF).
+    - Code enhancement and support for model [terminusresearch/pixart-900m-1024-ft-v0.6](https://hf.co/terminusresearch/pixart-900m-1024-ft-v0.6) in PixArt-Alpha  module.
+    - Add support for Flux LoRA models [SouthbayJay/underground-comix-style-flux-robert-crumb](https://hf.co/SouthbayJay/underground-comix-style-flux-robert-crumb), [Muapi/robert-crumb-style](https://hf.co/Muapi/robert-crumb-style), [Nishitbaria/AnimeXL](https://hf.co/Nishitbaria/AnimeXL) and [Nishitbaria/AnimeStyle-flux-Dev-Lora](https://hf.co/Nishitbaria/AnimeStyle-flux-Dev-Lora).
+
   * 🆕 **2026-09-26** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end model [sdkyuan/qwen3.8-27B-qat-q2_0-gguf](https://hf.co/sdkyuan/qwen3.8-27B-qat-q2_0-gguf) and tiny model [bartowski/MiniCPM5-2B-GGUF](https://hf.co/bartowski/MiniCPM5-2B-GGUF).
     - Code enhancement and support for model [dragonSwing/LLaVA-Phi-3-mini-4k-instruct-GGUF](https://hf.co/dragonSwing/LLaVA-Phi-3-mini-4k-instruct-GGUF) in Llava module.
@@ -43,12 +48,6 @@
     - Add support for Chatbot model [bartowski/granite-4.2-8b-GGUF](https://hf.co/bartowski/granite-4.2-8b-GGUF) and high-end model [bartowski/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF](https://hf.co/bartowski/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF).
     - Update of SDXL model RunDiffusion/Juggernaut-XL-v6 to [limiteinductive/Juggernaut-XL_v9_RunDiffusionPhoto_v2](https://hf.co/limiteinductive/Juggernaut-XL_v9_RunDiffusionPhoto_v2).
     - Add support for SDXL LoRA models [Muapi/lora-eyes-enhancer-free-use-or-merge](https://hf.co/Muapi/lora-eyes-enhancer-free-use-or-merge), [TheLastBen/Josef_Koudelka_Style_SDXL](https://hf.co/TheLastBen/Josef_Koudelka_Style_SDXL), [nerijs/lego-brickheadz-xl](https://hf.co/nerijs/lego-brickheadz-xl) and [multimodalart/envy-pulp-horror-xl-01](https://hf.co/multimodalart/envy-pulp-horror-xl-01).
-    - Code enhancement for Real ESRGAN module
-
-  * 🆕 **2026-08-29** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot model [bartowski/OrionLLM_GRM-3.2-Cliff-GGUF](https://hf.co/bartowski/OrionLLM_GRM-3.2-Cliff-GGUF) and high-end model [bartowski/Muse-Glimmer-30B-GGUF](https://hf.co/bartowski/Muse-Glimmer-30B-GGUF).
-    - Code enhancement and replacement of default model by [lambda/sd-image-variations-diffusers](https://hf.co/lambda/sd-image-variations-diffusers) for Image Variation module.
-    - Add support for Flux LoRA models [AlekseyCalvin/Alexander_Apsit_Style_Art_FLUX_LoRa_By_SilverAgePoets_DrawThingsTrainedOnDeDistilled](https://hf.co/AlekseyCalvin/Alexander_Apsit_Style_Art_FLUX_LoRa_By_SilverAgePoets_DrawThingsTrainedOnDeDistilled), [fofr/flux-pixar-cars](https://hf.co/fofr/flux-pixar-cars), [gorlamee/LenovoUltraReal](https://hf.co/gorlamee/LenovoUltraReal) and [Muapi/flux-frank-frazetta-style-oil-painting](https://hf.co/Muapi/flux-frank-frazetta-style-oil-painting).
     - Code enhancement for Real ESRGAN module
 
 [Updates archive](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
