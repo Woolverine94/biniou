@@ -2090,6 +2090,8 @@ def lora_model_list(model, *args):
             "lakshan-bandara/DrapXi-Model":("pytorch_lora_weights.safetensors", "a photo of drapxi style"),
             "KappaNeuro/john-blanche-style":("John Blanche Style.safetensors", "John Blanche Style - "),
             "TheLastBen/Josef_Koudelka_Style_SDXL":("koud.safetensors", "closeup by josef koudelka"),
+            "KappaNeuro/robert-crumb-style":("Robert Crumb Style.safetensors", "Robert Crumb Style - , cartoon illustration"),
+            "KappaNeuro/tintoretto-style":("Tintoretto Style.safetensors", "Tintoretto Style -, a Renaissance painting of"),
             "-[ 👌 🪧 Posters SDXL LoRA ]-":("SDXL-Caricaturized-Lora.safetensors", "Caricaturized"),
             "Norod78/SDXL-Caricaturized-Lora":("SDXL-Caricaturized-Lora.safetensors", "Caricaturized"),
             "artificialguybr/movie-poster-redmond-for-sd-xl-create-movie-poster-images":("MoviePosterRedmond-MoviePoster-MoviePosterRedAF.safetensors", "Movie Poster, MoviePosterAF"),
