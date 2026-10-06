@@ -22,6 +22,7 @@ model_list_txt2vid_ms = [
     "cerspense/zeroscope_v2_576w",
     "camenduru/potat1",
     "damo-vilab/text-to-video-ms-1.7b",
+    "vdo/animov-0.1.1",
 ]
 
 # Bouton Cancel
