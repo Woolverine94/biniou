@@ -2092,6 +2092,8 @@ def lora_model_list(model, *args):
             "TheLastBen/Josef_Koudelka_Style_SDXL":("koud.safetensors", "closeup by josef koudelka"),
             "KappaNeuro/robert-crumb-style":("Robert Crumb Style.safetensors", "Robert Crumb Style - , cartoon illustration"),
             "KappaNeuro/tintoretto-style":("Tintoretto Style.safetensors", "Tintoretto Style -, a Renaissance painting of"),
+            "KappaNeuro/stained-glass-portrait":("Stained Glass Portrait.safetensors", "Stained Glass Portrait -, a stained glass of"),
+            "KappaNeuro/lascaux":("Lascaux.safetensors", "Lascaux -, prehistoric cave painting"),
             "-[ 👌 🪧 Posters SDXL LoRA ]-":("SDXL-Caricaturized-Lora.safetensors", "Caricaturized"),
             "Norod78/SDXL-Caricaturized-Lora":("SDXL-Caricaturized-Lora.safetensors", "Caricaturized"),
             "artificialguybr/movie-poster-redmond-for-sd-xl-create-movie-poster-images":("MoviePosterRedmond-MoviePoster-MoviePosterRedAF.safetensors", "Movie Poster, MoviePosterAF"),
