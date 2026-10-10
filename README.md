@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2026-10-10** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot specialized models [bartowski/Altworld_Hemmingway-1-GGUF](https://hf.co/bartowski/Altworld_Hemmingway-1-GGUF) and [bartowski/junshim_When2Think-ThinkOnly-1.5B-GGUF](https://hf.co/bartowski/junshim_When2Think-ThinkOnly-1.5B-GGUF).
+    - Add support for anime model [vdo/animov-0.1.1](https://hf.co/vdo/animov-0.1.1) in Modelscope  module.
+    - Add support for model [avasaz/avasaz-large](https://hf.co/avasaz/avasaz-large) in MusicGen module.
+    - Add support for SDXL LoRA models [KappaNeuro/robert-crumb-style](https://hf.co/KappaNeuro/robert-crumb-style), [KappaNeuro/tintoretto-style](https://hf.co/KappaNeuro/tintoretto-style), [KappaNeuro/stained-glass-portrait](https://hf.co/KappaNeuro/stained-glass-portrait) and [KappaNeuro/lascaux](https://hf.co/KappaNeuro/lascaux).
+
   * 🆕 **2026-10-03** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot model [bartowski/MiMo-V2.6-Distill-Qwen-9B-GGUF](https://hf.co/bartowski/MiMo-V2.6-Distill-Qwen-9B-GGUF) and specialized model [bartowski/Gryphe_Pantheon-Reasoning-26B-A4B-1.1-V2-GGUF](https://hf.co/bartowski/Gryphe_Pantheon-Reasoning-26B-A4B-1.1-V2-GGUF).
     - Code enhancement and support for model [terminusresearch/pixart-900m-1024-ft-v0.6](https://hf.co/terminusresearch/pixart-900m-1024-ft-v0.6) in PixArt-Alpha  module.
@@ -43,12 +49,6 @@
     - Add support for Instruct-pix2pix model [Jephson/cartoonization-finetuned](https://hf.co/Jephson/cartoonization-finetuned)
     - Add support for Flux LoRA models [strangerzonehf/Flux-Sketch-Smudge-LoRA](https://hf.co/strangerzonehf/Flux-Sketch-Smudge-LoRA), [strangerzonehf/2DAura-Flux](https://hf.co/strangerzonehf/2DAura-Flux), [ampp/rough-kids-illustrations](https://hf.co/ampp/rough-kids-illustrations) and [Wakkamaruh/balatro-poker-cards](https://hf.co/Wakkamaruh/balatro-poker-cards).
     - Code enhancement and add automated support for any Bartowski, mradermacher and Unsloth GGUF models for Chatbot module.
-
-  * 🆕 **2026-09-05** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot model [bartowski/granite-4.2-8b-GGUF](https://hf.co/bartowski/granite-4.2-8b-GGUF) and high-end model [bartowski/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF](https://hf.co/bartowski/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF).
-    - Update of SDXL model RunDiffusion/Juggernaut-XL-v6 to [limiteinductive/Juggernaut-XL_v9_RunDiffusionPhoto_v2](https://hf.co/limiteinductive/Juggernaut-XL_v9_RunDiffusionPhoto_v2).
-    - Add support for SDXL LoRA models [Muapi/lora-eyes-enhancer-free-use-or-merge](https://hf.co/Muapi/lora-eyes-enhancer-free-use-or-merge), [TheLastBen/Josef_Koudelka_Style_SDXL](https://hf.co/TheLastBen/Josef_Koudelka_Style_SDXL), [nerijs/lego-brickheadz-xl](https://hf.co/nerijs/lego-brickheadz-xl) and [multimodalart/envy-pulp-horror-xl-01](https://hf.co/multimodalart/envy-pulp-horror-xl-01).
-    - Code enhancement for Real ESRGAN module
 
 [Updates archive](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
