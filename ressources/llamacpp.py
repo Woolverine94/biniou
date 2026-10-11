@@ -235,6 +235,7 @@ model_list_llamacpp_builtin = {
     "OpenBuddy/SimpleChat-72B-V3-QAT-GGUF":("ggml-model-Q2_K.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "DavidAU/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF":("Qwen3.8-27B-TurboFCFusion-735-882-Here-Uncen-NEO-CODER-MAX-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.8"][0], std_system_prompt),
     "sdkyuan/qwen3.8-27B-qat-q2_0-gguf":("qwen38-27b-qat-q2_0.gguf", prompt_template_list_llamacpp["Qwen 3.8"][0], std_system_prompt),
+    "empero-ai/Qwen3.8-35B-A3B-Distill-GGUF":("Qwen3.8-35B-A3B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.8"][0], std_system_prompt),
     "bartowski/Qwen3.8-27B-GGUF":("Qwen3.8-27B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.8"][0], std_system_prompt),
     "bartowski/thomsonreuters_Thomson-1.0-Small-GGUF":("thomsonreuters_Thomson-1.0-Small-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
     "bartowski/Qwen_Qwen3.6-35B-A3B-GGUF":("Qwen_Qwen3.6-35B-A3B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
