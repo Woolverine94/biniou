@@ -166,6 +166,7 @@ model_list_faceid_ip_builtin = [
     "aipicasso/emi-2",
     "zenless-lab/sdxl-anything-xl",
     "neta-art/neta-xl-2.0",
+    "John6666/illustrious-pencil-xl-v110-sdxl",
 ]
 
 for k in range(len(model_list_faceid_ip_builtin)):

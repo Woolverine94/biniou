@@ -126,6 +126,7 @@ model_list_txt2img_sd_builtin = [
     "aipicasso/emi-3",
     "zenless-lab/sdxl-anything-xl",
     "neta-art/neta-xl-2.0",
+    "John6666/illustrious-pencil-xl-v110-sdxl",
     "-[ 👏 🐢 SD3 ]-",
     "v2ray/stable-diffusion-3-medium-diffusers",
     "ptx0/sd3-reality-mix",

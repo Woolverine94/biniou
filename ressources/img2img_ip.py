@@ -119,6 +119,7 @@ model_list_img2img_ip_builtin = [
     "aipicasso/emi-2",
     "zenless-lab/sdxl-anything-xl",
     "neta-art/neta-xl-2.0",
+    "John6666/illustrious-pencil-xl-v110-sdxl",
     "-[ 🏆 🐢 Flux ]-",
     "Freepik/flux.1-lite-8B",
     "black-forest-labs/FLUX.1-schnell",

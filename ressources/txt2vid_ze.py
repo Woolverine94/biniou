@@ -143,6 +143,7 @@ model_list_txt2vid_ze = [
     "aipicasso/emi-2",
     "zenless-lab/sdxl-anything-xl",
     "neta-art/neta-xl-2.0",
+    "John6666/illustrious-pencil-xl-v110-sdxl",
 ]
 
 # Bouton Cancel
