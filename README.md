@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2026-10-17** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end model [empero-ai/Qwen3.8-35B-A3B-Distill-GGUF](https://hf.co/empero-ai/Qwen3.8-35B-A3B-Distill-GGUF) and tiny model [bartowski/FrogNano-4B-2609-GGUF](https://hf.co/bartowski/FrogNano-4B-2609-GGUF).
+    - Add support for SDXL model [John6666/illustrious-pencil-xl-v110-sdxl](https://hf.co/John6666/illustrious-pencil-xl-v110-sdxl).
+    - Raising timeout delay for downloads with hf_hub and adding an environment variable for timeout control (e.g.: `ENV_BINIOU_DL_TIMEOUT=20 ./webui.sh` ).
+    - Add support for Flux LoRA models [Muapi/nasa-raw-images](https://hf.co/Muapi/nasa-raw-images), [zhreyu/ComicStrips-Lora-Fluxdev](https://hf.co/zhreyu/ComicStrips-Lora-Fluxdev), [Muapi/nasa-astrophotography-flux.d](https://hf.co/Muapi/nasa-astrophotography-flux.d) and [Jonjew/NeonCyberPunkFLUX](https://hf.co/Jonjew/NeonCyberPunkFLUX).
+
   * 🆕 **2026-10-10** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot specialized models [bartowski/Altworld_Hemmingway-1-GGUF](https://hf.co/bartowski/Altworld_Hemmingway-1-GGUF) and [bartowski/junshim_When2Think-ThinkOnly-1.5B-GGUF](https://hf.co/bartowski/junshim_When2Think-ThinkOnly-1.5B-GGUF).
     - Add support for anime model [vdo/animov-0.1.1](https://hf.co/vdo/animov-0.1.1) in Modelscope  module.
@@ -43,12 +49,6 @@
     - Code enhancement and support for model [patrickvonplaten/new_inpaint_test](https://hf.co/patrickvonplaten/new_inpaint_test) in Paint by Example module.
     - Add support for Flux LoRA models [Nishitbaria/midjourney-style-flux-lora](https://hf.co/Nishitbaria/midjourney-style-flux-lora), [Nishitbaria/ghibli-stlye-lora](https://hf.co/Nishitbaria/ghibli-stlye-lora), [wkplhc/hkcomic2.0](https://hf.co/wkplhc/hkcomic2.0) and [anthienlong/replica](https://hf.co/anthienlong/replica).
     - Code enhancement for MagicMix module.
-
-  * 🆕 **2026-09-12** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end model [bartowski/thomsonreuters_Thomson-1.0-Small-GGUF](https://hf.co/bartowski/thomsonreuters_Thomson-1.0-Small-GGUF) and update of Granite 4.1 to [bartowski/granite-4.2-30b-GGUF](https://hf.co/bartowski/granite-4.2-30b-GGUF).
-    - Add support for Instruct-pix2pix model [Jephson/cartoonization-finetuned](https://hf.co/Jephson/cartoonization-finetuned)
-    - Add support for Flux LoRA models [strangerzonehf/Flux-Sketch-Smudge-LoRA](https://hf.co/strangerzonehf/Flux-Sketch-Smudge-LoRA), [strangerzonehf/2DAura-Flux](https://hf.co/strangerzonehf/2DAura-Flux), [ampp/rough-kids-illustrations](https://hf.co/ampp/rough-kids-illustrations) and [Wakkamaruh/balatro-poker-cards](https://hf.co/Wakkamaruh/balatro-poker-cards).
-    - Code enhancement and add automated support for any Bartowski, mradermacher and Unsloth GGUF models for Chatbot module.
 
 [Updates archive](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
