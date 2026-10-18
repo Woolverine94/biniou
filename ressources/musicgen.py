@@ -24,6 +24,7 @@ modellist_musicgen = [
     "facebook/musicgen-large",
     "pharoAIsanders420/musicgen-stereo-dub",
     "avasaz/avasaz-large",
+    "karthik/music_gen_unlimited",
 ]
 
 # Bouton Cancel
@@ -61,6 +62,9 @@ def music_musicgen(
     ):
 
     print(">>>[MusicGen 🎶 ]: starting module")
+
+    if model_musicgen == "karthik/music_gen_unlimited":
+        use_sampling_musicgen = True
 
     pipe_musicgen = MusicGen.get_pretrained(model_musicgen, device=device_musicgen)
     pipe_musicgen.set_generation_params(
