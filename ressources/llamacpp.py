@@ -269,6 +269,7 @@ model_list_llamacpp_builtin = {
     "bartowski/allenai_Olmo-3.1-32B-Instruct-GGUF":("allenai_Olmo-3.1-32B-Instruct-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "mradermacher/GLM-4.7-Flash-Claude-Opus-4.5-High-Reasoning-Distill-v2-heretic-i1-GGUF":("GLM-4.7-Flash-Claude-Opus-4.5-High-Reasoning-Distill-v2-heretic.i1-Q5_K_M.gguf", prompt_template_list_llamacpp["GLM"][0], std_system_prompt),
     "bartowski/jtl11_GLM-4.7-Flash-heretic-GGUF":("jtl11_GLM-4.7-Flash-heretic-Q5_K_M.gguf", prompt_template_list_llamacpp["GLM"][0], std_system_prompt),
+    "bartowski/LiquidAI_LFM2.5-24B-A2B-GGUF":("LiquidAI_LFM2.5-24B-A2B-Q5_K_M.gguf", prompt_template_list_llamacpp["LFM2.5"][0], std_system_prompt),
     "bartowski/LiquidAI_LFM2-24B-A2B-GGUF":("LiquidAI_LFM2-24B-A2B-Q5_K_M.gguf", prompt_template_list_llamacpp["LFM2"][0], std_system_prompt),
     "bartowski/granite-4.2-30b-GGUF":("granite-4.2-30b-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
     "bartowski/Muse-Glimmer-30B-GGUF":("Muse-Glimmer-30B-Q5_K_M.gguf", prompt_template_list_llamacpp["Muse Glimmer"][0], std_system_prompt),
