@@ -16,6 +16,7 @@ from PIL import Image
 from ressources import *
 import sys
 import socket
+import ast
 
 def local_ip():
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -69,8 +70,8 @@ get_window_url_params = """
         }
     """
 
-def split_url_params(url_params) :
-    url_params = eval(url_params.replace("'", "\""))
+def split_url_params(url_params):
+    url_params = ast.literal_eval(url_params.replace("'", "\""))
     if "nsfw_filter" in url_params.keys():
         output_nsfw = url_params["nsfw_filter"]
         return output_nsfw, url_params, bool(int(output_nsfw))
@@ -2510,7 +2511,7 @@ def dict_to_url(url):
     return url_final.replace("?&", "?")
 
 def url_params_theme(url):
-    url = eval(url)
+    url = ast.literal_eval(url)
     if url.get('__theme') != None and url['__theme'] == "dark":
         del url['__theme']
         url_final = dict_to_url(url)
