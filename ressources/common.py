@@ -2094,6 +2094,7 @@ def lora_model_list(model, *args):
             "KappaNeuro/tintoretto-style":("Tintoretto Style.safetensors", "Tintoretto Style -, a Renaissance painting of"),
             "KappaNeuro/stained-glass-portrait":("Stained Glass Portrait.safetensors", "Stained Glass Portrait -, a stained glass of"),
             "KappaNeuro/lascaux":("Lascaux.safetensors", "Lascaux -, prehistoric cave painting"),
+            "KappaNeuro/pierre-auguste-renoir-style":("Pierre Auguste Renoir Style.safetensors", "Pierre Auguste Renoir Style - "),
             "-[ 👌 🪧 Posters SDXL LoRA ]-":("SDXL-Caricaturized-Lora.safetensors", "Caricaturized"),
             "Norod78/SDXL-Caricaturized-Lora":("SDXL-Caricaturized-Lora.safetensors", "Caricaturized"),
             "artificialguybr/movie-poster-redmond-for-sd-xl-create-movie-poster-images":("MoviePosterRedmond-MoviePoster-MoviePosterRedAF.safetensors", "Movie Poster, MoviePosterAF"),
@@ -2143,6 +2144,7 @@ def lora_model_list(model, *args):
             "rajkumaralma/futureistic_fantasy_anime_sDXL":("futureistic_fantasy_anime_sdxl_v1.safetensors", "futuristic-fantasy-anime"),
             "Muapi/90-s-anime-melancholy-anima-illustriousxl-zimageturbo-flux-chroma":("90-s-anime-melancholy-anima-illustriousxl-zimageturbo-flux-chroma.safetensors", "90s_melancholy, retro"),
             "alvdansen/archfey_anime":("araminta_k_archfey_anime.safetensors", ""),
+            "e-n-v-y/envy-cel-shaded-xl-01":("EnvyCelShadedXL01.safetensors", ""),
             "-[ 🏠 Local models ]-":("", ""),
         }
     elif is_sd3(model):
