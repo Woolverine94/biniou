@@ -17,6 +17,7 @@ model_list_bark = [
     "suno/bark-small",
     "suno/bark",
     "artificial-feelings/bark-forked",
+    "ocaklisemih/bark-flash-attention-2",
 ]
 
 voice_preset_list_bark = {
