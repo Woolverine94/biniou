@@ -22,6 +22,14 @@
 
 ## Updates
 
+  * 🆕 **2026-10-24** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end models [bartowski/LiquidAI_LFM2.5-24B-A2B-GGUF](https://hf.co/bartowski/LiquidAI_LFM2.5-24B-A2B-GGUF) and [bartowski/Mellum2.1-12B-A2.5B-Thinking-GGUF](https://hf.co/bartowski/Mellum2.1-12B-A2.5B-Thinking-GGUF).
+    - Add support for MusicGen model [karthik/music_gen_unlimited](https://hf.co/karthik/music_gen_unlimited).
+    - Add support for Bark model [ocaklisemih/bark-flash-attention-2](https://hf.co/ocaklisemih/bark-flash-attention-2).
+    - Add support for SDXL LoRA models [KappaNeuro/pierre-auguste-renoir-style](https://hf.co/KappaNeuro/pierre-auguste-renoir-style) and [e-n-v-y/envy-cel-shaded-xl-01](https://hf.co/e-n-v-y/envy-cel-shaded-xl-01).
+    - Add support for Flux LoRA models [openfree/claude-monet](https://hf.co/openfree/claude-monet) and [heykinnu/concord-pictogram-lora](https://hf.co/heykinnu/concord-pictogram-lora).
+    - Security enhancement in handling of URL parameters.
+
   * 🆕 **2026-10-17** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end model [empero-ai/Qwen3.8-35B-A3B-Distill-GGUF](https://hf.co/empero-ai/Qwen3.8-35B-A3B-Distill-GGUF) and tiny model [bartowski/FrogNano-4B-2609-GGUF](https://hf.co/bartowski/FrogNano-4B-2609-GGUF).
     - Add support for SDXL model [John6666/illustrious-pencil-xl-v110-sdxl](https://hf.co/John6666/illustrious-pencil-xl-v110-sdxl).
@@ -43,12 +51,6 @@
     - Add support for Chatbot high-end model [sdkyuan/qwen3.8-27B-qat-q2_0-gguf](https://hf.co/sdkyuan/qwen3.8-27B-qat-q2_0-gguf) and tiny model [bartowski/MiniCPM5-2B-GGUF](https://hf.co/bartowski/MiniCPM5-2B-GGUF).
     - Code enhancement and support for model [dragonSwing/LLaVA-Phi-3-mini-4k-instruct-GGUF](https://hf.co/dragonSwing/LLaVA-Phi-3-mini-4k-instruct-GGUF) in Llava module.
     - Add support for Flux LoRA models [mikiwazang/Celestial](https://hf.co/mikiwazang/Celestial), [strangerzonehf/Flux-Animeo-v1-LoRA](https://hf.co/strangerzonehf/Flux-Animeo-v1-LoRA), [TheAwakenOne/watercolor](https://hf.co/TheAwakenOne/watercolor) and [renderartist/sketchpaintflux](https://hf.co/renderartist/sketchpaintflux).
-
-  * 🆕 **2026-09-19** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end model [DavidAU/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF](https://hf.co/DavidAU/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF) and tiny model [bartowski/Nanbeige_Nanbeige4.2-3B-GGUF](https://hf.co/bartowski/Nanbeige_Nanbeige4.2-3B-GGUF).
-    - Code enhancement and support for model [patrickvonplaten/new_inpaint_test](https://hf.co/patrickvonplaten/new_inpaint_test) in Paint by Example module.
-    - Add support for Flux LoRA models [Nishitbaria/midjourney-style-flux-lora](https://hf.co/Nishitbaria/midjourney-style-flux-lora), [Nishitbaria/ghibli-stlye-lora](https://hf.co/Nishitbaria/ghibli-stlye-lora), [wkplhc/hkcomic2.0](https://hf.co/wkplhc/hkcomic2.0) and [anthienlong/replica](https://hf.co/anthienlong/replica).
-    - Code enhancement for MagicMix module.
 
 [Updates archive](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
