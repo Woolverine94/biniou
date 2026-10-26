@@ -25,6 +25,7 @@ modellist_musicgen = [
     "pharoAIsanders420/musicgen-stereo-dub",
     "avasaz/avasaz-large",
     "karthik/music_gen_unlimited",
+    "pharoAIsanders420/musicgen-small-dnb"
 ]
 
 # Bouton Cancel
@@ -63,7 +64,7 @@ def music_musicgen(
 
     print(">>>[MusicGen 🎶 ]: starting module")
 
-    if model_musicgen == "karthik/music_gen_unlimited":
+    if model_musicgen == "karthik/music_gen_unlimited" or model_musicgen == "pharoAIsanders420/musicgen-small-dnb":
         use_sampling_musicgen = True
 
     pipe_musicgen = MusicGen.get_pretrained(model_musicgen, device=device_musicgen)
