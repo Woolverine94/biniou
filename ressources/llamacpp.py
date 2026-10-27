@@ -274,6 +274,7 @@ model_list_llamacpp_builtin = {
     "bartowski/granite-4.2-30b-GGUF":("granite-4.2-30b-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
     "bartowski/Muse-Glimmer-30B-GGUF":("Muse-Glimmer-30B-Q5_K_M.gguf", prompt_template_list_llamacpp["Muse Glimmer"][0], std_system_prompt),
     "bartowski/Mellum2.1-12B-A2.5B-Thinking-GGUF":("Mellum2.1-12B-A2.5B-Thinking-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
+    "bartowski/MiniCPM-V-4.7-35B-A3B-GGUF":("MiniCPM-V-4.7-35B-A3B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
     "-[ 🧑‍💻 Code ]-":("DeepSeek-Coder-V2-Lite-Instruct-Q5_K_M.gguf", "<|begin_of_sentence|>{system_prompt}\n\nUser: {prompt}\n\nAssistant: <|end_of_sentence|>Assistant:", code_system_prompt),
     "bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF":("DeepSeek-Coder-V2-Lite-Instruct-Q5_K_M.gguf", "<|begin_of_sentence|>{system_prompt}\n\nUser: {prompt}\n\nAssistant: <|end_of_sentence|>Assistant:", code_system_prompt),
     "DavidAU/Openai_gpt-oss-20b-CODER-NEO-CODE-DI-MATRIX-GGUF":("OpenAI-20B-NEO-CODE-DIMAT-MXFP4_MOE3.gguf", prompt_template_list_llamacpp["gpt-oss"][0], code_system_prompt),
