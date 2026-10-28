@@ -36,6 +36,7 @@ model_list_txt2img_paa_builtin = [
     "TensorFamily/SigmaJourney",
     "PixArt-alpha/PixArt-Alpha-DMD-XL-2-512x512",
     "terminusresearch/pixart-900m-1024-ft-v0.6",
+    "dattrong/pixart-sigma-512",
 ]
 
 for k in range(len(model_list_txt2img_paa_builtin)):
