@@ -173,6 +173,7 @@ model_list_llamacpp_builtin = {
     "bartowski/YuLan-Mini-GGUF":("YuLan-Mini-Q5_K_M.gguf", "<s> \n\n    <|start_header_id|> system<|end_header_id|> \n\n{system_prompt}<|eot_id|> \n\n    <|start_header_id|> user<|end_header_id|> \n\n{prompt}<|eot_id|> \n\n    <|start_header_id|> assistant<|end_header_id|>", std_system_prompt),
     "bartowski/Nemotron-Mini-4B-Instruct-GGUF":("Nemotron-Mini-4B-Instruct-Q5_K_M.gguf", "<extra_id_0>System\n{system_prompt}\n\n<extra_id_1>User\n{prompt}\n<extra_id_1>Assistant", std_system_prompt),
     "bartowski/nvidia_Nemotron-Research-Reasoning-Qwen-1.5B-GGUF":("nvidia_Nemotron-Research-Reasoning-Qwen-1.5B-Q5_K_M.gguf", "<｜begin▁of▁sentence｜>{system_prompt}<｜User｜>{prompt}<｜Assistant｜><｜end▁of▁sentence｜><｜Assistant｜><think>\n", std_system_prompt),
+    "unsloth/NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF":("NVIDIA-Nemotron-3.5-Bolt-E4B-UD-Q5_K_XL.gguf", prompt_template_list_llamacpp["Gemma 4"][0], std_system_prompt),
     "bartowski/HuggingFaceTB_SmolLM3-3B-GGUF":("HuggingFaceTB_SmolLM3-3B-Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant", std_system_prompt),
     "bartowski/SmolLM2-1.7B-Instruct-GGUF":("SmolLM2-1.7B-Instruct-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "bartowski/smolagents_SmolVLM2-2.2B-Instruct-Agentic-GUI-GGUF":("smolagents_SmolVLM2-2.2B-Instruct-Agentic-GUI-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
