@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2026-10-31** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot high-end models [bartowski/MiniCPM-V-4.7-35B-A3B-GGUF](https://hf.co/bartowski/MiniCPM-V-4.7-35B-A3B-GGUF) and tiny model [unsloth/NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF](https://hf.co/unsloth/NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF).
+    - Add support for PixArt-Alpha Sigma model [dattrong/pixart-sigma-512](https://hf.co/dattrong/pixart-sigma-512).
+    - Add support for MusicGen model [pharoAIsanders420/musicgen-small-dnb](https://hf.co/pharoAIsanders420/musicgen-small-dnb).
+    - Add support for Flux LoRA models [CiroN2022/beetlejuice-1988-flux-v1](https://hf.co/CiroN2022/beetlejuice-1988-flux-v1), [merve/trained-flux-lora-lego](https://hf.co/merve/trained-flux-lora-lego), [CiroN2022/futujapan-flux-v1](https://hf.co/CiroN2022/futujapan-flux-v1) and [CiroN2022/invasion-graphics-flux-v10](https://hf.co/CiroN2022/invasion-graphics-flux-v10).
+
   * 🆕 **2026-10-24** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end models [bartowski/LiquidAI_LFM2.5-24B-A2B-GGUF](https://hf.co/bartowski/LiquidAI_LFM2.5-24B-A2B-GGUF) and [bartowski/Mellum2.1-12B-A2.5B-Thinking-GGUF](https://hf.co/bartowski/Mellum2.1-12B-A2.5B-Thinking-GGUF).
     - Add support for MusicGen model [karthik/music_gen_unlimited](https://hf.co/karthik/music_gen_unlimited).
@@ -46,11 +52,6 @@
     - Add support for Chatbot model [bartowski/MiMo-V2.6-Distill-Qwen-9B-GGUF](https://hf.co/bartowski/MiMo-V2.6-Distill-Qwen-9B-GGUF) and specialized model [bartowski/Gryphe_Pantheon-Reasoning-26B-A4B-1.1-V2-GGUF](https://hf.co/bartowski/Gryphe_Pantheon-Reasoning-26B-A4B-1.1-V2-GGUF).
     - Code enhancement and support for model [terminusresearch/pixart-900m-1024-ft-v0.6](https://hf.co/terminusresearch/pixart-900m-1024-ft-v0.6) in PixArt-Alpha  module.
     - Add support for Flux LoRA models [SouthbayJay/underground-comix-style-flux-robert-crumb](https://hf.co/SouthbayJay/underground-comix-style-flux-robert-crumb), [Muapi/robert-crumb-style](https://hf.co/Muapi/robert-crumb-style), [Nishitbaria/AnimeXL](https://hf.co/Nishitbaria/AnimeXL) and [Nishitbaria/AnimeStyle-flux-Dev-Lora](https://hf.co/Nishitbaria/AnimeStyle-flux-Dev-Lora).
-
-  * 🆕 **2026-09-26** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end model [sdkyuan/qwen3.8-27B-qat-q2_0-gguf](https://hf.co/sdkyuan/qwen3.8-27B-qat-q2_0-gguf) and tiny model [bartowski/MiniCPM5-2B-GGUF](https://hf.co/bartowski/MiniCPM5-2B-GGUF).
-    - Code enhancement and support for model [dragonSwing/LLaVA-Phi-3-mini-4k-instruct-GGUF](https://hf.co/dragonSwing/LLaVA-Phi-3-mini-4k-instruct-GGUF) in Llava module.
-    - Add support for Flux LoRA models [mikiwazang/Celestial](https://hf.co/mikiwazang/Celestial), [strangerzonehf/Flux-Animeo-v1-LoRA](https://hf.co/strangerzonehf/Flux-Animeo-v1-LoRA), [TheAwakenOne/watercolor](https://hf.co/TheAwakenOne/watercolor) and [renderartist/sketchpaintflux](https://hf.co/renderartist/sketchpaintflux).
 
 [Updates archive](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
