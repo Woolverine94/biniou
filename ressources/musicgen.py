@@ -25,7 +25,8 @@ modellist_musicgen = [
     "pharoAIsanders420/musicgen-stereo-dub",
     "avasaz/avasaz-large",
     "karthik/music_gen_unlimited",
-    "pharoAIsanders420/musicgen-small-dnb"
+    "pharoAIsanders420/musicgen-small-dnb",
+    "TevinWang/mixart-gen",
 ]
 
 # Bouton Cancel
