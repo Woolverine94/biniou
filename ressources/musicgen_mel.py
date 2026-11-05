@@ -23,6 +23,7 @@ modellist_musicgen_mel = [
     "nateraw/musicgen-songstarter-v0.2",
     "facebook/musicgen-style",
     "kylielee505/mymgm",
+    "smarters/musicgen-melody-csi",
 ]
 
 # Bouton Cancel
