@@ -7756,10 +7756,7 @@ with gr.Blocks(
                                 exec(safe_exec_ini(fichier))
                     with gr.Row():
                         with gr.Column():
-                            with gr.Row():
-                                source_type_musicgen_mel = gr.Radio(choices=["audio", "micro"], value="audio", label=biniou_lang_tab_musicgen_mel_src_type_label, info=biniou_lang_tab_musicgen_mel_src_type_info)
-                    with gr.Row(equal_height=True):
-                        with gr.Column():
+                            source_type_musicgen_mel = gr.Radio(choices=["audio", "micro"], value="audio", label=biniou_lang_tab_musicgen_mel_src_type_label, info=biniou_lang_tab_musicgen_mel_src_type_info)
                             source_audio_musicgen_mel = gr.Audio(label=biniou_lang_tab_musicgen_mel_src_audio, source="upload", type="filepath")
                             source_type_musicgen_mel.change(fn=change_source_type_musicgen_mel, inputs=source_type_musicgen_mel, outputs=source_audio_musicgen_mel)
                         with gr.Column():
