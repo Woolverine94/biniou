@@ -161,6 +161,7 @@ model_list_llamacpp_builtin = {
     "mradermacher/Polaris-1.7B-Preview-GGUF":("Polaris-1.7B-Preview.Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "MaziyarPanahi/calme-3.3-baguette-3b-GGUF":("calme-3.3-baguette-3b.Q5_K_M.gguf", "<|im_start|>system\n{system_prompt}\n<|im_end|>\n<|im_start|>user\n{prompt}\n<|im_end|>\n<|im_start|>assistant", "Tu es un assistant IA compétent et fiable. Tu fais des réponses concises et précises. Tu ne refuses jamais de répondre."),
 #    "microsoft/bitnet-b1.58-2B-4T-gguf":("ggml-model-i2_s.gguf", "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>", std_system_prompt),
+    "bartowski/Lythri_Lythri-Tada-4B-GGUF":("Lythri_Lythri-Tada-4B-Q5_K_M.gguf", prompt_template_list_llamacpp["Gemma 4"][0], std_system_prompt),
     "vinimuchulski/gemma-3-4b-it-qat-q4_0-gguf":("gemma-3-4b-it-q4_0.gguf", prompt_template_list_llamacpp["Gemma 3"][0], std_system_prompt),
     "bartowski/TheDrummer_Gemma-3-R1-4B-v1-GGUF":("TheDrummer_Gemma-3-R1-4B-v1-Q5_K_M.gguf", prompt_template_list_llamacpp["Gemma 3"][0], std_system_prompt),
     "bartowski/2B_or_not_2B-GGUF":("2B_or_not_2B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
