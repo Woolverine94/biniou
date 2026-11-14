@@ -22,6 +22,13 @@
 
 ## Updates
 
+  * 🆕 **2026-11-14** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot tiny model [bartowski/Lythri_Lythri-Tada-4B-GGUF](https://hf.co/bartowski/Lythri_Lythri-Tada-4B-GGUF) and update of high-end model Hemmingway to [bartowski/HemmingwayAI_Hemmingway-1.5-GGUF](https://hf.co/bartowski/HemmingwayAI_Hemmingway-1.5-GGUF).
+    - Add support for MusicGen model [derrickdso/samplegen-small](https://hf.co/derrickdso/samplegen-small).
+    - Add support for Flux LoRA models [uwcc/PenScribble](https://hf.co/uwcc/PenScribble), [uwcc/Crayonism](https://hf.co/uwcc/Crayonism), [fofr/flux-pareidolia](https://hf.co/fofr/flux-pareidolia) and [Crowbar-Dub/magazine-cutout-flux-lora](https://hf.co/Crowbar-Dub/magazine-cutout-flux-lora).
+    - UI Enhancement for Musicgen Melody.
+    - Critical bugfix for for import error in protobuf module when using images modules.
+
   * 🆕 **2026-11-07** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot high-end model [bartowski/GrootTeam_Groot-19B-A3B-261023-GGUF](https://hf.co/bartowski/GrootTeam_Groot-19B-A3B-261023-GGUF) and tiny model [QUASAR-QAT/Qwen3.5-4B-QUASAR-Q4_0-GGUF](https://hf.co/QUASAR-QAT/Qwen3.5-4B-QUASAR-Q4_0-GGUF).
     - Add support for MusicGen model [TevinWang/mixart-gen](https://hf.co/TevinWang/mixart-gen).
@@ -47,12 +54,6 @@
     - Add support for SDXL model [John6666/illustrious-pencil-xl-v110-sdxl](https://hf.co/John6666/illustrious-pencil-xl-v110-sdxl).
     - Raising timeout delay for downloads with hf_hub and adding an environment variable for timeout control (e.g.: `ENV_BINIOU_DL_TIMEOUT=20 ./webui.sh` ).
     - Add support for Flux LoRA models [Muapi/nasa-raw-images](https://hf.co/Muapi/nasa-raw-images), [zhreyu/ComicStrips-Lora-Fluxdev](https://hf.co/zhreyu/ComicStrips-Lora-Fluxdev), [Muapi/nasa-astrophotography-flux.d](https://hf.co/Muapi/nasa-astrophotography-flux.d) and [Jonjew/NeonCyberPunkFLUX](https://hf.co/Jonjew/NeonCyberPunkFLUX).
-
-  * 🆕 **2026-10-10** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot specialized models [bartowski/Altworld_Hemmingway-1-GGUF](https://hf.co/bartowski/Altworld_Hemmingway-1-GGUF) and [bartowski/junshim_When2Think-ThinkOnly-1.5B-GGUF](https://hf.co/bartowski/junshim_When2Think-ThinkOnly-1.5B-GGUF).
-    - Add support for anime model [vdo/animov-0.1.1](https://hf.co/vdo/animov-0.1.1) in Modelscope  module.
-    - Add support for model [avasaz/avasaz-large](https://hf.co/avasaz/avasaz-large) in MusicGen module.
-    - Add support for SDXL LoRA models [KappaNeuro/robert-crumb-style](https://hf.co/KappaNeuro/robert-crumb-style), [KappaNeuro/tintoretto-style](https://hf.co/KappaNeuro/tintoretto-style), [KappaNeuro/stained-glass-portrait](https://hf.co/KappaNeuro/stained-glass-portrait) and [KappaNeuro/lascaux](https://hf.co/KappaNeuro/lascaux).
 
 [Updates archive](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
