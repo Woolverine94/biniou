@@ -107,6 +107,7 @@ model_list_llamacpp_builtin = {
     "bartowski/MiMo-V2.6-Distill-Qwen-9B-GGUF":("MiMo-V2.6-Distill-Qwen-9B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3"][0], std_system_prompt),
     "bartowski/Qwen_Qwen3.5-9B-GGUF":("Qwen_Qwen3.5-9B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
     "Jackrong/Qwen3.5-9B-DeepSeek-V4-Flash-GGUF":("Qwen3.5-9B-DeepSeek-V4-Flash-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
+    "Jackrong/DeepSeek-V4-Pro-Qwen3.5-9B-MTP-GGUF":("DeepSeek-V4-Pro-Qwen3.5-9B-MTP-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
     "bartowski/deepreinforce-ai_Ornith-1.0-9B-GGUF":("deepreinforce-ai_Ornith-1.0-9B-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
     "mradermacher/Huihui-Qwythos-9B-Claude-Mythos-5-1M-abliterated-i1-GGUF":("Huihui-Qwythos-9B-Claude-Mythos-5-1M-abliterated.i1-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
     "empero-ai/Qwythos-9B-v2-GGUF":("Qwythos-9B-v2-Q5_K_M.gguf", prompt_template_list_llamacpp["Qwen 3.5"][0], std_system_prompt),
