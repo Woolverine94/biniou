@@ -2473,6 +2473,7 @@ def lora_model_list(model, *args):
             "zhreyu/ComicStrips-Lora-Fluxdev":("ComicStrips_flux_lora_v1_fp16.safetensors", "Calvin and Hobbs"),
             "Jonjew/NeonCyberPunkFLUX":("Neon_Cyberpunk_Cyberbody_FLUX.safetensors", "mad-cbrbdy"),
             "fofr/flux-pareidolia":("lora.safetensors", "pareidolia"),
+            "bingbangboom/flux_colorscape":("flux_colorscape.safetensors", "illustration in the style of ASstyle001"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
@@ -2662,6 +2663,7 @@ def lora_model_list(model, *args):
             "strangerzonehf/Flux-Animeo-v1-LoRA":("Animeo.safetensors", "Animeo"),
             "Nishitbaria/AnimeXL":("lora.safetensors", "animexl"),
             "Nishitbaria/AnimeStyle-flux-Dev-Lora":("lora.safetensors", "anmwp"),
+            "glif/anime-blockprint-style":("bwmanga.safetensors", "blockprint style"),
             "-[ 🏠 Local models ]-":("", ""),
     }
 
