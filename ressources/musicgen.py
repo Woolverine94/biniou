@@ -28,6 +28,7 @@ modellist_musicgen = [
     "pharoAIsanders420/musicgen-small-dnb",
     "TevinWang/mixart-gen",
     "derrickdso/samplegen-small",
+    "Z3K3/jubbaModel",
 ]
 
 # Bouton Cancel
