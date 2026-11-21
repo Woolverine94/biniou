@@ -22,6 +22,11 @@
 
 ## Updates
 
+  * 🆕 **2026-11-21** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot model [Jackrong/DeepSeek-V4-Pro-Qwen3.5-9B-MTP-GGUF](https://hf.co/Jackrong/DeepSeek-V4-Pro-Qwen3.5-9B-MTP-GGUF) and specialized model [bartowski/wesjos_Spark-x2.6-4B-HTML-GGUF](https://hf.co/bartowski/wesjos_Spark-x2.6-4B-HTML-GGUF).
+    - Add support for MusicGen model [Z3K3/jubbaModel](https://hf.co/Z3K3/jubbaModel).
+    - Add support for Flux LoRA models [Muapi/m-tal-hurlant-comics-moebius-bilal-druillet](https://hf.co/Muapi/m-tal-hurlant-comics-moebius-bilal-druillet), [daliborkatgmaildotcom/cyberpink](https://hf.co/daliborkatgmaildotcom/cyberpink), [bingbangboom/flux_colorscape](https://hf.co/bingbangboom/flux_colorscape) and [glif/anime-blockprint-style](https://hf.co/glif/anime-blockprint-style).
+
   * 🆕 **2026-11-14** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot tiny model [bartowski/Lythri_Lythri-Tada-4B-GGUF](https://hf.co/bartowski/Lythri_Lythri-Tada-4B-GGUF) and update of high-end model Hemmingway to [bartowski/HemmingwayAI_Hemmingway-1.5-GGUF](https://hf.co/bartowski/HemmingwayAI_Hemmingway-1.5-GGUF).
     - Add support for MusicGen model [derrickdso/samplegen-small](https://hf.co/derrickdso/samplegen-small).
@@ -48,12 +53,6 @@
     - Add support for SDXL LoRA models [KappaNeuro/pierre-auguste-renoir-style](https://hf.co/KappaNeuro/pierre-auguste-renoir-style) and [e-n-v-y/envy-cel-shaded-xl-01](https://hf.co/e-n-v-y/envy-cel-shaded-xl-01).
     - Add support for Flux LoRA models [openfree/claude-monet](https://hf.co/openfree/claude-monet) and [heykinnu/concord-pictogram-lora](https://hf.co/heykinnu/concord-pictogram-lora).
     - Security enhancement in handling of URL parameters.
-
-  * 🆕 **2026-10-17** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end model [empero-ai/Qwen3.8-35B-A3B-Distill-GGUF](https://hf.co/empero-ai/Qwen3.8-35B-A3B-Distill-GGUF) and tiny model [bartowski/FrogNano-4B-2609-GGUF](https://hf.co/bartowski/FrogNano-4B-2609-GGUF).
-    - Add support for SDXL model [John6666/illustrious-pencil-xl-v110-sdxl](https://hf.co/John6666/illustrious-pencil-xl-v110-sdxl).
-    - Raising timeout delay for downloads with hf_hub and adding an environment variable for timeout control (e.g.: `ENV_BINIOU_DL_TIMEOUT=20 ./webui.sh` ).
-    - Add support for Flux LoRA models [Muapi/nasa-raw-images](https://hf.co/Muapi/nasa-raw-images), [zhreyu/ComicStrips-Lora-Fluxdev](https://hf.co/zhreyu/ComicStrips-Lora-Fluxdev), [Muapi/nasa-astrophotography-flux.d](https://hf.co/Muapi/nasa-astrophotography-flux.d) and [Jonjew/NeonCyberPunkFLUX](https://hf.co/Jonjew/NeonCyberPunkFLUX).
 
 [Updates archive](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
