@@ -50,6 +50,7 @@ model_list_img2img_ip_builtin = [
     "wangyunnan/Canvas",
     "songkey/realisticVisionV60B1_v51VAE",
     "songkey/epicrealism_naturalSinRC1VAE",
+    "yiki77/vector_style_sd1.5",
     "-[ 👍 🇯🇵 Anime SD15 ]-",
     "gsdf/Counterfeit-V2.5",
     "fluently/Fluently-anime",

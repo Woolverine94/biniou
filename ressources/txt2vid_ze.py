@@ -72,6 +72,7 @@ model_list_txt2vid_ze = [
     "wangyunnan/Canvas",
     "songkey/realisticVisionV60B1_v51VAE",
     "songkey/epicrealism_naturalSinRC1VAE",
+    "yiki77/vector_style_sd1.5",
     "-[ 👍 🇯🇵 Anime SD15 ]-",
     "gsdf/Counterfeit-V2.5",
     "fluently/Fluently-anime",
