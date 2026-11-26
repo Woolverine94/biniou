@@ -2477,6 +2477,8 @@ def lora_model_list(model, *args):
             "Muapi/m-tal-hurlant-comics-moebius-bilal-druillet":("m-tal-hurlant-comics-moebius-bilal-druillet.safetensors", ""),
             "daliborkatgmaildotcom/cyberpink":("aaw2-01_latest.safetensors", "Cyberpunk, high-resolution photograph, futuristic"),
             "obsidianab/flux_notion2.0":("lora.safetensors", "TOK"),
+            "anthienlong/fluxpro-style":("aidmaFLUXpro1.1-FLUX-V0.2.safetensors", "fluxprostyle"),
+            "samim/flow-lora-2":("lora.safetensors", "TOK"),
             "-[ 🏆 🐢 📦 Objects Flux LoRA ]-":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "Shakker-Labs/FLUX.1-dev-LoRA-Logo-Design":("FLUX-dev-lora-Logo-Design.safetensors", "wablogo, logo, Minimalist"),
             "prithivMLmods/Ton618-Tarot-Cards-Flux-LoRA":("Tarot-card.safetensors", "Tarot card"),
