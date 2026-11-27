@@ -159,6 +159,7 @@ model_list_img2img_builtin = [
     "buildborderless/FLUX.MF-8step_lightning_v2",
     "aifeifei798/DarkIdol-flux-v1.2",
     "BxuanZ/FLUX-RS",
+    "Raelina/Raemu-Flux",
     "-[ 🏠 Local models ]-",
 ]
 
