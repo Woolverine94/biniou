@@ -22,6 +22,12 @@
 
 ## Updates
 
+  * 🆕 **2026-11-28** : 🔥 ***Weekly update*** 🔥 >
+    - Add support for Chatbot specialized models [peculiar-ragdoll/Cyber-Tiel-Coder-35B-A3B-GGUF-MTP](https://hf.co/peculiar-ragdoll/Cyber-Tiel-Coder-35B-A3B-GGUF-MTP) and [prithivMLmods/Qwen3.5-4B-GLB-3D-Coder-MTP-Repacked](https://hf.co/prithivMLmods/Qwen3.5-4B-GLB-3D-Coder-MTP-Repacked). This last one litteraly "kick ass" and can generate a neat web page embedding a downloadable 3D model in .glb format, from a simple prompt describing the object (e.g. "Create a X."), and should be usable with only 4GB RAM. Definitely worth the try if you have any kind of interest in 3D modeling.
+    - Add support for Flux model [Raelina/Raemu-Flux](https://hf.co/Raelina/Raemu-Flux).
+    - Add support for Stable Diffusion 1.5 model [yiki77/vector_style_sd1.5](https://hf.co/yiki77/vector_style_sd1.5).
+    - Add support for Flux LoRA models [obsidianab/flux_notion2.0](https://hf.co/obsidianab/flux_notion2.0), [busetolunay/building_flux_lora_v3](https://hf.co/busetolunay/building_flux_lora_v3), [anthienlong/fluxpro-style](https://hf.co/anthienlong/fluxpro-style) and [samim/flow-lora-2](https://hf.co/samim/flow-lora-2).
+
   * 🆕 **2026-11-21** : 🔥 ***Weekly update*** 🔥 >
     - Add support for Chatbot model [Jackrong/DeepSeek-V4-Pro-Qwen3.5-9B-MTP-GGUF](https://hf.co/Jackrong/DeepSeek-V4-Pro-Qwen3.5-9B-MTP-GGUF) and specialized model [bartowski/wesjos_Spark-x2.6-4B-HTML-GGUF](https://hf.co/bartowski/wesjos_Spark-x2.6-4B-HTML-GGUF).
     - Add support for MusicGen model [Z3K3/jubbaModel](https://hf.co/Z3K3/jubbaModel).
@@ -45,14 +51,6 @@
     - Add support for PixArt-Alpha Sigma model [dattrong/pixart-sigma-512](https://hf.co/dattrong/pixart-sigma-512).
     - Add support for MusicGen model [pharoAIsanders420/musicgen-small-dnb](https://hf.co/pharoAIsanders420/musicgen-small-dnb).
     - Add support for Flux LoRA models [CiroN2022/beetlejuice-1988-flux-v1](https://hf.co/CiroN2022/beetlejuice-1988-flux-v1), [merve/trained-flux-lora-lego](https://hf.co/merve/trained-flux-lora-lego), [CiroN2022/futujapan-flux-v1](https://hf.co/CiroN2022/futujapan-flux-v1) and [CiroN2022/invasion-graphics-flux-v10](https://hf.co/CiroN2022/invasion-graphics-flux-v10).
-
-  * 🆕 **2026-10-24** : 🔥 ***Weekly update*** 🔥 >
-    - Add support for Chatbot high-end models [bartowski/LiquidAI_LFM2.5-24B-A2B-GGUF](https://hf.co/bartowski/LiquidAI_LFM2.5-24B-A2B-GGUF) and [bartowski/Mellum2.1-12B-A2.5B-Thinking-GGUF](https://hf.co/bartowski/Mellum2.1-12B-A2.5B-Thinking-GGUF).
-    - Add support for MusicGen model [karthik/music_gen_unlimited](https://hf.co/karthik/music_gen_unlimited).
-    - Add support for Bark model [ocaklisemih/bark-flash-attention-2](https://hf.co/ocaklisemih/bark-flash-attention-2).
-    - Add support for SDXL LoRA models [KappaNeuro/pierre-auguste-renoir-style](https://hf.co/KappaNeuro/pierre-auguste-renoir-style) and [e-n-v-y/envy-cel-shaded-xl-01](https://hf.co/e-n-v-y/envy-cel-shaded-xl-01).
-    - Add support for Flux LoRA models [openfree/claude-monet](https://hf.co/openfree/claude-monet) and [heykinnu/concord-pictogram-lora](https://hf.co/heykinnu/concord-pictogram-lora).
-    - Security enhancement in handling of URL parameters.
 
 [Updates archive](https://github.com/Woolverine94/biniou/wiki/Updates-archive)
 
